@@ -1,0 +1,135 @@
+<section class="tab armament {{tab.cssClass}}" data-group="primary" data-tab="armamentCombat">
+	<div class="content-item scrollable">
+		<fieldset class="armament-fieldset op-shadow">
+			<legend><i class="fas fa-crosshairs"></i> Tipos</legend>
+			<div class="armament-grid-2" style="margin-bottom: {{ternary (eq system.types.rangeType.name 'ranged') '8px' '0'}};">
+				<div class="armament-field">
+					<label>{{localize "op.weaponType"}}</label>
+					<select name="system.types.rangeType.name" data-dtype="String">
+						{{selectOptions optionWeaponType selected=system.types.rangeType.name localize=true blank="—"}}
+					</select>
+				</div>
+				{{#if (eq system.types.rangeType.name "ranged")}}
+					<div class="armament-field">
+						<label>{{localize "op.subtypeWeapon"}}</label>
+						<select name="system.types.rangeType.subRangeType" data-dtype="String">
+							{{selectOptions optionWeaponSubType selected=system.types.rangeType.subRangeType localize=true blank="—"}}
+						</select>
+					</div>
+				{{/if}}
+			</div>
+			{{#if (eq system.types.rangeType.name "ranged")}}
+				<div class="armament-field">
+					<label>{{localize "op.ammunitionType"}}</label>
+					<select name="system.types.ammunitionType" data-dtype="String">
+						{{selectOptions optionWeaponAmmunition selected=system.types.ammunitionType localize=true blank="—"}}
+					</select>
+				</div>
+			{{/if}}
+		</fieldset>
+
+		<fieldset class="armament-fieldset op-shadow">
+			<legend><i class="fas fa-shield-alt"></i> Detalhes de Combate</legend>
+			<div class="armament-grid-2">
+				<div class="armament-field">
+					<label>{{localize "op.range"}}</label>
+					<input type="text" name="system.range" value="{{system.range}}" data-dtype="String" />
+				</div>
+				<div class="armament-field">
+					<label>{{localize "op.critical"}}</label>
+					<input type="text" name="system.critical" value="{{system.critical}}" data-dtype="String" />
+				</div>
+			</div>
+		</fieldset>
+
+		<fieldset class="armament-fieldset op-shadow">
+			<legend><i class="fas fa-dice"></i> Fórmulas de Rolagem</legend>
+			<div class="armament-field" style="margin-bottom: 12px;">
+				<label>Fórmula de Ataque</label>
+				<div class="attack-formula formula-row" data-item-id="{{item._id}}">
+					<div class="flex-grow">
+						<select name="system.formulas.attack.attr">{{selectOptions
+								attributes
+								selected=system.formulas.attack.attr
+								localize=true
+								blank="Atributo"
+							}}</select>
+					</div>
+					<i class="fa-solid fa-plus"></i>
+					<div class="flex-grow">
+						<select name="system.formulas.attack.skill">{{selectOptions
+								attackSkills
+								selected=system.formulas.attack.skill
+								localize=true
+								blank="Perícia"
+							}}</select>
+					</div>
+					<div class="flex-grow">
+						<input
+							type="text"
+							name="system.formulas.attack.bonus"
+							value="{{system.formulas.attack.bonus}}"
+							placeholder="Bônus"
+						/>
+					</div>
+				</div>
+			</div>
+
+			<div class="armament-field">
+				<label>Dano Principal</label>
+				<div class="main-damage-formula formula-row" data-item-id="{{item._id}}">
+					<div class="flex-large">
+						<input
+							type="text"
+							name="system.formulas.damage.formula"
+							value="{{system.formulas.damage.formula}}"
+							placeholder="Dados (ex: 1d8)"
+						/>
+					</div>
+					<div class="flex-grow">
+						<select name="system.formulas.damage.attr">{{selectOptions
+								attributes
+								selected=system.formulas.damage.attr
+								localize=true
+								blank="Atributo"
+							}}</select>
+					</div>
+					<div class="flex-grow">
+						<select name="system.formulas.damage.type">{{selectOptions
+								optionDamageType
+								selected=system.formulas.damage.type
+								localize=true
+								blank="Tipo"
+							}}</select>
+					</div>
+				</div>
+			</div>
+
+			<div class="armament-field" style="margin-top: 10px;">
+				{{#each system.formulas.damage.parts as |part i|}}
+					<div class="damage-formula formula-row" data-item-id="{{item._id}}" data-damage-part="{{i}}">
+						<a class="delete-damage" data-action="onDamageControl"><i class="fas fa-trash"></i></a>
+						<div class="flex-large">
+							<input
+								type="text"
+								name="system.formulas.damage.parts.{{i}}.0"
+								value="{{lookup this '0'}}"
+								placeholder="Dados Extras"
+							/>
+						</div>
+						<div class="flex-grow">
+							<select name="system.formulas.damage.parts.{{i}}.1">{{selectOptions
+									@root.optionDamageType
+									selected=(lookup this "1")
+									localize=true
+									blank="Tipo"
+								}}</select>
+						</div>
+					</div>
+				{{/each}}
+				<a class="add-damage add-damage-btn" data-action="onDamageControl"><i class="fas fa-plus"></i>
+					Adicionar Dano Extra</a>
+			</div>
+		</fieldset>
+	</div>
+</section>

@@ -1,0 +1,23 @@
+{
+  "type": "Item",
+  "folder": "UKMT6qvOlVyXLmGg",
+  "name": "Agente Secreto",
+  "color": null,
+  "sorting": "a",
+  "description": "",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "14.365",
+    "systemId": "ordemparanormal",
+    "systemVersion": "7.2.4",
+    "createdTime": 1767391179321,
+    "modifiedTime": 1785688880825,
+    "lastModifiedBy": "vUTMyOH4FOrOifbw"
+  },
+  "_id": "AEQiidc9LGTECU7t",
+  "sort": 300000,
+  "_key": "!folders!AEQiidc9LGTECU7t"
+}

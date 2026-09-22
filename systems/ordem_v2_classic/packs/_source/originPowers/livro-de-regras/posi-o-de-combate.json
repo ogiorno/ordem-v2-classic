@@ -1,0 +1,35 @@
+{
+  "name": "Posição de Combate",
+  "type": "ability",
+  "_id": "LHcRgxXMoyfwq9U8",
+  "img": "systems/ordemparanormal/media/icons/abilities/origin/posicao-de-combate.svg",
+  "system": {
+    "id": 0,
+    "abilityType": "origin",
+    "preRequisite": "",
+    "description": "<p>No primeiro turno de cada cena de a&ccedil;&atilde;o, voc&ecirc; pode gastar 2 PE para receber uma a&ccedil;&atilde;o de movimento adicional.</p>",
+    "chatDescription": "",
+    "activation": "reaction",
+    "cost": 2
+  },
+  "effects": [],
+  "folder": "MbVRx0qCgZMO02wU",
+  "sort": 2100000,
+  "ownership": {
+    "default": 0,
+    "D087Zkcpssj33iAO": 3
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "ordemparanormal",
+    "systemVersion": "7.3.3",
+    "coreVersion": "14.365",
+    "createdTime": 1712011671890,
+    "modifiedTime": 1785688469167,
+    "lastModifiedBy": "vUTMyOH4FOrOifbw",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!LHcRgxXMoyfwq9U8"
+}

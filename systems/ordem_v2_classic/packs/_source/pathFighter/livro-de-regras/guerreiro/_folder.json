@@ -1,0 +1,23 @@
+{
+  "name": "Guerreiro",
+  "sorting": "a",
+  "folder": "am3kwLRXkQDZentZ",
+  "type": "Item",
+  "color": null,
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "14.365",
+    "systemId": "ordemparanormal",
+    "systemVersion": "7.2.4",
+    "createdTime": 1767391179321,
+    "modifiedTime": 1785688862207,
+    "lastModifiedBy": "vUTMyOH4FOrOifbw"
+  },
+  "description": "",
+  "_id": "hWIJSF5wxtKlXPON",
+  "sort": 100000,
+  "_key": "!folders!hWIJSF5wxtKlXPON"
+}

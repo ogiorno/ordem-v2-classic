@@ -1,0 +1,10 @@
+{
+  "id": "meu-modulo",
+  "title": "Meu Módulo",
+  "description": "Módulo de exemplo para desenvolvimento.",
+  "version": "0.0.1",
+  "compatibility": { "minimum": "14", "verified": "14" },
+  "authors": [{ "name": "Geh" }],
+  "esmodules": ["scripts/main.mjs"],
+  "languages": [{ "lang": "pt-BR", "name": "Português (Brasil)", "path": "lang/pt-BR.json" }]
+}

@@ -1,0 +1,23 @@
+{
+  "type": "Item",
+  "folder": "aSoTPYn9TYCEvMlw",
+  "name": "Itens Paranormais",
+  "color": null,
+  "sorting": "a",
+  "_id": "EQ0UqIoTKZ1ljXhW",
+  "description": "",
+  "sort": 500000,
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.365",
+    "systemId": "ordemparanormal",
+    "systemVersion": "7.3.3",
+    "createdTime": 1785687320291,
+    "modifiedTime": 1785687633299,
+    "lastModifiedBy": "vUTMyOH4FOrOifbw",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!folders!EQ0UqIoTKZ1ljXhW"
+}

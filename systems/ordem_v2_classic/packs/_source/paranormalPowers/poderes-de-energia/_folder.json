@@ -1,0 +1,23 @@
+{
+  "name": "Poderes de Energia",
+  "sorting": "a",
+  "folder": null,
+  "type": "Item",
+  "color": "#55008a",
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.365",
+    "systemId": "ordemparanormal",
+    "systemVersion": "7.3.3",
+    "createdTime": 1785685914047,
+    "modifiedTime": 1785685914076,
+    "lastModifiedBy": "vUTMyOH4FOrOifbw",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "description": "",
+  "_id": "LWZiW9fcXov51jSG",
+  "sort": 200000,
+  "_key": "!folders!LWZiW9fcXov51jSG"
+}

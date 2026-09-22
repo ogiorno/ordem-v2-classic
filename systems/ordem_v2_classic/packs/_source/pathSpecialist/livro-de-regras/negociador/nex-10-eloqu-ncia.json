@@ -1,0 +1,36 @@
+{
+  "folder": "Fa9a35aqB8oqkXbE",
+  "name": "NEX 10% - Eloquência",
+  "type": "ability",
+  "img": "systems/ordemparanormal/media/icons/abilities/class/specialist/Negociador/Eloqu%C3%AAncia.svg",
+  "system": {
+    "id": 0,
+    "abilityType": "path",
+    "preRequisite": "",
+    "description": "<p>Você pode usar uma ação completa e 1 PE por alvo em alcance curto para afetar outros personagens com sua fala. Faça um teste de Diplomacia, Enganação ou Intimidação contra a Vontade dos alvos. Se você vencer, os alvos ficam fascinados enquanto você se concentrar (uma ação padrão por rodada). Um alvo hostil ou que esteja envolvido em combate recebe +5 em seu teste de resistência e tem direito a um novo teste por rodada, sempre que você se concentrar Um personagem que passar no teste fica imune a este efeito por um dia.</p>",
+    "chatDescription": "",
+    "activation": "complete",
+    "cost": 1,
+    "costType": "PE"
+  },
+  "effects": [],
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "14.365",
+    "systemId": "ordemparanormal",
+    "systemVersion": "7.3.3",
+    "createdTime": 1767391187608,
+    "modifiedTime": 1785525509255,
+    "lastModifiedBy": "DnDtVz8d1Mx168x6"
+  },
+  "ownership": {
+    "default": 0,
+    "uX8kbsijC8bcpBa3": 3
+  },
+  "_id": "RTzsXsVpWpu56vyT",
+  "sort": 0,
+  "_key": "!items!RTzsXsVpWpu56vyT"
+}

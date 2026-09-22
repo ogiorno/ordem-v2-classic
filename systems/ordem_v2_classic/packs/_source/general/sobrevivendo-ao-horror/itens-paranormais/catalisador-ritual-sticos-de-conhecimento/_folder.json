@@ -1,0 +1,23 @@
+{
+  "type": "Item",
+  "folder": "EQ0UqIoTKZ1ljXhW",
+  "name": "Catalisador Ritualísticos de Conhecimento",
+  "color": null,
+  "sorting": "a",
+  "description": "",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "14.365",
+    "systemId": "ordemparanormal",
+    "systemVersion": "7.2.4",
+    "lastModifiedBy": "vUTMyOH4FOrOifbw",
+    "createdTime": 1785687277116,
+    "modifiedTime": 1785687871285
+  },
+  "_id": "anXUYinOLZL63nuR",
+  "sort": 100000,
+  "_key": "!folders!anXUYinOLZL63nuR"
+}

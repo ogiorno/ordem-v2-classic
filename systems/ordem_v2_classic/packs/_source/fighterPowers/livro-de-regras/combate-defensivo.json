@@ -1,0 +1,36 @@
+{
+  "name": "Combate Defensivo",
+  "type": "ability",
+  "img": "systems/ordemparanormal/media/icons/abilities/class/fighter/Combate%20Defensivo.svg",
+  "system": {
+    "id": 0,
+    "abilityType": "class",
+    "preRequisite": "",
+    "description": "<p>Quando usa a ação agredir, você pode combater defensivamente. Se fizer isso, sofre @DisplayDice[qtd:1|sign:minus|dc:d20] no teste de ataque, mas recebe +5 na Defesa até o início de seu próximo turno.</p>",
+    "chatDescription": "",
+    "activation": "reaction",
+    "cost": "",
+    "costType": "PE"
+  },
+  "effects": [],
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "14.365",
+    "systemId": "ordemparanormal",
+    "systemVersion": "7.3.3",
+    "createdTime": 1768012548817,
+    "modifiedTime": 1785686302060,
+    "lastModifiedBy": "vUTMyOH4FOrOifbw"
+  },
+  "ownership": {
+    "default": 0,
+    "uX8kbsijC8bcpBa3": 3
+  },
+  "_id": "u9nhQ6qUXdXohI6g",
+  "sort": 112500,
+  "folder": "4GYFTYgIaBzb4vEJ",
+  "_key": "!items!u9nhQ6qUXdXohI6g"
+}

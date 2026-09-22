@@ -1,0 +1,84 @@
+{
+  "name": "Mochila Militar",
+  "type": "generalEquipment",
+  "img": "systems/ordemparanormal/media/icons/equipments/operational/mochila-militar.svg",
+  "system": {
+    "description": "<p>Uma mochila leve e de alta qualidade. Ela n&atilde;o usa nenhum espa&ccedil;o e aumenta sua capacidade de carga em 2 espa&ccedil;os.</p>",
+    "chatDescription": "",
+    "weight": 0,
+    "category": 1,
+    "using": {
+      "state": true,
+      "class": "fas"
+    },
+    "type": "",
+    "quantity": 1
+  },
+  "effects": [
+    {
+      "origin": "Compendium.ordemparanormal.generalEquipments.Item.0KKFBP9GfASOMSbX",
+      "duration": {
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
+      },
+      "disabled": false,
+      "name": "Espaço Extra",
+      "_id": "1qK9LWrvE2Z4Etej",
+      "description": "",
+      "transfer": true,
+      "statuses": [],
+      "flags": {},
+      "tint": "#ffffff",
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "14.365",
+        "systemId": "ordemparanormal",
+        "systemVersion": "7.2.4",
+        "lastModifiedBy": "vUTMyOH4FOrOifbw",
+        "createdTime": 1785642725685,
+        "modifiedTime": 1785642725685
+      },
+      "img": "systems/ordemparanormal/media/icons/equipments/operational/mochila-militar.svg",
+      "type": "base",
+      "system": {
+        "changes": [
+          {
+            "key": "system.spaces.bonus.max",
+            "value": 2,
+            "priority": null,
+            "type": "add"
+          }
+        ]
+      },
+      "sort": 0,
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
+      "_key": "!items.effects!GDZEPqEU7qaPBIKp.1qK9LWrvE2Z4Etej"
+    }
+  ],
+  "folder": "peeofSVjDPX82dVA",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "14.365",
+    "systemId": "ordemparanormal",
+    "systemVersion": "7.3.3",
+    "createdTime": 1768441745795,
+    "modifiedTime": 1784768013521,
+    "lastModifiedBy": "mCARmiewelPiv8Ze"
+  },
+  "ownership": {
+    "default": 0,
+    "uX8kbsijC8bcpBa3": 3
+  },
+  "_id": "GDZEPqEU7qaPBIKp",
+  "sort": 1400000,
+  "_key": "!items!GDZEPqEU7qaPBIKp"
+}

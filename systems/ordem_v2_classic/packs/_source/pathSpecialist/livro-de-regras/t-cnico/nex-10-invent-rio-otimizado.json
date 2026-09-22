@@ -1,0 +1,36 @@
+{
+  "folder": "FzdhLviTEbC02Uyi",
+  "name": "NEX 10% - Inventário Otimizado",
+  "type": "ability",
+  "img": "systems/ordemparanormal/media/icons/abilities/class/specialist/T%C3%A9cnico/Invent%C3%A1rio%20Otimizado.svg",
+  "system": {
+    "id": 0,
+    "abilityType": "path",
+    "preRequisite": "",
+    "description": "<p>Voc&ecirc; soma seu Intelecto &agrave; sua For&ccedil;a para calcular sua capacidade de carga. Por exemplo, se voc&ecirc; tem For&ccedil;a 1 e Intelecto 3, seu invent&aacute;rio tem 20 espa&ccedil;os.</p>",
+    "chatDescription": "",
+    "activation": "passive",
+    "cost": "",
+    "costType": "PE"
+  },
+  "effects": [],
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "14.365",
+    "systemId": "ordemparanormal",
+    "systemVersion": "7.3.3",
+    "createdTime": 1767391187608,
+    "modifiedTime": 1785526403122,
+    "lastModifiedBy": "DnDtVz8d1Mx168x6"
+  },
+  "ownership": {
+    "default": 0,
+    "uX8kbsijC8bcpBa3": 3
+  },
+  "_id": "mBor9WIDAjuNmSLW",
+  "sort": 0,
+  "_key": "!items!mBor9WIDAjuNmSLW"
+}

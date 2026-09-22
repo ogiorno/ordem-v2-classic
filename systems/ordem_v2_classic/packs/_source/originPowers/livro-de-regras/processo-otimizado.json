@@ -1,0 +1,35 @@
+{
+  "name": "Processo Otimizado",
+  "type": "ability",
+  "_id": "WoP8bNqr71i9oAiG",
+  "img": "systems/ordemparanormal/media/icons/abilities/origin/processo-otimizado.svg",
+  "system": {
+    "id": 0,
+    "abilityType": "origin",
+    "preRequisite": "",
+    "description": "<p>Sempre que faz um teste de per&iacute;cia durante um teste estendido, ou uma a&ccedil;&atilde;o para revisar documentos (f&iacute;sicos ou digitais), pode pagar 2 PE para receber +5 nesse teste.</p>",
+    "chatDescription": "",
+    "activation": "reaction",
+    "cost": 2
+  },
+  "effects": [],
+  "folder": "MbVRx0qCgZMO02wU",
+  "sort": 2200000,
+  "ownership": {
+    "default": 0,
+    "D087Zkcpssj33iAO": 3
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "ordemparanormal",
+    "systemVersion": "7.3.3",
+    "coreVersion": "14.365",
+    "createdTime": 1712011565603,
+    "modifiedTime": 1785688469752,
+    "lastModifiedBy": "vUTMyOH4FOrOifbw",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!WoP8bNqr71i9oAiG"
+}

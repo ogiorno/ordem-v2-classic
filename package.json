@@ -1,0 +1,16 @@
+{
+  "name": "foundry-dev",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node scripts/dev.mjs",
+    "link": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/link.ps1",
+    "packs:pack": "node scripts/packs.mjs pack",
+    "packs:unpack": "node scripts/packs.mjs unpack",
+    "lint": "eslint modules systems"
+  },
+  "devDependencies": {
+    "@foundryvtt/foundryvtt-cli": "^3.0.0",
+    "eslint": "^9.0.0"
+  }
+}

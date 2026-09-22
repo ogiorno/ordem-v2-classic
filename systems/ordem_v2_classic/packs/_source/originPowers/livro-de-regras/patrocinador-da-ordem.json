@@ -1,0 +1,35 @@
+{
+  "name": "Patrocinador da Ordem",
+  "type": "ability",
+  "_id": "3OOUfgh9i5u67fEC",
+  "img": "systems/ordemparanormal/media/icons/abilities/origin/patrocinador-da-ordem.svg",
+  "system": {
+    "id": 0,
+    "abilityType": "origin",
+    "preRequisite": "",
+    "description": "<p>Seu limite de cr&eacute;dito &eacute; sempre considerado um acima do atual.</p>",
+    "chatDescription": "",
+    "activation": "passive",
+    "cost": null
+  },
+  "effects": [],
+  "folder": "MbVRx0qCgZMO02wU",
+  "sort": 1900000,
+  "ownership": {
+    "default": 0,
+    "D087Zkcpssj33iAO": 3
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "ordemparanormal",
+    "systemVersion": "7.3.3",
+    "coreVersion": "14.365",
+    "createdTime": 1712011658360,
+    "modifiedTime": 1785688468053,
+    "lastModifiedBy": "vUTMyOH4FOrOifbw",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!3OOUfgh9i5u67fEC"
+}

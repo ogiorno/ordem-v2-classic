@@ -1,0 +1,23 @@
+{
+  "name": "Conduíte",
+  "sorting": "a",
+  "folder": "y2LDaU0nGVNxI5hg",
+  "type": "Item",
+  "color": null,
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "14.365",
+    "systemId": "ordemparanormal",
+    "systemVersion": "7.2.4",
+    "createdTime": 1767391166786,
+    "modifiedTime": 1785688937661,
+    "lastModifiedBy": "vUTMyOH4FOrOifbw"
+  },
+  "description": "",
+  "_id": "ht8EMXm53oYO1MK6",
+  "sort": 100000,
+  "_key": "!folders!ht8EMXm53oYO1MK6"
+}

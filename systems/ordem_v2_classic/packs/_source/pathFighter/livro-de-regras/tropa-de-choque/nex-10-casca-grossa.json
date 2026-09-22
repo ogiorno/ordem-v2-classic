@@ -1,0 +1,83 @@
+{
+  "folder": "Zt0892Z29qDSodHi",
+  "name": "NEX 10% - Casca Grossa",
+  "type": "ability",
+  "img": "systems/ordemparanormal/media/icons/abilities/class/fighter/Tropa%20de%20Choque/Casca%20Grossa.svg",
+  "system": {
+    "id": 0,
+    "abilityType": "path",
+    "preRequisite": "",
+    "description": "<p>Voc&ecirc; recebe +1 PV para cada 5% de NEX e, quando faz um bloqueio, soma seu Vigor na resist&ecirc;ncia a dano recebida.</p>",
+    "chatDescription": "",
+    "activation": "passive",
+    "cost": "",
+    "costType": "PE"
+  },
+  "effects": [
+    {
+      "name": "Vida extra",
+      "origin": null,
+      "img": "icons/svg/aura.svg",
+      "_id": "Zrv3o6oAAFQjNSAR",
+      "type": "base",
+      "system": {
+        "changes": [
+          {
+            "key": "system.PV.bonus",
+            "type": "add",
+            "value": "@NEX.value / 5",
+            "phase": "initial",
+            "priority": null
+          }
+        ]
+      },
+      "disabled": false,
+      "start": null,
+      "duration": {
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
+      },
+      "description": "",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "showIcon": 1,
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "coreVersion": "14.365",
+        "systemId": "ordemparanormal",
+        "systemVersion": "7.3.3",
+        "createdTime": 1785642789227,
+        "modifiedTime": 1785642807978,
+        "lastModifiedBy": "vUTMyOH4FOrOifbw",
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!items.effects!jZrPS6Sb3Wg2pqRp.Zrv3o6oAAFQjNSAR"
+    }
+  ],
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "14.365",
+    "systemId": "ordemparanormal",
+    "systemVersion": "7.3.3",
+    "createdTime": 1767391179358,
+    "modifiedTime": 1785355042031,
+    "lastModifiedBy": "DnDtVz8d1Mx168x6"
+  },
+  "ownership": {
+    "default": 0,
+    "uX8kbsijC8bcpBa3": 3
+  },
+  "_id": "jZrPS6Sb3Wg2pqRp",
+  "sort": 0,
+  "_key": "!items!jZrPS6Sb3Wg2pqRp"
+}

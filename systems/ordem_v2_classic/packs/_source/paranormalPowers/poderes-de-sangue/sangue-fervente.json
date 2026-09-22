@@ -1,0 +1,36 @@
+{
+  "name": "Sangue Fervente",
+  "type": "ability",
+  "img": "systems/ordemparanormal/media/icons/abilities/paranormal/blood/sangue-fervente.svg",
+  "system": {
+    "id": 0,
+    "abilityType": "paranormal",
+    "preRequisite": "Sangue 2",
+    "description": "<p>Este conteúdo não é coberto pela licença OGL do Livro de Regras, mas pode ser encontrado na página 116 do Livro de Regras de Ordem Paranormal.</p>",
+    "chatDescription": "",
+    "activation": "passive",
+    "cost": null,
+    "costType": "PE"
+  },
+  "effects": [],
+  "folder": "W6x0WwehDpZV25vB",
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.365",
+    "systemId": "ordemparanormal",
+    "systemVersion": "7.3.3",
+    "createdTime": 1785685916182,
+    "modifiedTime": 1785691755962,
+    "lastModifiedBy": "vUTMyOH4FOrOifbw",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "ownership": {
+    "default": 0,
+    "vUTMyOH4FOrOifbw": 3
+  },
+  "_id": "NxRfuitZNANpKGa7",
+  "sort": 0,
+  "_key": "!items!NxRfuitZNANpKGa7"
+}

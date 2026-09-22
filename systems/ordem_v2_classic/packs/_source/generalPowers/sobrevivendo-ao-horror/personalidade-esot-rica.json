@@ -1,0 +1,36 @@
+{
+  "name": "Personalidade Esotérica",
+  "type": "ability",
+  "img": "systems/ordemparanormal/media/icons/abilities/general/personalidade-esoterica.svg",
+  "system": {
+    "id": 0,
+    "abilityType": "general",
+    "preRequisite": "Intelecto 2",
+    "description": "<p>Você pode encontrar esse conteúdo na <strong>página 35 do suplemento Sobrevivendo ao Horror</strong>.</p>",
+    "chatDescription": "",
+    "activation": "passive",
+    "cost": "",
+    "costType": "PE"
+  },
+  "effects": [],
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "14.365",
+    "systemId": "ordemparanormal",
+    "systemVersion": "7.3.3",
+    "createdTime": 1767468426324,
+    "modifiedTime": 1785688757146,
+    "lastModifiedBy": "vUTMyOH4FOrOifbw"
+  },
+  "ownership": {
+    "default": 0,
+    "uX8kbsijC8bcpBa3": 3
+  },
+  "_id": "Da4UrrcjzD7GvxRG",
+  "sort": 300000,
+  "folder": "0uzCBubXLxPlxMRw",
+  "_key": "!items!Da4UrrcjzD7GvxRG"
+}

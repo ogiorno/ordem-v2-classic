@@ -1,0 +1,36 @@
+{
+  "name": "Resistir a <Elemento>",
+  "type": "ability",
+  "img": "systems/ordemparanormal/media/icons/abilities/paranormal/resistir-a-elemento.svg",
+  "system": {
+    "id": 0,
+    "abilityType": "paranormal",
+    "preRequisite": "",
+    "description": "<p>Este conteúdo não é coberto pela licença OGL do Livro de Regras, mas pode ser encontrado na página 114 do Livro de Regras de Ordem Paranormal.</p>",
+    "chatDescription": "",
+    "activation": "passive",
+    "cost": null,
+    "costType": "PE"
+  },
+  "effects": [],
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.365",
+    "systemId": "ordemparanormal",
+    "systemVersion": "7.3.3",
+    "createdTime": 1785685918011,
+    "modifiedTime": 1785691824966,
+    "lastModifiedBy": "vUTMyOH4FOrOifbw",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "ownership": {
+    "default": 0,
+    "vUTMyOH4FOrOifbw": 3
+  },
+  "_id": "tDLbu98obYjkIsMX",
+  "folder": null,
+  "sort": 0,
+  "_key": "!items!tDLbu98obYjkIsMX"
+}

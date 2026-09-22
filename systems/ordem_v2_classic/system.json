@@ -1,0 +1,389 @@
+{
+  "id": "ordem_v2_classic",
+  "title": "Ordem Paranormal (v2 Classic)",
+  "description": "Ordem Paranormal é um sistema e universo de investigação paranormal criado por Cellbit. Com base nisso, este é um sistema não-oficial para o FoundryVTT.",
+  "version": "8.0.2",
+  "compatibility": {
+    "minimum": "13",
+    "verified": "14.365"
+  },
+  "authors": [
+    {
+      "name": "Mark57449",
+      "email": "souowendel@gmail.com",
+      "discord": "souowendel"
+    }
+  ],
+  "esmodules": [
+    "module/ordemparanormal.mjs"
+  ],
+  "styles": [
+    "css/ordemparanormal.css"
+  ],
+  "scripts": [],
+  "packs": [
+    {
+      "name": "others",
+      "label": "Origem e Insanidade",
+      "system": "ordem_v2_classic",
+      "type": "RollTable",
+      "path": "packs/others",
+      "ownership": {
+        "PLAYER": "OBSERVER"
+      }
+    },
+    {
+      "name": "creatingmissions",
+      "label": "Criando Missões",
+      "system": "ordem_v2_classic",
+      "type": "RollTable",
+      "path": "packs/creatingmissions",
+      "ownership": {
+        "PLAYER": "OBSERVER"
+      }
+    },
+    {
+      "name": "armaments",
+      "label": "Armamentos",
+      "system": "ordem_v2_classic",
+      "type": "Item",
+      "path": "packs/armaments",
+      "ownership": {
+        "PLAYER": "OBSERVER"
+      }
+    },
+    {
+      "name": "general",
+      "label": "Equipamentos Gerais",
+      "system": "ordem_v2_classic",
+      "path": "packs/general",
+      "type": "Item",
+      "ownership": {
+        "PLAYER": "OBSERVER"
+      }
+    },
+    {
+      "name": "protections",
+      "label": "Proteções",
+      "system": "ordem_v2_classic",
+      "path": "packs/protections",
+      "type": "Item",
+      "ownership": {
+        "PLAYER": "OBSERVER"
+      }
+    },
+    {
+      "name": "fighterPowers",
+      "label": "Poderes de Combatente",
+      "system": "ordem_v2_classic",
+      "path": "packs/fighterPowers",
+      "type": "Item",
+      "ownership": {
+        "PLAYER": "OBSERVER"
+      }
+    },
+    {
+      "name": "specialistPowers",
+      "label": "Poderes de Especialista",
+      "system": "ordem_v2_classic",
+      "path": "packs/specialistPowers",
+      "type": "Item",
+      "ownership": {
+        "PLAYER": "OBSERVER"
+      }
+    },
+    {
+      "name": "occultistPowers",
+      "label": "Poderes de Ocultista",
+      "system": "ordem_v2_classic",
+      "path": "packs/occultistPowers",
+      "type": "Item",
+      "ownership": {
+        "PLAYER": "OBSERVER"
+      }
+    },
+    {
+      "name": "survivalPowers",
+      "label": "Poderes de Sobrevivente",
+      "system": "ordem_v2_classic",
+      "path": "packs/survivalPowers",
+      "type": "Item",
+      "ownership": {
+        "PLAYER": "OBSERVER"
+      }
+    },
+    {
+      "name": "originPowers",
+      "label": "Poderes de Origem",
+      "system": "ordem_v2_classic",
+      "path": "packs/originPowers",
+      "type": "Item",
+      "ownership": {
+        "PLAYER": "OBSERVER"
+      }
+    },
+    {
+      "name": "pathFighter",
+      "label": "Trilhas de Combatente",
+      "system": "ordem_v2_classic",
+      "path": "packs/pathFighter",
+      "type": "Item",
+      "ownership": {
+        "PLAYER": "OBSERVER"
+      }
+    },
+    {
+      "name": "pathSpecialist",
+      "label": "Trilhas de Especialista",
+      "system": "ordem_v2_classic",
+      "path": "packs/pathSpecialist",
+      "type": "Item",
+      "ownership": {
+        "PLAYER": "OBSERVER"
+      }
+    },
+    {
+      "name": "pathOccultist",
+      "label": "Trilhas de Ocultista",
+      "system": "ordem_v2_classic",
+      "path": "packs/pathOccultist",
+      "type": "Item",
+      "ownership": {
+        "PLAYER": "OBSERVER"
+      }
+    },
+    {
+      "name": "generalPowers",
+      "label": "Poderes Gerais",
+      "system": "ordem_v2_classic",
+      "path": "packs/generalPowers",
+      "type": "Item",
+      "ownership": {
+        "PLAYER": "OBSERVER"
+      }
+    },
+    {
+      "name": "paranormalPowers",
+      "label": "Poderes Paranormais",
+      "system": "ordem_v2_classic",
+      "path": "packs/paranormalPowers",
+      "type": "Item",
+      "ownership": {
+        "PLAYER": "OBSERVER"
+      }
+    },
+    {
+      "name": "agents",
+      "label": "Agentes Pré-Criados",
+      "system": "ordem_v2_classic",
+      "path": "packs/agents",
+      "type": "Actor",
+      "ownership": {
+        "PLAYER": "OBSERVER"
+      }
+    },
+    {
+      "name": "threats",
+      "label": "Ameaças Pré-Criadas",
+      "system": "ordem_v2_classic",
+      "path": "packs/threats",
+      "type": "Actor",
+      "ownership": {
+        "PLAYER": "OBSERVER"
+      }
+    },
+    {
+      "name": "bookrules",
+      "label": "Livro de Regras",
+      "system": "ordem_v2_classic",
+      "path": "packs/bookrules",
+      "type": "JournalEntry",
+      "ownership": {
+        "PLAYER": "OBSERVER"
+      }
+    },
+    {
+      "name": "origins",
+      "label": "Origens",
+      "system": "ordem_v2_classic",
+      "path": "packs/origins",
+      "type": "Item",
+      "ownership": {
+        "PLAYER": "OBSERVER"
+      }
+    },
+    {
+      "name": "classes",
+      "label": "Classes",
+      "system": "ordem_v2_classic",
+      "path": "packs/classes",
+      "type": "Item",
+      "ownership": {
+        "PLAYER": "OBSERVER"
+      }
+    },
+    {
+      "name": "paths",
+      "label": "Trilhas",
+      "system": "ordem_v2_classic",
+      "path": "packs/paths",
+      "type": "Item",
+      "ownership": {
+        "PLAYER": "OBSERVER"
+      }
+    }
+  ],
+  "packFolders": [
+    {
+      "name": "Conteúdos para Ordem Paranormal",
+      "sorting": "m",
+      "color": "#000000",
+      "packs": [
+        "bookrules",
+        "others",
+        "creatingmissions",
+        "macros"
+      ],
+      "folders": [
+        {
+          "name": "Criação de Personagens",
+          "sorting": "m",
+          "color": "#141414",
+          "packs": [
+            "paths",
+            "classes",
+            "origins"
+          ]
+        },
+        {
+          "name": "Equipamentos do Livro",
+          "sorting": "m",
+          "color": "#212121",
+          "packs": [
+            "armaments",
+            "general",
+            "protections"
+          ]
+        },
+        {
+          "name": "Poderes de Classe",
+          "sorting": "m",
+          "color": "#2E2E2E",
+          "packs": [
+            "fighterPowers",
+            "specialistPowers",
+            "occultistPowers",
+            "survivalPowers"
+          ]
+        },
+        {
+          "name": "Poderes de Trilha",
+          "sorting": "m",
+          "color": "#3B3B3B",
+          "packs": [
+            "pathFighter",
+            "pathSpecialist",
+            "pathOccultist"
+          ]
+        },
+        {
+          "name": "Outros Poderes",
+          "sorting": "m",
+          "color": "#484848",
+          "packs": [
+            "originPowers",
+            "generalPowers",
+            "paranormalPowers"
+          ]
+        },
+        {
+          "name": "Fichas Pré-Criadas",
+          "sorting": "m",
+          "color": "#555555",
+          "packs": [
+            "agents",
+            "threats"
+          ]
+        }
+      ]
+    }
+  ],
+  "languages": [
+    {
+      "lang": "en",
+      "name": "English",
+      "path": "lang/en.json"
+    },
+    {
+      "lang": "pt-BR",
+      "name": "Português (Brasil)",
+      "path": "lang/pt-BR.json"
+    }
+  ],
+  "relationships": {
+    "requires": [
+      {
+        "id": "barbrawl",
+        "type": "module",
+        "compatibility": {
+          "verified": "1.9.0"
+        }
+      }
+    ]
+  },
+  "media": [
+    {
+      "type": "cover",
+      "loop": false,
+      "flags": {}
+    },
+    {
+      "type": "setup",
+      "url": "systems/ordem_v2_classic/media/op-thumb.png",
+      "thumbnail": "systems/ordem_v2_classic/media/op-thumb.png"
+    }
+  ],
+  "flags": {
+    "hotReload": {
+      "extensions": [
+        "css",
+        "html",
+        "hbs",
+        "json"
+      ],
+      "paths": [
+        "templates",
+        "css",
+        "lang/en.json",
+        "lang/pt-BR.json"
+      ]
+    },
+    "needsMigrationVersion": "7.3.0"
+  },
+  "grid": {
+    "distance": 1.5,
+    "units": "m"
+  },
+  "primaryTokenAttribute": "PV",
+  "secondaryTokenAttribute": "SAN",
+  "documentTypes": {
+    "Actor": {
+      "agent": {},
+      "threat": {}
+    },
+    "Item": {
+      "armament": {},
+      "generalEquipment": {},
+      "protection": {},
+      "ability": {},
+      "ritual": {},
+      "path": {},
+      "class": {},
+      "origin": {}
+    }
+  },
+  "socket": true,
+  "url": "https://github.com/SouOWendel/ordemparanormal_fvtt",
+  "bugs": "https://github.com/SouOWendel/ordemparanormal_fvtt/issues",
+  "license": "https://github.com/SouOWendel/ordemparanormal_fvtt/blob/main/LICENSE.txt"
+}

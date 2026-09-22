@@ -1,0 +1,23 @@
+{
+  "name": "Aniquilador",
+  "sorting": "a",
+  "folder": "am3kwLRXkQDZentZ",
+  "type": "Item",
+  "color": null,
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "14.365",
+    "systemId": "ordemparanormal",
+    "systemVersion": "7.2.4",
+    "createdTime": 1767391179321,
+    "modifiedTime": 1785688872824,
+    "lastModifiedBy": "vUTMyOH4FOrOifbw"
+  },
+  "description": "",
+  "_id": "NMOyIu5qPUNyp5tk",
+  "sort": 400000,
+  "_key": "!folders!NMOyIu5qPUNyp5tk"
+}

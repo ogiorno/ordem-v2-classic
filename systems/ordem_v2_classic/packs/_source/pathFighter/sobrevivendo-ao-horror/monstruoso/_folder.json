@@ -1,0 +1,23 @@
+{
+  "type": "Item",
+  "folder": "UKMT6qvOlVyXLmGg",
+  "name": "Monstruoso",
+  "color": null,
+  "sorting": "a",
+  "description": "",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "14.365",
+    "systemId": "ordemparanormal",
+    "systemVersion": "7.2.4",
+    "createdTime": 1767391179321,
+    "modifiedTime": 1785688878531,
+    "lastModifiedBy": "vUTMyOH4FOrOifbw"
+  },
+  "_id": "64arkzjRaqWh1lLD",
+  "sort": 100000,
+  "_key": "!folders!64arkzjRaqWh1lLD"
+}

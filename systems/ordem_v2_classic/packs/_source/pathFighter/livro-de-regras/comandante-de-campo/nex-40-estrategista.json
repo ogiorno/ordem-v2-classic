@@ -1,0 +1,36 @@
+{
+  "folder": "nJ5eT2znSgOuCBxV",
+  "name": "NEX 40% - Estrategista",
+  "type": "ability",
+  "img": "systems/ordemparanormal/media/icons/abilities/class/fighter/Comandante%20de%20Campo/Estrategista.svg",
+  "system": {
+    "id": 0,
+    "abilityType": "path",
+    "preRequisite": "",
+    "description": "<p>Você pode direcionar aliados em alcance curto. Gaste uma ação padrão e 1 PE por aliado que quiser direcionar (limitado pelo seu Intelecto). No próximo turno dos aliados afetados, eles ganham uma ação de movimento adicional.</p>",
+    "chatDescription": "",
+    "activation": "default",
+    "cost": 1,
+    "costType": "PE"
+  },
+  "effects": [],
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "14.365",
+    "systemId": "ordemparanormal",
+    "systemVersion": "7.3.3",
+    "createdTime": 1767391179358,
+    "modifiedTime": 1785354596562,
+    "lastModifiedBy": "DnDtVz8d1Mx168x6"
+  },
+  "ownership": {
+    "default": 0,
+    "uX8kbsijC8bcpBa3": 3
+  },
+  "_id": "aDigHV0Kxq8rD4tg",
+  "sort": 0,
+  "_key": "!items!aDigHV0Kxq8rD4tg"
+}

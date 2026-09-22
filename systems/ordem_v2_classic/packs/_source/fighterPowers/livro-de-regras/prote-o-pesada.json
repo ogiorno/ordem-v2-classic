@@ -1,0 +1,36 @@
+{
+  "name": "Proteção Pesada",
+  "type": "ability",
+  "img": "systems/ordemparanormal/media/icons/abilities/class/fighter/Prote%C3%A7%C3%A3o%20Pesada.svg",
+  "system": {
+    "id": 0,
+    "abilityType": "class",
+    "preRequisite": "NEX 30%",
+    "description": "<p>Voc&ecirc; recebe profici&ecirc;ncia com Prote&ccedil;&otilde;es Pesadas.</p>",
+    "chatDescription": "",
+    "activation": "passive",
+    "cost": "",
+    "costType": "PE"
+  },
+  "effects": [],
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "14.365",
+    "systemId": "ordemparanormal",
+    "systemVersion": "7.3.3",
+    "createdTime": 1768012548817,
+    "modifiedTime": 1785686307776,
+    "lastModifiedBy": "vUTMyOH4FOrOifbw"
+  },
+  "ownership": {
+    "default": 0,
+    "uX8kbsijC8bcpBa3": 3
+  },
+  "_id": "A37hSKx8DAelUfnP",
+  "sort": 100196,
+  "folder": "4GYFTYgIaBzb4vEJ",
+  "_key": "!items!A37hSKx8DAelUfnP"
+}

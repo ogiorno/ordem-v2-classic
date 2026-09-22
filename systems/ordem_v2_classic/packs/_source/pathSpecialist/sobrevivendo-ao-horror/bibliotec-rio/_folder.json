@@ -1,0 +1,23 @@
+{
+  "type": "Item",
+  "folder": "JwyW16pAoim1E19g",
+  "name": "Bibliotecário",
+  "color": null,
+  "sorting": "a",
+  "description": "",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "14.365",
+    "systemId": "ordemparanormal",
+    "systemVersion": "7.2.4",
+    "createdTime": 1767391187583,
+    "modifiedTime": 1785688918555,
+    "lastModifiedBy": "vUTMyOH4FOrOifbw"
+  },
+  "_id": "diewwdueVbtezoUg",
+  "sort": 300000,
+  "_key": "!folders!diewwdueVbtezoUg"
+}

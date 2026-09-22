@@ -1,0 +1,23 @@
+{
+  "type": "Item",
+  "folder": "aSoTPYn9TYCEvMlw",
+  "name": "Acessórios",
+  "color": null,
+  "sorting": "a",
+  "_id": "Is7Kq529H3kvsDWb",
+  "description": "",
+  "sort": 100000,
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.365",
+    "systemId": "ordemparanormal",
+    "systemVersion": "7.3.3",
+    "createdTime": 1785687301166,
+    "modifiedTime": 1785687633298,
+    "lastModifiedBy": "vUTMyOH4FOrOifbw",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!folders!Is7Kq529H3kvsDWb"
+}

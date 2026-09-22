@@ -1,0 +1,23 @@
+{
+  "name": "Poderes de Morte",
+  "sorting": "a",
+  "folder": null,
+  "type": "Item",
+  "color": "#303030",
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.365",
+    "systemId": "ordemparanormal",
+    "systemVersion": "7.3.3",
+    "createdTime": 1785685915151,
+    "modifiedTime": 1785685915186,
+    "lastModifiedBy": "vUTMyOH4FOrOifbw",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "description": "",
+  "_id": "ymf6Q233UXczSQe7",
+  "sort": 300000,
+  "_key": "!folders!ymf6Q233UXczSQe7"
+}

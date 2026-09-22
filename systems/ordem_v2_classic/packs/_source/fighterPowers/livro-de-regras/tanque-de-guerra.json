@@ -1,0 +1,36 @@
+{
+  "name": "Tanque de Guerra",
+  "type": "ability",
+  "img": "systems/ordemparanormal/media/icons/abilities/class/fighter/Tanque%20de%20Guerra.svg",
+  "system": {
+    "id": 0,
+    "abilityType": "class",
+    "preRequisite": "Proteção Pesada",
+    "description": "<p>Se estiver usando uma proteção pesada, a Defesa e a resistência a dano que ela fornece aumentam em +2.</p>",
+    "chatDescription": "",
+    "activation": "passive",
+    "cost": "",
+    "costType": "PE"
+  },
+  "effects": [],
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "14.365",
+    "systemId": "ordemparanormal",
+    "systemVersion": "7.3.3",
+    "createdTime": 1768012548817,
+    "modifiedTime": 1785686313155,
+    "lastModifiedBy": "vUTMyOH4FOrOifbw"
+  },
+  "ownership": {
+    "default": 0,
+    "uX8kbsijC8bcpBa3": 3
+  },
+  "_id": "TtmDcTI4s85vYjxh",
+  "sort": 100007,
+  "folder": "4GYFTYgIaBzb4vEJ",
+  "_key": "!items!TtmDcTI4s85vYjxh"
+}

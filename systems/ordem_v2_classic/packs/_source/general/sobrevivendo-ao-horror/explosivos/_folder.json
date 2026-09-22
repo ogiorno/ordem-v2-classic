@@ -1,0 +1,23 @@
+{
+  "type": "Item",
+  "folder": "aSoTPYn9TYCEvMlw",
+  "name": "Explosivos",
+  "color": null,
+  "sorting": "a",
+  "_id": "TuNTGYq7wz14eZxw",
+  "description": "",
+  "sort": 200000,
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.365",
+    "systemId": "ordemparanormal",
+    "systemVersion": "7.3.3",
+    "createdTime": 1785687307049,
+    "modifiedTime": 1785687633299,
+    "lastModifiedBy": "vUTMyOH4FOrOifbw",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!folders!TuNTGYq7wz14eZxw"
+}

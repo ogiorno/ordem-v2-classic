@@ -1,0 +1,345 @@
+<header class="sheet-header-op">
+	{{! --- Imagem e Informações Principais --- }}
+	<div class="header-top flexrow">
+
+		{{! Imagem de Perfil }}
+		<div class="header-image-container">
+			<img class="profile-img" src="{{actor.img}}" data-edit="img" data-action="onEditImage" title="{{actor.name}}" />
+		</div>
+
+		{{! Bloco de Informações da Direita }}
+		<div class="header-fields flexcol">
+
+			{{! Nome e Progresso }}
+			<div class="header-identify">
+				<h1 class="charname">
+					<input name="name" type="text" value="{{actor.name}}" placeholder="{{localize 'op.agentNamePlaceholder'}}" />
+				</h1>
+
+				<div class="progress-group flexrow">
+					{{#if isSurvivor}}
+						<div class="resource flex-group-center progress">
+							<label for="system.stage.value" class="resource-label"> {{localize "op.stage"}} </label>
+							<div class="resource-content">
+								{{numberInputFVTT system.stage.value name="system.stage.value" step=1 min=0 max=5}}
+							</div>
+						</div>
+					{{else}}
+						{{#if progressRuleIsNEX}}
+							<div class="resource flex-group-center progress">
+								<label for="system.NEX.value" class="resource-label"> {{localize "op.NEX"}} </label>
+								<div class="resource-content">
+									{{numberInputFVTT system.NEX.value name="system.NEX.value" step=1 min=0 max=99}}
+								</div>
+							</div>
+						{{/if}}
+						{{#if progressRuleIsNivel}}
+							<div class="resource flex-group-center progress">
+								<label for="system.nivel.value" class="resource-label"> {{localize "op.nivel"}} </label>
+								<div class="resource-content">
+									{{numberInputFVTT system.nivel.value name="system.nivel.value" step=1 min=0 max=20}}
+								</div>
+							</div>
+							<div class="resource flex-group-center progress">
+								<label for="system.NEX.value" class="resource-label"> {{localize "op.NEX"}} </label>
+								<div class="resource-content">
+									{{numberInputFVTT system.NEX.value name="system.NEX.value" step=1 min=0 max=99}}
+								</div>
+							</div>
+						{{/if}}
+					{{/if}}
+				</div>
+			</div>
+
+			{{! Classe, Origem, Trilha }}
+			<div class="agent-details resources flexrow">
+
+				{{! Item: Origem }}
+				{{#if details.origin}}
+					<div
+						class="item-pills interactive-pill flexrow"
+						data-item-type="origin"
+						data-item-id="{{details.origin.id}}"
+						data-uuid="{{details.origin.uuid}}"
+						data-document-class="Item"
+					>
+						<div class="item-name flexrow" data-action="viewDoc">
+							<img src="{{details.origin.img}}" class="item-image" alt="{{details.origin.name}}" />
+							<span class="item-name-text truncate-text">{{details.origin.name}}</span>
+						</div>
+						<div class="item-controls dynamic-trash">
+							<a class="item-control" data-action="deleteDoc" title="{{localize 'op.delete'}}"><i class="fas fa-trash"></i></a>
+						</div>
+					</div>
+				{{else}}
+					<div
+						class="item-pills empty-slot flexrow compendium-event-click"
+						data-action="findItem"
+						data-reference="origin"
+						data-key="origin"
+					>
+						<i class="fas fa-plus"></i>
+						<span class="truncate-text">{{localize "TYPES.Item.origin"}}</span>
+					</div>
+				{{/if}}
+
+				{{! Item: Classe }}
+				{{#if details.class}}
+					<div
+						class="item-pills interactive-pill flexrow"
+						data-item-type="class"
+						data-item-id="{{details.class.id}}"
+						data-uuid="{{details.class.uuid}}"
+						data-document-class="Item"
+					>
+						<div class="item-name flexrow" data-action="viewDoc">
+							<img src="{{details.class.img}}" class="item-image" alt="{{details.class.name}}" />
+							<span class="item-name-text truncate-text">{{details.class.name}}</span>
+						</div>
+						<div class="item-controls dynamic-trash">
+							<a class="item-control" data-action="deleteDoc" title="Remover"><i class="fas fa-trash"></i></a>
+						</div>
+					</div>
+				{{else}}
+					<div
+						class="item-pills empty-slot flexrow compendium-event-click"
+						data-action="findItem"
+						data-reference="class"
+						data-key="class"
+					>
+						<i class="fas fa-plus"></i>
+						<span class="truncate-text">{{localize "TYPES.Item.class"}}</span>
+					</div>
+				{{/if}}
+
+				{{! Item: Trilha }}
+				{{#if details.path}}
+					<div
+						class="item-pills interactive-pill flexrow"
+						data-item-type="path"
+						data-item-id="{{details.path.id}}"
+						data-uuid="{{details.path.uuid}}"
+						data-document-class="Item"
+					>
+						<div class="item-name flexrow" data-action="viewDoc">
+							<img src="{{details.path.img}}" class="item-image" alt="{{details.path.name}}" />
+							<span class="item-name-text truncate-text">{{details.path.name}}</span>
+						</div>
+						<div class="item-controls dynamic-trash">
+							<a class="item-control" data-action="deleteDoc" title="Remover"><i class="fas fa-trash"></i></a>
+						</div>
+					</div>
+				{{else}}
+					<div
+						class="item-pills empty-slot flexrow compendium-event-click"
+						data-action="findItem"
+						data-reference="path"
+						data-key="path"
+					>
+						<i class="fas fa-plus"></i>
+						<span class="truncate-text">{{localize "TYPES.Item.path"}}</span>
+					</div>
+				{{/if}}
+			</div>
+
+			{{! Recursos Principais }}
+			<div class="resources-main resources flexrow">
+				<div class="resource flex-group-center">
+					<label for="system.PV.value" class="resource-label"> {{localize "op.PV"}} </label>
+					<div class="resource-content flexrow flex-center flex-between">
+						<input type="text" name="system.PV.value" value="{{system.PV.value}}" data-dtype="Number" />
+						<span> / </span>
+						<input
+							type="text"
+							name="system.PV.max"
+							value="{{system.PV.max}}"
+							data-dtype="Number"
+							{{disabled system.isDerivatedCalcsActive}}
+						/>
+					</div>
+				</div>
+
+				{{#if usingWithoutSanityRule}}
+					<div class="resource flex-group-center">
+						<label for="system.PD.value" class="resource-label">{{localize "op.PD"}} </label>
+						<div class="resource-content flexrow flex-center flex-between">
+							<input type="text" name="system.PD.value" value="{{system.PD.value}}" data-dtype="Number" />
+							<span> / </span>
+							<input
+								type="text"
+								name="system.PD.max"
+								value="{{system.PD.max}}"
+								data-dtype="Number"
+								{{disabled system.isDerivatedCalcsActive}}
+							/>
+						</div>
+					</div>
+					<div class="resource flex-group-center pe-pd-perRound-resource">
+						<label for="system.PD.perRound" class="resource-label">{{localize "op.pdPerRound"}} </label>
+						<div class="resource-content flexrow flex-center flex-between">
+							<input type="number" name="system.PD.perRound" value="{{system.PD.perRound}}" data-dtype="Number" disabled />
+						</div>
+					</div>
+				{{else}}
+					<div class="resource flex-group-center">
+						<label for="system.SAN.value" class="resource-label">{{localize "op.San"}} </label>
+						<div class="resource-content flexrow flex-center flex-between">
+							<input type="text" name="system.SAN.value" value="{{system.SAN.value}}" data-dtype="Number" />
+							<span> / </span>
+							<input
+								type="text"
+								name="system.SAN.max"
+								value="{{system.SAN.max}}"
+								data-dtype="Number"
+								{{disabled system.isDerivatedCalcsActive}}
+							/>
+						</div>
+					</div>
+					<div class="resource flex-group-center">
+						<label for="system.PE.value" class="resource-label">{{localize "op.PE"}} </label>
+						<div class="resource-content flexrow flex-center flex-between">
+							<input type="text" name="system.PE.value" value="{{system.PE.value}}" data-dtype="Number" />
+							<span> / </span>
+							<input
+								type="text"
+								name="system.PE.max"
+								value="{{system.PE.max}}"
+								data-dtype="Number"
+								{{disabled system.isDerivatedCalcsActive}}
+							/>
+						</div>
+					</div>
+					<div class="resource flex-group-center pe-pd-perRound-resource">
+						<label for="system.PE.perRound" class="resource-label">{{localize "op.pePerRound"}} </label>
+						<div class="resource-content flexrow flex-center flex-between">
+							<input
+								type="number"
+								name="system.PE.perRound"
+								value="{{system.PE.perRound}}"
+								data-dtype="Number"
+								{{disabled system.isDerivatedCalcsActive}}
+							/>
+						</div>
+					</div>
+				{{/if}}
+			</div>
+		</div>
+	</div>
+
+	{{! --- Atributos e Defesas --- }}
+	<div class="header-bottom flexcol">
+		<div class="resources flexrow">
+			<div class="resource flex-group-center">
+				<label
+					for="system.attributes.dex.value"
+					class="resource-label rollable"
+					data-action="onRollAttributeTest"
+					data-rollType="attribute"
+					data-label="{{localize 'op.attDex'}}"
+					data-key="dex"
+				>{{localize "op.attDex"}}</label>
+				<div class="resource-content flexrow flex-center flex-between">
+					<input
+						type="text"
+						name="system.attributes.dex.value"
+						value="{{system.attributes.dex.value}}"
+						data-dtype="Number"
+					/>
+				</div>
+			</div>
+			<div class="resource flex-group-center">
+				<label
+					for="system.attributes.str.value"
+					class="resource-label rollable"
+					data-action="onRollAttributeTest"
+					data-rollType="attribute"
+					data-label="{{localize 'op.attStr'}}"
+					data-key="str"
+				>{{localize "op.attStr"}}</label>
+				<div class="resource-content flexrow flex-center flex-between">
+					<input
+						type="text"
+						name="system.attributes.str.value"
+						value="{{system.attributes.str.value}}"
+						data-dtype="Number"
+					/>
+				</div>
+			</div>
+			<div class="resource flex-group-center">
+				<label
+					for="system.attributes.int.value"
+					class="resource-label rollable"
+					data-action="onRollAttributeTest"
+					data-rollType="attribute"
+					data-label="{{localize 'op.attInt'}}"
+					data-key="int"
+				>{{localize "op.attInt"}}</label>
+				<div class="resource-content flexrow flex-center flex-between">
+					<input
+						type="text"
+						name="system.attributes.int.value"
+						value="{{system.attributes.int.value}}"
+						data-dtype="Number"
+					/>
+				</div>
+			</div>
+			<div class="resource flex-group-center">
+				<label
+					for="system.attributes.pre.value"
+					class="resource-label rollable"
+					data-action="onRollAttributeTest"
+					data-rollType="attribute"
+					data-label="{{localize 'op.attPre'}}"
+					data-key="pre"
+				>{{localize "op.attPre"}}</label>
+				<div class="resource-content flexrow flex-center flex-between">
+					<input
+						type="text"
+						name="system.attributes.pre.value"
+						value="{{system.attributes.pre.value}}"
+						data-dtype="Number"
+					/>
+				</div>
+			</div>
+			<div class="resource flex-group-center">
+				<label
+					for="system.attributes.vit.value"
+					class="resource-label rollable"
+					data-action="onRollAttributeTest"
+					data-rollType="attribute"
+					data-label="{{localize 'op.attVit'}}"
+					data-key="vit"
+				>{{localize "op.attVit"}}</label>
+				<div class="resource-content flexrow flex-center flex-between">
+					<input
+						type="text"
+						name="system.attributes.vit.value"
+						value="{{system.attributes.vit.value}}"
+						data-dtype="Number"
+					/>
+				</div>
+			</div>
+		</div>
+
+		<div class="resources flexrow">
+			<div class="resource flex-group-center">
+				<label for="{{localize 'op.defense'}}" class="resource-label">{{localize "op.defense"}}</label>
+				<div class="resource-content flexrow flex-center flex-between">
+					<input type="text" name="system.defense.value" value="{{system.defense.value}}" data-dtype="Number" disabled />
+				</div>
+			</div>
+			<div class="resource flex-group-center">
+				<label for="{{localize 'op.dodge'}}" class="resource-label">{{localize "op.dodge"}}</label>
+				<div class="resource-content flexrow flex-center flex-between">
+					<input type="text" name="system.defense.dodge" value="{{system.defense.dodge}}" data-dtype="Number" disabled />
+				</div>
+			</div>
+			<div class="resource flex-group-center">
+				<label for="{{localize 'op.deslocamento'}}" class="resource-label">{{localize "op.deslocamento"}}</label>
+				<div class="resource-content flexrow flex-center flex-between">
+					<input type="text" name="system.desloc.value" value="{{system.desloc.value}}" data-dtype="Number" disabled />
+				</div>
+			</div>
+		</div>
+	</div>
+</header>

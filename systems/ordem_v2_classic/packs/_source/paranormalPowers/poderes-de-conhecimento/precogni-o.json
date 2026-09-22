@@ -1,0 +1,36 @@
+{
+  "name": "Precognição",
+  "type": "ability",
+  "img": "systems/ordemparanormal/media/icons/abilities/paranormal/knowledge/precognicao.svg",
+  "system": {
+    "id": 0,
+    "abilityType": "paranormal",
+    "preRequisite": "Conhecimento 1",
+    "description": "<p>Este conteúdo não é coberto pela licença OGL do Livro de Regras, mas pode ser encontrado na página 114 do Livro de Regras de Ordem Paranormal.</p>",
+    "chatDescription": "",
+    "activation": "passive",
+    "cost": null,
+    "costType": "PE"
+  },
+  "effects": [],
+  "folder": "oFUp3zHwQV1wTbEq",
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.365",
+    "systemId": "ordemparanormal",
+    "systemVersion": "7.3.3",
+    "createdTime": 1785685912832,
+    "modifiedTime": 1785690844955,
+    "lastModifiedBy": "vUTMyOH4FOrOifbw",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "ownership": {
+    "default": 0,
+    "vUTMyOH4FOrOifbw": 3
+  },
+  "_id": "yhnUWjswZj1JX1Br",
+  "sort": 0,
+  "_key": "!items!yhnUWjswZj1JX1Br"
+}

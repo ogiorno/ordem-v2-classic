@@ -1,0 +1,23 @@
+{
+  "type": "Item",
+  "folder": null,
+  "name": "Sobrevivendo ao Horror",
+  "color": "#0b5d80",
+  "sorting": "a",
+  "_id": "3y2LwyZVUfs3A7a9",
+  "description": "",
+  "sort": 900000,
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.365",
+    "systemId": "ordemparanormal",
+    "systemVersion": "7.3.3",
+    "createdTime": 1785688933140,
+    "modifiedTime": 1785689125059,
+    "lastModifiedBy": "vUTMyOH4FOrOifbw",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!folders!3y2LwyZVUfs3A7a9"
+}

@@ -1,0 +1,1681 @@
+{
+  "name": "Elouise Elahi Anaki",
+  "type": "agent",
+  "_id": "IwJae37HUCjpYDkC",
+  "img": "systems/ordemparanormal/media/assets/sheets/token-elouise-elahi-anaki.webp",
+  "system": {
+    "PV": {
+      "value": 28,
+      "max": 10,
+      "perRound": 1,
+      "nonLethal": 0
+    },
+    "SAN": {
+      "value": 32,
+      "max": 5,
+      "perRound": 1
+    },
+    "PE": {
+      "value": 25,
+      "max": 5,
+      "perRound": 0
+    },
+    "PD": {
+      "value": 5,
+      "max": 5,
+      "perRound": 1
+    },
+    "NEX": {
+      "value": 25
+    },
+    "stage": {
+      "value": 1
+    },
+    "nivel": {
+      "value": 1
+    },
+    "defense": {
+      "value": 10,
+      "bonus": 0,
+      "dodge": 0
+    },
+    "desloc": {
+      "value": 9,
+      "bonus": 0
+    },
+    "spaces": {
+      "bonus": {
+        "value": 0,
+        "max": 0
+      }
+    },
+    "biography": "<p><em>Personagem criado por @souowendel (discord).</em></p><p>Com apenas 10 anos de idade, Elouise Elahi Anaki é uma garotinha quieta e bastante pensativa que vive em Campos do Jorjão, no interior de São Paulo. Filha de pai paquistanês e mãe indiana, ela cresce em uma casa cheia de misturas culturais, mas não costuma ter muitos amigos por perto para brincar. Por ser mais reservada, Elouise acaba passando bastante tempo em seu quarto verde-pastel, tendo como seu grande companheiro diário o cãozinho da família, o Borzoi Bestto Frendo.</p><p>Com a falta de amizades, a pequena nerd mergulha de cabeça nos estudos, motivada também pela mãe exigente. Apaixonada por entender como as coisas funcionam, ela adora pesquisar curiosidades sobre física, química e fenômenos da natureza. É nessa busca por respostas simples — como entender a composição de uma melancia, sua fruta favorita — que Elouise encontra sua forma preferida de se conectar com o mundo e se divertir.</p><p>Elouise é medrosa, mas isso a obriga a ser esperta, procura saber qual a melhor opção para sobreviver. Também timida, não se dá muito bem com interações sociais, quase sempre retraída, se encolhe no canto e fala baixo até juntar coragem para compartilhar suas ideias.</p>",
+    "goals": "<ul><li><p>Ajudar o grupo com tudo que puder.</p></li><li><p>Fazer amigos.</p></li></ul>",
+    "class": "",
+    "ritual": {
+      "DT": 0
+    },
+    "origin": "",
+    "trilha": "",
+    "patent": {
+      "name": "",
+      "prestigePoints": 29,
+      "creditLimit": "",
+      "itemLimit1": null,
+      "itemLimit2": null,
+      "itemLimit3": null,
+      "itemLimit4": null
+    },
+    "skills": {
+      "acrobatics": {
+        "value": 0,
+        "attr": [
+          "dex"
+        ],
+        "degree": {
+          "label": "untrained",
+          "value": 0
+        },
+        "conditions": {
+          "load": false,
+          "trained": false
+        },
+        "mod": 0
+      },
+      "animal": {
+        "value": 0,
+        "attr": [
+          "pre"
+        ],
+        "degree": {
+          "label": "untrained",
+          "value": 0
+        },
+        "conditions": {
+          "load": false,
+          "trained": false
+        },
+        "mod": 0
+      },
+      "arts": {
+        "value": 0,
+        "attr": [
+          "pre"
+        ],
+        "degree": {
+          "label": "untrained",
+          "value": 0
+        },
+        "conditions": {
+          "load": false,
+          "trained": false
+        },
+        "mod": 0
+      },
+      "athleticism": {
+        "value": 0,
+        "attr": [
+          "str"
+        ],
+        "degree": {
+          "label": "untrained",
+          "value": 0
+        },
+        "conditions": {
+          "load": false,
+          "trained": false
+        },
+        "mod": 0
+      },
+      "relevance": {
+        "value": 0,
+        "attr": [
+          "int"
+        ],
+        "degree": {
+          "label": "untrained",
+          "value": 0
+        },
+        "conditions": {
+          "load": false,
+          "trained": false
+        },
+        "mod": 0
+      },
+      "sciences": {
+        "value": 0,
+        "attr": [
+          "int"
+        ],
+        "degree": {
+          "label": "trained",
+          "value": 0
+        },
+        "conditions": {
+          "load": false,
+          "trained": false
+        },
+        "mod": 0
+      },
+      "crime": {
+        "value": 0,
+        "attr": [
+          "dex"
+        ],
+        "degree": {
+          "label": "untrained",
+          "value": 0
+        },
+        "conditions": {
+          "load": false,
+          "trained": false
+        },
+        "mod": 0
+      },
+      "diplomacy": {
+        "value": 0,
+        "attr": [
+          "pre"
+        ],
+        "degree": {
+          "label": "untrained",
+          "value": 0
+        },
+        "conditions": {
+          "load": false,
+          "trained": false
+        },
+        "mod": 0
+      },
+      "deception": {
+        "value": 0,
+        "attr": [
+          "pre"
+        ],
+        "degree": {
+          "label": "untrained",
+          "value": 0
+        },
+        "conditions": {
+          "load": false,
+          "trained": false
+        },
+        "mod": 0
+      },
+      "resilience": {
+        "value": 0,
+        "attr": [
+          "vit"
+        ],
+        "degree": {
+          "label": "untrained",
+          "value": 0
+        },
+        "conditions": {
+          "load": false,
+          "trained": false
+        },
+        "mod": 0
+      },
+      "stealth": {
+        "value": 0,
+        "attr": [
+          "dex"
+        ],
+        "degree": {
+          "label": "trained",
+          "value": 0
+        },
+        "conditions": {
+          "load": false,
+          "trained": false
+        },
+        "mod": 0
+      },
+      "initiative": {
+        "value": 0,
+        "attr": [
+          "dex"
+        ],
+        "degree": {
+          "label": "untrained",
+          "value": 0
+        },
+        "conditions": {
+          "load": false,
+          "trained": false
+        },
+        "mod": 0
+      },
+      "intimidation": {
+        "value": 0,
+        "attr": [
+          "pre"
+        ],
+        "degree": {
+          "label": "untrained",
+          "value": 0
+        },
+        "conditions": {
+          "load": false,
+          "trained": false
+        },
+        "mod": 0
+      },
+      "intuition": {
+        "value": 0,
+        "attr": [
+          "pre"
+        ],
+        "degree": {
+          "label": "trained",
+          "value": 0
+        },
+        "conditions": {
+          "load": false,
+          "trained": false
+        },
+        "mod": 0
+      },
+      "investigation": {
+        "value": 0,
+        "attr": [
+          "int"
+        ],
+        "degree": {
+          "label": "trained",
+          "value": 0
+        },
+        "conditions": {
+          "load": false,
+          "trained": false
+        },
+        "mod": 0
+      },
+      "fighting": {
+        "value": 0,
+        "attr": [
+          "str"
+        ],
+        "degree": {
+          "label": "untrained",
+          "value": 0
+        },
+        "conditions": {
+          "load": false,
+          "trained": false
+        },
+        "mod": 0
+      },
+      "medicine": {
+        "value": 0,
+        "attr": [
+          "int"
+        ],
+        "degree": {
+          "label": "trained",
+          "value": 0
+        },
+        "conditions": {
+          "load": false,
+          "trained": false
+        },
+        "mod": 0
+      },
+      "occultism": {
+        "value": 0,
+        "attr": [
+          "int"
+        ],
+        "degree": {
+          "label": "untrained",
+          "value": 0
+        },
+        "conditions": {
+          "load": false,
+          "trained": false
+        },
+        "mod": 0
+      },
+      "perception": {
+        "value": 0,
+        "attr": [
+          "pre"
+        ],
+        "degree": {
+          "label": "trained",
+          "value": 0
+        },
+        "conditions": {
+          "load": false,
+          "trained": false
+        },
+        "mod": 0
+      },
+      "driving": {
+        "value": 0,
+        "attr": [
+          "dex"
+        ],
+        "degree": {
+          "label": "untrained",
+          "value": 0
+        },
+        "conditions": {
+          "load": false,
+          "trained": false
+        },
+        "mod": 0
+      },
+      "aim": {
+        "value": 0,
+        "attr": [
+          "dex"
+        ],
+        "degree": {
+          "label": "trained",
+          "value": 0
+        },
+        "conditions": {
+          "load": false,
+          "trained": false
+        },
+        "mod": 0
+      },
+      "reflexes": {
+        "value": 0,
+        "attr": [
+          "dex"
+        ],
+        "degree": {
+          "label": "trained",
+          "value": 0
+        },
+        "conditions": {
+          "load": false,
+          "trained": false
+        },
+        "mod": 0
+      },
+      "religion": {
+        "value": 0,
+        "attr": [
+          "pre"
+        ],
+        "degree": {
+          "label": "untrained",
+          "value": 0
+        },
+        "conditions": {
+          "load": false,
+          "trained": false
+        },
+        "mod": 0
+      },
+      "survival": {
+        "value": 0,
+        "attr": [
+          "int"
+        ],
+        "degree": {
+          "label": "untrained",
+          "value": 0
+        },
+        "conditions": {
+          "load": false,
+          "trained": false
+        },
+        "mod": 0
+      },
+      "tactics": {
+        "value": 0,
+        "attr": [
+          "int"
+        ],
+        "degree": {
+          "label": "untrained",
+          "value": 0
+        },
+        "conditions": {
+          "load": false,
+          "trained": false
+        },
+        "mod": 0
+      },
+      "technology": {
+        "value": 0,
+        "attr": [
+          "int"
+        ],
+        "degree": {
+          "label": "trained",
+          "value": 0
+        },
+        "conditions": {
+          "load": false,
+          "trained": false
+        },
+        "mod": 0
+      },
+      "will": {
+        "value": 0,
+        "attr": [
+          "pre"
+        ],
+        "degree": {
+          "label": "trained",
+          "value": 0
+        },
+        "conditions": {
+          "load": false,
+          "trained": false
+        },
+        "mod": 0
+      },
+      "freeSkill": {
+        "value": 0,
+        "name": "",
+        "attr": [
+          "int"
+        ],
+        "degree": {
+          "label": "untrained",
+          "value": 0
+        },
+        "conditions": {
+          "load": false,
+          "trained": false,
+          "open": true
+        },
+        "mod": 0
+      }
+    },
+    "attributes": {
+      "dex": {
+        "value": 2,
+        "bonus": 0
+      },
+      "int": {
+        "value": 3,
+        "bonus": 0
+      },
+      "vit": {
+        "value": 0,
+        "bonus": 0
+      },
+      "pre": {
+        "value": 2,
+        "bonus": 0
+      },
+      "str": {
+        "value": 0,
+        "bonus": 0
+      }
+    },
+    "resources": {
+      "res1": {
+        "value": 0,
+        "max": 0,
+        "label": ""
+      },
+      "res2": {
+        "value": 0,
+        "max": 0,
+        "label": ""
+      },
+      "res3": {
+        "value": 0,
+        "max": 0,
+        "label": ""
+      }
+    }
+  },
+  "prototypeToken": {
+    "name": "Elouise Elahi Anaki",
+    "displayName": 0,
+    "actorLink": true,
+    "width": 1,
+    "height": 1,
+    "depth": 1,
+    "texture": {
+      "src": "systems/ordemparanormal/media/assets/sheets/token-elouise-elahi-anaki.webp",
+      "anchorX": 0.5,
+      "anchorY": 0.75,
+      "fit": "contain",
+      "scaleX": 0.95,
+      "scaleY": 0.95,
+      "tint": "#ffffff",
+      "alphaThreshold": 0.75
+    },
+    "lockRotation": true,
+    "rotation": 0,
+    "alpha": 1,
+    "disposition": 1,
+    "displayBars": 50,
+    "bar1": {
+      "attribute": null
+    },
+    "bar2": {
+      "attribute": null
+    },
+    "light": {
+      "negative": false,
+      "priority": 0,
+      "alpha": 0.5,
+      "angle": 360,
+      "bright": 0,
+      "color": null,
+      "coloration": 1,
+      "dim": 0,
+      "attenuation": 0.5,
+      "luminosity": 0.5,
+      "saturation": 0,
+      "contrast": 0,
+      "shadows": 0,
+      "animation": {
+        "type": null,
+        "speed": 5,
+        "intensity": 5,
+        "reverse": false
+      },
+      "darkness": {
+        "min": 0,
+        "max": 1
+      }
+    },
+    "sight": {
+      "enabled": true,
+      "range": 1.5,
+      "angle": 360,
+      "visionMode": "basic",
+      "color": null,
+      "attenuation": 0.1,
+      "brightness": 0.2,
+      "saturation": 0,
+      "contrast": 0
+    },
+    "detectionModes": {},
+    "occludable": {
+      "radius": 0
+    },
+    "ring": {
+      "enabled": false,
+      "colors": {
+        "ring": null,
+        "background": null
+      },
+      "effects": 0,
+      "subject": {
+        "scale": 1,
+        "texture": null
+      }
+    },
+    "turnMarker": {
+      "mode": 1,
+      "animation": null,
+      "src": null,
+      "disposition": false
+    },
+    "movementAction": null,
+    "flags": {
+      "barbrawl": {
+        "resourceBars": {
+          "agentSpaceBar": {
+            "id": "agentSpaceBar",
+            "mincolor": "#000000",
+            "maxcolor": "#FFFFFF",
+            "position": "bottom-outer",
+            "value": 1,
+            "max": 1,
+            "opacity": 0,
+            "label": "",
+            "attribute": "custom",
+            "style": "fraction",
+            "ownerVisibility": 30,
+            "otherVisibility": 0,
+            "hideHud": true,
+            "order": 0,
+            "gmVisibility": -1,
+            "hideFull": false,
+            "hideEmpty": false,
+            "hideCombat": false,
+            "hideNoCombat": false,
+            "shareHeight": false,
+            "indentLeft": null,
+            "indentRight": null,
+            "invert": false,
+            "ignoreMin": false,
+            "ignoreMax": false,
+            "subdivisions": null,
+            "subdivisionsOwner": false,
+            "invertDirection": false,
+            "fgImage": "",
+            "bgImage": "",
+            "hideBg": false
+          },
+          "pv": {
+            "id": "pv",
+            "mincolor": "#ff1a1a",
+            "maxcolor": "#80ff00",
+            "position": "bottom-outer",
+            "attribute": "PV",
+            "label": "PV",
+            "style": "fraction",
+            "ownerVisibility": 30,
+            "otherVisibility": 0,
+            "order": 1,
+            "gmVisibility": -1,
+            "hideFull": false,
+            "hideEmpty": false,
+            "hideCombat": false,
+            "hideNoCombat": false,
+            "hideHud": false,
+            "shareHeight": false,
+            "indentLeft": null,
+            "indentRight": null,
+            "invert": false,
+            "subdivisions": null,
+            "subdivisionsOwner": false,
+            "invertDirection": false,
+            "fgImage": "",
+            "bgImage": "",
+            "hideBg": false,
+            "opacity": null
+          },
+          "pe": {
+            "id": "pe",
+            "mincolor": "#242899",
+            "maxcolor": "#66a8ff",
+            "position": "bottom-outer",
+            "attribute": "PE",
+            "label": "PE",
+            "style": "fraction",
+            "ownerVisibility": 30,
+            "otherVisibility": 0,
+            "order": 2,
+            "gmVisibility": -1,
+            "hideFull": false,
+            "hideEmpty": false,
+            "hideCombat": false,
+            "hideNoCombat": false,
+            "hideHud": false,
+            "shareHeight": false,
+            "indentLeft": null,
+            "indentRight": null,
+            "invert": false,
+            "subdivisions": null,
+            "subdivisionsOwner": false,
+            "invertDirection": false,
+            "fgImage": "",
+            "bgImage": "",
+            "hideBg": false,
+            "opacity": null
+          },
+          "san": {
+            "id": "san",
+            "mincolor": "#000000",
+            "maxcolor": "#000000",
+            "position": "bottom-outer",
+            "attribute": "SAN",
+            "label": "SAN",
+            "style": "fraction",
+            "ownerVisibility": 30,
+            "otherVisibility": 0,
+            "order": 3,
+            "gmVisibility": -1,
+            "hideFull": false,
+            "hideEmpty": false,
+            "hideCombat": false,
+            "hideNoCombat": false,
+            "hideHud": false,
+            "shareHeight": false,
+            "indentLeft": null,
+            "indentRight": null,
+            "invert": false,
+            "subdivisions": null,
+            "subdivisionsOwner": false,
+            "invertDirection": false,
+            "fgImage": "",
+            "bgImage": "",
+            "hideBg": false,
+            "opacity": null
+          }
+        }
+      }
+    },
+    "randomImg": false,
+    "appendNumber": false,
+    "prependAdjective": false
+  },
+  "items": [
+    {
+      "name": "Especialista",
+      "type": "class",
+      "_id": "5V18HNvViVYpSoKG",
+      "img": "systems/ordemparanormal/media/icons/classes/especialista.svg",
+      "system": {
+        "id": 0,
+        "description": "<p><strong>Um agente que confia mais em esperteza do que em força bruta. Um especialista se vale de conhecimento técnico, raciocínio rápido ou mesmo lábia para resolver mistérios e enfrentar o paranormal.</strong></p><p>Cientistas, inventores, pesquisadores e técnicos de vários tipos são exemplos de especialistas, que são tão variados quanto as áreas do conhecimento e da tecnologia. Alguns ainda preferem estudar en\u0002genharia social e se tornam excelentes espiões infiltrados, ou mesmo estudam técnicas especiais de combate como artes marciais e tiro a distância, aliando conheci\u0002mento técnico e habilidade.</p><p>O que une todos os especialistas é sua incrível capacidade de aprender e improvisar usando seu intelecto e conhecimento avançado, que pode tirar o grupo todo dos mais diversos tipos de enrascadas.</p><p><strong>Especialistas Famosos:</strong> Aaron, Arthur Cervero, Rubens Naluti, Elizabeth Webber, Samuel Norte, Chizue Akechi.</p>",
+        "chatDescription": "",
+        "disableCalculations": false,
+        "hpInitial": 16,
+        "hpPerLevel": 3,
+        "peInitial": 3,
+        "pePerLevel": 3,
+        "pdInitial": 8,
+        "pdPerLevel": 4,
+        "sanInitial": 16,
+        "sanPerLevel": 4,
+        "skillCount": 0,
+        "isSurvivor": false
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 400000,
+      "ownership": {
+        "default": 0,
+        "sHhoUEHwKGP7EiE0": 3,
+        "vUTMyOH4FOrOifbw": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": "Compendium.ordemparanormal.classes.Item.T0HF865kB4szDetP",
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "14.365",
+        "systemId": "ordemparanormal",
+        "systemVersion": "7.3.3",
+        "createdTime": 1785619317927,
+        "modifiedTime": 1785619317927,
+        "lastModifiedBy": "vUTMyOH4FOrOifbw"
+      },
+      "_key": "!actors.items!IwJae37HUCjpYDkC.5V18HNvViVYpSoKG"
+    },
+    {
+      "folder": "NNs4Mm1qnMBc4PM5",
+      "name": "Nerd Entusiasta",
+      "type": "origin",
+      "_id": "qd2OCVUP87LOHtK9",
+      "img": "systems/ordemparanormal/media/icons/origins/nerd-entusiasta.svg",
+      "system": {
+        "id": 0,
+        "description": "<p>Você pode encontrar esse conteúdo na <strong>página 13 do suplemento Sobrevivendo ao Horror</strong>.</p>",
+        "chatDescription": ""
+      },
+      "effects": [],
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "WeXQ2WY27ruZ5VmA": 3,
+        "vUTMyOH4FOrOifbw": 3
+      },
+      "flags": {},
+      "_stats": {
+        "coreVersion": "14.365",
+        "systemId": "ordemparanormal",
+        "systemVersion": "7.3.3",
+        "createdTime": 1785619331262,
+        "modifiedTime": 1785619331262,
+        "lastModifiedBy": "vUTMyOH4FOrOifbw",
+        "compendiumSource": "Compendium.ordemparanormal.origins.Item.6SsF70Yj4ShgRkuR",
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!actors.items!IwJae37HUCjpYDkC.qd2OCVUP87LOHtK9"
+    },
+    {
+      "folder": "K6pw1Gg6gDxrhy1W",
+      "name": "Bibliotecário",
+      "type": "path",
+      "_id": "5p6Jtug7wBZQlCRA",
+      "img": "systems/ordemparanormal/media/icons/paths/bibliotecario.svg",
+      "system": {
+        "id": 0,
+        "preRequisite": "",
+        "description": "<p>Você pode encontrar esse conteúdo na <strong>página 23 do suplemento Sobrevivendo ao Horror</strong>.</p>",
+        "chatDescription": ""
+      },
+      "effects": [],
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "WeXQ2WY27ruZ5VmA": 3,
+        "vUTMyOH4FOrOifbw": 3
+      },
+      "flags": {},
+      "_stats": {
+        "coreVersion": "14.365",
+        "systemId": "ordemparanormal",
+        "systemVersion": "7.3.3",
+        "createdTime": 1785619354236,
+        "modifiedTime": 1785619354236,
+        "lastModifiedBy": "vUTMyOH4FOrOifbw",
+        "compendiumSource": "Compendium.ordemparanormal.paths.Item.L10BzeeH4aHHfI2u",
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!actors.items!IwJae37HUCjpYDkC.5p6Jtug7wBZQlCRA"
+    },
+    {
+      "name": "Amuleto Sagrado",
+      "type": "generalEquipment",
+      "img": "systems/ordemparanormal/media/icons/equipments/accessories/amuleto-sagrado.svg",
+      "system": {
+        "description": "<p>Um utensílio especial (segue todas as regras de utensílios comuns, mas possui efeitos adicionais) na forma de shimenawa, rosário, fio de contas, contas de oração ou qualquer outro objeto que reforce sua fé e ajude a blindá-lo das desgraças do dia a dia. Fornece +2 em Religião e Vontade.</p>",
+        "chatDescription": "",
+        "weight": 1,
+        "category": 0,
+        "using": {
+          "state": true,
+          "class": "fas"
+        },
+        "type": "",
+        "quantity": 1
+      },
+      "effects": [
+        {
+          "name": "Amuleto Sagrado",
+          "origin": null,
+          "img": "icons/svg/aura.svg",
+          "_id": "ziGZCP12MNHXKheQ",
+          "type": "base",
+          "system": {
+            "changes": [
+              {
+                "key": "system.skills.will.mod",
+                "value": 2,
+                "priority": null,
+                "type": "add",
+                "phase": "initial"
+              },
+              {
+                "key": "system.skills.religion.mod",
+                "value": 2,
+                "priority": null,
+                "type": "add",
+                "phase": "initial"
+              }
+            ]
+          },
+          "disabled": true,
+          "duration": {
+            "value": null,
+            "units": "seconds",
+            "expiry": null,
+            "expired": false
+          },
+          "description": "",
+          "tint": "#ffffff",
+          "transfer": true,
+          "statuses": [],
+          "sort": 0,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null,
+            "duplicateSource": null,
+            "exportSource": null,
+            "coreVersion": "14.365",
+            "systemId": "ordemparanormal",
+            "systemVersion": "7.3.3",
+            "createdTime": 1785619518985,
+            "modifiedTime": 1785619518985,
+            "lastModifiedBy": "vUTMyOH4FOrOifbw"
+          },
+          "start": null,
+          "showIcon": 1,
+          "folder": null,
+          "_key": "!actors.items.effects!IwJae37HUCjpYDkC.OOxMcPCS4U4EqtTK.ziGZCP12MNHXKheQ"
+        }
+      ],
+      "folder": "Ni1u5qDHXarXRlij",
+      "flags": {},
+      "_stats": {
+        "compendiumSource": "Compendium.ordemparanormal.general.Item.GI2TcHq5sEIeilhG",
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "14.365",
+        "systemId": "ordemparanormal",
+        "systemVersion": "7.3.3",
+        "createdTime": 1785619518985,
+        "modifiedTime": 1785619551078,
+        "lastModifiedBy": "vUTMyOH4FOrOifbw"
+      },
+      "_id": "OOxMcPCS4U4EqtTK",
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "vUTMyOH4FOrOifbw": 3
+      },
+      "_key": "!actors.items!IwJae37HUCjpYDkC.OOxMcPCS4U4EqtTK"
+    },
+    {
+      "name": "Mochila Bonitinha",
+      "type": "generalEquipment",
+      "_id": "nPiczlGboHbfW4E5",
+      "img": "systems/ordemparanormal/media/icons/equipments/operational/mochila-militar.svg",
+      "system": {
+        "description": "<p>Uma mochila leve e de alta qualidade. Ela n&atilde;o usa nenhum espa&ccedil;o e aumenta sua capacidade de carga em 2 espa&ccedil;os.</p>",
+        "chatDescription": "",
+        "weight": 0,
+        "category": 1,
+        "using": {
+          "state": true,
+          "class": "fas"
+        },
+        "type": "",
+        "quantity": 1
+      },
+      "effects": [
+        {
+          "origin": "Compendium.ordemparanormal.generalEquipments.Item.0KKFBP9GfASOMSbX",
+          "duration": {
+            "value": null,
+            "units": "seconds",
+            "expiry": null,
+            "expired": false
+          },
+          "disabled": false,
+          "name": "Espaço Extra",
+          "_id": "1qK9LWrvE2Z4Etej",
+          "description": "",
+          "transfer": true,
+          "statuses": [],
+          "flags": {},
+          "tint": "#ffffff",
+          "_stats": {
+            "coreVersion": "14.365",
+            "systemId": "ordemparanormal",
+            "systemVersion": "7.3.3",
+            "createdTime": 1785619528215,
+            "modifiedTime": 1785619528215,
+            "lastModifiedBy": "vUTMyOH4FOrOifbw",
+            "compendiumSource": null,
+            "duplicateSource": null,
+            "exportSource": null
+          },
+          "img": "systems/ordemparanormal/media/icons/equipments/operational/mochila-militar.svg",
+          "type": "base",
+          "system": {
+            "changes": [
+              {
+                "key": "system.spaces.bonus.max",
+                "value": 2,
+                "priority": null,
+                "type": "add",
+                "phase": "initial"
+              }
+            ]
+          },
+          "sort": 0,
+          "start": {
+            "combat": null,
+            "round": null,
+            "time": 1722884407,
+            "turn": null,
+            "combatant": null,
+            "initiative": null
+          },
+          "showIcon": 1,
+          "folder": null,
+          "_key": "!actors.items.effects!IwJae37HUCjpYDkC.nPiczlGboHbfW4E5.1qK9LWrvE2Z4Etej"
+        }
+      ],
+      "folder": null,
+      "sort": 100000,
+      "flags": {
+        "core": {}
+      },
+      "_stats": {
+        "systemId": "ordemparanormal",
+        "systemVersion": "7.3.3",
+        "coreVersion": "14.365",
+        "createdTime": 1785619528215,
+        "modifiedTime": 1785619528215,
+        "lastModifiedBy": "vUTMyOH4FOrOifbw",
+        "compendiumSource": "Compendium.ordemparanormal.generalEquipments.Item.0KKFBP9GfASOMSbX",
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "ownership": {
+        "default": 0,
+        "vUTMyOH4FOrOifbw": 3
+      },
+      "_key": "!actors.items!IwJae37HUCjpYDkC.nPiczlGboHbfW4E5"
+    },
+    {
+      "name": "Notebook",
+      "type": "generalEquipment",
+      "_id": "DFjJLWmRmvqnFSDh",
+      "img": "systems/ordemparanormal/media/icons/equipments/accessories/notebook.svg",
+      "system": {
+        "description": "<p>Um utens&iacute;lio especial. Como um celu\u0002lar, se tiver acesso a internet fornece +2 em testes de per&iacute;cia que envolvem adquirir informa&ccedil;&otilde;es. Al&eacute;m disso, por sua tela maior, pode ser usado para entre\u0002tenimento de forma mais agrad&aacute;vel; ao relaxar em cenas de interl&uacute;dio, voc&ecirc; recupera 1 ponto adicional de Sanidade. A luz do monitor ilumina em um cone de 4,5m. Tablets est&atilde;o inclusos como uma varia&ccedil;&atilde;o de notebook.</p>",
+        "chatDescription": "",
+        "weight": 2,
+        "category": 0,
+        "using": {
+          "state": true,
+          "class": "fas"
+        },
+        "type": "",
+        "quantity": 1
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 600000,
+      "flags": {
+        "core": {},
+        "item-piles": {
+          "item": {}
+        }
+      },
+      "_stats": {
+        "compendiumSource": "Compendium.ordemparanormal.generalEquipments.Item.qDmy68LoIRzTicwi",
+        "duplicateSource": null,
+        "coreVersion": "14.365",
+        "systemId": "ordemparanormal",
+        "systemVersion": "7.3.3",
+        "createdTime": 1785619532694,
+        "modifiedTime": 1785619532694,
+        "lastModifiedBy": "vUTMyOH4FOrOifbw",
+        "exportSource": null
+      },
+      "ownership": {
+        "default": 0,
+        "vUTMyOH4FOrOifbw": 3
+      },
+      "_key": "!actors.items!IwJae37HUCjpYDkC.DFjJLWmRmvqnFSDh"
+    },
+    {
+      "name": "Bolsa de Apetrechos",
+      "type": "generalEquipment",
+      "_id": "DejLdHcMmiEVSe08",
+      "img": "systems/ordemparanormal/media/icons/equipments/accessories/chave-de-fenda-universal.svg",
+      "system": {
+        "description": "<p>Esta ferramenta pode ser considerada um milagre da engenharia humana. Com ela em m&atilde;os, voc&ecirc; &eacute; capaz de resolver quase qualquer problema. Fornece +2 em testes de per&iacute;cia para criar ou reparar objetos, desde panelas de cozinha at&eacute; motores de avi&atilde;o. Tamb&eacute;m fornece o b&ocirc;nus se usada como item de apoio em situa&ccedil;&otilde;es especiais, como lidar com cabos para hackear um servidor.</p>",
+        "chatDescription": "",
+        "weight": 1,
+        "category": 0,
+        "using": {
+          "state": true,
+          "class": "fas"
+        },
+        "type": "",
+        "quantity": 1
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 400000,
+      "flags": {
+        "core": {}
+      },
+      "_stats": {
+        "systemId": "ordemparanormal",
+        "systemVersion": "7.3.3",
+        "coreVersion": "14.365",
+        "createdTime": 1785619533582,
+        "modifiedTime": 1785619547926,
+        "lastModifiedBy": "vUTMyOH4FOrOifbw",
+        "compendiumSource": "Compendium.ordemparanormal.generalEquipments.Item.qDmy68LoIRzTicwi",
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "ownership": {
+        "default": 0,
+        "vUTMyOH4FOrOifbw": 3
+      },
+      "_key": "!actors.items!IwJae37HUCjpYDkC.DejLdHcMmiEVSe08"
+    },
+    {
+      "name": "Revólver Compacto",
+      "type": "armament",
+      "img": "systems/ordemparanormal/media/icons/armament/revolver-compacto.svg",
+      "system": {
+        "description": "<p>Uma arma de baixo calibre, projetada para ser facilmente escondida no corpo. Se for treinado em Crime, você consegue carregar uma dessas armas sem que ela ocupe um espaço.</p>",
+        "chatDescription": "",
+        "weight": 0,
+        "category": 1,
+        "using": {
+          "state": true,
+          "class": "fas"
+        },
+        "quantity": 1,
+        "proficiency": "simpleWeapons",
+        "types": {
+          "rangeType": {
+            "name": "ranged",
+            "subRangeType": "fire"
+          },
+          "ammunitionType": "shortBullets",
+          "gripType": "light"
+        },
+        "critical": "19/x3",
+        "range": "Curto",
+        "formulas": {
+          "attack": {
+            "formula": "1d20",
+            "attr": "dex",
+            "skill": "aim",
+            "bonus": ""
+          },
+          "damage": {
+            "formula": "2d4",
+            "attr": "",
+            "bonus": "0",
+            "type": "ballisticDamage",
+            "parts": []
+          },
+          "extraFormula": "1d4"
+        },
+        "penalty": "",
+        "conditions": {
+          "improvised": false,
+          "throwable": false,
+          "agile": false,
+          "automatic": false,
+          "adaptableGrip": false,
+          "pistolBlow": true
+        },
+        "actionType": "standard",
+        "numberOfAttacks": 1,
+        "rangeCategory": ""
+      },
+      "effects": [],
+      "flags": {},
+      "_stats": {
+        "compendiumSource": "Compendium.ordemparanormal.armaments.Item.lpcnetoEBoAwaxgj",
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "14.365",
+        "systemId": "ordemparanormal",
+        "systemVersion": "7.3.3",
+        "createdTime": 1785619581035,
+        "modifiedTime": 1785619614593,
+        "lastModifiedBy": "vUTMyOH4FOrOifbw"
+      },
+      "ownership": {
+        "default": 0,
+        "uX8kbsijC8bcpBa3": 3,
+        "vUTMyOH4FOrOifbw": 3
+      },
+      "_id": "lhyiJB6LsxZrbZqU",
+      "sort": 100013,
+      "folder": "NV5EZGqqlc3o3VXc",
+      "_key": "!actors.items!IwJae37HUCjpYDkC.lhyiJB6LsxZrbZqU"
+    },
+    {
+      "name": "O Inteligentão",
+      "type": "ability",
+      "system": {
+        "id": 1,
+        "abilityType": "origin",
+        "preRequisite": "",
+        "description": "<p>O bônus que você recebe ao utilizar a ação de interlúdio ler aumenta em +1 dado (de +1d6 para +2d6).</p>",
+        "chatDescription": "",
+        "activation": "passive",
+        "cost": null,
+        "costType": "PE"
+      },
+      "_id": "MuOOq1Eg1ZfIEndm",
+      "img": "icons/sundries/books/book-stack.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 200000,
+      "flags": {},
+      "_stats": {
+        "systemId": "ordemparanormal",
+        "systemVersion": "7.3.3",
+        "coreVersion": "14.365",
+        "createdTime": 1785619673008,
+        "modifiedTime": 1785620102047,
+        "lastModifiedBy": "vUTMyOH4FOrOifbw",
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "ownership": {
+        "default": 0,
+        "vUTMyOH4FOrOifbw": 3
+      },
+      "_key": "!actors.items!IwJae37HUCjpYDkC.MuOOq1Eg1ZfIEndm"
+    },
+    {
+      "name": "NEX 10% - Conhecimento Prático",
+      "type": "ability",
+      "img": "systems/ordemparanormal/media/icons/abilities/class/specialist/Bibliotecario/bibliotecario-10.svg",
+      "system": {
+        "id": 0,
+        "abilityType": "path",
+        "preRequisite": "Trilha: Bibliotecário",
+        "description": "<p>Você pode se lembrar de muitas informações úteis de suas leituras. Quando faz um teste de perícia (exceto Luta e Pontaria), você pode gastar <strong>2 PE</strong> para mudar o atributo-base da perícia para <strong>Intelecto</strong>. Se possuir o poder <strong>Conhecimento Aplicado</strong>, em vez disso seu custo é reduzido em <strong>–1 PE</strong>.</p>",
+        "chatDescription": "",
+        "activation": "free",
+        "cost": 2,
+        "costType": "PE"
+      },
+      "effects": [],
+      "folder": "diewwdueVbtezoUg",
+      "flags": {},
+      "_stats": {
+        "compendiumSource": "Compendium.ordemparanormal.pathSpecialist.Item.fKGxJijUZSiDP6Qo",
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "14.365",
+        "systemId": "ordemparanormal",
+        "systemVersion": "7.3.3",
+        "createdTime": 1785619691866,
+        "modifiedTime": 1785619691866,
+        "lastModifiedBy": "vUTMyOH4FOrOifbw"
+      },
+      "ownership": {
+        "default": 0,
+        "uX8kbsijC8bcpBa3": 3,
+        "vUTMyOH4FOrOifbw": 3
+      },
+      "_id": "eVoUXbY8M9yqvqgN",
+      "sort": 0,
+      "_key": "!actors.items!IwJae37HUCjpYDkC.eVoUXbY8M9yqvqgN"
+    },
+    {
+      "name": "Tampinha",
+      "type": "ability",
+      "system": {
+        "id": 4,
+        "abilityType": "ability",
+        "preRequisite": "",
+        "description": "<p>Voc&ecirc; possui deslocamento 6m e tamanho Pequeno (+5 em testes de Furtividade, -5 em manobras de combate, precisa usar armas leves como armas de uma m&atilde;o e armas de uma m&atilde;o como armas de duas m&atilde;os, e n&atilde;o pode usar armas de duas m&atilde;os).</p>",
+        "chatDescription": "",
+        "activation": "passive",
+        "cost": null,
+        "costType": "PE"
+      },
+      "_id": "ivmBCjpmeet4yRlr",
+      "img": "icons/magic/control/silhouette-hold-change-blue.webp",
+      "effects": [
+        {
+          "origin": "Actor.Bmne2wyETgzLlHbS.Item.4LM1fCilf2k2jcUH",
+          "duration": {
+            "value": null,
+            "units": "seconds",
+            "expiry": null,
+            "expired": false
+          },
+          "disabled": false,
+          "name": "Buffs e Debuffs",
+          "_id": "is4bR7vidVzaWOjo",
+          "description": "",
+          "transfer": true,
+          "statuses": [],
+          "flags": {},
+          "tint": "#ffffff",
+          "_stats": {
+            "coreVersion": "14.365",
+            "systemId": "ordemparanormal",
+            "systemVersion": "7.3.3",
+            "createdTime": 1785619700784,
+            "modifiedTime": 1785619700784,
+            "lastModifiedBy": "vUTMyOH4FOrOifbw",
+            "compendiumSource": null,
+            "duplicateSource": null,
+            "exportSource": null
+          },
+          "img": "icons/svg/aura.svg",
+          "type": "base",
+          "system": {
+            "changes": [
+              {
+                "key": "system.desloc.value",
+                "value": -3,
+                "priority": null,
+                "type": "add",
+                "phase": "initial"
+              },
+              {
+                "key": "system.skills.stealth.value",
+                "value": 2,
+                "priority": null,
+                "type": "add",
+                "phase": "initial"
+              }
+            ]
+          },
+          "sort": 0,
+          "start": null,
+          "showIcon": 1,
+          "folder": null,
+          "_key": "!actors.items.effects!IwJae37HUCjpYDkC.ivmBCjpmeet4yRlr.is4bR7vidVzaWOjo"
+        }
+      ],
+      "folder": null,
+      "sort": 100000,
+      "flags": {},
+      "_stats": {
+        "systemId": "ordemparanormal",
+        "systemVersion": "7.3.3",
+        "coreVersion": "14.365",
+        "createdTime": 1785619700784,
+        "modifiedTime": 1785620112455,
+        "lastModifiedBy": "vUTMyOH4FOrOifbw",
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "ownership": {
+        "default": 0,
+        "vUTMyOH4FOrOifbw": 3
+      },
+      "_key": "!actors.items!IwJae37HUCjpYDkC.ivmBCjpmeet4yRlr"
+    },
+    {
+      "name": "Sorte de Principiante",
+      "type": "ability",
+      "system": {
+        "id": 4,
+        "abilityType": "ability",
+        "preRequisite": "",
+        "description": "<p>Você recebe +2 em Defesa e +5 em todos os testes de resistência. Inimigos normalmente ignoram crianças, justamente por elas serem menos perigosas!</p>",
+        "chatDescription": "",
+        "activation": "passive",
+        "cost": null,
+        "costType": "PE"
+      },
+      "_id": "LejIdMKyWoFbNC3m",
+      "img": "icons/commodities/flowers/clover.webp",
+      "effects": [
+        {
+          "origin": "Actor.Bmne2wyETgzLlHbS.Item.nVlSOjcBgBcm2ISZ",
+          "duration": {
+            "value": null,
+            "units": "seconds",
+            "expiry": null,
+            "expired": false
+          },
+          "disabled": false,
+          "name": "Defesa Adicional",
+          "_id": "EMvuZGL8IMMOd1M6",
+          "description": "",
+          "transfer": true,
+          "statuses": [],
+          "flags": {},
+          "tint": "#ffffff",
+          "_stats": {
+            "coreVersion": "14.365",
+            "systemId": "ordemparanormal",
+            "systemVersion": "7.3.3",
+            "createdTime": 1785619701968,
+            "modifiedTime": 1785619701968,
+            "lastModifiedBy": "vUTMyOH4FOrOifbw",
+            "compendiumSource": null,
+            "duplicateSource": null,
+            "exportSource": null
+          },
+          "img": "icons/svg/aura.svg",
+          "type": "base",
+          "system": {
+            "changes": [
+              {
+                "key": "system.defense.value",
+                "value": 2,
+                "priority": null,
+                "type": "add",
+                "phase": "initial"
+              }
+            ]
+          },
+          "sort": 0,
+          "start": null,
+          "showIcon": 1,
+          "folder": null,
+          "_key": "!actors.items.effects!IwJae37HUCjpYDkC.LejIdMKyWoFbNC3m.EMvuZGL8IMMOd1M6"
+        },
+        {
+          "origin": "Actor.Bmne2wyETgzLlHbS.Item.nVlSOjcBgBcm2ISZ",
+          "duration": {
+            "value": null,
+            "units": "seconds",
+            "expiry": null,
+            "expired": false
+          },
+          "disabled": false,
+          "name": "Bônus em Testes de Resistência",
+          "_id": "RQBSgmwGR3meLnmx",
+          "description": "",
+          "transfer": true,
+          "statuses": [],
+          "flags": {},
+          "tint": "#ffffff",
+          "_stats": {
+            "coreVersion": "14.365",
+            "systemId": "ordemparanormal",
+            "systemVersion": "7.3.3",
+            "createdTime": 1785619701968,
+            "modifiedTime": 1785619701968,
+            "lastModifiedBy": "vUTMyOH4FOrOifbw",
+            "compendiumSource": null,
+            "duplicateSource": null,
+            "exportSource": null
+          },
+          "img": "icons/svg/aura.svg",
+          "type": "base",
+          "system": {
+            "changes": [
+              {
+                "key": "system.skills.reflexes.value",
+                "value": 5,
+                "priority": null,
+                "type": "add",
+                "phase": "initial"
+              },
+              {
+                "key": "system.skills.will.value",
+                "value": 5,
+                "priority": null,
+                "type": "add",
+                "phase": "initial"
+              },
+              {
+                "key": "system.skills.resilience.value",
+                "value": 5,
+                "priority": null,
+                "type": "add",
+                "phase": "initial"
+              }
+            ]
+          },
+          "sort": 0,
+          "start": null,
+          "showIcon": 1,
+          "folder": null,
+          "_key": "!actors.items.effects!IwJae37HUCjpYDkC.LejIdMKyWoFbNC3m.RQBSgmwGR3meLnmx"
+        }
+      ],
+      "folder": null,
+      "sort": 300000,
+      "flags": {},
+      "_stats": {
+        "systemId": "ordemparanormal",
+        "systemVersion": "7.3.3",
+        "coreVersion": "14.365",
+        "createdTime": 1785619701968,
+        "modifiedTime": 1785620121963,
+        "lastModifiedBy": "vUTMyOH4FOrOifbw",
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "ownership": {
+        "default": 0,
+        "vUTMyOH4FOrOifbw": 3
+      },
+      "_key": "!actors.items!IwJae37HUCjpYDkC.LejIdMKyWoFbNC3m"
+    },
+    {
+      "name": "Cartela de Figurinhas",
+      "type": "generalEquipment",
+      "system": {
+        "description": "<p>Algumas figurinhas de frutas e tamb&eacute;m de personagens bonitos de anime shoujo.</p>",
+        "chatDescription": "",
+        "weight": 0,
+        "category": 0,
+        "using": {
+          "state": true,
+          "class": "fas"
+        },
+        "type": "",
+        "quantity": 2
+      },
+      "_id": "TBWKfpxqo4cRShFs",
+      "img": "icons/sundries/documents/document-letter-blue.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 300000,
+      "flags": {},
+      "_stats": {
+        "systemId": "ordemparanormal",
+        "systemVersion": "7.3.3",
+        "coreVersion": "14.365",
+        "createdTime": 1785619880687,
+        "modifiedTime": 1785619880687,
+        "lastModifiedBy": "vUTMyOH4FOrOifbw",
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "ownership": {
+        "default": 0,
+        "vUTMyOH4FOrOifbw": 3
+      },
+      "_key": "!actors.items!IwJae37HUCjpYDkC.TBWKfpxqo4cRShFs"
+    },
+    {
+      "name": "Eclético",
+      "type": "ability",
+      "img": "systems/ordemparanormal/media/icons/abilities/class/specialist/Ecl%C3%A9tico.svg",
+      "system": {
+        "id": 0,
+        "abilityType": "class",
+        "preRequisite": "",
+        "description": "<p>Quando faz um teste de uma per&iacute;cia, voc&ecirc; pode gastar 2 PE para receber os benef&iacute;cios de ser treinado nesta per&iacute;cia.</p>",
+        "chatDescription": "",
+        "activation": "free",
+        "cost": 2,
+        "costType": "PE"
+      },
+      "effects": [],
+      "flags": {},
+      "_stats": {
+        "compendiumSource": "Compendium.ordemparanormal.specialistPowers.Item.1SBrscGZGTA1InkC",
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "14.365",
+        "systemId": "ordemparanormal",
+        "systemVersion": "7.3.3",
+        "createdTime": 1785620055685,
+        "modifiedTime": 1785620055685,
+        "lastModifiedBy": "vUTMyOH4FOrOifbw"
+      },
+      "ownership": {
+        "default": 0,
+        "uX8kbsijC8bcpBa3": 3,
+        "vUTMyOH4FOrOifbw": 3
+      },
+      "_id": "2VYlj2VzG5Ym7Tfg",
+      "sort": 0,
+      "folder": null,
+      "_key": "!actors.items!IwJae37HUCjpYDkC.2VYlj2VzG5Ym7Tfg"
+    },
+    {
+      "name": "Perito",
+      "type": "ability",
+      "img": "systems/ordemparanormal/media/icons/abilities/class/specialist/Perito.svg",
+      "system": {
+        "id": 0,
+        "abilityType": "class",
+        "preRequisite": "",
+        "description": "<p>Escolha duas perícias nas quais você é treinado (exceto Luta e Pontaria). Quando faz um teste de uma dessas perícias, você pode gastar 2 PE para somar +1d6 no resultado do teste. Conforme avança de NEX, você pode gastar +1 PE para aumentar o dado de bônus (veja a Tabela 1.4). Por exemplo, em NEX 55%, pode gastar 4 PE para receber +1d10 no teste.</p><p><strong>(Perito em Ciências e Intuição)</strong></p>",
+        "chatDescription": "",
+        "activation": "reaction",
+        "cost": 2,
+        "costType": "PE"
+      },
+      "effects": [],
+      "flags": {},
+      "_stats": {
+        "compendiumSource": "Compendium.ordemparanormal.specialistPowers.Item.YDM7F4FdRT0rd9DA",
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "14.365",
+        "systemId": "ordemparanormal",
+        "systemVersion": "7.3.3",
+        "createdTime": 1785620063823,
+        "modifiedTime": 1785620091899,
+        "lastModifiedBy": "vUTMyOH4FOrOifbw"
+      },
+      "ownership": {
+        "default": 0,
+        "uX8kbsijC8bcpBa3": 3,
+        "vUTMyOH4FOrOifbw": 3
+      },
+      "_id": "GckGsVT0i3m7GacC",
+      "sort": 0,
+      "folder": null,
+      "_key": "!actors.items!IwJae37HUCjpYDkC.GckGsVT0i3m7GacC"
+    },
+    {
+      "name": "Plano de Fuga",
+      "type": "ability",
+      "img": "systems/ordemparanormal/media/icons/abilities/class/specialist/plano-de-fuga.svg",
+      "system": {
+        "id": 0,
+        "abilityType": "class",
+        "preRequisite": "",
+        "description": "<p>A todo momento você está criando cenários imaginários e possibilidades na sua mente, pensando em estratégias que usaria para escapar de perseguidores. Você pode usar Intelecto no lugar de Força para a ação criar obstáculos (p. 90) em uma perseguição. Além disso, uma vez por cena, pode gastar 2 PE para dispensar o teste e ser bem-sucedido nesta ação. </p>",
+        "chatDescription": "",
+        "activation": "passive",
+        "cost": 2,
+        "costType": "PE"
+      },
+      "effects": [],
+      "flags": {},
+      "_stats": {
+        "compendiumSource": "Compendium.ordemparanormal.specialistPowers.Item.kyNZwNmnR5DMc7Db",
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "14.365",
+        "systemId": "ordemparanormal",
+        "systemVersion": "7.3.3",
+        "createdTime": 1785620145211,
+        "modifiedTime": 1785620145211,
+        "lastModifiedBy": "vUTMyOH4FOrOifbw"
+      },
+      "ownership": {
+        "default": 0,
+        "uX8kbsijC8bcpBa3": 3,
+        "vUTMyOH4FOrOifbw": 3
+      },
+      "_id": "a3o3QbS4dPJ1Z6kh",
+      "sort": 0,
+      "folder": null,
+      "_key": "!actors.items!IwJae37HUCjpYDkC.a3o3QbS4dPJ1Z6kh"
+    }
+  ],
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "vUTMyOH4FOrOifbw": 3
+  },
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.365",
+    "systemId": "ordemparanormal",
+    "systemVersion": "7.3.3",
+    "createdTime": 1784768789790,
+    "modifiedTime": 1785682925459,
+    "lastModifiedBy": "vUTMyOH4FOrOifbw",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!actors!IwJae37HUCjpYDkC"
+}

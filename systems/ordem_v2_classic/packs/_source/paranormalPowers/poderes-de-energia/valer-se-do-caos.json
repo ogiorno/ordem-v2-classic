@@ -1,0 +1,36 @@
+{
+  "name": "Valer-se do Caos",
+  "type": "ability",
+  "img": "systems/ordemparanormal/media/icons/abilities/paranormal/energy/valer-se-do-caos.svg",
+  "system": {
+    "id": 0,
+    "abilityType": "paranormal",
+    "preRequisite": "Energia 1",
+    "description": "<p>Você pode encontrar esse conteúdo na <strong>página 47 do suplemento Sobrevivendo ao Horror</strong>.</p>",
+    "chatDescription": "",
+    "activation": "passive",
+    "cost": null,
+    "costType": "PE"
+  },
+  "effects": [],
+  "folder": "LWZiW9fcXov51jSG",
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.365",
+    "systemId": "ordemparanormal",
+    "systemVersion": "7.3.3",
+    "createdTime": 1785685914066,
+    "modifiedTime": 1785692027887,
+    "lastModifiedBy": "vUTMyOH4FOrOifbw",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "ownership": {
+    "default": 0,
+    "vUTMyOH4FOrOifbw": 3
+  },
+  "_id": "qbzGh6hjICk9nuRC",
+  "sort": 0,
+  "_key": "!items!qbzGh6hjICk9nuRC"
+}

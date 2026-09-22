@@ -1,0 +1,23 @@
+{
+  "type": "Item",
+  "folder": "EQ0UqIoTKZ1ljXhW",
+  "name": "Catalisador Ritualísticos de Morte",
+  "color": null,
+  "sorting": "a",
+  "description": "",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "14.365",
+    "systemId": "ordemparanormal",
+    "systemVersion": "7.2.4",
+    "lastModifiedBy": "vUTMyOH4FOrOifbw",
+    "createdTime": 1785687280400,
+    "modifiedTime": 1785687873845
+  },
+  "_id": "Ekowsl5TwBoMLun3",
+  "sort": 300000,
+  "_key": "!folders!Ekowsl5TwBoMLun3"
+}

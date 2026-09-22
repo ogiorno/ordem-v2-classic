@@ -1,0 +1,55 @@
+{{! Biography Tab }}
+<section class="tab flexcol biography inventory-tab {{tab.cssClass}}" data-group="primary" data-tab="biography">
+	<div class="content-item inventory-list-container scrollable-inventory">
+
+		{{! SEÇÃO 1: BIOGRAFIA }}
+		<div class="inventory-category dossier-section op-shadow">
+			<div class="inventory-list-header">
+				<span class="col-name"><i class="fas fa-fingerprint"></i> {{localize "op.agentBiography"}}</span>
+			</div>
+
+			<div class="dossier-editor-container">
+				{{#if editable}}
+					<prose-mirror
+						name="system.biography"
+						data-document-uuid="{{actor.uuid}}"
+						value="{{system.biography}}"
+						collaborate="true"
+						toggled="true"
+					>
+						{{{enrichedBiography}}}
+					</prose-mirror>
+				{{else}}
+					<div class="locked-content">
+						{{{enrichedBiography}}}
+					</div>
+				{{/if}}
+			</div>
+		</div>
+
+		{{! SEÇÃO 2: OBJETIVOS }}
+		<div class="inventory-category dossier-section op-shadow">
+			<div class="inventory-list-header">
+				<span class="col-name"><i class="fas fa-bullseye-arrow"></i> {{localize "op.missionGoals"}}</span>
+			</div>
+
+			<div class="dossier-editor-container">
+				{{#if editable}}
+					<prose-mirror
+						name="system.goals"
+						data-document-uuid="{{actor.uuid}}"
+						value="{{system.goals}}"
+						collaborate="true"
+						toggled="true"
+					>
+						{{{enrichedGoals}}}
+					</prose-mirror>
+				{{else}}
+					<div class="locked-content">
+						{{{enrichedGoals}}}
+					</div>
+				{{/if}}
+			</div>
+		</div>
+	</div>
+</section>

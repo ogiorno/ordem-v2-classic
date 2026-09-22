@@ -1,0 +1,82 @@
+{
+  "name": "Calejado",
+  "type": "ability",
+  "_id": "dbFqgUkt0dBtcM55",
+  "img": "systems/ordemparanormal/media/icons/abilities/origin/Calejado.svg",
+  "system": {
+    "id": 0,
+    "abilityType": "origin",
+    "preRequisite": "",
+    "description": "<p>Voc&ecirc; recebe +1 PV para cada 5% de NEX.</p>",
+    "chatDescription": "",
+    "activation": "passive",
+    "cost": null
+  },
+  "effects": [
+    {
+      "name": "Vida extra",
+      "origin": null,
+      "img": "icons/svg/aura.svg",
+      "_id": "AZ6hTaIZfHaYHY1W",
+      "type": "base",
+      "system": {
+        "changes": [
+          {
+            "key": "system.PV.bonus",
+            "type": "add",
+            "value": "@NEX.value / 5",
+            "phase": "initial",
+            "priority": null
+          }
+        ]
+      },
+      "disabled": false,
+      "start": null,
+      "duration": {
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
+      },
+      "description": "",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "showIcon": 1,
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "coreVersion": "14.365",
+        "systemId": "ordemparanormal",
+        "systemVersion": "7.3.3",
+        "createdTime": 1785642631154,
+        "modifiedTime": 1785642679323,
+        "lastModifiedBy": "vUTMyOH4FOrOifbw",
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!items.effects!dbFqgUkt0dBtcM55.AZ6hTaIZfHaYHY1W"
+    }
+  ],
+  "folder": "MbVRx0qCgZMO02wU",
+  "sort": 300000,
+  "ownership": {
+    "default": 0,
+    "D087Zkcpssj33iAO": 3
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "ordemparanormal",
+    "systemVersion": "7.3.3",
+    "coreVersion": "14.365",
+    "createdTime": 1712008402967,
+    "modifiedTime": 1785688458656,
+    "lastModifiedBy": "vUTMyOH4FOrOifbw",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!dbFqgUkt0dBtcM55"
+}

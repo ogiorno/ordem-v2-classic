@@ -1,0 +1,36 @@
+{
+  "name": "Manipular Entropia",
+  "type": "ability",
+  "img": "systems/ordemparanormal/media/icons/abilities/paranormal/energy/manipular-entropia.svg",
+  "system": {
+    "id": 0,
+    "abilityType": "paranormal",
+    "preRequisite": "Energia 1",
+    "description": "<p>Este conteúdo não é coberto pela licença OGL do Livro de Regras, mas pode ser encontrado na página 115 do Livro de Regras de Ordem Paranormal.</p>",
+    "chatDescription": "",
+    "activation": "reaction",
+    "cost": 2,
+    "costType": "PE"
+  },
+  "effects": [],
+  "folder": "LWZiW9fcXov51jSG",
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.365",
+    "systemId": "ordemparanormal",
+    "systemVersion": "7.3.3",
+    "createdTime": 1785685914065,
+    "modifiedTime": 1785690773229,
+    "lastModifiedBy": "vUTMyOH4FOrOifbw",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "ownership": {
+    "default": 0,
+    "vUTMyOH4FOrOifbw": 3
+  },
+  "_id": "IUJm2g4Gmip9fLTi",
+  "sort": 0,
+  "_key": "!items!IUJm2g4Gmip9fLTi"
+}

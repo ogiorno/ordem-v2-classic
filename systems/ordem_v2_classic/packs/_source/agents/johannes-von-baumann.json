@@ -1,0 +1,1722 @@
+{
+  "name": "Johannes Von Baumann",
+  "type": "agent",
+  "_id": "HgvLWE3AY7EHaQ6p",
+  "img": "systems/ordemparanormal/media/assets/sheets/token-johannes-von-baumann.webp",
+  "system": {
+    "PV": {
+      "value": 126,
+      "max": 10,
+      "perRound": 1,
+      "nonLethal": 0
+    },
+    "SAN": {
+      "value": 39,
+      "max": 5,
+      "perRound": 1
+    },
+    "PE": {
+      "value": 40,
+      "max": 5,
+      "perRound": 1
+    },
+    "PD": {
+      "value": 5,
+      "max": 5,
+      "perRound": 1
+    },
+    "NEX": {
+      "value": 50
+    },
+    "stage": {
+      "value": 1
+    },
+    "nivel": {
+      "value": 1
+    },
+    "defense": {
+      "value": 10,
+      "bonus": 0,
+      "dodge": 0
+    },
+    "desloc": {
+      "value": 9,
+      "bonus": 0
+    },
+    "spaces": {
+      "bonus": {
+        "value": 0,
+        "max": 0
+      }
+    },
+    "biography": "<p><em>Personagem criado por @souowendel (discord).</em></p><p><span style=\"font-style:italic\" data-token-index=\"0\" class=\"notion-enable-hover\"><em>Johannes von Baumann</em></span>, um nórdico de 32 anos, ex-militar do exército alemão, nascido na Noruega, de estatura grande e forte, com boas habilidades de sobrevivência e luta, desajeitado e com baixa destreza, no entanto, ainda com uma boa capacidade de análise e um corpo treinado.</p><p>Dessa forma, para apoiar a família financeiramente, abandonou a faculdade de história na Universidade de Heidelberg da Alemanha, para seguir o caminho militar. O que eventualmente o fez bater de frente com o paranormal, um evento que fez seus amigos desaparecerem. Buscando pistas sobre o acontecimento, veio ao Brasil, onde encontrou a base da Ordo Realitas.</p><p>Passados 2 anos combatendo o paranormal junto a equipe Corvo, possuí vasta experiência como Agente Especial da Ordem, e também, as cicatrizes e os traumas de um agente linha de frente.</p><p>Sua personalidade costuma ser descontraída, com piadas de tiozão, e, ao mesmo tempo altruísta, se esforçando ao máximo para fazer um trabalho bem feito, pode esquecer de si mesmo para salvar alguém de perigo.</p>",
+    "goals": "<ul><li><p>Encontrar seus amigos desaparecidos.</p></li><li><p>Cuidar de sua família, que mesmo longe, é o que há de mais importante em sua vida.</p></li></ul>",
+    "class": "",
+    "ritual": {
+      "DT": 0
+    },
+    "origin": "",
+    "trilha": "",
+    "patent": {
+      "name": "",
+      "prestigePoints": 50,
+      "creditLimit": "",
+      "itemLimit1": null,
+      "itemLimit2": null,
+      "itemLimit3": null,
+      "itemLimit4": null
+    },
+    "skills": {
+      "acrobatics": {
+        "value": 0,
+        "attr": [
+          "dex"
+        ],
+        "degree": {
+          "label": "untrained",
+          "value": 0
+        },
+        "conditions": {
+          "load": false,
+          "trained": false
+        },
+        "mod": 0
+      },
+      "animal": {
+        "value": 0,
+        "attr": [
+          "pre"
+        ],
+        "degree": {
+          "label": "untrained",
+          "value": 0
+        },
+        "conditions": {
+          "load": false,
+          "trained": false
+        },
+        "mod": 0
+      },
+      "arts": {
+        "value": 0,
+        "attr": [
+          "pre"
+        ],
+        "degree": {
+          "label": "untrained",
+          "value": 0
+        },
+        "conditions": {
+          "load": false,
+          "trained": false
+        },
+        "mod": 0
+      },
+      "athleticism": {
+        "value": 0,
+        "attr": [
+          "str"
+        ],
+        "degree": {
+          "label": "trained",
+          "value": 0
+        },
+        "conditions": {
+          "load": false,
+          "trained": false
+        },
+        "mod": 0
+      },
+      "relevance": {
+        "value": 0,
+        "attr": [
+          "int"
+        ],
+        "degree": {
+          "label": "untrained",
+          "value": 0
+        },
+        "conditions": {
+          "load": false,
+          "trained": false
+        },
+        "mod": 0
+      },
+      "sciences": {
+        "value": 0,
+        "attr": [
+          "int"
+        ],
+        "degree": {
+          "label": "untrained",
+          "value": 0
+        },
+        "conditions": {
+          "load": false,
+          "trained": false
+        },
+        "mod": 0
+      },
+      "crime": {
+        "value": 0,
+        "attr": [
+          "dex"
+        ],
+        "degree": {
+          "label": "untrained",
+          "value": 0
+        },
+        "conditions": {
+          "load": false,
+          "trained": false
+        },
+        "mod": 0
+      },
+      "diplomacy": {
+        "value": 0,
+        "attr": [
+          "pre"
+        ],
+        "degree": {
+          "label": "untrained",
+          "value": 0
+        },
+        "conditions": {
+          "load": false,
+          "trained": false
+        },
+        "mod": 0
+      },
+      "deception": {
+        "value": 0,
+        "attr": [
+          "pre"
+        ],
+        "degree": {
+          "label": "untrained",
+          "value": 0
+        },
+        "conditions": {
+          "load": false,
+          "trained": false
+        },
+        "mod": 0
+      },
+      "resilience": {
+        "value": 0,
+        "attr": [
+          "vit"
+        ],
+        "degree": {
+          "label": "veteran",
+          "value": 0
+        },
+        "conditions": {
+          "load": false,
+          "trained": false
+        },
+        "mod": 2
+      },
+      "stealth": {
+        "value": 0,
+        "attr": [
+          "dex"
+        ],
+        "degree": {
+          "label": "untrained",
+          "value": 0
+        },
+        "conditions": {
+          "load": false,
+          "trained": false
+        },
+        "mod": 0
+      },
+      "initiative": {
+        "value": 0,
+        "attr": [
+          "dex"
+        ],
+        "degree": {
+          "label": "untrained",
+          "value": 0
+        },
+        "conditions": {
+          "load": false,
+          "trained": false
+        },
+        "mod": 0
+      },
+      "intimidation": {
+        "value": 0,
+        "attr": [
+          "pre"
+        ],
+        "degree": {
+          "label": "trained",
+          "value": 0
+        },
+        "conditions": {
+          "load": false,
+          "trained": false
+        },
+        "mod": 0
+      },
+      "intuition": {
+        "value": 0,
+        "attr": [
+          "pre"
+        ],
+        "degree": {
+          "label": "untrained",
+          "value": 0
+        },
+        "conditions": {
+          "load": false,
+          "trained": false
+        },
+        "mod": 0
+      },
+      "investigation": {
+        "value": 0,
+        "attr": [
+          "int"
+        ],
+        "degree": {
+          "label": "untrained",
+          "value": 0
+        },
+        "conditions": {
+          "load": false,
+          "trained": false
+        },
+        "mod": 0
+      },
+      "fighting": {
+        "value": 0,
+        "attr": [
+          "str"
+        ],
+        "degree": {
+          "label": "veteran",
+          "value": 0
+        },
+        "conditions": {
+          "load": false,
+          "trained": false
+        },
+        "mod": 0
+      },
+      "medicine": {
+        "value": 0,
+        "attr": [
+          "int"
+        ],
+        "degree": {
+          "label": "untrained",
+          "value": 0
+        },
+        "conditions": {
+          "load": false,
+          "trained": false
+        },
+        "mod": 0
+      },
+      "occultism": {
+        "value": 0,
+        "attr": [
+          "int"
+        ],
+        "degree": {
+          "label": "untrained",
+          "value": 0
+        },
+        "conditions": {
+          "load": false,
+          "trained": false
+        },
+        "mod": 0
+      },
+      "perception": {
+        "value": 0,
+        "attr": [
+          "pre"
+        ],
+        "degree": {
+          "label": "trained",
+          "value": 0
+        },
+        "conditions": {
+          "load": false,
+          "trained": false
+        },
+        "mod": 0
+      },
+      "driving": {
+        "value": 0,
+        "attr": [
+          "dex"
+        ],
+        "degree": {
+          "label": "untrained",
+          "value": 0
+        },
+        "conditions": {
+          "load": false,
+          "trained": false
+        },
+        "mod": 0
+      },
+      "aim": {
+        "value": 0,
+        "attr": [
+          "dex"
+        ],
+        "degree": {
+          "label": "untrained",
+          "value": 0
+        },
+        "conditions": {
+          "load": false,
+          "trained": false
+        },
+        "mod": 0
+      },
+      "reflexes": {
+        "value": 0,
+        "attr": [
+          "dex"
+        ],
+        "degree": {
+          "label": "veteran",
+          "value": 0
+        },
+        "conditions": {
+          "load": false,
+          "trained": false
+        },
+        "mod": 0
+      },
+      "religion": {
+        "value": 0,
+        "attr": [
+          "pre"
+        ],
+        "degree": {
+          "label": "untrained",
+          "value": 0
+        },
+        "conditions": {
+          "load": false,
+          "trained": false
+        },
+        "mod": 0
+      },
+      "survival": {
+        "value": 0,
+        "attr": [
+          "int"
+        ],
+        "degree": {
+          "label": "trained",
+          "value": 0
+        },
+        "conditions": {
+          "load": false,
+          "trained": false
+        },
+        "mod": 0
+      },
+      "tactics": {
+        "value": 0,
+        "attr": [
+          "int"
+        ],
+        "degree": {
+          "label": "trained",
+          "value": 0
+        },
+        "conditions": {
+          "load": false,
+          "trained": false
+        },
+        "mod": 0
+      },
+      "technology": {
+        "value": 0,
+        "attr": [
+          "int"
+        ],
+        "degree": {
+          "label": "untrained",
+          "value": 0
+        },
+        "conditions": {
+          "load": false,
+          "trained": false
+        },
+        "mod": 0
+      },
+      "will": {
+        "value": 0,
+        "attr": [
+          "pre"
+        ],
+        "degree": {
+          "label": "veteran",
+          "value": 0
+        },
+        "conditions": {
+          "load": false,
+          "trained": false
+        },
+        "mod": 0
+      },
+      "freeSkill": {
+        "value": 0,
+        "name": "",
+        "attr": [
+          "int"
+        ],
+        "degree": {
+          "label": "untrained",
+          "value": 0
+        },
+        "conditions": {
+          "load": false,
+          "trained": false,
+          "open": true
+        },
+        "mod": 0
+      }
+    },
+    "attributes": {
+      "dex": {
+        "value": 0,
+        "bonus": 0
+      },
+      "int": {
+        "value": 2,
+        "bonus": 0
+      },
+      "vit": {
+        "value": 4,
+        "bonus": 0
+      },
+      "pre": {
+        "value": 2,
+        "bonus": 0
+      },
+      "str": {
+        "value": 3,
+        "bonus": 0
+      }
+    },
+    "resources": {
+      "res1": {
+        "value": 0,
+        "max": 0,
+        "label": ""
+      },
+      "res2": {
+        "value": 0,
+        "max": 0,
+        "label": ""
+      },
+      "res3": {
+        "value": 0,
+        "max": 0,
+        "label": ""
+      }
+    }
+  },
+  "prototypeToken": {
+    "name": "Johannes Von Baumann",
+    "displayName": 0,
+    "actorLink": true,
+    "width": 1,
+    "height": 1,
+    "depth": 1,
+    "texture": {
+      "src": "systems/ordemparanormal/media/assets/sheets/token-johannes-von-baumann.webp",
+      "anchorX": 0.5,
+      "anchorY": 0.75,
+      "fit": "contain",
+      "scaleX": 1.2,
+      "scaleY": 1.2,
+      "tint": "#ffffff",
+      "alphaThreshold": 0.75
+    },
+    "lockRotation": false,
+    "rotation": 0,
+    "alpha": 1,
+    "disposition": 1,
+    "displayBars": 50,
+    "bar1": {
+      "attribute": null
+    },
+    "bar2": {
+      "attribute": null
+    },
+    "light": {
+      "negative": false,
+      "priority": 0,
+      "alpha": 0.5,
+      "angle": 360,
+      "bright": 0,
+      "color": null,
+      "coloration": 1,
+      "dim": 0,
+      "attenuation": 0.5,
+      "luminosity": 0.5,
+      "saturation": 0,
+      "contrast": 0,
+      "shadows": 0,
+      "animation": {
+        "type": null,
+        "speed": 5,
+        "intensity": 5,
+        "reverse": false
+      },
+      "darkness": {
+        "min": 0,
+        "max": 1
+      }
+    },
+    "sight": {
+      "enabled": false,
+      "range": 0,
+      "angle": 360,
+      "visionMode": "basic",
+      "color": null,
+      "attenuation": 0.1,
+      "brightness": 0,
+      "saturation": 0,
+      "contrast": 0
+    },
+    "detectionModes": {},
+    "occludable": {
+      "radius": 0
+    },
+    "ring": {
+      "enabled": false,
+      "colors": {
+        "ring": null,
+        "background": null
+      },
+      "effects": 0,
+      "subject": {
+        "scale": 1,
+        "texture": null
+      }
+    },
+    "turnMarker": {
+      "mode": 1,
+      "animation": null,
+      "src": null,
+      "disposition": false
+    },
+    "movementAction": null,
+    "flags": {
+      "barbrawl": {
+        "resourceBars": {
+          "agentSpaceBar": {
+            "id": "agentSpaceBar",
+            "mincolor": "#000000",
+            "maxcolor": "#FFFFFF",
+            "position": "bottom-outer",
+            "value": 1,
+            "max": 1,
+            "opacity": 0,
+            "label": "",
+            "attribute": "custom",
+            "style": "fraction",
+            "ownerVisibility": 30,
+            "otherVisibility": 0,
+            "hideHud": true,
+            "order": 0,
+            "gmVisibility": -1,
+            "hideFull": false,
+            "hideEmpty": false,
+            "hideCombat": false,
+            "hideNoCombat": false,
+            "shareHeight": false,
+            "indentLeft": null,
+            "indentRight": null,
+            "invert": false,
+            "ignoreMin": false,
+            "ignoreMax": false,
+            "subdivisions": null,
+            "subdivisionsOwner": false,
+            "invertDirection": false,
+            "fgImage": "",
+            "bgImage": "",
+            "hideBg": false
+          },
+          "pv": {
+            "id": "pv",
+            "mincolor": "#ff1a1a",
+            "maxcolor": "#80ff00",
+            "position": "bottom-outer",
+            "attribute": "PV",
+            "label": "PV",
+            "style": "fraction",
+            "ownerVisibility": 30,
+            "otherVisibility": 0,
+            "order": 1,
+            "gmVisibility": -1,
+            "hideFull": false,
+            "hideEmpty": false,
+            "hideCombat": false,
+            "hideNoCombat": false,
+            "hideHud": false,
+            "shareHeight": false,
+            "indentLeft": null,
+            "indentRight": null,
+            "invert": false,
+            "subdivisions": null,
+            "subdivisionsOwner": false,
+            "invertDirection": false,
+            "fgImage": "",
+            "bgImage": "",
+            "hideBg": false,
+            "opacity": null
+          },
+          "pe": {
+            "id": "pe",
+            "mincolor": "#242899",
+            "maxcolor": "#66a8ff",
+            "position": "bottom-outer",
+            "attribute": "PE",
+            "label": "PE",
+            "style": "fraction",
+            "ownerVisibility": 30,
+            "otherVisibility": 0,
+            "order": 2,
+            "gmVisibility": -1,
+            "hideFull": false,
+            "hideEmpty": false,
+            "hideCombat": false,
+            "hideNoCombat": false,
+            "hideHud": false,
+            "shareHeight": false,
+            "indentLeft": null,
+            "indentRight": null,
+            "invert": false,
+            "subdivisions": null,
+            "subdivisionsOwner": false,
+            "invertDirection": false,
+            "fgImage": "",
+            "bgImage": "",
+            "hideBg": false,
+            "opacity": null
+          },
+          "san": {
+            "id": "san",
+            "mincolor": "#000000",
+            "maxcolor": "#000000",
+            "position": "bottom-outer",
+            "attribute": "SAN",
+            "label": "SAN",
+            "style": "fraction",
+            "ownerVisibility": 30,
+            "otherVisibility": 0,
+            "order": 3,
+            "gmVisibility": -1,
+            "hideFull": false,
+            "hideEmpty": false,
+            "hideCombat": false,
+            "hideNoCombat": false,
+            "hideHud": false,
+            "shareHeight": false,
+            "indentLeft": null,
+            "indentRight": null,
+            "invert": false,
+            "subdivisions": null,
+            "subdivisionsOwner": false,
+            "invertDirection": false,
+            "fgImage": "",
+            "bgImage": "",
+            "hideBg": false,
+            "opacity": null
+          }
+        }
+      }
+    },
+    "randomImg": false,
+    "appendNumber": false,
+    "prependAdjective": false
+  },
+  "items": [
+    {
+      "name": "Desgarrado",
+      "type": "origin",
+      "_id": "w2toh3FoTmIMVTlm",
+      "img": "systems/ordemparanormal/media/icons/origins/desgarrado.svg",
+      "system": {
+        "id": 0,
+        "description": "<p>Você não vivia de acordo com as normas da sociedade. Podia ser um eremita, uma pessoa em situação de rua ou simplesmente alguém que descobriu o paranormal e abandonou sua rotina — sabendo o quão frágil era a existência humana, não conseguia simplesmente continuar indo para o trabalho todo dia. De qualquer forma, a vida sem os confortos modernos o deixou mais forte.</p><p><span style=\"mso-themecolor: accent6; mso-themeshade: 191; mso-style-textfill-fill-color: #548235; mso-style-textfill-fill-themecolor: accent6; mso-style-textfill-fill-alpha: 100.0%; mso-style-textfill-fill-colortransforms: lumm=75000; color: rgb(84, 130, 53)\"><em><strong>Perícias Treinadas.</strong></em></span><strong> </strong>Fortitude e Sobrevivência.</p><p style=\"text-align: justify;\" class=\"MsoNormal\"><span style=\"mso-themecolor: accent6; mso-themeshade: 191; mso-style-textfill-fill-color: #548235; mso-style-textfill-fill-themecolor: accent6; mso-style-textfill-fill-alpha: 100.0%; mso-style-textfill-fill-colortransforms: lumm=75000; color: rgb(84, 130, 53)\"><em><strong>Calejado.</strong></em></span><strong> </strong>Você recebe +1 PV para cada 5% de NEX.</p>",
+        "chatDescription": ""
+      },
+      "effects": [],
+      "folder": "opgOrgfwBqJNU8Jq",
+      "sort": 1300000,
+      "ownership": {
+        "default": 0,
+        "WeXQ2WY27ruZ5VmA": 3,
+        "vUTMyOH4FOrOifbw": 3
+      },
+      "flags": {},
+      "_stats": {
+        "coreVersion": "14.365",
+        "systemId": "ordemparanormal",
+        "systemVersion": "7.3.3",
+        "createdTime": 1785642337500,
+        "modifiedTime": 1785642337501,
+        "lastModifiedBy": "vUTMyOH4FOrOifbw",
+        "compendiumSource": "Compendium.ordemparanormal.origins.Item.YoDCoZkmFK3gVpEv",
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!actors.items!HgvLWE3AY7EHaQ6p.w2toh3FoTmIMVTlm"
+    },
+    {
+      "name": "Tropa de Choque",
+      "type": "path",
+      "_id": "WFrIA78qXTkFs6GB",
+      "img": "systems/ordemparanormal/media/icons/paths/tropa-de-choque.svg",
+      "system": {
+        "id": 0,
+        "preRequisite": "",
+        "description": "<p>Você é duro na queda. Treinou seu corpo para resistir a traumas físicos, tornando-o praticamente inquebrável, e por isso não teme se colocar entre seus aliados e o perigo.</p><p><span style=\"color: #bb282d\"><strong>NEX 10% - Casca Grossa.</strong></span> Você recebe +1 PV para cada 5% de NEX e, quando faz um bloqueio, soma seu Vigor na resistência a dano recebida.</p><p><span style=\"color: #bb282d\"><strong>NEX 40% - Cai Dentro.</strong> </span>Sempre que um oponente em alcance curto ataca um de seus aliados, você pode gastar uma reação e 1 PE para fazer com que esse oponente faça um teste de Vontade (DT Vig). Se falhar, o oponente deve atacar você em vez de seu aliado. Este poder só funciona se você puder ser efetivamente atacado e estiver no alcance do ataque (por exemplo, adjacente a um oponente atacando em corpo a corpo ou dentro do alcance de uma arma de ataque à distância). Um oponente que passe no teste de Vontade não pode ser afetado por seu poder Cai Dentro até o final da cena.</p><p><span style=\"color: #bb282d\"><strong>NEX 65% - Duro de Matar.</strong></span> Ao sofrer dano não paranormal, você pode gastar uma reação e 2 PE para reduzir esse dano à metade. Em NEX 85%, você pode usar esta habilidade para reduzir dano paranormal.</p><p><span style=\"color: #bb282d\"><strong>NEX 99% - Inquebrável.</strong></span> Enquanto estiver machucado, você recebe +5 na Defesa e resistência a dano 5. Enquanto estiver morrendo, em vez do normal, você não fica indefeso e ainda pode realizar ações. Você ainda segue as regras de morte normalmente.</p>",
+        "chatDescription": ""
+      },
+      "effects": [],
+      "folder": "BiKMQJL01qBLkxi9",
+      "sort": 112500,
+      "ownership": {
+        "default": 0,
+        "mCARmiewelPiv8Ze": 3,
+        "vUTMyOH4FOrOifbw": 3
+      },
+      "flags": {},
+      "_stats": {
+        "coreVersion": "14.365",
+        "systemId": "ordemparanormal",
+        "systemVersion": "7.3.3",
+        "createdTime": 1785642346008,
+        "modifiedTime": 1785642346008,
+        "lastModifiedBy": "vUTMyOH4FOrOifbw",
+        "compendiumSource": "Compendium.ordemparanormal.paths.Item.FLF1eY8fNQYQuV7y",
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!actors.items!HgvLWE3AY7EHaQ6p.WFrIA78qXTkFs6GB"
+    },
+    {
+      "name": "Combatente",
+      "type": "class",
+      "_id": "3fdcEzVnRD7abEov",
+      "img": "systems/ordemparanormal/media/icons/classes/combatente.svg",
+      "system": {
+        "id": 0,
+        "description": "<p><strong>Treinado para lutar com todo tipo de armas, e com a força e a coragem para encarar os perigos de frente. É o tipo de agente que prefere abordagens mais diretas e costuma atirar primeiro e perguntar depois.</strong></p><p>Do mercenário especialista em armas de fogo até o perito em espadas, combatentes apresentam uma gama enorme de habilidades e técnicas especiais que aprimoram sua eficiência no campo de batalha, tornando-os membros essenciais em qualquer missão de extermínio. Além de treinar seu corpo, o combatente também é perito em liderar seus aliados em batalha e em cuidar de seu equipamento de combate, sempre preparado para assumir a linha de frente quando a coisa fica feia.</p><p><strong>Combatentes Famosos:</strong> Senhor Veríssimo, Joui Jouki, Gal, Antônio “Balu” Pontevedra, Tristan Monteiro e Ryder Staten.</p>",
+        "chatDescription": "",
+        "disableCalculations": false,
+        "hpInitial": 20,
+        "hpPerLevel": 4,
+        "peInitial": 2,
+        "pePerLevel": 2,
+        "pdInitial": 6,
+        "pdPerLevel": 3,
+        "sanInitial": 12,
+        "sanPerLevel": 3,
+        "skillCount": 0,
+        "isSurvivor": false
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 300000,
+      "ownership": {
+        "default": 0,
+        "sHhoUEHwKGP7EiE0": 3,
+        "vUTMyOH4FOrOifbw": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": "Compendium.ordemparanormal.classes.Item.QNnkODg2lZLQSw3T",
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "14.365",
+        "systemId": "ordemparanormal",
+        "systemVersion": "7.3.3",
+        "createdTime": 1785642349877,
+        "modifiedTime": 1785642349877,
+        "lastModifiedBy": "vUTMyOH4FOrOifbw"
+      },
+      "_key": "!actors.items!HgvLWE3AY7EHaQ6p.3fdcEzVnRD7abEov"
+    },
+    {
+      "name": "Proteção Pesada",
+      "type": "protection",
+      "_id": "xYU04JCQFOz0lpic",
+      "img": "systems/ordemparanormal/media/icons/protections/protecao-pesada.svg",
+      "system": {
+        "description": "<p>Equipamento usado por for&ccedil;as especiais da pol&iacute;cia e pelo ex&eacute;rcito. Consiste de capa\u0002cete, ombreiras, joelheiras e caneleiras, al&eacute;m de um colete com v&aacute;rias camadas de kevlar. Fornece resis\u0002t&ecirc;ncia a bal&iacute;stico, corte, impacto e perfura&ccedil;&atilde;o 2. No entanto, por ser desconfort&aacute;vel e volumosa, imp&otilde;e &ndash;5 em testes de per&iacute;cias que sofrem penalidade de carga.</p>",
+        "chatDescription": "",
+        "weight": 5,
+        "category": 2,
+        "using": {
+          "state": true,
+          "class": "fas"
+        },
+        "defense": 10,
+        "penalty": "",
+        "quantity": 1
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "D087Zkcpssj33iAO": 3,
+        "vUTMyOH4FOrOifbw": 3
+      },
+      "flags": {},
+      "_stats": {
+        "systemId": "ordemparanormal",
+        "systemVersion": "7.3.3",
+        "coreVersion": "14.365",
+        "createdTime": 1785642452648,
+        "modifiedTime": 1785642452649,
+        "lastModifiedBy": "vUTMyOH4FOrOifbw",
+        "compendiumSource": "Compendium.ordemparanormal.protections.Item.8Ntoxhrc8rxCuTA5",
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!actors.items!HgvLWE3AY7EHaQ6p.xYU04JCQFOz0lpic"
+    },
+    {
+      "name": "Faca Tática",
+      "type": "armament",
+      "img": "systems/ordemparanormal/media/icons/armament/faca-tatica.svg",
+      "system": {
+        "description": "<p>Uma faca balanceada para contra-ataques rápidos e bloqueios. Se usada na ação especial contra-ataque, fornece +2 no teste de ataque para contra-atacar. Se usada na ação especial bloqueio, você pode gastar 2 PE e sacrificar a faca tática para aumentar a RD do bloqueio em +20. A faca tática é uma <em>arma ágil</em> e pode ser arremessada.</p>",
+        "chatDescription": "",
+        "weight": 1,
+        "category": 1,
+        "using": {
+          "state": true,
+          "class": "fas"
+        },
+        "quantity": 1,
+        "proficiency": "tacticalWeapons",
+        "types": {
+          "rangeType": {
+            "name": "melee",
+            "subRangeType": "throw"
+          },
+          "ammunitionType": "",
+          "gripType": "oneHand"
+        },
+        "critical": "19",
+        "range": "Curto",
+        "formulas": {
+          "attack": {
+            "formula": "1d20",
+            "attr": "str",
+            "skill": "fighting",
+            "bonus": ""
+          },
+          "damage": {
+            "formula": "1d6",
+            "attr": "str",
+            "bonus": "0",
+            "type": "cuttingDamage",
+            "parts": []
+          },
+          "extraFormula": "1d4"
+        },
+        "penalty": "",
+        "conditions": {
+          "improvised": false,
+          "throwable": true,
+          "agile": true,
+          "automatic": false,
+          "adaptableGrip": false,
+          "pistolBlow": false
+        },
+        "actionType": "standard",
+        "numberOfAttacks": 1,
+        "rangeCategory": ""
+      },
+      "effects": [],
+      "flags": {},
+      "_stats": {
+        "compendiumSource": "Compendium.ordemparanormal.armaments.Item.mKRH8hem2wuAKro0",
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "14.365",
+        "systemId": "ordemparanormal",
+        "systemVersion": "7.3.3",
+        "createdTime": 1785642536910,
+        "modifiedTime": 1785642536911,
+        "lastModifiedBy": "vUTMyOH4FOrOifbw"
+      },
+      "ownership": {
+        "default": 0,
+        "uX8kbsijC8bcpBa3": 3,
+        "vUTMyOH4FOrOifbw": 3
+      },
+      "_id": "CyBrz4x1j1TDIY40",
+      "sort": 1200000,
+      "folder": "9zWQRhWXjJ6wTwVK",
+      "_key": "!actors.items!HgvLWE3AY7EHaQ6p.CyBrz4x1j1TDIY40"
+    },
+    {
+      "name": "Vestimenta Aprimorada",
+      "type": "generalEquipment",
+      "img": "systems/ordemparanormal/media/icons/equipments/accessories/vestimenta.svg",
+      "system": {
+        "description": "<p>Uma pe&ccedil;a de vestu&aacute;rio que fornece +2 em uma per&iacute;cia (exceto Luta ou Pontaria). Por exemplo, um par de botas militares pode fornecer +2 em Atletismo, um terno ou vestido elegante pode for\u0002necer +2 em Diplomacia e um manto com glifos pode fornecer +2 em Ocultismo. Assim como utens&iacute;lios, o benef&iacute;cio de cada vestimenta deve ser aprovado pelo mestre. Voc&ecirc; pode receber os b&ocirc;nus de no m&aacute;ximo duas vestimentas ao mesmo tempo. Vestir ou despir uma vestimenta &eacute; uma a&ccedil;&atilde;o completa</p>",
+        "chatDescription": "",
+        "weight": 1,
+        "category": 1,
+        "using": {
+          "state": true,
+          "class": "fas"
+        },
+        "type": "",
+        "quantity": 1
+      },
+      "effects": [
+        {
+          "name": "Bônus de vestimenta",
+          "origin": null,
+          "img": "icons/svg/aura.svg",
+          "_id": "YJ73eGX6gSn9AjDv",
+          "type": "base",
+          "system": {
+            "changes": [
+              {
+                "key": "system.skills.resilience.value",
+                "type": "add",
+                "value": 5,
+                "phase": "initial",
+                "priority": null
+              }
+            ]
+          },
+          "disabled": false,
+          "start": null,
+          "duration": {
+            "value": null,
+            "units": "seconds",
+            "expiry": null,
+            "expired": false
+          },
+          "description": "",
+          "tint": "#ffffff",
+          "transfer": true,
+          "statuses": [],
+          "showIcon": 1,
+          "folder": null,
+          "sort": 0,
+          "flags": {},
+          "_stats": {
+            "coreVersion": "14.365",
+            "systemId": "ordemparanormal",
+            "systemVersion": "7.3.3",
+            "createdTime": 1785680839201,
+            "modifiedTime": 1785680875032,
+            "lastModifiedBy": "vUTMyOH4FOrOifbw",
+            "compendiumSource": null,
+            "duplicateSource": null,
+            "exportSource": null
+          },
+          "_key": "!actors.items.effects!HgvLWE3AY7EHaQ6p.d1TWKhAja4q9WNFk.YJ73eGX6gSn9AjDv"
+        }
+      ],
+      "folder": "Ni1u5qDHXarXRlij",
+      "flags": {},
+      "_stats": {
+        "compendiumSource": "Compendium.ordemparanormal.general.Item.IzDNp25j1mtCzKPZ",
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "14.365",
+        "systemId": "ordemparanormal",
+        "systemVersion": "7.3.3",
+        "createdTime": 1785642554055,
+        "modifiedTime": 1785680879313,
+        "lastModifiedBy": "vUTMyOH4FOrOifbw"
+      },
+      "ownership": {
+        "default": 0,
+        "uX8kbsijC8bcpBa3": 3,
+        "vUTMyOH4FOrOifbw": 3
+      },
+      "_id": "d1TWKhAja4q9WNFk",
+      "sort": 0,
+      "_key": "!actors.items!HgvLWE3AY7EHaQ6p.d1TWKhAja4q9WNFk"
+    },
+    {
+      "name": "Amuleto Sagrado",
+      "type": "generalEquipment",
+      "img": "systems/ordemparanormal/media/icons/equipments/accessories/amuleto-sagrado.svg",
+      "system": {
+        "description": "<p>Um utensílio especial (segue todas as regras de utensílios comuns, mas possui efeitos adicionais) na forma de shimenawa, rosário, fio de contas, contas de oração ou qualquer outro objeto que reforce sua fé e ajude a blindá-lo das desgraças do dia a dia. Fornece +2 em Religião e Vontade.</p>",
+        "chatDescription": "",
+        "weight": 1,
+        "category": 0,
+        "using": {
+          "state": true,
+          "class": "fas"
+        },
+        "type": "",
+        "quantity": 1
+      },
+      "effects": [],
+      "folder": "Ni1u5qDHXarXRlij",
+      "flags": {},
+      "_stats": {
+        "compendiumSource": "Compendium.ordemparanormal.general.Item.GI2TcHq5sEIeilhG",
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "14.365",
+        "systemId": "ordemparanormal",
+        "systemVersion": "7.3.3",
+        "createdTime": 1785642562849,
+        "modifiedTime": 1785642562850,
+        "lastModifiedBy": "vUTMyOH4FOrOifbw"
+      },
+      "ownership": {
+        "default": 0,
+        "uX8kbsijC8bcpBa3": 3,
+        "vUTMyOH4FOrOifbw": 3
+      },
+      "_id": "oRgOAhsTNS8fM6rq",
+      "sort": 0,
+      "_key": "!actors.items!HgvLWE3AY7EHaQ6p.oRgOAhsTNS8fM6rq"
+    },
+    {
+      "name": "Mochila Militar",
+      "type": "generalEquipment",
+      "img": "systems/ordemparanormal/media/icons/equipments/operational/mochila-militar.svg",
+      "system": {
+        "description": "<p>Uma mochila leve e de alta qualidade. Ela n&atilde;o usa nenhum espa&ccedil;o e aumenta sua capacidade de carga em 2 espa&ccedil;os.</p>",
+        "chatDescription": "",
+        "weight": 0,
+        "category": 1,
+        "using": {
+          "state": true,
+          "class": "fas"
+        },
+        "type": "",
+        "quantity": 1
+      },
+      "effects": [
+        {
+          "origin": "Compendium.ordemparanormal.generalEquipments.Item.0KKFBP9GfASOMSbX",
+          "duration": {
+            "value": null,
+            "units": "seconds",
+            "expiry": null,
+            "expired": false
+          },
+          "disabled": false,
+          "name": "Espaço Extra",
+          "_id": "1qK9LWrvE2Z4Etej",
+          "description": "",
+          "transfer": true,
+          "statuses": [],
+          "flags": {},
+          "tint": "#ffffff",
+          "_stats": {
+            "compendiumSource": null,
+            "duplicateSource": null,
+            "exportSource": null,
+            "coreVersion": "14.365",
+            "systemId": "ordemparanormal",
+            "systemVersion": "7.3.3",
+            "lastModifiedBy": "vUTMyOH4FOrOifbw",
+            "createdTime": 1785642574585,
+            "modifiedTime": 1785642745423
+          },
+          "img": "systems/ordemparanormal/media/icons/equipments/operational/mochila-militar.svg",
+          "type": "base",
+          "system": {
+            "changes": [
+              {
+                "key": "system.spaces.bonus.max",
+                "value": 2,
+                "priority": null,
+                "type": "add",
+                "phase": "initial"
+              }
+            ]
+          },
+          "sort": 0,
+          "start": null,
+          "showIcon": 1,
+          "folder": null,
+          "_key": "!actors.items.effects!HgvLWE3AY7EHaQ6p.JCYhtvE7r702Pj1t.1qK9LWrvE2Z4Etej"
+        }
+      ],
+      "folder": "peeofSVjDPX82dVA",
+      "flags": {},
+      "_stats": {
+        "compendiumSource": "Compendium.ordemparanormal.general.Item.GDZEPqEU7qaPBIKp",
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "14.365",
+        "systemId": "ordemparanormal",
+        "systemVersion": "7.3.3",
+        "createdTime": 1785642574585,
+        "modifiedTime": 1785642574586,
+        "lastModifiedBy": "vUTMyOH4FOrOifbw"
+      },
+      "ownership": {
+        "default": 0,
+        "uX8kbsijC8bcpBa3": 3,
+        "vUTMyOH4FOrOifbw": 3
+      },
+      "_id": "JCYhtvE7r702Pj1t",
+      "sort": 1400000,
+      "_key": "!actors.items!HgvLWE3AY7EHaQ6p.JCYhtvE7r702Pj1t"
+    },
+    {
+      "name": "Braçadeira Reforçada",
+      "type": "generalEquipment",
+      "img": "systems/ordemparanormal/media/icons/equipments/operational/bracadeira-reforcada.svg",
+      "system": {
+        "description": "<p>Semelhante às proteções usadas em artes marciais e outros esportes de contato, estas braçadeiras ajudam a absorver o impacto ao bloquear golpes com o braço. Elas aumentam em +2 a RD que você recebe por usar um bloqueio.</p>",
+        "chatDescription": "",
+        "weight": 1,
+        "category": 1,
+        "using": {
+          "state": true,
+          "class": "fas"
+        },
+        "type": "",
+        "quantity": 1
+      },
+      "effects": [],
+      "folder": "peeofSVjDPX82dVA",
+      "flags": {},
+      "_stats": {
+        "compendiumSource": "Compendium.ordemparanormal.general.Item.89jrTjgxEih7KVs0",
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "14.365",
+        "systemId": "ordemparanormal",
+        "systemVersion": "7.3.3",
+        "createdTime": 1785642586247,
+        "modifiedTime": 1785642586248,
+        "lastModifiedBy": "vUTMyOH4FOrOifbw"
+      },
+      "ownership": {
+        "default": 0,
+        "uX8kbsijC8bcpBa3": 3,
+        "vUTMyOH4FOrOifbw": 3
+      },
+      "_id": "eyAWhTG2FnRGGPbQ",
+      "sort": 500000,
+      "_key": "!actors.items!HgvLWE3AY7EHaQ6p.eyAWhTG2FnRGGPbQ"
+    },
+    {
+      "name": "Algemas",
+      "type": "generalEquipment",
+      "img": "systems/ordemparanormal/media/icons/equipments/operational/algemas.svg",
+      "system": {
+        "description": "<p>Um par de algemas de a&ccedil;o. Para prender uma pessoa que n&atilde;o esteja indefesa voc&ecirc; precisa em\u0002punhar a algema, agarrar a pessoa (veja &ldquo;Manobras de Combate&rdquo;, no Cap&iacute;tulo 4) e ent&atilde;o vencer um novo teste de agarrar contra ela. Voc&ecirc; pode prender os dois pulsos da pessoa (&ndash;5 em testes que exijam o uso das m&atilde;os, impede conjura&ccedil;&atilde;o) ou um dos pulsos dela em um objeto im&oacute;vel adjacente, caso haja, para impedir que ela se mova. Escapar das algemas exige um teste de Acrobacia contra DT 30 (ou ter as chaves...).</p>",
+        "chatDescription": "",
+        "weight": 1,
+        "category": 0,
+        "using": {
+          "state": true,
+          "class": "fas"
+        },
+        "type": "",
+        "quantity": 1
+      },
+      "effects": [],
+      "folder": "peeofSVjDPX82dVA",
+      "flags": {},
+      "_stats": {
+        "compendiumSource": "Compendium.ordemparanormal.general.Item.SNAahUqirU71PEh2",
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "14.365",
+        "systemId": "ordemparanormal",
+        "systemVersion": "7.3.3",
+        "createdTime": 1785642593433,
+        "modifiedTime": 1785642593433,
+        "lastModifiedBy": "vUTMyOH4FOrOifbw"
+      },
+      "ownership": {
+        "default": 0,
+        "uX8kbsijC8bcpBa3": 3,
+        "vUTMyOH4FOrOifbw": 3
+      },
+      "_id": "K5GDEtiexmviZyCv",
+      "sort": 2200000,
+      "_key": "!actors.items!HgvLWE3AY7EHaQ6p.K5GDEtiexmviZyCv"
+    },
+    {
+      "name": "Ataque Especial",
+      "type": "ability",
+      "img": "systems/ordemparanormal/media/icons/abilities/class/fighter/Ataque%20Especial.svg",
+      "system": {
+        "id": 0,
+        "abilityType": "class",
+        "preRequisite": "",
+        "description": "<p>Quando faz um ataque, você pode gastar 2 PE para receber +5 no teste de ataque ou na rolagem de dano. Conforme avança de NEX, você pode gastar +1 PE para receber mais bônus de +5 (veja a Tabela 1.3). Você pode aplicar cada bônus de +5 em ataque ou dano. Por exemplo, em NEX 55%, você pode gastar 4 PE para receber +5 no teste de ataque e +10 na rolagem de dano.</p>",
+        "chatDescription": "",
+        "activation": "reaction",
+        "cost": 2,
+        "costType": "PE"
+      },
+      "effects": [],
+      "flags": {},
+      "_stats": {
+        "compendiumSource": "Compendium.ordemparanormal.fighterPowers.Item.KQVFxaXeDflAHUoN",
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "14.365",
+        "systemId": "ordemparanormal",
+        "systemVersion": "7.3.3",
+        "createdTime": 1785642609563,
+        "modifiedTime": 1785642609563,
+        "lastModifiedBy": "vUTMyOH4FOrOifbw"
+      },
+      "ownership": {
+        "default": 0,
+        "uX8kbsijC8bcpBa3": 3,
+        "vUTMyOH4FOrOifbw": 3
+      },
+      "_id": "f03JissiZMbYIHYf",
+      "sort": 0,
+      "folder": null,
+      "_key": "!actors.items!HgvLWE3AY7EHaQ6p.f03JissiZMbYIHYf"
+    },
+    {
+      "name": "Calejado",
+      "type": "ability",
+      "_id": "knTSjSSImEHRGyuG",
+      "img": "systems/ordemparanormal/media/icons/abilities/origin/Calejado.svg",
+      "system": {
+        "id": 0,
+        "abilityType": "origin",
+        "preRequisite": "",
+        "description": "<p>Voc&ecirc; recebe +1 PV para cada 5% de NEX.</p>",
+        "chatDescription": "",
+        "activation": "passive",
+        "cost": null,
+        "costType": "PE"
+      },
+      "effects": [
+        {
+          "name": "Vida extra",
+          "origin": null,
+          "img": "icons/svg/aura.svg",
+          "_id": "AZ6hTaIZfHaYHY1W",
+          "type": "base",
+          "system": {
+            "changes": [
+              {
+                "key": "system.PV.bonus",
+                "type": "add",
+                "value": "@NEX.value / 5",
+                "phase": "initial",
+                "priority": null
+              }
+            ]
+          },
+          "disabled": false,
+          "start": null,
+          "duration": {
+            "value": null,
+            "units": "seconds",
+            "expiry": null,
+            "expired": false
+          },
+          "description": "",
+          "tint": "#ffffff",
+          "transfer": true,
+          "statuses": [],
+          "showIcon": 1,
+          "folder": null,
+          "sort": 0,
+          "flags": {},
+          "_stats": {
+            "coreVersion": "14.365",
+            "systemId": "ordemparanormal",
+            "systemVersion": "7.3.3",
+            "createdTime": 1785642684677,
+            "modifiedTime": 1785680410143,
+            "lastModifiedBy": "vUTMyOH4FOrOifbw",
+            "compendiumSource": null,
+            "duplicateSource": null,
+            "exportSource": null
+          },
+          "_key": "!actors.items.effects!HgvLWE3AY7EHaQ6p.knTSjSSImEHRGyuG.AZ6hTaIZfHaYHY1W"
+        }
+      ],
+      "folder": null,
+      "sort": 99610,
+      "ownership": {
+        "default": 0,
+        "D087Zkcpssj33iAO": 3,
+        "vUTMyOH4FOrOifbw": 3
+      },
+      "flags": {},
+      "_stats": {
+        "systemId": "ordemparanormal",
+        "systemVersion": "7.3.3",
+        "coreVersion": "14.365",
+        "createdTime": 1785642684677,
+        "modifiedTime": 1785642684677,
+        "lastModifiedBy": "vUTMyOH4FOrOifbw",
+        "compendiumSource": "Compendium.ordemparanormal.originPowers.Item.dbFqgUkt0dBtcM55",
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!actors.items!HgvLWE3AY7EHaQ6p.knTSjSSImEHRGyuG"
+    },
+    {
+      "folder": "Zt0892Z29qDSodHi",
+      "name": "NEX 40% - Cai Dentro",
+      "type": "ability",
+      "img": "systems/ordemparanormal/media/icons/abilities/class/fighter/Tropa%20de%20Choque/Cai%20Dentro.svg",
+      "system": {
+        "id": 0,
+        "abilityType": "path",
+        "preRequisite": "",
+        "description": "<p>Sempre que um oponente em alcance curto ataca um de seus aliados, você pode gastar uma reação e 1 PE para fazer com que esse oponente faça um teste de Vontade (DT Vig). Se falhar, o oponente deve atacar você em vez de seu aliado. Este poder só funciona se você puder ser efetivamente atacado e estiver no alcance do ataque (por exemplo, adjacente a um oponente atacando em corpo a corpo ou dentro do alcance de uma arma de ataque à distância). Um oponente que passe no teste de Vontade não pode ser afetado por seu poder Cai Dentro até o final da cena.</p>",
+        "chatDescription": "",
+        "activation": "reaction",
+        "cost": 1,
+        "costType": "PE"
+      },
+      "effects": [],
+      "flags": {},
+      "_stats": {
+        "compendiumSource": "Compendium.ordemparanormal.pathFighter.Item.g29NWlY6vEV0QCur",
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "14.365",
+        "systemId": "ordemparanormal",
+        "systemVersion": "7.3.3",
+        "createdTime": 1785642768906,
+        "modifiedTime": 1785642817770,
+        "lastModifiedBy": "vUTMyOH4FOrOifbw"
+      },
+      "ownership": {
+        "default": 0,
+        "uX8kbsijC8bcpBa3": 3,
+        "vUTMyOH4FOrOifbw": 3
+      },
+      "_id": "jVKk1XS9OMCFWXRk",
+      "sort": 200000,
+      "_key": "!actors.items!HgvLWE3AY7EHaQ6p.jVKk1XS9OMCFWXRk"
+    },
+    {
+      "folder": "Zt0892Z29qDSodHi",
+      "name": "NEX 10% - Casca Grossa",
+      "type": "ability",
+      "img": "systems/ordemparanormal/media/icons/abilities/class/fighter/Tropa%20de%20Choque/Casca%20Grossa.svg",
+      "system": {
+        "id": 0,
+        "abilityType": "path",
+        "preRequisite": "",
+        "description": "<p>Voc&ecirc; recebe +1 PV para cada 5% de NEX e, quando faz um bloqueio, soma seu Vigor na resist&ecirc;ncia a dano recebida.</p>",
+        "chatDescription": "",
+        "activation": "passive",
+        "cost": null,
+        "costType": "PE"
+      },
+      "effects": [
+        {
+          "name": "Vida extra",
+          "origin": null,
+          "img": "icons/svg/aura.svg",
+          "_id": "Zrv3o6oAAFQjNSAR",
+          "type": "base",
+          "system": {
+            "changes": [
+              {
+                "key": "system.PV.bonus",
+                "type": "add",
+                "value": "@NEX.value / 5",
+                "phase": "initial",
+                "priority": null
+              }
+            ]
+          },
+          "disabled": false,
+          "start": null,
+          "duration": {
+            "value": null,
+            "units": "seconds",
+            "expiry": null,
+            "expired": false
+          },
+          "description": "",
+          "tint": "#ffffff",
+          "transfer": true,
+          "statuses": [],
+          "showIcon": 1,
+          "folder": null,
+          "sort": 0,
+          "flags": {},
+          "_stats": {
+            "coreVersion": "14.365",
+            "systemId": "ordemparanormal",
+            "systemVersion": "7.3.3",
+            "createdTime": 1785642815287,
+            "modifiedTime": 1785680411326,
+            "lastModifiedBy": "vUTMyOH4FOrOifbw",
+            "compendiumSource": null,
+            "duplicateSource": null,
+            "exportSource": null
+          },
+          "_key": "!actors.items.effects!HgvLWE3AY7EHaQ6p.cEU2reitIaCRgbGW.Zrv3o6oAAFQjNSAR"
+        }
+      ],
+      "flags": {},
+      "_stats": {
+        "compendiumSource": "Compendium.ordemparanormal.pathFighter.Item.jZrPS6Sb3Wg2pqRp",
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "14.365",
+        "systemId": "ordemparanormal",
+        "systemVersion": "7.3.3",
+        "createdTime": 1785642815287,
+        "modifiedTime": 1785642816396,
+        "lastModifiedBy": "vUTMyOH4FOrOifbw"
+      },
+      "ownership": {
+        "default": 0,
+        "uX8kbsijC8bcpBa3": 3,
+        "vUTMyOH4FOrOifbw": 3
+      },
+      "_id": "cEU2reitIaCRgbGW",
+      "sort": 100000,
+      "_key": "!actors.items!HgvLWE3AY7EHaQ6p.cEU2reitIaCRgbGW"
+    },
+    {
+      "name": "Proteção Pesada",
+      "type": "ability",
+      "img": "systems/ordemparanormal/media/icons/abilities/class/fighter/Prote%C3%A7%C3%A3o%20Pesada.svg",
+      "system": {
+        "id": 0,
+        "abilityType": "class",
+        "preRequisite": "NEX 30%",
+        "description": "<p>Voc&ecirc; recebe profici&ecirc;ncia com Prote&ccedil;&otilde;es Pesadas.</p>",
+        "chatDescription": "",
+        "activation": "passive",
+        "cost": null,
+        "costType": "PE"
+      },
+      "effects": [],
+      "flags": {},
+      "_stats": {
+        "compendiumSource": "Compendium.ordemparanormal.fighterPowers.Item.A37hSKx8DAelUfnP",
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "14.365",
+        "systemId": "ordemparanormal",
+        "systemVersion": "7.3.3",
+        "createdTime": 1785642874295,
+        "modifiedTime": 1785642874295,
+        "lastModifiedBy": "vUTMyOH4FOrOifbw"
+      },
+      "ownership": {
+        "default": 0,
+        "uX8kbsijC8bcpBa3": 3,
+        "vUTMyOH4FOrOifbw": 3
+      },
+      "_id": "zqZaoI4WsAHkkDP1",
+      "sort": 0,
+      "folder": null,
+      "_key": "!actors.items!HgvLWE3AY7EHaQ6p.zqZaoI4WsAHkkDP1"
+    },
+    {
+      "name": "Estigmado",
+      "type": "ability",
+      "img": "systems/ordemparanormal/media/icons/abilities/general/Estigmado.svg",
+      "system": {
+        "id": 0,
+        "abilityType": "general",
+        "preRequisite": "",
+        "description": "<p>A adrenalina causada pela dor faz você se manter focado no que está acontecendo. Sempre que sofre dano mental de efeitos de medo, você pode converter esse dano em perda de pontos de vida (se sofre 5 pontos de dano mental de medo você pode, em vez disso, perder 5 pontos de vida).</p>",
+        "chatDescription": "",
+        "activation": "reaction",
+        "cost": null,
+        "costType": "PE"
+      },
+      "effects": [],
+      "flags": {},
+      "_stats": {
+        "compendiumSource": "Compendium.ordemparanormal.generalPowers.Item.IhqQzdrrFGH9Amgs",
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "14.365",
+        "systemId": "ordemparanormal",
+        "systemVersion": "7.3.3",
+        "createdTime": 1785642883330,
+        "modifiedTime": 1785642883330,
+        "lastModifiedBy": "vUTMyOH4FOrOifbw"
+      },
+      "ownership": {
+        "default": 0,
+        "uX8kbsijC8bcpBa3": 3,
+        "vUTMyOH4FOrOifbw": 3
+      },
+      "_id": "VjDTeXxDYaJh72BF",
+      "sort": 0,
+      "folder": null,
+      "_key": "!actors.items!HgvLWE3AY7EHaQ6p.VjDTeXxDYaJh72BF"
+    },
+    {
+      "name": "Vitalidade Reforçada",
+      "type": "ability",
+      "img": "systems/ordemparanormal/media/icons/abilities/general/vitalidade-reforcada.svg",
+      "system": {
+        "id": 0,
+        "abilityType": "general",
+        "preRequisite": "Vigor 2",
+        "description": "<p>Você possui uma capacidade superior de suportar ferimentos. Você recebe +1 PV para cada 5% de NEX (ou para cada nível, se estiver usando a regra de nível de experiência) e +2 em Fortitude. <i>Pré-requisito: Vig 2.</i></p>",
+        "chatDescription": "",
+        "activation": "passive",
+        "cost": null,
+        "costType": "PE"
+      },
+      "effects": [
+        {
+          "name": "Vida extra",
+          "origin": null,
+          "img": "icons/svg/aura.svg",
+          "_id": "bbJuKukgdC9qxDUm",
+          "type": "base",
+          "system": {
+            "changes": [
+              {
+                "key": "system.PV.bonus",
+                "type": "add",
+                "value": "@NEX.value / 5",
+                "phase": "initial",
+                "priority": null
+              }
+            ]
+          },
+          "disabled": false,
+          "start": null,
+          "duration": {
+            "value": null,
+            "units": "seconds",
+            "expiry": null,
+            "expired": false
+          },
+          "description": "",
+          "tint": "#ffffff",
+          "transfer": true,
+          "statuses": [],
+          "showIcon": 1,
+          "folder": null,
+          "sort": 0,
+          "flags": {},
+          "_stats": {
+            "coreVersion": "14.365",
+            "systemId": "ordemparanormal",
+            "systemVersion": "7.3.3",
+            "createdTime": 1785642951785,
+            "modifiedTime": 1785680411835,
+            "lastModifiedBy": "vUTMyOH4FOrOifbw",
+            "compendiumSource": null,
+            "duplicateSource": null,
+            "exportSource": null
+          },
+          "_key": "!actors.items.effects!HgvLWE3AY7EHaQ6p.QdIq8grYAJpqEvJB.bbJuKukgdC9qxDUm"
+        }
+      ],
+      "flags": {},
+      "_stats": {
+        "compendiumSource": "Compendium.ordemparanormal.generalPowers.Item.m9JLOwxp2SXRz7K5",
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "14.365",
+        "systemId": "ordemparanormal",
+        "systemVersion": "7.3.3",
+        "createdTime": 1785642951785,
+        "modifiedTime": 1785642951785,
+        "lastModifiedBy": "vUTMyOH4FOrOifbw"
+      },
+      "ownership": {
+        "default": 0,
+        "uX8kbsijC8bcpBa3": 3,
+        "vUTMyOH4FOrOifbw": 3
+      },
+      "_id": "QdIq8grYAJpqEvJB",
+      "sort": 0,
+      "folder": null,
+      "_key": "!actors.items!HgvLWE3AY7EHaQ6p.QdIq8grYAJpqEvJB"
+    },
+    {
+      "name": "Treinamento em Perícia",
+      "type": "ability",
+      "system": {
+        "id": 0,
+        "abilityType": "class",
+        "preRequisite": "",
+        "description": "<p>Escolha duas perícias. Você se torna treinado nessas perícias. A partir de NEX 35%, você pode escolher perícias nas quais já é treinado para se tornar veterano. A partir de NEX 70%, pode escolher perícias nas quais já é veterano para se tornar expert. Você pode escolher este poder várias vezes.</p><p><strong>(Treinamento em Vontade e Intimidação)</strong></p>",
+        "chatDescription": "",
+        "activation": "passive",
+        "cost": null,
+        "costType": "PE"
+      },
+      "_id": "5GV9jeQS5AnszMBm",
+      "img": "icons/svg/item-bag.svg",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "vUTMyOH4FOrOifbw": 3
+      },
+      "flags": {},
+      "_stats": {
+        "coreVersion": "14.365",
+        "systemId": "ordemparanormal",
+        "systemVersion": "7.3.3",
+        "createdTime": 1785681965966,
+        "modifiedTime": 1785682065308,
+        "lastModifiedBy": "vUTMyOH4FOrOifbw",
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!actors.items!HgvLWE3AY7EHaQ6p.5GV9jeQS5AnszMBm"
+    }
+  ],
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "vUTMyOH4FOrOifbw": 3
+  },
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.365",
+    "systemId": "ordemparanormal",
+    "systemVersion": "7.3.3",
+    "createdTime": 1784768782331,
+    "modifiedTime": 1785682156930,
+    "lastModifiedBy": "vUTMyOH4FOrOifbw",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!actors!HgvLWE3AY7EHaQ6p"
+}

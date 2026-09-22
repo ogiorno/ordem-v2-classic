@@ -1,0 +1,35 @@
+{
+  "name": "Espírito Cívico",
+  "type": "ability",
+  "_id": "Kx67NHbBqqQqY2Zr",
+  "img": "systems/ordemparanormal/media/icons/abilities/origin/espirito-civico.svg",
+  "system": {
+    "id": 0,
+    "abilityType": "origin",
+    "preRequisite": "",
+    "description": "<p>Sempre que faz um teste para&nbsp;ajudar, voc&ecirc; pode gastar 1 PE para aumentar o b&ocirc;nus&nbsp;concedido em +2.</p>",
+    "chatDescription": "",
+    "activation": "reaction",
+    "cost": 1
+  },
+  "effects": [],
+  "folder": "MbVRx0qCgZMO02wU",
+  "sort": 700000,
+  "ownership": {
+    "default": 0,
+    "D087Zkcpssj33iAO": 3
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "ordemparanormal",
+    "systemVersion": "7.3.3",
+    "coreVersion": "14.365",
+    "createdTime": 1712011741720,
+    "modifiedTime": 1785688461085,
+    "lastModifiedBy": "vUTMyOH4FOrOifbw",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!Kx67NHbBqqQqY2Zr"
+}

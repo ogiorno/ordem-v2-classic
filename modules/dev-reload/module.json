@@ -1,0 +1,9 @@
+{
+  "id": "dev-reload",
+  "title": "Dev Reload (só desenvolvimento)",
+  "description": "Recarrega a página quando o 'npm run dev' detecta mudanças. Não use em produção.",
+  "version": "0.0.1",
+  "compatibility": { "minimum": "14", "verified": "14" },
+  "authors": [{ "name": "Geh" }],
+  "esmodules": ["reload.mjs"]
+}

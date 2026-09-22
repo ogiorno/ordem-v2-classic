@@ -1,0 +1,599 @@
+{
+  "name": "Desalento",
+  "type": "threat",
+  "_id": "xX0LaDGP78N2bqAi",
+  "img": "icons/svg/mystery-man.svg",
+  "system": {
+    "attributes": {
+      "hp": {
+        "value": 70,
+        "max": 70
+      },
+      "dex": {
+        "value": 3
+      },
+      "int": {
+        "value": 4
+      },
+      "pre": {
+        "value": 2
+      },
+      "str": {
+        "value": 0
+      },
+      "vit": {
+        "value": 1
+      },
+      "movement": {
+        "walk": 8,
+        "unit": "m",
+        "squares": 0
+      },
+      "vd": {
+        "value": 0
+      }
+    },
+    "attacks": {},
+    "skills": {
+      "fighting": {
+        "value": 0,
+        "attr": [
+          "dex"
+        ],
+        "degree": {
+          "label": "veteran",
+          "value": 0,
+          "override": null
+        }
+      },
+      "aim": {
+        "value": 0,
+        "attr": [
+          "dex"
+        ],
+        "degree": {
+          "label": "untrained",
+          "value": 0,
+          "override": null
+        }
+      },
+      "resilience": {
+        "value": 0,
+        "attr": [
+          "dex"
+        ],
+        "degree": {
+          "label": "trained",
+          "value": 0,
+          "override": null
+        }
+      },
+      "reflexes": {
+        "value": 0,
+        "attr": [
+          "dex"
+        ],
+        "degree": {
+          "label": "trained",
+          "value": 0,
+          "override": null
+        }
+      },
+      "will": {
+        "value": 0,
+        "attr": [
+          "dex"
+        ],
+        "degree": {
+          "label": "untrained",
+          "value": 0,
+          "override": null
+        }
+      },
+      "initiative": {
+        "value": 0,
+        "attr": [
+          "dex"
+        ],
+        "degree": {
+          "label": "untrained",
+          "value": 0,
+          "override": null
+        }
+      },
+      "perception": {
+        "value": 0,
+        "attr": [
+          "dex"
+        ],
+        "degree": {
+          "label": "untrained",
+          "value": 0,
+          "override": null
+        }
+      },
+      "freeSkill": {
+        "value": 0,
+        "name": "",
+        "attr": [
+          "int"
+        ],
+        "degree": {
+          "label": "untrained",
+          "value": 0,
+          "override": null
+        }
+      }
+    },
+    "elements": {
+      "main": "energy",
+      "others": ""
+    },
+    "abilities": [],
+    "size": "medium",
+    "disturbingPresence": {
+      "dt": 22,
+      "mentalDamage": "2d8",
+      "immuneNex": 0
+    },
+    "senses": [],
+    "defense": {
+      "value": 19,
+      "skillResistances": [],
+      "damageResistances": ""
+    },
+    "vulnerabilities": "",
+    "actions": [],
+    "details": {
+      "description": "",
+      "fearRiddle": "<p>ENIGMA DO MEDO.</p><p>A fonte de seu terror está no som, então para torná-lo fraco, é preciso acabar com sua música, destruindo os cinco rádios que se espalharam no momento de sua invocação, será necessário localiza-los com teste de Percepção ou Investigação e resistir a sua música encantadora com um teste de Vontade DT 20, se passar, pode agir e conseguir atacar o rádio para destruí-lo, cada rádio tem 5 de PV e 5 RD a dano.</p><p>Ao destruir um o primeiro rádio, Ele fica Atordoado e perde sua habilidade Falsa Nostalgia por uma rodada.</p><p>Ao destruir os segundo ele perde a habilidade Mal sintonizado por uma rodada.</p><p>Ao destruir o terceiro perde a habilidade Falsa Nostalgia por três rodadas rodada.</p><p>Ao destruir o quarto perde 5 PV.</p><p>Ao destruir o último perde sua Imunidade a Dano.</p>",
+      "creatureType": "creature"
+    },
+    "temporary": {
+      "abilities": "<p>Música para os ouvidos.</p><p>Ao ser invocado ele transforma cinco aparelhos eletrônicos em rádios de diversas eras da tecnologia diferentes, os rádio se espalham no local em que foi invocado, a cada dia, os rádios vão se afastando cada vez mais, aqueles que escutam a melodia de sua música pelos rádios, fica Fascinado, a música dá sentimentos bons, uma tranquilidade, como se você se perdesse em seu próprio mundo sem problemas. Quanto mais escuta, mais você quer ouvir, passando mais tempo só ouvindo a música, podendo ficar horas, até dias, eventualmente você entrará em transe se encaminhando até Ele, para ser consumido como mais uma memória.</p><p>Está mesmo lá?.</p><p>Assim como a dúvida implantada de uma memória falsa, a sua própria existência é incerta. Ele é incorpóreo.</p>",
+      "senses": "",
+      "defense": {
+        "skillResistances": "",
+        "damageResistances": ""
+      },
+      "vulnerabilities": "",
+      "actions": "",
+      "characteristics": ""
+    },
+    "resistances": {
+      "cuttingDamage": {
+        "value": 0,
+        "vulnerable": false,
+        "immune": false
+      },
+      "impactDamage": {
+        "value": 0,
+        "vulnerable": false,
+        "immune": false
+      },
+      "piercingDamage": {
+        "value": 0,
+        "vulnerable": false,
+        "immune": false
+      },
+      "ballisticDamage": {
+        "value": 0,
+        "vulnerable": false,
+        "immune": false
+      },
+      "fireDamage": {
+        "value": 0,
+        "vulnerable": true,
+        "immune": false
+      },
+      "eletricDamage": {
+        "value": 0,
+        "vulnerable": true,
+        "immune": true
+      },
+      "coldDamage": {
+        "value": 0,
+        "vulnerable": false,
+        "immune": false
+      },
+      "chemicalDamage": {
+        "value": 0,
+        "vulnerable": false,
+        "immune": false
+      },
+      "mentalDamage": {
+        "value": 0,
+        "vulnerable": false,
+        "immune": false
+      },
+      "bloodDamage": {
+        "value": 0,
+        "vulnerable": false,
+        "immune": false
+      },
+      "deathDamage": {
+        "value": 0,
+        "vulnerable": false,
+        "immune": false
+      },
+      "knowledgeDamage": {
+        "value": 0,
+        "vulnerable": false,
+        "immune": true
+      },
+      "energyDamage": {
+        "value": 0,
+        "vulnerable": true,
+        "immune": false
+      }
+    },
+    "traits": {
+      "smell": false,
+      "acceleratedHealing": false,
+      "incorporeal": true,
+      "blindsight": false,
+      "lowLightVision": false,
+      "darkvision": true
+    }
+  },
+  "prototypeToken": {
+    "name": "Desalento",
+    "displayName": 0,
+    "actorLink": false,
+    "width": 1,
+    "height": 1,
+    "depth": 1,
+    "texture": {
+      "src": "icons/svg/mystery-man.svg",
+      "anchorX": 0.5,
+      "anchorY": 0.5,
+      "fit": "contain",
+      "scaleX": 1,
+      "scaleY": 1,
+      "tint": "#ffffff",
+      "alphaThreshold": 0.75
+    },
+    "lockRotation": true,
+    "rotation": 0,
+    "alpha": 1,
+    "disposition": -1,
+    "displayBars": 50,
+    "bar1": {
+      "attribute": null
+    },
+    "bar2": {
+      "attribute": null
+    },
+    "light": {
+      "negative": false,
+      "priority": 0,
+      "alpha": 0.5,
+      "angle": 360,
+      "bright": 0,
+      "color": null,
+      "coloration": 1,
+      "dim": 0,
+      "attenuation": 0.5,
+      "luminosity": 0.5,
+      "saturation": 0,
+      "contrast": 0,
+      "shadows": 0,
+      "animation": {
+        "type": null,
+        "speed": 5,
+        "intensity": 5,
+        "reverse": false
+      },
+      "darkness": {
+        "min": 0,
+        "max": 1
+      }
+    },
+    "sight": {
+      "enabled": false,
+      "range": 0,
+      "angle": 360,
+      "visionMode": "basic",
+      "color": null,
+      "attenuation": 0.1,
+      "brightness": 0,
+      "saturation": 0,
+      "contrast": 0
+    },
+    "detectionModes": {},
+    "occludable": {
+      "radius": 0
+    },
+    "ring": {
+      "enabled": false,
+      "colors": {
+        "ring": null,
+        "background": null
+      },
+      "effects": 1,
+      "subject": {
+        "scale": 1,
+        "texture": null
+      }
+    },
+    "turnMarker": {
+      "mode": 1,
+      "animation": null,
+      "src": null,
+      "disposition": false
+    },
+    "movementAction": null,
+    "flags": {
+      "barbrawl": {
+        "resourceBars": {
+          "threatSpaceBar": {
+            "id": "threatSpaceBar",
+            "mincolor": "#000000",
+            "maxcolor": "#FFFFFF",
+            "position": "bottom-outer",
+            "value": 1,
+            "max": 1,
+            "opacity": 0,
+            "label": "",
+            "attribute": "custom",
+            "style": "fraction",
+            "ownerVisibility": 30,
+            "otherVisibility": 0,
+            "hideHud": true
+          },
+          "threatHPBar": {
+            "id": "threatHPBar",
+            "mincolor": "#ff1a1a",
+            "maxcolor": "#80ff00",
+            "position": "bottom-outer",
+            "attribute": "attributes.hp",
+            "label": "PV",
+            "style": "fraction",
+            "ownerVisibility": 30,
+            "otherVisibility": 0
+          }
+        }
+      }
+    },
+    "randomImg": false,
+    "appendNumber": false,
+    "prependAdjective": false
+  },
+  "items": [
+    {
+      "name": "OBSERVADOR DE MEMÓRIA",
+      "type": "armament",
+      "_id": "wyeMoIAxJcppLKQC",
+      "img": "icons/magic/lightning/claws-unarmed-strike-teal.webp",
+      "system": {
+        "description": "A descrição do seu item aqui.",
+        "chatDescription": "",
+        "weight": 1,
+        "category": 0,
+        "using": {
+          "state": true,
+          "class": "fas"
+        },
+        "quantity": 1,
+        "proficiency": "",
+        "types": {
+          "rangeType": {
+            "name": "melee",
+            "subRangeType": ""
+          },
+          "ammunitionType": "",
+          "gripType": ""
+        },
+        "critical": "20",
+        "range": "Corpo a Corpo",
+        "formulas": {
+          "attack": {
+            "formula": "1d4",
+            "attr": "dex",
+            "skill": "fighting",
+            "bonus": ""
+          },
+          "damage": {
+            "formula": "2d12",
+            "attr": "",
+            "bonus": "",
+            "type": "",
+            "parts": []
+          },
+          "extraFormula": "1d4"
+        },
+        "penalty": "",
+        "conditions": {
+          "improvised": false,
+          "throwable": false,
+          "agile": false,
+          "automatic": false,
+          "adaptableGrip": false,
+          "pistolBlow": false
+        },
+        "actionType": "standard",
+        "numberOfAttacks": 1,
+        "rangeCategory": ""
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "coreVersion": "14.365",
+        "systemId": "ordemparanormal",
+        "systemVersion": "7.3.3",
+        "createdTime": 1785893269153,
+        "modifiedTime": 1785893269153,
+        "lastModifiedBy": "vUTMyOH4FOrOifbw",
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "ownership": {
+        "default": 0
+      },
+      "_key": "!actors.items!xX0LaDGP78N2bqAi.wyeMoIAxJcppLKQC"
+    },
+    {
+      "name": "FALSA NOSTALGIA",
+      "type": "ability",
+      "system": {
+        "id": 0,
+        "abilityType": "ability",
+        "preRequisite": "",
+        "description": "<p>Ele trás aquele sentimento de nostalgia, aquele gosto amargo na boca, aquela saudade...tempos que não voltam mais, seres que estão em alcance curto perdem 2d6 de SAN e ficam Frustrados e Lentos pela cena, a sua mente é tomada por memórias antigas, algumas talvez sequer existissem, mas são boas memórias, essa nostalgia entrega uma tristeza insuportável. </p><p>Vontade DT 20 anula condição e reduz dano pela metade. Caso falhe na primeira vez, pode tentar fazer outro teste de Vontade toda rodada para tirar as condições.</p>",
+        "chatDescription": "",
+        "activation": "passive",
+        "cost": 0,
+        "costType": "PE"
+      },
+      "_id": "QiqD5QzXhQxWIEAj",
+      "img": "icons/magic/time/clock-spinning-gold-pink.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "coreVersion": "14.365",
+        "systemId": "ordemparanormal",
+        "systemVersion": "7.3.3",
+        "createdTime": 1785893269153,
+        "modifiedTime": 1785893269153,
+        "lastModifiedBy": "vUTMyOH4FOrOifbw",
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "ownership": {
+        "default": 0
+      },
+      "_key": "!actors.items!xX0LaDGP78N2bqAi.QiqD5QzXhQxWIEAj"
+    },
+    {
+      "name": "ABSORVER MEMÓRIAS",
+      "type": "ability",
+      "system": {
+        "id": 0,
+        "abilityType": "",
+        "preRequisite": "",
+        "description": "<p>Se um ser tiver sido afetado por Falsa Nostalgia, Ele pode absorver as memórias recuperando uma quantidade de PV igual a metade do dano de SAN causado.</p>",
+        "chatDescription": "",
+        "activation": "free",
+        "cost": 0,
+        "costType": "PE"
+      },
+      "_id": "k0SWBkvIueb6XTnX",
+      "img": "icons/magic/time/hourglass-yellow-green.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "coreVersion": "14.365",
+        "systemId": "ordemparanormal",
+        "systemVersion": "7.3.3",
+        "createdTime": 1785893269153,
+        "modifiedTime": 1785893269153,
+        "lastModifiedBy": "vUTMyOH4FOrOifbw",
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "ownership": {
+        "default": 0
+      },
+      "_key": "!actors.items!xX0LaDGP78N2bqAi.k0SWBkvIueb6XTnX"
+    },
+    {
+      "name": "FASCÍNIO PELO LAZER",
+      "type": "ability",
+      "system": {
+        "id": 0,
+        "abilityType": "",
+        "preRequisite": "",
+        "description": "<p>Aplica a condição de Fascinado para aqueles afetados por Falsa Nostalgia.</p>",
+        "chatDescription": "",
+        "activation": "complete",
+        "cost": 0,
+        "costType": "PE"
+      },
+      "_id": "INFf3ggPsRb8RHWu",
+      "img": "icons/magic/control/debuff-energy-hold-teal-blue.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "coreVersion": "14.365",
+        "systemId": "ordemparanormal",
+        "systemVersion": "7.3.3",
+        "createdTime": 1785893269153,
+        "modifiedTime": 1785893269153,
+        "lastModifiedBy": "vUTMyOH4FOrOifbw",
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "ownership": {
+        "default": 0
+      },
+      "_key": "!actors.items!xX0LaDGP78N2bqAi.INFf3ggPsRb8RHWu"
+    },
+    {
+      "name": "MAL SINTONIZADO",
+      "type": "ability",
+      "system": {
+        "id": 0,
+        "abilityType": "",
+        "preRequisite": "",
+        "description": "<p>Carrega uma grande carga de sons de estática e instrumentos desafinados e dispara em uma linha reta de 9m de distância com 3m de largura. Alvos atingidos ficam Surdos por 1d4 rodadas e recebem 2d8 + 2 dano de Energia. Reflexos DT 18 anula condição e reduz o dano pela metade.</p>",
+        "chatDescription": "",
+        "activation": "",
+        "cost": 0,
+        "costType": "PE"
+      },
+      "_id": "oJZr8JkFrP4a7MCl",
+      "img": "icons/magic/sonic/scream-wail-shout-teal.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "coreVersion": "14.365",
+        "systemId": "ordemparanormal",
+        "systemVersion": "7.3.3",
+        "createdTime": 1785893269153,
+        "modifiedTime": 1785893269153,
+        "lastModifiedBy": "vUTMyOH4FOrOifbw",
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "ownership": {
+        "default": 0
+      },
+      "_key": "!actors.items!xX0LaDGP78N2bqAi.oJZr8JkFrP4a7MCl"
+    }
+  ],
+  "effects": [],
+  "folder": null,
+  "ownership": {
+    "default": 0,
+    "vUTMyOH4FOrOifbw": 3
+  },
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.365",
+    "systemId": "ordemparanormal",
+    "systemVersion": "7.3.3",
+    "createdTime": 1785893269153,
+    "modifiedTime": 1785893269153,
+    "lastModifiedBy": "vUTMyOH4FOrOifbw",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "sort": 0,
+  "_key": "!actors!xX0LaDGP78N2bqAi"
+}

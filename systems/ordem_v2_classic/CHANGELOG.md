@@ -1,0 +1,1122 @@
+# Changelog
+
+## [8.0.2](https://github.com/SouOWendel/ordemparanormal_fvtt/compare/v8.0.1...v8.0.2) (2026-08-05)
+
+
+### Bug Fixes
+
+* **patch notes:** update version to 8.0.2 in system.json and messages.jsonc ([1981405](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/1981405d42ea00745e202a9cc9f3265aca2e8c90))
+
+## [8.0.1](https://github.com/SouOWendel/ordemparanormal_fvtt/compare/v8.0.0...v8.0.1) (2026-08-05)
+
+
+### Bug Fixes
+
+* **build:** fix release please action and system.json update ([800ef1b](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/800ef1b1c33db3b760a8c11491fea61d026c9651))
+
+## [8.0.0](https://github.com/SouOWendel/ordemparanormal_fvtt/compare/v7.3.3...v8.0.0) (2026-08-05)
+
+
+### ⚠ BREAKING CHANGES
+
+* the system of origins, classes, and paths broke down the details of the character sheet.
+
+### Features
+
+* **active effect config:** add datalist helper for suggesting valid Actor attribute keys ([53b871c](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/53b871c54fe8741f73ecf0465161e5c9fb019378))
+* **actor sheet:** adjust width of PD/PE per round resource. ([f4e18b2](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/f4e18b21b0474ded54298ba46694bfee17187f81))
+* **actor sheet:** generate and adjust layouts for agent sheet ([6108fb9](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/6108fb99443a8fb8aed4788de99a000925ad41f1))
+* **actor-calculations:** adjust health and sanity calculations based on survivor status ([18cd3c4](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/18cd3c4bf0af584342b51e39d256b6ffa079ab8f))
+* **actor-sheet:** enhance item description handling with enriched content and cache ([b2db19a](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/b2db19ad6cbed4fa2f88e17bdeceb4cb8a082711))
+* **actor-sheet:** updated empty item slot interaction to open compendium with reference data ([a6ce044](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/a6ce04424b4b82b9f2b514ca6056207747441b41))
+* add agents and threats compendium packs ([067712b](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/067712b997c3b567c3cc0354b2e9289b554f392a))
+* added transparent space between tokens and status bars ([a9ac0a3](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/a9ac0a324fc2594ec3deb6e304a3768096c0bfaf))
+* adiciona hook ao usar item ([bee861e](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/bee861ee22e6b1658b9893e6bbed97c71f2fda75))
+* adiciona hook ao usar item ([36a35c6](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/36a35c6efc7716cf873253892349e1322f48f95f))
+* **agent sheet header:** improved style of agent sheet header ([18d0cbb](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/18d0cbb1f02465c74b499368b3d8c30fcf1af1ef))
+* **agent:** added agent configuration application with disable calculations option ([eadc5c4](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/eadc5c4a84818a0ad57db2d5887c73c180d6dbc3))
+* **ammunition item:** removed and commented ammunition item codes ([d0698c5](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/d0698c5faa6038d157ac020f060fc9de1eb4b0a2))
+* **attributes:** add new attributes for class, origin, and path data models ([dbd3294](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/dbd329463a3e407cd6d4d2d824f8af0d2f98728b))
+* **class item:** added survivor option for class items and fix some related quench tests ([98322aa](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/98322aa7ace2fda1add58d72eb19cf56063128c5))
+* **class item:** added without sanity calcs and updated the packs and tests ([2a5b7d9](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/2a5b7d9f13b3b0ecd0979b49fd2a9e13a9af5ca7))
+* **class item:** enhance form group appearance and update descriptions ([971a595](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/971a5958f58bb200a2bea802571f99dd0267c161))
+* **class-calcs:** added calcs for PV, PD, PE, SAN and a option to disable calcs ([fa571b6](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/fa571b6a45eecb854af9f9a54580fd377ee8b801))
+* **class-origin-path-data:** added metadata for singleton and preCreateItem verification ([a97c262](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/a97c262dee74c6cac760d700415f50ca18cf2e8f))
+* **colors, typography:** update color palette and set primary/secondary fonts ([3d793db](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/3d793dbc316bf52a8047440afd41ff2704d84066))
+* **combat:** add defender reaction system (Esquiva/Bloqueio/Contra-ataque) ([a993103](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/a993103f049fc97755e0c8113457305941624467))
+* **combat:** introduce Combat Quality-of-Life feature set ([242ae3a](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/242ae3aa8f2621fecbdf10cb7436174114468072))
+* **combat:** introduce Combat Quality-of-Life feature set ([d698c3f](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/d698c3f6ba6989eedaf91d33fb7cf5fc954706dd))
+* **compendium listener:** compendium separation with right and left click ([feeced7](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/feeced701a74b8f5cd26eb15a9b461bca7db5417))
+* complete v13 migration with TypeDataModel, Tier 1 and 2 tests, and CI/CD ([6976fd1](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/6976fd15c9059c3d9919aa75d5a9d25bc50d1808))
+* complete v13 migration with TypeDataModel, Tier 2 tests, and CI/CD ([a51fe6a](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/a51fe6add7ae13ee5bd8836f6bc02db8a6cbfba0))
+* **config:** add passive execution choice to dropdown options ([4fc183c](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/4fc183cc122e1bcbbc093e5c52ea0858fe499e24))
+* **css:** sass/scss changes ([62db29b](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/62db29b5ecfcf44256be7010785bab0c5c510158))
+* **derived status:** a bonus variable has been added for derived statuses ([07d980e](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/07d980e243864a4c4d5fc2f25d56abf96db2eb91))
+* **description and items:** css adjustments for item descriptions and HTML ([d61cb7a](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/d61cb7a68a7a90baa29b0115ee2088fb59d7c7f7))
+* **effects:** added border-radius to effects section ([5b62a57](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/5b62a57ce36d9656bf2843801e879318f90c07f4))
+* **enrichers:** add registerEnrichers function to enhance text editor with custom dice display ([41c238c](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/41c238c2d35ce38d87e8731a2fc31b04ea8e09bf))
+* **fonts:** add Libre Baskerville and Source Sans 3 font configurations ([b5dcd02](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/b5dcd02f2fab11c051cd87bf05ac108d41fbaa5e))
+* **fonts:** add Libre Baskerville and Source Sans 3 fonts; remove unused fonts ([e31b386](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/e31b386192f05630ccc82939388d17c4a368be47))
+* **icons:** add ufólogo icon for ufólogo origin ([a7a036e](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/a7a036e456056f943fc8e14d7a8d77380c6ab3a7))
+* **icons:** added icons for origin, class, and path items ([288727e](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/288727edcfaf2f333f39837f8958f443eb748f67))
+* **icons:** added new icons and convert huge svgs to webp ([8f92d88](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/8f92d8851660b16ac8ad582d91b8ec20e892c9f1))
+* implement OrdemActor.applyDamage() ([dda66b5](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/dda66b57eef06dbf62606ef7525f72bfdc9c2dad))
+* **item-class-attributes.hbs:** class item input fields are disabled with a checkbox. style changes ([cdaf78d](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/cdaf78d0c6260598204bb4eb453882a747f2d0ed))
+* **item-description:** wip of description edit with fullscreen layout ([aa77ea2](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/aa77ea2becb8644ac4b14e8b49024b437948d3be))
+* **items layout:** key changes to the layout items for improved presentation ([6ecc196](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/6ecc196fff760c9336154ea80a9212c6b1cabb33))
+* **items:** add chatDescription field to various item data and update item sheets for chat display ([c59f92b](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/c59f92ba0b462235d9a0a45407afd36063cd3acc))
+* **items:** added fullscreen editor for description and style changes ([0c82564](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/0c82564831bdf7244582b279c54b29195e61c914))
+* **lang:** added 'maledictologist'  with translation to English and Portuguese ([37b9dba](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/37b9dbab1e88d2ea663e6cc6b9a69aa994c48569))
+* **localization:** enhance localization by adding new strings and updating existing strings ([1657bb0](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/1657bb0875fc36ebf90e5dfcd2abcc7651375fe7))
+* **pack:** added QoL resources journal to JSON file ([236bcb2](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/236bcb2c1b4a6c0ee9a7a8b24b8d0591638e2f2e))
+* **pack:** removed example agent JSON files and added class, origin and path items. ([0bc6438](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/0bc6438e4f65291be7d230440af7b8d9cf1fe907))
+* **packs:** add new characters: Elouise Elahi Anaki and Johannes Von Baumann ([0241151](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/0241151357d80cba060e7ae974ed6a60cf7db67b))
+* **packs:** add new threat data for Desalento ([3d9d988](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/3d9d9880929c8cc0ca4e11dcd326b41a86130311))
+* **packs:** added paranormal powers pack ([c81924e](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/c81924ecf6af432c5227db0c2bddb1185ca85b67))
+* **packs:** added some packs for classes, origins and paths. ([9734b19](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/9734b190dc456830daf37d04a69b33fb1383884a))
+* **packs:** changes with fixes and improvements 1 ([a8d41f9](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/a8d41f9683fd4dcef0c8e992165b6a3f6a771abe))
+* **packs:** changes with fixes and improvements 2 ([e59defc](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/e59defc96e3e512f2d905399ac37ba5a592e6591))
+* **packs:** changes with fixes and improvements 3 ([e665260](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/e665260a962e178888b8d3af538fad91d96a065f))
+* **packs:** fixed img urls, categories, spaces, descriptions, and added new origins and paths ([83900e8](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/83900e8a2aa6564384e469908b10ca6e013ff52d))
+* **packs:** items were renamed and reorganized, and paranormal powers were added. ([717a8e5](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/717a8e52c01c494b28aad631dab3804e8a6e0988))
+* **pack:** update compendium with Text Enricher DisplayDice to show icon dices ([23b9a8d](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/23b9a8da97ab969b2280935ab017e6c951a8d1cb))
+* **patch notes:** add release notes for version 8.0.0 with detailed updates and bug fixes ([137d822](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/137d822396981c6c26f9623b3edb536537f05e72))
+* **refactor-agent-details:** improve visual, render items on click ([f66698c](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/f66698c85625f65d8fbba8e7f7f7b776feac02f4))
+* **sass/scss:** added inventory and threat components with styling updates ([611f45c](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/611f45c03c58d615c5753a5856c709c5372fa538))
+* **style:** css style reorganization ([8b21fb1](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/8b21fb142cb19a04cfb15b10d84462234cc71b1c))
+* **style:** refactor threat sheet layout and styles ([53b4ba5](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/53b4ba5b424dd41a496b1c0bd1a238264e61bad7))
+* **template.json:** removed ammunition and improved origin, path, class items ([9f2a0ae](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/9f2a0aee20d8ee9346daf480e836bbb2f9f3aab0))
+* **templates:** apply op-shadow class for consistent styling across components ([ec5faf8](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/ec5faf8e030b37d5e41ed5594405e318e093db65))
+* **threat sheet:** updated input style and padding of header ([19a0b28](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/19a0b28b47c30e591c8e44790d643f2e3bbc66f4))
+* **threat:** implement specialized handlers for threat attacks and update item creation logic ([fc2effa](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/fc2effa26962c4a3e19fe9712e572d7b8abc496f))
+* **v13/v14:** adaptations for v13 and v14 ([480062a](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/480062ab059b05766234245e001bfd3973f3480e))
+
+
+### Bug Fixes
+
+* **abilities:** fix the creation of abilities. Correct order of ability types in Handlebars helpers ([44ad18b](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/44ad18bbf4e611d8270e17ec0c34c2521f79d6d8))
+* **abilities:** fixed item display with clickable image and roll action ([d8dc5b9](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/d8dc5b97646701bba6489c205300cfb162ac7364))
+* **ability:** add cost field to AbilityData and update template for cost input ([bee9a4d](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/bee9a4dd8c456d499cc5b38d5ca40548d3751a01))
+* **active-effects:** support temporary duration on Foundry v13 and v14 ([ff833cb](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/ff833cb3cd5c689ca9a431ead1c88844bc1d70d1))
+* **actor active effects:** update value assignment to use number instead of string ([32f55e9](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/32f55e9b7fc7c920d80829368a8d147f9e0ccd9b))
+* **actor-sheet:** streamline skill total calculations and improve ability type handling ([0976ed9](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/0976ed900f09e27b587c93d7d066093dfdfd2513))
+* **actor:** on v14 core version, active effects are calculated on prepareBaseData ([bd122b2](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/bd122b2555280b30913494fc359febcaefd745c2))
+* **actor:** remove stale base data preparation ([eed4e90](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/eed4e9041edc12c6ebe53babf35a0444c3f74a79))
+* **actor:** resolve merge conflicts and clean up prepareBaseData and applyActiveEffects methods ([c8e9d38](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/c8e9d38c80f101763eeaba84fa10b43471a1a5d2))
+* added damageTypeAbv for "damage" ([0122166](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/0122166b875b9eb4fb01e541a6c9b3fc253ee555))
+* added generalPowers pack to "Outros Poderes" folder ([abdf4e2](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/abdf4e2d6fcface1a510e038ca93e052a0a8a5f1))
+* added missing handlebars ternary helper ([d493efc](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/d493efc0203ae2523cd9155bdce9fa1e2da428e2))
+* **agent-data.mjs:** the issue of a missing variable in the ritual calculation has been corrected ([087ec0a](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/087ec0a7e071c137f82211e1c9af9066dd0e62ad))
+* **armament:** store proficiency as string ([50e8f35](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/50e8f35f1bc4e2028c24803df945f49fa9b325ad))
+* **combat:** address PR [#87](https://github.com/SouOWendel/ordemparanormal_fvtt/issues/87) review feedback ([6408e2d](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/6408e2d4fd0a5b3bb5f9344ee51d433df0099186))
+* **combat:** address PR [#87](https://github.com/SouOWendel/ordemparanormal_fvtt/issues/87) review round 2 ([b5f55ec](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/b5f55ec4d8f867a5d100384de3491d195814ee76))
+* **combat:** dodged crit in a volley no longer over-multiplies damage ([8c380f8](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/8c380f84853a22571c1e9f594066733e2948a856))
+* **combat:** multi-attack crit now multiplies damage in all cases ([f6907e8](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/f6907e81342163cf4d2486cb76049c2f95eec176))
+* **combat:** multi-attack rolls damage per attack (crit doubles only that attack) ([55cb739](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/55cb7391e2e485e40c456711b87c3a0099215a87))
+* **combat:** multi-attack volley surfaces aggregated isCritical for damage ([afca87f](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/afca87f6071a87ec2d983b2addea5c233966b88c))
+* **config.mjs:** added the missing moviment action was added ([4673a54](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/4673a549f71950a9028df7520937d91211ed5fc7))
+* **config:** updated compendium entry paths to fix compedium function of agent details ([8df1ea8](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/8df1ea8f1d1f2fd23598c792e890e71cfd489665))
+* **data:** default agent skills to their canonical attribute ([1c11ed4](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/1c11ed45d95908cc2160fd34c36a7f8b9de2c9d3))
+* **data:** persist ghost fields on threat/ritual/ability sheets ([fbb3ac5](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/fbb3ac55f5e39bf3b44c4de327d877b97bab8f68))
+* **description:** fixed the height of fullscreen description and resource layout ([45d5018](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/45d50180327be8ed7fd0b485c99bd7c2b01f138b))
+* **effects.hbs:** fixed image and removed old effects page ([d17c01f](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/d17c01fa7c78048c361e692d0af78c9a0d66f1a1))
+* **effects:** enable v13+ draggable functionality for effect list items ([82af35d](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/82af35d1d10d9943bde36cf65fecff3d9527e6d6))
+* fixes dice rolling ([7542b33](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/7542b33eee99ea89778b39e79e6c5120e8c6be18))
+* **fonts:** update font file extensions from .otf to .ttf ([1e1f92f](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/1e1f92fa64acbe150c7407ec71a6eddaf8544fb1))
+* **input radio:** fixed style of input type radio ([5ae57d8](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/5ae57d801d8026ca246dd7a503fab23fba5c9ac7))
+* **inventory:** remove display property from item description for improved visibility ([156610b](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/156610b5626a5846e517dfd87e14fccaf2b95cd8))
+* isCritical empty formula no longer produces false-positive critical ([dda66b5](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/dda66b57eef06dbf62606ef7525f72bfdc9c2dad))
+* isCritical guard null crtalFormula (.trim() TypeError) ([dda66b5](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/dda66b57eef06dbf62606ef7525f72bfdc9c2dad))
+* **item description:** update description container to use isAnyDescriptionEditing flag ([5d6d2ec](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/5d6d2ecd1c2e714ba5b6e648ce7e4c6129263311))
+* **item-description:** add specific classes to editor edit links for better styling ([3f098aa](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/3f098aa0277ff738df57918641373b551526be29))
+* **pack/conditions:** updated conditions UUID references ([5b94be5](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/5b94be55efbaf7bf7af8b9480426aaaefd594ac6))
+* **packs:** reallocated items, excluding these versions ([cebdddf](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/cebdddf4652af04ba0c765e635253666f35c110e))
+* **pack:** updated Mãos Firmes description to use DisplayDice text enricher ([6c8edfb](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/6c8edfb416882e1651d41605169994a184f9d4e6))
+* **patch notes:** spelling corrections ([c7db26b](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/c7db26babf5c44c3b2beaa05f9b1f52a3ccc7617))
+* **pe-pd layout:** fixed width of PD and PE inputs ([ca98a5b](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/ca98a5b5ac74b78df96692c8afe5cc62537d4aa2))
+* **pre-commit:** added lint-staged dependency and configure for fix git add . bug ([18be832](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/18be832729e33e5362543a7ef90fd0d316af031b))
+* registerSystemKeybindings call ([083a546](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/083a54630376b9fb695f47b49a46178645b35056))
+* **rename:** folder renamed to the English name ([d821dba](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/d821dba8bb48bb4b34ed6707cc4cc82bed2b58a9))
+* **ritual calculations:** update calculateRitualDT to use progress instead of nexValue ([6838800](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/6838800ded4d65d3eca2c4f0a7f7d4a78cf96c34))
+* **ritual-attributes:** add resistance selection options to ritual attributes ([734b21d](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/734b21d15d790b51550788ca0aab4d0e429db0b8))
+* **rituals:** enable dragging rituals to the hotbar ([ebf6211](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/ebf6211f6f546d76c3d2a9a3c5571e511494b3bc))
+* **roll app:** added .display-hidden class to hide elements and fix badge of roll formula app ([b7e02e6](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/b7e02e62affebd2f018d1e74923a189ddecc55ed))
+* **roll dialog:** fixed the badge for rolls with no modifiers ([851bcd5](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/851bcd5d9c7f79d5d98224e2693ad128658c1819))
+* **sheet:** restore displayed skill totals ([f3f0073](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/f3f007393305d89eb31adcd92c7c5b65fea1dc41))
+* **test-infra:** add KeyboardManager mock, resetFormula stub, ([dda66b5](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/dda66b57eef06dbf62606ef7525f72bfdc9c2dad))
+* **tests:** correct expected progress value in calculateRitualDT tests ([e203fff](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/e203fff8c7b5e1b38a0c7665a64c95fd29c09437))
+* **tests:** fixed PD tests and combat-qol tests ([3383573](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/33835738fbab5e9ceefda8c88a09af05d434b641))
+* threat sheet element field binding (details.element → elements.main) ([dda66b5](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/dda66b57eef06dbf62606ef7525f72bfdc9c2dad))
+* **threat-data:** change walk field to allow non-integer values ([f355ee1](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/f355ee17ddbab30752cc37e0f1178928f8b7d752))
+* **threat:** preserve editable skill bonuses ([ec68078](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/ec68078b4bfbe0120278e60deea4bc2a1bbb75f4))
+* **threat:** restore skill proficiency import ([b3dd95e](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/b3dd95e348bd942b033ea10ae21c08329804897e))
+* update agent JSON files (removed PV and SAN perRound) ([9dedbe1](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/9dedbe1077bc0884dbb746019bfe3b7a595f33f2))
+* **v14:** restore skill totals and threat skill bonuses ([5ff0770](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/5ff0770062e53eebc218463d61eb49f2139af587))
+* **v14:** restore threat skill proficiency import ([188b1ce](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/188b1ce4229665d9f07452436889c946040602bd))
+
+
+### Reverts
+
+* **css/scss:** revert css and sass to feature/visual-refactor version ([aa775bd](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/aa775bd7b7a6d38f5a3de4a31d9d5784453423be))
+* **sheets:** damage resistance has been re-added. ([9b69fd4](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/9b69fd473d57f1a566506889fff2a1ca04b273fd))
+* **styles:** reverted combat-qol scss changes to fix layout ([db31888](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/db318881b0cab2cdf7f702b9f7ce4ce527ce53bc))
+
+
+### Miscellaneous Chores
+
+* the system of origins, classes, and paths broke down the details of the character sheet. ([dbf1967](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/dbf1967144703f454b293009857fcb034c4a9ada))
+
+## [7.3.3](https://github.com/SouOWendel/ordemparanormal_fvtt/compare/v7.3.2...v7.3.3) (2026-04-26)
+
+### Bug Fixes
+
+- **module:** update manifest URL and compatibility version for barbrawl module ([1369c5a](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/1369c5a597f9fae141164140f71b89764b190abe))
+
+## [7.3.2](https://github.com/SouOWendel/ordemparanormal_fvtt/compare/v7.3.1...v7.3.2) (2026-02-02)
+
+### Bug Fixes
+
+- **localization:** fixed the key for armaments in English and Portuguese ([7671eeb](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/7671eeb305de79e20ff56f5742ba71124b4f6bb6))
+
+## [7.3.1](https://github.com/SouOWendel/ordemparanormal_fvtt/compare/v7.3.0...v7.3.1) (2026-02-02)
+
+### Bug Fixes
+
+- **localization:** fixed the display of general powers and dropdowns ([929f575](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/929f575136534e630373dd7bdebbdb3a0d3c3a58))
+- **localization:** update power type choices and ability abbreviations in English and Portuguese translations ([be35db2](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/be35db260b74350034c260e31bc5bb0a7d869075))
+
+## [7.3.0](https://github.com/SouOWendel/ordemparanormal_fvtt/compare/v7.2.4...v7.3.0) (2026-02-01)
+
+### Features
+
+- **actor parts:** enhance ritual display with cost information and improve item layout with toggle description function ([7f0acfc](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/7f0acfc050da4ab956a1ddfe332a6fecd5dbd4ca))
+- **actor-abilities:** enhance resource management UI and improve abilities display ([7445ad9](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/7445ad9f02aa22b8569435ff01bca80c19f4e698))
+- **actor-rituals:** improve indentation ([a3dda61](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/a3dda61c2149a00e1d98412b87c9f8eddb32844c))
+- **actor-sheet:** add toggle for resource visibility and enhance ability handling ([21a87ac](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/21a87ac7522528cb0f9f20378acc55d30f1a5d2f))
+- **actor-skills:** add total value display for skills and improve layout ([2e32de0](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/2e32de0cbeac0359ec68b054b90ff5cc8cbab5a2))
+- **actor-threat-sheet:** enhance layout and functionality of threat attributes and skills ([6b87b6d](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/6b87b6d8681d4eecdb296c911d4cfa148cbc2fce))
+- **actor-threat:** add resources, skills, and resistances to enhance threat attributes ([e9d1abc](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/e9d1abc706343c8cd681a65e6b11ae6b92e3ec81))
+- **actor:** add traits and enhance resistances structure in template ([4f3b564](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/4f3b5648fe90353b7acb5cae1bd58c67625c8654))
+- **actor:** enhance item handling and toggle description functionality in actor sheet ([2eeab7e](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/2eeab7e34e8f739fd85ba44c9960e9d91adc08cf))
+- **actor:** enhance skill preparation and initiative calculation for threats ([9e3f44e](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/9e3f44eb286591e8e303a24c1de98133ff7d0f39))
+- **actor:** enhance threat handling by adding \_prepareBaseSkillsThreat method ([309880d](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/309880d6826a75b84a432d7b89b9bcfa87e13a6c))
+- **agent actor sheet:** add \_prepareSkillTotals method to calculate skill totals for display ([08f1e0f](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/08f1e0f1b74a70bd9985116b0da3ce7da10be701))
+- **compatibility:** update minimum compatibility version from 12 to 13 ([37625c5](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/37625c574bcd0fc87efbe020763fcfc40d9ae62e))
+- **config:** add new dropdown options for threat degrees and damage types ([41ca95e](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/41ca95e1b9dc20d8034664281f246d1c75c7e5c1))
+- **config:** add traits configuration ([7436de6](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/7436de68bead9a408b2f0fa16c2c8c2189ad3b8a))
+- **credits:** update links and contributor details in credits section ([ff528cb](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/ff528cb721f4398ccf84db3551d4cfda10a1cb70))
+- **css/sass:** update styles for threat sheet: title header, resistance tags, and traits tags for improved layout and readability ([3438234](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/3438234049f977e13f8297c36fbdbdce057f8708))
+- **handlebars:** add custom radioBoxes helper for numeric value handling ([a04d25e](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/a04d25eda7b29c0b565e2c5bdcd54b67945108f2))
+- **hooks:** enhance preCreateActor hook with additional logging for threat actor configuration ([5c2fd90](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/5c2fd902350b0779b298642454c27f30c3e48577))
+- **item chatMessage:** streamline chat message creation and enhance whisper functionality ([1625097](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/1625097f5fbe2f1ea9fa65ec7e25813b01bb6b2e))
+- **item-ability-attributes:** update ability attributes section to include activation options ([971b5e2](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/971b5e22e28c61e4af62a0c6d62538b7d8b54dc2))
+- **item:** improve chat card action handling and item validation ([0d7b8b7](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/0d7b8b7841c787cd46b702cff8247168db6caac2))
+- **item:** improve localization for undefined damage types in chat messages ([0617273](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/061727340d4082c043304ee9cdea41ce4086301b))
+- **item:** update TextEditor reference (v13+) and change roll evaluation to synchronous ([6c1bfc2](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/6c1bfc25056b8ec3c8e271373583051c9a42fa39))
+- **lang:** add roll damage chat messages in English and Portuguese ([d31baa2](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/d31baa2a304b95208781c691f1cb7436e42a8b10))
+- **lang:** added new attack and enigma entries, with english translates, and threat type/size choices in language files ([cb1a3ba](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/cb1a3bab2b36758b97c02f25b6ab02e4e1c94d20))
+- **localization:** add diverse abilities and traits translations ([42fe92f](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/42fe92f8f266bef2d354bef026c188f2512bd9fc))
+- **localization:** add new character origins and update translations in English and Portuguese ([6822449](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/68224495488fb8085aa6badfb4b70139bcd23d43))
+- **localization:** added new damage types and abbreviations, cost translate ([26f36d7](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/26f36d7211394fe0aaff3af7d4d86eef8d179226))
+- **localization:** enhance localization for threat attributes, abilities, and traits ([597e3a4](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/597e3a4d10ef1b445f6da0a4079db32be62c6afa))
+- **media:** added icons for new packs ([0849112](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/0849112b34545231fa36e89a2e00f6e67ffef6a1))
+- **messages:** updated release notes from version 7.2.3 to version 7.2.4 ([abaeb20](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/abaeb2011741d667fc42faec703dd2ab799a6a32))
+- **migration:** enhance actor data migration with image normalization and path correction for packs changes and actor items img url ([a4e878a](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/a4e878a1eff76c3c84c2893b17ec84ddd1fe9bf7))
+- **migration:** log item image updates during actor data migration for version 7.3.0 ([c70e3a5](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/c70e3a50eee8f36b8a539b3640029362f6ca801d))
+- **packs:** items have been updated, revised, and more items have been added ([aa895de](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/aa895dee4b1c7e89dc339946c000b1fcdce8c322))
+- **release-notes:** add release notes for version 7.3.0 with bug fixes and improvements ([85e624a](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/85e624a6497fb82dc4227cd024a738adcfe5d03f))
+- **resistance-config:** add resistance configuration form for managing actor defenses ([a0aa6fc](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/a0aa6fc1cd774eab6e780f0ca52641bba97f1af8))
+- **resistance:** add ResistanceConfig class for managing actor damage resistances ([ccf7571](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/ccf75718ef6f3c017208ab67a52555339daae2e5))
+- **roll-buttons:** improve button structure and add logging for buttons ([2c86015](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/2c86015d07458c6e452d5376185af2925378feb3))
+- **sheet:** update document sheet registration for actors and items ([d5d76b3](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/d5d76b3de4e2586aec7be12ff05d8de206a92a6e))
+- **skills-compendium:** add context menu for opening skill compendium entries in actor and threat sheets ([9cf8f46](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/9cf8f46450ff556bdb8b4571eb16deadb0ac81f3))
+- **tabs:** add new Handlebars template for sheet tab navigation ([adb1bba](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/adb1bba2ada518c2f19edabea888e2695cf9ef81))
+- **template.json:** initialize threat attributes with default values ([30d471e](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/30d471e6ab26c8d4d8b255c9797bdc968e47cfa8))
+- **threat-abilities:** localize ability headers and labels for better internationalization ([9f546cf](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/9f546cf1325cdad9637d80845bc1c71a662efc50))
+- **threat-attacks:** add roll type attribute to attack action links for improved functionality and catch it on roll method ([c3c4029](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/c3c4029d15c90532831114e4132ee5a4b499a785))
+- **threat-sheet:** integrate TraitsConfig and enhance input handling for improved functionality ([1ea8a50](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/1ea8a50365b4fe1e7589311c946167c0bbbed549))
+- **threat-sheet:** refactor roll methods to use static class methods for improved encapsulation ([4198550](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/41985502bf5181a3085dcff955513f165bddd70a))
+- **threat-sheet:** replace HTML template with Handlebars for actor threat sheet and add new sections for abilities, attacks, effects, and enigmas ([e32b6df](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/e32b6dfda862797408cf5ae6db8b02d91d4af74e))
+- **threat-skills:** enhance free skill input and improve skill label display for better usability ([638e644](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/638e644dc88c7245376ce0e98c98a7961e93c960))
+- **threat:** add dropdown options for threat types and sizes ([614efc8](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/614efc823dfaa1eb21702ba87b6eb2c186426a1c))
+- **threat:** refactor threat sheet to extend HandlebarsApplicationMixin and improve all structure ([2001ebc](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/2001ebc56d597625f55c5aa4317b35b190f3f4e4))
+- **traits-config:** add traits configuration form for threat characteristics ([7d2750f](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/7d2750ffc3fc46aa3bd05df1af4314f53c84d48c))
+- **traits-config:** add TraitsConfig class for actor traits management ([8f108f5](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/8f108f56f459fa9ac49007d71e012154c3547726))
+- **version:** update verified compatibility version to 13.351 and needsMigrationVersion to 7.3.0 ([38f09ec](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/38f09ec29bebfbb960af0a7da8dc502099bac654))
+
+### Bug Fixes
+
+- **.gitignore:** simplify pack exclusions by removing specific entries ([430cef6](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/430cef697ee8be0761405726467d3e1002cda3c8))
+- **actor-agent-sheet:** remove obsolete isV12 check from system.trilha select options ([1086219](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/10862191de07282bc5910442eeb1becf9a3db577))
+- **actor-agent-sheet:** update selectOptions to use valueAttr for correct binding (valueAttr) ([7753381](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/7753381c53143ff1e35e5517e99e170f2e4a1c34))
+- **actor-sheet:** remove obsolete isV12 check and update TextEditor implementation references ([d2c1b49](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/d2c1b4964838e8aacb723317216399ddbf634ae1))
+- **actor-threat-sheet:** update roll action for attributes to use onRollAttributeTest ([366db40](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/366db40a0af239dba032a04eb41138fc810b2b2f))
+- **actor:** remove obsolete isV12 check and simplify space/weight calculations ([763d444](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/763d4441b7de61c63f3ce54cac655075ee226136))
+- **chat-listeners:** prevent duplicate event listeners and update roll evaluation to async ([f9c9748](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/f9c974822a0381cdddff7acf068f0fb2fc92d55c))
+- **context-menu:** extend ContextMenu from the correct implementation class (v13+) ([8e5c74f](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/8e5c74f41ce406319059d2da142ea64bb102d276))
+- **item-card:** add token ID attribute to item card for enhanced functionality ([fcdaf03](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/fcdaf035285b7ff9869f055e8d911fdfe552250c))
+- **item-sheet, threat-sheet, utils:** update TextEditor references to use the correct implementation (v13+) and improve error messages with translates ([cb7afa7](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/cb7afa789ab26342480df15ca1e7706fafcc3bb4))
+- **item-sheet:** update DragDrop implementation to use the correct reference ([9bf545a](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/9bf545a5a42bffeeaba817c870b69b85bf41f27f))
+- **item:** handle undefined damage types in localization for improved clarity ([203288b](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/203288becf311f817399400d038e706ab1f220d2))
+- **language:** update translation for "muambeiro" to "Hawker" for clarity ([bec2af6](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/bec2af6baac8e785d736a11f40aec65a0011e47e))
+- **localization:** update damage type labels for consistency and clarity in English and Portuguese, added translate for 'undefined' word ([992dce6](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/992dce68786d90bb34f0fb140b0e4901e09c00f9))
+- **roll-dialog:** increase button opacity and update colors for better visibility ([c108cf3](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/c108cf338b2e2765d2cfaebb661769dce85347d0))
+- **sheet:** correct case for 'enigma' to 'enigmas' in threat sheet tab handling ([ceeedcd](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/ceeedcd812f80cf680225239784fcf5f788ca8b4))
+- **threat-abilities:** remove cost display from abilities section ([75c5392](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/75c5392d5ddfad0a0be473c945a6f2944c43edf7))
+- **threat-attacks:** adjust item image for slide animation and dice icon ([daf0f28](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/daf0f286610c91a4db3c389a703a17f001d6299c))
+- **threat-sheet:** update action method references to use prototype ([4c94a63](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/4c94a630674a18a8a7cfc2908d643313c9d034f0))
+
+## [7.2.4](https://github.com/SouOWendel/ordemparanormal_fvtt/compare/v7.2.3...v7.2.4) (2025-10-30)
+
+### Bug Fixes
+
+- **messages:** update release notes for versions 7.2.2 and 7.2.3, fix bugs, and improve configuration ([ab1ec0b](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/ab1ec0bfd9770b7a9c15f721eb3f62588aa5f95b))
+
+## [7.2.3](https://github.com/SouOWendel/ordemparanormal_fvtt/compare/v7.2.2...v7.2.3) (2025-10-30)
+
+### Bug Fixes
+
+- **actor:** correct dodge calculation to use reflexes degree value ([c7fe177](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/c7fe177bb24e5590205d99dafe55f115262e7179))
+- **item:** fixed the attack bonus of items, that's not calculated on rolls ([7a2f6cf](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/7a2f6cf7a73e2dfefc0da81c90eff79eaf811c1d))
+- **item:** remove unnecessary console log statements from roll configuration ([9fc27b2](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/9fc27b2895eda7f4e77143c708244699431e829e))
+- **module:** update bar brawl manifest URL and compatibility version ([f3ecb02](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/f3ecb029c3c190a3ded5edb10d41613833036fd4))
+- **styles:** update color scheme for dark theme in dialog components ([1634971](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/163497108f6c77e6304092dc12f938002237740e))
+- **system:** update compatibility version to 13.350 and remove redundant and deprecated grid properties ([fdb30ac](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/fdb30ac1c00c678963f0c0da7db24d71f9f40e39))
+- **templates:** remove debug log statements from various templates ([3fc19dd](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/3fc19ddc3d126ad56f8386a43aad3dd1c9f9840b))
+- **template:** update actor threat sheet to improve input types and enhance warning message ([c3945ef](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/c3945ef1822d12f932540a25592f9557decaec09))
+
+## [7.2.2](https://github.com/SouOWendel/ordemparanormal_fvtt/compare/v7.2.1...v7.2.2) (2025-08-07)
+
+### Bug Fixes
+
+- **item.mjs:** fixed a bug where when the attack roll of items was made, bonuses were not added ([52471cf](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/52471cf04a249e57a2fbb508f697c9398f2466ab))
+- **patch notes:** fixed the version interval, changed the version in titles, added fixed bugs ([b3b8d9c](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/b3b8d9c8a8b80353f8d3c68b58f7405927bc7410))
+
+## [7.2.1](https://github.com/SouOWendel/ordemparanormal_fvtt/compare/v7.2.0...v7.2.1) (2025-08-05)
+
+### Bug Fixes
+
+- **patch notes:** updated the number of version ([4b3ac03](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/4b3ac0381e8ca313f0cc632f325ce27cdb5a9d31))
+
+## [7.2.0](https://github.com/SouOWendel/ordemparanormal_fvtt/compare/v7.1.0...v7.2.0) (2025-08-05)
+
+### Features
+
+- **localization:** added translates for roll dialogs, tabs and effects ([2430ab7](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/2430ab7f879ea6a6d9ec3d15bcae82dc2420803d))
+
+### Reverts
+
+- **keybindings:** keybindings has been reversed ([13f95c8](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/13f95c87a1ba9cab21b6329e7fca771afa2afa87))
+
+## [7.1.0](https://github.com/SouOWendel/ordemparanormal_fvtt/compare/v7.0.0...v7.1.0) (2025-08-04)
+
+### Features
+
+- **console logs:** console logs used for testing have been removed ([6bb2e1c](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/6bb2e1c312800b56d7b20eab39a68c6057e7d503))
+- **patch notes:** titles have been changed from 7.0.0 to 7.0.1 ([3a0d869](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/3a0d86911b8c5f3262daa90dc854309915dbce31))
+- **patch notes:** titles have been changed from 7.0.1 to 7.1.0 ([9b41db9](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/9b41db9821f8511f7c59a907319ab0b73b929edc))
+
+### Bug Fixes
+
+- **core:** removed a exportation to undefined function (registerSystemKeybindings) ([51d175c](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/51d175ce8f7d5ce991f0479eefba2c427ce9a4cc))
+- **core:** was removed registerSystemKeybindings references ([83f9e00](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/83f9e00002ebbc77de30a42ae7ad808252d07111))
+
+## [7.0.0](https://github.com/SouOWendel/ordemparanormal_fvtt/compare/v6.9.1...v7.0.0) (2025-08-04)
+
+### ⚠ BREAKING CHANGES
+
+- **application and roll configuration:** The ApplicationV2 implementation will close the supporte for V11 core version of Foundry.
+
+### Features
+
+- **actor document:** added attribute dialog configuration and rolls for attributes ([8bee998](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/8bee998d9b00470055656881965551ffc4a2ee64))
+- **actor rolls:** added roll dialog and roll templates ([018c614](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/018c614266533cb2c50721689aaeecd6dbb10b24))
+- **actor sheet:** added the new D20 rolls in the rolls of sheet for tests ([0dd19c8](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/0dd19c8f67ec646a69c54b2dee00348c7288c916))
+- **actor skills part:** removed the formula dataset ([96eaa25](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/96eaa25fb096d34c84184fa905dc7e11268ee2ef))
+- **actor threat sheet:** added data action to EditImage ([234c86f](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/234c86f7be57a24e8694182816730a0b5518acd3))
+- **actor-sheet:** update of actor sheet to V2, tabs and all actions ([24e589d](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/24e589d588aca391b2674ee032ead46e6464c131))
+- **actor-skills part:** added rollType dataset and skill-name class to use on roll listener ([53e953b](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/53e953b777a4bd68c0ee8ae9d7f42ebeb30165ea))
+- **agent sheet templates:** refactored the layout for v12 and v13 and fixed some layout bugs ([77ea7a6](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/77ea7a6f67eb7ef8cd08b382e77ee800a5bc7995))
+- **application and roll configuration:** based on the dnd5e system, were created some apps/dialogs ([49f66df](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/49f66dfd0a5af98a1cdf4e6528a1779ef0345066))
+- **attribute dialog:** added class to extend and polymorph the d20 dialog ([c17673c](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/c17673cb801413fcc3f061a33d0af4a60b8d6b48))
+- **chatmessage:** added class to handle the messages of chat with HTML and Listeners ([7d98f56](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/7d98f56a015c8929a9f040b4b721612c6306283d))
+- **core and hooks:** was moved the hooks to individual file ([233997d](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/233997d3fc33a81a59197043326dab52bb9e390b))
+- **core:** added the new D20 roll class on pool of dices in the system ([a67e8b7](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/a67e8b77cfe6c4223bbb3b9118299b2d782b1d35))
+- **core:** register the D20Roll, BasicRolls and D20Die on system. Reorganized some codes ([b352549](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/b3525498bf9a191ce262ac48580c9b2f3e198522))
+- **css and media:** added all the styles compiled by SASS (roll, dialogs, fixed) and a pattern img ([34d26ec](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/34d26ecedfbd0c949a9e18fcf9cc3ee44981d08c))
+- **css:** compilated all the scss ([3ebac3a](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/3ebac3a537a34ea4dbc3a20dc5b208d5cb931e3c))
+- **d20roll:** added configuration, validation, template and dialog about d20 rolls ([8f85b4c](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/8f85b4ce6a3834a4bea7e138980b40793da76b00))
+- **d20roll:** created a function to configure the d20 rolls ([29bb6f8](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/29bb6f8468e91fda76cf5bc116a8a6071be92427))
+- **dialog:** generic template for dialog windows ([77dc922](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/77dc922c5ed05043d86dcb2375a87f66661f3dae))
+- **effects.hbs:** added shared file for effects tab ([5585e37](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/5585e376450a1f8251485a4ef717e6e1447a243c))
+- **effects.mjs:** removed onManageActiveEffect function and sort the effects with categories ([0289a8d](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/0289a8d188e5055d0c07abd61f3a3f21e5c5de9d))
+- **item card:** removed a division (hr tag) ([2567433](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/25674332feaa8f52859ee54a451e583b67044e31))
+- **item-sheet:** updated the item sheet for v12 and v13 core version of foundry ([66b8652](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/66b86520fab9edc006a405d6f6477f11aebe1330))
+- **items sheet:** refactored the layout for v12 and v13 and fixed some layout bugs ([dd42e7d](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/dd42e7d441fbe8c5691f60154e1771e3f2e86cee))
+- **localization:** added some translates for roll dialogs ([d0094fa](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/d0094faa2642d4d193d6cd36d4227c9b6c4e9e90))
+- **localization:** added translates for tabs and credits ([06f68bf](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/06f68bf1be8bafc237a13416a89312ecb0008c9e))
+- **localization:** added translations about the roll mode on foundry chat ([e1a03a5](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/e1a03a5dfb8375f63d4cf39b76f612571ad73028))
+- **media:** added background for actor and item sheets ([856a830](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/856a8303eca1e277839ea4b02117691f7eb19536))
+- **media:** added some dice svgs for roll configuration dialog ([9322441](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/932244159ee1f7f700cdd0857ef11ef55560d95d))
+- **migration:** migration of skill degree for skill.degree.label ([81efb0e](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/81efb0ea418b115306a611ca2f10045de26c68e2))
+- **module:** updated the chat class export ([9d8f079](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/9d8f0795ac628e5e4eb0d31a6768f2018157f291))
+- **patch notes:** added patch notes of 7.0.0 version ([a05c7dd](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/a05c7dd6c52d2f0c51b43b658a4af1e53a9cb4d8))
+- **roll and skill dialogs:** the attribute field was removed from one class and moved to another ([2c5d15b](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/2c5d15b3df190935332b5c1fa3caf2c2f47d543a))
+- **roll dialog:** templates for roll dialogs ([b053776](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/b053776da8dfb085411ee45ecffaf6117eb5ec08))
+- **roll-configuration:** a template for roll-configuration dialog ([c0e6e9f](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/c0e6e9f6331ce434163fe4460279f2245318448a))
+- **roll-dialog and listener:** replaced the old dice system for the D20Roll on actor Agent ([10ddae4](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/10ddae416ee7daf6aa892ffa9197feee1c60a469))
+- **scss/sass:** added styles for roll dialog of skills, and Libre Baskerville and Source Pro fonts ([82832e1](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/82832e163ec45c11225e838007f331ea04a70950))
+- **scss:** added gap propertie for dialog buttons ([6da4f0e](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/6da4f0e6403cd5c7275117054dd70933a768a015))
+- **scss:** added some properties to re style the chat card ([f91b9a7](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/f91b9a7dc846c27238d532130666afc5a7123679))
+- **scss:** re style the effects for v12 and v13 core version of foundry ([d449802](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/d449802a9aa5c22de3359578590f7c557ca274b9))
+- **scss:** re-styled and fixed the actor sheet for v12 and v13 core version ([564121e](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/564121e5bdcb0ea3914eb945d0eb9bcca4ebe008))
+- **scss:** re-styled and fixed the actor sheet for v12 and v13 core version ([38fcc7d](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/38fcc7d69a8c3acd966a6ca9381e39ed466df44f))
+- **scss:** style for dice results, critical, fumble, failure and success ([f4ebfe4](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/f4ebfe4247c093fa6db35a8de880a5448737dc48))
+- **scss:** was moved and removed some properties and classes ([4532190](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/453219043a268354d7eabf0384c7a70cdb9f3472))
+- **system.json:** updated the minimum and verified version ([42b9517](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/42b95174b68ae0fa287e675618a148e5078b1ca6))
+- **system:** changed the migration version to 6.9.0 from 6.9.1 ([9798070](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/9798070ab596dcb0be2e9aa58f612afe6ce32e49))
+- **templates handlebars:** was moved to utils.mjs ([0a7857d](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/0a7857df0aef104327824a6cc2d96aab0affbff5))
+- **threat sheet:** removed the onManageActiveEffect and begin the v2 application update ([3fff8d4](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/3fff8d4af51646751ee77781dc3cc9e7d431fed6))
+- **utils:** a function to identify when the alt, control or shift keys are pressed ([bd2d299](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/bd2d299818976c9e8008ec709efa5c0e0f0f7245))
+
+### Bug Fixes
+
+- **actor agent sheet:** fixed the progress inputs ([2616ee2](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/2616ee2f7f7f24c9e05a9b8e09d34c4322b935d3))
+- **d20-roll:** fixed the attribute getter ([4ecda60](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/4ecda60946ecd6e08926ca58ed8a12b347ae79d0))
+- **item document:** fixed the chatListener and target of \_onChatCardAction ([2c4bf95](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/2c4bf95b2e3250071945553a1c56d6d7c88331d3))
+
+### Performance Improvements
+
+- **actor:** improved the perfomance of skills information handling in 50% ([8f7969c](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/8f7969c278c8d4a42f15738dae3d0e4f4042f953))
+
+## [6.9.1](https://github.com/SouOWendel/ordemparanormal_fvtt/compare/v6.9.0...v6.9.1) (2024-11-22)
+
+### Bug Fixes
+
+- **update notes:** added more informations for the update ([f936760](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/f93676011cbb0cacce7542e0e099d6886bc79719))
+
+## [6.9.0](https://github.com/SouOWendel/ordemparanormal_fvtt/compare/v6.8.1...v6.9.0) (2024-11-21)
+
+### Features
+
+- **actor agent sheet:** reorganized the calculations and added the patent feature to agents ([a86d1ca](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/a86d1ca012c6908cfaefb9eaba1e53f0730d05ef))
+- **actor agent sheet:** replaced the conditions of progress fields and enrich description ([3ff4c96](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/3ff4c96c8586c1ffbba4a915e97ff4bdb0031d49))
+- **actor sheet and refactor:** added 'gets' for global access on this class, refactor context var ([aa49f68](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/aa49f6858964f24425382dc368c3f8c287a1d9cb))
+- **actor:** added conditions to prevent new skills broken the sheet ([aeba741](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/aeba741c632d00247f22ec073cdb3a48f62f64e7))
+- **agent sheet:** added a new skill called "profession" ([bb8dda5](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/bb8dda56cb8316738c2e88ebfe311b0d474cd1c1))
+- **agent sheet:** added adjustment buttons and fields for edit attributes of inventory items ([f4d5ce4](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/f4d5ce495d495fcfbb4d3b9f42b5ae59ea526983))
+- **bar brawl integration:** changed the name and id of new bar brawls and fixed the ownerVisibility ([f679513](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/f6795137ff92c62afcb9ff449c86993dc486eb6b))
+- **build packs:** refactored the build structure for packs with DND5e codes, also added scripts ([be140dd](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/be140dd0ef118fb8d16598cb5dc906c8493fb8d6))
+- **compendium:** fixed the weight of military backpack and deleted the old json files of packs ([5e6f683](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/5e6f68328195800570e27f850090d81af06d111c))
+- **config:** renamed 'creatures' to 'beings' ([483afb6](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/483afb6c6748d1f0e838fc70b0ea4040f1daccc8))
+- **css/sass:** added styles for patents, layout fixed, weight bar on inventory tab ([0c3996e](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/0c3996eb2db064ac9f7c37276de74c996e857999))
+- **css/sass:** styles for new skill 'profession' ([b9e2774](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/b9e2774fb3c7957ab3b9bd19d1d7f49041063e40))
+- **descriptions:** enrichment of descriptions ([8314fbe](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/8314fbea2b3346d7cb2cce73c98bfcf8fd2e6fd3))
+- **item and item card:** refactored the displayed informations about area ([1b5d770](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/1b5d7709a87854235312ea4a2c9084d0772cbac3))
+- **item ritual sheet:** refactor the target fields and some fixes on localizations ([7cc71c3](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/7cc71c3bfe245b065003844ed7e3d29b36fd8400))
+- **item sheet:** enrichment of item descriptions ([220e974](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/220e9743aa7df799e5d41a410ec4b3867adb3a8b))
+- **localization:** added translation for nivel ([d280d15](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/d280d1563d6e26b71be2f45b755cb923a2af6150))
+- **localization:** added translations for proficiency abbreviations and professions ([4b65677](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/4b656770b6527469026f0f0170a7e771ad35aa91))
+- **migration:** adding flag to use in migration ([9afc222](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/9afc222818eb6dd99125b56ebb5f93916838c78e))
+- **migration:** log the migration and checked when is necessary ([65b9e78](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/65b9e78b1ca18e64916b32bc809aeeac1b7aa3e2))
+- **migrations:** added structure to make migrations and moved the 6.3.1 migration ([b27e7c3](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/b27e7c337c06ed20ba09d7344fd9532ae29ef16d))
+- **migration:** the migration now uses the migration flag to write the last migration ([3f9cc90](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/3f9cc9045af3405542936af00d622910d75b8f1c))
+- **settings:** activated the nex and experience progress rule ([379dc47](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/379dc47008e8c3902b4ba91a5319cf48862cabd9))
+- **system.json:** added gridDistance and gridUnits for v11 versions ([a38f9f6](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/a38f9f6e5a73ef578468ee91e398d35bfc255d93))
+- **template.json:** created the 'nivel' data for NEX and Experience rule ([e079604](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/e079604c07c96d9880611c555d3a20b237c4729a))
+
+### Bug Fixes
+
+- **actor:** fixed DT and PE/PD per round of survivor class ([6017d1b](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/6017d1bf665ca386a321c71163510274d9f85ede))
+- **layout:** fixed the layout of items ([40d872b](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/40d872bcb1ab237b849ab7bc8f0908d2c30032a5))
+
+## [6.8.1](https://github.com/SouOWendel/ordemparanormal_fvtt/compare/v6.8.0...v6.8.1) (2024-09-13)
+
+### Bug Fixes
+
+- **css/sass:** fixed a bug on actor tab layout and token hud ([8932f28](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/8932f280eb07746b88efdcab175f8a6d4f9d0858))
+
+## [6.8.0](https://github.com/SouOWendel/ordemparanormal_fvtt/compare/v6.7.0...v6.8.0) (2024-09-12)
+
+### Features
+
+- **actor agent sheet:** added condition to display 'Without Sanity' rule fields and changed css ([676297e](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/676297e13d4f78c7efa5cbfd54708bc37c8733f1))
+- **actor agent sheet:** added conditions for survivor and the rule Playing Without Sanity to use PD ([a1b5fce](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/a1b5fce930a1339414aa8065584d6815383deb4a))
+- **agent sheet:** added determination points per round ([ee3fb1d](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/ee3fb1dad7c7433e9adf0fad63c78f63f7437d41))
+- **agent sheet:** added the new trails of supplement ([2a01e20](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/2a01e2059e1d4ec0ea10c1b4703021b460b80da7))
+- **config file:** added origins and trails of survivor class and the order paranormal supplement ([72ed10e](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/72ed10ea70e71379baeaad5208c1edad52020472))
+- **localization:** added settings translations, PD and stage, and new origins and trails ([bc70bac](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/bc70bac0d4c042f400e25cbcfd41e6c956e13f91))
+- **system:** updated the verified version from 11.315 to 12+ ([a0728de](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/a0728de8841235f47a76c3f6135aa3116e4f479c))
+- **template:** added data of ammunition on template.json ([d1ccc3d](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/d1ccc3d928435be84f6f0407bbb2d1df1640effb))
+- **update notes:** added 6.8.0 update notes ([af790ce](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/af790ced21b1c787939a4427b680e887a4038384))
+- **without sanity rule and survivor:** added survivor as new class and added without sanity rule ([bef48a5](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/bef48a5a67a8fc6c342c54d81953e2f3b5306922))
+
+### Bug Fixes
+
+- **actor agent sheet:** fixed a bug that didn't save the trail in Foundry v11 ([d51ea86](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/d51ea8638acf06b6ea490f7fc005a78d67911333))
+- **agent sheet layout:** fixed the header structure ([76e4888](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/76e48883b90fa22a8c09255ecedc92c3893fe160))
+- **layout:** fixed the min-width and min-height of agent sheet ([29b83d1](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/29b83d1de4b50fbdff1a5d5f8ef0cf595c039a24))
+- **layout:** improved and fixed the responsiviness of layout on agent sheet ([565323b](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/565323bf21eb43c47b0cce07a9941cec15b1b835))
+
+## [6.7.0](https://github.com/SouOWendel/ordemparanormal_fvtt/compare/v6.6.0...v6.7.0) (2024-05-24)
+
+### Features
+
+- **actor agent sheet:** changed the order of columns items (skills) to make more sense ([eebbe84](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/eebbe849891c6db98beffda82964d557489d9cd2))
+- **brawl bar and prototype token:** actorLink now is false and Bar Brawl is used to display HP ([03214ea](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/03214ea753d8125946667a3ff58b6f5bd6fba919))
+- **compatibility:** was added retro compatibility between v11 and v12 core versions of Foundry ([78e92d7](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/78e92d736bbe99ebb1cdc794ebb13519e9224983))
+- **css/sass:** changed the height of descriptions, actions and abilities of threat sheet template ([ffb6e76](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/ffb6e76b8daa09a881661cf912a432a33d1d30c1))
+- **css/scss:** initial stylization of threat sheet ([c2bd00a](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/c2bd00a976ecfb3f82fe6b44a1ef35c48b73deee))
+- **css/scss:** some styles for additional content feature ([7b3f67b](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/7b3f67be82e2c86416b39daab4cedead46e93c47))
+- **system:** added selectize files at the styles and scripts fields ([26c478d](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/26c478d51c62fc4ac7ac91c8862e1059fd2afd37))
+- **system:** update maximum version compatibility from v11 to v12 ([97ec9ea](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/97ec9eaa2b39b74911401b068980a2fe7a4b6b43))
+- **system:** update maximum version compatibility from v11 to v12 ([c971212](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/c9712121b9ddc6a9d36efd02abd88a6fb2e56280))
+- **template:** added initial version of all the data and fields of threat sheet ([2a5a947](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/2a5a94706da6ab958c1a15265cceac7f14ead55b))
+- **threat sheet alert:** added an alert about risks of using the threat sheet with cookie storage ([d90520f](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/d90520fda97c3359438f42580a94a63a04b6d214))
+- **threat sheet data:** added temporary data to future refactoring and migrations ([670b433](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/670b4331e19eadd7e4cdf7a751fa3d86a1dbea2f))
+- **threat sheet:** added base form and inputs with basic styles ([02f05a0](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/02f05a0fbd97b9bc2a671a482c12a19ce4cac61a))
+- **threat sheet:** added system data to context var for use inside the threat sheet template ([1b570cb](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/1b570cb0ac3323b437f57db7376593baa94444cb))
+- **threat sheet:** basic organization of HTML elements and also was added some basic CSS ([7c65d90](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/7c65d90f1c11b4fc906ebfe71d07aa2229e83e71))
+- **threat sheet:** elements have been rearranged and values hava been changed to temporary paths ([fcc642f](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/fcc642f9cac84f33b428ba8edce2512a473c3da6))
+- **threat sheet:** initial creation of threat sheet (template + class + some fields) ([4710b23](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/4710b23b3d2de1e75830b707e22b5f4d17645a8c))
+- **threat sheet:** updated deprecated variable. 'data' notation is no longer used ([1010d29](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/1010d295991d8fb92e206cec629c78da298fcb62))
+- **threat token and sheet:** actorLink now is true and disposition is hostile ([0cc317e](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/0cc317e2e1ea634cff56d6239fe553b9efbc10b2))
+- **update notes:** added release notes of 6.7.0 version ([dbb759c](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/dbb759cf1b826b33f95b733b814b93ad5023d8c9))
+- **v12:** fixed deprecated warnings and some codes deprecated in v12 version ([44675c2](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/44675c268f182e9ffd10d21d28cd5fa870390c3a))
+
+### Bug Fixes
+
+- **item create:** fixed the creation filter by ability category on actor sheet ([ee2f834](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/ee2f83454974342d39eb7f0101b1fb3be49b88bd))
+- **threat sheet data:** fixed a writing error ([ee3f0af](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/ee3f0afc499ab89b4eeaec0910e250f11bb2df12))
+
+## [6.6.0](https://github.com/SouOWendel/ordemparanormal_fvtt/compare/v6.5.0...v6.6.0) (2024-04-05)
+
+### Features
+
+- **abilities:** added path to abilities types, localization for actor abilities and move item data ([3c864b7](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/3c864b7da77ce1476d6026f5aa7fb65ed615fe1c))
+- **actor and rituals:** added calculations for ritual DT and display this in actor sheet ([3dcad01](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/3dcad01582814a47bca0d6066e6e58a4a034d980))
+- **actor:** added ritual dt feature ([39451e1](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/39451e15f4696b1d9651ed0ff2aae9825a1d733d))
+- **compendiums:** added icons to several compendiums and new abilities compendium ([b2350c9](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/b2350c9ac9132b657da7f64d374d6978e3ad41b1))
+- **compiled css:** added compiled css from scss styles ([9f38830](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/9f3883083a8c0013c23fe3af3afb9750b55051b6))
+- **foundry sidebar:** added links (discord and credits) and Paranormal Order logo with system ver ([428e5f6](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/428e5f61c5b9c369c703f8d258f45ce7b87b1427))
+- **localization and style:** added translates tags with handlebars and some breaklines/indentation ([e91bafa](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/e91bafaa61f2f08f078ffe1a8044de4ce014d640))
+- **localization:** added translates abilities type and abilities type abbreviations ([ac8a235](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/ac8a235ba69fef1083cd4897aa82a505cfd0bd18))
+- **localization:** added translates for sidebar (notes, issues, etc) and fixed occultism skill ([ba854b8](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/ba854b8e77a312413b644a2824cdce6f36e2847c))
+- **localization:** added translates for sidebar, inventory, socials, DT ritual and chat card ([b79b6cf](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/b79b6cf85daa920fff1b7e441eb741f0a58d5089))
+- **media:** added Annihilator icons and Conduit icons by Marcos Miranda (Nyazi) and game-icons ([6cea864](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/6cea864d371e73e3682ed7d2eced21ea153b009d))
+- **media:** added devilline logo for update notes dialog ([eff442b](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/eff442b83f2c412201e5cf89d18f920f5aac8e64))
+- **media:** added icons by Marcos Miranda and game-icons for compediums ([5efd20d](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/5efd20d5dfe507f832814ca66d0fb6b8857ba122))
+- **media:** added more icons by Marcos Miranda and game-icons for compedium ([36b2580](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/36b2580911ee7203ddcc80869146f29d74e4ec0b))
+- **packs handler:** was created a pack (compedium) handler to extract and compile packs ([553c007](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/553c007da9461da081a6b8d596aec869213e00fe))
+- **sidebar/credits:** was created credits dialog with template, added translates, style and links ([32f12db](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/32f12dbcbaae6e07d6a6da0f8a9fa806f039d9b8))
+- **update notes dialog:** added discord banner and was styled the text ([a6f4027](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/a6f40274ccb6a08d47e0c7967bbaf96ec6033803))
+- **update notes dialog:** changed the name and description of discord banner ([00c0b2d](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/00c0b2d65c26b914c9e7993b644089c9556ac819))
+- **update notes:** added devilline banner to update notes and change hyperlinks target to \_blank ([6765a90](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/6765a9048df7b94f15cbfc8457423c304ec69512))
+- **update notes:** added update notes for 6.6.0 version ([100778e](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/100778ee103ee897aa70088e6cbb8a44070af582))
+- **update notes:** change 6.5.0 version and added 6.6.0 ([457bb45](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/457bb4533908dfb61c8d9e9ab45b297889f84806))
+
+### Bug Fixes
+
+- **actor abilities:** fixed a translate var of class abbreviation ([7dd823a](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/7dd823aa888f8dbec9a7f45ccee3b5ec13e70f41))
+- **actor sheet:** fixed the draggable effects and macro creation in macrobar ([6ecd988](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/6ecd988de3fd950218364cc7d9af966b6c05704c))
+- **actor:** fixed the `dodge` var in actor sheet and changed the same var from derived to base data ([74e1695](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/74e16951f62d8b47f7ac3ff06e7f32de25fa1475))
+- **actor:** fixed the class migration and the skills localization in roll data ([527512f](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/527512fd092172754de33f63f7a80d5bc9f3fe1d))
+- **actor:** the sum of attributes in skills, defense and dodge calc has been fixed ([2037104](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/2037104832842395ea13abd951e8881ca4a2d3e1))
+- **handlebars helper core:** fixed the dynamic item creation of actor sheet ([8b011b8](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/8b011b895a86e5142052c9f80eb2fac816edf063))
+- **item card:** now the armament chat card also display the base damage ([da44dfe](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/da44dfebadbdcf3ae095c804f42677a4689da548))
+- **macro:** adjust the `getMacroTarget` to catch `allAplicableEffects` instead of `actor.effects` ([5f2fe88](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/5f2fe88d1dcff2d48af85e06f844ad387cfd2a0a))
+
+### Reverts
+
+- **system:** revert previous commit to pt-BR lang syntax and compatibility with FoundryTraduction ([6cf3f7f](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/6cf3f7f3b7ebffbe8e17f51668595df40c79843a))
+
+## [6.5.0](https://github.com/SouOWendel/ordemparanormal_fvtt/compare/v6.4.1...v6.5.0) (2024-03-25)
+
+### Features
+
+- **system:** added a thumbnail to the system ([9fc50ee](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/9fc50ee6771cdd6f07a993b3aee161794dddeebd))
+- **update notes:** added a fixed bug to update notes and change de version from 6.4.0 to 6.4.2 ([084de33](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/084de33d7abef429e9cdfa8cac4f5226dd7703ba))
+- **update notes:** added a version 6.5.0 to update notes and change the max system version of 6.4.2 ([382c846](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/382c8469c94a299c150bf562e4d61f36827ef94e))
+
+### Bug Fixes
+
+- **actor:** fixed the agent roll data and adjust the initiative rolls ([5eebf1e](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/5eebf1edf0bedd2c49a7ad4f7e2fbdfb80ccb368))
+
+## [6.4.1](https://github.com/SouOWendel/ordemparanormal_fvtt/compare/v6.4.0...v6.4.1) (2024-03-25)
+
+### Bug Fixes
+
+- **update notes:** added the update notes ([c5ed3b4](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/c5ed3b456fee7e35bb654cd1e9e6033abd8db4b8))
+
+## [6.4.0](https://github.com/SouOWendel/ordemparanormal_fvtt/compare/v6.3.3...v6.4.0) (2024-03-24)
+
+### Features
+
+- **actor and actor sheet:** transfer all data functions from sheet to actor and refactor the order ([33ab28a](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/33ab28ab6975d9e658a0ce7f69ae3d36b1af3c14))
+- **actor rituals:** "execution" is no longer displayed on the actor sheet and skill resistance is ([45d5975](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/45d59750b586f0edc3c3a0aa845ec95b18ae7cca))
+- **actor rituals:** displayed informations about the rituals was changed on actor sheet tab ([b89c178](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/b89c1784e7fcd95c6737afe3cc07859b76a3172d))
+- **actor rituals:** was added translations for information shown on actor sheet, and slide button ([3737f5c](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/3737f5cf90b68420eef16647ad3a8399e407b5ce))
+- **actor sheet and effects:** updates for foundry v11 version and adjustments for effects ([2885142](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/288514220b142fba5aa2cae8ccf9547dcd4cbf95))
+- **actor:** migrate the data access path to Foundry v11 (convert `data.data` path to `system`) ([5041078](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/5041078095b0e5b826ccaa7b487daf52fcc06ba5))
+- **compiled css:** added style for scrollbar, item-card, actor-sheet rituals and etc ([ea41644](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/ea41644c522e3f9f2b8831f3cea26666fa28e38a))
+- **config:** added skill resistance and area type for rituals, fix the skill paths and indentation ([c73eabb](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/c73eabb4e063c19adf4027b70ce3e7e6659fee53))
+- **config:** was created a configuration of dropdowns for execution, range, target, area, etc ([7fa93bd](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/7fa93bd4473f493b31ac36a7617034161a9425c7))
+- **item card:** item card is now styled for rituals and armaments ([e1ff799](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/e1ff7998e2e641f0c8e796dffbae6deea60c0736))
+- **item ritual sheet:** html of selects (dropdowns) has been added ([217ef3b](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/217ef3b1852726b4958e3b49880bf484b4c437dd))
+- **item ritual sheet:** was added fields or dropdowns for area, target quantity and skill resistanc ([4e18b2a](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/4e18b2a25122a88cf39a4f8a8d5c1190a698f05a))
+- **item sheet:** the configurations of dropdowns has been added into the global var context ([641194d](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/641194db2125e0e39ea7582f55a5c3803429c3e9))
+- **item:** added information for rituals and armaments which is now located before the display ([eee907a](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/eee907af107605ebac1dc090a5d0619323332841))
+- **item:** now the html template and ritual informations is always displayed in chat ([f57677f](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/f57677ff435b37f7843ca2765a209fa76d561677))
+- **localization:** translates for fields of ritual sheet has been added ([6d5ae31](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/6d5ae310f32db09f3b9347e460ba03f7339a897d))
+- **localization:** was changed the skills path and plural of people in pt-br, was added area transl ([8c532ce](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/8c532ceb2675cd6ffe8bff879ff6dd85f5edff74))
+- new fonts are added in the system ([6c23ea1](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/6c23ea16538a578c5a6dda1cc1cfacfe56259206))
+- **scss/sass:** custom design for armament and ritual chat card was added ([2529b28](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/2529b28883fbfec0c4eff5a4b91aa59a31111440))
+- **system:** bugs and license links has been added on system.json ([7d6a05b](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/7d6a05bc25fc322e653093c641c1c132dac6282c))
+- **template:** area data for rituals was added (name, size, type) ([4a3b643](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/4a3b643fd84d6061e87356a0800338935319c140))
+- **template:** deleted maxBonus of pv, pe and san ([bf8ae23](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/bf8ae23edcde91445f18d66c1b5378f31eeaf17e))
+
+### Bug Fixes
+
+- **\_window scroll:** fixed the style of scrollbar in navigator ([a282732](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/a282732a0a6cdce22ddffa36afd03b3be97a42d8))
+- **actor sheet:** fixed a bug when set a other circle of ritual, the actor sheet is broken ([1a71ff1](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/1a71ff1c3e40946df2e8f8269ee3306f6ab15e78))
+- **chat message critical:** fixed an error caused by the absence of `isCritical` var in some items ([057c9d5](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/057c9d5765a30b6e5f9eb4d3dc0093255d8361f0))
+
+## [6.3.3](https://github.com/SouOWendel/ordemparanormal_fvtt/compare/v6.3.2...v6.3.3) (2024-01-31)
+
+### Bug Fixes
+
+- **actor skill roll:** fixed a bug where skills were always rolled with 1 dice ([1b8ff16](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/1b8ff16968ddcb737f184bf52b77444e9ee6b8fd))
+
+## [6.3.2](https://github.com/SouOWendel/ordemparanormal_fvtt/compare/v6.3.1...v6.3.2) (2024-01-28)
+
+### Bug Fixes
+
+- **actor-sheet:** fixed the reflexes calc, the skills mod is undefined and resulting in NaN var ([4c5639a](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/4c5639a7c8bf4d6ba241e121425fb8c8b6cff517))
+- **data migrate:** migrate portuguese class names to english class names ([7837850](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/7837850107e6b148d83b0685f81115c013d751be))
+- **item roll:** fixed a bug where there was no attribute sum in damage and removed old bonus field ([306702d](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/306702d3825d4555da29c5766d7097ce995282fa))
+
+## [6.3.1](https://github.com/SouOWendel/ordemparanormal_fvtt/compare/v6.3.0...v6.3.1) (2024-01-21)
+
+### Bug Fixes
+
+- **update notes:** fix a bug: the system show two update notes in the same time ([0dd6fc5](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/0dd6fc5b2dfd71aed642ef5d761ffb09b86b6ad7))
+
+## [6.3.0](https://github.com/SouOWendel/ordemparanormal_fvtt/compare/v6.2.1...v6.3.0) (2024-01-21)
+
+### Features
+
+- **class calculation:** fix the calculation, change the names and was been added the bonus calc ([f38a5b7](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/f38a5b7befdd0b5f6bdaa984348e4b41eeabc526))
+- **compendium:** completing the Armament Compedium ([f9021ff](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/f9021ffd3248f1b3a3402ded88de0f22e4d45749))
+- **css/sass:** stylizing the multi damage rolls and added some flex classes ([ab5472f](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/ab5472fe659431008a9debc0647c023d4eb7404b))
+- **damage system/item:** added damage handler and damage type for attacks ([3a19d0f](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/3a19d0f150766c8f90b28e6eafd2f19b69bc6638))
+- **effects:** added `space.bonus.value` and `space.bonus.max` for use in effects ([d957d5e](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/d957d5e0701880fc7d856d282d8e98e17be1d4ed))
+- **item armament sheet:** removed the extra damageType field and some comments, added html for dmg ([8709c51](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/8709c51b451f4392a6f3a04b9e0ea2afcf3dd5a5))
+- **item sheet:** increase the window size, fix template incompatibilities and change the dmg array ([2ef3456](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/2ef345679284d5d0a061d155661e076a26a0a9c1))
+- **item sheet:** reformulation of the getData method, development of the multi damage system ([2313ca4](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/2313ca4f024e8c715dfe5d7dca43d6a21f994517))
+- **localization:** added some variables for execution of rituals ([afa63fd](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/afa63fd029b4143284e07d4141d5fc7e661bb0d7))
+- **localization:** added translates for damage type abbreviation ([dd8acda](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/dd8acdafb7256f48e04af109bdce5edc5393d2b4))
+- **ritual item:** was been added the execution field for rituals ([233bcdb](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/233bcdb347f7c4cee9acbbf8d8e0fe6abb53dca6))
+- **template:** `damageType` has been moved and the `damage` subkeys have been restored ([1e993c2](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/1e993c2f2b80cf96b22dcd56ca6df84452fcbf1d))
+- **template:** adaptation of the data structure to the new function of multiple types of damage ([f9e7b09](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/f9e7b097f118e7b0269db2b711072ad41f98f4a7))
+- **update notes:** added the 6.3.0 update notes ([828d447](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/828d447f7ff3d2f01fafcfaf10d0c473bc912f5b))
+
+### Bug Fixes
+
+- **actor sheet:** a bug has been fixed in the relationship between pv, pe, san max and effects ([4729d73](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/4729d73a9d91556ec965391bfe2af3840fe8692f))
+- **actor skill:** fixed a bug when adding effect to the null mod skill, it was recognized as string ([ddc691c](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/ddc691c1cb523cc754dd100c657c9164da4e7f82))
+- **actor skill:** fixed a bug when adding effects to the null mod skill, it was recognized as string ([2021596](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/20215964ab28c767819a79bbdbc61d97cca4c24d))
+- **item sheet:** fixed a bug with invalid data on items other than weapons ([20bbdb9](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/20bbdb98c4c48e06443c0f0e779f1b9ef7c8e49d))
+- **item sheets:** fixed the path in data to `data` from `system` ([94a4583](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/94a4583cf82a65eecdd0af524e5c63801c4394ae))
+- **item:** fixed the incompatibility to armament with other items in data description ([6414c37](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/6414c37aa8dac9fc779dad762ae7982ac9dccbbe))
+- **item:** fixed the order of the damage formula and damage types ([1c32d8d](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/1c32d8ddfd6118899ba8bc0a687a0aaf521154e5))
+- **layout bug:** fixed the max-height of agent sheet and item sheet ([ea64285](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/ea64285233c0766a91656b8ed851a94fa39538ea))
+
+## [6.2.1](https://github.com/SouOWendel/ordemparanormal_fvtt/compare/v6.2.0...v6.2.1) (2023-12-21)
+
+### Bug Fixes
+
+- **update notes:** fixed a bug where two update popups were displayed ([79e2b0d](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/79e2b0dbce5db6b42693e678c1c7a6dd770c04ab))
+
+## [6.2.0](https://github.com/SouOWendel/ordemparanormal_fvtt/compare/v6.1.1...v6.2.0) (2023-12-21)
+
+### Features
+
+- **chat-message:** a function was created to highlight critical points, success and failure ([beabf33](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/beabf3381028d4d5c2a30ff9ee84b36889a13736))
+- **dices and d20roll:** partial standardization the roll data and \_module ([c19b810](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/c19b8103f034e1058a173217ecf01c7501bea793))
+- **item attack:** added the critical system for item attack ([e475228](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/e475228319406b0a4fc03aed9e7d43cfe81ba620))
+- **item attack:** included a message ID validation for critical attacks ([df7e49b](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/df7e49bf3c2c362f1ce495049c479540cd165113))
+- **item:** now the critical system detects cases of more than one "x" and blank spaces ([ab96b52](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/ab96b52ac6a911aa6a87e52c2dcdab4739d9a64d))
+- **item:** saving data in roll message, added alt key fast forward to critical roll ([c95d21d](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/c95d21d72aa5276e58151217906c6caebc742a92))
+- **sass/css:** added some classes for dice rolls and changing the system class ([c960041](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/c96004141d3454d1e7f01cab0b311acf36c52fae))
+- **system core:** import dice and import the chat_template ([b072dd1](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/b072dd17706f101ed64f3541250c6f16bc04db28))
+- **templates/dice:** template for dice rolls ([2a1f36a](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/2a1f36a987b4514ab15c0c1192e5733330de6b09))
+
+### Bug Fixes
+
+- **dodge attribute:** fixed dodge calculation ([431c0e5](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/431c0e5b8ec47d134713509d826387c95fcc3001))
+- **item:** fixed the 'or' statement of altKey ([326fec2](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/326fec252463759b975746119ab74e898ad35b8d))
+- **item:** fixed the multiplier of critical system when only multiplier is reported ([7e73668](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/7e736687f95d5050f915d11a8b8d5103e63a6175))
+- **weapon ammunition:** the "cartridge" was missing as an ammunition type ([62679af](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/62679afc7ae502110f6d566b373dfeb1a657a6d0))
+
+### Performance Improvements
+
+- **chat-message:** correct use of get flag function instead of json ([11873b6](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/11873b6009df92f8d1bd9005c8d582af7956fad4))
+- **template:** remove unnecessary keys in PV, SAN and NEX ([8dbd1bb](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/8dbd1bbace2543d5dd4c90e3338e49f7a8f023c5))
+
+## [6.1.1](https://github.com/SouOWendel/ordemparanormal_fvtt/compare/v6.1.0...v6.1.1) (2023-12-05)
+
+### Bug Fixes
+
+- **update notes:** adding 6.1.0 patch notes ([a621f68](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/a621f68b4c82dc9c67322b693e70f7924b49c159))
+
+## [6.1.0](https://github.com/SouOWendel/ordemparanormal_fvtt/compare/v6.0.1...v6.1.0) (2023-11-22)
+
+### Features
+
+- **actor-agent-sheet:** changes to the size of the card image and layout of the biography ([cc836b5](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/cc836b55f76c97b707c9876a3a0572269500ab3e))
+- **actor-sheet > skills:** added style and classes to the skills layout of the agent sheet ([6ff88e2](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/6ff88e2399aea5584bf00fb557b68f33034f2a0c))
+- **actor-sheet:** change the size of actor-sheet (height: 849 -&gt; 820) ([e74d2dc](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/e74d2dcfca2b8a7c04d34f23a1e1d372cc5f5977))
+- **agent data:** added `goals` and `spaces` for weight system and changes biography standard data ([491886b](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/491886be19cc512293c0060980836bf44a95b088))
+- **item-armament-sheet:** added fieldset and legend in types and roll formula fields ([7586e71](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/7586e7159f05b576484452e736326381494bc777))
+- **localization:** added translate variables of attributes abbreviations ([a745d3b](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/a745d3b98c7760ce61ff0f5ed841e87b62dd7340))
+- **style css/sass:** added style for skills and new util classes ([f47d69f](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/f47d69f2427dbf7c585f7529ed952b75207132c4))
+- transparent border now is a variable ([62eca88](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/62eca88aca4ce45dfeba72b0172c2217f89935af))
+- **weight system:** added weight system and style changes ([0c930b2](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/0c930b2b10f7b1a20b31abd08ee303e102be6f8e))
+
+## [6.0.1](https://github.com/SouOWendel/ordemparanormal_fvtt/compare/v6.0.0...v6.0.1) (2023-11-14)
+
+### Bug Fixes
+
+- **update notes:** added 6.0.1 update notes ([d445317](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/d445317870b992affaef5c7deab532d7f4fb4d6d))
+
+## [6.0.0](https://github.com/SouOWendel/ordemparanormal_fvtt/compare/v5.0.1...v6.0.0) (2023-11-14)
+
+### ⚠ BREAKING CHANGES
+
+- **open source acessibility:** Changing the name of the variables related to the agent form results in data loss and thus a loss of compatibility with previous forms, it will be necessary to create another one with the same data as before.
+
+### Features
+
+- **actor:** adaptation to English of variables ([aac017b](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/aac017b51d4e4497517f96f7134c0b753f5fd7e3))
+- **actor:** added skills roll variables for actually local language of system ([614016b](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/614016b8db0b1e8b7424a3e4b00bd54a18f36896))
+- added and deleted console logs ([02b7fa7](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/02b7fa725490bedf93c6c121f1eba9ab7591d28a))
+- **agent sheet inventory:** the armaments group now has rollable hover animation on img ([804f0df](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/804f0dfddd98d53dffdc5a61e48a7b1800064856))
+- **chat-message:** the document that manages the chat message log was created ([a6a2200](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/a6a2200228209997892d9ecb3783dca760b8f553))
+- **config variables:** for open-source acessibility, the variables are translated for english. Added attack skills dropdown. ([f98d400](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/f98d4001f5bdaa4f090e74ccc2209ba79745f4e2))
+- **config:** added categories data and jsdoc descriptions (but still pending) ([2d2b0ff](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/2d2b0ffaa73922ebd0d9343e0ecd89f522f6b889))
+- created the system of item macro drop inspired in DND5e System ([4ddfeaf](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/4ddfeaf1870022caadca353dba7d5697655f31c5))
+- **css/sass:** added styles for dialog (dialog-buttons) and buttons and spans for item card ([ae79630](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/ae796309dff44216d309a71965dc8f6e33341378))
+- **css/sass:** adjusts of border style and was created an hover animation for rollable items ([0477f7b](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/0477f7b72ae46609a43b63573158c879fc6650e5))
+- **css/sass:** styling the combat tab and weapon item specifications ([07b5ff0](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/07b5ff0b5e9ccd1a8acc8601e35f02bf89e4bb5a))
+- document calling through the creation of a module inspired by the DND5e system ([a72b1b3](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/a72b1b3e0c0561692f0e2f307f97c1f770d0638b))
+- **item armament sheet:** added some fields and stylizations for especifications and combat tabs ([d910248](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/d910248aee82a96b3bf7a130690b81dc64d0b856))
+- **item armament sheet:** refactoring the fields and creating the specifications and combat tab ([9c9fe5e](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/9c9fe5eee4ce5a1465ab9bf894ab1c86fe8faba2))
+- **item-card template:** the item card template for chat items was created ([baa1aa4](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/baa1aa454ddaf133b3cd8bbfced6f585dbec0c6d))
+- **item-sheet:** added categories on the context variable ([f4c5caa](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/f4c5caad46f591ce4a19c3e05864c9b233456a8f))
+- **item-sheet:** added the `attributes` and `attackSkills` dropdown ([f3693e0](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/f3693e0b697d8c5e9853095da1b42dfad1020400))
+- **item:** added an chatListener, an chatCardAction Handler and gets the item information ([6b200ba](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/6b200ba0f5b8e6b4399bc10cb11268bc641e0eed))
+- **item:** called the respective card in chat of respective item ([f47b528](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/f47b52844bb167bcd3d92bb342ea832123e8177b))
+- **localization:** added translates for new specifications and combat tab for armament item type ([4ae9fd7](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/4ae9fd782abeb9767d2af9ebd8a08dc1b63e4010))
+- **localization:** added translates for warnings and errors of Macro System, overmore tab translate ([6c18c78](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/6c18c7864df31994f781f8ed66705b0d2b0ca5a9))
+- **localization:** added translations for armament conditions ([ddb68d9](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/ddb68d9de5b13d6a9cf340a091b8df0699e8ca14))
+- **macro.mjs:** call the method use() for usages of item ([8902603](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/89026032640a08f1e1908339744a5eeb3895e0fe))
+- **message-system.mjs:** the previous updates now are viewable ([78aeb31](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/78aeb317b06fc73598febd2d2f6bd7d2be21a79b))
+- **open source acessibility:** several variables were changed. To improve code accessibility ([3ad79fc](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/3ad79fc6cf7525a335f33afe20e36bdfced4373f))
+- **system core:** macro codes have been moved. Now module are used for documents (\_partial_module) ([c5e833e](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/c5e833e5668e3198a9ff4639fd2d94c64675cd46))
+- **system core:** the turn lasts 6 seconds. The Order's logo is displayed. Hooks added ([b3a67e5](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/b3a67e56219599abd5ab35fc4ac5433c705bebf3))
+- **system.json:** the minimum version changed from v10 to v11 ([5d99800](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/5d99800d2196006bc5d531fc8906fdcd100b2bd3))
+- **template data:** now the the standard value of critical is null string ([aa532e8](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/aa532e81f5ac2f9c26e12912c4522c31efadb4b3))
+- **template.json:** added base description and biography, refactoring the formulas data ([039db29](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/039db298eb435773cc9ceef3b86192ed2846c5c6))
+
+### Bug Fixes
+
+- **dialog style:** the css class .adverts was a reserved word and was changed to .announcement ([0a226d6](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/0a226d6f3f924f015c135cfa5e01b48f79d588ef))
+- **font awesome icon:** changed the icon for damage action ([9134ee8](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/9134ee876ae377a10a64a93f32344450d963169b))
+- **localization:** an inappropriate character was removed from the translation of the science skill ([b0742e4](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/b0742e45dbb4d444c1191eba13828ab85065b74c))
+- **update notes:** corrected version of release notes ([8c653ba](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/8c653ba751e37dfb45367773f6deb9f198455568))
+
+### Performance Improvements
+
+- **actor-sheet:** adaptation for efficient code reuse of form status calculation ([3a041d1](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/3a041d185e61f80cae14b08147166d700f48f1a6))
+- **effects:** adaptations for v11 version of Foundry and style changes ([3da4692](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/3da469282e6007692167205388fc0b8352e54fdd))
+
+## [5.0.1](https://github.com/SouOWendel/ordemparanormal_fvtt/compare/v5.0.0...v5.0.1) (2023-10-31)
+
+### Bug Fixes
+
+- **biography and description:** fix the height of editor field ([3b9d038](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/3b9d038d7142ce0013349947d5ba122f9322c457))
+
+## [5.0.0](https://github.com/SouOWendel/ordemparanormal_fvtt/compare/v4.1.0...v5.0.0) (2023-10-27)
+
+### ⚠ BREAKING CHANGES
+
+- **refactor and item changed:** Items formerly called Powers have disappeared.
+
+### Features
+
+- **actor-sheet:** added the invalid item system ([1fcb796](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/1fcb7964b52eb2c30e336febba4878899e1dab2c))
+- **actor-skills:** now the skills page has two columns ([be992bf](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/be992bfe4f6c19e971d1d943f7c34dc24b309d34))
+- **css/scss:** changed the size of image item and adjusting the skills style ([cda490f](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/cda490f3a68d92f4b848a2643b9cad23817bf383))
+- **css:** added the style for item-alert (when the item is invalid for the categories) ([6669e9d](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/6669e9dfa12bfdb2763b92315b34919e53e975e4))
+- **effects and localization:** added translates for effects ([77db14d](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/77db14d233f3e96cff9c897f690f3df560e1261f))
+- **fix and actor-sheet:** added the abilities system. fix of defense calculation and draggable item ([db328f9](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/db328f9d7d58c6ebad3a2e12eb559df866fcbb1b))
+- **handlebars:** added the IfInequals helper for inequals comparations and fix the abilityTypeHelp ([edc0780](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/edc07806b7a8377168ba1374e843aa53fd298590))
+- **item-sheet:** added the effects system on the item-sheet ([40c6b8f](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/40c6b8fde2a94e0419fc59b0ef9354d613395a43))
+- **item-sheet:** changed the size of window: width 350 -&gt; 380, height 480 -> 400 ([07447ef](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/07447effec38e98e5a1adeb0df47341031055f59))
+- **items-sheet:** added new effect tab on items and the respective partial of handlebars ([cd9fda0](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/cd9fda0cf3b176c746e1ae89b62a3fc1a095e9ca))
+- **items:** added translates variables and checkbox on rituals (studentForm and trueForm) ([38b28c1](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/38b28c13a64484d64381f259b53de8a6e1838bc2))
+- **localization:** added translates for item fields and changes to the Power tab, now is ability ([952bb23](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/952bb23782cd71eea682a441c1198395be3a29a8))
+- **patch notes dialog:** added one sidebar for update notes and changed the text formatting ([4710fb4](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/4710fb44980c72d1741357c4d24da21e4f35fd09))
+- **patchnotes config:** default variable is changed: true -&gt; false ([8f7af09](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/8f7af09302bd3610812d6ed1e82ae267473606ae))
+- **refactor and item changed:** changed item and Power tab to Ability. Fixes to the template ([ded9986](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/ded998613e5efa2d7989e1f362cdc96262feb666))
+- **scss:** added the style for item-alert (when the item is invalid for the categories) ([9f632be](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/9f632be0de16e4927d990b487001560df00f5a9a))
+- **style:** registered the abilityTypeHelper and the toUpperCase helpers ([7231a80](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/7231a80db97b6b28cbb15efdf2e12382870e3fb4))
+- **update notes:** added the 5.0.0 update notes and delete the banner texts ([3acff92](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/3acff92a4d0653493cd409fa43dcc54b61eb20ac))
+
+### Bug Fixes
+
+- **actor-abilities:** fix the name of abilities ([5ebae07](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/5ebae075088fe4affc1634ae53eadb63502f5e2b))
+- **roll formula:** fixed a bug where tokens with 0 agility would receive a null roll ([5a50c0f](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/5a50c0f6bd2d4f7edef479e14b4a88146809edc2))
+
+### Performance Improvements
+
+- **actor-agente-sheet:** delete the unnecessary css class ([9d3feca](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/9d3fecaff40c4e0337ae917e8b5a5057455b23d9))
+
+## [4.1.0](https://github.com/SouOWendel/ordemparanormal_fvtt/compare/v4.0.0...v4.1.0) (2023-10-23)
+
+### Features
+
+- **css/scss style:** setting the style of the updates window and all system items ([d84618f](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/d84618f09a5253865a991ef1b966f7cc63d9e5c4))
+- **handlebars:** added a helper for validate inputs (disabled or not) ([0c9f23c](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/0c9f23cafd075a020b3556071b030f7175a5ada8))
+- **item-sheet:** item window size has been changed: 520 -&gt; 350 ([35d694c](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/35d694c1dce60df9824b02db6f1ddb681b369e4c))
+- **style and items:** reordering the fields of items, added the styles class, validate inputs ([9cd6548](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/9cd654850a57c963480bdd4062962c63f194fb11))
+
+### Bug Fixes
+
+- **localization:** the writing of the translation variable was incorrect ([dc64703](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/dc64703a4913992afd77e780e6a6561c5ce6d8d5))
+
+## [4.0.0](https://github.com/SouOWendel/ordemparanormal_fvtt/compare/v3.1.0...v4.0.0) (2023-10-18)
+
+### ⚠ BREAKING CHANGES
+
+- By changing the variable name of general items, some items may no longer work, in addition, other types of excluded items may also no longer work.
+
+### Features
+
+- **actor and fix:** added the [@roll](https://github.com/roll)Initiative tag to generate roll formula and to use it in combat ([f3a2dd1](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/f3a2dd1788409cbd21877fa96fe8793cfe46e572))
+- **actor-sheet and items:** the onMarkItem function was created, it manages used and unused items ([9a62b6e](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/9a62b6e82ab322811f50c8dc512e9d5627b159f6))
+- call the displayMessages and registerSystemSettings methods in js file ([bd890fd](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/bd890fd31c430026c2d986c6dc031b34d83b45fc))
+- **fix:** added some translates with HandleBars and fix the names and functions in html ([b6a692f](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/b6a692f43eb474b0509a090cea8663ea01c30b12))
+- **item-sheet:** added new item-sheet with new tab and name, replacing the habilities ([50c66a9](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/50c66a9ca54850af55998f6cd0b96dba8ac02ea3))
+- **item-sheet:** added the ritual and icons function features, moreover, added the send-chat action ([ec9fe65](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/ec9fe6589adc8ed2a32aa8ca7444be835aa36c7b))
+- **item:** added new item power and group for same item, moreover, created the html template ([5e562d5](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/5e562d58013796665201a4886c330e15119458ef))
+- **localization:** add translates for ritual and power (en and pt-br) ([08e830f](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/08e830f00fc845eecd8a2ed060818cbb2998861d))
+- **localization:** added plural translations for item translation variables. added patchnotes in pt ([b50f11d](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/b50f11dc633d6cf210addd3a7424d1b30aded596))
+- **patch notes:** added patch notes feature ([1fa1beb](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/1fa1beb99e3c5a3eeee37ceade358b55416bb819))
+
+### Bug Fixes
+
+- change the patch version of patch notes message and fix the powers group ([a65a14c](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/a65a14c9362de27bb112777ec38266e9655cec1e))
+- disable the debug.hook, only useful for development ([5957453](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/5957453d5d34e4d1e0ba1f25e73a5e9097c90da1))
+- fix the name: data.resistence -&gt; data.resistance ([ee864fa](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/ee864fa328e6a7ba0e2e538106420ebb1325ffea))
+- **patch notes and message:** change the window size and fix the name version, also, added a note ([5216172](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/52161724ff6693da93c6c1b27c0af3ed0270a07e))
+- **patch notes and message:** fix the html ([ea4d69f](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/ea4d69f5fc44a874fe36fcfb1e5fd9e05b47dc4a))
+- tag name correction and deletion of useless items ([a81dc19](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/a81dc19ae96274051d8e695f7d74e6de6a5a5a2b))
+
+## [3.1.0](https://github.com/SouOWendel/ordemparanormal_fvtt/compare/v3.0.0...v3.1.0) (2023-10-09)
+
+### Features
+
+- **actor-sheet and templates:** added, deleted and renamed some files related to templates ([c4bd784](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/c4bd784924b467c5e1fba34e518ad34db0ee9146))
+- **actor-sheet:** added group type of items 'protection' and initiate a prototype of rituals group ([26545be](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/26545be13124a5c631d7e9402d784af3dd2e12ea))
+- added the items for the system: ritual, armament, protection, general equipament and power ([5d0b740](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/5d0b74070cb95d9a8410a1d29fa3c688355ac5cd))
+- **localization:** added translates for dropdowns in portuguese brazil and base structure in EN ([cfa0d1a](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/cfa0d1a31e38ba3bf99e28d8c1451815afa2a1f4))
+- **localization:** added translations for tab titles ([c130755](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/c130755ad33543f81fd7868e23e22afaeba89fc4))
+
+## [3.0.0](https://github.com/SouOWendel/ordemparanormal_fvtt/compare/v2.1.0...v3.0.0) (2023-10-06)
+
+### ⚠ BREAKING CHANGES
+
+- **rename file:** The actor variable has been changed, this causes incompatibility with previous versions, as the template system works dynamically with the actor type.
+
+### Features
+
+- change the actor name: Agente -&gt; agent. delete character and npc data. added more item types ([2078c8d](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/2078c8d5a856b01dc65d2cc5f99b3b2efdb70de3))
+- **localization:** added translates for Actor and Item Types ([f3e7491](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/f3e749191ee175c7e7e0709607974cafd247b506))
+- **template:** create templates for new item types (copy of item template of boilerplate) ([96247df](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/96247df3ddbaa1106de46780c894e4d909eb8511))
+
+### Bug Fixes
+
+- **refactor:** fix the name of actor and change object options for Bar Brawl (visibility) ([9e3a491](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/9e3a491a4c1b849325717eb52e2f5fa1f9e38dc9))
+
+### Code Refactoring
+
+- **rename file:** rename file because the agent is changed ([423d85b](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/423d85bb12a754c51df8a8420641b6e81441e813))
+
+## [2.1.0](https://github.com/SouOWendel/ordemparanormal_fvtt/compare/v2.0.0...v2.1.0) (2023-10-04)
+
+### Features
+
+- **compendium:** added some RollTables: create quick mission, temporary sanity effects, origins ([fc6d3e2](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/fc6d3e2fe52cadb65a27799f731158e8d92bd20b))
+- **refactor:** conversion of all compedium data for JSON files and DB files. Rename the compediuns ([73f7c32](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/73f7c32d2ef5d99ff73b9ee268dd31e16897258d))
+- **release-please:** include the packs folder in generating zip system of Github Actions ([d845d1d](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/d845d1d7b8f88f62ed416bad414934883728b033))
+
+### Bug Fixes
+
+- **bug:** fix the RollTables Compendium. call other RollTables in Document instead of the Compedium ([175c98b](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/175c98ba6f5b11ccca464cb60a6ff922e492c325))
+
+## [2.0.0](https://github.com/SouOWendel/ordemparanormal_fvtt/compare/v1.12.0...v2.0.0) (2023-10-03)
+
+### ⚠ BREAKING CHANGES
+
+- the ID is the most important data of the system, without it nothing works, same for the mistakes
+
+### Features
+
+- **actor:** added the system of degrees with dynamic data ([5954062](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/5954062f4beb004f83aee2beef4c060125fadfda))
+- **feat and fix:** created the Handlebars Helper 'numberInputFVTT' and change ordemparanormal_fvtt ([80224b5](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/80224b5151684077927626265fa999fd76918120))
+- **fix:** added the dropdown of origins and changed 'ordemparanormal_fvtt' to 'ordemparanormal' ([e0e0ff0](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/e0e0ff0cd5f94d20d42e4a097d8c229c7443fb36))
+- **fix:** added the following fields: pePerRound, origin, defense, dodge, displacement ([19a4202](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/19a4202fa612a5371bfcadda86509d9f35634b96))
+- **localization:** added pePerRound and origins data. Translations for PTBR ([dd56150](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/dd56150118fb49d5b25fdeb8976e6f38d4b7d486))
+- **system:** added some fields: PE.perRound, defense and desloc ([3c24b9d](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/3c24b9d0f5077a933e316eedf6cb623faba84da8))
+- **system:** added the ID: ordemparanormal ([1855466](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/1855466f7809645d9b32af89214ec3b877c40bdd))
+
+### Bug Fixes
+
+- changed the ID of the System.json: ordemparanormal_fvtt -&gt; ordemparanormal ([411548d](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/411548dbf2df698141700a41de687d6b34e4a301))
+
+### Performance Improvements
+
+- **feat:** added quick access variables and added degree value on the formula of roll a dice ([bd02cc8](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/bd02cc82d4069fa54b08ed109b0a9ab525eac8cc))
+
+## [1.12.0](https://github.com/SouOWendel/ordemparanormal_fvtt/compare/v1.11.0...v1.12.0) (2023-10-02)
+
+### Features
+
+- **actor agente sheet:** style and added the dropdowns and PE field. Changes for formula system ([8a1820a](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/8a1820a1050f634749669dd4f393a6616ce9e043))
+- **actor-sheet:** dropdowns have been added to context and class information was made dynamic ([aafe73b](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/aafe73b081e517abb550f198d3e582a25166e3a4))
+- **config:** added the system constants for Trilhas and Class ([492556e](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/492556e9590dcb39739484a69c22cde6b10364b0))
+- **localization:** added translates to Portuguese for className and classChoices ([891fe8f](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/891fe8fd4ac281307da8e4408ea3c9a19f0779d4))
+- **template:** added the Class and Trilha data ([fd73bee](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/fd73bee20edd46e1fa165a1845eb944cf4295cb1))
+- was created the Handlebars Helper concatObjAndStr for concat multiples objects and strings ([6748f71](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/6748f71a6aa63f179d50c2ab7b012c5c694bc46e))
+
+### Performance Improvements
+
+- **actor:** change the Loop System Attributes for prepareBaseData. Now the data is processed before ([264a272](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/264a2727a810c070ef4af553c6fd95869449ae5f))
+- clean the code of console logs and use the appropriate data for save the info ([cc32a1e](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/cc32a1e0f6911309fd7e679ec8aedaa8f8bbbc19))
+
+## [1.11.0](https://github.com/SouOWendel/ordemparanormal_fvtt/compare/v1.10.4...v1.11.0) (2023-09-27)
+
+### Features
+
+- **release-please:** added the auto-commit for the changes on the system.json .download ([4e4ab65](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/4e4ab655cefd0023b69f69d3cd7a22c9234cfd58))
+
+## [1.10.4](https://github.com/SouOWendel/ordemparanormal_fvtt/compare/v1.10.3...v1.10.4) (2023-09-27)
+
+### Bug Fixes
+
+- **release-please:** one more attempt. added git-auto-commit-action@v4 for commit changes ([759ef2c](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/759ef2c6803125705cd08b36218769ec27a1e221))
+
+## [1.10.3](https://github.com/SouOWendel/ordemparanormal_fvtt/compare/v1.10.2...v1.10.3) (2023-09-27)
+
+### Bug Fixes
+
+- **release-please:** one more attempt, but now using the action-set-json-field Job ([abd0458](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/abd0458bac2af6199b88f8c6151bfc8467104e3d))
+
+## [1.10.2](https://github.com/SouOWendel/ordemparanormal_fvtt/compare/v1.10.1...v1.10.2) (2023-09-27)
+
+### Bug Fixes
+
+- **release-please:** attempt to test pretty json and change the system.json on the repo ([4f39969](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/4f39969340415878bcf54dadb5c5894a56640378))
+
+## [1.10.1](https://github.com/SouOWendel/ordemparanormal_fvtt/compare/v1.10.0...v1.10.1) (2023-09-27)
+
+### Bug Fixes
+
+- **release-please:** change the release.outputs.release_created to tag_name ([ef8cf0d](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/ef8cf0dad7e7d40b392b8e29487c7fc1ad88cb2c))
+
+## [1.10.0](https://github.com/SouOWendel/ordemparanormal_fvtt/compare/v1.9.0...v1.10.0) (2023-09-27)
+
+### Features
+
+- **manifest:** new link of manifest more compatible of Foundry with base of DN5 System ([5a1a290](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/5a1a290bd2f17d96a0ff18583b31e342ab54c50c))
+- **release-please:** attempt to add automatic release download url ([b8ae9f0](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/b8ae9f0cc69153687e18c1767e86b6405d784fac))
+
+### Bug Fixes
+
+- **localization:** delete the symbols ([7c5c440](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/7c5c440271cfe6bd204789e929623be842e03a4d))
+- **release-please:** attempt to fix the 'bad substitution' ([c3f8089](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/c3f80897c39fd19bfecf57744e3ff88ad7b31dd8))
+- **release-please:** attempt to fix the download link version. Set variables and refactor some jobs ([f203b26](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/f203b2671c76034c8232a914ed69a8ec1c49ade5))
+- **release-please:** attempt to fix the error: 'The template is not valid.' ([6f267c1](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/6f267c1eed7f97bc65752d15856aef9af20d3f99))
+
+## [1.9.0](https://github.com/SouOWendel/ordemparanormal_fvtt/compare/v1.8.0...v1.9.0) (2023-09-27)
+
+### Features
+
+- **actor-sheet:** context consts for dropdownDegree(optionObj) and system ([e530d9a](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/e530d9ad5f4c7e5ddd816fdc71630f4816d614a3))
+- added multiples constants of system: dropdown, skills, attributes and base stats ([127c69b](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/127c69bb8a3b5c40a472641d29b7620c7fbf9188))
+- **agente sheet:** added select with handlebars helper to Foundry API using the selectOptions ([3ab369f](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/3ab369f0813fb30d6d34680bb90135e68f15abeb))
+- **localization:** added translations for more skills and the degree dropdown ([b4a2db5](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/b4a2db5538840f779eabdb78c8fc1dbb546a5686))
+- **system:** added flags for hotrealoding the html, css and json files ([c07d508](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/c07d508a0d9b0fccdfb54732cb2708c4f94393d3))
+- **template.json:** data for Agente: many skills, conditions for skills, changed some values ([e51e55a](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/e51e55ac9cf6059c3561ef143eb4cc3a9b9b93d4))
+
+### Bug Fixes
+
+- change unnecessary declarations: let -&gt; const ([167f1c5](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/167f1c56634b13469bc05cbef0a3065f5529e0e9))
+
+## [1.8.0](https://github.com/SouOWendel/ordemparanormal_fvtt/compare/v1.7.0...v1.8.0) (2023-09-21)
+
+### Features
+
+- **actor-data:** adaptations for data system based on Ordem Paranormal. (PV, NEX, PE, SAN) ([963dcc0](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/963dcc024997dd8c90dd3b85a58ff04bc0c95327))
+- **hooks-actor:** added the Hook preCreateActor for preset the bars and initial configurations ([4ed727d](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/4ed727d212ade6f8927cb1ad2879330b5b155767))
+- **lang:** added more localizations for English and Portuguese-Brasil ([61f5048](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/61f504866004e0c9aec3f3448f5b7d928306b0e2))
+
+## [1.7.0](https://github.com/SouOWendel/ordemparanormal_fvtt/compare/v1.6.0...v1.7.0) (2023-09-18)
+
+### Features
+
+- **actor:** system adaptations. Added the number of dice (d20) according to skill and attributes ([4a311e8](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/4a311e81b9d36552b167c043f783da10b21ca6b7))
+
+### Bug Fixes
+
+- **release-please:** correct version ([3262e7a](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/3262e7a5284e96ee3119a3e6a8f3823d106d58e1))
+- **release-please:** fix the next release (previous tag release is not detected) ([34e9348](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/34e93486de3220ed18559e8398d5f708d33abf20))
+
+## [1.6.0](https://github.com/SouOWendel/ordemparanormal_fvtt/compare/ordemparanormal-fvtt-v1.5.0...ordemparanormal-fvtt-v1.6.0) (2023-09-15)
+
+### Features
+
+- **manifest:** added the manifest link and download link ([cb7167d](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/cb7167d385cd8b7b78e5be8e69fe2135b6a2d292))
+- **release-please:** configuration for generate zip file and comments for orientation ([abc765e](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/abc765ecc335e75f81c24aeb1ddc57524ddd444d))
+
+## [1.5.0](https://github.com/SouOWendel/ordemparanormal_fvtt/compare/ordemparanormal-fvtt-v1.4.0...ordemparanormal-fvtt-v1.5.0) (2023-09-15)
+
+### Features
+
+- **release-please:** copy the configurations for fvtt-system-rqg repository ([122b9e9](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/122b9e9cb2d59b9148b987911e8625a2f5355a8b))
+
+### Bug Fixes
+
+- **release-please:** update the version ([f1d8bd6](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/f1d8bd691dbd22931db048f695cc20981a1f805a))
+
+## [1.4.0](https://github.com/SouOWendel/ordemparanormal_fvtt/compare/v1.3.0...v1.4.0) (2023-09-15)
+
+### Features
+
+- **release-please:** attempt to add the command release-pr for create pull requests with release-p ([0551ef6](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/0551ef6fc41a2af50d7f7edec5aad5e862174a8a))
+
+### Bug Fixes
+
+- **release-please:** attempt to reset and trying the command manifest again ([9794046](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/9794046ace671624d4476b2b8fb04ee54878f299))
+- **release-please:** correct parse json. added the version ([09bd88e](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/09bd88e554e08e4dbd02b841de03e1d3faca1596))
+
+## [1.3.0](https://github.com/SouOWendel/ordemparanormal_fvtt/compare/v1.2.2...v1.3.0) (2023-09-15)
+
+### Features
+
+- **release-please:** added the code: command: manifest-pr ([36c234a](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/36c234a91b99634206d0d5f2a20280a097b11313))
+- **test:** test ([00243f5](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/00243f5437a9d89727d728f0e3e22bb248f2f6cc))
+
+### Bug Fixes
+
+- delete the command manifest ([ebd32cb](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/ebd32cb4ca47f1764498a3fc8568a258dc7da230))
+- fix the correct version for 1.2.2 ([4a6f115](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/4a6f115fb26f12365c6b93072ea71540c488ec86))
+- **release-please:** fix json code. packages are unnecessary because there is no package ([b772589](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/b7725895f76f3b21eee8045b0faa6d8b6a545e4a))
+- **release-please:** one more attempt ([2890de1](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/2890de15b062d5a5853ffe236650455e0fcd4f6d))
+
+## [1.2.2](https://github.com/SouOWendel/ordemparanormal_fvtt/compare/v1.2.1...v1.2.2) (2023-09-15)
+
+### Bug Fixes
+
+- **release-please:** one more attempt for configure the versioning the system.json file ([7aaad3d](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/7aaad3d7c3d40721414e115e619169eadaa744a3))
+
+## [1.2.1](https://github.com/SouOWendel/ordemparanormal_fvtt/compare/v1.2.0...v1.2.1) (2023-09-15)
+
+### Bug Fixes
+
+- **release-please:** correting the formatting and path for json file to system.json ([dd4c063](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/dd4c06355f6d9e1848a403dc3d9b02ff8bdcc857))
+- **release-please:** fix the initial version for release-please ([63ab4c3](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/63ab4c324a4167a580973929ef33fcfbfaddcdf4))
+
+## [1.2.0](https://github.com/SouOWendel/ordemparanormal_fvtt/compare/v1.1.0...v1.2.0) (2023-09-15)
+
+### Features
+
+- **release-please:** configuration for versioning the system.json and your initial version ([2bd1fb7](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/2bd1fb7a238798e35f3232e7d3fb080f3b2b61c2))
+
+### Bug Fixes
+
+- **rename:** fix the name. there should be a dot at the beginning of the file name ([8b6ba4f](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/8b6ba4fc098bad6cabd7cf390a9700e6af0513fd))
+
+## [1.1.0](https://github.com/SouOWendel/ordemparanormal_fvtt/compare/v1.0.0...v1.1.0) (2023-09-14)
+
+### Features
+
+- change the versions ([e28e75c](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/e28e75c94f912f86b01b2adf90bc7589076c5339))
+- **release-please:** configuration changes for system.json versioning and other additional settings ([995d740](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/995d740744ee013b2b7d16468da7034c44470096))
+- **release-please:** the file system.json now is added for releases ([f143919](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/f14391936606baaf0f61141941a0e048676038d9))
+
+### Bug Fixes
+
+- **release-please:** fixing the illegal pathing characters in path: ./system.json ([dabfe2f](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/dabfe2f5c19d0f6f63fcfd3b6cf73b9dc41b9709))
+
+## [1.0.0-alpha](https://github.com/SouOWendel/ordemparanormal_fvtt/compare/v0.2.4-alpha...v1.0.0-alpha) (2023-09-14)
+
+### ⚠ BREAKING CHANGES
+
+- Changes to the system file compromise compatibility by altering the entire functioning of the system.
+
+### Features
+
+- **actor-data:** added the Agente actor's data ([2787fb1](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/2787fb1dc64fd4459a43f939541c72e7f4d78567))
+- **actor-sheet:** new template for actor Agente and your sheet ([56ca774](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/56ca7744899974d44dc1b8423ba4ae9cdbb1e049))
+- **actor:** added modifications based on copy the character's sheet ([39cda45](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/39cda45cdfaffaf92fd4bf9fa05c55f55eda059f))
+- added: pt-BR localization, module requirement Bar Brawl, correct path os esmodule and styles ([6ad9ace](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/6ad9ace6ab1d5e070888b241f918416f3f8eb601))
+- initial boilerplate to system in FoundryVTT by Matt Smith ([5d77ad1](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/5d77ad1e44bff59ca31169fb26cf9d44459a666a))
+- **localization:** added translations for skills and attributes data ([32eace5](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/32eace5ac338d7c55a0fdb7b3afd2b3a6483539e))
+- **release-please:** added new line to input 'extra-files', an attempt to version the system.json ([10236d5](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/10236d528d2b2063582262823ce9a91b83d05670))
+- **sheets:** change the window size and adaptations for new actor Agente ([32007e9](https://github.com/SouOWendel/ordemparanormal_fvtt/commit/32007e9ce8b9ebde368c6eaae3eead6bf9e6788d))
+
+## [0.1.0-alpha](https://github.com/SouOWendel/ordemparanormal-fvtt/compare/v0.0.3-alpha...v0.1.0-alpha) (2023-09-07)
+
+### Features
+
+- test commit ([e9f5ef6](https://github.com/SouOWendel/ordemparanormal-fvtt/commit/e9f5ef6324d7a029047dae5114fd4bd89b07ebd0))
+
+## [0.0.3-alpha](https://github.com/SouOWendel/ordemparanormal-fvtt/compare/v0.0.2-alpha...v0.0.3-alpha) (2023-09-07)
+
+### Bug Fixes
+
+- one word missing (test) ([bcc8e29](https://github.com/SouOWendel/ordemparanormal-fvtt/commit/bcc8e290d96a430a57cbfc7e654c987f2a60c287))
+
+## [0.0.2-alpha](https://github.com/SouOWendel/ordemparanormal-fvtt/compare/v1.0.0...v0.0.2-alpha) (2023-09-07)
+
+### Features
+
+- archive for test ([ab31893](https://github.com/SouOWendel/ordemparanormal-fvtt/commit/ab31893391f27f525b2ec726d33a2e42c82751c9))
+- initial configuration from system FoundryVTT creation ([f7aac4a](https://github.com/SouOWendel/ordemparanormal-fvtt/commit/f7aac4a3c84f31e7de6ac8288e73c4a60367bcd2))
+- system doc for FoundryVTT ([1a707f6](https://github.com/SouOWendel/ordemparanormal-fvtt/commit/1a707f627b413a2b4f69519597640bcb37a67f0a))
+- test commit ([ffe9c68](https://github.com/SouOWendel/ordemparanormal-fvtt/commit/ffe9c6841713b8051e5ccec9a558e729f5a9a254))
+
+### Reverts
+
+- revert for original state ([91d190b](https://github.com/SouOWendel/ordemparanormal-fvtt/commit/91d190b0a6947ab041c7436eca101c2690f31ff2))
+
+### Miscellaneous Chores
+
+- release 0.0.2-alpha ([21406f6](https://github.com/SouOWendel/ordemparanormal-fvtt/commit/21406f67d5723b7d036d6c0726dc52588176387d))
+
+## 0.0.1-alpha (2023-09-07)
+
+### Features
+
+- add a gitignore and the folder 'node_modules' ([ffd7764](https://github.com/SouOWendel/ordemparanormal-fvtt/commit/ffd7764532fdbcef9999c478466c0263dd3da256))
+- add the png for Ordem Paranormal logo ([eab2962](https://github.com/SouOWendel/ordemparanormal-fvtt/commit/eab296208f1d870fad09d5f6f554fd6b3e3d37b8))
+- added archives for ignore certain archives from prettier and eslint ([b5798ac](https://github.com/SouOWendel/ordemparanormal-fvtt/commit/b5798ac73e53ef06da8291317f6b7f0663e84f75))
+- added configuration for release please and github actions ([a27c19e](https://github.com/SouOWendel/ordemparanormal-fvtt/commit/a27c19ee5d1ebf7c5449da032451910aede99f62))
+- added possible archive for prepare commit msg from husky dependency ([4778d7b](https://github.com/SouOWendel/ordemparanormal-fvtt/commit/4778d7b3ca8b756c055b4c5c6d55cc46a66c75df))
+- added the eslint and prettier to standardize the code ([e740f63](https://github.com/SouOWendel/ordemparanormal-fvtt/commit/e740f6303b969678b0f322da820f03de113a00f3))
+- archives for npm and initial configuration for commitizen, husky and commitlint ([6115ce1](https://github.com/SouOWendel/ordemparanormal-fvtt/commit/6115ce10448f2ab143b9e9417f25fbc2ceed4902))
+- auto lint of commits with husky ([2305212](https://github.com/SouOWendel/ordemparanormal-fvtt/commit/23052126d197726a1382a8b9273d3827e5292e56))
+- initial configuration for commitizen ([f027e10](https://github.com/SouOWendel/ordemparanormal-fvtt/commit/f027e10b618165d8254f034799d3229276f29365))
+- initial configuration for commitlint ([af61bfe](https://github.com/SouOWendel/ordemparanormal-fvtt/commit/af61bfecc5863c49e840345ca925507c56d22a29))

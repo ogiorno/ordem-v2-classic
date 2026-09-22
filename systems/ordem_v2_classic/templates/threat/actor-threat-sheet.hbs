@@ -1,0 +1,299 @@
+<section class="{{actor.type}} threat flexcol" id="threat" autocomplete="off">
+
+	<!-- CABEÇALHO -->
+	<header class="threat-header flexrow">
+		<img
+			class="threat-profile-img"
+			src="{{actor.img}}"
+			data-edit="img"
+			data-action="onEditImage"
+			title="{{actor.name}}"
+		/>
+
+		<div class="identity-info flexcol">
+
+			<!-- NOME E VD NA MESMA LINHA -->
+			<div class="name-row flexrow">
+				<h1 class="charname">
+					<input name="name" type="text" value="{{actor.name}}" placeholder="{{localize 'op.threatName'}}" />
+				</h1>
+
+				<div class="vd-box flexrow">
+					<label title="{{localize 'op.VD'}}">VD</label>
+					<input
+						type="number"
+						name="system.attributes.vd.value"
+						value="{{system.attributes.vd.value}}"
+						data-dtype="Number"
+					/>
+				</div>
+			</div>
+
+			<div class="classification-row flexrow">
+				<div class="class-box">
+					<label>{{localize "op.type"}}</label>
+					<select name="system.details.creatureType">
+						{{selectOptions threatTypes selected=system.details.creatureType localize=true}}
+					</select>
+				</div>
+				<div class="class-box">
+					<label>{{localize "op.element"}}</label>
+					<select name="system.elements.main">
+						{{selectOptions elements selected=system.elements.main localize=true}}
+					</select>
+				</div>
+				<div class="class-box">
+					<label>{{localize "op.size"}}</label>
+					<select name="system.size">
+						{{selectOptions threatSizes selected=system.size localize=true}}
+					</select>
+				</div>
+			</div>
+		</div>
+	</header>
+
+	<!-- CORPO DA FICHA -->
+	<section class="threat-body flexcol">
+		<div class="central-columns flexrow">
+
+			<!-- COLUNA ESQUERDA -->
+			<div class="col-left flexcol">
+
+				<!-- PRESENÇA PERTURBADORA ISOLADA -->
+				<div class="resource danger-box flexcol">
+					<label class="resource-label">Presença Perturbadora</label>
+					<div class="resource-content danger-stats flexrow">
+						<div class="stat flexcol">
+							<label>DT</label>
+							<input
+								type="number"
+								name="system.disturbingPresence.dt"
+								value="{{system.disturbingPresence.dt}}"
+								placeholder="0"
+							/>
+						</div>
+						<div class="stat flexcol">
+							<label>Dano <i class="fa-solid fa-brain rollable pointer" data-action="onRollMentalDamage"></i></label>
+							<input
+								type="text"
+								name="system.disturbingPresence.mentalDamage"
+								value="{{system.disturbingPresence.mentalDamage}}"
+								placeholder="2d6"
+							/>
+						</div>
+					</div>
+				</div>
+
+				<!-- VITAIS -->
+				<div class="vitals flexrow">
+					<div class="resource hp-box">
+						<label class="resource-label">{{localize "op.PV"}}</label>
+						<div class="resource-content flexrow flex-center">
+							<input
+								type="text"
+								name="system.attributes.hp.value"
+								value="{{system.attributes.hp.value}}"
+								data-dtype="Number"
+							/>
+							<span class="divider">/</span>
+							<input type="text" name="system.attributes.hp.max" value="{{system.attributes.hp.max}}" data-dtype="Number" />
+						</div>
+					</div>
+					<div class="resource defense-box">
+						<label class="resource-label">{{localize "op.defense"}}</label>
+						<div class="resource-content">
+							<input type="text" name="system.defense.value" value="{{system.defense.value}}" data-dtype="Number" />
+						</div>
+					</div>
+					<div class="resource movement-box">
+						<label class="resource-label">{{localize "op.deslocamento"}}</label>
+						<div class="resource-content">
+							<input
+								type="text"
+								name="system.attributes.movement.walk"
+								value="{{system.attributes.movement.walk}}"
+								data-dtype="Number"
+							/>
+						</div>
+					</div>
+				</div>
+
+				<!-- ATRIBUTOS -->
+				<div class="attributes-mini flexrow">
+					<div class="resource attr-box">
+						<label
+							class="resource-label rollable pointer"
+							data-action="onRollAttributeTest"
+							data-rollType="attribute"
+							data-key="dex"
+							title="{{localize 'op.attDex'}}"
+						>AGI</label>
+						<div class="resource-content"><input
+								type="text"
+								name="system.attributes.dex.value"
+								value="{{system.attributes.dex.value}}"
+								data-dtype="Number"
+							/></div>
+					</div>
+					<div class="resource attr-box">
+						<label
+							class="resource-label rollable pointer"
+							data-action="onRollAttributeTest"
+							data-rollType="attribute"
+							data-key="str"
+							title="{{localize 'op.attStr'}}"
+						>FOR</label>
+						<div class="resource-content"><input
+								type="text"
+								name="system.attributes.str.value"
+								value="{{system.attributes.str.value}}"
+								data-dtype="Number"
+							/></div>
+					</div>
+					<div class="resource attr-box">
+						<label
+							class="resource-label rollable pointer"
+							data-action="onRollAttributeTest"
+							data-rollType="attribute"
+							data-key="int"
+							title="{{localize 'op.attInt'}}"
+						>INT</label>
+						<div class="resource-content"><input
+								type="text"
+								name="system.attributes.int.value"
+								value="{{system.attributes.int.value}}"
+								data-dtype="Number"
+							/></div>
+					</div>
+					<div class="resource attr-box">
+						<label
+							class="resource-label rollable pointer"
+							data-action="onRollAttributeTest"
+							data-rollType="attribute"
+							data-key="pre"
+							title="{{localize 'op.attPre'}}"
+						>PRE</label>
+						<div class="resource-content"><input
+								type="text"
+								name="system.attributes.pre.value"
+								value="{{system.attributes.pre.value}}"
+								data-dtype="Number"
+							/></div>
+					</div>
+					<div class="resource attr-box">
+						<label
+							class="resource-label rollable pointer"
+							data-action="onRollAttributeTest"
+							data-rollType="attribute"
+							data-key="vit"
+							title="{{localize 'op.attVit'}}"
+						>VIG</label>
+						<div class="resource-content"><input
+								type="text"
+								name="system.attributes.vit.value"
+								value="{{system.attributes.vit.value}}"
+								data-dtype="Number"
+							/></div>
+					</div>
+				</div>
+
+			</div>
+
+			<!-- COLUNA DIREITA (Perícias) -->
+			<div class="col-right flexcol">
+				<div class="threat-skills-container">
+					{{#each system.skills as |skill key|}}
+						<div class="skill-box flexrow">
+							{{#if (eq key "freeSkill")}}
+								<div class="free-skill-header flexrow">
+									<input
+										type="text"
+										name="system.skills.{{key}}.name"
+										value="{{skill.name}}"
+										placeholder="{{localize 'op.skill.freeSkill'}}"
+									/>
+									<i
+										class="fas fa-dice rollable pointer"
+										data-action="onRollSkillCheck"
+										data-key="{{key}}"
+										data-roll="{{skill.formula}}"
+										data-label="{{skill.label}}"
+									></i>
+								</div>
+							{{else}}
+								<label
+									class="skill-label rollable pointer"
+									data-action="onRollSkillCheck"
+									data-key="{{key}}"
+									data-label="{{skill.label}}"
+									data-rollType="skill"
+								>
+									{{skill.label}}
+									<span>({{lookup skill.attr 0}})</span>
+								</label>
+							{{/if}}
+							<div class="item-space flexrow">
+								<select name="system.skills.{{key}}.degree.label" data-dtype="String">
+									{{selectOptions @root.optionDegreeThreat selected=skill.degree.label localize=true}}
+								</select>
+								<input
+									type="number"
+									name="system.skills.{{key}}.degree.override"
+									value="{{skill.degree.override}}"
+									placeholder="{{numberFormat skill.degree.value decimals=0 sign=true}}"
+									title="{{localize 'op.skillDegreeOverrideTitle'}}"
+								/>
+							</div>
+						</div>
+					{{/each}}
+				</div>
+			</div>
+
+		</div>
+
+		<!-- TAGS E RESISTÊNCIAS -->
+		<div class="threat-tags flexrow">
+			<div class="resource tags-box">
+				<label class="resource-label config-header">
+					<a class="config-button" data-action="openResistanceConfig" title="{{localize 'op.resistancesTitle'}}">
+						<i class="fas fa-shield-alt"></i>
+						{{localize "op.resistances"}}
+						<i class="fas fa-cog"></i>
+					</a>
+				</label>
+				<div class="resource-content tags-grid">
+					{{#each viewResistances as |res|}}
+						{{#if res.isVisible}}
+							<span class="threat-tag" title="{{res.translatedLabel}}">
+								<span class="tag-label">{{res.translatedLabel}}</span>
+								<span class="tag-values">
+									{{#if (gt res.value 0)}}<b>{{res.value}}</b>{{/if}}
+									{{#if res.immune}}<i class="fas fa-shield-alt immune"></i>{{/if}}
+									{{#if res.vulnerable}}<i class="fas fa-heart-broken vulnerable"></i>{{/if}}
+								</span>
+							</span>
+						{{/if}}
+					{{/each}}
+				</div>
+			</div>
+
+			<div class="resource tags-box">
+				<label class="resource-label config-header">
+					<a class="config-button" data-action="openTraitsConfig" title="{{localize 'op.traitsTitle'}}">
+						<i class="fa-solid fa-list"></i>
+						{{localize "op.traitsLabel"}}
+						<i class="fas fa-cog"></i>
+					</a>
+				</label>
+				<div class="resource-content tags-grid">
+					{{#each viewTraits as |trait|}}
+						{{#if trait.isVisible}}
+							<span class="threat-tag"><span class="tag-label">{{trait.translatedLabel}}</span></span>
+						{{/if}}
+					{{/each}}
+				</div>
+			</div>
+		</div>
+
+	</section>
+</section>

@@ -1,0 +1,35 @@
+{
+  "name": "O Crime Compensa",
+  "type": "ability",
+  "_id": "t9z6xySQc088OJqi",
+  "img": "systems/ordemparanormal/media/icons/abilities/origin/o-crime-compensa.svg",
+  "system": {
+    "id": 0,
+    "abilityType": "origin",
+    "preRequisite": "",
+    "description": "<p>No final de uma miss&atilde;o, escolha um item encontrado na miss&atilde;o. Em sua pr&oacute;xima miss&atilde;o, voc&ecirc; pode incluir esse item em seu invent&aacute;rio sem que ele conte em seu limite de itens por patente.</p>",
+    "chatDescription": "",
+    "activation": "passive",
+    "cost": null
+  },
+  "effects": [],
+  "folder": "MbVRx0qCgZMO02wU",
+  "sort": 1700000,
+  "ownership": {
+    "default": 0,
+    "D087Zkcpssj33iAO": 3
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "ordemparanormal",
+    "systemVersion": "7.3.3",
+    "coreVersion": "14.365",
+    "createdTime": 1712008367477,
+    "modifiedTime": 1785688466941,
+    "lastModifiedBy": "vUTMyOH4FOrOifbw",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!t9z6xySQc088OJqi"
+}

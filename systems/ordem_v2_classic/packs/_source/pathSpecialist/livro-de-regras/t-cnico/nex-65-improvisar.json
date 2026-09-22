@@ -1,0 +1,36 @@
+{
+  "folder": "FzdhLviTEbC02Uyi",
+  "name": "NEX 65% - Improvisar",
+  "type": "ability",
+  "img": "systems/ordemparanormal/media/icons/abilities/class/specialist/T%C3%A9cnico/Improvisar.svg",
+  "system": {
+    "id": 0,
+    "abilityType": "path",
+    "preRequisite": "",
+    "description": "<p>Voc&ecirc; pode improvisar equipamentos com materiais ao seu redor. Escolha um equipamento geral e gaste uma a&ccedil;&atilde;o completa e 2 PE, mais 2 PE por categoria do item escolhido. Voc&ecirc; cria uma vers&atilde;o funcional do equipamento, que segue suas regras de espa&ccedil;o e categoria como normal. Ao final da cena, seu equipamento impro\u0002visado se torna in&uacute;til.</p>",
+    "chatDescription": "",
+    "activation": "complete",
+    "cost": 2,
+    "costType": "PE"
+  },
+  "effects": [],
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "14.365",
+    "systemId": "ordemparanormal",
+    "systemVersion": "7.3.3",
+    "createdTime": 1767391187608,
+    "modifiedTime": 1785526444668,
+    "lastModifiedBy": "DnDtVz8d1Mx168x6"
+  },
+  "ownership": {
+    "default": 0,
+    "uX8kbsijC8bcpBa3": 3
+  },
+  "_id": "TQRMmodR7IdCpe6p",
+  "sort": 0,
+  "_key": "!items!TQRMmodR7IdCpe6p"
+}

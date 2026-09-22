@@ -1,0 +1,23 @@
+{
+  "type": "Item",
+  "folder": "O9Lbc3i5r30NgdMn",
+  "name": "Armas Simples",
+  "color": null,
+  "sorting": "a",
+  "_id": "BrtMK6djvii3OF4J",
+  "description": "",
+  "sort": 0,
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.365",
+    "systemId": "ordemparanormal",
+    "systemVersion": "7.3.3",
+    "createdTime": 1785686951819,
+    "modifiedTime": 1785686951819,
+    "lastModifiedBy": "vUTMyOH4FOrOifbw",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!folders!BrtMK6djvii3OF4J"
+}

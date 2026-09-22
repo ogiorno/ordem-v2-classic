@@ -1,0 +1,36 @@
+{
+  "name": "Esotérico",
+  "type": "ability",
+  "_id": "zvFuPyiOgpt2lIlQ",
+  "img": "systems/ordemparanormal/media/icons/abilities/class/survivor/esoterico.svg",
+  "system": {
+    "id": 0,
+    "abilityType": "class",
+    "preRequisite": "",
+    "description": "<p>Você pode encontrar esse conteúdo na <strong>página 32 do suplemento Sobrevivendo ao Horror</strong>.</p>",
+    "chatDescription": "",
+    "activation": "default",
+    "cost": 1,
+    "costType": "PE"
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "uX8kbsijC8bcpBa3": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "14.365",
+    "systemId": "ordemparanormal",
+    "systemVersion": "7.3.3",
+    "createdTime": 1768024860754,
+    "modifiedTime": 1785686849626,
+    "lastModifiedBy": "vUTMyOH4FOrOifbw"
+  },
+  "_key": "!items!zvFuPyiOgpt2lIlQ"
+}

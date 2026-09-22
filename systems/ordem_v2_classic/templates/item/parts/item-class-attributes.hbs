@@ -1,0 +1,40 @@
+<section class="tab class {{tab.cssClass}}" data-group="primary" data-tab="classAttr">
+	<div class="content-item scrollable">
+
+		<div class="form-group-row op-shadow">
+			<input type="checkbox" name="system.isSurvivor" {{checked system.isSurvivor}} />
+			<div>
+				<label class="resource-label">É Sobrevivente</label>
+				<p>Faz com que a classe, como um sobrevivente, tenha apenas 5 estágios e o PE/PD limitado.</p>
+			</div>
+		</div>
+
+		<div class="class-attributes-section op-shadow">
+			<div class="section-title">Atributos de Combate</div>
+			<div class="grid grid-2col class-attributes-section" style="gap: 10px;">
+				<label class="resource-label">{{localize "op.hpInitial"}}</label>
+				<input type="number" name="system.hpInitial" value="{{system.hpInitial}}" data-dtype="Number" />
+				<label class="resource-label">{{localize "op.hpPerLevel"}}</label>
+				<input type="number" name="system.hpPerLevel" value="{{system.hpPerLevel}}" data-dtype="Number" />
+
+				{{#if usingWithoutSanityRule}}
+					<label class="resource-label">{{localize "op.pdInitial"}}</label>
+					<input type="number" name="system.pdInitial" value="{{system.pdInitial}}" data-dtype="Number" />
+					<label class="resource-label">{{localize "op.pdPerLevel"}}</label>
+					<input type="number" name="system.pdPerLevel" value="{{system.pdPerLevel}}" data-dtype="Number" />
+				{{else}}
+					<label class="resource-label">{{localize "op.peInitial"}}</label>
+					<input type="number" name="system.peInitial" value="{{system.peInitial}}" data-dtype="Number" />
+					<label class="resource-label">{{localize "op.pePerLevel"}}</label>
+					<input type="number" name="system.pePerLevel" value="{{system.pePerLevel}}" data-dtype="Number" />
+				{{/if}}
+
+				<label class="resource-label">{{localize "op.sanInitial"}}</label>
+				<input type="number" name="system.sanInitial" value="{{system.sanInitial}}" data-dtype="Number" />
+				<label class="resource-label">{{localize "op.sanPerLevel"}}</label>
+				<input type="number" name="system.sanPerLevel" value="{{system.sanPerLevel}}" data-dtype="Number" />
+
+			</div>
+		</div>
+	</div>
+</section>

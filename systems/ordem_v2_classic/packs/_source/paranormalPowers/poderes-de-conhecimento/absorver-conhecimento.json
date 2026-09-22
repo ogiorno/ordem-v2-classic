@@ -1,0 +1,36 @@
+{
+  "name": "Absorver Conhecimento",
+  "type": "ability",
+  "img": "systems/ordemparanormal/media/icons/abilities/paranormal/knowledge/absorver-conhecimento.svg",
+  "system": {
+    "id": 0,
+    "abilityType": "paranormal",
+    "preRequisite": "Conhecimento 1",
+    "description": "<p>Você pode encontrar esse conteúdo na <strong>página 46 do suplemento Sobrevivendo ao Horror</strong>.</p>",
+    "chatDescription": "",
+    "activation": "complete",
+    "cost": 1,
+    "costType": "PE"
+  },
+  "effects": [],
+  "folder": "oFUp3zHwQV1wTbEq",
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.365",
+    "systemId": "ordemparanormal",
+    "systemVersion": "7.3.3",
+    "createdTime": 1785685912830,
+    "modifiedTime": 1785691995579,
+    "lastModifiedBy": "vUTMyOH4FOrOifbw",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "ownership": {
+    "default": 0,
+    "vUTMyOH4FOrOifbw": 3
+  },
+  "_id": "WnolvV4z8jUNVyuI",
+  "sort": 0,
+  "_key": "!items!WnolvV4z8jUNVyuI"
+}

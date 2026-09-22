@@ -1,0 +1,36 @@
+{
+  "name": "Pancada Forte",
+  "type": "ability",
+  "_id": "Bd8HCQ7NjetfvTqC",
+  "img": "systems/ordemparanormal/media/icons/abilities/class/survivor/pancada-forte.svg",
+  "system": {
+    "id": 0,
+    "abilityType": "class",
+    "preRequisite": "",
+    "description": "<p>Você pode encontrar esse conteúdo na <strong>página 31 do suplemento Sobrevivendo ao Horror</strong>.</p>",
+    "chatDescription": "",
+    "activation": "reaction",
+    "cost": 1,
+    "costType": "PE"
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "uX8kbsijC8bcpBa3": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "14.365",
+    "systemId": "ordemparanormal",
+    "systemVersion": "7.3.3",
+    "createdTime": 1768024765672,
+    "modifiedTime": 1785686803160,
+    "lastModifiedBy": "vUTMyOH4FOrOifbw"
+  },
+  "_key": "!items!Bd8HCQ7NjetfvTqC"
+}

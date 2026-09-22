@@ -1,0 +1,35 @@
+{
+  "name": "Patrulha",
+  "type": "ability",
+  "_id": "2KhovwgUGGrNZvDo",
+  "img": "systems/ordemparanormal/media/icons/abilities/origin/Patrulha.svg",
+  "system": {
+    "id": 0,
+    "abilityType": "origin",
+    "preRequisite": "",
+    "description": "<p>Voc&ecirc; recebe +2 em Defesa.</p>",
+    "chatDescription": "",
+    "activation": "passive",
+    "cost": null
+  },
+  "effects": [],
+  "folder": "MbVRx0qCgZMO02wU",
+  "sort": 2000000,
+  "ownership": {
+    "default": 0,
+    "D087Zkcpssj33iAO": 3
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "ordemparanormal",
+    "systemVersion": "7.3.3",
+    "coreVersion": "14.365",
+    "createdTime": 1712011713513,
+    "modifiedTime": 1785688468633,
+    "lastModifiedBy": "vUTMyOH4FOrOifbw",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!2KhovwgUGGrNZvDo"
+}

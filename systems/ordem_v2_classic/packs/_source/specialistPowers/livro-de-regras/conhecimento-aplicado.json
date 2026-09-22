@@ -1,0 +1,36 @@
+{
+  "name": "Conhecimento Aplicado",
+  "type": "ability",
+  "img": "systems/ordemparanormal/media/icons/abilities/class/specialist/Conhecimento%20Aplicado.svg",
+  "system": {
+    "id": 0,
+    "abilityType": "class",
+    "preRequisite": "Inteligência 2",
+    "description": "<p>Quando faz um teste de per&iacute;cia (exceto Luta e Pontaria), voc&ecirc; pode gastar 2 PE para mudar o atributo-base da per&iacute;cia para Int.</p>",
+    "chatDescription": "",
+    "activation": "free",
+    "cost": 2,
+    "costType": "PE"
+  },
+  "effects": [],
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "14.365",
+    "systemId": "ordemparanormal",
+    "systemVersion": "7.3.3",
+    "createdTime": 1768014041889,
+    "modifiedTime": 1785686530766,
+    "lastModifiedBy": "vUTMyOH4FOrOifbw"
+  },
+  "ownership": {
+    "default": 0,
+    "uX8kbsijC8bcpBa3": 3
+  },
+  "_id": "wTx3GgeHDqE6sfqZ",
+  "sort": 150000,
+  "folder": "1zuLekyCSL2z68Pj",
+  "_key": "!items!wTx3GgeHDqE6sfqZ"
+}

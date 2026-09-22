@@ -1,0 +1,36 @@
+{
+  "name": "Sacrificar os Joelhos",
+  "type": "ability",
+  "img": "systems/ordemparanormal/media/icons/abilities/class/fighter/sacrificar-os-joelhos.svg",
+  "system": {
+    "id": 0,
+    "abilityType": "class",
+    "preRequisite": "Força 2",
+    "description": "<p>Você pode encontrar esse conteúdo na <strong>página 15 do suplemento Sobrevivendo ao Horror</strong>.</p>",
+    "chatDescription": "",
+    "activation": "reaction",
+    "cost": 2,
+    "costType": "PE"
+  },
+  "effects": [],
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "14.365",
+    "systemId": "ordemparanormal",
+    "systemVersion": "7.3.3",
+    "createdTime": 1768012548817,
+    "modifiedTime": 1785686261299,
+    "lastModifiedBy": "vUTMyOH4FOrOifbw"
+  },
+  "ownership": {
+    "default": 0,
+    "uX8kbsijC8bcpBa3": 3
+  },
+  "_id": "r2YvuO2L0v8aazDg",
+  "sort": 100782,
+  "folder": "G5Y6G8Yqr9wJeyc8",
+  "_key": "!items!r2YvuO2L0v8aazDg"
+}

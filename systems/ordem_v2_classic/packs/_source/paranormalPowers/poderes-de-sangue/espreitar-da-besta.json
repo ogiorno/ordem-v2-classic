@@ -1,0 +1,36 @@
+{
+  "name": "Espreitar da Besta",
+  "type": "ability",
+  "img": "systems/ordemparanormal/media/icons/abilities/paranormal/blood/espreitar-da-besta.svg",
+  "system": {
+    "id": 0,
+    "abilityType": "paranormal",
+    "preRequisite": "Sangue 1",
+    "description": "<p>Você pode encontrar esse conteúdo na <strong>página 46 do suplemento Sobrevivendo ao Horror</strong>.</p>",
+    "chatDescription": "",
+    "activation": "passive",
+    "cost": null,
+    "costType": "PE"
+  },
+  "effects": [],
+  "folder": "W6x0WwehDpZV25vB",
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.365",
+    "systemId": "ordemparanormal",
+    "systemVersion": "7.3.3",
+    "createdTime": 1785685916181,
+    "modifiedTime": 1785691907002,
+    "lastModifiedBy": "vUTMyOH4FOrOifbw",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "ownership": {
+    "default": 0,
+    "vUTMyOH4FOrOifbw": 3
+  },
+  "_id": "H6Ys64rjbQCuQhDw",
+  "sort": 0,
+  "_key": "!items!H6Ys64rjbQCuQhDw"
+}

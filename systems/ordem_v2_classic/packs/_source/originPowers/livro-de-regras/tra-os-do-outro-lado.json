@@ -1,0 +1,35 @@
+{
+  "name": "Traços do Outro Lado",
+  "type": "ability",
+  "_id": "d7B80gTErt4jS4e4",
+  "img": "systems/ordemparanormal/media/icons/abilities/origin/tracos-do-outro-lado.svg",
+  "system": {
+    "id": 0,
+    "abilityType": "origin",
+    "preRequisite": "",
+    "description": "<p>Voc&ecirc; possui um poder paranormal &agrave; sua escolha. Por&eacute;m, come&ccedil;a o jogo com metade da Sanidade normal para sua classe.</p>",
+    "chatDescription": "",
+    "activation": "passive",
+    "cost": null
+  },
+  "effects": [],
+  "folder": "MbVRx0qCgZMO02wU",
+  "sort": 2400000,
+  "ownership": {
+    "default": 0,
+    "D087Zkcpssj33iAO": 3
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "ordemparanormal",
+    "systemVersion": "7.3.3",
+    "coreVersion": "14.365",
+    "createdTime": 1712008383461,
+    "modifiedTime": 1785688471449,
+    "lastModifiedBy": "vUTMyOH4FOrOifbw",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!d7B80gTErt4jS4e4"
+}

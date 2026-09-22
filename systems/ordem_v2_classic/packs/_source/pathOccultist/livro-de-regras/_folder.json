@@ -1,0 +1,23 @@
+{
+  "type": "Item",
+  "folder": null,
+  "name": "Livro de Regras",
+  "color": "#b63230",
+  "sorting": "a",
+  "_id": "y2LDaU0nGVNxI5hg",
+  "description": "",
+  "sort": 700000,
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.365",
+    "systemId": "ordemparanormal",
+    "systemVersion": "7.3.3",
+    "createdTime": 1785688928623,
+    "modifiedTime": 1785689012862,
+    "lastModifiedBy": "vUTMyOH4FOrOifbw",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!folders!y2LDaU0nGVNxI5hg"
+}
