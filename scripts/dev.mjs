@@ -6,6 +6,7 @@ import { createServer } from "node:http";
 import { watch, existsSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { syncAll, syncFile } from "./sync-systems.mjs";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const install = "C:\\Users\\Geh\\VTT\\Foundry Virtual Tabletop";
@@ -63,6 +64,11 @@ for (const dir of ["modules", "systems"]) {
   if (!existsSync(full)) continue;
   watch(full, { recursive: true }, (_evt, file) => {
     if (!file || ignored.test(file)) return;
+    if (dir === "systems") {
+      // sistemas vivem no workspace e são espelhados para Data/systems (o Foundry lê de lá)
+      const [systemId, ...rest] = file.split(/[\\/]/);
+      try { if (!rest.length || !syncFile(systemId, rest.join(path.sep))) return; } catch (err) { console.error("[dev] sync falhou:", err.message); return; }
+    }
     if (manifests.has(path.basename(file))) needsRestart = true;
     clearTimeout(timer);
     timer = setTimeout(() => {
@@ -81,5 +87,7 @@ for (const dir of ["modules", "systems"]) {
 for (const sig of ["SIGINT", "SIGTERM"]) process.on(sig, () => { child?.kill(); process.exit(0); });
 process.on("exit", () => child?.kill());
 
+const initial = syncAll();
+if (initial.length) console.log(`[dev] ${initial.length} arquivo(s) de sistema sincronizados`);
 start();
-setTimeout(() => spawn("cmd", ["/c", "start", "", `http://localhost:${port}`], { stdio: "ignore" }), 8000);
+if (!process.env.FOUNDRY_NO_OPEN) setTimeout(() => spawn("cmd", ["/c", "start", "", `http://localhost:${port}`], { stdio: "ignore" }), 8000);
