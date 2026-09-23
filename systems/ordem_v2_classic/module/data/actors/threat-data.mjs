@@ -1,4 +1,13 @@
 import { calculateSkillProficiency } from "../../helpers/actor-calculations.mjs";
+import {
+	bruisedThreshold,
+	formatTest,
+	isBruised,
+	movementLabel,
+	sizeInfo,
+	squaresFromMeters,
+	testFormula,
+} from "../../helpers/threat-calc.mjs";
 
 const defaultAttrs = {
 	fighting: "str",
@@ -148,6 +157,25 @@ export class ThreatData extends foundry.abstract.TypeDataModel {
 				fearDamage: resistanceField(),
 				damageDamage: resistanceField(),
 			}),
+			// Perícias além das cinco do bloco de defesa/sentidos (ex.: Crime 2O+5). Dados = atributo, salvo override.
+			extraSkills: new fields.ArrayField(
+				new fields.SchemaField({
+					name: new fields.StringField({ initial: "" }),
+					attr: new fields.StringField({ initial: "dex" }),
+					diceOverride: new fields.NumberField({ required: false, nullable: true, integer: true, min: 0, initial: null }),
+					bonus: new fields.NumberField({ required: true, integer: true, initial: 0 }),
+				})
+			),
+			// "RD N/tipo": reduz N de todo dano, exceto dos tipos em `except`.
+			genericRd: new fields.SchemaField({
+				value: new fields.NumberField({ required: true, integer: true, min: 0, initial: 0 }),
+				except: new fields.ArrayField(new fields.StringField()),
+			}),
+			// "Cura Acelerada N/tipo": recupera N PV por turno, salvo após dano dos tipos em `except`.
+			fastHealing: new fields.SchemaField({
+				value: new fields.NumberField({ required: true, integer: true, min: 0, initial: 0 }),
+				except: new fields.ArrayField(new fields.StringField()),
+			}),
 			traits: new fields.SchemaField({
 				smell: new fields.BooleanField({ initial: false }),
 				acceleratedHealing: new fields.BooleanField({ initial: false }),
@@ -161,6 +189,35 @@ export class ThreatData extends foundry.abstract.TypeDataModel {
 
 	prepareDerivedData() {
 		this._prepareBaseSkills();
+		this._prepareThreatDerived();
+	}
+
+	/** Valores derivados no formato do livro: machucado, quadrados, tamanho e testes xO+y. */
+	_prepareThreatDerived() {
+		const hp = this.attributes.hp;
+		hp.bruised = bruisedThreshold(hp.max);
+		hp.isBruised = isBruised(hp.value, hp.max);
+
+		const mv = this.attributes.movement;
+		mv.squaresCalc = squaresFromMeters(mv.walk);
+		mv.label = movementLabel(mv.walk);
+
+		this.sizeData = sizeInfo(this.size);
+
+		for (const skill of Object.values(this.skills)) {
+			const attrValue = this.attributes[skill.attr?.[0]]?.value ?? 0;
+			const bonus = skill.degree?.value ?? 0;
+			skill.testLabel = formatTest(attrValue, bonus);
+			skill.formula = testFormula(attrValue, bonus);
+		}
+
+		for (const extra of this.extraSkills) {
+			const attrValue = this.attributes[extra.attr]?.value ?? 0;
+			const dice = extra.diceOverride ?? attrValue;
+			extra.dice = dice;
+			extra.testLabel = formatTest(dice, extra.bonus);
+			extra.formula = testFormula(dice, extra.bonus);
+		}
 	}
 
 	_prepareBaseSkills() {

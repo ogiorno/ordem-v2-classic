@@ -14,6 +14,7 @@ import "./suites/item-rolls.test.mjs";
 import "./suites/item-damage-rolls.test.mjs";
 import "./suites/item-attack-flow.test.mjs";
 import "./suites/threat-attacks.test.mjs";
+import "./suites/threat-sheet-book.test.mjs";
 import "./suites/chat-commands.test.mjs";
 import "./suites/active-effects.test.mjs";
 import "./suites/migrations.test.mjs";

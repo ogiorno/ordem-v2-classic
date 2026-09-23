@@ -2,8 +2,24 @@
 import { prepareActiveEffectCategories } from "../helpers/effects.mjs";
 import { ResistanceConfig } from "../applications/resistance-config.mjs";
 import { TraitsConfig } from "../applications/traits-config.mjs";
+import { formatTest, summarizeResistances } from "../helpers/threat-calc.mjs";
 
 const { api, sheets } = foundry.applications;
+
+/** Ordem em que os grupos de ação aparecem na ficha (como no livro). */
+const ACTION_GROUP_ORDER = ["default", "movement", "complete", "free", "reaction"];
+
+/** Tipos de ação do ataque (armament) → chave de execução das habilidades (ability). */
+const ACTION_TYPE_TO_EXECUTION = { standard: "default", free: "free", movement: "movement", reaction: "reaction", full: "complete" };
+
+/** Atributos da ameaça: chave interna, sigla do livro. */
+const ATTRIBUTES = [
+	{ key: "dex", abbr: "AGI", i18n: "op.attDex" },
+	{ key: "str", abbr: "FOR", i18n: "op.attStr" },
+	{ key: "int", abbr: "INT", i18n: "op.attInt" },
+	{ key: "pre", abbr: "PRE", i18n: "op.attPre" },
+	{ key: "vit", abbr: "VIG", i18n: "op.attVit" },
+];
 
 /**
  * Ficha de Ameaça (V2) - Versão Estável e Funcional
@@ -15,15 +31,15 @@ export class OrdemThreatSheet extends api.HandlebarsApplicationMixin(sheets.Acto
 	 */
 	constructor(options = {}) {
 		super(options);
-		// Define a aba inicial padrão
-		this.tabGroups = { primary: "attacks" };
+		/** Modo de edição da ficha (campos extras visíveis). Só vive na instância. */
+		this.editMode = false;
 	}
 
 	/** @inheritDoc */
 	static DEFAULT_OPTIONS = {
 		classes: ["ordemparanormal", "sheet", "actor", "threat", "themed", "theme-light"],
 		tag: "form",
-		position: { width: 600, height: 820 },
+		position: { width: 560, height: 820 },
 		window: {
 			resizable: true,
 			title: "op.threatSheetTitle",
@@ -33,10 +49,14 @@ export class OrdemThreatSheet extends api.HandlebarsApplicationMixin(sheets.Acto
 		},
 		// Mapeamento de Ações (data-action="nomeDaAcao")
 		actions: {
-			onTab: this.prototype._onTab,
 			onEditImage: this.prototype._onEditImage,
+			toggleEdit: this.#onToggleEdit,
 
 			// Rolagens
+			rollThreatTest: this.#onRollThreatTest,
+			rollThreatExtra: this.#onRollThreatExtra,
+			addExtraSkill: this.#onAddExtraSkill,
+			removeExtraSkill: this.#onRemoveExtraSkill,
 			onRollAttributeTest: this.#onRollAttributeTest,
 			onRollSkillCheck: this.#onRollSkillCheck,
 			onRollSkill: this.#onRollSkill,
@@ -64,17 +84,6 @@ export class OrdemThreatSheet extends api.HandlebarsApplicationMixin(sheets.Acto
 			template: "systems/ordem_v2_classic/templates/threat/actor-threat-sheet.hbs",
 			scrollable: [""],
 		},
-		tabs: { id: "tabs", template: "templates/generic/tab-navigation.hbs", scrollable: [""] },
-		attacks: {
-			id: "attacks",
-			template: "systems/ordem_v2_classic/templates/threat/parts/threat-attacks.hbs",
-			scrollable: [""],
-		},
-		abilities: {
-			id: "abilities",
-			template: "systems/ordem_v2_classic/templates/threat/parts/threat-abilities.hbs",
-			scrollable: [""],
-		},
 		enigmas: {
 			id: "enigmas",
 			template: "systems/ordem_v2_classic/templates/threat/parts/threat-enigmas.hbs",
@@ -83,35 +92,14 @@ export class OrdemThreatSheet extends api.HandlebarsApplicationMixin(sheets.Acto
 		effects: { id: "effects", template: "systems/ordem_v2_classic/templates/shared/effects.hbs", scrollable: [""] },
 	};
 
-	/** @inheritDoc */
-	static TABS = {
-		primary: {
-			tabs: [
-				{ id: "attacks", label: "op.tab.attacks" },
-				{ id: "abilities", label: "op.tab.abilities" },
-				{ id: "enigmas", label: "op.tab.enigmas" },
-				{ id: "effects", label: "op.tab.effects" },
-			],
-			initial: "attacks",
-		},
-	};
-
 	/** @override */
 	_configureRenderOptions(options) {
 		super._configureRenderOptions(options);
-		// Not all parts always render
-		options.parts = ["threat", "tabs"];
-		// Don't show the other tabs if only limited view
+		// A ficha é um bloco único (como no livro): cabeçalho/estatísticas/ações, depois enigma+descrição e efeitos.
+		options.parts = ["threat"];
+		// Visão limitada só mostra o bloco principal
 		if (this.document.limited) return;
-		// Control which parts show based on document subtype
-		switch (this.document.type) {
-			case "threat":
-				options.parts.push("attacks", "abilities", "enigmas", "effects");
-				break;
-			case "npc":
-				options.parts.push("gear", "effects");
-				break;
-		}
+		options.parts.push("enigmas", "effects");
 	}
 
 	/** @override */
@@ -119,7 +107,8 @@ export class OrdemThreatSheet extends api.HandlebarsApplicationMixin(sheets.Acto
 		await super._onRender(context, options);
 		this.#disableOverrides();
 
-		for (const input of this.element.querySelectorAll("input[type='number']")) {
+		// Só inputs numéricos que declaram `data-name` usam o clamp próprio; os demais seguem o submitOnChange.
+		for (const input of this.element.querySelectorAll("input[type='number'][data-name]")) {
 			input.addEventListener("change", this._onChangeInputOP.bind(this));
 		}
 
@@ -148,8 +137,8 @@ export class OrdemThreatSheet extends api.HandlebarsApplicationMixin(sheets.Acto
 			elements: CONFIG.op.dropdownElement || {},
 			threatTypes: CONFIG.op.dropdownThreatType,
 			threatSizes: CONFIG.op.dropdownThreatSize,
-			// Controle de Abas
-			tabs: this._getTabs(options.parts),
+			damageTypes: CONFIG.op.dropdownDamageType || {},
+			editMode: this.editMode,
 		});
 
 		// Prepara visualização de Resistências e Características
@@ -159,7 +148,93 @@ export class OrdemThreatSheet extends api.HandlebarsApplicationMixin(sheets.Acto
 		// Prepara Itens e Perícias
 		this._prepareItems(context);
 
+		// Blocos no formato do livro (descritores, testes xO+y, atributos, tags de defesa)
+		this._prepareStatBlock(context);
+
 		return context;
+	}
+
+	/**
+	 * Monta os dados de exibição do bloco de ameaça: rótulos, testes `xO+y`, atributos e tags de defesa.
+	 * @param {object} context
+	 */
+	_prepareStatBlock(context) {
+		const system = this.document.system;
+		const L = (key) => game.i18n.localize(key);
+		const label = (map, key) => (key && map?.[key] ? L(map[key]) : "");
+
+		context.elementLabel = label(CONFIG.op.dropdownElement, system.elements?.main);
+		context.typeLabel = label(CONFIG.op.dropdownThreatType, system.details?.creatureType);
+		context.sizeLabel = label(CONFIG.op.dropdownThreatSize, system.size);
+		context.isCreature = system.details?.creatureType === "creature";
+
+		// Atributos (siglas do livro)
+		context.attrRows = ATTRIBUTES.map(({ key, abbr, i18n }) => ({
+			key,
+			abbr,
+			label: L(i18n),
+			value: system.attributes?.[key]?.value ?? 0,
+		}));
+		context.attributeChoices = Object.fromEntries(ATTRIBUTES.map(({ key, i18n }) => [key, i18n]));
+
+		// Testes fixos: sentidos e defesa
+		const testRow = (key) => {
+			const skill = system.skills?.[key];
+			return {
+				key,
+				label: skill?.label ?? key,
+				testLabel: skill?.testLabel ?? "O",
+				formula: skill?.formula ?? "",
+				degreeLabel: skill?.degree?.label ?? "untrained",
+				override: skill?.degree?.override ?? "",
+				derived: skill?.degree?.value ?? 0,
+			};
+		};
+		context.senseTests = ["perception", "initiative"].map(testRow);
+		context.defenseTests = ["resilience", "reflexes", "will"].map(testRow);
+
+		// Sentidos especiais ativos (Faro, Percepção às cegas, Visão...)
+		const senseKeys = ["smell", "blindsight", "lowLightVision", "darkvision"];
+		context.senseTraits = senseKeys
+			.filter((key) => system.traits?.[key] === true)
+			.map((key) => ({ key, label: L(`op.traits.${key}`) }));
+
+		// Perícias além das cinco acima: a "perícia livre" (se nomeada) e a lista extra
+		const skillRows = [];
+		const free = system.skills?.freeSkill;
+		if (free?.name) {
+			skillRows.push({ name: free.name, testLabel: free.testLabel, key: "freeSkill", action: "rollThreatTest", isExtra: false });
+		}
+		(system.extraSkills ?? []).forEach((extra, index) => {
+			skillRows.push({
+				name: extra.name || L("op.skill.freeSkill"),
+				testLabel: extra.testLabel,
+				index,
+				action: "rollThreatExtra",
+				isExtra: true,
+			});
+		});
+		context.skillRows = skillRows;
+		context.hasSkills = skillRows.length > 0;
+
+		// Resistências, vulnerabilidades e imunidades como tags legíveis
+		const typeName = (key) => L(`op.damageTypeAbv.${key}`);
+		const { rd, vulnerable, immune } = summarizeResistances(system.resistances);
+		context.rdTags = rd.map(({ type, value }) => ({ text: `RD ${typeName(type)} ${value}`, title: type }));
+		if (system.genericRd?.value > 0) {
+			const except = (system.genericRd.except ?? []).map(typeName).join(", ");
+			context.rdTags.unshift({
+				text: except ? `RD ${system.genericRd.value}/${except}` : `RD ${system.genericRd.value}`,
+				title: L("op.threat.genericRd"),
+			});
+		}
+		context.vulnerableTags = vulnerable.map(typeName);
+		context.immuneTags = immune.map(typeName);
+		context.healingText = "";
+		if (system.fastHealing?.value > 0) {
+			const except = (system.fastHealing.except ?? []).map(typeName).join(", ");
+			context.healingText = `${L("op.threat.fastHealing")} ${system.fastHealing.value}${except ? `/${except}` : ""}`;
+		}
 	}
 
 	/**
@@ -217,108 +292,94 @@ export class OrdemThreatSheet extends api.HandlebarsApplicationMixin(sheets.Acto
 		}
 	}
 
-	/** */
+	/**
+	 * Separa os itens embutidos em Ações (ataques + habilidades ativas, agrupadas por tipo de ação)
+	 * e Habilidades passivas, já com os rótulos de teste/dano no formato do livro.
+	 * @param {object} context
+	 */
 	_prepareItems(context) {
+		const actor = this.document;
+		const L = (key) => game.i18n.localize(key);
 		const attacks = [];
 		const abilities = [];
 
-		for (const i of this.document.items) {
+		for (const i of actor.items) {
 			i.img = i.img || DEFAULT_TOKEN;
 
 			if (i.type === "armament") {
+				const attack = i.system.formulas?.attack ?? {};
 				const rangeType = i.system.types?.rangeType?.name;
-				const itemBonus = i.system.formulas?.attack?.bonus;
+				const attrKey = attack.attr || (rangeType === "ranged" ? "dex" : "str");
+				const skillKey = attack.skill || (rangeType === "ranged" ? "aim" : "fighting");
+				const skill = actor.system.skills?.[skillKey];
 
-				let attrKey = rangeType === "ranged" ? "dex" : "str";
-				let skillKey = rangeType === "ranged" ? "aim" : "fighting";
-
-				if (i.system.formulas?.attack?.attr) attrKey = i.system.formulas.attack.attr;
-				if (i.system.formulas?.attack?.skill) skillKey = i.system.formulas.attack.skill;
-
-				const attrValue = this.actor.system.attributes[attrKey]?.value || 0;
-				const diceString = attrValue > 0 ? `${attrValue}d20` : "2d20kl1";
-				const skillLabel = game.i18n.localize(`op.skill.${skillKey}`) || skillKey;
-
-				let attackLabel = `${diceString} + ${skillLabel}`;
-				if (itemBonus && itemBonus != 0) attackLabel += ` + ${itemBonus}`;
-				i.attackLabel = attackLabel;
+				// Mesma conta de OrdemItem#rollAttack: dados = atributo; bônus = grau + valor + mod + bônus do ataque.
+				const attrValue = actor.system.attributes?.[attrKey]?.value ?? 0;
+				const bonus = (skill?.degree?.value || 0) + (skill?.value || 0) + (skill?.mod || 0) + (attack.bonus || 0);
+				i.testLabel = formatTest(attrValue, bonus);
 
 				const dmgFormula = i.system.formulas?.damage?.formula || "0";
 				const dmgTypeKey = i.system.formulas?.damage?.type;
-				const dmgTypeLabel = dmgTypeKey ? game.i18n.localize(`op.damageTypeAbv.${dmgTypeKey}`) : "";
-				i.damageLabel = `${dmgFormula} ${dmgTypeLabel}`;
+				i.damageLabel = `${dmgFormula} ${dmgTypeKey ? L(`op.damageTypeAbv.${dmgTypeKey}`) : ""}`.trim();
 
-				// Enrich threat-specific attack metadata
-				const actionType = i.system.actionType ?? "standard";
-				i.actionTypeBadge = {
-					label: game.i18n.localize(`op.actionType.${actionType}`),
-					cls: actionType,
-				};
-				i.numberOfAttacks = i.system.numberOfAttacks ?? 1;
-				i.rangeCategoryLabel = i.system.rangeCategory
-					? game.i18n.localize(`op.rangeCategory.${i.system.rangeCategory}`)
-					: "";
+				const metaParts = [rangeType === "ranged" ? L("op.rangeType.ranged") : L("op.rangeType.melee")];
+				if (i.system.rangeCategory) metaParts.push(L(`op.rangeCategory.${i.system.rangeCategory}`));
+				const count = i.system.numberOfAttacks ?? 1;
+				if (count > 1) metaParts.push(`x${count}`);
+				const crit = String(i.system.critical ?? "20");
+				if (crit !== "20") metaParts.push(`${L("op.critical")} ${crit}`);
+				i.rowMeta = metaParts.join(" ");
 
+				i.rowKind = "attack";
+				i.groupKey = ACTION_TYPE_TO_EXECUTION[i.system.actionType ?? "standard"] ?? "default";
+				i.editAction = i.flags?.ordem_v2_classic?.createdByThreatDialog ? "editThreatAttack" : "viewDoc";
+				i.dieTooltip = L("op.threat.rollAttack");
 				attacks.push(i);
 			} else if (i.type === "ability") {
-				const costVal = i.system.cost || "—";
-				const costType = i.system.costType || "PE";
-				i.displayCost = costVal !== "—" && costVal !== "" && costVal != 0 ? `${costVal} ${costType}` : "—";
-
-				if (i.system.activation) {
-					i.activationLabel = game.i18n.localize(`op.executionChoices.${i.system.activation}`);
-				} else {
-					i.activationLabel = "—";
-				}
-
+				i.rowKind = "ability";
+				i.rowMeta = "";
+				i.testLabel = "";
+				i.damageLabel = "";
+				i.editAction = "viewDoc";
+				i.dieTooltip = L("op.threat.rollAbility");
+				// Sem execução definida conta como passiva (habilidade sempre ativa)
+				i.groupKey = i.system.activation || "passive";
 				abilities.push(i);
 			}
 		}
 
-		attacks.sort((a, b) => (a.sort || 0) - (b.sort || 0));
-		abilities.sort((a, b) => (a.name || "").localeCompare(b.name || ""));
+		const bySort = (a, b) => (a.sort || 0) - (b.sort || 0);
+		attacks.sort(bySort);
+		abilities.sort(bySort);
 
 		context.attacks = attacks;
 		context.abilities = abilities;
+		context.passives = abilities.filter((i) => i.groupKey === "passive");
+
+		const active = [...attacks, ...abilities.filter((i) => i.groupKey !== "passive")];
+		context.actionGroups = ACTION_GROUP_ORDER.map((key) => ({
+			key,
+			label: L(`op.threat.group.${key}`),
+			items: active.filter((i) => i.groupKey === key),
+		})).filter((g) => g.items.length > 0);
 	}
 
 	/** */
 	async _preparePartContext(partId, context) {
+		// Todas as partes ficam empilhadas (sem abas): `tab.cssClass` ativo mantém as seções visíveis.
+		context.tab = { cssClass: "active" };
+		const enrich = (html) =>
+			foundry.applications.ux.TextEditor.implementation.enrichHTML(html, {
+				secrets: this.document.isOwner,
+				rollData: this.actor.getRollData(),
+				relativeTo: this.actor,
+			});
 		switch (partId) {
-			// Enrich biography info for display
-			// Enrichment turns text like `[[/r 1d20]]` into buttons
-			case "attacks":
-				context.tab = context.tabs[partId];
-				// When rendering the attacks part, decide whether to use the
-				// specialized threat handlers (createThreatAttack / editThreatAttack)
-				// or the generic item handlers (createDoc / viewDoc). For threat
-				// actor types we prefer the specialized handlers.
-				context.useThreatHandlers = this.document.type === "threat";
-				break;
 			case "enigmas":
-				context.tab = context.tabs[partId];
-				context.enrichedFearRiddle = await foundry.applications.ux.TextEditor.implementation.enrichHTML(
-					this.actor.system.details.fearRiddle,
-					{
-						secrets: this.document.isOwner,
-						rollData: this.actor.getRollData(),
-						relativeTo: this.actor,
-					}
-				);
-				break;
-			case "abilities":
-				context.tab = context.tabs[partId];
-				context.enrichedAbilities = await foundry.applications.ux.TextEditor.implementation.enrichHTML(
-					this.actor.system.temporary.abilities,
-					{
-						secrets: this.document.isOwner,
-						rollData: this.actor.getRollData(),
-						relativeTo: this.actor,
-					}
-				);
+				context.enrichedFearRiddle = await enrich(this.actor.system.details.fearRiddle);
+				context.enrichedDescription = await enrich(this.actor.system.details.description);
 				break;
 			case "effects":
-				context.tab = context.tabs[partId];
 				// Prepare active effects
 				context.effects = prepareActiveEffectCategories(
 					// A generator that returns all effects stored on the actor
@@ -330,55 +391,6 @@ export class OrdemThreatSheet extends api.HandlebarsApplicationMixin(sheets.Acto
 		return context;
 	}
 
-	/** */
-	/**
-	 * Generates the data for the generic tab navigation template
-	 * @param {string[]} parts An array of named template parts to render
-	 * @returns {Record<string, Partial<ApplicationTab>>}
-	 * @protected
-	 */
-	_getTabs(parts) {
-		// If you have sub-tabs this is necessary to change
-		const tabGroup = "primary";
-		// Default tab for first time it's rendered this session
-		if (!this.tabGroups[tabGroup]) this.tabGroups[tabGroup] = "skills";
-		return parts.reduce((tabs, partId) => {
-			const tab = {
-				cssClass: "",
-				group: tabGroup,
-				// Matches tab property to
-				id: "",
-				// FontAwesome Icon, if you so choose
-				icon: "",
-				// Run through localization
-				label: "op.tab.",
-			};
-			switch (partId) {
-				case "threat":
-				case "tabs":
-					return tabs;
-				case "attacks":
-					tab.id = "attacks";
-					tab.label += "attacks";
-					break;
-				case "abilities":
-					tab.id = "abilities";
-					tab.label += "abilities";
-					break;
-				case "enigmas":
-					tab.id = "enigmas";
-					tab.label += "enigmas";
-					break;
-				case "effects":
-					tab.id = "effects";
-					tab.label += "effects";
-					break;
-			}
-			if (this.tabGroups[tabGroup] === tab.id) tab.cssClass = "active";
-			tabs[partId] = tab;
-			return tabs;
-		}, {});
-	}
 
 	/** */
 	_getEmbeddedDocument(target) {
@@ -395,12 +407,42 @@ export class OrdemThreatSheet extends api.HandlebarsApplicationMixin(sheets.Acto
 	/* Action Handlers (MÉTODOS DE INSTÂNCIA)      */
 	/* -------------------------------------------- */
 
-	/** */
-	async _onTab(event, target) {
+	/** Alterna o modo de edição (campos extras da ficha) sem recarregar a janela. */
+	static #onToggleEdit(event) {
 		event.preventDefault();
-		const tab = target.dataset.tab;
-		this.tabGroups.primary = tab;
-		this.render();
+		this.editMode = !this.editMode;
+		this.element.querySelector(".sb")?.classList.toggle("sb-editing", this.editMode);
+		this.element.querySelector(".sb-edit-toggle")?.classList.toggle("active", this.editMode);
+	}
+
+	/** Rola um teste fixo da ameaça (Percepção, Iniciativa, Fortitude, Reflexos, Vontade, perícia livre). */
+	static #onRollThreatTest(event, target) {
+		event.preventDefault();
+		return this.actor.rollThreatTest(target.dataset.key);
+	}
+
+	/** Rola uma perícia da lista extra (`system.extraSkills[index]`). */
+	static #onRollThreatExtra(event, target) {
+		event.preventDefault();
+		return this.actor.rollThreatExtraSkill(Number(target.dataset.index));
+	}
+
+	/** Acrescenta uma perícia à lista extra. */
+	static async #onAddExtraSkill(event) {
+		event.preventDefault();
+		const list = this.document.toObject().system.extraSkills ?? [];
+		list.push({ name: "", attr: "dex", diceOverride: null, bonus: 0 });
+		await this.document.update({ "system.extraSkills": list });
+	}
+
+	/** Remove uma perícia da lista extra. */
+	static async #onRemoveExtraSkill(event, target) {
+		event.preventDefault();
+		const index = Number(target.dataset.index);
+		const list = this.document.toObject().system.extraSkills ?? [];
+		if (!(index >= 0 && index < list.length)) return;
+		list.splice(index, 1);
+		await this.document.update({ "system.extraSkills": list });
 	}
 
 	/** */
@@ -807,7 +849,8 @@ export class OrdemThreatSheet extends api.HandlebarsApplicationMixin(sheets.Acto
 		// this bug — see codex review note).
 		const flat = foundry.utils.flattenObject(submitData);
 		for (const [key, value] of Object.entries(flat)) {
-			if (key.endsWith(".degree.override") && (value === "" || value == null || Number.isNaN(value))) {
+			const nullable = key.endsWith(".degree.override") || key.endsWith(".diceOverride");
+			if (nullable && (value === "" || value == null || Number.isNaN(value))) {
 				flat[key] = null;
 			}
 		}

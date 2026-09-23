@@ -126,6 +126,21 @@ export default function () {
 
 	Hooks.on("combatTurn", (combat, updateData) => _expireTemporaryEffects(combat, updateData));
 	Hooks.on("combatRound", (combat, updateData) => _expireTemporaryEffects(combat, updateData));
+
+	// Cura Acelerada: no início do turno da ameaça, ela recupera PV (só o primeiro GM ativo aplica).
+	Hooks.on("combatTurnChange", async (combat, _prior, current) => {
+		const firstGM = game.users.find((u) => u.isGM && u.active);
+		if (!firstGM || firstGM.id !== game.user.id) return;
+		const actor = combat.combatants?.get(current?.combatantId)?.actor;
+		if (actor?.type !== "threat") return;
+		const healed = await actor.applyThreatFastHealing();
+		if (healed > 0) {
+			ChatMessage.create({
+				content: game.i18n.format("op.threat.fastHealingChat", { actor: actor.name, value: healed }),
+				speaker: ChatMessage.getSpeaker({ actor }),
+			});
+		}
+	});
 	/**
 	 * Criando o Hook preCreateActor para o módulo Bar Brawl adicionar
 	 * uma terceira barra nos tokens criados, essa barra ira representar

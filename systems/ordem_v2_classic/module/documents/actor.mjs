@@ -4,6 +4,7 @@ import BasicRoll from "../dice/basic-roll.mjs";
 import SkillToolRollConfigurationDialog from "../applications/skill-tool-configuration-dialog.mjs";
 import AttributeRollConfigurationDialog from "../applications/attribute-configuration-dialog.mjs";
 import { calculateSpaces, calculateDefense, calculateStatusMaxima } from "../helpers/actor-calculations.mjs";
+import { fastHealingAmount, resolveDamage } from "../helpers/threat-calc.mjs";
 
 /**
  * Extend the base Actor document by defining a custom roll data structure which is ideal for the Simple system.
@@ -263,10 +264,13 @@ export class OrdemActor extends Actor {
 		const resource = isThreat ? this.system.attributes?.hp : this.system.PV;
 		const resistances = this.system.resistances ?? {};
 
-		const baseRd = (!ignoreRD && damageType && resistances[damageType]?.value) || 0;
-		const totalRd = baseRd + Math.max(0, extraRD || 0);
-		const finalDamage = Math.max(0, amount - totalRd);
-		const blocked = amount - finalDamage;
+		// RD tipada, RD geral com exceção ("RD 10/Morte"), vulnerabilidade (dobra) e imunidade (zera).
+		const { finalDamage, blocked } = resolveDamage(amount, damageType, {
+			resistances,
+			genericRd: isThreat ? this.system.genericRd : null,
+			extraRd: extraRD,
+			ignoreRd: ignoreRD,
+		});
 
 		// Delegate to GM via socket when the current user doesn't own this actor
 		if (!this.isOwner) {
@@ -298,12 +302,66 @@ export class OrdemActor extends Actor {
 
 		const newPV = Math.max(0, resource.value - finalDamage);
 		const hpKey = isThreat ? "system.attributes.hp.value" : "system.PV.value";
-		await this.update({ [hpKey]: newPV });
+		const hpUpdate = { [hpKey]: newPV };
+		// Cura Acelerada precisa saber o tipo do último dano (ex.: "10/químico").
+		if (isThreat && damageType) hpUpdate["flags.ordem_v2_classic.lastDamageType"] = damageType;
+		await this.update(hpUpdate);
 
 		if (newPV <= 0) conditions.push("morrendo");
 		if (newPV <= resource.max / 2) conditions.push("machucado");
 
 		return { finalDamage, blocked, newPV, conditions };
+	}
+
+	/**
+	 * Rola um teste da ficha de ameaça no formato do livro (xO+y: x d20, maior resultado, + y).
+	 * @param {string} label         Nome exibido no chat.
+	 * @param {string} formula       Fórmula já calculada (ex.: "3d20kh + 10").
+	 * @returns {Promise<Roll>}
+	 */
+	async rollThreatFormula(label, formula) {
+		const roll = await new Roll(formula, this.getRollData()).evaluate();
+		await roll.toMessage({
+			flavor: game.i18n.format("op.threat.testFlavor", { label }),
+			speaker: ChatMessage.getSpeaker({ actor: this }),
+		});
+		return roll;
+	}
+
+	/**
+	 * Teste de uma das perícias fixas da ameaça (Percepção, Iniciativa, Fortitude, Reflexos, Vontade...).
+	 * @param {string} key  Chave em system.skills (ex.: "resilience").
+	 * @returns {Promise<Roll|null>}
+	 */
+	async rollThreatTest(key) {
+		const skill = this.system.skills?.[key];
+		if (this.type !== "threat" || !skill?.formula) return null;
+		return this.rollThreatFormula(skill.label ?? key, skill.formula);
+	}
+
+	/**
+	 * Teste de uma perícia extra da ameaça (system.extraSkills[index]).
+	 * @param {number} index
+	 * @returns {Promise<Roll|null>}
+	 */
+	async rollThreatExtraSkill(index) {
+		const extra = this.system.extraSkills?.[index];
+		if (this.type !== "threat" || !extra?.formula) return null;
+		return this.rollThreatFormula(extra.name || game.i18n.localize("op.skill.freeSkill"), extra.formula);
+	}
+
+	/**
+	 * Cura Acelerada: recupera PV no início do turno da ameaça.
+	 * @returns {Promise<number>} PV recuperados (0 se não houve cura).
+	 */
+	async applyThreatFastHealing() {
+		if (this.type !== "threat") return 0;
+		const hp = this.system.attributes.hp;
+		const last = this.getFlag("ordem_v2_classic", "lastDamageType") ?? null;
+		const healed = fastHealingAmount(this.system.fastHealing, last, hp.value, hp.max);
+		if (healed <= 0) return 0;
+		await this.update({ "system.attributes.hp.value": hp.value + healed });
+		return healed;
 	}
 
 	/**

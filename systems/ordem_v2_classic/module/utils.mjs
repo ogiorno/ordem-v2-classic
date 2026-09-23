@@ -79,10 +79,16 @@ export async function preloadHandlebarsTemplates() {
 		"systems/ordem_v2_classic/templates/item/parts/item-general-attributes.hbs",
 		"systems/ordem_v2_classic/templates/item/parts/item-protection-attributes.hbs",
 		"systems/ordem_v2_classic/templates/item/parts/item-ritual-attributes.hbs",
+
+		// Threat Sheet Partials
+		"systems/ordem_v2_classic/templates/threat/parts/threat-test-chip.hbs",
+		"systems/ordem_v2_classic/templates/threat/parts/threat-item-row.hbs",
 	];
 
 	const paths = {};
 	for (const path of partials) {
+		// Também disponível pelo caminho completo: {{> "systems/.../arquivo.hbs"}}
+		paths[path] = path;
 		paths[path.replace(".hbs", ".html")] = path;
 		paths[`op.${path.split("/").pop().replace(".hbs", "")}`] = path;
 	}

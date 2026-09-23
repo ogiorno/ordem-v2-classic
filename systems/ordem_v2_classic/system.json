@@ -18,7 +18,8 @@
     "module/ordemparanormal.mjs"
   ],
   "styles": [
-    "css/ordemparanormal.css"
+    "css/ordemparanormal.css",
+    "css/threat-sheet.css"
   ],
   "scripts": [],
   "packs": [
