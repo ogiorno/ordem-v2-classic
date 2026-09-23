@@ -1,5 +1,0 @@
-2026/08/05-03:14:35.666346 7fbbe37fe6c0 Delete type=3 #1
-2026/08/05-03:14:35.667063 7fbbe27fc6c0 Level-0 table #5: started
-2026/08/05-03:14:35.667522 7fbbe27fc6c0 Level-0 table #5: 3548 bytes OK
-2026/08/05-03:14:35.667859 7fbbe27fc6c0 Delete type=0 #3
-2026/08/05-03:14:35.667917 7fbbe27fc6c0 Manual compaction at level-0 from '!macros!macroAplicarDano' @ 72057594037927935 : 1 .. '!macros!macroRolarPericA' @ 0 : 0; will stop at (end)
