@@ -1,0 +1,9 @@
+<span class="sb-skill">
+	<a class="sb-test" data-action="rollThreatTest" data-key="{{t.key}}" data-tooltip="{{t.formula}}">
+		{{t.label}} <b>{{t.testLabel}}</b>
+	</a>
+	<span class="sb-edit sb-testedit">
+		<select name="system.skills.{{t.key}}.degree.label">{{selectOptions @root.optionDegreeThreat selected=t.degreeLabel localize=true}}</select>
+		<input type="text" name="system.skills.{{t.key}}.degree.override" value="{{t.override}}" placeholder="{{t.derived}}" data-dtype="Number" title="{{localize 'op.skillDegreeOverrideTitle'}}" />
+	</span>
+</span>

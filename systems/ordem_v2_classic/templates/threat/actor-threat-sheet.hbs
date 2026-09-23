@@ -1,299 +1,205 @@
-<section class="{{actor.type}} threat flexcol" id="threat" autocomplete="off">
+<section class="{{actor.type}} threat sb {{#if editMode}}sb-editing{{/if}} flexcol" id="threat" autocomplete="off">
 
-	<!-- CABEÇALHO -->
-	<header class="threat-header flexrow">
-		<img
-			class="threat-profile-img"
-			src="{{actor.img}}"
-			data-edit="img"
-			data-action="onEditImage"
-			title="{{actor.name}}"
-		/>
-
-		<div class="identity-info flexcol">
-
-			<!-- NOME E VD NA MESMA LINHA -->
-			<div class="name-row flexrow">
-				<h1 class="charname">
-					<input name="name" type="text" value="{{actor.name}}" placeholder="{{localize 'op.threatName'}}" />
-				</h1>
-
-				<div class="vd-box flexrow">
-					<label title="{{localize 'op.VD'}}">VD</label>
-					<input
-						type="number"
-						name="system.attributes.vd.value"
-						value="{{system.attributes.vd.value}}"
-						data-dtype="Number"
-					/>
-				</div>
-			</div>
-
-			<div class="classification-row flexrow">
-				<div class="class-box">
-					<label>{{localize "op.type"}}</label>
-					<select name="system.details.creatureType">
-						{{selectOptions threatTypes selected=system.details.creatureType localize=true}}
-					</select>
-				</div>
-				<div class="class-box">
-					<label>{{localize "op.element"}}</label>
-					<select name="system.elements.main">
-						{{selectOptions elements selected=system.elements.main localize=true}}
-					</select>
-				</div>
-				<div class="class-box">
-					<label>{{localize "op.size"}}</label>
-					<select name="system.size">
-						{{selectOptions threatSizes selected=system.size localize=true}}
-					</select>
-				</div>
-			</div>
+	{{!-- 1. NOME E VD --}}
+	<header class="sb-head element-{{system.elements.main}}">
+		<img class="sb-portrait" src="{{actor.img}}" data-edit="img" data-action="onEditImage" title="{{actor.name}}" />
+		<div class="sb-title">
+			<input class="sb-name" name="name" type="text" value="{{actor.name}}" placeholder="{{localize 'op.threatName'}}" />
+			<div class="sb-sub">{{elementLabel}}{{#if elementLabel}} · {{/if}}{{typeLabel}} · {{sizeLabel}}</div>
 		</div>
+		<div class="sb-vd">
+			<span class="sb-vd-label">{{localize "op.threat.vd"}}</span>
+			<input class="sb-vd-input" type="text" name="system.attributes.vd.value" value="{{system.attributes.vd.value}}" data-dtype="Number" />
+		</div>
+		{{#if editable}}
+			<a class="sb-edit-toggle {{#if editMode}}active{{/if}}" data-action="toggleEdit" data-tooltip="{{localize 'op.threat.edit'}}">
+				<i class="fa-solid fa-pen-to-square"></i>
+			</a>
+		{{/if}}
 	</header>
 
-	<!-- CORPO DA FICHA -->
-	<section class="threat-body flexcol">
-		<div class="central-columns flexrow">
+	{{!-- 2. DESCRITORES E TAMANHO --}}
+	<div class="sb-tags">
+		{{#if elementLabel}}<span class="sb-chip element-{{system.elements.main}}">{{elementLabel}}</span>{{/if}}
+		<span class="sb-chip">{{typeLabel}}</span>
+		<span class="sb-chip">{{sizeLabel}}</span>
+		<span class="sb-chip sb-chip-dim">
+			{{localize "op.threat.sizeStealth"}} {{numberFormat system.sizeData.stealth sign=true}} ·
+			{{localize "op.threat.sizeManeuvers"}} {{numberFormat system.sizeData.maneuvers sign=true}} ·
+			{{localize "op.threat.sizeSpace"}} {{system.sizeData.space}}m
+		</span>
+	</div>
+	<div class="sb-edit sb-row sb-edit-selects">
+		<label>{{localize "op.type"}}
+			<select name="system.details.creatureType">{{selectOptions threatTypes selected=system.details.creatureType localize=true}}</select>
+		</label>
+		<label>{{localize "op.element"}}
+			<select name="system.elements.main">{{selectOptions elements selected=system.elements.main localize=true blank=""}}</select>
+		</label>
+		<label>{{localize "op.size"}}
+			<select name="system.size">{{selectOptions threatSizes selected=system.size localize=true}}</select>
+		</label>
+	</div>
 
-			<!-- COLUNA ESQUERDA -->
-			<div class="col-left flexcol">
-
-				<!-- PRESENÇA PERTURBADORA ISOLADA -->
-				<div class="resource danger-box flexcol">
-					<label class="resource-label">Presença Perturbadora</label>
-					<div class="resource-content danger-stats flexrow">
-						<div class="stat flexcol">
-							<label>DT</label>
-							<input
-								type="number"
-								name="system.disturbingPresence.dt"
-								value="{{system.disturbingPresence.dt}}"
-								placeholder="0"
-							/>
-						</div>
-						<div class="stat flexcol">
-							<label>Dano <i class="fa-solid fa-brain rollable pointer" data-action="onRollMentalDamage"></i></label>
-							<input
-								type="text"
-								name="system.disturbingPresence.mentalDamage"
-								value="{{system.disturbingPresence.mentalDamage}}"
-								placeholder="2d6"
-							/>
-						</div>
-					</div>
-				</div>
-
-				<!-- VITAIS -->
-				<div class="vitals flexrow">
-					<div class="resource hp-box">
-						<label class="resource-label">{{localize "op.PV"}}</label>
-						<div class="resource-content flexrow flex-center">
-							<input
-								type="text"
-								name="system.attributes.hp.value"
-								value="{{system.attributes.hp.value}}"
-								data-dtype="Number"
-							/>
-							<span class="divider">/</span>
-							<input type="text" name="system.attributes.hp.max" value="{{system.attributes.hp.max}}" data-dtype="Number" />
-						</div>
-					</div>
-					<div class="resource defense-box">
-						<label class="resource-label">{{localize "op.defense"}}</label>
-						<div class="resource-content">
-							<input type="text" name="system.defense.value" value="{{system.defense.value}}" data-dtype="Number" />
-						</div>
-					</div>
-					<div class="resource movement-box">
-						<label class="resource-label">{{localize "op.deslocamento"}}</label>
-						<div class="resource-content">
-							<input
-								type="text"
-								name="system.attributes.movement.walk"
-								value="{{system.attributes.movement.walk}}"
-								data-dtype="Number"
-							/>
-						</div>
-					</div>
-				</div>
-
-				<!-- ATRIBUTOS -->
-				<div class="attributes-mini flexrow">
-					<div class="resource attr-box">
-						<label
-							class="resource-label rollable pointer"
-							data-action="onRollAttributeTest"
-							data-rollType="attribute"
-							data-key="dex"
-							title="{{localize 'op.attDex'}}"
-						>AGI</label>
-						<div class="resource-content"><input
-								type="text"
-								name="system.attributes.dex.value"
-								value="{{system.attributes.dex.value}}"
-								data-dtype="Number"
-							/></div>
-					</div>
-					<div class="resource attr-box">
-						<label
-							class="resource-label rollable pointer"
-							data-action="onRollAttributeTest"
-							data-rollType="attribute"
-							data-key="str"
-							title="{{localize 'op.attStr'}}"
-						>FOR</label>
-						<div class="resource-content"><input
-								type="text"
-								name="system.attributes.str.value"
-								value="{{system.attributes.str.value}}"
-								data-dtype="Number"
-							/></div>
-					</div>
-					<div class="resource attr-box">
-						<label
-							class="resource-label rollable pointer"
-							data-action="onRollAttributeTest"
-							data-rollType="attribute"
-							data-key="int"
-							title="{{localize 'op.attInt'}}"
-						>INT</label>
-						<div class="resource-content"><input
-								type="text"
-								name="system.attributes.int.value"
-								value="{{system.attributes.int.value}}"
-								data-dtype="Number"
-							/></div>
-					</div>
-					<div class="resource attr-box">
-						<label
-							class="resource-label rollable pointer"
-							data-action="onRollAttributeTest"
-							data-rollType="attribute"
-							data-key="pre"
-							title="{{localize 'op.attPre'}}"
-						>PRE</label>
-						<div class="resource-content"><input
-								type="text"
-								name="system.attributes.pre.value"
-								value="{{system.attributes.pre.value}}"
-								data-dtype="Number"
-							/></div>
-					</div>
-					<div class="resource attr-box">
-						<label
-							class="resource-label rollable pointer"
-							data-action="onRollAttributeTest"
-							data-rollType="attribute"
-							data-key="vit"
-							title="{{localize 'op.attVit'}}"
-						>VIG</label>
-						<div class="resource-content"><input
-								type="text"
-								name="system.attributes.vit.value"
-								value="{{system.attributes.vit.value}}"
-								data-dtype="Number"
-							/></div>
-					</div>
-				</div>
-
+	{{!-- 3. PRESENÇA PERTURBADORA (só criaturas) --}}
+	{{#if isCreature}}
+		<div class="sb-block sb-presence">
+			<span class="sb-label"><i class="fa-solid fa-eye"></i> {{localize "op.threat.presence"}}</span>
+			<div class="sb-row">
+				<span class="sb-view-inline">DT {{system.disturbingPresence.dt}} · {{system.disturbingPresence.mentalDamage}} mental · NEX {{system.disturbingPresence.immuneNex}}%+</span>
+				<a class="sb-die" data-action="onRollMentalDamage" data-tooltip="{{localize 'op.threat.presenceRoll'}}"><i class="fa-solid fa-dice-d20"></i></a>
 			</div>
-
-			<!-- COLUNA DIREITA (Perícias) -->
-			<div class="col-right flexcol">
-				<div class="threat-skills-container">
-					{{#each system.skills as |skill key|}}
-						<div class="skill-box flexrow">
-							{{#if (eq key "freeSkill")}}
-								<div class="free-skill-header flexrow">
-									<input
-										type="text"
-										name="system.skills.{{key}}.name"
-										value="{{skill.name}}"
-										placeholder="{{localize 'op.skill.freeSkill'}}"
-									/>
-									<i
-										class="fas fa-dice rollable pointer"
-										data-action="onRollSkillCheck"
-										data-key="{{key}}"
-										data-roll="{{skill.formula}}"
-										data-label="{{skill.label}}"
-									></i>
-								</div>
-							{{else}}
-								<label
-									class="skill-label rollable pointer"
-									data-action="onRollSkillCheck"
-									data-key="{{key}}"
-									data-label="{{skill.label}}"
-									data-rollType="skill"
-								>
-									{{skill.label}}
-									<span>({{lookup skill.attr 0}})</span>
-								</label>
-							{{/if}}
-							<div class="item-space flexrow">
-								<select name="system.skills.{{key}}.degree.label" data-dtype="String">
-									{{selectOptions @root.optionDegreeThreat selected=skill.degree.label localize=true}}
-								</select>
-								<input
-									type="number"
-									name="system.skills.{{key}}.degree.override"
-									value="{{skill.degree.override}}"
-									placeholder="{{numberFormat skill.degree.value decimals=0 sign=true}}"
-									title="{{localize 'op.skillDegreeOverrideTitle'}}"
-								/>
-							</div>
-						</div>
-					{{/each}}
-				</div>
-			</div>
-
-		</div>
-
-		<!-- TAGS E RESISTÊNCIAS -->
-		<div class="threat-tags flexrow">
-			<div class="resource tags-box">
-				<label class="resource-label config-header">
-					<a class="config-button" data-action="openResistanceConfig" title="{{localize 'op.resistancesTitle'}}">
-						<i class="fas fa-shield-alt"></i>
-						{{localize "op.resistances"}}
-						<i class="fas fa-cog"></i>
-					</a>
-				</label>
-				<div class="resource-content tags-grid">
-					{{#each viewResistances as |res|}}
-						{{#if res.isVisible}}
-							<span class="threat-tag" title="{{res.translatedLabel}}">
-								<span class="tag-label">{{res.translatedLabel}}</span>
-								<span class="tag-values">
-									{{#if (gt res.value 0)}}<b>{{res.value}}</b>{{/if}}
-									{{#if res.immune}}<i class="fas fa-shield-alt immune"></i>{{/if}}
-									{{#if res.vulnerable}}<i class="fas fa-heart-broken vulnerable"></i>{{/if}}
-								</span>
-							</span>
-						{{/if}}
-					{{/each}}
-				</div>
-			</div>
-
-			<div class="resource tags-box">
-				<label class="resource-label config-header">
-					<a class="config-button" data-action="openTraitsConfig" title="{{localize 'op.traitsTitle'}}">
-						<i class="fa-solid fa-list"></i>
-						{{localize "op.traitsLabel"}}
-						<i class="fas fa-cog"></i>
-					</a>
-				</label>
-				<div class="resource-content tags-grid">
-					{{#each viewTraits as |trait|}}
-						{{#if trait.isVisible}}
-							<span class="threat-tag"><span class="tag-label">{{trait.translatedLabel}}</span></span>
-						{{/if}}
-					{{/each}}
-				</div>
+			<div class="sb-edit sb-row">
+				<label>DT <input type="text" name="system.disturbingPresence.dt" value="{{system.disturbingPresence.dt}}" data-dtype="Number" /></label>
+				<label>{{localize "op.damage"}} <input type="text" name="system.disturbingPresence.mentalDamage" value="{{system.disturbingPresence.mentalDamage}}" placeholder="3d6" /></label>
+				<label>{{localize "op.threat.immuneNex"}} <input type="text" name="system.disturbingPresence.immuneNex" value="{{system.disturbingPresence.immuneNex}}" data-dtype="Number" /></label>
 			</div>
 		</div>
+	{{/if}}
 
-	</section>
+	{{!-- 4. SENTIDOS --}}
+	<div class="sb-block">
+		<span class="sb-label">{{localize "op.threat.senses"}}</span>
+		<div class="sb-row">
+			{{#each senseTests as |t|}}
+				{{> "systems/ordem_v2_classic/templates/threat/parts/threat-test-chip.hbs" t=t}}
+			{{/each}}
+			{{#each senseTraits as |trait|}}<span class="sb-chip">{{trait.label}}</span>{{/each}}
+			{{#if editable}}
+				<a class="sb-config sb-edit" data-action="openTraitsConfig" data-tooltip="{{localize 'op.traitsTitle'}}"><i class="fas fa-cog"></i></a>
+			{{/if}}
+		</div>
+	</div>
+
+	{{!-- 5. DEFESA --}}
+	<div class="sb-block">
+		<span class="sb-label">{{localize "op.threat.defense"}}</span>
+		<div class="sb-row">
+			<span class="sb-stat"><b>{{localize "op.defense"}}</b>
+				<input type="text" name="system.defense.value" value="{{system.defense.value}}" data-dtype="Number" />
+			</span>
+			{{#each defenseTests as |t|}}
+				{{> "systems/ordem_v2_classic/templates/threat/parts/threat-test-chip.hbs" t=t}}
+			{{/each}}
+		</div>
+	</div>
+
+	{{!-- 6. PV, RESISTÊNCIAS, VULNERABILIDADES, IMUNIDADES --}}
+	<div class="sb-block">
+		<span class="sb-label">{{localize "op.threat.hp"}}</span>
+		<div class="sb-row sb-hp">
+			<input type="text" class="sb-hp-input" name="system.attributes.hp.value" value="{{system.attributes.hp.value}}" data-dtype="Number" />
+			<span>/</span>
+			<input type="text" class="sb-hp-input" name="system.attributes.hp.max" value="{{system.attributes.hp.max}}" data-dtype="Number" />
+			<span class="sb-bruised {{#if system.attributes.hp.isBruised}}is-bruised{{/if}}">{{system.attributes.hp.bruised}} {{localize "op.threat.bruised"}}</span>
+		</div>
+		<div class="sb-row sb-defmods">
+			{{#each rdTags as |tag|}}<span class="sb-chip sb-rd" title="{{tag.title}}">{{tag.text}}</span>{{/each}}
+			{{#each vulnerableTags as |tag|}}<span class="sb-chip sb-vuln">{{localize "op.threat.vulnerabilities"}}: {{tag}}</span>{{/each}}
+			{{#each immuneTags as |tag|}}<span class="sb-chip sb-immune">{{localize "op.threat.immunities"}}: {{tag}}</span>{{/each}}
+			{{#if healingText}}<span class="sb-chip sb-heal">{{healingText}}</span>{{/if}}
+			{{#if editable}}
+				<a class="sb-config sb-edit" data-action="openResistanceConfig" data-tooltip="{{localize 'op.resistancesTitle'}}"><i class="fas fa-shield-alt"></i></a>
+			{{/if}}
+		</div>
+		<div class="sb-edit sb-row sb-edit-rd">
+			<label>{{localize "op.threat.genericRd"}} <input type="text" name="system.genericRd.value" value="{{system.genericRd.value}}" data-dtype="Number" /></label>
+			<label>{{localize "op.threat.genericRdExcept"}}
+				<select multiple name="system.genericRd.except">{{selectOptions damageTypes selected=system.genericRd.except localize=true}}</select>
+			</label>
+			<label>{{localize "op.threat.fastHealing"}} <input type="text" name="system.fastHealing.value" value="{{system.fastHealing.value}}" data-dtype="Number" /></label>
+			<label>{{localize "op.threat.genericRdExcept"}}
+				<select multiple name="system.fastHealing.except">{{selectOptions damageTypes selected=system.fastHealing.except localize=true}}</select>
+			</label>
+		</div>
+	</div>
+
+	{{!-- 7. ATRIBUTOS --}}
+	<div class="sb-block">
+		<span class="sb-label">{{localize "op.threat.attributes"}}</span>
+		<div class="sb-attrs">
+			{{#each attrRows as |a|}}
+				<div class="sb-attr">
+					<a class="sb-attr-name" data-action="onRollAttributeTest" data-key="{{a.key}}" data-tooltip="{{a.label}}">{{a.abbr}}</a>
+					<input type="text" name="system.attributes.{{a.key}}.value" value="{{a.value}}" data-dtype="Number" />
+				</div>
+			{{/each}}
+		</div>
+	</div>
+
+	{{!-- 8. PERÍCIAS (some se vazio) --}}
+	{{#if hasSkills}}
+		<div class="sb-block">
+			<span class="sb-label">{{localize "op.threat.skills"}}</span>
+			<div class="sb-row">
+				{{#each skillRows as |s|}}
+					<span class="sb-skill">
+						<a class="sb-test" data-action="{{s.action}}" data-index="{{s.index}}" data-key="{{s.key}}">
+							{{s.name}} <b>{{s.testLabel}}</b>
+						</a>
+						{{#if s.isExtra}}
+							{{#if @root.editable}}<a class="sb-edit sb-x" data-action="removeExtraSkill" data-index="{{s.index}}" data-tooltip="{{localize 'op.threat.remove'}}"><i class="fas fa-trash"></i></a>{{/if}}
+						{{/if}}
+					</span>
+				{{/each}}
+			</div>
+		</div>
+	{{/if}}
+	<div class="sb-edit sb-block sb-edit-skills">
+		<span class="sb-label">{{localize "op.threat.skills"}}</span>
+		{{#each system.extraSkills as |s i|}}
+			<div class="sb-row">
+				<input type="text" name="system.extraSkills.{{i}}.name" value="{{s.name}}" placeholder="{{localize 'op.threat.skillName'}}" />
+				<select name="system.extraSkills.{{i}}.attr">{{selectOptions @root.attributeChoices selected=s.attr localize=true}}</select>
+				<label>{{localize "op.threat.diceOverride"}} <input type="text" name="system.extraSkills.{{i}}.diceOverride" value="{{s.diceOverride}}" data-dtype="Number" /></label>
+				<label>+ <input type="text" name="system.extraSkills.{{i}}.bonus" value="{{s.bonus}}" data-dtype="Number" /></label>
+			</div>
+		{{/each}}
+		<a class="sb-add" data-action="addExtraSkill"><i class="fas fa-plus"></i> {{localize "op.threat.addSkill"}}</a>
+	</div>
+
+	{{!-- 9. DESLOCAMENTO --}}
+	<div class="sb-block">
+		<span class="sb-label">{{localize "op.threat.movement"}}</span>
+		<div class="sb-row">
+			<input type="text" class="sb-move-input" name="system.attributes.movement.walk" value="{{system.attributes.movement.walk}}" data-dtype="Number" />
+			<span class="sb-view-inline">{{system.attributes.movement.label}}</span>
+		</div>
+	</div>
+
+	{{!-- 10. HABILIDADES PASSIVAS --}}
+	<div class="sb-block">
+		<span class="sb-label">{{localize "op.threat.passives"}}
+			{{#if editable}}<a class="sb-add-inline" data-action="createDoc" data-document-class="Item" data-type="ability" data-tooltip="{{localize 'op.addAbility'}}"><i class="fas fa-plus"></i></a>{{/if}}
+		</span>
+		<ol class="sb-list">
+			{{#each passives as |item|}}
+				{{> "systems/ordem_v2_classic/templates/threat/parts/threat-item-row.hbs" item=item}}
+			{{else}}
+				<li class="sb-empty">{{localize "op.threat.noPassives"}}</li>
+			{{/each}}
+		</ol>
+	</div>
+
+	{{!-- 11. AÇÕES --}}
+	<div class="sb-block sb-actions">
+		<span class="sb-label">{{localize "op.threat.actions"}}
+			{{#if editable}}
+				<a class="sb-add-inline" data-action="createThreatAttack" data-tooltip="{{localize 'op.addThreatAttack'}}"><i class="fas fa-crosshairs"></i><i class="fas fa-plus"></i></a>
+				<a class="sb-add-inline" data-action="createDoc" data-document-class="Item" data-type="ability" data-tooltip="{{localize 'op.addAbility'}}"><i class="fas fa-bolt"></i><i class="fas fa-plus"></i></a>
+			{{/if}}
+		</span>
+		{{#each actionGroups as |group|}}
+			<div class="sb-group">
+				<span class="sb-type sb-type-{{group.key}}">{{group.label}}</span>
+				<ol class="sb-list">
+					{{#each group.items as |item|}}
+						{{> "systems/ordem_v2_classic/templates/threat/parts/threat-item-row.hbs" item=item}}
+					{{/each}}
+				</ol>
+			</div>
+		{{else}}
+			<p class="sb-empty">{{localize "op.threat.noActions"}}</p>
+		{{/each}}
+	</div>
 </section>
