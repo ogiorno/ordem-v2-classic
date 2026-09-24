@@ -97,3 +97,12 @@ Reaproveitar/atualizar `module/tests/suites/actor-threat*.test.mjs`: modelo + mi
 2. `O` sem número = 1d20 — confirmado?
 3. Crítico: multiplicar o dano total ou só os dados?
 4. Importador de fichas do livro (fase 6) interessa?
+
+## 11. Decisões da implementação (diferenças em relação ao rascunho acima)
+- **Modelo de teste mantido**: o sistema já rola `Xd20kh + bônus` com X = atributo (0 → `2d20kl`). Conferi os exemplos do livro (aberração de carne, enpap-X, bandido): os dados de cada teste coincidem com o atributo, então `xO+y` é só a *exibição* de atributo + `degree.override`. Não criei o par `{dice, bonus}` por teste. Exceção: perícias extras têm `diceOverride` opcional (ex.: revólver do bandido, `O+5` com AGI 2).
+- **Ações = itens já existentes**: ataques continuam `armament` (tipo de ação, multiplicador, alcance e crítico já existiam); Agarrão/Abocanhar etc. são itens `ability` com `activation` (passiva, livre, movimento, padrão, completa, reação). Não foram criados `actions`/`passives` novos no schema.
+- **Campos novos no schema** (aditivos, sem migração): `extraSkills[]`, `genericRd {value, except[]}` ("RD 10/Morte"), `fastHealing {value, except[]}`.
+- **Derivados** (não salvos): `hp.bruised/isBruised`, `movement.squaresCalc/label`, `sizeData`, `skills.*.testLabel/formula`, `extraSkills[].testLabel/formula`.
+- **Dano** (`Actor#applyDamage`): imunidade zera → vulnerabilidade dobra → RD (maior entre a tipada e a geral não excetuada). Antes, imunidade/vulnerabilidade eram só marcações.
+- **Cura Acelerada**: hook `combatTurnChange` (GM) cura no início do turno; aproxima "10/químico" pelo tipo do último dano recebido (`flags.ordem_v2_classic.lastDamageType`).
+- **Pendente (fase 2)**: Presença Perturbadora em grupo (a regra pura `groupPresenceFormula` existe e é testada, falta diálogo/botão); importador de fichas do livro.
