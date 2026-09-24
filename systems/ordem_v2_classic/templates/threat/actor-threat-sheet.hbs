@@ -135,7 +135,7 @@
 				{{#each skillRows as |s|}}
 					<span class="sb-skill">
 						<a class="sb-test" data-action="{{s.action}}" data-index="{{s.index}}" data-key="{{s.key}}">
-							{{s.name}} <b>{{s.testLabel}}</b>
+							{{s.name}} <b>{{{s.testHtml}}}</b>
 						</a>
 						{{#if s.isExtra}}
 							{{#if @root.editable}}<a class="sb-edit sb-x" data-action="removeExtraSkill" data-index="{{s.index}}" data-tooltip="{{localize 'op.threat.remove'}}"><i class="fas fa-trash"></i></a>{{/if}}

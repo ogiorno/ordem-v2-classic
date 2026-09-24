@@ -3,7 +3,7 @@
 		<div class="sb-item-text">
 			<a class="sb-item-name" data-action="toggleDescription">{{item.name}}</a>
 			{{#if item.rowMeta}}<span class="sb-item-meta">{{item.rowMeta}}</span>{{/if}}
-			{{#if item.testLabel}}<span class="sb-pill sb-pill-test">{{localize "op.test"}} {{item.testLabel}}</span>{{/if}}
+			{{#if item.testLabel}}<span class="sb-pill sb-pill-test">{{localize "op.test"}} {{{item.testHtml}}}</span>{{/if}}
 			{{#if item.damageLabel}}<span class="sb-pill sb-pill-dmg">{{localize "op.damage"}} {{item.damageLabel}}</span>{{/if}}
 		</div>
 		<div class="sb-item-ctl">
@@ -11,7 +11,7 @@
 				<a class="sb-icon" data-action="{{item.editAction}}" data-tooltip="{{localize 'op.threat.edit'}}"><i class="fas fa-edit"></i></a>
 				<a class="sb-icon" data-action="deleteDoc" data-tooltip="{{localize 'op.threat.remove'}}"><i class="fas fa-trash"></i></a>
 			{{/if}}
-			<a class="sb-die" data-action="onRoll" data-roll-type="item" data-tooltip="{{item.dieTooltip}}">
+			<a class="sb-die" data-action="rollThreatItem" data-tooltip="{{item.dieTooltip}}">
 				<i class="fa-solid fa-dice-d20"></i>
 			</a>
 		</div>

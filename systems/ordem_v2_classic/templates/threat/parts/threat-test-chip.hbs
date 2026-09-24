@@ -1,6 +1,6 @@
 <span class="sb-skill">
 	<a class="sb-test" data-action="rollThreatTest" data-key="{{t.key}}" data-tooltip="{{t.formula}}">
-		{{t.label}} <b>{{t.testLabel}}</b>
+		{{t.label}} <b>{{{t.testHtml}}}</b>
 	</a>
 	<span class="sb-edit sb-testedit">
 		<select name="system.skills.{{t.key}}.degree.label">{{selectOptions @root.optionDegreeThreat selected=t.degreeLabel localize=true}}</select>
