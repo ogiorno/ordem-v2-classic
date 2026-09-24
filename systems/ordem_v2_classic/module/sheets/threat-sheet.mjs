@@ -2,7 +2,7 @@
 import { prepareActiveEffectCategories } from "../helpers/effects.mjs";
 import { ResistanceConfig } from "../applications/resistance-config.mjs";
 import { TraitsConfig } from "../applications/traits-config.mjs";
-import { formatTest, summarizeResistances } from "../helpers/threat-calc.mjs";
+import { formatTest, formatTestHtml, summarizeResistances } from "../helpers/threat-calc.mjs";
 
 const { api, sheets } = foundry.applications;
 
@@ -55,6 +55,7 @@ export class OrdemThreatSheet extends api.HandlebarsApplicationMixin(sheets.Acto
 			// Rolagens
 			rollThreatTest: this.#onRollThreatTest,
 			rollThreatExtra: this.#onRollThreatExtra,
+			rollThreatItem: this.#onRollThreatItem,
 			addExtraSkill: this.#onAddExtraSkill,
 			removeExtraSkill: this.#onRemoveExtraSkill,
 			onRollAttributeTest: this.#onRollAttributeTest,
@@ -184,6 +185,7 @@ export class OrdemThreatSheet extends api.HandlebarsApplicationMixin(sheets.Acto
 				key,
 				label: skill?.label ?? key,
 				testLabel: skill?.testLabel ?? "O",
+				testHtml: skill?.testHtml ?? formatTestHtml(1, 0),
 				formula: skill?.formula ?? "",
 				degreeLabel: skill?.degree?.label ?? "untrained",
 				override: skill?.degree?.override ?? "",
@@ -203,12 +205,13 @@ export class OrdemThreatSheet extends api.HandlebarsApplicationMixin(sheets.Acto
 		const skillRows = [];
 		const free = system.skills?.freeSkill;
 		if (free?.name) {
-			skillRows.push({ name: free.name, testLabel: free.testLabel, key: "freeSkill", action: "rollThreatTest", isExtra: false });
+			skillRows.push({ name: free.name, testLabel: free.testLabel, testHtml: free.testHtml, key: "freeSkill", action: "rollThreatTest", isExtra: false });
 		}
 		(system.extraSkills ?? []).forEach((extra, index) => {
 			skillRows.push({
 				name: extra.name || L("op.skill.freeSkill"),
 				testLabel: extra.testLabel,
+				testHtml: extra.testHtml,
 				index,
 				action: "rollThreatExtra",
 				isExtra: true,
@@ -315,8 +318,11 @@ export class OrdemThreatSheet extends api.HandlebarsApplicationMixin(sheets.Acto
 
 				// Mesma conta de OrdemItem#rollAttack: dados = atributo; bônus = grau + valor + mod + bônus do ataque.
 				const attrValue = actor.system.attributes?.[attrKey]?.value ?? 0;
-				const bonus = (skill?.degree?.value || 0) + (skill?.value || 0) + (skill?.mod || 0) + (attack.bonus || 0);
+				// attack.bonus pode vir como texto ("0"): sempre converter, senão a soma vira concatenação ("100").
+				const num = (n) => Number(n) || 0;
+				const bonus = num(skill?.degree?.value) + num(skill?.value) + num(skill?.mod) + num(attack.bonus);
 				i.testLabel = formatTest(attrValue, bonus);
+				i.testHtml = formatTestHtml(attrValue, bonus);
 
 				const dmgFormula = i.system.formulas?.damage?.formula || "0";
 				const dmgTypeKey = i.system.formulas?.damage?.type;
@@ -339,6 +345,7 @@ export class OrdemThreatSheet extends api.HandlebarsApplicationMixin(sheets.Acto
 				i.rowKind = "ability";
 				i.rowMeta = "";
 				i.testLabel = "";
+				i.testHtml = "";
 				i.damageLabel = "";
 				i.editAction = "viewDoc";
 				i.dieTooltip = L("op.threat.rollAbility");
@@ -425,6 +432,46 @@ export class OrdemThreatSheet extends api.HandlebarsApplicationMixin(sheets.Acto
 	static #onRollThreatExtra(event, target) {
 		event.preventDefault();
 		return this.actor.rollThreatExtraSkill(Number(target.dataset.index));
+	}
+
+	/**
+	 * Dado à direita da ação. Habilidades postam o card normalmente; ataques já rolam o teste de ataque
+	 * (o card continua com o botão "Rolar dano", que respeita alvo, crítico e reações do sistema).
+	 */
+	static async #onRollThreatItem(event, target) {
+		event.preventDefault();
+		const item = this.actor.items.get(target.closest("[data-item-id]")?.dataset.itemId);
+		if (!item) return;
+		if (item.type !== "armament") return item.roll();
+
+		let messageId = null;
+		const hookId = Hooks.on("ordemparanormal.itemUsed", (data) => {
+			if (data.item === item) messageId = data.message?.id ?? null;
+		});
+		try {
+			await item.roll();
+		} finally {
+			Hooks.off("ordemparanormal.itemUsed", hookId);
+		}
+		if (!messageId) return;
+
+		// O card é renderizado de forma assíncrona: espera o botão aparecer (até ~1s) e clica em "Rolar ataque",
+		// o que passa por todo o fluxo normal do sistema.
+		// Escopo em #chat: a cópia do card nas notificações (#chat-notifications) não tem os listeners do sistema.
+		const selector = `#chat .message[data-message-id="${messageId}"] button[data-action="attack"]`;
+		for (let i = 0; i < 10; i++) {
+			const button = document.querySelector(selector);
+			if (button) return button.click();
+			await new Promise((resolve) => setTimeout(resolve, 100));
+		}
+
+		// Sem o chat renderizado (barra lateral fechada ou aba de chat oculta) não há botão para clicar:
+		// rola o ataque direto e grava o resultado no card, como o handler do card faz.
+		const attack = await item.rollAttack({});
+		item.lastMessageId = messageId;
+		item.critical = attack.criticalStatus;
+		item.hitResult = attack.hitResult ?? null;
+		if (attack.hitResult) await game.messages.get(messageId)?.setFlag("ordem_v2_classic", "hitResult", attack.hitResult);
 	}
 
 	/** Acrescenta uma perícia à lista extra. */

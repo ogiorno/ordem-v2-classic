@@ -27,6 +27,7 @@ const aberracao = () => ({
 		details: { creatureType: "creature" },
 		defense: { value: 19 },
 		skills: {
+			fighting: { attr: ["str"], degree: { label: "untrained", override: 10 } },
 			resilience: { attr: ["vit"], degree: { label: "untrained", override: 10 } },
 			perception: { attr: ["pre"], degree: { label: "untrained", override: 5 } },
 			initiative: { attr: ["dex"], degree: { label: "untrained", override: null } },
@@ -349,7 +350,10 @@ Hooks.once("quenchReady", (quench) => {
 					const el = actor.sheet.element;
 					assert.ok(el.querySelector(".sb"), "bloco .sb ausente");
 					assert.equal(el.querySelector(".sb-vd-input").value, "40");
-					assert.ok(el.textContent.includes("3O+10"), "Fortitude 3O+10 não aparece");
+					const fort = el.querySelector("[data-action='rollThreatTest'][data-key='resilience'] b");
+					assert.ok(fort, "teste de Fortitude ausente");
+					assert.ok(fort.querySelector("i.fa-dice-d20"), "ícone de d20 ausente no teste");
+					assert.equal(fort.textContent.trim(), "3+10", "Fortitude deveria mostrar 3 [d20] +10");
 					assert.ok(el.textContent.includes("9m | 6"), "deslocamento não aparece");
 					assert.equal(el.querySelectorAll(".sb-actions .sb-item .sb-die").length, 3);
 				});
@@ -358,6 +362,37 @@ Hooks.once("quenchReady", (quench) => {
 					const el = actor.sheet.element;
 					assert.equal(el.querySelectorAll("nav.tabs, .sheet-tabs").length, 0);
 					assert.ok(el.querySelector(".sb-presence"));
+				});
+
+				it("dado do ataque posta o card e já rola o teste de ataque (2 ataques, x2)", async () => {
+					const before = new Set(game.messages.map((m) => m.id));
+					actor.sheet.element.querySelector(".sb-item-attack .sb-die").click();
+					await new Promise((r) => setTimeout(r, 2500));
+					const created = game.messages.filter((m) => !before.has(m.id));
+					try {
+						assert.ok(created.length >= 3, `esperava card + 2 ataques, vieram ${created.length}`);
+						const attackRolls = created.filter((m) => m.rolls?.length);
+						assert.equal(attackRolls.length, 2, "numberOfAttacks 2 deveria gerar 2 rolagens de ataque");
+						assert.ok(
+							attackRolls.every((m) => /^3d20kh\s*\+\s*10(\s*\+\s*0)?$/.test(m.rolls[0].formula)),
+							`fórmula inesperada: ${attackRolls.map((m) => m.rolls[0].formula)}`
+						);
+					} finally {
+						for (const m of created) await m.delete();
+					}
+				});
+
+				it("dado de habilidade só posta o card (sem rolagem)", async () => {
+					const before = new Set(game.messages.map((m) => m.id));
+					actor.sheet.element.querySelector(".sb-item-ability .sb-die").click();
+					await new Promise((r) => setTimeout(r, 1500));
+					const created = game.messages.filter((m) => !before.has(m.id));
+					try {
+						assert.equal(created.length, 1);
+						assert.equal(created[0].rolls?.length ?? 0, 0);
+					} finally {
+						for (const m of created) await m.delete();
+					}
 				});
 
 				it("modo de edição alterna a classe sb-editing", () => {

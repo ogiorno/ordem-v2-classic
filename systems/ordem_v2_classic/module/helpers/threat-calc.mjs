@@ -161,3 +161,40 @@ export function summarizeResistances(resistances = {}) {
 	}
 	return { rd, vulnerable, immune };
 }
+
+/**
+ * Corrige perícias de ameaças antigas cujo atributo ficou no padrão errado ["dex"].
+ * Só mexe em quem tem exatamente ["dex"] e cujo padrão do livro é outro; não toca em escolhas explícitas.
+ * @param {Record<string,{attr?:string[]}>} skills   Muda no lugar.
+ * @param {Record<string,string>} defaults           Atributo padrão de cada perícia.
+ * @returns {string[]} chaves corrigidas
+ */
+export function fixLegacySkillAttrs(skills, defaults) {
+	const fixed = [];
+	for (const [key, skill] of Object.entries(skills ?? {})) {
+		const want = defaults?.[key];
+		const attr = skill?.attr;
+		if (!want || want === "dex" || !Array.isArray(attr)) continue;
+		if (attr.length === 1 && attr[0] === "dex") {
+			skill.attr = [want];
+			fixed.push(key);
+		}
+	}
+	return fixed;
+}
+
+/**
+ * Mesmo teste de `formatTest`, mas com o ícone de d20 no lugar do "O" (como no livro; "O" parece zero na tela).
+ * Só gera números e um <i> fixo, então é seguro usar com {{{ }}}.
+ * @param {number} dice
+ * @param {number} bonus
+ * @returns {string}
+ */
+export function formatTestHtml(dice, bonus = 0) {
+	const d = Math.max(1, int(dice, 1));
+	const b = int(bonus);
+	const icon = '<i class="fa-solid fa-dice-d20 sb-d20" aria-label="d20"></i>';
+	const head = d === 1 ? icon : `${d}${icon}`;
+	if (b === 0) return head;
+	return b > 0 ? `${head}+${b}` : `${head}${b}`;
+}

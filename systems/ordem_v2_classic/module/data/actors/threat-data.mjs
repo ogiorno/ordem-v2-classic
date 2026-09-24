@@ -1,7 +1,9 @@
 import { calculateSkillProficiency } from "../../helpers/actor-calculations.mjs";
 import {
 	bruisedThreshold,
+	fixLegacySkillAttrs,
 	formatTest,
+	formatTestHtml,
 	isBruised,
 	movementLabel,
 	sizeInfo,
@@ -20,11 +22,11 @@ const defaultAttrs = {
 	freeSkill: "int",
 };
 
-function skillField() {
+function skillField(defaultAttr = "dex") {
 	const fields = foundry.data.fields;
 	return new fields.SchemaField({
 		value: new fields.NumberField({ required: true, integer: true, initial: 0 }),
-		attr: new fields.ArrayField(new fields.StringField(), { initial: ["dex"] }),
+		attr: new fields.ArrayField(new fields.StringField(), { initial: [defaultAttr] }),
 		degree: new fields.SchemaField({
 			label: new fields.StringField({ initial: "untrained" }),
 			// `value` is *derived* from `label` by default (calculateSkillProficiency),
@@ -96,13 +98,13 @@ export class ThreatData extends foundry.abstract.TypeDataModel {
 			}),
 			attacks: new fields.ObjectField({ initial: {} }),
 			skills: new fields.SchemaField({
-				fighting: skillField(),
-				aim: skillField(),
-				resilience: skillField(),
-				reflexes: skillField(),
-				will: skillField(),
-				initiative: skillField(),
-				perception: skillField(),
+				fighting: skillField(defaultAttrs.fighting),
+				aim: skillField(defaultAttrs.aim),
+				resilience: skillField(defaultAttrs.resilience),
+				reflexes: skillField(defaultAttrs.reflexes),
+				will: skillField(defaultAttrs.will),
+				initiative: skillField(defaultAttrs.initiative),
+				perception: skillField(defaultAttrs.perception),
 				freeSkill: freeSkillField(),
 			}),
 			elements: new fields.SchemaField({
@@ -208,6 +210,7 @@ export class ThreatData extends foundry.abstract.TypeDataModel {
 			const attrValue = this.attributes[skill.attr?.[0]]?.value ?? 0;
 			const bonus = skill.degree?.value ?? 0;
 			skill.testLabel = formatTest(attrValue, bonus);
+			skill.testHtml = formatTestHtml(attrValue, bonus);
 			skill.formula = testFormula(attrValue, bonus);
 		}
 
@@ -216,6 +219,7 @@ export class ThreatData extends foundry.abstract.TypeDataModel {
 			const dice = extra.diceOverride ?? attrValue;
 			extra.dice = dice;
 			extra.testLabel = formatTest(dice, extra.bonus);
+			extra.testHtml = formatTestHtml(dice, extra.bonus);
 			extra.formula = testFormula(dice, extra.bonus);
 		}
 	}
@@ -270,6 +274,9 @@ export class ThreatData extends foundry.abstract.TypeDataModel {
 		if (data?.details && data.details.size !== undefined) {
 			delete data.details.size;
 		}
+		// Ameaças antigas gravaram attr ["dex"] em todas as perícias (o padrão do schema estava errado):
+		// Fortitude usava AGI em vez de VIG, Vontade/Percepção AGI em vez de PRE etc. Restaura o padrão do livro.
+		if (data?.skills) fixLegacySkillAttrs(data.skills, defaultAttrs);
 		return super.migrateData(data);
 	}
 }
