@@ -32,3 +32,15 @@ Feche o app desktop antes. Editou JS/CSS/HTML/lang → **F5** no navegador. Só 
 
 ## Hot reload
 `npm run dev` agora usa `scripts/dev.mjs`: observa `modules/` e `systems/`. Salvou arquivo → navegador recarrega sozinho (módulo `dev-reload`, ative-o no mundo). Mudou `module.json`/`system.json`/`template.json` → reinicia o servidor. Packs (`packs/`) são ignorados.
+
+## Sistema ordem_v2_classic (workspace)
+- Código em `systems/ordem_v2_classic/` (git). O `npm run dev` espelha cada arquivo salvo para `Data/systems/ordem_v2_classic` (sem packs compilados); `npm run sync` faz isso uma vez. Mudou `system.json`/`module.json` → o servidor reinicia sozinho.
+- Original intacto no commit `bd4aaee` (baseline).
+- Testes:
+  - `npm test` — lógica pura (Node, `tests/unit/`), sem Foundry.
+  - `npm run render-check` — compila/renderiza os templates da ficha de ameaça com o Handlebars do Foundry.
+  - `npm run lang-check` — confere chaves de tradução usadas pela ficha.
+  - Dentro do mundo (sem precisar do módulo Quench), no console do navegador como GM:
+    `await import("/systems/ordem_v2_classic/module/tests/mini-quench.mjs"); await miniQuench("/systems/ordem_v2_classic/module/tests/suites/threat-sheet-book.test.mjs")`
+- Spec e decisões: `docs/spec-ficha-ameaca.md` (seção 11), regras do livro: `docs/ficha-ameaca-regras.md`, auditoria: `docs/auditoria-ficha-ameaca-atual.md`.
+- CSS do sistema usa a classe raiz `.system-ordemparanormal`, que NÃO existe neste id (`system-ordem_v2_classic`): o CSS antigo não casa. A ficha nova (`css/threat-sheet.css`) não depende dela.
