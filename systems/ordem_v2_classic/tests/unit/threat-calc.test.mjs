@@ -14,6 +14,8 @@ import {
 	fastHealingAmount,
 	groupPresenceFormula,
 	summarizeResistances,
+	fixLegacySkillAttrs,
+	formatTestHtml,
 } from "../../module/helpers/threat-calc.mjs";
 
 describe("formatTest (notação xO+y do livro)", () => {
@@ -189,5 +191,41 @@ describe("summarizeResistances", () => {
 	});
 	it("aguenta entrada vazia", () => {
 		assert.deepEqual(summarizeResistances(undefined), { rd: [], vulnerable: [], immune: [] });
+	});
+});
+
+describe("fixLegacySkillAttrs (ameaças antigas com attr ['dex'] em tudo)", () => {
+	const defaults = { fighting: "str", aim: "dex", resilience: "vit", reflexes: "dex", will: "pre", initiative: "dex", perception: "pre" };
+	it("restaura o atributo do livro onde o padrão errado ['dex'] ficou", () => {
+		const skills = { resilience: { attr: ["dex"] }, will: { attr: ["dex"] }, perception: { attr: ["dex"] }, reflexes: { attr: ["dex"] } };
+		const fixed = fixLegacySkillAttrs(skills, defaults);
+		assert.deepEqual(fixed.sort(), ["perception", "resilience", "will"]);
+		assert.deepEqual(skills.resilience.attr, ["vit"]);
+		assert.deepEqual(skills.will.attr, ["pre"]);
+		assert.deepEqual(skills.perception.attr, ["pre"]);
+		assert.deepEqual(skills.reflexes.attr, ["dex"]); // padrão do livro já é dex
+	});
+	it("não toca em escolhas explícitas nem em dados estranhos", () => {
+		const skills = { resilience: { attr: ["str"] }, will: { attr: ["pre", 1] }, perception: {}, fighting: { attr: [] }, x: { attr: ["dex"] } };
+		assert.deepEqual(fixLegacySkillAttrs(skills, defaults), []);
+		assert.deepEqual(skills.resilience.attr, ["str"]);
+		assert.deepEqual(skills.will.attr, ["pre", 1]);
+	});
+	it("aguenta entrada vazia", () => {
+		assert.deepEqual(fixLegacySkillAttrs(undefined, defaults), []);
+		assert.deepEqual(fixLegacySkillAttrs({}, undefined), []);
+	});
+});
+
+describe("formatTestHtml (ícone de d20 no lugar do O)", () => {
+	const icon = '<i class="fa-solid fa-dice-d20 sb-d20" aria-label="d20"></i>';
+	it("espelha formatTest trocando o O pelo ícone", () => {
+		assert.equal(formatTestHtml(3, 10), `3${icon}+10`);
+		assert.equal(formatTestHtml(1, 0), icon);
+		assert.equal(formatTestHtml(1, 5), `${icon}+5`);
+		assert.equal(formatTestHtml(2, -3), `2${icon}-3`);
+	});
+	it("nunca deixa HTML do usuário passar (só números)", () => {
+		assert.equal(formatTestHtml("<script>", "<b>"), icon);
 	});
 });
