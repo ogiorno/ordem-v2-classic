@@ -4,6 +4,13 @@ import { createRequire } from "node:module";
 import { readFileSync } from "node:fs";
 import path from "node:path";
 import assert from "node:assert/strict";
+import { formatTestHtml } from "../systems/ordem_v2_classic/module/helpers/threat-calc.mjs";
+
+// "3O+10" → 3 d20 + 10, com o ícone de d20 no lugar do "O" (igual ao que a ficha mostra)
+const html20 = (label) => {
+	const m = label.match(/^(\d*)O([+-]\d+)?$/);
+	return formatTestHtml(m[1] ? Number(m[1]) : 1, m[2] ? Number(m[2]) : 0);
+};
 
 const install = "C:\\Users\\Geh\\VTT\\Foundry Virtual Tabletop\\resources\\app";
 const require = createRequire(path.join(install, "package.json"));
@@ -23,8 +30,8 @@ hb.registerHelper("eq", (a, b) => a === b);
 const prefix = "systems/ordem_v2_classic/templates/threat/parts/";
 for (const f of ["threat-test-chip", "threat-item-row"]) hb.registerPartial(`${prefix}${f}.hbs`, read(`templates/threat/parts/${f}.hbs`));
 
-const test = (key, label, testLabel) => ({ key, label, testLabel, formula: "", degreeLabel: "untrained", override: 10, derived: 10 });
-const item = (o) => ({ _id: "i1", name: "Pancada", rowKind: "attack", rowMeta: "Corpo a corpo x2", testLabel: "3O+10", damageLabel: "2d6+6 Impacto", editAction: "editThreatAttack", dieTooltip: "Rolar ataque", ...o });
+const test = (key, label, testLabel) => ({ key, label, testLabel, testHtml: html20(testLabel), formula: "", degreeLabel: "untrained", override: 10, derived: 10 });
+const item = (o) => ({ _id: "i1", name: "Pancada", rowKind: "attack", rowMeta: "Corpo a corpo x2", testLabel: "3O+10", testHtml: html20("3O+10"), damageLabel: "2d6+6 Impacto", editAction: "editThreatAttack", dieTooltip: "Rolar ataque", ...o });
 const ctx = {
 	actor: { type: "threat", name: "Aberração de carne", img: "icons/svg/mystery-man.svg", uuid: "Actor.x" },
 	editable: true,
@@ -60,7 +67,7 @@ const ctx = {
 	healingText: "",
 	attrRows: [{ key: "dex", abbr: "AGI", label: "Agilidade", value: 1 }, { key: "str", abbr: "FOR", label: "Força", value: 3 }],
 	hasSkills: true,
-	skillRows: [{ name: "Crime", testLabel: "2O+5", index: 0, action: "rollThreatExtra", isExtra: true }],
+	skillRows: [{ name: "Crime", testLabel: "2O+5", testHtml: html20("2O+5"), index: 0, action: "rollThreatExtra", isExtra: true }],
 	passives: [item({ name: "Origem", rowKind: "ability", testLabel: "", damageLabel: "", rowMeta: "", editAction: "viewDoc" })],
 	actionGroups: [
 		{ key: "default", label: "Padrão", items: [item({})] },
@@ -71,10 +78,11 @@ const ctx = {
 const html = hb.compile(read("templates/threat/actor-threat-sheet.hbs"))(ctx, { data: { root: ctx } });
 const count = (re) => (html.match(re) ?? []).length;
 
-assert.ok(html.includes("3O+10"), "Fortitude 3O+10");
+assert.ok(html.includes(formatTestHtml(3, 10)), "Fortitude 3O+10 com ícone de d20");
+assert.ok(!html.includes("3O+10"), "o texto 'O' não aparece mais (parece zero)");
 assert.ok(html.includes("9m | 6"), "deslocamento");
 assert.ok(html.includes("Aberração de carne"), "nome");
-assert.equal(count(/data-action="onRoll"/g), 3, "um dado por item (passiva + 2 ações)");
+assert.equal(count(/data-action="rollThreatItem"/g), 3, "um dado por item (passiva + 2 ações)");
 assert.ok(html.includes('data-action="onRollMentalDamage"'), "dado da presença perturbadora");
 assert.equal(count(/sb-type sb-type-/g), 2, "dois grupos de ação");
 assert.ok(html.includes('data-action="rollThreatTest" data-key="resilience"'), "teste clicável");
