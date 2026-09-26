@@ -3,7 +3,7 @@
 //  - editou module.json/system.json/template.json -> reinicia o servidor e recarrega
 import { spawn } from "node:child_process";
 import { createServer } from "node:http";
-import { watch, existsSync } from "node:fs";
+import { watch, existsSync, rmSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { syncAll, syncFile } from "./sync-systems.mjs";
@@ -35,6 +35,12 @@ const notify = () => { for (const c of clients) c.write("event: reload\ndata: 1\
 let child = null;
 let restarting = false;
 
+// Ao matar o Foundry a força, ele deixa a trava `options.json.lock`; o próximo start falharia com
+// "directory already locked". Só chamamos isto depois que o NOSSO processo saiu (ou antes do 1º start com a porta livre).
+function clearStaleLock() {
+  try { rmSync(path.join(data, "Config", "options.json.lock"), { recursive: true, force: true }); } catch {}
+}
+
 function start() {
   console.log("[dev] iniciando Foundry em http://localhost:" + port);
   child = spawn(exe, ["-r", path.join(root, "scripts", "no-electron.cjs"), main,
@@ -43,7 +49,8 @@ function start() {
     env: { ...process.env, ELECTRON_RUN_AS_NODE: "1" }
   });
   child.on("exit", code => {
-    if (restarting) { restarting = false; start(); return; }
+    if (restarting) { restarting = false; clearStaleLock(); setTimeout(start, 500); return; }
+    if (code !== 0) clearStaleLock();
     console.log("[dev] Foundry encerrou (código " + code + ")");
     process.exit(code ?? 0);
   });
