@@ -166,7 +166,7 @@ export class OrdemThreatSheet extends api.HandlebarsApplicationMixin(sheets.Acto
 
 		context.elementLabel = label(CONFIG.op.dropdownElement, system.elements?.main);
 		context.typeLabel = label(CONFIG.op.dropdownThreatType, system.details?.creatureType);
-		context.sizeLabel = label(CONFIG.op.dropdownThreatSize, system.size);
+		context.sizeLabel = label(CONFIG.op.dropdownThreatSize, system.size || "medium");
 		context.isCreature = system.details?.creatureType === "creature";
 
 		// Atributos (siglas do livro)
