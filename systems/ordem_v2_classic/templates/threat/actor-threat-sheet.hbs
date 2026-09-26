@@ -5,7 +5,6 @@
 		<img class="sb-portrait" src="{{actor.img}}" data-edit="img" data-action="onEditImage" title="{{actor.name}}" />
 		<div class="sb-title">
 			<input class="sb-name" name="name" type="text" value="{{actor.name}}" placeholder="{{localize 'op.threatName'}}" />
-			<div class="sb-sub">{{elementLabel}}{{#if elementLabel}} · {{/if}}{{typeLabel}} · {{sizeLabel}}</div>
 		</div>
 		<div class="sb-vd">
 			<span class="sb-vd-label">{{localize "op.threat.vd"}}</span>
@@ -21,7 +20,7 @@
 	{{!-- 2. DESCRITORES E TAMANHO --}}
 	<div class="sb-tags">
 		{{#if elementLabel}}<span class="sb-chip element-{{system.elements.main}}">{{elementLabel}}</span>{{/if}}
-		<span class="sb-chip">{{typeLabel}}</span>
+		{{#if typeLabel}}<span class="sb-chip">{{typeLabel}}</span>{{/if}}
 		<span class="sb-chip">{{sizeLabel}}</span>
 		<span class="sb-chip sb-chip-dim">
 			{{localize "op.threat.sizeStealth"}} {{numberFormat system.sizeData.stealth sign=true}} ·
