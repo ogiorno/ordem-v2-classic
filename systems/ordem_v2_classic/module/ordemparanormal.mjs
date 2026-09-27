@@ -46,6 +46,10 @@ const sheets = foundry.appv1.sheets;
 /* -------------------------------------------- */
 
 Hooks.once("init", function () {
+	// Todo o CSS do sistema usa o escopo `.system-ordemparanormal`, mas o Foundry só coloca `system-<id>` no <body>
+	// (aqui: `system-ordem_v2_classic`). Sem esta classe nenhuma regra casa e as fichas ficam sem estilo.
+	document.body.classList.add("system-ordemparanormal");
+
 	// Add utility classes to the global game object so that they're more easily
 	// accessible in global contexts.
 	game.ordemparanormal = {
