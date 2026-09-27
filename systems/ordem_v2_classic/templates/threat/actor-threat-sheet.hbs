@@ -126,35 +126,49 @@
 		</div>
 	</div>
 
-	{{!-- 8. PERÍCIAS (some se vazio) --}}
-	{{#if hasSkills}}
-		<div class="sb-block">
-			<span class="sb-label">{{localize "op.threat.skills"}}</span>
-			<div class="sb-row">
-				{{#each skillRows as |s|}}
-					<span class="sb-skill">
-						<a class="sb-test" data-action="{{s.action}}" data-index="{{s.index}}" data-key="{{s.key}}">
-							{{s.name}} <b>{{{s.testHtml}}}</b>
-						</a>
-						{{#if s.isExtra}}
-							{{#if @root.editable}}<a class="sb-edit sb-x" data-action="removeExtraSkill" data-index="{{s.index}}" data-tooltip="{{localize 'op.threat.remove'}}"><i class="fas fa-trash"></i></a>{{/if}}
-						{{/if}}
-					</span>
-				{{/each}}
-			</div>
+	{{!-- 8. PERÍCIAS (adicionar rápido; buff separado do bônus base) --}}
+	<div class="sb-block sb-skills">
+		<span class="sb-label">{{localize "op.threat.skills"}}
+			{{#if editable}}
+				<select class="sb-picker" data-skill-picker aria-label="{{localize 'op.threat.addSkill'}}">
+					<option value="">{{localize "op.threat.addSkillPick"}}</option>
+					{{#each skillPicker as |s|}}<option value="{{s.key}}">{{s.label}}</option>{{/each}}
+					<option value="__custom">{{localize "op.threat.customSkill"}}</option>
+				</select>
+			{{/if}}
+		</span>
+		<div class="sb-row">
+			{{#each skillRows as |s|}}
+				<span class="sb-skill">
+					<a class="sb-test" data-action="{{s.action}}" data-index="{{s.index}}" data-key="{{s.key}}" data-tooltip="{{s.tooltip}}">
+						{{s.name}} <b>{{{s.testHtml}}}</b>
+					</a>
+					{{#if s.hasBuff}}<span class="sb-buff {{s.buffClass}}" data-tooltip="{{localize 'op.threat.buff'}}">{{s.buffText}}</span>{{/if}}
+				</span>
+			{{else}}
+				<span class="sb-empty">{{localize "op.threat.noSkills"}}</span>
+			{{/each}}
 		</div>
-	{{/if}}
-	<div class="sb-edit sb-block sb-edit-skills">
-		<span class="sb-label">{{localize "op.threat.skills"}}</span>
-		{{#each system.extraSkills as |s i|}}
-			<div class="sb-row">
-				<input type="text" name="system.extraSkills.{{i}}.name" value="{{s.name}}" placeholder="{{localize 'op.threat.skillName'}}" />
-				<select name="system.extraSkills.{{i}}.attr">{{selectOptions @root.attributeChoices selected=s.attr localize=true}}</select>
-				<label>{{localize "op.threat.diceOverride"}} <input type="text" name="system.extraSkills.{{i}}.diceOverride" value="{{s.diceOverride}}" data-dtype="Number" /></label>
-				<label>+ <input type="text" name="system.extraSkills.{{i}}.bonus" value="{{s.bonus}}" data-dtype="Number" /></label>
-			</div>
-		{{/each}}
-		<a class="sb-add" data-action="addExtraSkill"><i class="fas fa-plus"></i> {{localize "op.threat.addSkill"}}</a>
+		<div class="sb-edit sb-edit-skills">
+			{{#each skillRows as |s|}}
+				{{#if s.isExtra}}
+					<div class="sb-row sb-skill-edit">
+						<input type="hidden" name="system.extraSkills.{{s.index}}.key" value="{{s.skillKey}}" />
+						{{#if s.isCustom}}
+							<input class="sb-skill-name" type="text" name="system.extraSkills.{{s.index}}.name" value="{{s.rawName}}" placeholder="{{localize 'op.threat.skillName'}}" />
+						{{else}}
+							<span class="sb-skill-fixed">{{s.name}}</span>
+							<input type="hidden" name="system.extraSkills.{{s.index}}.name" value="{{s.rawName}}" />
+						{{/if}}
+						<select name="system.extraSkills.{{s.index}}.attr">{{selectOptions @root.attributeChoices selected=s.attr localize=true}}</select>
+						<label title="{{localize 'op.threat.diceOverride'}}">{{localize "op.threat.dice"}} <input type="text" name="system.extraSkills.{{s.index}}.diceOverride" value="{{s.diceOverride}}" data-dtype="Number" /></label>
+						<label>{{localize "op.threat.base"}} <input type="text" name="system.extraSkills.{{s.index}}.bonus" value="{{s.bonus}}" data-dtype="Number" /></label>
+						<label>{{localize "op.threat.buff"}} <input type="text" name="system.extraSkills.{{s.index}}.buff" value="{{s.buff}}" data-dtype="Number" /></label>
+						<a class="sb-icon" data-action="removeExtraSkill" data-index="{{s.index}}" data-tooltip="{{localize 'op.threat.remove'}}"><i class="fas fa-trash"></i></a>
+					</div>
+				{{/if}}
+			{{/each}}
+		</div>
 	</div>
 
 	{{!-- 9. DESLOCAMENTO --}}

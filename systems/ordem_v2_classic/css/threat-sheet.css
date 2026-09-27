@@ -216,3 +216,49 @@
 /* Rolagem: a ficha é um bloco só (várias partes empilhadas); quem rola é o conteúdo da janela */
 .application.threat .window-content { overflow-y: auto; overflow-x: hidden; }
 .application.threat .window-content > * { flex: none; }
+
+/* Sem margem sobrando no fim: o editor de texto e a aba de efeitos não devem forçar altura */
+.application.threat .window-content .tab.effects { height: auto !important; min-height: 0 !important; flex: none !important; }
+.application.threat .window-content .tab.effects .effects-management { height: auto !important; min-height: 0 !important; max-height: none !important; flex: none !important; overflow: visible; }
+.application.threat .threat-notes prose-mirror,
+.application.threat .threat-notes .editor.prosemirror { min-height: 56px; height: auto; }
+.application.threat .threat-notes .locked-content { min-height: 0; }
+.application.threat .window-content { padding-bottom: 0; }
+
+/* Perícias e buffs */
+.threat.sb .sb-skills .sb-label { justify-content: space-between; }
+.threat.sb .sb-picker { height: 22px; width: auto; max-width: 180px; font-size: 12px; text-transform: none; letter-spacing: 0; }
+.threat.sb .sb-buff {
+	padding: 0 6px;
+	border-radius: 4px;
+	font-family: var(--font-mono, monospace);
+	font-size: 12px;
+	font-weight: 600;
+}
+.threat.sb .sb-buff.pos { background: rgba(46, 139, 87, 0.22); color: #1f6b41; }
+.threat.sb .sb-buff.neg { background: rgba(179, 38, 45, 0.2); color: #b3262d; }
+.threat.sb .sb-testedit { align-items: center; gap: 4px; flex-wrap: wrap; }
+.threat.sb .sb-testedit label { font-size: 11px; opacity: 0.85; }
+.threat.sb .sb-testedit input { width: 40px; }
+.threat.sb .sb-edit-skills { padding-top: 6px; flex-direction: column; align-items: stretch; gap: 4px; }
+.threat.sb .sb-skill-edit { gap: 6px; }
+.threat.sb .sb-skill-edit .sb-skill-name { width: 130px; }
+.threat.sb .sb-skill-edit .sb-skill-fixed { width: 130px; font-weight: 600; }
+.threat.sb .sb-skill-edit input[type="text"] { width: 42px; text-align: center; }
+.threat.sb .sb-skill-edit .sb-skill-name { text-align: left; }
+.threat.sb .sb-skill-edit label { font-size: 11px; }
+
+/* Modo de edição mais compacto (as regras antigas esticam inputs e selects em 100%) */
+.threat.sb .sb-skill { flex-wrap: wrap; }
+.threat.sb .sb-testedit select { width: 112px !important; }
+.threat.sb .sb-testedit input { width: 44px !important; text-align: center; }
+.threat.sb .sb-edit-rd { align-items: flex-start; gap: 6px 14px; }
+.threat.sb .sb-edit-rd label { display: inline-flex; flex-wrap: nowrap; align-items: center; gap: 6px; width: auto; }
+.threat.sb .sb-edit-rd input { width: 52px !important; text-align: center; }
+.threat.sb .sb-edit-rd select[multiple] { width: 150px !important; height: 74px; min-height: 0; }
+.threat.sb .sb-edit-selects label { display: inline-flex; flex-direction: column; align-items: flex-start; gap: 2px; }
+.threat.sb .sb-edit-selects select { width: 150px !important; }
+.threat.sb .sb-skill-edit select { width: 70px !important; }
+.threat.sb .sb-skill-edit input[type="text"] { width: 44px !important; }
+.threat.sb .sb-skill-edit .sb-skill-name { width: 130px !important; }
+.threat.sb .sb-presence .sb-edit input { width: 64px !important; text-align: center; }
