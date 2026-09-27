@@ -2,7 +2,7 @@
 import { prepareActiveEffectCategories } from "../helpers/effects.mjs";
 import { ResistanceConfig } from "../applications/resistance-config.mjs";
 import { TraitsConfig } from "../applications/traits-config.mjs";
-import { formatTest, formatTestHtml, summarizeResistances } from "../helpers/threat-calc.mjs";
+import { SKILL_DEFAULT_ATTR, formatTest, formatTestHtml, signed, summarizeResistances } from "../helpers/threat-calc.mjs";
 
 const { api, sheets } = foundry.applications;
 
@@ -108,6 +108,15 @@ export class OrdemThreatSheet extends api.HandlebarsApplicationMixin(sheets.Acto
 		await super._onRender(context, options);
 		this.#disableOverrides();
 
+		// Seletor "+ Perícia": escolher uma perícia do sistema (ou "Outra…") adiciona a linha já configurada.
+		this.element.querySelector("[data-skill-picker]")?.addEventListener("change", async (event) => {
+			event.stopPropagation();
+			const value = event.target.value;
+			if (!value) return;
+			event.target.value = "";
+			await this.addExtraSkill(value === "__custom" ? "" : value);
+		});
+
 		// Só inputs numéricos que declaram `data-name` usam o clamp próprio; os demais seguem o submitOnChange.
 		for (const input of this.element.querySelectorAll("input[type='number'][data-name]")) {
 			input.addEventListener("change", this._onChangeInputOP.bind(this));
@@ -190,6 +199,12 @@ export class OrdemThreatSheet extends api.HandlebarsApplicationMixin(sheets.Acto
 				degreeLabel: skill?.degree?.label ?? "untrained",
 				override: skill?.degree?.override ?? "",
 				derived: skill?.degree?.value ?? 0,
+				// Buff temporário (system.skills.<chave>.value): somado ao bônus base em todo teste/ataque da perícia
+				buff: skill?.value ?? 0,
+				hasBuff: (skill?.value ?? 0) !== 0,
+				buffText: signed(skill?.value ?? 0),
+				buffClass: (skill?.value ?? 0) < 0 ? "neg" : "pos",
+				tooltip: `${skill?.formula ?? ""} · ${L("op.threat.base")} ${signed(skill?.degree?.value ?? 0)} · ${L("op.threat.buff")} ${signed(skill?.value ?? 0)}`,
 			};
 		};
 		context.senseTests = ["perception", "initiative"].map(testRow);
@@ -208,10 +223,23 @@ export class OrdemThreatSheet extends api.HandlebarsApplicationMixin(sheets.Acto
 			skillRows.push({ name: free.name, testLabel: free.testLabel, testHtml: free.testHtml, key: "freeSkill", action: "rollThreatTest", isExtra: false });
 		}
 		(system.extraSkills ?? []).forEach((extra, index) => {
+			const known = extra.key && CONFIG.op.skills?.[extra.key];
 			skillRows.push({
-				name: extra.name || L("op.skill.freeSkill"),
+				name: known ? L(CONFIG.op.skills[extra.key]) : extra.name || L("op.skill.freeSkill"),
 				testLabel: extra.testLabel,
 				testHtml: extra.testHtml,
+				tooltip: `${extra.formula} · ${L("op.threat.base")} ${signed(extra.bonus)} · ${L("op.threat.buff")} ${signed(extra.buff)}`,
+				hasBuff: (extra.buff ?? 0) !== 0,
+				buffText: signed(extra.buff),
+				buffClass: (extra.buff ?? 0) < 0 ? "neg" : "pos",
+				skillKey: extra.key ?? "",
+				rawName: extra.name ?? "",
+				// campos de edição
+				attr: extra.attr,
+				diceOverride: extra.diceOverride,
+				bonus: extra.bonus,
+				buff: extra.buff,
+				isCustom: !known,
 				index,
 				action: "rollThreatExtra",
 				isExtra: true,
@@ -219,6 +247,13 @@ export class OrdemThreatSheet extends api.HandlebarsApplicationMixin(sheets.Acto
 		});
 		context.skillRows = skillRows;
 		context.hasSkills = skillRows.length > 0;
+
+		// Seletor de "adicionar perícia": perícias do sistema ainda não adicionadas, em ordem alfabética
+		const taken = new Set((system.extraSkills ?? []).map((e) => e.key).filter(Boolean));
+		context.skillPicker = Object.keys(SKILL_DEFAULT_ATTR)
+			.filter((key) => !taken.has(key) && CONFIG.op.skills?.[key])
+			.map((key) => ({ key, label: L(CONFIG.op.skills[key]) }))
+			.sort((a, b) => a.label.localeCompare(b.label));
 
 		// Resistências, vulnerabilidades e imunidades como tags legíveis
 		const typeName = (key) => L(`op.damageTypeAbv.${key}`);
@@ -474,11 +509,20 @@ export class OrdemThreatSheet extends api.HandlebarsApplicationMixin(sheets.Acto
 		if (attack.hitResult) await game.messages.get(messageId)?.setFlag("ordem_v2_classic", "hitResult", attack.hitResult);
 	}
 
-	/** Acrescenta uma perícia à lista extra. */
+	/** Acrescenta uma perícia personalizada (em branco) à lista extra. */
 	static async #onAddExtraSkill(event) {
 		event.preventDefault();
+		await this.addExtraSkill("");
+	}
+
+	/**
+	 * Acrescenta uma perícia à lista extra. Com `key` de uma perícia do sistema (ex.: "athleticism"),
+	 * já vem com o atributo padrão dela; sem `key`, é uma perícia personalizada para nomear.
+	 * @param {string} [key]
+	 */
+	async addExtraSkill(key = "") {
 		const list = this.document.toObject().system.extraSkills ?? [];
-		list.push({ name: "", attr: "dex", diceOverride: null, bonus: 0 });
+		list.push({ key, name: "", attr: SKILL_DEFAULT_ATTR[key] ?? "dex", diceOverride: null, bonus: 0, buff: 0 });
 		await this.document.update({ "system.extraSkills": list });
 	}
 

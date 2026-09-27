@@ -198,3 +198,43 @@ export function formatTestHtml(dice, bonus = 0) {
 	if (b === 0) return head;
 	return b > 0 ? `${head}+${b}` : `${head}${b}`;
 }
+
+/**
+ * Atributo padrão de cada perícia (mesmo mapa do agente). Usado ao adicionar uma perícia à ameaça:
+ * os dados do teste vêm do atributo; o bônus e o buff são somados depois.
+ */
+export const SKILL_DEFAULT_ATTR = Object.freeze({
+	acrobatics: "dex",
+	animal: "pre",
+	arts: "pre",
+	athleticism: "str",
+	relevance: "int",
+	sciences: "int",
+	crime: "dex",
+	diplomacy: "pre",
+	deception: "pre",
+	stealth: "dex",
+	intimidation: "pre",
+	intuition: "pre",
+	investigation: "int",
+	medicine: "int",
+	occultism: "int",
+	driving: "dex",
+	religion: "pre",
+	survival: "int",
+	tactics: "int",
+	technology: "int",
+	fighting: "str",
+	aim: "dex",
+});
+
+/** Soma de bônus fixo (base) com buff temporário. Aceita lixo (vira 0). */
+export function totalBonus(base = 0, buff = 0) {
+	return int(base) + int(buff);
+}
+
+/** "+5", "-3" ou "0". */
+export function signed(n) {
+	const v = int(n);
+	return v > 0 ? `+${v}` : `${v}`;
+}

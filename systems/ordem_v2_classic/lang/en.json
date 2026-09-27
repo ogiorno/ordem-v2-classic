@@ -757,5 +757,12 @@
 	"op.threat.group.movement": "Movement",
 	"op.threat.group.default": "Standard",
 	"op.threat.group.complete": "Full",
-	"op.threat.group.reaction": "Reaction"
+	"op.threat.group.reaction": "Reaction",
+	"op.threat.buff": "Buff",
+	"op.threat.buffHint": "Temporary bonus or penalty (spell, ritual, condition). Added to the base bonus on every test of this skill.",
+	"op.threat.base": "Base",
+	"op.threat.dice": "Dice",
+	"op.threat.addSkillPick": "+ Skill…",
+	"op.threat.customSkill": "Other (custom)…",
+	"op.threat.noSkills": "No extra skills. Use \"+ Skill\" to add one, like Athletics."
 }

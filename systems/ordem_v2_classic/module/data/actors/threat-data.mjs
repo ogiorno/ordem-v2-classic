@@ -9,6 +9,7 @@ import {
 	sizeInfo,
 	squaresFromMeters,
 	testFormula,
+	totalBonus,
 } from "../../helpers/threat-calc.mjs";
 
 const defaultAttrs = {
@@ -162,10 +163,14 @@ export class ThreatData extends foundry.abstract.TypeDataModel {
 			// Perícias além das cinco do bloco de defesa/sentidos (ex.: Crime 2O+5). Dados = atributo, salvo override.
 			extraSkills: new fields.ArrayField(
 				new fields.SchemaField({
+					// Chave de perícia do sistema (ex.: "athleticism"); vazio = perícia personalizada (usa `name`).
+					key: new fields.StringField({ initial: "" }),
 					name: new fields.StringField({ initial: "" }),
 					attr: new fields.StringField({ initial: "dex" }),
 					diceOverride: new fields.NumberField({ required: false, nullable: true, integer: true, min: 0, initial: null }),
 					bonus: new fields.NumberField({ required: true, integer: true, initial: 0 }),
+					// Buff/penalidade temporária somada ao bônus (magias, rituais, condições).
+					buff: new fields.NumberField({ required: true, integer: true, initial: 0 }),
 				})
 			),
 			// "RD N/tipo": reduz N de todo dano, exceto dos tipos em `except`.
@@ -208,7 +213,10 @@ export class ThreatData extends foundry.abstract.TypeDataModel {
 
 		for (const skill of Object.values(this.skills)) {
 			const attrValue = this.attributes[skill.attr?.[0]]?.value ?? 0;
-			const bonus = skill.degree?.value ?? 0;
+			// Bônus base (grau/override) + buff (`skill.value`, o mesmo campo que as rolagens do sistema já somam)
+			skill.base = skill.degree?.value ?? 0;
+			skill.buff = skill.value ?? 0;
+			const bonus = totalBonus(skill.base, skill.buff);
 			skill.testLabel = formatTest(attrValue, bonus);
 			skill.testHtml = formatTestHtml(attrValue, bonus);
 			skill.formula = testFormula(attrValue, bonus);
@@ -217,10 +225,12 @@ export class ThreatData extends foundry.abstract.TypeDataModel {
 		for (const extra of this.extraSkills) {
 			const attrValue = this.attributes[extra.attr]?.value ?? 0;
 			const dice = extra.diceOverride ?? attrValue;
+			const bonus = totalBonus(extra.bonus, extra.buff);
 			extra.dice = dice;
-			extra.testLabel = formatTest(dice, extra.bonus);
-			extra.testHtml = formatTestHtml(dice, extra.bonus);
-			extra.formula = testFormula(dice, extra.bonus);
+			extra.total = bonus;
+			extra.testLabel = formatTest(dice, bonus);
+			extra.testHtml = formatTestHtml(dice, bonus);
+			extra.formula = testFormula(dice, bonus);
 		}
 	}
 

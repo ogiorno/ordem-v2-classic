@@ -150,6 +150,90 @@ Hooks.once("quenchReady", (quench) => {
 				});
 			});
 
+			describe("buff nos testes e perícias adicionáveis", () => {
+				let actor;
+				before(async () => {
+					actor = await Actor.create(aberracao());
+				});
+				after(async () => {
+					await actor?.sheet?.close();
+					await actor?.delete();
+				});
+
+				it("buff (skills.X.value) soma ao bônus base: Fortitude 3O+10 → 3O+15", async () => {
+					await actor.update({ "system.skills.resilience.value": 5 });
+					assert.equal(actor.system.skills.resilience.testLabel, "3O+15");
+					assert.equal(actor.system.skills.resilience.formula, "3d20kh + 15");
+					assert.equal(actor.system.skills.resilience.base, 10);
+					assert.equal(actor.system.skills.resilience.buff, 5);
+				});
+
+				it("buff negativo vira penalidade", async () => {
+					await actor.update({ "system.skills.resilience.value": -4 });
+					assert.equal(actor.system.skills.resilience.testLabel, "3O+6");
+				});
+
+				it("o buff entra na rolagem real", async () => {
+					await actor.update({ "system.skills.resilience.value": 5 });
+					const roll = await actor.rollThreatTest("resilience");
+					try {
+						assert.equal(roll.formula.replace(/\s+/g, ""), "3d20kh+15");
+					} finally {
+						await game.messages.contents.at(-1)?.delete();
+					}
+				});
+
+				it("perícia extra: bônus + buff", async () => {
+					await actor.update({ "system.extraSkills": [{ key: "athleticism", attr: "str", bonus: 10, buff: 5 }] });
+					assert.equal(actor.system.extraSkills[0].total, 15);
+					assert.equal(actor.system.extraSkills[0].testLabel, "3O+15"); // FOR 3
+				});
+
+				it("ficha: seletor lista Atletismo até ser adicionado; depois some da lista", async () => {
+					await actor.update({ "system.extraSkills": [] });
+					let ctx = await actor.sheet._prepareContext({ parts: ["threat"] });
+					assert.ok(ctx.skillPicker.some((s) => s.key === "athleticism"), "Atletismo deveria estar no seletor");
+					await actor.sheet.addExtraSkill("athleticism");
+					assert.equal(actor.system.extraSkills.length, 1);
+					assert.equal(actor.system.extraSkills[0].key, "athleticism");
+					assert.equal(actor.system.extraSkills[0].attr, "str", "Atletismo usa FOR por padrão");
+					ctx = await actor.sheet._prepareContext({ parts: ["threat"] });
+					assert.equal(ctx.skillPicker.some((s) => s.key === "athleticism"), false);
+					assert.equal(ctx.skillRows.at(-1).isCustom, false);
+				});
+
+				it("ficha: campo de buff existe para cada teste e perícia extra", async () => {
+					await actor.sheet.render({ force: true });
+					await new Promise((r) => setTimeout(r, 500));
+					const el = actor.sheet.element;
+					for (const key of ["perception", "initiative", "resilience", "reflexes", "will"]) {
+						assert.ok(el.querySelector(`input[name="system.skills.${key}.value"]`), `buff de ${key} ausente`);
+					}
+					assert.ok(el.querySelector('input[name="system.extraSkills.0.buff"]'), "buff da perícia extra ausente");
+					assert.ok(el.querySelector("[data-skill-picker]"), "seletor de perícia ausente");
+				});
+
+				it("ficha: editar o buff pelo formulário atualiza o teste", async () => {
+					const input = actor.sheet.element.querySelector('input[name="system.skills.will.value"]');
+					input.value = "7";
+					input.dispatchEvent(new Event("change", { bubbles: true }));
+					await new Promise((r) => setTimeout(r, 700));
+					assert.equal(actor.system.skills.will.value, 7);
+					assert.equal(actor.system.skills.will.buff, 7);
+				});
+
+				it("ficha: editar a perícia extra pelo formulário mantém os outros campos", async () => {
+					const input = actor.sheet.element.querySelector('input[name="system.extraSkills.0.buff"]');
+					input.value = "4";
+					input.dispatchEvent(new Event("change", { bubbles: true }));
+					await new Promise((r) => setTimeout(r, 700));
+					const e = actor.system.extraSkills[0];
+					assert.equal(e.buff, 4);
+					assert.equal(e.key, "athleticism", "a chave não pode se perder ao editar");
+					assert.equal(e.attr, "str");
+				});
+			});
+
 			describe("rollThreatTest", () => {
 				let actor;
 				before(async () => {
@@ -407,7 +491,9 @@ Hooks.once("quenchReady", (quench) => {
 
 				it("adicionar e remover perícia extra pela ficha", async () => {
 					const el = actor.sheet.element;
-					el.querySelector("[data-action='addExtraSkill']").click();
+					const picker = el.querySelector("[data-skill-picker]");
+					picker.value = "__custom";
+					picker.dispatchEvent(new Event("change", { bubbles: true }));
 					await new Promise((r) => setTimeout(r, 400));
 					assert.equal(actor.system.extraSkills.length, 1);
 					await actor.update({ "system.extraSkills": [{ name: "Crime", attr: "dex", bonus: 5 }] });

@@ -759,5 +759,12 @@
 	"op.threat.group.movement": "Movimento",
 	"op.threat.group.default": "Padrão",
 	"op.threat.group.complete": "Completa",
-	"op.threat.group.reaction": "Reação"
+	"op.threat.group.reaction": "Reação",
+	"op.threat.buff": "Buff",
+	"op.threat.buffHint": "Bônus ou penalidade temporária (magia, ritual, condição). Soma ao bônus base em todo teste desta perícia.",
+	"op.threat.base": "Base",
+	"op.threat.dice": "Dados",
+	"op.threat.addSkillPick": "+ Perícia…",
+	"op.threat.customSkill": "Outra (personalizada)…",
+	"op.threat.noSkills": "Nenhuma perícia extra. Use \"+ Perícia\" para adicionar, como Atletismo."
 }
