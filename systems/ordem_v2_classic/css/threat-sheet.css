@@ -212,3 +212,7 @@
 .threat.sb .sb-view-inline { opacity: 0.85; }
 .threat.sb-notes { padding: 0; }
 .threat.sb .sb-d20 { font-size: 0.9em; margin: 0 1px; }
+
+/* Rolagem: a ficha é um bloco só (várias partes empilhadas); quem rola é o conteúdo da janela */
+.application.threat .window-content { overflow-y: auto; overflow-x: hidden; }
+.application.threat .window-content > * { flex: none; }
