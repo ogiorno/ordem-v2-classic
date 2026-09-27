@@ -16,6 +16,9 @@ import {
 	summarizeResistances,
 	fixLegacySkillAttrs,
 	formatTestHtml,
+	totalBonus,
+	signed,
+	SKILL_DEFAULT_ATTR,
 } from "../../module/helpers/threat-calc.mjs";
 
 describe("formatTest (notação xO+y do livro)", () => {
@@ -227,5 +230,32 @@ describe("formatTestHtml (ícone de d20 no lugar do O)", () => {
 	});
 	it("nunca deixa HTML do usuário passar (só números)", () => {
 		assert.equal(formatTestHtml("<script>", "<b>"), icon);
+	});
+});
+
+describe("buff e perícias adicionáveis", () => {
+	it("totalBonus soma base e buff (aceita negativos e lixo)", () => {
+		assert.equal(totalBonus(10, 5), 15);
+		assert.equal(totalBonus(10, -3), 7);
+		assert.equal(totalBonus(undefined, "4"), 4);
+		assert.equal(totalBonus(NaN, NaN), 0);
+	});
+	it("signed mostra o sinal", () => {
+		assert.equal(signed(5), "+5");
+		assert.equal(signed(-2), "-2");
+		assert.equal(signed(0), "0");
+		assert.equal(signed("x"), "0");
+	});
+	it("SKILL_DEFAULT_ATTR: Atletismo usa FOR; atributos válidos; congelado", () => {
+		assert.equal(SKILL_DEFAULT_ATTR.athleticism, "str");
+		assert.equal(SKILL_DEFAULT_ATTR.crime, "dex");
+		assert.equal(SKILL_DEFAULT_ATTR.occultism, "int");
+		assert.equal(SKILL_DEFAULT_ATTR.diplomacy, "pre");
+		for (const attr of Object.values(SKILL_DEFAULT_ATTR)) assert.ok(["dex", "str", "int", "pre", "vit"].includes(attr), attr);
+		assert.ok(Object.isFrozen(SKILL_DEFAULT_ATTR));
+	});
+	it("buff vira o bônus final do teste: 3 dados, base 10, buff +5 → 3O+15", () => {
+		assert.equal(formatTest(3, totalBonus(10, 5)), "3O+15");
+		assert.equal(testFormula(3, totalBonus(10, -4)), "3d20kh + 6");
 	});
 });
