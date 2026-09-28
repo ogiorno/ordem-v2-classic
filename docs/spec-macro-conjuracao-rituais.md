@@ -1,7 +1,7 @@
 # Spec — Macro de Conjuração de Rituais
 
-**Status:** especificação e plano de validação; a macro ainda não foi implementada.  
-**Sistema-alvo:** Ordem Paranormal v2 Classic no Foundry VTT.  
+**Status:** macro implementada e testes automatizados aprovados; validação final em mundo Foundry pendente.
+**Sistema-alvo:** Ordem Paranormal v2 Classic no Foundry VTT.
 **Referências de regras:** extração do Livro de Regras v1.3 em `D:\FTT\odem regas\06-o-outro-lado`; mapeamento técnico do sistema em [mapeamento-rituais-agente.md](mapeamento-rituais-agente.md).
 
 ## Objetivo
@@ -33,6 +33,8 @@ As regras abaixo foram conferidas nos arquivos extraídos; os caminhos são rela
 **Importante sobre a extração:** `RitualData` do Classic tem círculo, elemento e flags de formas, mas não tem um campo estruturado de custo/adicional. O custo básico pode vir do círculo. Para Discente/Verdadeira, a prova deve confirmar se o texto do item está disponível e legível; o custo adicional deve ser extraído do texto com validação visível. Se não houver uma correspondência segura, pedir confirmação/valor manual no diálogo e nunca cobrar um custo presumido. Não automatizar requisitos ou efeitos arbitrários só pela descrição livre.
 
 O Classic descreve a configuração “Jogando sem Sanidade” como a fusão de PE e SAN em PD. Como esta macro precisa pagar o custo em PD, a prova deve também confirmar como as perdas de SAN de conjuração se refletem nesse modo. O comportamento esperado é não ignorar essas consequências nem descontá-las duas vezes; se o sistema não oferecer um mapeamento seguro para perda permanente de SAN, manter essa consequência visível para resolução manual e documentar o limite antes da implementação.
+
+**Resultado da verificação do sistema:** `PD.perRound` é preenchido por `calculatePerRound` e usado para recuperação; ele não é o limite de gasto. A macro estima o limite pela NEX (`ceil(NEX / 5)`, máximo 20), exibe o valor editável para bônus de habilidades e não usa `PD.perRound` como limite. Se o custo básico mínimo do ritual ultrapassar o limite, exige uma confirmação explícita de que a exceção de uso mínimo ainda está disponível naquele turno.
 
 **Correção de interpretação do mapeamento anterior:** o texto de regra v1.3 torna o teste de Ocultismo em “O Custo do Paranormal” um teste de consequência de Sanidade, não um teste geral que determina sucesso do ritual. A implementação deve preservar essa diferença. Um ritual só deixa de funcionar por falha de concentração ou por uma condição/regra específica descrita nele.
 
@@ -109,6 +111,12 @@ Os cinco glifos da imagem são, na ordem, Sangue (gota/espinho), Morte (espiral/
 ## Limites de escopo da primeira versão
 
 A primeira versão guia escolhas, paga recurso, rola testes gerais exigidos pela regra e registra resultados. Ela não interpreta linguagem natural para impor todos os efeitos, não escolhe área em grid sem validação de alcance/forma, não resolve sozinho situações narrativas, e não automatiza dano, condições ou efeitos especiais descritos apenas em texto. Isso evita que um resumo incompleto altere o efeito do ritual.
+
+## Implementação entregue e validação restante
+
+A implementação fica em `systems/ordem_v2_classic/module/macros/ritual-caster.mjs`, com regras puras em `ritual-caster-logic.mjs`, glifos em `systems/ordem_v2_classic/assets/ritual-elementos.png` e um comando instalável em `docs/macros/conjurar-ritual.js`. A janela reúne busca, filtro por círculo, formas, custo, limite, alvos, concentração e confirmações; o débito de PD acontece uma vez antes das rolagens. Medo não rola Ocultismo e pede confirmação de personagem Marcado.
+
+Os testes unitários validam cálculo e bloqueios sem mutar atores. A fonte do Foundry v14 e o código do Classic foram conferidos para `DialogV2`, `rollSkill`, os campos de resistência, PD e a configuração sem Sanidade. O ambiente atual não tem um mundo Foundry ativo acessível para executar a validação de aceitação com uma ficha real; por isso, a macro não deve ser considerada pronta para mesa até conferir o fluxo na janela, os valores antes/depois e os resultados de chat conforme a lista acima.
 
 ## Critério para começar a implementação
 
