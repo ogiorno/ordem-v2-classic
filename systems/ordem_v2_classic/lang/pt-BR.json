@@ -766,5 +766,8 @@
 	"op.threat.dice": "Dados",
 	"op.threat.addSkillPick": "+ Perícia…",
 	"op.threat.customSkill": "Outra (personalizada)…",
-	"op.threat.noSkills": "Nenhuma perícia extra. Use \"+ Perícia\" para adicionar, como Atletismo."
+	"op.threat.noSkills": "Nenhuma perícia extra. Use \"+ Perícia\" para adicionar, como Atletismo.",
+	"op.threat.buffApply": "Aplicar",
+	"op.threat.buffClear": "Zerar",
+	"op.threat.shiftHint": "Shift+clique edita o buff"
 }

@@ -764,5 +764,8 @@
 	"op.threat.dice": "Dice",
 	"op.threat.addSkillPick": "+ Skill…",
 	"op.threat.customSkill": "Other (custom)…",
-	"op.threat.noSkills": "No extra skills. Use \"+ Skill\" to add one, like Athletics."
+	"op.threat.noSkills": "No extra skills. Use \"+ Skill\" to add one, like Athletics.",
+	"op.threat.buffApply": "Apply",
+	"op.threat.buffClear": "Clear",
+	"op.threat.shiftHint": "Shift+click edits the buff"
 }

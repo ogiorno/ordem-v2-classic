@@ -232,6 +232,95 @@ Hooks.once("quenchReady", (quench) => {
 					assert.equal(e.key, "athleticism", "a chave não pode se perder ao editar");
 					assert.equal(e.attr, "str");
 				});
+
+				const shiftClick = (el) => el.dispatchEvent(new MouseEvent("click", { bubbles: true, cancelable: true, shiftKey: true }));
+				const menuOf = () => actor.sheet.element.querySelector(".sb-buff-menu");
+				const settle = (ms = 500) => new Promise((r) => setTimeout(r, ms));
+
+				it("Shift+clique no teste abre o menu de buff e NÃO rola", async () => {
+					await actor.update({ "system.skills.resilience.value": 0 });
+					await actor.sheet.render({ force: true });
+					await settle();
+					const before = game.messages.size;
+					shiftClick(actor.sheet.element.querySelector("[data-action='rollThreatTest'][data-key='resilience']"));
+					await settle(300);
+					assert.ok(menuOf(), "menu de buff não abriu");
+					assert.equal(game.messages.size, before, "Shift+clique não deve rolar o teste");
+					assert.equal(menuOf().querySelector("input").value, "0");
+					actor.sheet.closeBuffMenu();
+					assert.equal(menuOf(), null);
+				});
+
+				it("menu: +/− e a prévia mostram o teste com o buff; Aplicar grava", async () => {
+					shiftClick(actor.sheet.element.querySelector("[data-action='rollThreatTest'][data-key='resilience']"));
+					await settle(300);
+					const [minus, plus] = menuOf().querySelectorAll(".sb-bm-row button");
+					plus.click();
+					plus.click();
+					plus.click();
+					assert.equal(menuOf().querySelector("input").value, "3");
+					assert.ok(menuOf().querySelector(".sb-bm-preview").textContent.includes("+10"), "prévia deveria mostrar a base +10");
+					minus.click();
+					assert.equal(menuOf().querySelector("input").value, "2");
+					menuOf().querySelector(".sb-bm-apply").click();
+					await settle(700);
+					assert.equal(menuOf(), null, "menu deveria fechar ao aplicar");
+					assert.equal(actor.system.skills.resilience.value, 2);
+					assert.equal(actor.system.skills.resilience.testLabel, "3O+12");
+				});
+
+				it("menu: Enter aplica o valor digitado, Esc cancela, Zerar limpa", async () => {
+					const chip = () => actor.sheet.element.querySelector("[data-action='rollThreatTest'][data-key='resilience']");
+					shiftClick(chip());
+					await settle(300);
+					let input = menuOf().querySelector("input");
+					input.value = "-4";
+					input.dispatchEvent(new KeyboardEvent("keydown", { key: "Enter", bubbles: true }));
+					await settle(700);
+					assert.equal(actor.system.skills.resilience.value, -4);
+
+					shiftClick(chip());
+					await settle(300);
+					input = menuOf().querySelector("input");
+					input.value = "99";
+					input.dispatchEvent(new KeyboardEvent("keydown", { key: "Escape", bubbles: true }));
+					await settle(300);
+					assert.equal(menuOf(), null);
+					assert.equal(actor.system.skills.resilience.value, -4, "Esc não pode gravar");
+
+					shiftClick(chip());
+					await settle(300);
+					menuOf().querySelectorAll(".sb-bm-actions button")[0].click();
+					await settle(700);
+					assert.equal(actor.system.skills.resilience.value, 0);
+				});
+
+				it("menu também funciona na perícia extra e guarda no buff dela", async () => {
+					await actor.update({ "system.extraSkills": [{ key: "athleticism", attr: "str", bonus: 10, buff: 0 }] });
+					await actor.sheet.render({ force: true });
+					await settle();
+					shiftClick(actor.sheet.element.querySelector("[data-action='rollThreatExtra'][data-index='0']"));
+					await settle(300);
+					const input = menuOf().querySelector("input");
+					input.value = "5";
+					input.dispatchEvent(new KeyboardEvent("keydown", { key: "Enter", bubbles: true }));
+					await settle(700);
+					assert.equal(actor.system.extraSkills[0].buff, 5);
+					assert.equal(actor.system.extraSkills[0].bonus, 10, "o bônus base não pode mudar");
+					assert.equal(actor.system.extraSkills[0].testLabel, "3O+15");
+				});
+
+				it("clique normal (sem Shift) continua rolando e não abre menu", async () => {
+					const before = game.messages.size;
+					actor.sheet.element.querySelector("[data-action='rollThreatTest'][data-key='resilience']").click();
+					await settle(900);
+					try {
+						assert.equal(menuOf(), null);
+						assert.equal(game.messages.size, before + 1);
+					} finally {
+						await game.messages.contents.at(-1)?.delete();
+					}
+				});
 			});
 
 			describe("rollThreatTest", () => {

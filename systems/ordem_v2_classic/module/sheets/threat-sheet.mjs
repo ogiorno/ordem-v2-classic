@@ -204,7 +204,7 @@ export class OrdemThreatSheet extends api.HandlebarsApplicationMixin(sheets.Acto
 				hasBuff: (skill?.value ?? 0) !== 0,
 				buffText: signed(skill?.value ?? 0),
 				buffClass: (skill?.value ?? 0) < 0 ? "neg" : "pos",
-				tooltip: `${skill?.formula ?? ""} · ${L("op.threat.base")} ${signed(skill?.degree?.value ?? 0)} · ${L("op.threat.buff")} ${signed(skill?.value ?? 0)}`,
+				tooltip: `${skill?.formula ?? ""} · ${L("op.threat.base")} ${signed(skill?.degree?.value ?? 0)} · ${L("op.threat.buff")} ${signed(skill?.value ?? 0)} · ${L("op.threat.shiftHint")}`,
 			};
 		};
 		context.senseTests = ["perception", "initiative"].map(testRow);
@@ -228,7 +228,7 @@ export class OrdemThreatSheet extends api.HandlebarsApplicationMixin(sheets.Acto
 				name: known ? L(CONFIG.op.skills[extra.key]) : extra.name || L("op.skill.freeSkill"),
 				testLabel: extra.testLabel,
 				testHtml: extra.testHtml,
-				tooltip: `${extra.formula} · ${L("op.threat.base")} ${signed(extra.bonus)} · ${L("op.threat.buff")} ${signed(extra.buff)}`,
+				tooltip: `${extra.formula} · ${L("op.threat.base")} ${signed(extra.bonus)} · ${L("op.threat.buff")} ${signed(extra.buff)} · ${L("op.threat.shiftHint")}`,
 				hasBuff: (extra.buff ?? 0) !== 0,
 				buffText: signed(extra.buff),
 				buffClass: (extra.buff ?? 0) < 0 ? "neg" : "pos",
@@ -460,13 +460,127 @@ export class OrdemThreatSheet extends api.HandlebarsApplicationMixin(sheets.Acto
 	/** Rola um teste fixo da ameaça (Percepção, Iniciativa, Fortitude, Reflexos, Vontade, perícia livre). */
 	static #onRollThreatTest(event, target) {
 		event.preventDefault();
+		// Shift+clique: em vez de rolar, abre o mini-menu para editar o buff do teste
+		if (event.shiftKey) return this.openBuffMenu(target, { type: "skill", key: target.dataset.key });
 		return this.actor.rollThreatTest(target.dataset.key);
 	}
 
 	/** Rola uma perícia da lista extra (`system.extraSkills[index]`). */
 	static #onRollThreatExtra(event, target) {
 		event.preventDefault();
+		if (event.shiftKey) return this.openBuffMenu(target, { type: "extra", index: Number(target.dataset.index) });
 		return this.actor.rollThreatExtraSkill(Number(target.dataset.index));
+	}
+
+	/**
+	 * Mini-menu do buff (Shift+clique num teste): campo numérico com −/+, prévia do teste e Aplicar/Zerar.
+	 * Enter aplica, Esc ou clique fora fecha. O buff é somado ao bônus base em toda rolagem do teste.
+	 * @param {HTMLElement} anchor   O chip do teste clicado.
+	 * @param {{type: "skill"|"extra", key?: string, index?: number}} spec
+	 */
+	openBuffMenu(anchor, spec) {
+		if (!this.isEditable) return;
+		this.closeBuffMenu();
+
+		const system = this.document.system;
+		const isExtra = spec.type === "extra";
+		const entry = isExtra ? system.extraSkills?.[spec.index] : system.skills?.[spec.key];
+		if (!entry) return;
+
+		const title = isExtra
+			? (entry.key && CONFIG.op.skills?.[entry.key] ? game.i18n.localize(CONFIG.op.skills[entry.key]) : entry.name) ||
+			  game.i18n.localize("op.skill.freeSkill")
+			: entry.label ?? spec.key;
+		const base = isExtra ? entry.bonus : entry.degree?.value ?? 0;
+		const dice = isExtra ? entry.dice : system.attributes?.[entry.attr?.[0]]?.value ?? 0;
+		const current = isExtra ? entry.buff ?? 0 : entry.value ?? 0;
+		// Listas (ArrayField) são gravadas inteiras: um caminho "extraSkills.0.buff" recriaria o item só com o buff.
+		const save = (next) => {
+			if (!isExtra) return this.document.update({ [`system.skills.${spec.key}.value`]: next });
+			const list = this.document.toObject().system.extraSkills ?? [];
+			if (list[spec.index]) list[spec.index].buff = next;
+			return this.document.update({ "system.extraSkills": list });
+		};
+
+		const menu = document.createElement("div");
+		menu.className = "sb-buff-menu";
+		menu.setAttribute("role", "dialog");
+
+		const heading = document.createElement("div");
+		heading.className = "sb-bm-title";
+		heading.textContent = `${title} · ${game.i18n.localize("op.threat.buff")}`;
+
+		const row = document.createElement("div");
+		row.className = "sb-bm-row";
+		const minus = Object.assign(document.createElement("button"), { type: "button", textContent: "−" });
+		const plus = Object.assign(document.createElement("button"), { type: "button", textContent: "+" });
+		const input = Object.assign(document.createElement("input"), { type: "number", value: String(current), step: "1" });
+		input.setAttribute("aria-label", game.i18n.localize("op.threat.buff"));
+		row.append(minus, input, plus);
+
+		const preview = document.createElement("div");
+		preview.className = "sb-bm-preview";
+		const hint = document.createElement("div");
+		hint.className = "sb-bm-hint";
+		hint.textContent = game.i18n.localize("op.threat.buffHint");
+
+		const actions = document.createElement("div");
+		actions.className = "sb-bm-actions";
+		const clear = Object.assign(document.createElement("button"), { type: "button", textContent: game.i18n.localize("op.threat.buffClear") });
+		const apply = Object.assign(document.createElement("button"), { type: "button", textContent: game.i18n.localize("op.threat.buffApply") });
+		apply.classList.add("sb-bm-apply");
+		actions.append(clear, apply);
+
+		const value = () => Math.trunc(Number(input.value)) || 0;
+		const refresh = () => {
+			preview.innerHTML = `${game.i18n.localize("op.threat.base")} ${signed(base)} ${signed(value())} = ${formatTestHtml(dice, base + value())}`;
+		};
+		const commit = async (next) => {
+			this.closeBuffMenu();
+			await save(next);
+		};
+		minus.addEventListener("click", () => { input.value = String(value() - 1); refresh(); });
+		plus.addEventListener("click", () => { input.value = String(value() + 1); refresh(); });
+		input.addEventListener("input", refresh);
+		input.addEventListener("keydown", (e) => {
+			if (e.key === "Enter") { e.preventDefault(); commit(value()); }
+			if (e.key === "Escape") { e.preventDefault(); e.stopPropagation(); this.closeBuffMenu(); }
+		});
+		clear.addEventListener("click", () => commit(0));
+		apply.addEventListener("click", () => commit(value()));
+
+		menu.append(heading, row, preview, hint, actions);
+		this.element.append(menu);
+		refresh();
+
+		// Posição: logo abaixo do chip, dentro da janela
+		const host = this.element.getBoundingClientRect();
+		const chip = anchor.getBoundingClientRect();
+		const left = Math.max(4, Math.min(chip.left - host.left, host.width - menu.offsetWidth - 4));
+		const top = Math.min(chip.bottom - host.top + 4, host.height - menu.offsetHeight - 4);
+		menu.style.left = `${left}px`;
+		menu.style.top = `${Math.max(4, top)}px`;
+		input.focus();
+		input.select();
+
+		// Clique fora fecha
+		this._buffMenuOutside = (e) => { if (!menu.contains(e.target)) this.closeBuffMenu(); };
+		setTimeout(() => document.addEventListener("pointerdown", this._buffMenuOutside, true), 0);
+		this._buffMenu = menu;
+	}
+
+	/** Fecha o mini-menu de buff, se aberto. */
+	closeBuffMenu() {
+		this._buffMenu?.remove();
+		this._buffMenu = null;
+		if (this._buffMenuOutside) document.removeEventListener("pointerdown", this._buffMenuOutside, true);
+		this._buffMenuOutside = null;
+	}
+
+	/** @override */
+	async close(options) {
+		this.closeBuffMenu();
+		return super.close(options);
 	}
 
 	/**
