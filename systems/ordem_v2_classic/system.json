@@ -232,6 +232,16 @@
       "ownership": {
         "PLAYER": "OBSERVER"
       }
+    },
+    {
+      "name": "macros",
+      "label": "Macros",
+      "system": "ordem_v2_classic",
+      "path": "packs/macros",
+      "type": "Macro",
+      "ownership": {
+        "PLAYER": "OBSERVER"
+      }
     }
   ],
   "packFolders": [

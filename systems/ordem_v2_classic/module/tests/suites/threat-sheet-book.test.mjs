@@ -323,6 +323,144 @@ Hooks.once("quenchReady", (quench) => {
 				});
 			});
 
+			describe("buff e perícias: casos de borda", () => {
+				let actor;
+				const settle = (ms = 500) => new Promise((r) => setTimeout(r, ms));
+				const shiftClick = (el) => el.dispatchEvent(new MouseEvent("click", { bubbles: true, cancelable: true, shiftKey: true }));
+				const menuOf = () => actor.sheet.element.querySelector(".sb-buff-menu");
+				const chip = (key) => actor.sheet.element.querySelector(`[data-action='rollThreatTest'][data-key='${key}']`);
+				const testOf = async (key) => {
+					const ctx = await actor.sheet._prepareContext({ parts: ["threat"] });
+					return [...ctx.defenseTests, ...ctx.senseTests].find((t) => t.key === key);
+				};
+				before(async () => {
+					actor = await Actor.create(aberracao());
+					await actor.sheet.render({ force: true });
+					await settle();
+				});
+				after(async () => {
+					await actor?.sheet?.close();
+					await actor?.delete();
+				});
+
+				it("contexto: buff positivo é 'pos', negativo é 'neg', zero não mostra etiqueta", async () => {
+					assert.equal((await testOf("will")).hasBuff, false);
+					await actor.update({ "system.skills.will.value": 3 });
+					let t = await testOf("will");
+					assert.equal(t.hasBuff, true);
+					assert.equal(t.buffClass, "pos");
+					assert.equal(t.buffText, "+3");
+					await actor.update({ "system.skills.will.value": -2 });
+					t = await testOf("will");
+					assert.equal(t.buffClass, "neg");
+					await actor.update({ "system.skills.will.value": 0 });
+				});
+
+				it("tooltip do teste mostra fórmula, base, buff e a dica de Shift+clique", async () => {
+					await actor.update({ "system.skills.resilience.value": 5 });
+					const t = await testOf("resilience");
+					assert.ok(t.tooltip.includes("3d20kh + 15"), t.tooltip);
+					assert.ok(t.tooltip.includes("+10") && t.tooltip.includes("+5"), t.tooltip);
+					assert.ok(t.tooltip.includes(game.i18n.localize("op.threat.shiftHint")), "dica do Shift ausente");
+					await actor.update({ "system.skills.resilience.value": 0 });
+				});
+
+				it("remover uma perícia extra mantém as outras intactas", async () => {
+					await actor.update({
+						"system.extraSkills": [
+							{ key: "athleticism", attr: "str", bonus: 10, buff: 2 },
+							{ key: "", name: "Fofoca", attr: "pre", bonus: 4, buff: 1 },
+							{ key: "occultism", attr: "int", bonus: 6, buff: 0 },
+						],
+					});
+					await actor.sheet.render({ force: true });
+					await settle();
+					actor.sheet.element.querySelector("[data-action='removeExtraSkill'][data-index='1']").click();
+					await settle(700);
+					const list = actor.system.extraSkills;
+					assert.equal(list.length, 2);
+					assert.deepEqual(list.map((e) => e.key), ["athleticism", "occultism"]);
+					assert.equal(list[0].buff, 2);
+					assert.equal(list[1].bonus, 6);
+				});
+
+				it("menu: valor vazio vale 0 e decimal é truncado", async () => {
+					await actor.sheet.render({ force: true });
+					await settle();
+					shiftClick(chip("reflexes"));
+					await settle(300);
+					const input = menuOf().querySelector("input");
+					input.value = "";
+					input.dispatchEvent(new Event("input", { bubbles: true }));
+					assert.ok(menuOf().querySelector(".sb-bm-preview").textContent.includes("+0"), "prévia com buff vazio deveria usar 0");
+					input.value = "3.9";
+					input.dispatchEvent(new KeyboardEvent("keydown", { key: "Enter", bubbles: true }));
+					await settle(700);
+					assert.equal(actor.system.skills.reflexes.value, 3);
+					await actor.update({ "system.skills.reflexes.value": 0 });
+				});
+
+				it("menu: abrir outro fecha o anterior (só existe um)", async () => {
+					await actor.sheet.render({ force: true });
+					await settle();
+					shiftClick(chip("reflexes"));
+					await settle(300);
+					shiftClick(chip("will"));
+					await settle(300);
+					assert.equal(actor.sheet.element.querySelectorAll(".sb-buff-menu").length, 1);
+					actor.sheet.closeBuffMenu();
+				});
+
+				it("menu: clicar fora fecha sem gravar", async () => {
+					shiftClick(chip("will"));
+					await settle(300);
+					menuOf().querySelector("input").value = "9";
+					document.body.dispatchEvent(new PointerEvent("pointerdown", { bubbles: true }));
+					await settle(100);
+					assert.equal(menuOf(), null);
+					assert.equal(actor.system.skills.will.value, 0);
+				});
+
+				it("menu: clicar dentro do próprio menu não fecha", async () => {
+					shiftClick(chip("will"));
+					await settle(300);
+					menuOf().querySelector(".sb-bm-title").dispatchEvent(new PointerEvent("pointerdown", { bubbles: true }));
+					await settle(100);
+					assert.ok(menuOf(), "menu fechou ao clicar nele mesmo");
+					actor.sheet.closeBuffMenu();
+				});
+
+				it("menu: chave ou índice inexistente não abre nada", () => {
+					actor.sheet.openBuffMenu(chip("will"), { type: "extra", index: 99 });
+					assert.equal(menuOf(), null);
+					actor.sheet.openBuffMenu(chip("will"), { type: "skill", key: "naoExiste" });
+					assert.equal(menuOf(), null);
+				});
+
+				it("formulário: dados fixos vazios voltam a ser derivados do atributo (null)", async () => {
+					await actor.update({ "system.extraSkills": [{ key: "athleticism", attr: "str", diceOverride: 1, bonus: 10, buff: 0 }] });
+					await actor.sheet.render({ force: true });
+					await settle();
+					assert.equal(actor.system.extraSkills[0].testLabel, "O+10");
+					const input = actor.sheet.element.querySelector('input[name="system.extraSkills.0.diceOverride"]');
+					assert.ok(input, "campo de dados fixos ausente");
+					input.value = "";
+					input.dispatchEvent(new Event("change", { bubbles: true }));
+					await settle(700);
+					assert.equal(actor.system.extraSkills[0].diceOverride, null);
+					assert.equal(actor.system.extraSkills[0].testLabel, "3O+10");
+				});
+
+				it("menu: fechar a ficha também remove o menu e o listener", async () => {
+					shiftClick(chip("will"));
+					await settle(300);
+					assert.ok(menuOf());
+					await actor.sheet.close();
+					assert.equal(actor.sheet._buffMenu, null);
+					assert.equal(actor.sheet._buffMenuOutside, null);
+				});
+			});
+
 			describe("rollThreatTest", () => {
 				let actor;
 				before(async () => {

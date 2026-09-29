@@ -2,9 +2,9 @@ import {
 	inspectRitualResource,
 	ritualBaseCost,
 	ritualDescriptionText,
-	ritualFinalCost,
+	ritualEffectFromText,
 	ritualFormOptions,
-	ritualLimitFromNex,
+	ritualFinalCost,
 	ritualResistanceTarget,
 	RITUAL_ELEMENTS,
 	validateRitualCast,
@@ -62,8 +62,19 @@ async function chooseAgent(agents) {
 	return result?.actorId ? game.actors.get(result.actorId) : null;
 }
 
+const RITUAL_PT_BR_CHOICES = {
+	dropdownExecution: { passive: "Passiva", free: "Livre", movement: "Movimento", default: "Padrão", complete: "Ação completa", reaction: "Reação" },
+	dropdownRange: { personal: "Pessoal", touch: "Toque", short: "Curto", medium: "Médio", long: "Longo", extreme: "Extremo", unlimited: "Ilimitado" },
+	dropdownResistance: { nullifies: "Anula", discredits: "Desacredita", partial: "Parcial", reducesByHalf: "Reduz à metade" },
+	dropdownSkillResis: { resilience: "Fortitude", reflexes: "Reflexos", will: "Vontade" },
+	dropdownArea: { cone: "Cone", cube: "Cubo", sphere: "Esfera", line: "Linha" },
+	dropdownAreaType: { radius: "Raio", diameter: "Diâmetro" },
+};
+
 function localizeChoice(group, value, fallback = "—") {
 	if (!value) return fallback;
+	const portuguese = RITUAL_PT_BR_CHOICES[group]?.[value];
+	if (portuguese) return portuguese;
 	const key = CONFIG.op?.[group]?.[value];
 	return key ? LOCALIZED(key, value) : value;
 }
@@ -74,11 +85,28 @@ function elementInfo(item) {
 	return known ?? { label: key || "Sem afinidade", color: "#8b8490", iconIndex: 0 };
 }
 
-function ritualImage(item, info) {
+export function getRitualForms(item) {
+	const forms = ritualFormOptions(item);
+	const saved = item.flags?.ordem_v2_classic?.ritualLibrary?.forms;
+	if (!Array.isArray(saved)) return forms;
+	for (const entry of saved) {
+		const id = entry.name === "Discente" ? "student" : entry.name === "Verdadeiro" ? "true" : null;
+		if (!id) continue;
+		forms[id] = {
+			additionalCost: Number(entry.additionalCost),
+			body: String(entry.description ?? ""),
+			requiredCircle: Number(entry.minCircle) || null,
+			requiredAffinity: entry.affinity ? "afinidade" : null,
+		};
+	}
+	return forms;
+}
+
+function ritualImage(item, info, size = 48) {
 	const image = item.img && item.img !== "icons/svg/mystery-man.svg" ? item.img : null;
-	if (image) return `<img alt="" src="${escapeHtml(image)}" style="width:48px;height:48px;object-fit:cover;border-radius:8px;">`;
+	if (image) return `<img class="ritual-caster-icon" alt="" src="${escapeHtml(image)}" style="--ritual-accent:${info.color};box-sizing:border-box;width:${size}px;height:${size}px;object-fit:cover;border:2px solid ${info.color};padding:2px;border-radius:12px;background:rgba(12,16,29,.9);box-shadow:0 0 14px ${info.color}66;">`;
 	const offset = 20 - info.iconIndex * 60;
-	return `<span aria-hidden="true" style="position:relative;display:inline-block;overflow:hidden;flex:0 0 48px;width:48px;height:48px;border-radius:8px;background:rgba(255,255,255,.07);"><img alt="" src="${ICON_SHEET}" style="position:absolute;left:${offset}%;top:0;width:300%;height:100%;max-width:none;" /></span>`;
+	return `<span class="ritual-caster-icon ritual-caster-icon-sprite" aria-hidden="true" style="--ritual-accent:${info.color};box-sizing:border-box;position:relative;display:inline-block;overflow:hidden;flex:0 0 ${size}px;width:${size}px;height:${size}px;border:2px solid ${info.color};padding:2px;border-radius:12px;background:radial-gradient(circle,${info.color}55,rgba(10,14,27,.96));box-shadow:0 0 14px ${info.color}66;"><img alt="" src="${ICON_SHEET}" style="position:absolute;left:${offset}%;top:0;width:300%;height:100%;max-width:none;" /></span>`;
 }
 
 function getTokensForDialog() {
@@ -98,81 +126,115 @@ function ritualCard(item) {
 	const execution = localizeChoice("dropdownExecution", item.system.execution);
 	const range = localizeChoice("dropdownRange", item.system.range);
 	const cost = ritualBaseCost(circle);
-	return `<button type="button" class="ritual-caster-option" data-ritual-id="${escapeHtml(item.id)}" data-circle="${escapeHtml(circle)}" data-search="${escapeHtml(`${item.name} ${info.label}`.toLocaleLowerCase())}" aria-pressed="false" style="display:flex;align-items:center;gap:12px;width:100%;padding:10px;margin:0 0 8px;border:1px solid var(--color-border-light-2,#555);border-left:4px solid ${info.color};border-radius:8px;background:rgba(0,0,0,.12);text-align:left;color:inherit;cursor:pointer;">
+	return `<button type="button" class="ritual-caster-option ${item.system.element === "fear" ? "ritual-fear-option" : ""}" data-element="${escapeHtml(item.system.element)}" data-ritual-id="${escapeHtml(item.id)}" data-circle="${escapeHtml(circle)}" data-search="${escapeHtml(`${item.name} ${info.label}`.toLocaleLowerCase())}" aria-pressed="false" style="--ritual-accent:${info.color};display:flex;align-items:center;gap:9px;width:100%;min-height:64px;height:auto;box-sizing:border-box;padding:7px;margin:0 0 5px;border:1px solid ${info.color};border-radius:8px;background:rgba(0,0,0,.12);text-align:left;white-space:normal;line-height:1.25;color:inherit;cursor:pointer;">
 		${ritualImage(item, info)}
-		<span style="display:grid;gap:3px;min-width:0;flex:1"><strong>${escapeHtml(item.name)}</strong><small>${circle}º círculo · ${escapeHtml(info.label)}</small><small>${escapeHtml(execution)} · ${escapeHtml(range)} · ${cost === null ? "custo inválido" : `${cost} PD`}</small></span>
+		<span style="display:grid;gap:2px;min-width:0;flex:1;overflow-wrap:anywhere"><strong style="font-size:.96rem;line-height:1.15">${escapeHtml(item.name)}</strong><small>${circle}º círculo · ${escapeHtml(info.label)}</small><small>${escapeHtml(execution)} · ${escapeHtml(range)} · ${cost === null ? "custo inválido" : `${cost} PE`}</small></span>
 	</button>`;
 }
 
-function getSelectedTargetIds(form) {
-	return [...form.querySelectorAll('input[name="targetId"]:checked')].map((input) => input.value);
+function getSelectedTargetIds() {
+	return [...(game.user.targets ?? [])].map((token) => token.document.id);
 }
 
 function getFormSelection(form, actor, itemsById, withoutSanity) {
 	const item = itemsById.get(form.elements.ritualId.value);
 	if (!item) return { ok: false, reason: "Escolha um ritual da lista." };
-	const formId = form.elements.form.value || "basic";
-	const options = ritualFormOptions(item);
-	const details = options[formId];
-	if (!details) return { ok: false, reason: "Essa forma não está disponível neste ritual." };
-	const manual = form.elements.additionalCost?.value ?? "";
-	const cost = ritualFinalCost(item.system.circle, formId, details, manual);
-	const requiresConfirmation = formId !== "basic" && (!details || details.needsManualConfirmation || details.requiredCircle || details.requiredAffinity);
-	const confirmed = !requiresConfirmation || form.elements.requirementsConfirmed?.checked === true;
+	const formId = form.elements.ritualForm?.value ?? "basic";
+	const options = getRitualForms(item);
+	const chosenForm = options[formId];
+	if (!chosenForm) return { ok: false, reason: "Esta versão do ritual não está disponível.", item };
+	const circle = Math.max(Number(item.system.circle), Number(chosenForm.requiredCircle) || Number(item.system.circle));
+	if (!Number.isInteger(circle) || circle < Number(item.system.circle) || circle > 4) {
+		return { ok: false, reason: "Escolha um círculo válido para este ritual.", item, circle };
+	}
+	const cost = ritualFinalCost(circle, formId, chosenForm);
 	const resourceState = inspectRitualResource(actor, withoutSanity);
 	if (!resourceState.ok) return { ok: false, reason: "Ative a regra global ‘Jogando sem Sanidade’ para usar PD como recurso de conjuração nesta macro." };
 	const resource = resourceState.resource;
-	const turnLimit = Number(form.elements.turnLimit?.value);
 	const validation = validateRitualCast({
 		cost,
 		balance: resource.value,
-		perRoundLimit: turnLimit,
-		minimumCost: ritualBaseCost(item.system.circle),
-		advanced: formId !== "basic",
-		requirementsConfirmed: confirmed,
-		preparationConfirmed: form.elements.preparationConfirmed?.checked === true,
-		specialRequirementConfirmed: item.system.element !== "fear" || form.elements.markedConfirmed?.checked === true,
-		minimumCostExceptionConfirmed: form.elements.minimumCostExceptionConfirmed?.checked === true,
+		preparationConfirmed: true,
+		specialRequirementConfirmed: true,
 	});
 	if (!validation.ok) {
 		const reason = validation.errors.map((error) => ({
-			"custo-invalido": "Informe um custo adicional válido para essa forma.",
-			"limite-invalido": "Informe um limite de PD por turno entre 1 e 99.",
-			"pre-requisitos-nao-confirmados": "Confirme que o Agente cumpre os pré-requisitos indicados.",
+			"custo-invalido": "O círculo selecionado não tem um custo válido.",
 			"preparacao-nao-confirmada": "Confirme que consegue realizar os gestos e componentes exigidos.",
-			"requisito-especial-nao-confirmado": "Rituais de Medo só podem ser conjurados por personagens Marcados.",
-			"acima-do-limite-por-uso": `O custo ultrapassa o limite de ${turnLimit} PD por turno; confirme a exceção de custo mínimo se ela se aplicar.`,
-			"pd-insuficiente": `PD insuficiente: saldo ${resource.value}, custo ${cost ?? "—"}.`,
+			"requisito-especial-nao-confirmado": formId === "true" && chosenForm.requiredAffinity && !form.elements.affinityConfirmed?.checked
+				? "A forma Verdadeira exige afinidade."
+				: "Rituais de Medo só podem ser conjurados por personagens Marcados.",
+			"pd-insuficiente": `PD insuficiente: saldo ${resource.value}, custo de ${circle}º círculo ${cost ?? "—"} PE.`,
 		}[error])).join(" ");
-		return { ok: false, reason, item, formId, details, cost };
+		return { ok: false, reason, item, circle, cost };
 	}
 
-	const targetIds = getSelectedTargetIds(form);
-	if (form.elements.concentration?.value === "damage" && !(Number(form.elements.damageDt?.value) > 0)) {
-		return { ok: false, reason: "Informe o dano sofrido para calcular a DT de concentração.", item, formId, details, cost };
-	}
-	if (ritualResistanceTarget(item) && !targetIds.length) {
-		return { ok: false, reason: "Selecione ao menos um token-alvo para rolar a resistência.", item, formId, details, cost };
-	}
-
-	return { ok: true, item, formId, details, cost, targetIds, options };
+	const targetIds = getSelectedTargetIds();
+	const effectText = formId === "basic"
+		? String(item.system.description ?? "").split(/\b(?:Discente|Verdadeiro)\s*\(\s*\+\s*\d+\s*PE\s*\)\s*:/i)[0]
+		: chosenForm.body;
+	const effect = ritualEffectFromText(effectText);
+	return { ok: true, item, formId, circle, cost, targetIds, effect };
 }
 
 function createPickerContent(actor, items, tokens) {
 	const itemCards = items.map(ritualCard).join("");
-	return `<div class="standard-form ritual-caster-root" style="min-width:720px;">
-		<p style="margin-top:0">Conjurador: <strong>${escapeHtml(actor.name)}</strong> · ${actor.system.PD.value} / ${actor.system.PD.max} PD</p>
-		<div style="display:grid;grid-template-columns:minmax(260px,42%) 1fr;gap:14px;align-items:start;">
-			<section style="max-height:520px;overflow:auto;padding-right:6px;">
-				<div style="display:grid;grid-template-columns:1fr 110px;gap:8px;margin-bottom:9px;">
-					<input type="search" name="search" placeholder="Buscar ritual…" aria-label="Buscar ritual">
-					<select name="circleFilter" aria-label="Filtrar por círculo"><option value="">Todos</option><option value="1">1º círculo</option><option value="2">2º círculo</option><option value="3">3º círculo</option><option value="4">4º círculo</option></select>
+	const compact = window.innerWidth < 820;
+	return `<style>
+		.ritual-caster-root{--ritual-gold:#f4b942;--ritual-gold-soft:#ffda7a;--ritual-ink:#0b1020;--ritual-panel:#12182a;--ritual-violet:#7865a7;color:#f6f1e8!important;font-family:var(--font-primary,serif)}
+		.ritual-caster-root input:not([type=checkbox]),.ritual-caster-root select{background:#1a2034!important;border:1px solid #454660!important;border-radius:9px!important;color:#f6f1e8!important;min-height:42px;padding:8px 12px}
+		.ritual-caster-root input::placeholder{color:#a9a5bd!important}
+		.ritual-caster-root .ritual-caster-browser{padding-top:34px}
+		.ritual-caster-root .ritual-caster-details{container-type:inline-size;container-name:ritual-detail;background:radial-gradient(ellipse at 88% 0%,rgba(103,55,127,.18),transparent 33%),linear-gradient(145deg,rgba(20,25,43,.97),rgba(9,13,25,.98))!important;border:1px solid #383852!important;border-radius:12px!important;box-shadow:0 8px 24px rgba(0,0,0,.26)}
+		.ritual-caster-root .ritual-caster-option{background:linear-gradient(145deg,rgba(28,33,52,.95),rgba(13,18,31,.98))!important;border:1px solid var(--ritual-accent,#8b8490)!important;border-radius:9px!important;box-shadow:0 3px 12px rgba(0,0,0,.14);transition:transform .16s ease,border-color .16s ease,box-shadow .16s ease}
+		.ritual-caster-root .ritual-caster-option:hover,.ritual-caster-root .ritual-caster-option[aria-pressed=true]{border-color:var(--ritual-accent,#8b8490)!important;box-shadow:0 0 0 1px var(--ritual-accent,#8b8490),0 5px 14px color-mix(in srgb,var(--ritual-accent,#8b8490) 22%,transparent);transform:translateY(-1px)}
+		.ritual-caster-root .ritual-fear-option{position:relative;animation:ritual-fear-edge 3.2s ease-in-out infinite}
+		.ritual-caster-root .ritual-fear-edge{position:absolute;z-index:2;inset:1px;border:1px solid rgba(165,132,220,.5);border-radius:7px;pointer-events:none;animation:ritual-fear-border 3.2s ease-in-out infinite}
+		.ritual-caster-root .ritual-fear-option:after{content:"";position:absolute;pointer-events:none;inset:1px;border:1px solid rgba(165,132,220,.2);border-radius:7px;animation:ritual-fear-border 3.2s ease-in-out infinite}
+		@keyframes ritual-fear-edge{0%,100%{box-shadow:inset 0 0 0 1px rgba(116,89,173,.2),0 2px 8px rgba(83,56,134,.06)}50%{box-shadow:inset 0 0 0 1px rgba(171,139,235,.55),0 0 10px rgba(127,91,201,.22)}}
+		@keyframes ritual-fear-border{0%,100%{border-color:rgba(165,132,220,.18)}50%{border-color:rgba(190,164,255,.7)}}
+		@media(prefers-reduced-motion:reduce){.ritual-caster-root .ritual-fear-option{animation:none}.ritual-caster-root .ritual-fear-edge{animation:none}}
+		.ritual-caster-root .ritual-caster-option strong{font-size:1.05rem;color:#fff6e8}
+		.ritual-caster-root .ritual-form-option>span{display:grid;gap:2px;min-width:0}
+		.ritual-caster-root .ritual-detail-hero{position:relative;isolation:isolate;overflow:hidden;display:flex;align-items:center;gap:12px;min-height:76px;padding:10px;border:1px solid rgba(244,185,66,.4);border-radius:10px;background:radial-gradient(ellipse at 82% 50%,rgba(99,48,122,.25),transparent 44%),linear-gradient(105deg,rgba(28,32,50,.97),rgba(13,17,31,.72))}
+		.ritual-caster-root .ritual-detail-hero:after{content:"";position:absolute;z-index:-1;inset:0;background:radial-gradient(circle at 82% 50%,transparent 0 20%,rgba(183,136,242,.12) 20.2% 20.5%,transparent 20.8% 29%,rgba(183,136,242,.08) 29.2% 29.5%,transparent 29.8%);opacity:.8}
+		.ritual-caster-root .ritual-detail-hero h3{font-family:var(--font-sans,Arial,sans-serif);font-size:clamp(1.15rem,2.2vw,1.65rem);letter-spacing:.01em;color:#fff5e8}
+		.ritual-caster-root .ritual-detail-hero .ritual-detail-subtitle{font-size:.86rem;color:#d7c9dd}
+		.ritual-caster-root .ritual-detail-hero .ritual-caster-icon{width:60px!important;height:60px!important;flex:0 0 60px!important}
+		.ritual-caster-root .ritual-detail-hero .ritual-caster-icon-sprite{flex:0 0 60px!important;width:60px!important;height:60px!important}
+		.ritual-caster-root .ritual-stat-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:5px;margin:7px 0}
+		.ritual-caster-root .ritual-stat{min-width:0;padding:6px;border:1px solid #343952;border-radius:8px;background:linear-gradient(145deg,rgba(30,35,57,.9),rgba(15,20,34,.95))}
+		.ritual-caster-root .ritual-stat-label{display:block;margin-bottom:2px;color:#b9add5;font-size:.72rem}
+		.ritual-caster-root .ritual-stat-value{display:block;font-weight:700;overflow-wrap:anywhere}
+		.ritual-caster-root .ritual-cost-box{padding:13px;border:1px solid rgba(244,185,66,.48)!important;border-radius:11px;background:linear-gradient(120deg,rgba(70,48,29,.4),rgba(23,21,36,.92))!important;font-weight:700}
+		.ritual-caster-root .ritual-circle-rules{padding:13px;margin:10px 0!important;border:1px solid #35334c;border-radius:12px;background:rgba(14,18,32,.76)!important}
+		.ritual-caster-root .ritual-circle-chip{display:inline-flex;align-items:center;justify-content:center;min-width:76px;padding:7px 10px;border:1px solid #51456d;border-radius:20px;background:#211d35;color:#f5d995;font-weight:700}
+		.ritual-caster-root .ritual-occultism-note{padding:12px!important;border:1px solid rgba(236,143,55,.6)!important;border-left:4px solid #ec8f37!important;border-radius:10px;background:linear-gradient(120deg,rgba(80,47,29,.38),rgba(22,20,31,.94))!important}
+		.ritual-caster-root .ritual-cast-summary{padding:10px;border-left:3px solid var(--ritual-gold);background:rgba(244,185,66,.08);border-radius:7px}
+		.ritual-caster-root fieldset{border:0!important;border-radius:0!important;background:transparent}
+		.ritual-caster-root fieldset legend{padding:0 7px;color:#f4cf82;font-weight:700}
+		.ritual-caster-root .ritual-form-list{border:0!important;padding:0!important;margin:6px 0!important}
+		.ritual-caster-root .ritual-form-option{display:grid;grid-template-columns:18px minmax(0,1fr);gap:4px;align-items:start;padding:4px 4px;margin:0 0 2px;border:0;border-left:2px solid var(--ritual-accent);border-radius:0;background:rgba(18,20,35,.55);cursor:pointer}
+		.ritual-caster-root .ritual-form-option input{margin:2px 0 0}
+		.ritual-caster-root .ritual-form-option strong,.ritual-caster-root .ritual-form-option small{display:block;line-height:1.25}
+		.ritual-caster-root details{border:1px solid #373850;border-radius:10px;background:rgba(24,28,44,.76)}
+		.ritual-caster-root details summary{padding:11px;color:#eee5f2;font-weight:700;cursor:pointer}
+		.ritual-caster-root details p{padding:0 12px 12px}
+		@media(max-width:820px){.ritual-caster-root .ritual-stat-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+		@container ritual-detail (max-width:600px){.ritual-caster-root .ritual-stat-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+	</style><div class="standard-form ritual-caster-root" style="box-sizing:border-box;width:100%;height:calc(100vh - 300px);max-height:calc(100vh - 300px);min-height:0;min-width:0;display:flex;flex-direction:column;overflow:hidden;">
+		<p style="flex:none;margin:0 0 12px;padding:10px 14px;border-left:3px solid var(--color-border-highlight,#c9a94a);background:linear-gradient(100deg,rgba(244,185,66,.12),rgba(255,255,255,.025));border-radius:8px;">Conjurador: <strong style="color:#ffca62">${escapeHtml(actor.name)}</strong> · ${actor.system.PD.value} / ${actor.system.PD.max} PD</p>
+		<div class="ritual-caster-layout" style="display:grid;grid-template-columns:minmax(250px,.78fr) minmax(0,1.25fr);gap:10px;align-items:stretch;flex:1;min-height:0;overflow:hidden;">
+			<section class="ritual-caster-browser" style="display:flex;flex-direction:column;min-width:0;min-height:0;overflow:hidden;">
+				<div class="ritual-caster-filters" style="display:grid;grid-template-columns:minmax(0,1fr) 110px;gap:8px;margin-bottom:9px;flex:none;">
+					<input type="search" name="search" placeholder="⌕  Buscar ritual…" aria-label="Buscar ritual" style="box-sizing:border-box;min-width:0;min-height:44px;padding:9px 13px;border:1px solid #454660;border-radius:10px;background:#1a2034;color:#f6f1e8;">
+					<select name="circleFilter" aria-label="Filtrar por círculo" style="box-sizing:border-box;min-width:0;min-height:44px;padding:9px 11px;border:1px solid #454660;border-radius:10px;background:#1a2034;color:#f6f1e8;"><option value="">Todos</option><option value="1">1º círculo</option><option value="2">2º círculo</option><option value="3">3º círculo</option><option value="4">4º círculo</option></select>
 				</div>
-				<div class="ritual-caster-list">${itemCards || "<p>Este Agente não tem rituais cadastrados.</p>"}</div>
+				<div class="ritual-caster-list" style="flex:1;min-height:0;overflow-y:auto;overflow-x:hidden;padding:2px 7px 8px 1px;">${itemCards || "<p>Este Agente não tem rituais cadastrados.</p>"}</div>
 			</section>
-			<section class="ritual-caster-details" style="min-height:300px;padding:12px;border:1px solid var(--color-border-light-2,#555);border-radius:8px;">
+			<section class="ritual-caster-details" style="box-sizing:border-box;min-width:0;min-height:0;height:100%;max-height:100%;overflow-y:auto;overflow-x:hidden;padding:8px 10px;border:1px solid #383852;border-radius:16px;background:radial-gradient(ellipse at 88% 0%,rgba(103,55,127,.23),transparent 33%),linear-gradient(145deg,rgba(20,25,43,.97),rgba(9,13,25,.98));box-shadow:0 12px 38px rgba(0,0,0,.3);">
 				<input type="hidden" name="ritualId" value="">
-				<div class="ritual-caster-empty"><h3 style="margin-top:0">Escolha um ritual</h3><p>Filtre por círculo, selecione uma magia e confira forma, alvos e custo antes de conjurar.</p></div>
+				<div class="ritual-caster-empty"><h3 style="margin-top:0">Escolha um ritual</h3><p>Busque ou filtre a lista, selecione um ritual e confira o círculo, alvos e custo antes de conjurar.</p></div>
 			</section>
 		</div>
 	</div>`;
@@ -180,145 +242,69 @@ function createPickerContent(actor, items, tokens) {
 
 function renderRitualDetails(section, item, actor) {
 	const info = elementInfo(item);
-	const forms = ritualFormOptions(item);
-	const costText = (form, detail) => {
-		const base = ritualBaseCost(item.system.circle);
-		if (form === "basic") return `${base} PD`;
-		return detail ? `${base + detail.additionalCost} PD (${base} + ${detail.additionalCost})` : `${base} PD + adicional a informar`;
-	};
-	const formOptions = [
-		`<option value="basic">Básica · ${costText("basic")}</option>`,
-		...(forms.student ? [`<option value="student">Discente · ${costText("student", forms.student)}</option>`] : []),
-		...(forms.true ? [`<option value="true">Verdadeira · ${costText("true", forms.true)}</option>`] : []),
-	].join("");
+	const forms = getRitualForms(item);
+	const minimumCircle = Number(item.system.circle);
 	const targetText = item.system.target || "Definido pelo texto do ritual";
-	const areaText = [item.system.area?.name, item.system.area?.size, item.system.area?.type]
-		.filter(Boolean)
-		.map((value) => localizeChoice("dropdownArea", value, value))
-		.join(" · ");
-	const desc = escapeHtml(ritualDescriptionText(item.system.description)).slice(0, 500);
+	const areaText = [item.system.area?.name, item.system.area?.size, item.system.area?.type].filter(Boolean)
+		.map((value) => localizeChoice("dropdownArea", value, value)).join(" · ");
+	const fullDescription = ritualDescriptionText(item.system.description);
+	const baseDescription = escapeHtml(fullDescription.split(/\b(?:Discente|Verdadeiro)\s*\(\s*\+\s*\d+\s*PE\s*\)\s*:/i)[0]);
 	const resistanceSkill = ritualResistanceTarget(item);
 	const resistance = resistanceSkill
-		? `${localizeChoice("dropdownSkillResis", resistanceSkill, resistanceSkill)} · sucesso ${escapeHtml(localizeChoice("dropdownResistance", item.system.resistance, item.system.resistance))}`
-		: "Nenhuma resistência estruturada";
-
+		? `${localizeChoice("dropdownSkillResis", resistanceSkill, resistanceSkill)} · ${escapeHtml(localizeChoice("dropdownResistance", item.system.resistance, item.system.resistance))}`
+		: "Nenhuma";
+	const availableForms = [
+		{ id: "basic", label: "Básico", detail: null, circle: minimumCircle, cost: ritualBaseCost(minimumCircle) },
+		...[ ["student", "Discente"], ["true", "Verdadeiro"] ].map(([id, label]) => {
+			const detail = forms[id];
+			if (!detail) return null;
+			const circle = Math.max(minimumCircle, Number(detail.requiredCircle) || minimumCircle);
+			return { id, label, detail, circle, cost: ritualFinalCost(circle, id, detail) };
+		}).filter(Boolean),
+	];
+	const formCards = availableForms.map((option, index) => {
+		const effect = option.id === "basic" ? "" : escapeHtml(option.detail.body || "Descrição indisponível.");
+		const requirement = option.id === "true" && option.detail.requiredAffinity ? "Exige afinidade" : option.id === "basic" ? "Efeito original" : "Forma aprimorada";
+		return `<label class="ritual-form-option" style="--ritual-accent:${info.color};display:grid;grid-template-columns:18px minmax(0,1fr);gap:4px;align-items:start;padding:4px 4px;margin:0 0 2px;border:0;border-left:2px solid ${info.color};border-radius:0;background:rgba(18,20,35,.55);cursor:pointer;"><input type="radio" name="ritualForm" value="${option.id}" ${index === 0 ? "checked" : ""} style="margin:2px 0 0;"><span style="display:grid;gap:2px;min-width:0"><strong>${option.label}</strong><small>${requirement} · ${option.circle}º círculo · ${option.cost ?? "—"} PE</small>${effect ? `<span style="display:block;margin-top:2px;line-height:1.3">${effect}</span>` : ""}</span></label>`;
+	}).join("");
 	section.innerHTML = `<input type="hidden" name="ritualId" value="${escapeHtml(item.id)}">
-		<header style="display:flex;gap:12px;align-items:center;border-left:4px solid ${info.color};padding-left:10px;">
-			${ritualImage(item, info)}
-			<div><h3 style="margin:0">${escapeHtml(item.name)}</h3><small>${Number(item.system.circle)}º círculo · ${escapeHtml(info.label)}</small></div>
+		<header class="ritual-detail-hero" style="--ritual-accent:${info.color};display:grid!important;grid-template-columns:60px minmax(0,1fr)!important;flex-direction:row!important;flex-wrap:nowrap!important;align-items:center!important;gap:12px!important;border-color:${info.color};border-left:3px solid ${info.color};">
+			${ritualImage(item, info, 60)}
+			<div style="position:relative;z-index:1;min-width:0"><h3 style="margin:0;font-family:var(--font-sans,Arial,sans-serif);font-size:clamp(1.15rem,2.2vw,1.65rem);letter-spacing:.01em;color:#fff5e8">${escapeHtml(item.name)}</h3><small class="ritual-detail-subtitle">${minimumCircle}º círculo · ${escapeHtml(info.label)}</small></div>
 		</header>
-		<p style="margin:10px 0 6px"><strong>Execução:</strong> ${escapeHtml(localizeChoice("dropdownExecution", item.system.execution))} · <strong>Alcance:</strong> ${escapeHtml(localizeChoice("dropdownRange", item.system.range))}</p>
-		<p style="margin:0 0 6px"><strong>Alvo:</strong> ${escapeHtml(targetText)}${areaText ? ` · ${escapeHtml(areaText)}` : ""}</p>
-		<p style="margin:0 0 8px"><strong>Resistência:</strong> ${resistance}</p>
-		<label style="display:block;margin:8px 0;">Limite de PD por turno
-			<input name="turnLimit" type="number" min="1" max="99" step="1" value="${ritualLimitFromNex(actor.system.NEX?.value) ?? 1}" style="width:100%;margin-top:4px;">
-			<small>Estimativa por NEX. Confira e ajuste se a ficha tiver bônus de limite; PD.perRound é recuperação e não esse limite. Uma conjuração no custo mínimo do ritual continua permitida.</small>
-		</label>
-		<div class="ritual-minimum-cost-exception" style="display:none;"></div>
-		<div style="display:grid;grid-template-columns:1fr 140px;gap:8px;align-items:end;">
-			<label>Forma<select name="form" style="width:100%;margin-top:4px;">${formOptions}</select></label>
-			<label>Adicional em PD<input name="additionalCost" type="number" min="0" step="1" value="" style="width:100%;margin-top:4px;" disabled></label>
+		<div class="ritual-stat-grid" style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:5px;margin:7px 0">
+			<div class="ritual-stat" style="min-width:0;padding:6px;border:1px solid #343952;border-radius:8px;background:linear-gradient(145deg,rgba(30,35,57,.9),rgba(15,20,34,.95))"><span class="ritual-stat-label" style="display:block;margin-bottom:2px;color:#b9add5;font-size:.72rem;line-height:1.25"><i class="fa-solid fa-hourglass-half"></i> Execução</span><span class="ritual-stat-value" style="display:block;font-weight:700;line-height:1.3;overflow-wrap:anywhere">${escapeHtml(localizeChoice("dropdownExecution", item.system.execution))}</span></div>
+			<div class="ritual-stat" style="min-width:0;padding:6px;border:1px solid #343952;border-radius:8px;background:linear-gradient(145deg,rgba(30,35,57,.9),rgba(15,20,34,.95))"><span class="ritual-stat-label" style="display:block;margin-bottom:2px;color:#b9add5;font-size:.72rem;line-height:1.25"><i class="fa-solid fa-bullseye"></i> Alcance</span><span class="ritual-stat-value" style="display:block;font-weight:700;line-height:1.3;overflow-wrap:anywhere">${escapeHtml(localizeChoice("dropdownRange", item.system.range))}</span></div>
+			<div class="ritual-stat" style="min-width:0;padding:6px;border:1px solid #343952;border-radius:8px;background:linear-gradient(145deg,rgba(30,35,57,.9),rgba(15,20,34,.95))"><span class="ritual-stat-label" style="display:block;margin-bottom:2px;color:#b9add5;font-size:.72rem;line-height:1.25"><i class="fa-solid fa-users"></i> Alvo</span><span class="ritual-stat-value" style="display:block;font-weight:700;line-height:1.3;overflow-wrap:anywhere">${escapeHtml(targetText)}${areaText ? ` · ${escapeHtml(areaText)}` : ""}</span></div>
+			<div class="ritual-stat" style="min-width:0;padding:6px;border:1px solid #343952;border-radius:8px;background:linear-gradient(145deg,rgba(30,35,57,.9),rgba(15,20,34,.95))"><span class="ritual-stat-label" style="display:block;margin-bottom:2px;color:#b9add5;font-size:.72rem;line-height:1.25"><i class="fa-solid fa-shield-halved"></i> Resistência</span><span class="ritual-stat-value" style="display:block;font-weight:700;line-height:1.3;overflow-wrap:anywhere">${resistance}</span></div>
 		</div>
-		<div class="ritual-form-note" style="padding:8px;margin:8px 0;background:rgba(255,255,255,.06);border-radius:6px;">Forma básica. Custo final: ${costText("basic")}.</div>
-		<div class="ritual-prerequisite"></div>
-		<div class="ritual-occultism-note" style="padding:8px;margin:8px 0;border-left:3px solid ${info.color};background:rgba(255,255,255,.04);">
-			<strong>O Custo do Paranormal:</strong> ${item.system.element === "fear" ? "Medo não faz teste de Ocultismo: perde PD equivalente a SAN igual ao custo e tem perda permanente indicada pelo ritual." : `Ocultismo DT ${20 + ritualBaseCost(item.system.circle)} + adicional. Falha causa perda de SAN equivalente ao custo; falhar por 5 ou mais também perde 1 SAN permanentemente.`}
-		</div>
-		<details style="margin:8px 0;"><summary>Descrição do ritual</summary><p>${desc || "Sem descrição cadastrada."}</p></details>
-		<fieldset style="margin:8px 0;padding:8px;"><legend>Alvos na cena</legend>${tokensHTML(actor)}</fieldset>
-		<fieldset style="margin:8px 0;padding:8px;"><legend>Concentração (opcional)</legend>
-			<label style="display:block;margin-bottom:5px;">Condição<select name="concentration" style="width:100%;"><option value="none">Sem condição especial</option><option value="bad">Condição ruim (DT 15 + custo)</option><option value="terrible">Condição terrível (DT 20 + custo)</option><option value="damage">Sofreu dano durante a execução</option></select></label>
-			<label class="ritual-damage-row" style="display:none;">Dano sofrido<input name="damageDt" type="number" min="1" step="1" value="" style="width:100%;"></label>
-		</fieldset>
-		<label style="display:flex;align-items:flex-start;gap:8px;margin:8px 0;"><input type="checkbox" name="preparationConfirmed"><span>Confirmo que posso cumprir a execução, gestos e componentes ritualísticos${item.system.element === "fear" ? " (Medo dispensa componentes)" : ""}.</span></label>
-		${item.system.element === "fear" ? '<label style="display:flex;align-items:flex-start;gap:8px;margin:8px 0;"><input type="checkbox" name="markedConfirmed"><span>Confirmo que o conjurador é um personagem Marcado.</span></label>' : ""}
+		<section class="ritual-description-visible" aria-label="Descrição do ritual" style="margin:6px 0;padding:9px;border:1px solid #51405a;border-radius:9px;background:rgba(11,15,27,.58);"><strong style="color:#f4cf82">Descrição do ritual</strong><p style="margin:5px 0 0;line-height:1.45">${baseDescription || "Sem descrição cadastrada."}</p></section>
+		<fieldset class="ritual-form-list" style="margin:6px 0;padding:0;border:0;"><legend>Escolha o efeito</legend>${formCards}</fieldset>
 		<p class="ritual-cast-summary" style="margin-bottom:0;font-weight:600"></p>`;
 
 	const form = section.closest("form");
 	form.elements.ritualId.value = item.id;
-	const formSelect = section.querySelector('[name="form"]');
-	const surcharge = section.querySelector('[name="additionalCost"]');
-	const prereq = section.querySelector(".ritual-prerequisite");
-	const note = section.querySelector(".ritual-form-note");
-		const occultismNote = section.querySelector(".ritual-occultism-note");
-	let lastFormId = null;
-
 	const updateFormNote = () => {
-		const formId = formSelect.value;
-		const formChanged = formId !== lastFormId;
-		const details = forms[formId];
-		const base = ritualBaseCost(item.system.circle);
-		const parsed = details?.additionalCost;
-		const hasUnknownPrerequisites = formId !== "basic" && (!details || details.needsManualConfirmation);
-		const requiresConfirmation = formId !== "basic" && (!details || details.needsManualConfirmation || details.requiredCircle || details.requiredAffinity);
-		const reason = [];
-		if (details?.requiredCircle) reason.push(`Requer acesso ao ${details.requiredCircle}º círculo`);
-		if (details?.requiredAffinity) reason.push(`Requer ${details.requiredAffinity}`);
-		if (hasUnknownPrerequisites) reason.push("pré-requisitos não estruturados: confira a descrição com o Mestre");
-		if (parsed !== undefined) {
-			surcharge.value = String(parsed);
-			surcharge.disabled = true;
-		} else if (formId !== "basic") {
-			if (formChanged) surcharge.value = "";
-			surcharge.disabled = false;
-		} else {
-			if (formChanged) surcharge.value = "";
-			surcharge.disabled = true;
-		}
-		note.textContent = formId === "basic"
-			? `Forma básica. Custo final: ${base} PD.`
-			: `${details?.body || "Confira o aprimoramento na descrição do ritual."} Custo final: ${parsed === undefined ? `${base} PD + adicional informado` : `${base + parsed} PD (${base} + ${parsed})`}.`;
-		const finalCost = ritualFinalCost(item.system.circle, formId, details, surcharge.value);
-		occultismNote.textContent = item.system.element === "fear"
-			? "Medo não faz teste de Ocultismo: perde PD equivalente a SAN igual ao custo e SAN permanente conforme a forma."
-			: `O Custo do Paranormal: teste de Ocultismo DT ${finalCost === null ? "a confirmar (20 + custo final)" : 20 + finalCost}. Falha causa perda de SAN igual ao custo; falhar por 5 ou mais também perde 1 SAN permanentemente. A falha não cancela o ritual.`;
-		if (formChanged) {
-			prereq.innerHTML = requiresConfirmation
-				? `<label style="display:flex;align-items:flex-start;gap:8px;padding:7px 0;"><input type="checkbox" name="requirementsConfirmed"><span>Confirmo que o Agente cumpre: ${escapeHtml(reason.join("; "))}. Afinidade e círculo máximo não têm campo confiável na ficha, então esta confirmação é manual.</span></label>`
-				: "";
-			lastFormId = formId;
-		}
 		const selected = getFormSelection(form, actor, new Map([[item.id, item]]), game.settings.get("ordem_v2_classic", "globalPlayingWithoutSanity"));
 		const summary = section.querySelector(".ritual-cast-summary");
 		const button = form.querySelector('button[data-action="conjure"]');
-		const targetCount = getSelectedTargetIds(form).length;
-		const turnLimit = Number(form.elements.turnLimit?.value);
-		const baseCost = ritualBaseCost(item.system.circle);
-		const exception = section.querySelector(".ritual-minimum-cost-exception");
-		const needsMinimumCostException = baseCost > turnLimit;
-		exception.style.display = needsMinimumCostException ? "block" : "none";
-		exception.innerHTML = needsMinimumCostException
-			? `<label style="display:flex;align-items:flex-start;gap:8px;padding:7px 0;"><input type="checkbox" name="minimumCostExceptionConfirmed" ${form.elements.minimumCostExceptionConfirmed?.checked ? "checked" : ""}><span>Confirmo que ainda não usei neste turno a exceção que permite uma habilidade em seu custo mínimo (${baseCost} PD).</span></label>`
-			: "";
-		const targetError = ritualResistanceTarget(item) && !targetCount ? "Selecione um token para a resistência." : "";
-		summary.textContent = selected.ok ? `Custo: ${selected.cost} PD · saldo após o custo: ${actor.system.PD.value - selected.cost} PD${targetCount ? ` · alvos: ${targetCount}` : ""}` : `${selected.reason ?? "Revise as opções do ritual."}${targetError ? ` ${targetError}` : ""}`;
-		button.disabled = !selected.ok || Boolean(targetError) || (formSelect.value !== "basic" && parsed === undefined && !surcharge.value) || (needsMinimumCostException && !form.elements.minimumCostExceptionConfirmed?.checked);
+		const targetCount = getSelectedTargetIds().length;
+		summary.textContent = selected.ok ? `${form.elements.ritualForm.value === "basic" ? "Básico" : form.elements.ritualForm.value === "student" ? "Discente" : "Verdadeiro"} · ${selected.circle}º círculo · ${selected.cost} PE · saldo após pagar: ${actor.system.PD.value - selected.cost} PD${targetCount ? ` · alvos marcados: ${targetCount}` : " · sem alvo marcado; resolução manual conforme a descrição"}` : selected.reason ?? "Revise as opções do ritual.";
+		button.disabled = !selected.ok;
 	};
-
 	section._refresh = updateFormNote;
-	section.querySelector('[name="concentration"]').addEventListener("change", (event) => {
-		section.querySelector(".ritual-damage-row").style.display = event.currentTarget.value === "damage" ? "block" : "none";
-	});
+	section.querySelectorAll('[name="ritualForm"]').forEach((control) => control.addEventListener("change", updateFormNote));
 	updateFormNote();
 }
 
-let activeTokens = [];
-
-function tokensHTML(actor) {
-	const tokens = activeTokens;
-	if (!tokens.length) return "<small>Nenhum token com ator está na cena. Para rolar resistência, abra a cena e selecione o alvo.</small>";
-	return tokens
-		.map((token) => `<label style="display:flex;align-items:center;gap:8px;padding:3px 0;"><input type="checkbox" name="targetId" value="${escapeHtml(token.id)}" ${token.selected ? "checked" : ""}><span>${escapeHtml(token.name)}${token.actor?.id === actor.id ? " (você)" : ""}</span></label>`)
-		.join("");
-}
-
-function renderPicker(actor, items, tokens) {
-	activeTokens = tokens;
+function renderPicker(actor, items, tokens, preferredItemId = null) {
 	const itemsById = new Map(items.map((item) => [item.id, item]));
 	const withoutSanity = game.settings.get("ordem_v2_classic", "globalPlayingWithoutSanity");
+	const dialogWidth = Math.max(380, Math.min(820, window.innerWidth - 56));
+	const dialogHeight = Math.max(320, Math.min(700, window.innerHeight - 72));
 	const resultPromise = foundry.applications.api.DialogV2.wait({
 		window: { title: "Conjurar Ritual", icon: "fa-solid fa-book-sparkles" },
-		position: { width: 980, height: 760 },
+		position: { width: dialogWidth, height: dialogHeight },
 		content: createPickerContent(actor, items, tokens),
 		buttons: [
 			{ action: "cancel", label: "Cancelar", icon: "fa-solid fa-xmark", callback: () => null },
@@ -335,13 +321,11 @@ function renderPicker(actor, items, tokens) {
 					return {
 						itemId: selection.item.id,
 						formId: selection.formId,
+						circle: selection.circle,
 						cost: selection.cost,
-						details: selection.details,
-						requirementsConfirmed: form.elements.requirementsConfirmed?.checked === true,
-						preparationConfirmed: form.elements.preparationConfirmed?.checked === true,
-						markedConfirmed: form.elements.markedConfirmed?.checked === true,
-						minimumCostExceptionConfirmed: form.elements.minimumCostExceptionConfirmed?.checked === true,
-						turnLimit: Number(form.elements.turnLimit?.value),
+						effect: selection.effect,
+						preparationConfirmed: true,
+						markedConfirmed: true,
 						targetIds: selection.targetIds,
 						concentration: form.elements.concentration?.value ?? "none",
 						damageDt: Number(form.elements.damageDt?.value) || null,
@@ -371,26 +355,31 @@ function renderPicker(actor, items, tokens) {
 				form.elements.ritualId.value = card.dataset.ritualId;
 				for (const option of list.querySelectorAll(".ritual-caster-option")) {
 					option.setAttribute("aria-pressed", String(option === card));
-					option.style.outline = option === card ? "2px solid var(--color-border-highlight,#e7c76a)" : "none";
+					option.style.outline = option === card ? "2px solid var(--ritual-accent,#8b8490)" : "none";
 				}
 				renderRitualDetails(detailsSection, itemsById.get(card.dataset.ritualId), actor);
 			});
 			for (const eventName of ["change", "input"]) {
 				detailsSection.addEventListener(eventName, (event) => {
-					if (!event.target.matches('[name="form"], [name="requirementsConfirmed"], [name="preparationConfirmed"], [name="markedConfirmed"], [name="minimumCostExceptionConfirmed"], [name="targetId"], [name="damageDt"], [name="concentration"], [name="additionalCost"], [name="turnLimit"]')) return;
-					if (event.target.name === "concentration") {
-						detailsSection.querySelector(".ritual-damage-row").style.display = event.target.value === "damage" ? "block" : "none";
-					}
+					if (!event.target.matches('[name="ritualForm"]')) return;
 					detailsSection._refresh?.();
 				});
 			}
 			filterCards();
+			const initialItem = itemsById.get(preferredItemId);
+			if (initialItem) {
+				const initialCard = [...list.querySelectorAll(".ritual-caster-option")].find((card) => card.dataset.ritualId === initialItem.id);
+				if (initialCard) {
+					initialCard.setAttribute("aria-pressed", "true");
+					initialCard.style.outline = "2px solid var(--ritual-accent,#8b8490)";
+					renderRitualDetails(detailsSection, initialItem, actor);
+					initialCard.scrollIntoView({ block: "nearest" });
+				}
+			}
 		},
 	});
 
-	return resultPromise.finally(() => {
-		activeTokens = [];
-	});
+	return resultPromise;
 }
 
 function getRoll(rolls) {
@@ -443,7 +432,7 @@ function getConcentrationDt(selection) {
 function buildChatCard(actor, item, selection, outcome) {
 	const info = elementInfo(item);
 	const targetNames = selection.targetIds.map((id) => canvas.tokens.get(id)?.name ?? "Alvo removido da cena");
-	const formName = selection.formId === "basic" ? "Básica" : selection.formId === "student" ? "Discente" : "Verdadeira";
+	const selectedCircle = Number(selection.circle ?? item.system.circle);
 	const tests = [];
 	if (outcome.concentration) tests.push(`<li><strong>Concentração, Vontade DT ${outcome.concentration.dt}:</strong> ${escapeHtml(outcome.concentration.text)}</li>`);
 	if (outcome.occultism) tests.push(`<li><strong>O Custo do Paranormal, Ocultismo DT ${outcome.occultism.dt}:</strong> ${escapeHtml(outcome.occultism.text)}</li>`);
@@ -451,16 +440,25 @@ function buildChatCard(actor, item, selection, outcome) {
 		tests.push(`<li><strong>Resistência de ${escapeHtml(target.name)} (${escapeHtml(target.skill)}):</strong> ${escapeHtml(target.text)}</li>`);
 	}
 	const sanity = outcome.sanityNotes.map((note) => `<li>${escapeHtml(note)}</li>`).join("");
-	const statusText = outcome.interrupted ? "Ritual interrompido: o efeito não acontece. O custo de conjuração foi pago." : "Ritual conjurado. Resolva efeitos narrativos/manual do Mestre conforme a descrição.";
+	const effects = (outcome.effects ?? []).map((effect) => `<li>${escapeHtml(effect)}</li>`).join("");
+	const statusText = outcome.pending
+		? "Ritual preparado. Clique no botão para rolar o teste e resolver o efeito. O custo de conjuração já foi pago."
+		: outcome.interrupted
+			? "Ritual interrompido: o efeito não acontece. O custo de conjuração foi pago."
+			: outcome.effects?.length
+				? "Ritual conjurado e efeito aplicado."
+				: "Ritual conjurado. Resolva efeitos narrativos/manual do Mestre conforme a descrição.";
 	const description = foundry.utils.cleanHTML(String(item.system.chatDescription || item.system.description || ""));
 	return `<article class="ritual-cast-card" style="border:1px solid ${info.color};border-radius:10px;padding:12px;background:rgba(0,0,0,.08);">
 		<header style="display:flex;align-items:center;gap:10px;border-bottom:1px solid ${info.color};padding-bottom:8px;margin-bottom:8px;">
-			${ritualImage(item, info)}<div><h3 style="margin:0">${escapeHtml(item.name)} · ${formName}</h3><small>${escapeHtml(actor.name)} · ${Number(item.system.circle)}º círculo · ${escapeHtml(info.label)}</small></div>
+			${ritualImage(item, info)}<div><h3 style="margin:0">${escapeHtml(item.name)}</h3><small>${escapeHtml(actor.name)} · ${selectedCircle}º círculo escolhido · ${escapeHtml(info.label)}</small></div>
 		</header>
 		<p><strong>${statusText}</strong></p>
-		<p><strong>Custo:</strong> ${selection.cost} PD${outcome.sanityPd ? ` · ${outcome.sanityPd} PD adicionais por perda temporária de SAN` : ""}. <strong>Execução:</strong> ${escapeHtml(localizeChoice("dropdownExecution", item.system.execution))}. <strong>Alcance:</strong> ${escapeHtml(localizeChoice("dropdownRange", item.system.range))}.</p>
-		<p><strong>Alvo(s):</strong> ${escapeHtml(targetNames.join(", ") || item.system.target || "a definir com o Mestre")}</p>
+		<p><strong>Custo do círculo:</strong> ${selection.cost} PE, debitado de PD${outcome.sanityPd ? ` · consequência de SAN no saldo fundido: ${outcome.sanityPd} PD` : ""}. <strong>Execução:</strong> ${escapeHtml(localizeChoice("dropdownExecution", item.system.execution))}. <strong>Alcance:</strong> ${escapeHtml(localizeChoice("dropdownRange", item.system.range))}.</p>
+		<p><strong>Alvo(s):</strong> ${escapeHtml(targetNames.join(", ") || "Defina o alvo em cena e resolva a resistência ou o efeito conforme a descrição.")}</p>
+		${outcome.pending ? '<button type="button" data-action="ritual-test"><i class="fa-solid fa-dice-d20"></i> Rolar teste do ritual</button>' : ""}
 		${tests.length ? `<h4>Testes</h4><ul>${tests.join("")}</ul>` : ""}
+		${effects ? `<h4>Efeitos aplicados</h4><ul>${effects}</ul>` : ""}
 		${sanity ? `<h4>Consequências de Sanidade</h4><ul>${sanity}</ul>` : ""}
 		<details><summary>Descrição do ritual</summary>${description}</details>
 	</article>`;
@@ -481,65 +479,79 @@ async function resolveCast(actor, selection) {
 	const latest = validateRitualCast({
 		cost: selection.cost,
 		balance: actor.system.PD.value,
-		perRoundLimit: selection.turnLimit,
-		minimumCost: ritualBaseCost(item.system.circle),
-		advanced: selection.formId !== "basic",
-		requirementsConfirmed: selection.requirementsConfirmed,
-		preparationConfirmed: selection.preparationConfirmed,
-		specialRequirementConfirmed: item.system.element !== "fear" || selection.markedConfirmed,
-		minimumCostExceptionConfirmed: selection.minimumCostExceptionConfirmed,
+		preparationConfirmed: true,
+		specialRequirementConfirmed: true,
 	});
 	if (!latest.ok) {
-		ui.notifications.warn("Saldo ou limite de PD mudou. Abra a macro novamente e confira o custo.");
+		ui.notifications.warn("O PD disponível não cobre o custo escolhido. Confira o saldo e tente novamente.");
 		return;
 	}
 	if (!(await spendPd(actor, selection.cost))) {
 		ui.notifications.warn("Não foi possível pagar o custo em PD; o ritual não foi iniciado.");
 		return;
 	}
+	const pendingCast = {
+		actorId: actor.id,
+		itemId: item.id,
+		formId: selection.formId,
+		circle: selection.circle,
+		cost: selection.cost,
+		targetIds: selection.targetIds,
+		concentration: selection.concentration,
+		damageDt: selection.damageDt,
+		effect: selection.effect,
+	};
+	await ChatMessage.create({
+		content: buildChatCard(actor, item, selection, { pending: true, sanityNotes: [], resistances: [] }),
+		speaker: ChatMessage.getSpeaker({ actor }),
+		flags: { ordem_v2_classic: { ritualCast: { ...pendingCast, status: "pending" } } },
+	});
+}
 
+async function resolvePendingCast(message) {
+	const cast = message?.getFlag("ordem_v2_classic", "ritualCast");
+	if (!cast || cast.status !== "pending") return;
+	const actor = game.actors.get(cast.actorId);
+	const item = actor?.items.get(cast.itemId);
+	if (!actor || !item) return ui.notifications.error("Não encontrei o Agente ou ritual desta mensagem.");
+	if (!game.user.isGM && !actor.isOwner) return ui.notifications.warn("Somente o Agente ou o Mestre pode rolar este ritual.");
+	await message.setFlag("ordem_v2_classic", "ritualCast", { ...cast, status: "rolling" });
+	const selection = cast;
 	const outcome = { interrupted: false, sanityPd: 0, sanityNotes: [], resistances: [] };
-	const concentrationDt = getConcentrationDt(selection);
-	if (concentrationDt !== null) {
-		if (!Number.isInteger(concentrationDt) || concentrationDt < 1) {
-			outcome.interrupted = true;
-			outcome.concentration = { dt: "inválida", text: "Dano/DT ausente; resolva manualmente." };
-		} else {
+	try {
+		const concentrationDt = getConcentrationDt(selection);
+		if (concentrationDt !== null) {
 			const roll = await rollSkill(actor, "will", concentrationDt);
 			const result = rollOutcome(roll, concentrationDt);
-			outcome.concentration = { dt: concentrationDt, text: result.status === "cancelled" ? "rolagem cancelada; resultado manual pendente" : `${result.total} — ${result.status === "success" ? "sucesso" : "falha"}` };
+			outcome.concentration = { dt: concentrationDt, text: result.status === "cancelled" ? "rolagem cancelada" : `${result.total} — ${result.status === "success" ? "sucesso" : "falha"}` };
 			outcome.interrupted = result.status === "failure";
-			if (result.status === "cancelled") outcome.sanityNotes.push("O teste de concentração foi cancelado; confirme manualmente se o ritual continua.");
 		}
-	}
-
-	if (!outcome.interrupted && item.system.element !== "fear") {
-		const dt = 20 + selection.cost;
-		const roll = await rollSkill(actor, "occultism", dt);
-		const result = rollOutcome(roll, dt);
-		outcome.occultism = { dt, text: result.status === "cancelled" ? "rolagem cancelada; consequência de SAN pendente" : `${result.total} — ${result.status === "success" ? "sucesso" : "falha"}` };
-		if (result.status === "failure") {
+		if (!outcome.interrupted && item.system.element !== "fear") {
+			const dt = 20 + selection.cost;
+			const roll = await rollSkill(actor, "occultism", dt);
+			const result = rollOutcome(roll, dt);
+			if (result.status === "cancelled") {
+				await message.setFlag("ordem_v2_classic", "ritualCast", { ...cast, status: "pending" });
+				return ui.notifications.info("O teste foi cancelado; a carta continua disponível para tentar novamente.");
+			}
+			outcome.occultism = { dt, text: `${result.total} — ${result.status === "success" ? "sucesso" : "falha"}` };
+			if (result.status === "failure") {
+				outcome.sanityPd = await applySanityCostToPd(actor, selection.cost);
+				outcome.sanityNotes.push(`Falha no teste: perda de SAN igual ao custo. Foram descontados ${outcome.sanityPd} PD adicionais.`);
+				if (outcome.sanityPd < selection.cost) outcome.sanityNotes.push(`Faltaram ${selection.cost - outcome.sanityPd} PD para representar toda a perda temporária de SAN; resolva o restante manualmente.`);
+				if (result.margin <= -5) outcome.sanityNotes.push("Também houve perda permanente de 1 SAN (não estruturada no recurso PD); ajuste esse efeito permanente manualmente.");
+			}
+		} else if (!outcome.interrupted) {
 			outcome.sanityPd = await applySanityCostToPd(actor, selection.cost);
-			outcome.sanityNotes.push(`Falha no teste: perda de SAN igual ao custo. Como PD representa PE e SAN nesta mesa, foram descontados ${outcome.sanityPd} PD adicionais.`);
-			if (outcome.sanityPd < selection.cost) outcome.sanityNotes.push(`Faltaram ${selection.cost - outcome.sanityPd} PD para representar toda a perda temporária de SAN; resolva o restante manualmente.`);
-			if (result.margin <= -5) outcome.sanityNotes.push("Também houve perda permanente de 1 SAN (não estruturada no recurso PD); ajuste esse efeito permanente manualmente.");
+			const permanentLoss = selection.formId === "basic" ? 1 : selection.formId === "student" ? 2 : 3;
+			outcome.sanityNotes.push(`Ritual de Medo: foram descontados ${outcome.sanityPd} PD adicionais pela perda de SAN.`);
+			outcome.sanityNotes.push(`Perda permanente de ${permanentLoss} SAN; ajuste manualmente, pois PD não tem campo separado para SAN permanente.`);
 		}
-	} else if (!outcome.interrupted && item.system.element === "fear") {
-		outcome.sanityPd = await applySanityCostToPd(actor, selection.cost);
-		const permanentLoss = selection.formId === "basic" ? 1 : selection.formId === "student" ? 2 : 3;
-		outcome.sanityNotes.push(`Ritual de Medo: perda de SAN igual ao custo; foram descontados ${outcome.sanityPd} PD adicionais.`);
-		if (outcome.sanityPd < selection.cost) outcome.sanityNotes.push(`Faltaram ${selection.cost - outcome.sanityPd} PD para representar toda a perda temporária de SAN; resolva o restante manualmente.`);
-		outcome.sanityNotes.push(`Perda permanente de ${permanentLoss} SAN; ajuste manualmente, pois PD não tem campo separado para SAN permanente.`);
-	}
-
-	if (!outcome.interrupted && selection.targetIds.length && item.system.skillResis) {
-		const skill = ritualResistanceTarget(item);
-		if (!skill) {
-			outcome.resistances.push({ name: "Alvos", skill: item.system.skillResis, text: "perícia de resistência não reconhecida; resolva manualmente" });
-		} else {
+		if (!outcome.interrupted && selection.targetIds.length && item.system.skillResis) {
+			const skill = ritualResistanceTarget(item);
 			const dt = Number(actor.system.ritual?.DT);
-			if (!Number.isFinite(dt)) {
-				outcome.resistances.push({ name: "Alvos", skill, text: "DT do ritual indisponível; resolva manualmente" });
+			if (!skill || !Number.isFinite(dt)) {
+				outcome.resistances.push({ name: "Alvos", skill: skill ?? item.system.skillResis, text: "perícia ou DT indisponível; resolva manualmente" });
 			} else {
 				for (const id of selection.targetIds) {
 					const token = canvas.tokens.get(id);
@@ -554,21 +566,49 @@ async function resolveCast(actor, selection) {
 				}
 			}
 		}
+		if (!outcome.interrupted && selection.effect) {
+			for (const id of selection.targetIds) {
+				const token = canvas.tokens.get(id);
+				const target = token?.actor;
+				if (!target) continue;
+				const roll = await new Roll(selection.effect.formula).evaluate({ async: true });
+				const amount = Math.max(0, Math.floor(Number(roll.total)));
+				if (selection.effect.kind === "healing") {
+					const before = Number(target.system.PV?.value);
+					const maximum = Number(target.system.PV?.max);
+					if (!Number.isFinite(before) || !Number.isFinite(maximum)) throw new Error("Alvo sem PV estruturado na ficha.");
+					const after = Math.min(maximum, before + amount);
+					await target.update({ "system.PV.value": after });
+					outcome.effects = outcome.effects ?? [];
+					outcome.effects.push(`${token.name}: cura ${amount} PV (${before} → ${after}; máximo ${maximum}).`);
+				} else {
+					const result = await target.applyDamage(amount);
+					outcome.effects = outcome.effects ?? [];
+					outcome.effects.push(`${token.name}: dano rolado ${amount} PV; ${result.newPV === null ? "aplicação delegada ao Mestre" : `PV restantes ${result.newPV}`} (bloqueado: ${result.blocked}).`);
+				}
+			}
+		}
+		await message.update({ content: buildChatCard(actor, item, selection, outcome) });
+		await message.setFlag("ordem_v2_classic", "ritualCast", { ...cast, status: "resolved" });
+	} catch (error) {
+		await message.setFlag("ordem_v2_classic", "ritualCast", { ...cast, status: "pending" });
+		ui.notifications.error(`Não foi possível resolver o ritual: ${error.message}`);
 	}
-
-	await ChatMessage.create({
-		content: buildChatCard(actor, item, selection, outcome),
-		speaker: ChatMessage.getSpeaker({ actor }),
-		flags: { ordem_v2_classic: { ritualCast: { actorId: actor.id, itemId: item.id, form: selection.formId, cost: selection.cost } } },
-	});
 }
 
-export async function runRitualCasterMacro() {
+export async function resolvePendingRitualCast(messageId) {
+	const message = game.messages.get(messageId);
+	if (!message) return ui.notifications.warn("Não encontrei a mensagem do ritual no chat.");
+	return resolvePendingCast(message);
+}
+
+export async function runRitualCasterMacro(preferredAgent = null, preferredItemId = null) {
 	if (game.system.id !== "ordem_v2_classic") {
 		ui.notifications.error("Esta macro foi criada para o sistema Ordem Paranormal v2 Classic.");
 		return;
 	}
-	const agent = await chooseAgent(macroCandidates());
+	const preferredIsUsable = preferredAgent?.type === "agent" && (game.user.isGM || preferredAgent.isOwner);
+	const agent = preferredIsUsable ? preferredAgent : await chooseAgent(macroCandidates());
 	if (!agent) return;
 	const withoutSanity = game.settings.get("ordem_v2_classic", "globalPlayingWithoutSanity");
 	if (!withoutSanity || !inspectRitualResource(agent, withoutSanity).ok) {
@@ -582,7 +622,7 @@ export async function runRitualCasterMacro() {
 		ui.notifications.info(`${agent.name} não tem rituais cadastrados na ficha.`);
 		return;
 	}
-	const selection = await renderPicker(agent, items, getTokensForDialog());
+	const selection = await renderPicker(agent, items, getTokensForDialog(), preferredItemId);
 	if (!selection) return;
 	if (selection.invalid) {
 		ui.notifications.warn(selection.invalid);

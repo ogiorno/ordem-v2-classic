@@ -202,6 +202,17 @@ Hooks.once("ready", function () {
 			if (actor.isOwner) await actor.applyDamage(data.amount, data.options);
 		}
 
+		if (data.type === "ritualCastTest") {
+			const sender = data.userId ? game.users.get(data.userId) : null;
+			const message = data.messageId ? game.messages.get(data.messageId) : null;
+			const cast = message?.getFlag("ordem_v2_classic", "ritualCast");
+			const actor = cast?.actorId ? game.actors.get(cast.actorId) : null;
+			if (!sender || !message || !actor) return;
+			if (!sender.isGM && !actor.testUserPermission?.(sender, "OWNER")) return;
+			const { resolvePendingRitualCast } = await import("./macros/ritual-caster.mjs");
+			await resolvePendingRitualCast(message.id);
+		}
+
 		if (data.type === "opostoResult") {
 			if (!utils.isOpostoSenderAuthorized(data)) return;
 			await handleOpostoResult(data);
@@ -509,6 +520,20 @@ Hooks.once("ready", function () {
  * unit-tested without booting Foundry.
  */
 async function handleChatCommandClick(event) {
+	const ritualButton = event.target.closest?.('[data-action="ritual-test"]');
+	if (ritualButton) {
+		event.preventDefault();
+		const messageId = ritualButton.closest(".message")?.dataset.messageId;
+		if (!messageId) return ui.notifications.warn("Não encontrei a mensagem do ritual no chat.");
+		if (game.user.isGM) {
+			const { resolvePendingRitualCast } = await import("./macros/ritual-caster.mjs");
+			await resolvePendingRitualCast(messageId);
+		} else {
+			game.socket.emit("system.ordem_v2_classic", { type: "ritualCastTest", messageId, userId: game.user.id });
+		}
+		return;
+	}
+
 	const dtButton = event.target.closest("[data-action='rollDT']");
 	if (dtButton) {
 		const skill = dtButton.dataset.skill;

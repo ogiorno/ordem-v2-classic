@@ -15,12 +15,6 @@ export function ritualBaseCost(circle) {
 	return RITUAL_CIRCLE_COSTS[normalizedCircle] ?? null;
 }
 
-export function ritualLimitFromNex(nex) {
-	const value = Number(nex);
-	if (!Number.isFinite(value) || value < 0) return null;
-	return Math.max(1, Math.min(20, Math.ceil(value / 5)));
-}
-
 export function ritualDescriptionText(description = "") {
 	return String(description)
 		.replace(/<br\s*\/?>/gi, "\n")
@@ -34,6 +28,25 @@ export function ritualDescriptionText(description = "") {
 		.replace(/&#39;|&apos;/gi, "'")
 		.replace(/\s+/g, " ")
 		.trim();
+}
+
+/** Extracts simple HP effects written explicitly in a ritual description. */
+export function ritualEffectFromText(description = "") {
+	const text = ritualDescriptionText(description);
+	const formulaPattern = /\b(\d*d\d+(?:\s*[+-]\s*\d+)?)\s*(?:PV|pontos de vida|de dano|dano)\b/giu;
+	for (const match of text.matchAll(formulaPattern)) {
+		const before = text.slice(Math.max(0, match.index - 100), match.index).toLocaleLowerCase("pt-BR");
+		const kind = /(?:recuper|cura|curar|curam)[^.!?]{0,70}$/iu.test(before)
+			? "healing"
+			: /(?:caus|sofr|receb|dano)[^.!?]{0,70}$/iu.test(before)
+				? "damage"
+				: null;
+		if (!kind) continue;
+		const formula = match[1].replace(/\s+/g, "");
+		if (!/^(?:\d+)?d\d+(?:[+-]\d+)?$/i.test(formula)) continue;
+		return { kind, formula };
+	}
+	return null;
 }
 
 export function ritualFormDetails(description, form) {
@@ -100,23 +113,13 @@ export function inspectRitualResource(actor, globalPlayingWithoutSanity) {
 export function validateRitualCast({
 	cost,
 	balance,
-	perRoundLimit,
-	minimumCost = 1,
-	advanced = false,
-	requirementsConfirmed = true,
 	preparationConfirmed = true,
 	specialRequirementConfirmed = true,
-	minimumCostExceptionConfirmed = false,
 }) {
 	const errors = [];
 	if (!Number.isInteger(cost) || cost < 1) errors.push("custo-invalido");
-	if (!Number.isInteger(Number(perRoundLimit)) || Number(perRoundLimit) < 1 || Number(perRoundLimit) > 99) errors.push("limite-invalido");
-	if (advanced && !requirementsConfirmed) errors.push("pre-requisitos-nao-confirmados");
 	if (!preparationConfirmed) errors.push("preparacao-nao-confirmada");
 	if (!specialRequirementConfirmed) errors.push("requisito-especial-nao-confirmado");
-	if (Number.isInteger(Number(perRoundLimit)) && Number(perRoundLimit) >= 1 && cost > Number(perRoundLimit) && !(cost === Number(minimumCost) && minimumCostExceptionConfirmed)) {
-		errors.push("acima-do-limite-por-uso");
-	}
 	if (!Number.isFinite(Number(balance)) || cost > Number(balance)) errors.push("pd-insuficiente");
 	return { ok: errors.length === 0, errors };
 }
