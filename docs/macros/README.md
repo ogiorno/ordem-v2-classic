@@ -1,12 +1,12 @@
 # Macro Conjurar Ritual
 
-## Instalação no Foundry
+## Disponibilização no Foundry
 
-1. Confirme que o sistema **Ordem Paranormal v2 Classic** está atualizado com este repositório e ativo no mundo.
-2. No Foundry, abra **Macros** e crie uma macro nova do tipo **Script**.
-3. Dê o nome **Conjurar Ritual** e copie todo o conteúdo de [`conjurar-ritual.js`](conjurar-ritual.js) para o campo de comando.
-4. Salve. A macro usa o agente controlado ou pede para escolher entre os agentes acessíveis.
-5. Para pagar com PD, habilite nas configurações do sistema a regra global **Jogando sem Sanidade**.
+O sistema agora inclui a macro no compêndio **Macros**. Reinicie o Foundry ou recarregue o mundo após atualizar o sistema. Abra o compêndio **Macros**, importe **Conjurar Ritual** para o mundo e arraste-a para a barra de macros. Ela usa o agente controlado ou pede para escolher entre os agentes acessíveis.
+
+Para pagar com PD, habilite nas configurações do sistema a regra global **Jogando sem Sanidade**.
+
+Se estiver usando uma cópia de sistema diferente deste repositório, crie uma macro nova do tipo **Script** e use o conteúdo de [`conjurar-ritual.js`](conjurar-ritual.js) como comando.
 
 O ícone de cada ritual usa a imagem do próprio item. Quando ela não existe, a macro mostra o glifo da afinidade em [`ritual-elementos.png`](../../systems/ordem_v2_classic/assets/ritual-elementos.png).
 
