@@ -1,3 +1,6 @@
+import "./escadas.mjs";
+import "./passos.mjs";
+
 const MODULE_ID = "meu-modulo";
 
 Hooks.once("init", () => {
@@ -7,7 +10,7 @@ Hooks.once("init", () => {
     scope: "client",
     config: true,
     type: Boolean,
-    default: true
+    default: false
   });
 });
 
