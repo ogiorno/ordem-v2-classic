@@ -6,10 +6,10 @@
     "id": 0,
     "abilityType": "general",
     "preRequisite": "Intelecto 2",
-    "description": "<p>Você pode encontrar esse conteúdo na <strong>página 35 do suplemento Sobrevivendo ao Horror</strong>.</p>",
+    "description": "<p>Você possui uma mente voltada para análises táticas e pensamento estratégico. Você recebe treinamento em Tática ou, se já for treinado nesta perícia, recebe +2 nela. Além disso, quando você passa em um teste de Tática para analisar terreno, você e seus aliados em alcance médio recebem uma ação de movimento adicional na primeira rodada do próximo combate neste terreno (desde que ele ocorra até o fim do dia). <em>Pré-requisito: Int 2.</em></p>",
     "chatDescription": "",
     "activation": "passive",
-    "cost": "",
+    "cost": 0,
     "costType": "PE"
   },
   "effects": [],

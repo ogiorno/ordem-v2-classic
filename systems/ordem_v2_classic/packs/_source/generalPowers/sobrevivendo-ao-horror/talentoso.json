@@ -6,10 +6,10 @@
     "id": 0,
     "abilityType": "general",
     "preRequisite": "Presença 2",
-    "description": "<p>Você pode encontrar esse conteúdo na <strong>página 36 do suplemento Sobrevivendo ao Horror</strong>.</p>",
+    "description": "<p>Você possui inclinação para todas as formas de expressão artística. Você recebe treinamento em Artes ou, se já for treinado nesta perícia, recebe +2 nela. Além disso, quando faz um teste de Artes para impressionar, o bônus em perícias que você recebe aumenta em +1 para cada 5 pontos adicionais em que o resultado de seu teste passar a DT. <em>Pré-requisito: Pre 2.</em></p>",
     "chatDescription": "",
     "activation": "passive",
-    "cost": "",
+    "cost": 0,
     "costType": "PE"
   },
   "effects": [],

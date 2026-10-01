@@ -6,10 +6,10 @@
     "id": 0,
     "abilityType": "general",
     "preRequisite": "Intelecto 2",
-    "description": "<p>Você pode encontrar esse conteúdo na <strong>página 34 do suplemento Sobrevivendo ao Horror</strong>.</p>",
+    "description": "<p>Você passa bastante tempo consumindo fofocas… bem, notícias sobre o mundo ao seu redor. Você recebe treinamento em Atualidades ou, se já for treinado nesta perícia, recebe +2 nela. Além disso, pode usar Atualidades no lugar de qualquer outra perícia para testes envolvendo informações, desde que aprovado pelo mestre. <em>Pré-requisito: Int 2.</em></p>",
     "chatDescription": "",
-    "activation": "",
-    "cost": "",
+    "activation": "passive",
+    "cost": 0,
     "costType": "PE"
   },
   "effects": [],

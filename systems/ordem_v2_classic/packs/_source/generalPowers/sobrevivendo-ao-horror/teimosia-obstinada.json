@@ -6,7 +6,7 @@
     "id": 0,
     "abilityType": "general",
     "preRequisite": "Presença 2",
-    "description": "<p>Você pode encontrar esse conteúdo na <strong>página 36 do suplemento Sobrevivendo ao Horror</strong>.</p>",
+    "description": "<p>As pessoas chamam você de teimoso. Mas elas estão erradas! Você recebe treinamento em Vontade ou, se já for treinado nesta perícia, recebe +2 nela. Além disso, quando faz um teste de Vontade contra um efeito que cause uma condição mental ou tente modificar sua categoria de atitude (como o ritual Enfeitiçar), você pode gastar 2 PE para receber +5 neste teste. <em>Pré-requisito: Pre 2.</em></p>",
     "chatDescription": "",
     "activation": "reaction",
     "cost": 2,

@@ -6,10 +6,10 @@
     "id": 0,
     "abilityType": "general",
     "preRequisite": "Agilidade 2",
-    "description": "<p>Você pode encontrar esse conteúdo na <strong>página 36 do suplemento Sobrevivendo ao Horror</strong>.</p>",
+    "description": "<p>Você sabe ser discreto em qualquer situação. Você recebe treinamento em Furtividade ou, se já for treinado nesta perícia, recebe +2 nela. Além disso, você não sofre penalidades por se mover normalmente enquanto está furtivo, nem por seguir alguém em ambientes sem esconderijos ou sem movimento. <em>Pré-requisito: Agi 2.</em></p>",
     "chatDescription": "",
     "activation": "passive",
-    "cost": "",
+    "cost": 0,
     "costType": "PE"
   },
   "effects": [],

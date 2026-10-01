@@ -6,9 +6,9 @@
     "id": 0,
     "abilityType": "general",
     "preRequisite": "Agilidade 2",
-    "description": "<p>Você pode encontrar esse conteúdo na <strong>página 36 do suplemento Sobrevivendo ao Horror</strong>.</p>",
+    "description": "<p>Seus reflexos são tão apurados que o permitem agir antes mesmo de você perceber as ameaças de forma consciente. Você recebe treinamento em Reflexos ou, se já for treinado nesta perícia, recebe +2 nela. Além disso, ao falhar em um teste de Percepção para evitar ficar desprevenido, você pode gastar 2 PE para rolar novamente o teste usando Reflexos. <em>Pré-requisito: Agi 2.</em></p>",
     "chatDescription": "",
-    "activation": "passive",
+    "activation": "reaction",
     "cost": 2,
     "costType": "PE"
   },

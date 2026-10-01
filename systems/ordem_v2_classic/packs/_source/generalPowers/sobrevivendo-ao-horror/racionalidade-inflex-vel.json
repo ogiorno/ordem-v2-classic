@@ -6,10 +6,10 @@
     "id": 0,
     "abilityType": "general",
     "preRequisite": "Intelecto 3",
-    "description": "<p>Você pode encontrar esse conteúdo na <strong>página 35 do suplemento Sobrevivendo ao Horror</strong>.</p>",
+    "description": "<p>Suas convicções e sua visão de mundo são baseadas em argumentos racionais e lógicos. Você pode usar Intelecto no lugar de Presença como atributo-chave de Vontade e para calcular seus pontos de esforço. <em>Pré-requisito: Int 3.</em></p>",
     "chatDescription": "",
     "activation": "passive",
-    "cost": "",
+    "cost": 0,
     "costType": "PE"
   },
   "effects": [],

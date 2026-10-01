@@ -6,13 +6,59 @@
     "id": 0,
     "abilityType": "general",
     "preRequisite": "Força 2",
-    "description": "<p>Você pode encontrar esse conteúdo na <strong>página 33 do suplemento Sobrevivendo ao Horror</strong>.</p>",
+    "description": "<p>Você possui um corpo atlético, resultado de uma fortuita disposição genética ou árduo treinamento. Você recebe treinamento em Atletismo ou, se já for treinado nesta perícia, recebe +2 nela. Além disso, recebe +3m em seu deslocamento. <em>Pré-requisito: For 2.</em></p>",
     "chatDescription": "",
-    "activation": "",
-    "cost": "",
+    "activation": "passive",
+    "cost": 0,
     "costType": "PE"
   },
-  "effects": [],
+  "effects": [
+    {
+      "name": "Atlético (+3 m de deslocamento)",
+      "img": "icons/svg/aura.svg",
+      "_id": "30wmn936cjggYKHf",
+      "type": "base",
+      "system": {
+        "changes": [
+          {
+            "key": "system.desloc.value",
+            "type": "add",
+            "value": 3,
+            "phase": "initial",
+            "priority": null
+          }
+        ]
+      },
+      "disabled": false,
+      "start": null,
+      "duration": {
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
+      },
+      "description": "",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "showIcon": 1,
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "coreVersion": "14.365",
+        "systemId": "ordem_v2_classic",
+        "systemVersion": "7.3.3",
+        "createdTime": 1784900000000,
+        "modifiedTime": 1784900000000,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!items.effects!IkMrVs8UVejhM6JG.30wmn936cjggYKHf"
+    }
+  ],
   "flags": {},
   "_stats": {
     "compendiumSource": null,

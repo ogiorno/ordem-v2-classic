@@ -6,13 +6,59 @@
     "id": 0,
     "abilityType": "general",
     "preRequisite": "Intelecto 2",
-    "description": "<p>Você pode encontrar esse conteúdo na <strong>página 35 do suplemento Sobrevivendo ao Horror</strong>.</p>",
+    "description": "<p>Você sempre teve uma afinidade com assuntos esotéricos. Você recebe +3 PE e recebe treinamento em Ocultismo. Se já for treinado nesta perícia, recebe +2 nela. <em>Pré-requisito: Int 2.</em></p>",
     "chatDescription": "",
     "activation": "passive",
-    "cost": "",
+    "cost": 0,
     "costType": "PE"
   },
-  "effects": [],
+  "effects": [
+    {
+      "name": "Personalidade Esotérica (+3 PE)",
+      "img": "icons/svg/aura.svg",
+      "_id": "yeznITqj3k75wDUC",
+      "type": "base",
+      "system": {
+        "changes": [
+          {
+            "key": "system.PE.bonus",
+            "type": "add",
+            "value": 3,
+            "phase": "initial",
+            "priority": null
+          }
+        ]
+      },
+      "disabled": false,
+      "start": null,
+      "duration": {
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
+      },
+      "description": "",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "showIcon": 1,
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "coreVersion": "14.365",
+        "systemId": "ordem_v2_classic",
+        "systemVersion": "7.3.3",
+        "createdTime": 1784900000000,
+        "modifiedTime": 1784900000000,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!items.effects!Da4UrrcjzD7GvxRG.yeznITqj3k75wDUC"
+    }
+  ],
   "flags": {},
   "_stats": {
     "compendiumSource": null,

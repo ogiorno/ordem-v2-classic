@@ -6,10 +6,10 @@
     "id": 0,
     "abilityType": "general",
     "preRequisite": "Presença 2",
-    "description": "<p>Você pode encontrar esse conteúdo na <strong>página 33 do suplemento Sobrevivendo ao Horror</strong>.</p>",
+    "description": "<p>Você possui uma aptidão para perceber os sutis sinais de alguém que está mentindo. Você recebe treinamento em Intuição ou, se já for treinado nesta perícia, recebe +2 nela. Além disso, outros seres sofrem uma penalidade de –10 em testes de Enganação para mentir para você. <em>Pré-requisito: Pre 2.</em></p>",
     "chatDescription": "",
-    "activation": "",
-    "cost": "",
+    "activation": "passive",
+    "cost": 0,
     "costType": "PE"
   },
   "effects": [],

@@ -6,13 +6,104 @@
     "id": 0,
     "abilityType": "general",
     "preRequisite": "Presença 2",
-    "description": "<p>Você pode encontrar esse conteúdo na <strong>página 36 do suplemento Sobrevivendo ao Horror</strong>.</p>",
+    "description": "<p>Sua mente é preparada para suportar os mais rigorosos traumas. Você recebe +1 PE para cada 10% de NEX (ou para cada 2 níveis, se estiver usando a regra de nível de experiência) e +2 em Vontade. <em>Pré-requisito: Pre 2.</em></p>",
     "chatDescription": "",
     "activation": "passive",
-    "cost": "",
+    "cost": 0,
     "costType": "PE"
   },
-  "effects": [],
+  "effects": [
+    {
+      "name": "Mente forte (+1 PE a cada 2 níveis)",
+      "img": "icons/svg/aura.svg",
+      "_id": "S5i2pzypOXe01WE7",
+      "type": "base",
+      "system": {
+        "changes": [
+          {
+            "key": "system.PE.bonus",
+            "type": "add",
+            "value": "floor(@nivel.value / 2)",
+            "phase": "initial",
+            "priority": null
+          }
+        ]
+      },
+      "disabled": false,
+      "start": null,
+      "duration": {
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
+      },
+      "description": "",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "showIcon": 1,
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "coreVersion": "14.365",
+        "systemId": "ordem_v2_classic",
+        "systemVersion": "7.3.3",
+        "createdTime": 1784900000000,
+        "modifiedTime": 1784900000000,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!items.effects!wL9wThd9Koggqp6B.S5i2pzypOXe01WE7"
+    },
+    {
+      "name": "Vontade Inabalável (+2 Vontade)",
+      "img": "icons/svg/aura.svg",
+      "_id": "XvgQKHItNJhOL5yE",
+      "type": "base",
+      "system": {
+        "changes": [
+          {
+            "key": "system.skills.will.mod",
+            "type": "add",
+            "value": 2,
+            "phase": "initial",
+            "priority": null
+          }
+        ]
+      },
+      "disabled": false,
+      "start": null,
+      "duration": {
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
+      },
+      "description": "",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "showIcon": 1,
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "coreVersion": "14.365",
+        "systemId": "ordem_v2_classic",
+        "systemVersion": "7.3.3",
+        "createdTime": 1784900000000,
+        "modifiedTime": 1784900000000,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!items.effects!wL9wThd9Koggqp6B.XvgQKHItNJhOL5yE"
+    }
+  ],
   "flags": {},
   "_stats": {
     "compendiumSource": null,

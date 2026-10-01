@@ -6,10 +6,10 @@
     "id": 0,
     "abilityType": "general",
     "preRequisite": "",
-    "description": "<p>Você pode encontrar esse conteúdo na <strong>página 33 do suplemento Sobrevivendo ao Horror</strong>.</p>",
+    "description": "<p>A adrenalina causada pela dor faz você se manter focado no que está acontecendo. Sempre que sofre dano mental de efeitos de medo, você pode converter esse dano em perda de pontos de vida (se sofre 5 pontos de dano mental de medo você pode, em vez disso, perder 5 pontos de vida).</p>",
     "chatDescription": "",
     "activation": "reaction",
-    "cost": "",
+    "cost": 0,
     "costType": "PE"
   },
   "effects": [],
