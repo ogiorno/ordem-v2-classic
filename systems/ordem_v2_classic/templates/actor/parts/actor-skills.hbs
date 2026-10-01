@@ -1,4 +1,5 @@
 <section class="tab flexcol {{tab.cssClass}}" data-tab="skills" data-group="primary">
+	<p class="skills-legend">{{localize "op.skillCols.legend"}}</p>
 	<div class="skills-details">
 		<div class="skills-content">
 			{{#each system.skills as |skill key|}}
@@ -59,7 +60,7 @@
 						name="system.skills.{{key}}.mod"
 						value="{{skill.mod}}"
 						data-dtype="Number"
-						class="modifier"
+						class="modifier" title="{{localize 'op.skillCols.bonusTip'}}"
 						placeholder="0"
 					/>
 

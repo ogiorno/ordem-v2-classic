@@ -4222,3 +4222,133 @@ dialog.ordemparanormal.application {
 }
 
 /*# sourceMappingURL=ordemparanormal.css.map */
+
+/* ---- Experiência do jogador: ataque, dano, rolagens (spec-experiencia-jogador) ---- */
+.system-ordemparanormal .damage-application {
+	margin: 6px 0;
+	font-size: 13px;
+}
+.system-ordemparanormal .damage-application p {
+	margin: 2px 0;
+}
+.system-ordemparanormal .damage-application .damage-explain,
+.system-ordemparanormal .damage-application .damage-wait {
+	font-size: 12px;
+	color: var(--color-text-secondary, #666);
+}
+.system-ordemparanormal .damage-application .damage-done {
+	font-weight: bold;
+}
+.system-ordemparanormal .damage-application .damage-done em {
+	font-weight: normal;
+	margin-left: 4px;
+}
+.system-ordemparanormal .damage-application button.apply-damage {
+	width: 100%;
+	margin-top: 4px;
+}
+.system-ordemparanormal .dt-hint {
+	text-align: center;
+	font-size: 12px;
+	color: var(--color-text-secondary, #777);
+	margin-top: 2px;
+}
+.system-ordemparanormal .roll-privacy {
+	font-size: 12px;
+	color: var(--color-text-secondary, #777);
+	margin: 2px 0;
+}
+.system-ordemparanormal .skills-legend {
+	font-size: 11px;
+	margin: 2px 12px 4px;
+	opacity: 0.75;
+}
+.system-ordemparanormal .skills-content select {
+	min-width: 54px;
+}
+.system-ordemparanormal .sheet-header-op .charname input {
+	text-overflow: ellipsis;
+}
+.system-ordemparanormal .item-btn.attack-btn {
+	width: auto;
+	padding: 0 6px;
+	font-size: 11px;
+	font-weight: bold;
+	white-space: nowrap;
+}
+.system-ordemparanormal .skills-content .skill {
+	flex-wrap: nowrap;
+}
+.system-ordemparanormal .skills-content .skill .skill-name {
+	min-width: 0;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+/* P16: chat compacto (opção de cliente) */
+body.op-compact-chat #chat .chat-message {
+	padding-block: 4px;
+	margin-block: 2px;
+}
+body.op-compact-chat #chat .chat-message .message-header .chat-portrait-container {
+	--portrait-size: 22px !important;
+}
+body.op-compact-chat #chat .chat-message .message-header {
+	margin-bottom: 2px;
+}
+body.op-compact-chat #chat .chat-message .message-sender {
+	font-size: 13px;
+}
+
+/* Aviso do mestre: uma linha amarela, só texto (spec-aviso-mestre-e-defesa-oculta) */
+:root {
+	--op-notice-bg: #fff3b8;
+	--op-notice-fg: #4a3a00;
+	--op-notice-border: #e0a800;
+}
+body.theme-dark,
+.theme-dark {
+	--op-notice-bg: rgba(255, 200, 40, 0.16);
+	--op-notice-fg: #ffe8a0;
+	--op-notice-border: #ffc400;
+}
+.system-ordemparanormal .chat-message.op-gm-notice {
+	padding: 3px 8px !important;
+	margin: 2px 0 !important;
+	min-height: 0 !important;
+	border: 0 !important;
+	border-left: 3px solid var(--op-notice-border) !important;
+	border-radius: 0 !important;
+	background: var(--op-notice-bg) !important;
+	color: var(--op-notice-fg) !important;
+	font-size: 12.5px;
+	line-height: 1.4;
+}
+.system-ordemparanormal .chat-message.op-gm-notice .message-header {
+	display: none !important;
+}
+.system-ordemparanormal .chat-message.op-gm-notice .message-content p {
+	margin: 0;
+}
+.system-ordemparanormal .chat-message.op-gm-notice:hover .message-header {
+	display: flex !important;
+	position: absolute;
+	right: 4px;
+	top: 2px;
+	font-size: 10px;
+}
+.system-ordemparanormal .chat-message.op-gm-notice:hover .message-header .message-sender {
+	display: none;
+}
+.system-ordemparanormal .chat-message.op-gm-whisper {
+	border-left: 3px solid var(--op-notice-border) !important;
+}
+.system-ordemparanormal .chat-message .gm-whisper-tag {
+	font-size: 10px;
+	font-weight: bold;
+	padding: 0 4px;
+	margin-right: 4px;
+	background: var(--op-notice-bg);
+	color: var(--op-notice-fg);
+	border-radius: 3px;
+}

@@ -80,7 +80,7 @@
 									<span class="badge-cat">
 										{{#if item.system.target}}
 											{{item.system.targetQtd}}
-											<span class="lowercase">{{localize (concat "op.targetChoices." item.system.target)}}</span>
+											<span class="lowercase">{{localizeOr "op.targetChoices." item.system.target}}</span>
 										{{else}}—{{/if}}
 									</span>
 								</div>
@@ -95,7 +95,7 @@
 									<span class="badge-cat">
 										{{#if item.system.resistance}}
 											{{#if item.system.skillResis}}{{localize (concat "op.skill." item.system.skillResis)}} {{/if}}
-											{{localize (concat "op.resistanceChoices." item.system.resistance)}}
+											{{localizeOr "op.resistanceChoices." item.system.resistance}}
 										{{else}}—{{/if}}
 									</span>
 								</div>
