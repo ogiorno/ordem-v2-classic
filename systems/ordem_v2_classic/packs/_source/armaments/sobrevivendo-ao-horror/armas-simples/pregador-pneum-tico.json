@@ -3,10 +3,10 @@
   "type": "armament",
   "img": "systems/ordemparanormal/media/icons/armament/pregador-pneumatico.svg",
   "system": {
-    "description": "<p>Você pode encontrar esse conteúdo na <strong>página 37 do suplemento Sobrevivendo ao Horror</strong>.</p>",
+    "description": "<p>Outra ferramenta que pode ser empregada como arma em uma situação extrema, um pregador pneumático é um aparelho semelhante a uma pistola que dispara pregos sob pressão. Embora seja um dispositivo mecânico, ele conta como uma arma de fogo para seus poderes que afetam armas deste tipo. Um pregador armazena 300 pregos em rolo, o suficiente para durar uma missão inteira.</p>",
     "chatDescription": "",
     "weight": 1,
-    "category": "0",
+    "category": 0,
     "using": {
       "state": true,
       "class": "fas"

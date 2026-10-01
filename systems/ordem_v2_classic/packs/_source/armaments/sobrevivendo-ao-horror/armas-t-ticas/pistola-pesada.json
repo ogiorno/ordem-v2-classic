@@ -3,10 +3,10 @@
   "type": "armament",
   "img": "systems/ordemparanormal/media/icons/armament/pistola-pesada.svg",
   "system": {
-    "description": "<p>Você pode encontrar esse conteúdo na <strong>página 37 do suplemento Sobrevivendo ao Horror</strong>.</p>",
+    "description": "<p>Uma versão de calibre superior da tradicional pistola. Sua potência e recuo impõem uma penalidade de @DisplayDice[qtd:1|sign:minus|dc:d20] em testes de ataque; empunhá-la com as duas mãos anula essa penalidade.</p><p>Contagem de munição (opcional): 10 balas.</p>",
     "chatDescription": "",
     "weight": 1,
-    "category": "1",
+    "category": 1,
     "using": {
       "state": true,
       "class": "fas"

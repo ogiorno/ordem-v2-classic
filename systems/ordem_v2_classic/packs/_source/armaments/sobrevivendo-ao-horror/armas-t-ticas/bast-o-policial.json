@@ -3,10 +3,10 @@
   "type": "armament",
   "img": "systems/ordemparanormal/media/icons/armament/bastao-policial.svg",
   "system": {
-    "description": "<p>Você pode encontrar esse conteúdo na <strong>página 37 do suplemento Sobrevivendo ao Horror</strong>.</p>",
+    "description": "<p>Essencialmente um bastão com uma guarda lateral, esta é a arma branca de uso padrão da maioria das forças policiais. Além de desferir golpes contundentes, pode ser usada para aparar ataques; quando usa a ação especial esquiva com um bastão policial, o bônus que você recebe na Defesa aumenta em +1. Um bastão policial é uma arma ágil.</p>",
     "chatDescription": "",
     "weight": 1,
-    "category": "1",
+    "category": 1,
     "using": {
       "state": true,
       "class": "fas"

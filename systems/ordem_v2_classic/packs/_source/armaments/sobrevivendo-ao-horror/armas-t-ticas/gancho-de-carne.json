@@ -3,10 +3,10 @@
   "type": "armament",
   "img": "systems/ordemparanormal/media/icons/armament/gancho-de-carne.svg",
   "system": {
-    "description": "<p>Você pode encontrar esse conteúdo na <strong>página 37 do suplemento Sobrevivendo ao Horror</strong>.</p>",
+    "description": "<p>Usado para pendurar carne em frigoríficos, este gancho metálico pode servir como arma. Também pode ser amarrado a um pedaço de corda ou corrente; isso aumenta seu alcance para 4,5m e o transforma em um item de espaço 2.</p>",
     "chatDescription": "",
     "weight": 1,
-    "category": "0",
+    "category": 0,
     "using": {
       "state": true,
       "class": "fas"

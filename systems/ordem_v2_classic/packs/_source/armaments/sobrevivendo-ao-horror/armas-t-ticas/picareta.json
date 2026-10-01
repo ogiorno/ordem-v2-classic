@@ -3,10 +3,10 @@
   "type": "armament",
   "img": "systems/ordemparanormal/media/icons/armament/picareta.svg",
   "system": {
-    "description": "<p>Você pode encontrar esse conteúdo na <strong>página 37 do suplemento Sobrevivendo ao Horror</strong>.</p>",
+    "description": "<p>Essencialmente uma ferramenta de mineração e demolição, uma picareta pode ser empregada em combate na falta de armas apropriadas.</p>",
     "chatDescription": "",
     "weight": 1,
-    "category": "0",
+    "category": 0,
     "using": {
       "state": true,
       "class": "fas"

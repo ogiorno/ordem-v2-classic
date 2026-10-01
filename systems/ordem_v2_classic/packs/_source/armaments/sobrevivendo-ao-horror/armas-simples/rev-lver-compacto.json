@@ -3,10 +3,10 @@
   "type": "armament",
   "img": "systems/ordemparanormal/media/icons/armament/revolver-compacto.svg",
   "system": {
-    "description": "<p>Você pode encontrar esse conteúdo na <strong>página 37 do suplemento Sobrevivendo ao Horror</strong>.</p>",
+    "description": "<p>Uma arma de baixo calibre, projetada para ser facilmente escondida no corpo. Se for treinado em Crime, você consegue carregar uma dessas armas sem que ela ocupe um espaço.</p><p>Contagem de munição (opcional): 5 balas.</p>",
     "chatDescription": "",
     "weight": 1,
-    "category": "1",
+    "category": 1,
     "using": {
       "state": true,
       "class": "fas"
@@ -34,7 +34,7 @@
         "formula": "2d4",
         "attr": "",
         "bonus": 0,
-        "type": "ballisticDamage",
+        "type": "piercingDamage",
         "parts": []
       },
       "extraFormula": "1d4"

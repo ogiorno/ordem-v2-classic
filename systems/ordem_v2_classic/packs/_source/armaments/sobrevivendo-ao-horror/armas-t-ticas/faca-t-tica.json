@@ -3,10 +3,10 @@
   "type": "armament",
   "img": "systems/ordemparanormal/media/icons/armament/faca-tatica.svg",
   "system": {
-    "description": "<p>Você pode encontrar esse conteúdo na <strong>página 37 do suplemento Sobrevivendo ao Horror</strong>.</p>",
+    "description": "<p>Uma faca balanceada para contra-ataques rápidos e bloqueios. Se usada na ação especial contra-ataque, fornece +2 no teste de ataque para contra-atacar. Se usada na ação especial bloqueio, você pode gastar 2 PE e sacrificar a faca tática para aumentar a RD do bloqueio em +20. A faca tática é uma arma ágil e pode ser arremessada.</p>",
     "chatDescription": "",
     "weight": 1,
-    "category": "1",
+    "category": 1,
     "using": {
       "state": true,
       "class": "fas"

@@ -3,10 +3,10 @@
   "type": "armament",
   "img": "systems/ordemparanormal/media/icons/armament/shuriken.svg",
   "system": {
-    "description": "<p>Você pode encontrar esse conteúdo na <strong>página 37 do suplemento Sobrevivendo ao Horror</strong>.</p>",
+    "description": "<p>Pequenos projéteis metálicos em forma de estrelas ou dardos, usados por artistas marciais (e fãs de ninjas). Se for veterano em Pontaria, uma vez por rodada, quando ataca com uma shuriken, você poderá gastar 1 PE para fazer um ataque adicional de shuriken contra o mesmo alvo. Uma única shuriken representa um \"pacote\" suficiente para duas cenas (ou 10 shurikens, se estiver usando a regra opcional de contagem de munição).</p>",
     "chatDescription": "",
     "weight": 0.5,
-    "category": "1",
+    "category": 1,
     "using": {
       "state": true,
       "class": "fas"

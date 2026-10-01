@@ -3,10 +3,10 @@
   "type": "armament",
   "img": "systems/ordemparanormal/media/icons/armament/estilingue.svg",
   "system": {
-    "description": "<p>Você pode encontrar esse conteúdo na <strong>página 37 do suplemento Sobrevivendo ao Horror</strong>.</p>",
+    "description": "<p>Originalmente usado para caçar passarinhos, estilingues evoluíram em formato e composição. Ao contrário de outras armas de disparo, permite que você aplique seu valor de Força às rolagens de dano. Um estilingue dispara bolinhas que podem ser reaproveitadas e, na falta destas, você pode usar pedrinhas como munição; um pacote de bolinhas dura uma missão inteira, tem categoria 0 e ocupa o mesmo espaço do estilingue. Um estilingue também pode lançar granadas; fazer isso permite arremessar uma granada em alcance longo.</p>",
     "chatDescription": "",
     "weight": 1,
-    "category": "0",
+    "category": 0,
     "using": {
       "state": true,
       "class": "fas"
