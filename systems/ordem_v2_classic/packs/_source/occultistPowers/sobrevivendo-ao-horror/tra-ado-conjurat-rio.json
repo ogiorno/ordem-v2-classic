@@ -6,7 +6,7 @@
     "id": 0,
     "abilityType": "class",
     "preRequisite": "",
-    "description": "<p>Você pode encontrar esse conteúdo na <strong>página 27 do suplemento Sobrevivendo ao Horror</strong>.</p>",
+    "description": "<p>Você conhece versões de proteção e fortalecimento de vários símbolos paranormais, e pode usá-los para reforçar seus rituais. Você pode gastar 1 PE e uma ação completa traçando um símbolo paranormal no chão que ocupa um quadrado de 1,5m. Enquanto estiver dentro desse símbolo, você recebe +2 em testes de Ocultismo e de resistência e a DT para resistir aos seus rituais aumenta em +2. O símbolo dura até o fim da cena.</p>",
     "chatDescription": "",
     "activation": "complete",
     "cost": 1,

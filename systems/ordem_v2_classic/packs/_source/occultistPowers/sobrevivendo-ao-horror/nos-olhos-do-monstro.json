@@ -5,8 +5,8 @@
   "system": {
     "id": 0,
     "abilityType": "class",
-    "preRequisite": "Ocultismo",
-    "description": "<p>Você pode encontrar esse conteúdo na <strong>página 26 do suplemento Sobrevivendo ao Horror</strong>.</p>",
+    "preRequisite": "",
+    "description": "<p>Por mais assustador que seja encarar o paranormal, fazer isso pode fornecer a chave para escapar dele com vida. Se estiver em uma cena envolvendo uma criatura paranormal, você pode gastar uma rodada e 3 PE para encarar essa criatura (você precisa ser capaz de ver os olhos ou o mais próximo de um “rosto” da criatura, definido pelo mestre). Se fizer isso, você recebe +5 em testes contra a criatura (exceto testes de ataque) até o fim da cena.</p>",
     "chatDescription": "",
     "activation": "complete",
     "cost": 3,

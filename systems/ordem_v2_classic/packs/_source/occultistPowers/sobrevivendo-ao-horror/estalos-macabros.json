@@ -6,9 +6,9 @@
     "id": 0,
     "abilityType": "class",
     "preRequisite": "",
-    "description": "<p>Você pode encontrar esse conteúdo na <strong>página 26 do suplemento Sobrevivendo ao Horror</strong>.</p>",
+    "description": "<p>Você sabe colidir pequenos objetos amaldiçoados para gerar distrações fortuitas em momentos de necessidade. Quando faz uma ação para atrapalhar a atenção de outro ser (como distrair em uma cena de furtividade ou fintar em combate), você pode gastar 1 PE para usar Ocultismo em vez da perícia original. Se o alvo da sua distração for uma pessoa ou animal, você recebe +5 no teste.</p>",
     "chatDescription": "",
-    "activation": "reaction",
+    "activation": "free",
     "cost": 1,
     "costType": "PE"
   },

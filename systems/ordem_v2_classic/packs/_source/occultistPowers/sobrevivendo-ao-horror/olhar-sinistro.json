@@ -5,11 +5,11 @@
   "system": {
     "id": 0,
     "abilityType": "class",
-    "preRequisite": "",
-    "description": "<p>Você pode encontrar esse conteúdo na <strong>página 26 do suplemento Sobrevivendo ao Horror</strong>.</p>",
+    "preRequisite": "Presença 1",
+    "description": "<p>Aquilo que para outros é quase uma ciência, para você é a imposição da própria vontade. Você pode usar Presença no lugar de Intelecto para Ocultismo e pode usar esta perícia para coagir (veja Intimidação). <em>Pré-requisito: Pre 1.</em></p>",
     "chatDescription": "",
     "activation": "passive",
-    "cost": null,
+    "cost": 0,
     "costType": "PE"
   },
   "effects": [],

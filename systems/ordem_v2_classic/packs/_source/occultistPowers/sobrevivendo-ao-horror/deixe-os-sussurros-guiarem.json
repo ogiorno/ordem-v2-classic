@@ -5,8 +5,8 @@
   "system": {
     "id": 0,
     "abilityType": "class",
-    "preRequisite": "NEX 30%",
-    "description": "<p>Você pode encontrar esse conteúdo na <strong>página 26 do suplemento Sobrevivendo ao Horror</strong>.</p>",
+    "preRequisite": "",
+    "description": "<p>Você sabe abrir sua mente para os sussurros do Paranormal, vozes que lhe guiam às custas de sua Sanidade. Uma vez por cena, você pode gastar 2 PE e uma rodada para receber +2 em testes de perícia para investigação até o fim da cena. Entretanto, enquanto este poder estiver ativo, sempre que falha em um teste de perícia, você perde 1 ponto de Sanidade.</p>",
     "chatDescription": "",
     "activation": "complete",
     "cost": 2,

@@ -5,11 +5,11 @@
   "system": {
     "id": 0,
     "abilityType": "class",
-    "preRequisite": "",
-    "description": "<p>Você pode encontrar esse conteúdo na <strong>página 26 do suplemento Sobrevivendo ao Horror</strong>.</p>",
+    "preRequisite": "Intelecto 3",
+    "description": "<p>Você estudou a fundo a complexidade de catalisadores esotéricos e aprendeu a combinar suas propriedades paranormais. Ao lançar um ritual, você pode combinar os efeitos de até dois catalisadores ritualísticos diferentes ao mesmo tempo. <em>Pré-requisito: Int 3.</em></p>",
     "chatDescription": "",
-    "activation": "reaction",
-    "cost": null,
+    "activation": "passive",
+    "cost": 0,
     "costType": "PE"
   },
   "effects": [],

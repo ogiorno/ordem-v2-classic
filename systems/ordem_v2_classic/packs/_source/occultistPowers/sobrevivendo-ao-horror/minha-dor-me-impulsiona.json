@@ -5,10 +5,10 @@
   "system": {
     "id": 0,
     "abilityType": "class",
-    "preRequisite": "",
-    "description": "<p>Você pode encontrar esse conteúdo na <strong>página 26 do suplemento Sobrevivendo ao Horror</strong>.</p>",
+    "preRequisite": "Vigor 2",
+    "description": "<p>Você está acostumado com sacrifícios dolorosos e aprendeu a transformar sua dor em impulso físico. Quando faz um teste de Acrobacia, Atletismo ou Furtividade, você pode gastar 1 PE para receber +1d6 no teste. Você só pode usar este poder se estiver com pelo menos 5 pontos de dano em seus PV. <em>Pré-requisito: Vig 2.</em></p>",
     "chatDescription": "",
-    "activation": "reaction",
+    "activation": "free",
     "cost": 1,
     "costType": "PE"
   },

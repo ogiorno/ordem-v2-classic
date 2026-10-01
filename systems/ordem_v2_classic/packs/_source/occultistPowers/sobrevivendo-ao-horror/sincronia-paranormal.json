@@ -5,8 +5,8 @@
   "system": {
     "id": 0,
     "abilityType": "class",
-    "preRequisite": "NEX 60%",
-    "description": "<p>Você pode encontrar esse conteúdo na <strong>página 26-27 do suplemento Sobrevivendo ao Horror</strong>.</p>",
+    "preRequisite": "Presença 2",
+    "description": "<p>A exposição Paranormal de momentos terríveis que você compartilhou com seus aliados criou uma conexão invisível de Medo entre vocês, como uma linha entrelaçada dos seus destinos. Você pode gastar uma ação padrão e 2 PE para estabelecer uma sincronia mental com qualquer número de personagens, em alcance médio, com os quais você já tenha sobrevivido a pelo menos um encontro com o Paranormal. Essa sincronia é uma conexão inconsciente, e não permite uma troca clara de informações; em termos de regras, no início de cada rodada em que a sincronia estiver em efeito você pode distribuir uma quantidade de @DisplayDice[qtd:1|dc:d20] de bônus igual à sua Presença entre os demais participantes. Estes dados podem ser usados em testes de perícias baseadas em Intelecto ou Presença e desaparecem no final de cada rodada. Manter a sincronia custa 1 PE no início de cada rodada. <em>Pré-requisito: Pre 2.</em></p>",
     "chatDescription": "",
     "activation": "default",
     "cost": 2,

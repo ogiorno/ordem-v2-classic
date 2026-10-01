@@ -6,7 +6,7 @@
     "id": 0,
     "abilityType": "class",
     "preRequisite": "",
-    "description": "<p>Você pode encontrar esse conteúdo na <strong>página 26 do suplemento Sobrevivendo ao Horror</strong>.</p>",
+    "description": "<p>Sua exposição paranormal dá outros significados para arrepios e calafrios. Você pode gastar 3 PE para ativar um sentido premonitório. Enquanto seu sentido estiver ativo, você tem um déjà vu do futuro próximo (equivalente a uma rodada). Entre outras coisas, você sabe com uma rodada de antecedência quando a urgência de uma investigação vai acabar, se irá ocorrer um evento na investigação e qual será ele (o mestre rola antecipadamente o evento) e sabe quais ações seus inimigos irão tomar em cenas de furtividade e perseguição (essencialmente, você pode decidir suas próprias ações após ver o resultado das rolagens dos demais envolvidos na cena). O mestre pode aprovar outros usos criativos deste poder.</p><p>Devido à natureza acelerada e caótica de um combate, este poder não tem efeito nestas cenas. Para manter seu sentido ativado, você deve gastar 1 PE no início de cada rodada.</p>",
     "chatDescription": "",
     "activation": "free",
     "cost": 3,
