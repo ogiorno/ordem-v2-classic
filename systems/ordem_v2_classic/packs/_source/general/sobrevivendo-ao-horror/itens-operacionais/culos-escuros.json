@@ -3,10 +3,10 @@
   "type": "generalEquipment",
   "img": "systems/ordemparanormal/media/icons/equipments/operational/oculos-escuros.svg",
   "system": {
-    "description": "<p>Você pode encontrar esse conteúdo na <strong>página 43 do suplemento Sobrevivendo ao Horror</strong>.</p>",
+    "description": "<p>Um personagem vestindo óculos escuros não pode ser ofuscado.</p>",
     "chatDescription": "",
     "weight": 1,
-    "category": "0",
+    "category": 0,
     "using": {
       "state": true,
       "class": "fas"

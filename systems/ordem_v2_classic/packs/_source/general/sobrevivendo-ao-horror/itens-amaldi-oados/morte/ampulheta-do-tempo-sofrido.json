@@ -1,0 +1,37 @@
+{
+  "name": "Ampulheta do Tempo Sofrido",
+  "type": "generalEquipment",
+  "_id": "xc7k1za5qZK3QnqS",
+  "img": "systems/ordemparanormal/media/icons/equipments/paranormal/amarras-de-morte.svg",
+  "system": {
+    "using": {
+      "state": true,
+      "class": "fas"
+    },
+    "type": "",
+    "quantity": 1,
+    "description": "<p>Uma ampulheta de madeira trabalhada, com areia negra em seu interior. Quando é girada, os grãos assumem formas vagamente humanoides, que erguem os braços em desespero conforme são sugadas para a parte inferior do dispositivo. Se estiver empunhando a ampulheta do tempo sofrido, você pode gastar 5 PE para receber imediatamente os benefícios de uma ação de interlúdio a sua escolha. Uma vez que tenha usado a ampulheta, você não pode usá-la novamente até gastar uma ação de interlúdio para devolver o tempo que a Morte lhe emprestou.</p>",
+    "chatDescription": "",
+    "weight": 1,
+    "category": 2
+  },
+  "effects": [],
+  "folder": "mzoptZV8Vbs8aYU1",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.365",
+    "systemId": "ordem_v2_classic",
+    "systemVersion": "7.3.3",
+    "createdTime": 1784900000000,
+    "modifiedTime": 1784900000000,
+    "lastModifiedBy": null,
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!xc7k1za5qZK3QnqS"
+}

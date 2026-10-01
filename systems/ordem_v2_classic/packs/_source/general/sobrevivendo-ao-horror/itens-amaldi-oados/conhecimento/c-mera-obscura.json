@@ -1,0 +1,37 @@
+{
+  "name": "Câmera Obscura",
+  "type": "generalEquipment",
+  "_id": "KYJXum2ipOdxVYw8",
+  "img": "systems/ordemparanormal/media/icons/equipments/paranormal/camera-de-aura-paranormal.svg",
+  "system": {
+    "using": {
+      "state": true,
+      "class": "fas"
+    },
+    "type": "",
+    "quantity": 1,
+    "description": "<p>Uma das versões mais antigas e usadas de todas as câmeras de aura paranormal. Reza a lenda de que essa Polaroid Model 95 capturou tantas auras que se tornou incrivelmente poderosa contra criaturas fantasmagóricas. Esta versão de câmera de aura paranormal possui a modificação lente de revelação paranormal, mas a DT para resistir a seu efeito aumenta em +10. Além disso, se falhar, a criatura também sofre 6d6 pontos de dano de frio conforme partes de sua forma são inexistidas. Apenas criaturas com alguma habilidade de invisibilidade, incorporeidade ou camuflagem sofrem esse dano.</p>",
+    "chatDescription": "",
+    "weight": 1,
+    "category": 3
+  },
+  "effects": [],
+  "folder": "R5e6FFjzfeg5M1EA",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.365",
+    "systemId": "ordem_v2_classic",
+    "systemVersion": "7.3.3",
+    "createdTime": 1784900000000,
+    "modifiedTime": 1784900000000,
+    "lastModifiedBy": null,
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!KYJXum2ipOdxVYw8"
+}

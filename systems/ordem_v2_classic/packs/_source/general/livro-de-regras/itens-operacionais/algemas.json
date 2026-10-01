@@ -3,7 +3,7 @@
   "type": "generalEquipment",
   "img": "systems/ordemparanormal/media/icons/equipments/operational/algemas.svg",
   "system": {
-    "description": "<p>Um par de algemas de a&ccedil;o. Para prender uma pessoa que n&atilde;o esteja indefesa voc&ecirc; precisa em\u0002punhar a algema, agarrar a pessoa (veja &ldquo;Manobras de Combate&rdquo;, no Cap&iacute;tulo 4) e ent&atilde;o vencer um novo teste de agarrar contra ela. Voc&ecirc; pode prender os dois pulsos da pessoa (&ndash;5 em testes que exijam o uso das m&atilde;os, impede conjura&ccedil;&atilde;o) ou um dos pulsos dela em um objeto im&oacute;vel adjacente, caso haja, para impedir que ela se mova. Escapar das algemas exige um teste de Acrobacia contra DT 30 (ou ter as chaves...).</p>",
+    "description": "<p>Um par de algemas de a&ccedil;o. Para prender uma pessoa que n&atilde;o esteja indefesa voc&ecirc; precisa empunhar a algema, agarrar a pessoa (veja &ldquo;Manobras de Combate&rdquo;, no Cap&iacute;tulo 4) e ent&atilde;o vencer um novo teste de agarrar contra ela. Voc&ecirc; pode prender os dois pulsos da pessoa (&ndash;5 em testes que exijam o uso das m&atilde;os, impede conjura&ccedil;&atilde;o) ou um dos pulsos dela em um objeto im&oacute;vel adjacente, caso haja, para impedir que ela se mova. Escapar das algemas exige um teste de Acrobacia contra DT 30 (ou ter as chaves...).</p>",
     "weight": 1,
     "category": "0",
     "using": {

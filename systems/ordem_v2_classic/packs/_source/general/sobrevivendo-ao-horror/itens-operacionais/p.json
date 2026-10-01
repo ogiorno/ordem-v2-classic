@@ -3,10 +3,10 @@
   "type": "generalEquipment",
   "img": "systems/ordemparanormal/media/icons/equipments/operational/pa.svg",
   "system": {
-    "description": "<p>Você pode encontrar esse conteúdo na <strong>página 43 do suplemento Sobrevivendo ao Horror</strong>.</p>",
+    "description": "<p>Esta pesada ferramenta fornece +5 em testes de Força para cavar buracos e mover detritos. Pode ser usada em combate como um bastão.</p>",
     "chatDescription": "",
     "weight": 2,
-    "category": "0",
+    "category": 0,
     "using": {
       "state": true,
       "class": "fas"

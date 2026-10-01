@@ -1,0 +1,37 @@
+{
+  "name": "Arreio Neural",
+  "type": "generalEquipment",
+  "_id": "m8rjDGuEGcE6OsDc",
+  "img": "systems/ordemparanormal/media/icons/equipments/paranormal/amarras-de-energia.svg",
+  "system": {
+    "using": {
+      "state": true,
+      "class": "fas"
+    },
+    "type": "",
+    "quantity": 1,
+    "description": "<p>Este conjunto de correias de couro e fivelas metálicas pode ser fixado à cabeça de uma pessoa de forma semelhante à cabeçada de um cavalo, expondo sua arcada dentária e mantendo seus olhos abertos. Um aparato amaldiçoado da era Vitoriana, este dispositivo converte certas correntes em estímulos cerebrais. Se estiver usando o arreio neural, sempre que sofre 5 ou mais pontos de dano de eletricidade ou Energia, você recupera 1 PE. Você pode recuperar um máximo de PE desta forma igual ao dobro do seu Vigor no mesmo dia.</p>",
+    "chatDescription": "",
+    "weight": 1,
+    "category": 2
+  },
+  "effects": [],
+  "folder": "SNaYv5ivuA1oN7co",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.365",
+    "systemId": "ordem_v2_classic",
+    "systemVersion": "7.3.3",
+    "createdTime": 1784900000000,
+    "modifiedTime": 1784900000000,
+    "lastModifiedBy": null,
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!m8rjDGuEGcE6OsDc"
+}

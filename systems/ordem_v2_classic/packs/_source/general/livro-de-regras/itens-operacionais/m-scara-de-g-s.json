@@ -3,7 +3,7 @@
   "type": "generalEquipment",
   "img": "systems/ordemparanormal/media/icons/equipments/operational/mascara-de-gas.svg",
   "system": {
-    "description": "<p>Uma m&aacute;scara com filtro que cobre o rosto inteiro. Fornece +10 em testes de For\u0002titude contra efeitos que dependam de respira&ccedil;&atilde;o.</p>",
+    "description": "<p>Uma m&aacute;scara com filtro que cobre o rosto inteiro. Fornece +10 em testes de Fortitude contra efeitos que dependam de respira&ccedil;&atilde;o.</p>",
     "weight": 1,
     "category": "0",
     "using": {

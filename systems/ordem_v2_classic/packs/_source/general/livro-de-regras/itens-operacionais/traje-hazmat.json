@@ -3,7 +3,7 @@
   "type": "generalEquipment",
   "img": "systems/ordemparanormal/media/icons/equipments/operational/traje-hazmat.svg",
   "system": {
-    "description": "<p>Uma roupa imperme&aacute;vel e que cobre o corpo inteiro, usada para impedir o con\u0002tato do usu&aacute;rio com materiais t&oacute;xicos. Fornece +5 em testes de resist&ecirc;ncia contra efeitos ambientais e resist&ecirc;ncia a qu&iacute;mico 10.</p>",
+    "description": "<p>Uma roupa imperme&aacute;vel e que cobre o corpo inteiro, usada para impedir o contato do usu&aacute;rio com materiais t&oacute;xicos. Fornece +5 em testes de resist&ecirc;ncia contra efeitos ambientais e resist&ecirc;ncia a qu&iacute;mico 10.</p>",
     "chatDescription": "",
     "weight": 2,
     "category": 1,

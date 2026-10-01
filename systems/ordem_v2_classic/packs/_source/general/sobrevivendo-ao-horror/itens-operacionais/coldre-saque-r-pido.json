@@ -3,7 +3,7 @@
   "type": "generalEquipment",
   "img": "systems/ordemparanormal/media/icons/equipments/operational/coldre-saque-rapido.svg",
   "system": {
-    "description": "<p>Você pode encontrar esse conteúdo na <strong>página 42 do suplemento Sobrevivendo ao Horror</strong>.</p>",
+    "description": "<p>Este coldre é projetado para que a arma possa ser sacada ou armazenada com um movimento mínimo. Uma vez por rodada, você pode sacar ou guardar uma arma de fogo leve como uma ação livre.</p>",
     "chatDescription": "",
     "weight": 1,
     "category": 1,

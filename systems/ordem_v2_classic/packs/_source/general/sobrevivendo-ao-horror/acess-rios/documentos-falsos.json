@@ -3,10 +3,10 @@
   "type": "generalEquipment",
   "img": "systems/ordemparanormal/media/icons/equipments/accessories/documentos-falsos.svg",
   "system": {
-    "description": "<p>Você pode encontrar esse conteúdo na <strong>página 39 do suplemento Sobrevivendo ao Horror</strong>.</p>",
+    "description": "<p>Um conjunto de documentos (identidade funcional, carteira de habilitação, cartões de crédito etc.) em nome de uma identidade falsa. Você recebe +2 em testes de Diplomacia, Enganação e Intimidação para se passar pela pessoa representada pelos documentos.</p>",
     "chatDescription": "",
     "weight": 1,
-    "category": "1",
+    "category": 1,
     "using": {
       "state": true,
       "class": "fas"

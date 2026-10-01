@@ -3,10 +3,10 @@
   "type": "generalEquipment",
   "img": "systems/ordemparanormal/media/icons/equipments/operational/aplicador-de-medicamentos.svg",
   "system": {
-    "description": "<p>Você pode encontrar esse conteúdo na <strong>página 42 do suplemento Sobrevivendo ao Horror</strong>.</p>",
+    "description": "<p>Essa adaptação portátil de bombas injetoras hospitalares pode ser presa ao redor do braço ou perna para aplicar uma substância, como um cicatrizante ou medicamento, com uma ação de movimento. O aplicador tem espaço para três doses de substâncias (já contabilizadas no espaço do item). Carregar uma dose de uma substância no aplicador é uma ação padrão.</p>",
     "chatDescription": "",
     "weight": 1,
-    "category": "0",
+    "category": 1,
     "using": {
       "state": true,
       "class": "fas"

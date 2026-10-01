@@ -1,0 +1,37 @@
+{
+  "name": "Bateria Potente",
+  "type": "generalEquipment",
+  "_id": "UUK5yDLTyPCKKpE2",
+  "img": "systems/ordemparanormal/media/icons/equipments/accessories/kit-de-pericia.svg",
+  "system": {
+    "using": {
+      "state": true,
+      "class": "fas"
+    },
+    "type": "",
+    "quantity": 1,
+    "description": "<p>Modificação para acessórios. Essa modificação para objetos elétricos aumenta sua eficiência e duração. Se usada em lanternas, celulares e notebooks, dobra a duração da bateria e o alcance da luz projetada. Se usada em um taser, dobra seus usos, aumenta o dano para 1d8 e a DT para resistir a ele em +5. Pode afetar outros objetos, conforme proposta dos jogadores, a critério do mestre.</p><p>Opção: duração de baterias. Via de regra, os jogadores não precisam se preocupar com a duração da bateria de dispositivos eletrônicos, como celulares e lanternas. Entretanto, se o mestre quiser limitar os recursos dos personagens, pode usar esta opção. Para representar o consumo da bateria de dispositivos eletrônicos, na primeira vez em cada cena que o dispositivo for usado, o jogador deve rolar um 1d12. A cada nova cena em que o item for usado, o dado a ser rolado diminui em um passo (d10, d8 e assim por diante) até um mínimo de 1d4. Se o resultado de um desses dados for um 1, a bateria acaba. Recarregar a bateria redefine o dado para d12. Se estiver usando essa regra, a modificação bateria potente faz com que o dado diminua um passo a cada dois usos.</p>",
+    "chatDescription": "",
+    "weight": 0,
+    "category": 0
+  },
+  "effects": [],
+  "folder": "M0pJZJR4XxYW4gSs",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.365",
+    "systemId": "ordem_v2_classic",
+    "systemVersion": "7.3.3",
+    "createdTime": 1784900000000,
+    "modifiedTime": 1784900000000,
+    "lastModifiedBy": null,
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!UUK5yDLTyPCKKpE2"
+}

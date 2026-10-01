@@ -3,10 +3,10 @@
   "type": "generalEquipment",
   "img": "systems/ordemparanormal/media/icons/equipments/operational/isqueiro.svg",
   "system": {
-    "description": "<p>Você pode encontrar esse conteúdo na <strong>página 43 do suplemento Sobrevivendo ao Horror</strong>.</p>",
+    "description": "<p>Existem isqueiros de vários tipos, desde os sofisticados de metal até os descartáveis de plástico. Todos seguem o mesmo princípio; você pode gastar uma ação de movimento para produzir uma pequena chama. Além de incendiar objetos inflamáveis, emite luz em um raio de 3m.</p>",
     "chatDescription": "",
     "weight": 0.5,
-    "category": "0",
+    "category": 0,
     "using": {
       "state": true,
       "class": "fas"

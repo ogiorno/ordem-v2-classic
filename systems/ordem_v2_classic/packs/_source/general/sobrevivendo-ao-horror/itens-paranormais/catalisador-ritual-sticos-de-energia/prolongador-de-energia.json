@@ -3,10 +3,10 @@
   "type": "generalEquipment",
   "img": "systems/ordemparanormal/media/icons/equipments/paranormal/prolongador-energia.svg",
   "system": {
-    "description": "<p>Você pode encontrar esse conteúdo na <strong>página 44 do suplemento Sobrevivendo ao Horror</strong>.</p>",
+    "description": "<p>Catalisador ritualístico de Energia — Prolongador. Componentes ritualísticos que já foram alterados através de exposição paranormal e por isso são mais eficientes. Ao contrário de componentes comuns, um catalisador é consumido ao ser usado. Existem diversos tipos de catalisadores, uma para cada elemento. Você precisa estar empunhando um catalisador para usá-lo e só pode usar um catalisador por ritual. Por sua natureza, catalisadores não podem ser improvisados, como pela habilidade Improvisar Componentes, mas ainda podem ser fabricados em campo (veja p. 94).</p><p>Prolongador: A duração do ritual dobra. Por exemplo, um Distorcer Aparência prolongado tem sua duração aumentada para duas cenas. Não funciona para rituais instantâneos ou sustentados.</p><p>O processo de conjurar um ritual envolve diversas etapas. Uma das mais importantes é manipular um componente ritualístico; um objeto conectado, tanto em forma quanto em natureza, à Entidade que se está tentando conectar. Conforme são utilizados, alguns desses componentes sofrem alterações, causadas pela prolongada exposição ao paranormal. Estas alterações fragilizam o componente, mas também permitem que ele seja consumido em troca de uma pequena alteração no ritual.</p><p>Energia. Cubo mágico metálico caótico que não para de se embaralhar; Cartas de baralho que mudam toda vez que você olha; Uma brasa que nunca se apaga; Celular contendo um vírus paranormal; Uma pequena bola plasmática que nunca desliga. Ao ser consumido, um Catalisador Ritualístico de Energia vibra até implodir e se tornar inútil.</p>",
     "chatDescription": "",
     "weight": 0.5,
-    "category": "1",
+    "category": 1,
     "using": {
       "state": true,
       "class": "fas"

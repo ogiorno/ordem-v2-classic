@@ -3,10 +3,10 @@
   "type": "generalEquipment",
   "img": "systems/ordemparanormal/media/icons/equipments/accessories/manual-operacional.svg",
   "system": {
-    "description": "<p>Você pode encontrar esse conteúdo na <strong>página 39 do suplemento Sobrevivendo ao Horror</strong>.</p>",
+    "description": "<p>Um livro com lições práticas sobre um assunto. Existe um manual operacional para cada perícia; gastar uma ação de interlúdio lendo um manual permite que você use essa perícia como se fosse treinado nela até o próximo interlúdio. Um manual operacional aprimorado (veja OPRPG, p. 64) também fornece +5 na perícia. Você só pode receber o benefício de um manual operacional por vez.</p>",
     "chatDescription": "",
     "weight": 1,
-    "category": "1",
+    "category": 1,
     "using": {
       "state": true,
       "class": "fas"

@@ -3,10 +3,10 @@
   "type": "generalEquipment",
   "img": "systems/ordemparanormal/media/icons/equipments/operational/medicine/medicamentos.svg",
   "system": {
-    "description": "<p>Você pode encontrar esse conteúdo na <strong>página 43 do suplemento Sobrevivendo ao Horror</strong>.</p>",
+    "description": "<p>Fortalece a imunidade contra vírus e bactérias. Fornece +5 no próximo teste de Fortitude contra efeitos de uma doença feito até o fim do dia.</p><p>Medicamentos. Além de cicatrizantes, existem outros medicamentos que podem ajudar os agentes. Você pode gastar uma ação padrão e o medicamento para aplicar seus efeitos em você ou em um ser adjacente.</p>",
     "chatDescription": "",
     "weight": 0.5,
-    "category": "1",
+    "category": 1,
     "using": {
       "state": true,
       "class": "fas"

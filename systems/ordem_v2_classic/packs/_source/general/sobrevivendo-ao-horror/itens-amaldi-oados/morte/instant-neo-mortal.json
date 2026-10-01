@@ -1,0 +1,37 @@
+{
+  "name": "Instantâneo Mortal",
+  "type": "generalEquipment",
+  "_id": "BIFNfHvZR6s8b9UX",
+  "img": "systems/ordemparanormal/media/icons/equipments/paranormal/amarras-de-morte.svg",
+  "system": {
+    "using": {
+      "state": true,
+      "class": "fas"
+    },
+    "type": "",
+    "quantity": 1,
+    "description": "<p>Este item é uma fotografia que retrata um dos últimos momentos de uma pessoa antes de sua morte (como um condenado sendo preparado para a forca ou um paciente terminal prestes a expirar). Existem diversas versões deste item, algumas uma simples foto em papel, outras um quadro adornado por uma sólida moldura ou mesmo uma imagem digital. Cada instantâneo mortal retrata pessoas diferentes, em circunstâncias de morte variadas. Se estiver empunhando um instantâneo mortal e fizer um teste de perícia para procurar pistas, você pode olhar fixamente para a imagem e gastar 1 PE. Se o teste for de uma perícia relacionada às circunstâncias de morte da fotografia, a imagem da pessoa irá se mover discretamente, apontando em uma direção útil para o teste (efetivamente concedendo @DisplayDice[qtd:1|sign:plus|dc:d20] no teste). Por exemplo, um teste de Crime para encontrar uma pista pode receber o bônus se você estiver segurando um instantâneo mortal com a imagem de um criminoso. O mestre tem a palavra final sobre as perícias que se relacionam a um determinado instantâneo mortal.</p>",
+    "chatDescription": "",
+    "weight": 0.5,
+    "category": 2
+  },
+  "effects": [],
+  "folder": "mzoptZV8Vbs8aYU1",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.365",
+    "systemId": "ordem_v2_classic",
+    "systemVersion": "7.3.3",
+    "createdTime": 1784900000000,
+    "modifiedTime": 1784900000000,
+    "lastModifiedBy": null,
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!BIFNfHvZR6s8b9UX"
+}

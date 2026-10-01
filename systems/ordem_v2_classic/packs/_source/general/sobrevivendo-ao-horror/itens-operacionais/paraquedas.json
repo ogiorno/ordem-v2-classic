@@ -3,7 +3,7 @@
   "type": "generalEquipment",
   "img": "systems/ordemparanormal/media/icons/equipments/operational/paraquedas.svg",
   "system": {
-    "description": "<p>Você pode encontrar esse conteúdo na <strong>página 43 do suplemento Sobrevivendo ao Horror</strong>.</p>",
+    "description": "<p>Anula o dano de queda. Personagens com grau de treinamento veterano em Acrobacia, Pilotagem, Reflexos, Tática ou uma Profissão específica sabem usar paraquedas. Caso contrário, ou em quedas muito curtas, usar o paraquedas requer um teste de Reflexos (DT 20). Se falhar, o paraquedas não funciona adequadamente, reduzindo o dano de queda apenas à metade.</p>",
     "chatDescription": "",
     "weight": 2,
     "category": 1,

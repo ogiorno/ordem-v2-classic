@@ -3,10 +3,10 @@
   "type": "generalEquipment",
   "img": "systems/ordemparanormal/media/icons/equipments/operational/alarme-de-movimento.svg",
   "system": {
-    "description": "<p>Você pode encontrar esse conteúdo na <strong>página 42 do suplemento Sobrevivendo ao Horror</strong>.</p>",
+    "description": "<p>Este pequeno objeto de fácil aquisição pode ser controlado por um dispositivo móvel específico ou um aplicativo de celular. Você pode gastar uma ação completa para posicionar e ativar o alarme; após isso, sempre que houver movimento significativo em um cone de 30m para onde ele foi apontado, ele irá sinalizar o dispositivo de controle. Ao acionar o alarme você pode regular sua sensibilidade ao movimento (como padrão, ele é acionado sempre que um ser Pequeno ou maior se move na área). A sinalização pode ser discreta, apenas no dispositivo, ou barulhenta, acionando um alarme sonoro alto e agudo.</p>",
     "chatDescription": "",
     "weight": 1,
-    "category": "0",
+    "category": 0,
     "using": {
       "state": true,
       "class": "fas"

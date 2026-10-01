@@ -3,7 +3,7 @@
   "type": "generalEquipment",
   "img": "systems/ordemparanormal/media/icons/equipments/operational/equipamento-de-escuta.svg",
   "system": {
-    "description": "<p>Você pode encontrar esse conteúdo na <strong>página 42 do suplemento Sobrevivendo ao Horror</strong>.</p>",
+    "description": "<p>Este conjunto contém um receptor, com alcance de 90m, e três minúsculos transmissores capazes de captar conversas e outros sons em um raio de 9m. Instalar um transmissor demora alguns minutos e exige um teste de Crime contra DT 20 (uma falha indica que a escuta não irá transmitir). O resultado desse teste é também a DT para outras pessoas encontrarem o transmissor. É possível instalar um transmissor discretamente com outras pessoas presentes; fazer isso é uma ação completa, requer um teste de Furtividade oposto à Percepção dos presentes e aumenta a DT do teste de Crime em +5.</p>",
     "chatDescription": "",
     "weight": 1,
     "category": 1,

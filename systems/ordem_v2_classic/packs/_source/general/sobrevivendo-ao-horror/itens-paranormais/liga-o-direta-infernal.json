@@ -3,10 +3,10 @@
   "type": "generalEquipment",
   "img": "systems/ordemparanormal/media/icons/equipments/paranormal/ligacao-direta-infernal.svg",
   "system": {
-    "description": "<p>Você pode encontrar esse conteúdo na <strong>página 44 do suplemento Sobrevivendo ao Horror</strong>.</p>",
+    "description": "<p>Um amontoado de fios de cobre contaminados com Sangue e Energia. Você pode gastar uma ação completa para usar os fios para ligar um veículo automaticamente. Isso faz os fios invadirem os controles do veículo animando-o de forma paranormal; o veículo recebe resistência a dano 20 (cumulativa com qualquer RD que já possua) e imunidade a Sangue, e você recebe +5 em testes de Pilotagem para conduzi-lo. Entretanto, nesse estado o veículo tentará causar o máximo de confusão possível; as consequências de qualquer falha nos testes de Pilotagem são amplificadas a critério do mestre (de forma geral, qualquer dano ou penalidade causado por uma falha é dobrado). Remover a ligação direta infernal de um veículo é uma ação completa.</p>",
     "chatDescription": "",
     "weight": 1,
-    "category": "2",
+    "category": 2,
     "using": {
       "state": true,
       "class": "fas"

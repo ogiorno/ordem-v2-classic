@@ -3,7 +3,7 @@
   "type": "generalEquipment",
   "img": "systems/ordemparanormal/media/icons/equipments/operational/bracadeira-reforcada.svg",
   "system": {
-    "description": "<p>Você pode encontrar esse conteúdo na <strong>página 42 do suplemento Sobrevivendo ao Horror</strong>.</p>",
+    "description": "<p>Semelhante às proteções usadas em artes marciais e outros esportes de contato, estas braçadeiras ajudam a absorver o impacto ao bloquear golpes com o braço. Elas aumentam em +2 a RD que você recebe por usar um bloqueio.</p>",
     "chatDescription": "",
     "weight": 1,
     "category": 1,

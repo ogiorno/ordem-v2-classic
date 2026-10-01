@@ -3,7 +3,7 @@
   "type": "generalEquipment",
   "img": "systems/ordemparanormal/media/icons/equipments/operational/faixa-de-pregos.svg",
   "system": {
-    "description": "<p>Você pode encontrar esse conteúdo na <strong>página 42-43 do suplemento Sobrevivendo ao Horror</strong>.</p>",
+    "description": "<p>Este aparato compacto é uma trilha de hastes metálicas sanfonadas com pregos em toda sua extensão. Utilizado primariamente para parar veículos, pode ser empregado contra outros oponentes. Uma faixa de pregos funciona como estrepes, exceto que ocupa uma linha de 9m. Além disso, veículos com pneus de borracha que passem pela faixa têm seus pneus automaticamente perfurados, o que reduz seu deslocamento pela metade.</p>",
     "chatDescription": "",
     "weight": 2,
     "category": 1,

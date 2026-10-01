@@ -1,13 +1,13 @@
 {
   "folder": "TuNTGYq7wz14eZxw",
-  "name": "Explosivo Plástivo",
+  "name": "Explosivo Plástico",
   "type": "generalEquipment",
   "img": "systems/ordemparanormal/media/icons/equipments/explosives/explosivo-plastico.svg",
   "system": {
-    "description": "<p>Você pode encontrar esse conteúdo na <strong>página 41 do suplemento Sobrevivendo ao Horror</strong>.</p>",
+    "description": "<p>Essa massa adesiva do tamanho de uma esponja é acompanhada de pinos de ignição e um detonador remoto. Para utilizá-la, você precisa gastar duas rodadas para preparar os pinos e grudar o explosivo em uma superfície. Por fim, você pode detonar o explosivo acionando um detonador (uma ação livre que pode ser feita de alcance longo) ou causando pelo menos 1 ponto de dano de fogo ou eletricidade nele. Quando detonado, o explosivo plástico causa 16d6 pontos de dano de impacto em todos os seres e objetos em um raio de 3m (Reflexos DT Int reduz à metade). Se usado por um especialista em explosivos (alguém treinado em Crime ou uma Profissão adequada, a critério do mestre), causa o dobro de dano em objetos e estruturas e ignora sua RD.</p>",
     "chatDescription": "",
     "weight": 1,
-    "category": "1",
+    "category": 1,
     "using": {
       "state": true,
       "class": "fas"

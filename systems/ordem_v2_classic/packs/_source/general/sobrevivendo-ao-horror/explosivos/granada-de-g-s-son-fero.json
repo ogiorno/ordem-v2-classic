@@ -3,10 +3,10 @@
   "type": "generalEquipment",
   "img": "systems/ordemparanormal/media/icons/equipments/explosives/granada-de-sonifero.svg",
   "system": {
-    "description": "<p>Você pode encontrar esse conteúdo na <strong>página 41 do suplemento Sobrevivendo ao Horror</strong>.</p>",
+    "description": "<p>Esta granada libera uma fumaça branca que preenche um raio de 6m a partir do ponto de impacto. Seres que comecem seus turnos na área ficam inconscientes e caídos ou, se estiverem envolvidos em atividade física intensa (como combate), ficam exaustos por 1 rodada, depois fatigados (em ambos os casos, Fortitude DT Agi reduz para fatigado por 1d4 rodadas). O gás permanece na área por 2 rodadas.</p>",
     "chatDescription": "",
     "weight": 1,
-    "category": "1",
+    "category": 1,
     "using": {
       "state": true,
       "class": "fas"

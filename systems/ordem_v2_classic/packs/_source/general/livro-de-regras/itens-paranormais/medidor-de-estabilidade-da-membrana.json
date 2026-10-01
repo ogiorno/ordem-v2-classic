@@ -1,0 +1,38 @@
+{
+  "folder": "F7deDDQkexbVRYSO",
+  "name": "Medidor de Estabilidade da Membrana",
+  "type": "generalEquipment",
+  "img": "systems/ordemparanormal/media/icons/equipments/paranormal/medidor-de-estabilidade-da-membrana.svg",
+  "system": {
+    "description": "<p>Um dispositivo complexo, composto por diversos medidores — de temperatura, campo magnético, dilatação temporal… Um agente treinado em Ocultismo pode usar o medidor para avaliar o estado da Membrana em uma área (veja a página 97), o que indica a chance de uma entidade se manifestar nela. Um ambiente com valores racionais e constantes ao longo de algumas horas dificilmente originará uma criatura ou manifestação perigosa. Porém, se as leituras apresentarem dados inexplicáveis ou com grandes variações, o lugar poderá conter uma entidade. Apesar de ser um bom indicativo, o medidor não fornece respostas definitivas, já que um ambiente com a Membrana danificada ainda pode não ter sido afetado por manifestações, assim como um lugar com a Membrana protegida por conter uma criatura poderosa vinda de outro lugar.</p>",
+    "chatDescription": "",
+    "weight": 1,
+    "category": 2,
+    "using": {
+      "state": true,
+      "class": "fas"
+    },
+    "type": "",
+    "quantity": 1
+  },
+  "effects": [],
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "14.365",
+    "systemId": "ordemparanormal",
+    "systemVersion": "7.3.3",
+    "createdTime": 1768441745795,
+    "modifiedTime": 1785688404870,
+    "lastModifiedBy": "vUTMyOH4FOrOifbw"
+  },
+  "ownership": {
+    "default": 0,
+    "uX8kbsijC8bcpBa3": 3
+  },
+  "_id": "kcYgx5MBPYKiyIAj",
+  "sort": 200000,
+  "_key": "!items!kcYgx5MBPYKiyIAj"
+}

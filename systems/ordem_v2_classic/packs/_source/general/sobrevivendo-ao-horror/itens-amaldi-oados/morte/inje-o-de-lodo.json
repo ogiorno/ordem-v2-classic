@@ -1,0 +1,37 @@
+{
+  "name": "Injeção de Lodo",
+  "type": "generalEquipment",
+  "_id": "T6wUnsRBHjdiYO4m",
+  "img": "systems/ordemparanormal/media/icons/equipments/paranormal/amarras-de-morte.svg",
+  "system": {
+    "using": {
+      "state": true,
+      "class": "fas"
+    },
+    "type": "",
+    "quantity": 1,
+    "description": "<p>Uma velha seringa de bronze enferrujado com uma grande agulha preenchida com o Lodo preto da Morte, que escorre sutilmente para fora. Você pode gastar uma ação padrão e o conteúdo da seringa para injetar o Lodo em você ou um ser adjacente voluntário. Até o fim da cena o ser recebe vulnerabilidade a dano balístico e de Energia mas, na próxima vez em que for reduzido a 0 PV nesta mesma cena, em vez disso é reduzido a 1 PV.</p>",
+    "chatDescription": "",
+    "weight": 0.5,
+    "category": 2
+  },
+  "effects": [],
+  "folder": "mzoptZV8Vbs8aYU1",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.365",
+    "systemId": "ordem_v2_classic",
+    "systemVersion": "7.3.3",
+    "createdTime": 1784900000000,
+    "modifiedTime": 1784900000000,
+    "lastModifiedBy": null,
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!T6wUnsRBHjdiYO4m"
+}

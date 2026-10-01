@@ -3,7 +3,7 @@
   "type": "generalEquipment",
   "img": "systems/ordemparanormal/media/icons/equipments/operational/soqueira.svg",
   "system": {
-    "description": "<p>Esta pe&ccedil;a de metal e usada entre os dedos e permite socos mais perigosos &mdash; fornece +1 em rolagens de dano desarmado. Uma soqueira pode receber modifica&ccedil;&otilde;es e maldi&ccedil;&otilde;es de armas corpo a corpo e aplica os efeitos delas em seus ata\u0002ques desarmados.</p>",
+    "description": "<p>Esta pe&ccedil;a de metal e usada entre os dedos e permite socos mais perigosos &mdash; fornece +1 em rolagens de dano desarmado. Uma soqueira pode receber modifica&ccedil;&otilde;es e maldi&ccedil;&otilde;es de armas corpo a corpo e aplica os efeitos delas em seus ataques desarmados.</p>",
     "weight": 1,
     "category": "0",
     "using": {

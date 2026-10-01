@@ -3,10 +3,10 @@
   "type": "generalEquipment",
   "img": "systems/ordemparanormal/media/icons/equipments/explosives/granada-de-pem.svg",
   "system": {
-    "description": "<p>Você pode encontrar esse conteúdo na <strong>página 41 do suplemento Sobrevivendo ao Horror</strong>.</p>",
+    "description": "<p>Esta granada emite um poderoso pulso eletromagnético que desativa todos os equipamentos elétricos em um raio de 18m até o fim da cena. Criaturas de Energia na área sofrem 6d6 pontos de dano de impacto e ficam paralisadas por 1 rodada (apenas uma vez por cena, Fortitude DT Agi reduz à metade e evita a condição).</p>",
     "chatDescription": "",
     "weight": 1,
-    "category": "1",
+    "category": 1,
     "using": {
       "state": true,
       "class": "fas"

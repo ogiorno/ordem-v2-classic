@@ -4,10 +4,10 @@
   "type": "generalEquipment",
   "img": "systems/ordemparanormal/media/icons/equipments/accessories/celular.svg",
   "system": {
-    "description": "<p>Você pode encontrar esse conteúdo na <strong>página 39 do suplemento Sobrevivendo ao Horror</strong>.</p>",
+    "description": "<p>Um utensílio especial (embora comum). Serve para tirar fotos, gravar áudios e vídeos, acessar a internet e até, veja só, ligar para outras pessoas. Se tiver acesso a internet, fornece +2 em testes de perícia que envolvam adquirir informações. Por fim, possui uma lanterna fraca, mas útil na falta de um equipamento melhor, que ilumina em um cone de 4,5m.</p>",
     "chatDescription": "",
     "weight": 1,
-    "category": "0",
+    "category": 0,
     "using": {
       "state": true,
       "class": "fas"

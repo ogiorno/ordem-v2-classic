@@ -1,0 +1,37 @@
+{
+  "name": "Centrifugador Existencial",
+  "type": "generalEquipment",
+  "_id": "LITXfAIL7BxcBtyq",
+  "img": "systems/ordemparanormal/media/icons/equipments/paranormal/amarras-de-energia.svg",
+  "system": {
+    "using": {
+      "state": true,
+      "class": "fas"
+    },
+    "type": "",
+    "quantity": 1,
+    "description": "<p>Este pequeno dispositivo formado por dois círculos de cobre concêntricos foi criado por um inventor desconhecido do século XVII. Você pode gastar uma ação padrão e 3 PE para ativar o dispositivo, o que faz com que os dois círculos girem rapidamente em sentidos opostos. Quando isso acontece, você é dividido em duas possibilidades de futuro e recebe um turno adicional na última contagem de iniciativa desta rodada, estando brevemente em dois lugares ao mesmo tempo. Ambas as versões de você são consideradas sua “versão verdadeira”, mas você deve sortear qual delas irá se dissipar ao final da rodada. Efeitos que afetarem qualquer uma das versões durante a rodada seguem afetando seu personagem, se aplicáveis. O seu “outro você” não é considerado outra pessoa adicional para qualquer efeito de jogo. Sempre que usa este item, você deve fazer um teste de Ocultismo (DT 15 + 5 por uso adicional no mesmo dia). Se falhar, você é separado em nível energético e perde metade de seus atributos (arredondado para baixo). Você recupera 1 ponto de cada atributo ao final de cada interlúdio.</p>",
+    "chatDescription": "",
+    "weight": 1,
+    "category": 3
+  },
+  "effects": [],
+  "folder": "SNaYv5ivuA1oN7co",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.365",
+    "systemId": "ordem_v2_classic",
+    "systemVersion": "7.3.3",
+    "createdTime": 1784900000000,
+    "modifiedTime": 1784900000000,
+    "lastModifiedBy": null,
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!LITXfAIL7BxcBtyq"
+}

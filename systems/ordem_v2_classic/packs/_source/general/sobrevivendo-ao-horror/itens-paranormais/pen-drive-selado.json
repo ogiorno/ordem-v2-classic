@@ -3,7 +3,7 @@
   "type": "generalEquipment",
   "img": "systems/ordemparanormal/media/icons/equipments/paranormal/pendrive-selado.svg",
   "system": {
-    "description": "<p>Você pode encontrar esse conteúdo na <strong>página 45 do suplemento Sobrevivendo ao Horror</strong>.</p>",
+    "description": "<p>Este dispositivo está gravado com sigilos dourados de Conhecimento. Graças à proteção desses sigilos, o pen drive não pode ser invadido ou afetado por rituais, seres e efeitos de Energia. Isso mantém seus arquivos protegidos, e permite que ele seja usado para invadir outros dispositivos sem ser contaminado pela entidade. Existem outros modelos de dispositivos selados, como HDs externos e celulares.</p>",
     "chatDescription": "",
     "weight": 0.5,
     "category": 2,

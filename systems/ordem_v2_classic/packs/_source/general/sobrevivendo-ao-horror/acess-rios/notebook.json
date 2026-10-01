@@ -3,10 +3,10 @@
   "type": "generalEquipment",
   "img": "systems/ordemparanormal/media/icons/equipments/accessories/notebook.svg",
   "system": {
-    "description": "<p>Você pode encontrar esse conteúdo na <strong>página 39 do suplemento Sobrevivendo ao Horror</strong>.</p>",
+    "description": "<p>Um utensílio especial. Como um celular, se tiver acesso a internet fornece +2 em testes de perícia que envolvem adquirir informações. Além disso, por sua tela maior, pode ser usado para entretenimento de forma mais agradável; ao relaxar em cenas de interlúdio, você recupera 1 ponto adicional de Sanidade. A luz do monitor ilumina em um cone de 4,5m. Tablets estão inclusos como uma variação de notebook.</p>",
     "chatDescription": "",
     "weight": 2,
-    "category": "0",
+    "category": 0,
     "using": {
       "state": true,
       "class": "fas"

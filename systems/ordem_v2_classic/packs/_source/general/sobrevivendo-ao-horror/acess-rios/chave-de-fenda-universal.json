@@ -3,10 +3,10 @@
   "type": "generalEquipment",
   "img": "systems/ordemparanormal/media/icons/equipments/accessories/chave-de-fenda-universal.svg",
   "system": {
-    "description": "<p>Você pode encontrar esse conteúdo na <strong>página 39 do suplemento Sobrevivendo ao Horror</strong>.</p>",
+    "description": "<p>Esta ferramenta pode ser considerada um milagre da engenharia humana. Com ela em mãos, você é capaz de resolver quase qualquer problema. Fornece +2 em testes de perícia para criar ou reparar objetos, desde panelas de cozinha até motores de avião. Também fornece o bônus se usada como item de apoio em situações especiais, como lidar com cabos para hackear um servidor.</p>",
     "chatDescription": "",
     "weight": 1,
-    "category": "0",
+    "category": 0,
     "using": {
       "state": true,
       "class": "fas"

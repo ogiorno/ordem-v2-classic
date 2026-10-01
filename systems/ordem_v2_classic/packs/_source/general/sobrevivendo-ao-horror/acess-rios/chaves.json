@@ -3,10 +3,10 @@
   "type": "generalEquipment",
   "img": "systems/ordemparanormal/media/icons/equipments/accessories/chaves.svg",
   "system": {
-    "description": "<p>Você pode encontrar esse conteúdo na <strong>página 39 do suplemento Sobrevivendo ao Horror</strong>.</p>",
+    "description": "<p>Molhos de chaves (de casa, veículo, cadeados etc.) são itens comuns. Usar o barulho de um molho de chaves para distrair alguém (jogando as chaves, por exemplo) fornece +2 em testes de Furtividade feitos na mesma rodada.</p>",
     "chatDescription": "",
     "weight": 1,
-    "category": "0",
+    "category": 0,
     "using": {
       "state": true,
       "class": "fas"

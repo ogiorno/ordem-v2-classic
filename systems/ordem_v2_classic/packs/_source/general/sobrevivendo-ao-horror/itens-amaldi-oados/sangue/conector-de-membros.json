@@ -1,0 +1,37 @@
+{
+  "name": "Conector de Membros",
+  "type": "generalEquipment",
+  "_id": "GYFZrmU39oq7CWJ0",
+  "img": "systems/ordemparanormal/media/icons/equipments/paranormal/amarras-de-sangue.svg",
+  "system": {
+    "using": {
+      "state": true,
+      "class": "fas"
+    },
+    "type": "",
+    "quantity": 1,
+    "description": "<p>Ninguém sabe que tipo de “cientista louco” desenvolveu esse aparato, composto por dois aneis metálicos de tamanhos adaptáveis, banhados em símbolos de Sangue e conectados por uma sanfona de tecido humano. Você pode usar esse item e uma ação padrão para reconectar um braço, perna ou cabeça decepados de uma pessoa ou animal, desde que o ferimento tenha ocorrido em até três rodadas. Reconectar a parte perdida não cura PV mas, se o alvo estava morrendo ou morto, ele perde estas condições e fica inconsciente e com 1 PV. Se o conector for removido, a parte é novamente decepada e não poderá ser reconectada por este item novamente. Quando é usado, o conector tem uma chance de 25% de conceder uma fagulha de “vida própria” à parte reconectada. Se isso acontecer e a parte for uma perna, o alvo ficará lento, pois o membro tentará andar em outras direções por conta prória. Se a parte for um braço, o alvo sofrerá uma penalidade de @DisplayDice[qtd:1|sign:minus|dc:d20] em testes que exijam o uso daquele braço, pois o membro tentará tatear ao redor ou até mesmo atrapalhar a ação. Por fim, se a parte era a cabeça, no início de cada cena de grande tensão (como um combate ou uma perseguição), o alvo tem 25% de chance de ficar confuso. Há boatos de que estes efeitos podem ser removidos da parte reconectada, mas não se sabe exatamente como.</p>",
+    "chatDescription": "",
+    "weight": 1,
+    "category": 3
+  },
+  "effects": [],
+  "folder": "TwG6DXAq3OlEYsD4",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.365",
+    "systemId": "ordem_v2_classic",
+    "systemVersion": "7.3.3",
+    "createdTime": 1784900000000,
+    "modifiedTime": 1784900000000,
+    "lastModifiedBy": null,
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!GYFZrmU39oq7CWJ0"
+}
