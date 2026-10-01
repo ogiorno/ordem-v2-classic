@@ -1,5 +1,6 @@
 /* eslint-disable no-prototype-builtins */
 /* eslint-disable no-unused-vars */
+import { conditionDicePenalty } from "../helpers/conditions.mjs";
 import BasicRoll from "../dice/basic-roll.mjs";
 import SkillToolRollConfigurationDialog from "../applications/skill-tool-configuration-dialog.mjs";
 import AttributeRollConfigurationDialog from "../applications/attribute-configuration-dialog.mjs";
@@ -663,6 +664,9 @@ export class OrdemActor extends Actor {
 		config.parts = [...(config.parts ?? []), ...parts];
 		config.data = { ...data, ...(config.data ?? {}) };
 		config.data.attributeId = attributeId;
+		// Condições (Atordoado, Agarrado, Surdo…) tiram d20 do teste: -1d20 / -2d20
+		const dicePenalty = conditionDicePenalty(this, process.skill);
+		if (dicePenalty) config.options = { ...(config.options ?? {}), dicePenalty };
 	}
 
 	/** */

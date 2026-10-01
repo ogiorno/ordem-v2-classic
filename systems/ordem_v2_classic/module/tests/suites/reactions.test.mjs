@@ -262,7 +262,8 @@ Hooks.once("quenchReady", (quench) => {
 					const hit = msg.getFlag("ordem_v2_classic", "hitResult");
 					assert.exists(hit);
 					assert.isFalse(hit.revealed, "revealed=false até reagir");
-					assert.equal(hit.baseDefense, hit.targetDefense, "baseDefense = targetDefense pré-reação");
+					assert.notProperty(hit, "targetDefense", "a Defesa não pode ficar nas flags públicas da mensagem");
+					assert.notProperty(hit, "baseDefense", "a Defesa base não pode ficar nas flags públicas da mensagem");
 				});
 
 				it("cria reactionPending quando defender só tem LUTA treinada (mesmo em hit)", async () => {
@@ -410,7 +411,8 @@ Hooks.once("quenchReady", (quench) => {
 					const hitAfter = msg.getFlag("ordem_v2_classic", "hitResult");
 					assert.isTrue(hitAfter.revealed, "revealed=true após dodge");
 					assert.isTrue(hitAfter.dodged, "dodged=true");
-					assert.isAbove(hitAfter.targetDefense, hitBefore.targetDefense, "Defense subiu pelo bônus de Reflexos");
+					assert.notProperty(hitAfter, "targetDefense", "esquiva não regrava a Defesa nas flags");
+					assert.isAbove(msg.getFlag("ordem_v2_classic", "reactionApplied").bonus, 0, "bônus de Reflexos registrado");
 
 					const applied = msg.getFlag("ordem_v2_classic", "reactionApplied");
 					assert.equal(applied.type, "dodge");

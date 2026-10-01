@@ -20,18 +20,17 @@ export function calculateSkillProficiency(degreeLabel) {
 }
 
 /**
+ * Progressão do personagem. PV/PE/PD/SAN e PE por rodada dependem somente do
+ * Nível (1–20); o NEX é uma métrica separada e não influencia a progressão.
+ * Sobreviventes progridem por estágio.
  * @param {boolean} isSurvivor
- * @param {number} rule         1=NEX, 2=nivel
- * @param {number} nexValue
  * @param {number} nivelValue
  * @param {number} stageValue
  * @returns {number}
  */
-export function calculateProgress(isSurvivor, rule, nexValue, nivelValue, stageValue) {
+export function calculateProgress(isSurvivor, nivelValue, stageValue) {
 	if (isSurvivor) return stageValue;
-	if (rule === 1) return nexValue < 99 ? Math.floor(nexValue / 5) : 20;
-	if (rule === 2) return nivelValue;
-	return 0;
+	return Math.min(20, Math.max(1, Math.trunc(Number(nivelValue)) || 1));
 }
 
 /**

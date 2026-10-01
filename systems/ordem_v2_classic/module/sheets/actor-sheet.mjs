@@ -136,8 +136,7 @@ export class OrdemActorSheet extends api.HandlebarsApplicationMixin(sheets.Actor
 			optionTrilhas: CONFIG.op.dropdownTrilha,
 			optionOrigins: CONFIG.op.dropdownOrigins,
 			// Rules & Conditions
-			progressRuleIsNivel: this.progressRuleIsNivel,
-			progressRuleIsNEX: this.progressRuleIsNEX,
+			gridUnits: canvas?.scene?.grid?.units || "m",
 			usingWithoutSanityRule: this.usingWithoutSanityRule,
 			isSurvivor: this.isSurvivor,
 			tabs: this._getTabs(options.parts),
@@ -836,11 +835,30 @@ export class OrdemActorSheet extends api.HandlebarsApplicationMixin(sheets.Actor
 		event.preventDefault();
 		const dataset = target.dataset;
 
+		// Botão "Atacar": posta o cartão da arma e já rola o ataque (um clique só).
+		if (dataset.rollType === "attack") {
+			const item = this.actor.items.get(target.closest(".item").dataset.itemId);
+			if (!item) return;
+			const message = await item.roll();
+			if (!message) return;
+			const result = await item.rollAttack({ event });
+			item.lastMessageId = message.id;
+			item.critical = result.criticalStatus;
+			item.hitResult = result.hitResult ?? null;
+			if (result.hitResult !== null) await message.setFlag("ordem_v2_classic", "hitResult", result.hitResult);
+			return;
+		}
+
 		// Handle item rolls.
 		if (dataset.rollType) {
 			if (dataset.rollType == "item") {
 				const itemId = target.closest(".item").dataset.itemId;
 				const item = this.actor.items.get(itemId);
+				// Rituais abrem a macro "Conjurar Ritual" (com este ritual já marcado) em vez de postar o card no chat.
+				if (item?.type === "ritual") {
+					const { runRitualCasterMacro } = await import("../macros/ritual-caster.mjs");
+					return runRitualCasterMacro(this.actor, item.id);
+				}
 				if (item) return item.roll();
 			}
 		}

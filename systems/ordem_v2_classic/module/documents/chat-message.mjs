@@ -1,6 +1,9 @@
 import { getReactionEligibility } from "../helpers/reaction-helpers.mjs";
 import { dispatchReaction, pickCounterAttackWeapon } from "../helpers/reactions.mjs";
-import { damageRecipients, isAttackParticipant, shouldShowDefenseValue } from "../helpers/visibility.mjs";
+import { damageRecipients, gmDefenseValue, isAttackParticipant, shouldShowDefenseValue } from "../helpers/visibility.mjs";
+import { UNDO_WINDOW_MS, canApplyDamage } from "../helpers/card-damage-rules.mjs";
+import { damageApplicationMode, requestCardDamage, undoCardDamage } from "../helpers/card-damage.mjs";
+import { describeD20Pool } from "../helpers/dice-labels.mjs";
 
 /**
  * Wrapper sobre `damageRecipients` que injeta `game.users` atual.
@@ -31,6 +34,8 @@ export default class ChatMessageOP extends ChatMessage {
 
 		this._displayChatActionButtons(html);
 		this._highlightCriticalSuccessFailure(html);
+		this._humanizeRoll(html);
+		this._markGmMessage(html);
 		// this._enrichChatCard(html);
 
 		/**
@@ -148,62 +153,7 @@ export default class ChatMessageOP extends ChatMessage {
 		// local é só feedback visual durante o async — não sobrevive ao re-render.
 		const damageTarget = this.getFlag("ordem_v2_classic", "damageTarget");
 		const damageApplied = this.getFlag("ordem_v2_classic", "damageApplied");
-		if (damageTarget && game.user.isGM) {
-			const rollContent = html.querySelector(".dice-roll");
-			if (rollContent) {
-				const applyBtn = document.createElement("button");
-				applyBtn.innerHTML = `<i class="fa-solid fa-heart-crack"></i> ${game.i18n.localize("op.applyDamage")}`;
-				if (damageApplied) {
-					applyBtn.disabled = true;
-					applyBtn.classList.add("damage-applied");
-					applyBtn.title = game.i18n.localize("op.damageAlreadyApplied");
-				}
-				const messageRef = this;
-				applyBtn.addEventListener("click", async (event) => {
-					event.preventDefault();
-					if (messageRef.getFlag("ordem_v2_classic", "damageApplied")) return; // double-click race
-					applyBtn.disabled = true;
-					try {
-						const targetActor = await fromUuid(damageTarget.actorUuid);
-						if (!targetActor) return;
-						const applyRoll = messageRef.rolls?.[0];
-						if (!applyRoll) return;
-						const attackMsg = damageTarget.attackMessageId ? game.messages.get(damageTarget.attackMessageId) : null;
-						const extraRD = attackMsg?.getFlag("ordem_v2_classic", "damageBlock")?.amount ?? 0;
-						const result = await targetActor.applyDamage(applyRoll.total, {
-							damageType: damageTarget.damageType,
-							extraRD,
-						});
-						const blockedMsg =
-							result.blocked > 0 ? ` (${game.i18n.format("op.damageBlocked", { blocked: result.blocked })})` : "";
-						ChatMessage.create({
-							content: game.i18n.format("op.applyDamageResult", {
-								amount: result.finalDamage,
-								target: targetActor.name,
-								blocked: blockedMsg,
-							}),
-							whisper: _damageRecipients(targetActor),
-						});
-						// Marcar como aplicado para que re-renders mantenham o botão desabilitado
-						// (idempotência persistente, sobrevive a reload/reabertura do chat).
-						await messageRef.setFlag("ordem_v2_classic", "damageApplied", {
-							at: Date.now(),
-							by: game.user.id,
-							amount: result.finalDamage,
-							targetUuid: damageTarget.actorUuid,
-						});
-						applyBtn.classList.add("damage-applied");
-						applyBtn.title = game.i18n.localize("op.damageAlreadyApplied");
-					} finally {
-						// Não re-habilita se já foi aplicado.
-						if (!messageRef.getFlag("ordem_v2_classic", "damageApplied")) {
-							applyBtn.disabled = false;
-						}
-					}
-				});
-				rollContent.after(applyBtn);
-			}
-		}
+		if (damageTarget) this._renderDamageApplication(html, damageTarget, damageApplied);
 
 		// Inject hit/miss result block on attack roll messages that have a hitResult flag
 		const hitResult = this.getFlag("ordem_v2_classic", "hitResult");
@@ -243,20 +193,23 @@ export default class ChatMessageOP extends ChatMessage {
 				const goodForViewer = isDefenderPOV ? !hitResult.hit : hitResult.hit;
 				resultBlock.classList.add("hit-result", goodForViewer ? "success" : "failure");
 				if (hitResult.dodged) resultBlock.classList.add("dodged");
-				const label = hitResult.hit
-					? hitResult.isCritical
-						? game.i18n.localize("op.criticalHit")
-						: game.i18n.localize("op.hit")
-					: game.i18n.localize("op.miss");
+				const suffix = isDefenderPOV ? "Defender" : "";
+				const labelKey = hitResult.hit ? (hitResult.isCritical ? "crit" : "hit") : "miss";
+				const label = game.i18n.localize(`op.attackResult.${labelKey}${suffix}`);
+				resultBlock.classList.add(hitResult.hit ? "is-hit" : "is-miss");
 				// O número da Defesa é dado privado: o atacante e os colegas de mesa só
 				// devem ver HIT/MISS, mas o MJ e o dono do alvo (que já conhece a
 				// própria Defesa) podem ver o valor exato. Decisão pura em
 				// helpers/visibility.mjs#shouldShowDefenseValue (unit-testada).
-				const showDefense = shouldShowDefenseValue({ viewerIsGM: game.user.isGM, viewerOwnsTarget });
-				const defenseHtml = showDefense
-					? ` <span class="vs-defense">${game.i18n.format("op.vsDefense", { defense: hitResult.targetDefense })}</span>`
-					: "";
-				resultBlock.innerHTML = `<strong>${label}</strong>${defenseHtml}`;
+				const defenseValue = shouldShowDefenseValue({ viewerIsGM: game.user.isGM })
+					? this._gmDefenseValue(hitResult, reactionApplied)
+					: null;
+				const defenseHtml =
+					defenseValue !== null
+						? ` <span class="vs-defense">${game.i18n.format("op.vsDefense", { defense: defenseValue })}</span>`
+						: "";
+				const icon = hitResult.hit ? "fa-check" : "fa-xmark";
+				resultBlock.innerHTML = `<strong><i class="fa-solid ${icon}"></i> ${label}</strong>${defenseHtml}`;
 				rollContent.after(resultBlock);
 			}
 		} else if (hitResult && !shouldRevealHit) {
@@ -272,6 +225,159 @@ export default class ChatMessageOP extends ChatMessage {
 		// any race where multiple renders could otherwise stack panels).
 		if (reactionPending && !html.querySelector(".reaction-panel")) {
 			this._renderReactionPanel(html, { reactionPending, hitResult, reactionApplied });
+		}
+	}
+
+	/**
+	 * Cartão de dano: explicação do cálculo, botão "Aplicar" (quem atacou e o GM) e o estado "aplicado".
+	 * Idempotência: a flag `damageApplied` é a fonte da verdade; o botão some quando ela existe.
+	 * @param {HTMLElement} html
+	 * @param {object} damageTarget
+	 * @param {object|null} damageApplied
+	 */
+	_renderDamageApplication(html, damageTarget, damageApplied) {
+		const rollContent = html.querySelector(".dice-roll");
+		if (!rollContent || html.querySelector(".damage-application")) return;
+		const box = document.createElement("div");
+		box.classList.add("damage-application");
+
+		const info = this.getFlag("ordem_v2_classic", "damageInfo");
+		if (info) {
+			const explain = document.createElement("p");
+			explain.classList.add("damage-explain");
+			explain.textContent = info.isCritical
+				? game.i18n.format("op.dmgCard.explainCrit", { formula: info.formula, weapon: info.weapon })
+				: game.i18n.format("op.dmgCard.explainNormal", { formula: info.formula });
+			box.append(explain);
+		}
+
+		if (damageApplied) {
+			const done = document.createElement("p");
+			done.classList.add("damage-done");
+			const state = damageApplied.state ? game.i18n.localize(`op.dmgCard.state.${damageApplied.state}`) : "";
+			const text = game.i18n.format("op.dmgCard.applied", {
+				target: damageApplied.targetName ?? damageTarget.targetName ?? "",
+				amount: damageApplied.amount,
+			});
+			const stateHtml = state && !game.user.isGM ? ` <em>${foundry.utils.escapeHTML(state)}</em>` : "";
+			done.innerHTML = `<i class="fa-solid fa-heart-crack"></i> ${foundry.utils.escapeHTML(text)}${stateHtml}`;
+			box.append(done);
+			if (game.user.isGM && Date.now() - (damageApplied.at ?? 0) < UNDO_WINDOW_MS) {
+				const undo = document.createElement("button");
+				undo.type = "button";
+				undo.classList.add("undo-damage");
+				undo.innerHTML = `<i class="fa-solid fa-rotate-left"></i> ${foundry.utils.escapeHTML(game.i18n.localize("op.dmgCard.undo"))}`;
+				undo.addEventListener("click", async (event) => {
+					event.preventDefault();
+					undo.disabled = true;
+					const ok = await undoCardDamage(this);
+					if (!ok) undo.disabled = false;
+				});
+				box.append(undo);
+			}
+			rollContent.after(box);
+			return;
+		}
+
+		const allowed = canApplyDamage({
+			viewerIsGM: game.user.isGM,
+			viewerId: game.user.id,
+			authorId: this.author?.id ?? null,
+			mode: damageApplicationMode(),
+		});
+		if (allowed) {
+			const btn = document.createElement("button");
+			btn.type = "button";
+			btn.classList.add("apply-damage");
+			const label = game.i18n.format("op.dmgCard.apply", { amount: this.rolls?.[0]?.total ?? "" });
+			btn.innerHTML = `<i class="fa-solid fa-heart-crack"></i> ${foundry.utils.escapeHTML(label)}`;
+			btn.addEventListener("click", async (event) => {
+				event.preventDefault();
+				btn.disabled = true;
+				try {
+					await requestCardDamage(this);
+					if (!game.user.isGM) btn.textContent = game.i18n.localize("op.dmgCard.requested");
+				} catch (err) {
+					console.error("Ordem Paranormal | falha ao aplicar dano", err);
+					btn.disabled = false;
+				}
+			});
+			box.append(btn);
+		} else {
+			const wait = document.createElement("p");
+			wait.classList.add("damage-wait");
+			wait.textContent = game.i18n.localize("op.dmgCard.waitingGM");
+			box.append(wait);
+		}
+		rollContent.after(box);
+	}
+
+	/** Defesa que o MESTRE vê no cartão: valor legado da flag ou Defesa atual do alvo (+ bônus de esquiva). */
+	_gmDefenseValue(hitResult, reactionApplied) {
+		const actor = this._resolveActorSync(hitResult?.actorUuid);
+		return gmDefenseValue({
+			legacy: hitResult?.targetDefense ?? null,
+			live: actor?.system?.defense?.value ?? null,
+			dodgeBonus: reactionApplied?.type === "dodge" ? reactionApplied.bonus : 0,
+		});
+	}
+
+	/**
+	 * Aviso do mestre (linha amarela compacta) e, opcionalmente, destaque de mensagens que jogadores
+	 * mandaram ao mestre (/gmroll, /blindroll, sussurros).
+	 * @param {HTMLElement} html
+	 */
+	_markGmMessage(html) {
+		if (this.getFlag("ordem_v2_classic", "gmNotice")) {
+			html.classList.add("op-gm-notice");
+			return;
+		}
+		if (!game.user.isGM || !game.settings.get("ordem_v2_classic", "gmWhisperHighlight")) return;
+		const fromPlayer = this.author && !this.author.isGM;
+		if (!fromPlayer || !this.whisper?.includes(game.user.id)) return;
+		html.classList.add("op-gm-whisper");
+		const meta = html.querySelector(".message-metadata");
+		if (meta && !meta.querySelector(".gm-whisper-tag")) {
+			const tag = document.createElement("span");
+			tag.classList.add("gm-whisper-tag");
+			tag.textContent = game.i18n.localize("op.gmNotice.whisperTag");
+			meta.prepend(tag);
+		}
+	}
+
+	/**
+	 * Troca `3d20kh` por texto de jogador, avisa quando não há DT e quando a rolagem é privada.
+	 * @param {HTMLElement} html
+	 */
+	_humanizeRoll(html) {
+		for (const el of html.querySelectorAll(".dice-formula")) {
+			const raw = el.textContent.trim();
+			const label = describeD20Pool(raw);
+			if (label !== raw) {
+				el.textContent = label;
+				el.title = raw;
+			}
+		}
+		const isTest = this.getFlag("ordem_v2_classic", "messageType") === "roll";
+		const total = html.querySelector(".dice-total");
+		if (isTest && total && !html.querySelector(".dt-result") && !html.querySelector(".dt-hint")) {
+			const hint = document.createElement("div");
+			hint.classList.add("dt-hint");
+			hint.textContent = game.i18n.localize("op.roll.noDC");
+			total.after(hint);
+		}
+		const firstRoll = html.querySelector(".dice-roll");
+		const gmIds = game.users.filter((u) => u.isGM).map((u) => u.id);
+		const privateToGM =
+			this.whisper?.length &&
+			!this.blind &&
+			this.rolls?.length &&
+			this.whisper.every((id) => gmIds.includes(id) || id === this.author?.id);
+		if (privateToGM && firstRoll && this.author?.id === game.user.id && !html.querySelector(".roll-privacy")) {
+			const note = document.createElement("div");
+			note.classList.add("roll-privacy");
+			note.innerHTML = `<i class="fa-solid fa-lock"></i> ${foundry.utils.escapeHTML(game.i18n.localize("op.roll.gmroll"))}`;
+			firstRoll.before(note);
 		}
 	}
 

@@ -142,7 +142,7 @@ Hooks.once("quenchReady", (quench) => {
 					assert.equal(hitResult.actorUuid, agent.uuid, "actorUuid deve ser o UUID do agente");
 				});
 
-				it("hitResult.targetDefense reflete a defesa do agente", async () => {
+				it("hitResult em memória ainda traz a defesa do agente (não vai para as flags)", async () => {
 					const { hitResult } = await sword.rollAttack({});
 					assert.isNumber(hitResult.targetDefense);
 				});

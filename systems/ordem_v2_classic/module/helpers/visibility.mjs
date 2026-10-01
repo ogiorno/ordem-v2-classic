@@ -61,8 +61,40 @@ export function shouldShowCombatantHP(actor, viewerIsGM, viewerOwnsActor = false
  * @param {boolean} ctx.viewerOwnsTarget   Resultado de `actor.isOwner` resolvido pelo chamador
  * @returns {boolean}
  */
-export function shouldShowDefenseValue({ viewerIsGM, viewerOwnsTarget }) {
-	return Boolean(viewerIsGM || viewerOwnsTarget);
+export function shouldShowDefenseValue({ viewerIsGM }) {
+	// Regra da mesa: nenhum jogador vê o número da Defesa (nem o dono do alvo). Só o mestre.
+	return Boolean(viewerIsGM);
+}
+
+/**
+ * Remove os campos secretos de Defesa de um hitResult antes de ele ser gravado nas flags da mensagem
+ * (flags de mensagem chegam a todos os clientes que enxergam a mensagem).
+ * @param {object|null} hitResult
+ * @returns {object|null}
+ */
+export function stripDefenseFields(hitResult) {
+	if (!hitResult || typeof hitResult !== "object") return hitResult;
+	const { targetDefense: _t, baseDefense: _b, ...rest } = hitResult;
+	if (Array.isArray(rest.attackResults)) rest.attackResults = rest.attackResults.map((r) => stripDefenseFields(r));
+	return rest;
+}
+
+/** O hitResult carrega algum campo secreto de Defesa? */
+export function hasDefenseFields(hitResult) {
+	if (!hitResult || typeof hitResult !== "object") return false;
+	if ("targetDefense" in hitResult || "baseDefense" in hitResult) return true;
+	return Array.isArray(hitResult.attackResults) && hitResult.attackResults.some((r) => hasDefenseFields(r));
+}
+
+/**
+ * Defesa mostrada ao mestre: valor antigo da flag (mensagens legadas) ou Defesa atual do ator + bônus de esquiva.
+ * @param {{legacy: number|null, live: number|null, dodgeBonus?: number}} ctx
+ * @returns {number|null}
+ */
+export function gmDefenseValue({ legacy, live, dodgeBonus = 0 }) {
+	if (legacy !== null && legacy !== undefined) return legacy;
+	if (live === null || live === undefined) return null;
+	return live + (dodgeBonus || 0);
 }
 
 /**

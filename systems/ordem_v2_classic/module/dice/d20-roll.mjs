@@ -202,7 +202,7 @@ export default class D20Roll extends BasicRoll {
 	configureModifiers() {
 		if (!this.validD20Roll) return;
 
-		this.d20.number = this.attribute.value;
+		this.d20.number = this.attribute.value - (Number(this.options.dicePenalty) || 0);
 
 		if (this.options.advantageMode === undefined) {
 			const { advantage, disadvantage } = this.options;

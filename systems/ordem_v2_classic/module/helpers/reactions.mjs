@@ -6,6 +6,7 @@
  * to chat messages and actor flags happen on the GM side.
  */
 
+import { gmNotice } from "./gm-notice.mjs";
 import {
 	getDodgeReactionBonus,
 	getReactionEligibility,
@@ -161,16 +162,16 @@ async function _processReaction({ msg, defender, payload, type, defenderUuid }) 
 async function applyDodge({ msg, defender, round }) {
 	const hitResult = msg.getFlag("ordem_v2_classic", "hitResult");
 	if (!hitResult) return;
-	const baseDefense = hitResult.baseDefense ?? hitResult.targetDefense;
+	// A Defesa base não fica mais na flag (flags chegam a todos os jogadores): lê do ator, que o GM controla.
+	const baseDefense = hitResult.baseDefense ?? hitResult.targetDefense ?? defender.system?.defense?.value ?? 0;
 	const dodgeBonus = getDodgeReactionBonus(defender);
 	const rollTotal = msg.rolls?.[0]?.total ?? 0;
 	const recomputed = recomputeHit(rollTotal, baseDefense, dodgeBonus);
 
+	const { baseDefense: _b, targetDefense: _t, ...publicHit } = hitResult;
 	const newHit = {
-		...hitResult,
-		baseDefense,
+		...publicHit,
 		hit: recomputed.hit,
-		targetDefense: recomputed.targetDefense,
 		dodged: true,
 		revealed: true,
 		// A critical that turns into a miss should no longer display the critical badge.
@@ -192,16 +193,23 @@ async function applyDodge({ msg, defender, round }) {
 	// can still roll and apply damage.
 	await syncItemCardHitResult(msg, newHit);
 
-	const outcome = recomputed.hit ? game.i18n.localize("op.hit") : game.i18n.localize("op.miss");
+	const outcome = game.i18n.localize(recomputed.hit ? "op.reaction.outcomeHit" : "op.reaction.outcomeMiss");
 	ChatMessage.create({
 		content: game.i18n.format("op.reaction.dodgeApplied", {
 			actor: foundry.utils.escapeHTML(defender.name ?? ""),
-			bonus: dodgeBonus,
-			defense: recomputed.targetDefense,
 			outcome,
 		}),
 		speaker: ChatMessage.getSpeaker({ actor: defender }),
 	});
+	gmNotice(
+		game.i18n.format("op.gmNotice.dodge", {
+			actor: defender.name ?? "",
+			defense: recomputed.targetDefense,
+			total: rollTotal,
+			outcome,
+		}),
+		{ kind: "reaction" }
+	);
 }
 
 async function applyBlock({ msg, defender, round }) {

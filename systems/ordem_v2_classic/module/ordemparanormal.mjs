@@ -30,6 +30,14 @@ import * as hooks from "./hooks.mjs";
 
 import * as utils from "./utils.mjs";
 import { handleReaction } from "./helpers/reactions.mjs";
+import { validateCardDamageRequest } from "./helpers/card-damage-rules.mjs";
+import { applyDamageFromMessage, damageApplicationMode } from "./helpers/card-damage.mjs";
+import { describeD20Pool } from "./helpers/dice-labels.mjs";
+import { registerLevelProgressionHooks } from "./helpers/level-progression.mjs";
+import { registerCombatChatNotice } from "./helpers/chat-notice.mjs";
+import { registerPlayerOnboarding } from "./helpers/player-onboarding.mjs";
+import { registerDefensePrivacy } from "./helpers/defense-privacy.mjs";
+import { registerRitualAnimations } from "./integrations/ritual-animations.mjs";
 
 // import { rescueAllPathEffects } from '../utils/__test__/effects.mjs';
 
@@ -115,6 +123,10 @@ Hooks.once("init", function () {
 	registerSystemSettings();
 	utils.preloadHandlebarsTemplates();
 	registerEnrichers();
+	registerLevelProgressionHooks();
+	registerCombatChatNotice();
+	registerPlayerOnboarding();
+	registerDefensePrivacy();
 
 	// Change the logo of Foundry for Ordem Paranormal logo.
 	if (navigator.onLine) document.querySelector("#logo")?.setAttribute("src", "https://i.imgur.com/TTrDGM4.png");
@@ -122,6 +134,14 @@ Hooks.once("init", function () {
 
 Hooks.once("setup", function () {
 	registerSystemKeybindings();
+});
+
+// Auto-configure the ritual casting visuals after Automated Animations has
+// registered its world settings. The integration preserves unrelated entries.
+Hooks.on("aa.initialize", () => {
+	registerRitualAnimations().catch((error) => {
+		console.error("Ordem Paranormal | Não foi possível vincular animações aos rituais:", error);
+	});
 });
 
 Hooks.once("ready", function () {
@@ -189,6 +209,9 @@ Hooks.once("ready", function () {
 		systemModule.api.handleOpostoResult = handleOpostoResult;
 	}
 
+	// Zonas de ritual de área (início de turno, saída da área) precisam estar ativas no cliente do Mestre.
+	import("./macros/ritual-caster.mjs").then((module) => module.registerRitualAreaHooks()).catch((error) => console.warn("Zonas de ritual indisponíveis:", error));
+
 	game.socket.on("system.ordem_v2_classic", async (data) => {
 		const firstGM = game.users.find((u) => u.isGM && u.active);
 		if (!firstGM || firstGM.id !== game.user.id) return;
@@ -200,6 +223,31 @@ Hooks.once("ready", function () {
 			const senderAllowed = sender.isGM || actor.testUserPermission?.(sender, "OWNER");
 			if (!senderAllowed) return;
 			if (actor.isOwner) await actor.applyDamage(data.amount, data.options);
+		}
+
+		if (data.type === "applyCardDamage") {
+			const sender = data.userId ? game.users.get(data.userId) : null;
+			const message = data.messageId ? game.messages.get(data.messageId) : null;
+			if (!sender || !message) return;
+			const damageTarget = message.getFlag("ordem_v2_classic", "damageTarget") ?? null;
+			const attackMsg = damageTarget?.attackMessageId ? game.messages.get(damageTarget.attackMessageId) : null;
+			const attackerActor = message.speaker?.actor ? game.actors.get(message.speaker.actor) : null;
+			const verdict = validateCardDamageRequest({
+				sender: { isGM: sender.isGM, id: sender.id },
+				message: {
+					authorId: message.author?.id ?? null,
+					damageTarget,
+					damageApplied: message.getFlag("ordem_v2_classic", "damageApplied") ?? null,
+				},
+				attackHit: attackMsg?.getFlag("ordem_v2_classic", "hitResult") ?? null,
+				mode: damageApplicationMode(),
+				senderOwnsAttacker: Boolean(attackerActor?.testUserPermission?.(sender, "OWNER")),
+			});
+			if (!verdict.ok) {
+				console.warn("Ordem Paranormal | pedido de dano recusado:", verdict.reason);
+				return;
+			}
+			await applyDamageFromMessage(message, { byUserId: sender.id });
 		}
 
 		if (data.type === "ritualCastTest") {
@@ -345,6 +393,18 @@ function _configureFonts() {
 /* -------------------------------------------- */
 
 // If you need to add Handlebars helpers, here are a few useful examples:
+// Localiza "prefixo + valor"; se a chave não existe (ex.: alvo em texto livre "1 ser" vindo de um compêndio),
+// mostra o próprio valor em vez da chave crua (op.targetChoices.1 ser).
+Handlebars.registerHelper("localizeOr", function (prefix, value) {
+	if (value === undefined || value === null || typeof value === "object") return "";
+	const key = `${prefix}${value}`;
+	return game.i18n.has(key) ? game.i18n.localize(key) : String(value);
+});
+
+Handlebars.registerHelper("poolLabel", function (formula) {
+	return describeD20Pool(formula);
+});
+
 Handlebars.registerHelper("concat", function () {
 	let outStr = "";
 	for (const arg in arguments) {
@@ -531,6 +591,17 @@ async function handleChatCommandClick(event) {
 		} else {
 			game.socket.emit("system.ordem_v2_classic", { type: "ritualCastTest", messageId, userId: game.user.id });
 		}
+		return;
+	}
+
+	const areaButton = event.target.closest('[data-action="ritual-area-roll"], [data-action="ritual-area-place"]');
+	if (areaButton) {
+		event.preventDefault();
+		const messageId = areaButton.closest(".message")?.dataset.messageId;
+		if (!messageId) return ui.notifications.warn("Não encontrei a mensagem do ritual no chat.");
+		const ritualModule = await import("./macros/ritual-caster.mjs");
+		if (areaButton.dataset.action === "ritual-area-place") await ritualModule.placeRitualArea(messageId);
+		else await ritualModule.rollRitualAreaDamage(messageId);
 		return;
 	}
 

@@ -1,0 +1,884 @@
+[
+  {
+    "name": "Alterar Destino",
+    "element": "energy",
+    "range": "personal",
+    "target": "você",
+    "asset": "modules/JB2A_DnD5e/Library/Generic/Impact/GroundCrackImpact_01_Regular_Orange_600x600.webm",
+    "assetName": "GroundCrackImpact_01_Regular_Orange_600x600.webm",
+    "assetFolder": "Impact"
+  },
+  {
+    "name": "Alterar Memória",
+    "element": "knowledge",
+    "range": "touch",
+    "target": "1 pessoa",
+    "asset": "modules/JB2A_DnD5e/Library/Generic/Magic_Signs/AbjurationCircleIntro_02_Dark_Blue_800x800.webm",
+    "assetName": "AbjurationCircleIntro_02_Dark_Blue_800x800.webm",
+    "assetFolder": "Magic_Signs"
+  },
+  {
+    "name": "Amaldiçoar Arma",
+    "element": "knowledge",
+    "range": "touch",
+    "target": "",
+    "asset": "modules/JB2A_DnD5e/Library/Generic/Celestial_Bodies/PlanetAtmo_01_Regular_BlueOrange_800x800.webm",
+    "assetName": "PlanetAtmo_01_Regular_BlueOrange_800x800.webm",
+    "assetFolder": "Celestial_Bodies"
+  },
+  {
+    "name": "Amaldiçoar Tecnologia",
+    "element": "energy",
+    "range": "touch",
+    "target": "1 acessório ou arma de",
+    "asset": "modules/JB2A_DnD5e/Library/Generic/Lightning/ElectricArc01_01_Regular_Blue_1600x500.webm",
+    "assetName": "ElectricArc01_01_Regular_Blue_1600x500.webm",
+    "assetFolder": "Lightning"
+  },
+  {
+    "name": "Âncora Temporal",
+    "element": "death",
+    "range": "short",
+    "target": "",
+    "asset": "modules/JB2A_DnD5e/Library/Generic/Smoke/Fumes04_01_Grey_Loop_400x600.webm",
+    "assetName": "Fumes04_01_Grey_Loop_400x600.webm",
+    "assetFolder": "Smoke"
+  },
+  {
+    "name": "Apagar as Luzes",
+    "element": "death",
+    "range": "personal",
+    "target": "você",
+    "asset": "modules/JB2A_DnD5e/Library/Generic/Eyes/Eyes_Few01_01_Dark_Green_600x600.webm",
+    "assetName": "Eyes_Few01_01_Dark_Green_600x600.webm",
+    "assetFolder": "Eyes"
+  },
+  {
+    "name": "Aprimorar Físico",
+    "element": "blood",
+    "range": "touch",
+    "target": "1 ser",
+    "asset": "modules/JB2A_DnD5e/Library/Generic/Liquid/LiquidSplash02_01_Regular_Red_500x500.webm",
+    "assetName": "LiquidSplash02_01_Regular_Red_500x500.webm",
+    "assetFolder": "Liquid"
+  },
+  {
+    "name": "Aprimorar Mente",
+    "element": "knowledge",
+    "range": "touch",
+    "target": "1 ser",
+    "asset": "modules/JB2A_DnD5e/Library/Generic/Magic_Signs/AbjurationCircleIntro_02_Regular_Blue_800x800.webm",
+    "assetName": "AbjurationCircleIntro_02_Regular_Blue_800x800.webm",
+    "assetFolder": "Magic_Signs"
+  },
+  {
+    "name": "Arma Atroz",
+    "element": "blood",
+    "range": "touch",
+    "target": "1 arma corpo a corpo",
+    "asset": "modules/JB2A_DnD5e/Library/Generic/Creature/BatsLoop01_01_Regular_Red_600x600.webm",
+    "assetName": "BatsLoop01_01_Regular_Red_600x600.webm",
+    "assetFolder": "Creature"
+  },
+  {
+    "name": "Armadura de Sangue",
+    "element": "blood",
+    "range": "personal",
+    "target": "você",
+    "asset": "modules/JB2A_DnD5e/Library/Generic/Creature/Bite_01_Regular_Red_200x200.webm",
+    "assetName": "Bite_01_Regular_Red_200x200.webm",
+    "assetFolder": "Creature"
+  },
+  {
+    "name": "Aurora da Verdade",
+    "element": "knowledge",
+    "range": "short",
+    "target": "Veja descrição da área",
+    "asset": "modules/JB2A_DnD5e/Library/Generic/Lightning/ElectricArc02_01_Regular_Blue_1600x500.webm",
+    "assetName": "ElectricArc02_01_Regular_Blue_1600x500.webm",
+    "assetFolder": "Lightning"
+  },
+  {
+    "name": "Canalizar o Medo",
+    "element": "fear",
+    "range": "touch",
+    "target": "1 pessoa",
+    "asset": "modules/JB2A_DnD5e/Library/Generic/Eyes/Eyes_Few01_02_Dark_Green_600x600.webm",
+    "assetName": "Eyes_Few01_02_Dark_Green_600x600.webm",
+    "assetFolder": "Eyes"
+  },
+  {
+    "name": "Capturar o Coração",
+    "element": "blood",
+    "range": "short",
+    "target": "1 pessoa",
+    "asset": "modules/JB2A_DnD5e/Library/Generic/Liquid/LiquidSplashSide02_01_Regular_Red_600x600.webm",
+    "assetName": "LiquidSplashSide02_01_Regular_Red_600x600.webm",
+    "assetFolder": "Liquid"
+  },
+  {
+    "name": "Chamas do Caos",
+    "element": "energy",
+    "range": "short",
+    "target": "veja texto",
+    "asset": "modules/JB2A_DnD5e/Library/Generic/Explosion/Explosion_01_Orange_400x400.webm",
+    "assetName": "Explosion_01_Orange_400x400.webm",
+    "assetFolder": "Explosion"
+  },
+  {
+    "name": "Cicatrização",
+    "element": "death",
+    "range": "touch",
+    "target": "1 ser",
+    "asset": "modules/JB2A_DnD5e/Library/Generic/Celestial_Bodies/PlanetNoAtmo_03_Regular_Grey_800x800.webm",
+    "assetName": "PlanetNoAtmo_03_Regular_Grey_800x800.webm",
+    "assetFolder": "Celestial_Bodies"
+  },
+  {
+    "name": "Cinerária",
+    "element": "fear",
+    "range": "short",
+    "target": "Veja descrição da área",
+    "asset": "modules/JB2A_DnD5e/Library/Generic/Celestial_Bodies/AsteroidDiskIron01_01_Regular_Red_600x600.webm",
+    "assetName": "AsteroidDiskIron01_01_Regular_Red_600x600.webm",
+    "assetFolder": "Celestial_Bodies"
+  },
+  {
+    "name": "Coincidência Forçada",
+    "element": "energy",
+    "range": "short",
+    "target": "Veja texto",
+    "asset": "modules/JB2A_DnD5e/Library/Generic/Energy/EnergyAttack_01_01_Regular_Blue_1000x1000.webm",
+    "assetName": "EnergyAttack_01_01_Regular_Blue_1000x1000.webm",
+    "assetFolder": "Energy"
+  },
+  {
+    "name": "Compreensão Paranormal",
+    "element": "knowledge",
+    "range": "touch",
+    "target": "1 ser ou objeto",
+    "asset": "modules/JB2A_DnD5e/Library/Generic/Eyes/Eyes_Few01_03_Dark_Green_600x600.webm",
+    "assetName": "Eyes_Few01_03_Dark_Green_600x600.webm",
+    "assetFolder": "Eyes"
+  },
+  {
+    "name": "Conhecendo o Medo",
+    "element": "fear",
+    "range": "touch",
+    "target": "1 pessoa",
+    "asset": "modules/JB2A_DnD5e/Library/Generic/Eyes/Eyes_Many01_01_Dark_Green_600x600.webm",
+    "assetName": "Eyes_Many01_01_Dark_Green_600x600.webm",
+    "assetFolder": "Eyes"
+  },
+  {
+    "name": "Consumir Manancial",
+    "element": "death",
+    "range": "personal",
+    "target": "você",
+    "asset": "modules/JB2A_DnD5e/Library/Generic/Lightning/LightningOrb01_01_BluePurple_Loop_600x600.webm",
+    "assetName": "LightningOrb01_01_BluePurple_Loop_600x600.webm",
+    "assetFolder": "Lightning"
+  },
+  {
+    "name": "Contato Paranormal",
+    "element": "knowledge",
+    "range": "personal",
+    "target": "você",
+    "asset": "modules/JB2A_DnD5e/Library/Generic/Magic_Signs/AbjurationCircleLoop_02_Dark_Blue_800x800.webm",
+    "assetName": "AbjurationCircleLoop_02_Dark_Blue_800x800.webm",
+    "assetFolder": "Magic_Signs"
+  },
+  {
+    "name": "Contenção Fantasmagórica",
+    "element": "energy",
+    "range": "medium",
+    "target": "1 ser",
+    "asset": "modules/JB2A_DnD5e/Library/Generic/Lightning/ElectricArc03_01_Regular_Blue_1600x500.webm",
+    "assetName": "ElectricArc03_01_Regular_Blue_1600x500.webm",
+    "assetFolder": "Lightning"
+  },
+  {
+    "name": "Controle Mental",
+    "element": "knowledge",
+    "range": "medium",
+    "target": "1 pessoa ou animal",
+    "asset": "modules/JB2A_DnD5e/Library/Generic/Magic_Signs/AbjurationCircleLoop_02_Regular_Blue_800x800.webm",
+    "assetName": "AbjurationCircleLoop_02_Regular_Blue_800x800.webm",
+    "assetFolder": "Magic_Signs"
+  },
+  {
+    "name": "Convocação Instantânea",
+    "element": "energy",
+    "range": "unlimited",
+    "target": "1 objeto de até 2 espaços",
+    "asset": "modules/JB2A_DnD5e/Library/Generic/Particles/ParticleBurstCircle01_01_Regular_BluePurple_600x600.webm",
+    "assetName": "ParticleBurstCircle01_01_Regular_BluePurple_600x600.webm",
+    "assetFolder": "Particles"
+  },
+  {
+    "name": "Convocar o Algoz",
+    "element": "death",
+    "range": "touch",
+    "target": "1 pessoa",
+    "asset": "modules/JB2A_DnD5e/Library/Generic/Celestial_Bodies/AsteroidDiskIron02_01_Regular_Red_600x600.webm",
+    "assetName": "AsteroidDiskIron02_01_Regular_Red_600x600.webm",
+    "assetFolder": "Celestial_Bodies"
+  },
+  {
+    "name": "Corpo Adaptado",
+    "element": "blood",
+    "range": "touch",
+    "target": "1 pessoa ou animal",
+    "asset": "modules/JB2A_DnD5e/Library/Generic/Fire/FireRing_01_Circle_Red_500.webm",
+    "assetName": "FireRing_01_Circle_Red_500.webm",
+    "assetFolder": "Fire"
+  },
+  {
+    "name": "Decadência",
+    "element": "death",
+    "range": "touch",
+    "target": "1 ser",
+    "asset": "modules/JB2A_DnD5e/Library/Generic/Energy/EnergyConduitCircle_01_Regular_BluePurple_05ft_600x400.webm",
+    "assetName": "EnergyConduitCircle_01_Regular_BluePurple_05ft_600x400.webm",
+    "assetFolder": "Energy"
+  },
+  {
+    "name": "Definhar",
+    "element": "death",
+    "range": "short",
+    "target": "1 ser",
+    "asset": "modules/JB2A_DnD5e/Library/Generic/Smoke/Fumes04_02_Grey_Loop_400x600.webm",
+    "assetName": "Fumes04_02_Grey_Loop_400x600.webm",
+    "assetFolder": "Smoke"
+  },
+  {
+    "name": "Deflagração de Energia",
+    "element": "energy",
+    "range": "personal",
+    "target": "Veja descrição da área",
+    "asset": "modules/JB2A_DnD5e/Library/Generic/Explosion/Explosion_02_Blue_400x400.webm",
+    "assetName": "Explosion_02_Blue_400x400.webm",
+    "assetFolder": "Explosion"
+  },
+  {
+    "name": "Desacelerar Impacto",
+    "element": "death",
+    "range": "short",
+    "target": "Veja texto",
+    "asset": "modules/JB2A_DnD5e/Library/Generic/Eyes/Eyes_Many01_02_Dark_Green_600x600.webm",
+    "assetName": "Eyes_Many01_02_Dark_Green_600x600.webm",
+    "assetFolder": "Eyes"
+  },
+  {
+    "name": "Descarnar",
+    "element": "blood",
+    "range": "touch",
+    "target": "Veja texto",
+    "asset": "modules/JB2A_DnD5e/Library/Generic/Creature/Bite_01_Regular_Red_400x400.webm",
+    "assetName": "Bite_01_Regular_Red_400x400.webm",
+    "assetFolder": "Creature"
+  },
+  {
+    "name": "Desfazer Sinapses",
+    "element": "knowledge",
+    "range": "short",
+    "target": "1 ser com cérebro",
+    "asset": "modules/JB2A_DnD5e/Library/Generic/Magic_Signs/AbjurationCircleOutro_02_Dark_Blue_800x800.webm",
+    "assetName": "AbjurationCircleOutro_02_Dark_Blue_800x800.webm",
+    "assetFolder": "Magic_Signs"
+  },
+  {
+    "name": "Detecção de Ameaças",
+    "element": "knowledge",
+    "range": "personal",
+    "target": "Veja descrição da área",
+    "asset": "modules/JB2A_DnD5e/Library/Generic/Magic_Signs/AbjurationCircleOutro_02_Regular_Blue_800x800.webm",
+    "assetName": "AbjurationCircleOutro_02_Regular_Blue_800x800.webm",
+    "assetFolder": "Magic_Signs"
+  },
+  {
+    "name": "Dissipar Ritual",
+    "element": "fear",
+    "range": "medium",
+    "target": "Veja descrição da área",
+    "asset": "modules/JB2A_DnD5e/Library/Generic/Energy/EnergyConduitCircle_01_Regular_BluePurple_15ft_1000x400.webm",
+    "assetName": "EnergyConduitCircle_01_Regular_BluePurple_15ft_1000x400.webm",
+    "assetFolder": "Energy"
+  },
+  {
+    "name": "Dissonância Acústica",
+    "element": "energy",
+    "range": "medium",
+    "target": "1 objeto”",
+    "asset": "modules/JB2A_DnD5e/Library/Generic/Lightning/ElectricArc04_01_Regular_Blue_1600x500.webm",
+    "assetName": "ElectricArc04_01_Regular_Blue_1600x500.webm",
+    "assetFolder": "Lightning"
+  },
+  {
+    "name": "Distorção Temporal",
+    "element": "death",
+    "range": "personal",
+    "target": "veja texto",
+    "asset": "modules/JB2A_DnD5e/Library/Generic/Eyes/Eyes_Many01_03_Dark_Green_600x600.webm",
+    "assetName": "Eyes_Many01_03_Dark_Green_600x600.webm",
+    "assetFolder": "Eyes"
+  },
+  {
+    "name": "Distorcer Aparência",
+    "element": "blood",
+    "range": "personal",
+    "target": "você",
+    "asset": "modules/JB2A_DnD5e/Library/Generic/Creature/Claws_01_Regular_Red_200x200.webm",
+    "assetName": "Claws_01_Regular_Red_200x200.webm",
+    "assetFolder": "Creature"
+  },
+  {
+    "name": "Eco Espiral",
+    "element": "death",
+    "range": "short",
+    "target": "1 ser",
+    "asset": "modules/JB2A_DnD5e/Library/Generic/Smoke/SmokePlumes01_01_Regular_Grey_400x400.webm",
+    "assetName": "SmokePlumes01_01_Regular_Grey_400x400.webm",
+    "assetFolder": "Smoke"
+  },
+  {
+    "name": "Eletrocussão",
+    "element": "energy",
+    "range": "short",
+    "target": "1 ser ou objeto",
+    "asset": "modules/JB2A_DnD5e/Library/Generic/Lightning/LightningBall_01_Regular_Blue_400x400.webm",
+    "assetName": "LightningBall_01_Regular_Blue_400x400.webm",
+    "assetFolder": "Lightning"
+  },
+  {
+    "name": "Embaralhar",
+    "element": "energy",
+    "range": "personal",
+    "target": "você",
+    "asset": "modules/JB2A_DnD5e/Library/Generic/Particles/ParticleBurstRune01_01_Regular_BluePurple_600x600.webm",
+    "assetName": "ParticleBurstRune01_01_Regular_BluePurple_600x600.webm",
+    "assetFolder": "Particles"
+  },
+  {
+    "name": "Enfeitiçar",
+    "element": "knowledge",
+    "range": "short",
+    "target": "1 pessoa",
+    "asset": "modules/JB2A_DnD5e/Library/Generic/Magic_Signs/Abjuration_01_Blue_Circle_800x800.webm",
+    "assetName": "Abjuration_01_Blue_Circle_800x800.webm",
+    "assetFolder": "Magic_Signs"
+  },
+  {
+    "name": "Esconder dos Olhos",
+    "element": "knowledge",
+    "range": "personal",
+    "target": "você",
+    "asset": "modules/JB2A_DnD5e/Library/Generic/Explosion/Explosion_03_Regular_BlueYellow_400x400.webm",
+    "assetName": "Explosion_03_Regular_BlueYellow_400x400.webm",
+    "assetFolder": "Explosion"
+  },
+  {
+    "name": "Esfolar",
+    "element": "blood",
+    "range": "short",
+    "target": "1 ser",
+    "asset": "modules/JB2A_DnD5e/Library/Generic/Lightning/LightningStrike01_01_Regular_Blue_800x800.webm",
+    "assetName": "LightningStrike01_01_Regular_Blue_800x800.webm",
+    "assetFolder": "Lightning"
+  },
+  {
+    "name": "Espirais da Perdição",
+    "element": "death",
+    "range": "short",
+    "target": "1 ser",
+    "asset": "modules/JB2A_DnD5e/Library/Generic/Impact/DropShadow_01_Dark_Black_400x400.webm",
+    "assetName": "DropShadow_01_Dark_Black_400x400.webm",
+    "assetFolder": "Impact"
+  },
+  {
+    "name": "Fedor Pútrido",
+    "element": "death",
+    "range": "personal",
+    "target": "você",
+    "asset": "modules/JB2A_DnD5e/Library/Generic/Smoke/SmokePlumes01_02_Regular_Grey_400x400.webm",
+    "assetName": "SmokePlumes01_02_Regular_Grey_400x400.webm",
+    "assetFolder": "Smoke"
+  },
+  {
+    "name": "Ferver Sangue",
+    "element": "blood",
+    "range": "short",
+    "target": "1 ser",
+    "asset": "modules/JB2A_DnD5e/Library/Generic/Creature/Claws_01_Regular_Red_400x400.webm",
+    "assetName": "Claws_01_Regular_Red_400x400.webm",
+    "assetFolder": "Creature"
+  },
+  {
+    "name": "Fim Inevitável",
+    "element": "death",
+    "range": "extreme",
+    "target": "Veja texto",
+    "asset": "modules/JB2A_DnD5e/Library/Generic/Smoke/SmokePlumes01_03_Regular_Grey_400x400.webm",
+    "assetName": "SmokePlumes01_03_Regular_Grey_400x400.webm",
+    "assetFolder": "Smoke"
+  },
+  {
+    "name": "Flagelo de Sangue",
+    "element": "blood",
+    "range": "touch",
+    "target": "1 pessoa",
+    "asset": "modules/JB2A_DnD5e/Library/Generic/Creature/BatsComplete01_01_Regular_Red_600x600.webm",
+    "assetName": "BatsComplete01_01_Regular_Red_600x600.webm",
+    "assetFolder": "Creature"
+  },
+  {
+    "name": "Forma Monstruosa",
+    "element": "blood",
+    "range": "personal",
+    "target": "você",
+    "asset": "modules/JB2A_DnD5e/Library/Generic/Creature/FairiesInward01_01_Regular_BluePurple_600x600.webm",
+    "assetName": "FairiesInward01_01_Regular_BluePurple_600x600.webm",
+    "assetFolder": "Creature"
+  },
+  {
+    "name": "Fortalecimento Sensorial",
+    "element": "blood",
+    "range": "personal",
+    "target": "você",
+    "asset": "modules/JB2A_DnD5e/Library/Generic/Magic_Signs/EvocationCircleIntro_02_Dark_Red_800x800.webm",
+    "assetName": "EvocationCircleIntro_02_Dark_Red_800x800.webm",
+    "assetFolder": "Magic_Signs"
+  },
+  {
+    "name": "Hemofagia",
+    "element": "blood",
+    "range": "touch",
+    "target": "1 ser",
+    "asset": "modules/JB2A_DnD5e/Library/Generic/Creature/FairiesInwardBurst01_01_Regular_BluePurple_600x600.webm",
+    "assetName": "FairiesInwardBurst01_01_Regular_BluePurple_600x600.webm",
+    "assetFolder": "Creature"
+  },
+  {
+    "name": "Inexistir",
+    "element": "knowledge",
+    "range": "touch",
+    "target": "1 ser",
+    "asset": "modules/JB2A_DnD5e/Library/Generic/Magic_Signs/ConjurationCircleIntro_02_Dark_Yellow_800x800.webm",
+    "assetName": "ConjurationCircleIntro_02_Dark_Yellow_800x800.webm",
+    "assetFolder": "Magic_Signs"
+  },
+  {
+    "name": "Invadir Mente",
+    "element": "knowledge",
+    "range": "medium",
+    "target": "1 ser ou 2 pessoas",
+    "asset": "modules/JB2A_DnD5e/Library/Generic/Magic_Signs/ConjurationCircleIntro_02_Regular_Yellow_800x800.webm",
+    "assetName": "ConjurationCircleIntro_02_Regular_Yellow_800x800.webm",
+    "assetFolder": "Magic_Signs"
+  },
+  {
+    "name": "Invólucro de Carne",
+    "element": "blood",
+    "range": "short",
+    "target": "Veja texto",
+    "asset": "modules/JB2A_DnD5e/Library/Generic/Creature/FairiesLoop01_01_Regular_BluePurple_600x600.webm",
+    "assetName": "FairiesLoop01_01_Regular_BluePurple_600x600.webm",
+    "assetFolder": "Creature"
+  },
+  {
+    "name": "Lâmina do Medo",
+    "element": "fear",
+    "range": "touch",
+    "target": "1 ser",
+    "asset": "modules/JB2A_DnD5e/Library/Generic/Eyes/Eyes_Single01_01_Dark_Green_300x300.webm",
+    "assetName": "Eyes_Single01_01_Dark_Green_300x300.webm",
+    "assetFolder": "Eyes"
+  },
+  {
+    "name": "Língua Morta",
+    "element": "death",
+    "range": "touch",
+    "target": "1 cadáver humano",
+    "asset": "modules/JB2A_DnD5e/Library/Generic/Smoke/SmokePlumesLoop01_01_Regular_Grey_400x400.webm",
+    "assetName": "SmokePlumesLoop01_01_Regular_Grey_400x400.webm",
+    "assetFolder": "Smoke"
+  },
+  {
+    "name": "Localização",
+    "element": "knowledge",
+    "range": "personal",
+    "target": "Veja descrição da área",
+    "asset": "modules/JB2A_DnD5e/Library/Generic/Lightning/LightningStrike01_02_Regular_Blue_800x800.webm",
+    "assetName": "LightningStrike01_02_Regular_Blue_800x800.webm",
+    "assetFolder": "Lightning"
+  },
+  {
+    "name": "Luz",
+    "element": "energy",
+    "range": "short",
+    "target": "1 objeto",
+    "asset": "modules/JB2A_DnD5e/Library/Generic/Lightning/StaticElectricity_01_Regular_Blue_400x400.webm",
+    "assetName": "StaticElectricity_01_Regular_Blue_400x400.webm",
+    "assetFolder": "Lightning"
+  },
+  {
+    "name": "Martírio de Sangue",
+    "element": "blood",
+    "range": "personal",
+    "target": "você",
+    "asset": "modules/JB2A_DnD5e/Library/Generic/Creature/FairiesOutward01_01_Regular_BluePurple_600x600.webm",
+    "assetName": "FairiesOutward01_01_Regular_BluePurple_600x600.webm",
+    "assetFolder": "Creature"
+  },
+  {
+    "name": "Medo Tangível",
+    "element": "fear",
+    "range": "personal",
+    "target": "você",
+    "asset": "modules/JB2A_DnD5e/Library/Generic/Eyes/Eyes_Single01_02_Dark_Green_300x300.webm",
+    "assetName": "Eyes_Single01_02_Dark_Green_300x300.webm",
+    "assetFolder": "Eyes"
+  },
+  {
+    "name": "Mergulho Mental",
+    "element": "knowledge",
+    "range": "touch",
+    "target": "1 pessoa",
+    "asset": "modules/JB2A_DnD5e/Library/Generic/Liquid/LiquidBlob01_01_Regular_Blue_400x400.webm",
+    "assetName": "LiquidBlob01_01_Regular_Blue_400x400.webm",
+    "assetFolder": "Liquid"
+  },
+  {
+    "name": "Miasma Entrópico",
+    "element": "death",
+    "range": "medium",
+    "target": "Veja descrição da área",
+    "asset": "modules/JB2A_DnD5e/Library/Generic/Explosion/ShrapnelBomb01_01_Regular_Black_800x800.webm",
+    "assetName": "ShrapnelBomb01_01_Regular_Black_800x800.webm",
+    "assetFolder": "Explosion"
+  },
+  {
+    "name": "Milagre Ionizante",
+    "element": "energy",
+    "range": "touch",
+    "target": "1 ser",
+    "asset": "modules/JB2A_DnD5e/Library/Generic/Lightning/StaticElectricity_02_Regular_Blue_400x400.webm",
+    "assetName": "StaticElectricity_02_Regular_Blue_400x400.webm",
+    "assetFolder": "Lightning"
+  },
+  {
+    "name": "Mutar",
+    "element": "energy",
+    "range": "personal",
+    "target": "você",
+    "asset": "modules/JB2A_DnD5e/Library/Generic/Lightning/StaticElectricity_03_Regular_Blue_400x400.webm",
+    "assetName": "StaticElectricity_03_Regular_Blue_400x400.webm",
+    "assetFolder": "Lightning"
+  },
+  {
+    "name": "Nuvem de Cinzas",
+    "element": "death",
+    "range": "short",
+    "target": "Veja texto",
+    "asset": "modules/JB2A_DnD5e/Library/Generic/Celestial_Bodies/AsteroidDiskIron03_01_Regular_Red_600x600.webm",
+    "assetName": "AsteroidDiskIron03_01_Regular_Red_600x600.webm",
+    "assetFolder": "Celestial_Bodies"
+  },
+  {
+    "name": "Ódio Incontrolável",
+    "element": "blood",
+    "range": "touch",
+    "target": "1 pessoa",
+    "asset": "modules/JB2A_DnD5e/Library/Generic/Impact/FrostImpact_01_Regular_White_600x600.webm",
+    "assetName": "FrostImpact_01_Regular_White_600x600.webm",
+    "assetFolder": "Impact"
+  },
+  {
+    "name": "Odor da Caçada",
+    "element": "blood",
+    "range": "personal",
+    "target": "você",
+    "asset": "modules/JB2A_DnD5e/Library/Generic/Liquid/LiquidSplash01_Regular_Blue_400x400.webm",
+    "assetName": "LiquidSplash01_Regular_Blue_400x400.webm",
+    "assetFolder": "Liquid"
+  },
+  {
+    "name": "Ouvir os Sussurros",
+    "element": "knowledge",
+    "range": "personal",
+    "target": "você",
+    "asset": "modules/JB2A_DnD5e/Library/Generic/Magic_Signs/ConjurationCircleLoop_02_Dark_Yellow_800x800.webm",
+    "assetName": "ConjurationCircleLoop_02_Dark_Yellow_800x800.webm",
+    "assetFolder": "Magic_Signs"
+  },
+  {
+    "name": "Overclock",
+    "element": "energy",
+    "range": "personal",
+    "target": "você",
+    "asset": "modules/JB2A_DnD5e/Library/Generic/Energy/EnergyAttack_01_02_Regular_Blue_1000x1000.webm",
+    "assetName": "EnergyAttack_01_02_Regular_Blue_1000x1000.webm",
+    "assetFolder": "Energy"
+  },
+  {
+    "name": "Paradoxo",
+    "element": "death",
+    "range": "medium",
+    "target": "Veja descrição da área",
+    "asset": "modules/JB2A_DnD5e/Library/Generic/Celestial_Bodies/AsteroidDiskIron04_01_Regular_Red_600x600.webm",
+    "assetName": "AsteroidDiskIron04_01_Regular_Red_600x600.webm",
+    "assetFolder": "Celestial_Bodies"
+  },
+  {
+    "name": "Perturbação",
+    "element": "knowledge",
+    "range": "short",
+    "target": "1 pessoa",
+    "asset": "modules/JB2A_DnD5e/Library/Generic/Magic_Signs/ConjurationCircleLoop_02_Regular_Yellow_800x800.webm",
+    "assetName": "ConjurationCircleLoop_02_Regular_Yellow_800x800.webm",
+    "assetFolder": "Magic_Signs"
+  },
+  {
+    "name": "Poeira da Podridão",
+    "element": "death",
+    "range": "medium",
+    "target": "Veja descrição da área",
+    "asset": "modules/JB2A_DnD5e/Library/Generic/Smoke/SmokePlumesLoop01_02_Regular_Grey_400x400.webm",
+    "assetName": "SmokePlumesLoop01_02_Regular_Grey_400x400.webm",
+    "assetFolder": "Smoke"
+  },
+  {
+    "name": "Polarização Caótica",
+    "element": "energy",
+    "range": "short",
+    "target": "você",
+    "asset": "modules/JB2A_DnD5e/Library/Generic/Energy/EnergyBeam_01_Regular_Blue_15ft_1000x400.webm",
+    "assetName": "EnergyBeam_01_Regular_Blue_15ft_1000x400.webm",
+    "assetFolder": "Energy"
+  },
+  {
+    "name": "Possessão",
+    "element": "knowledge",
+    "range": "long",
+    "target": "1 pessoa viva ou morta",
+    "asset": "modules/JB2A_DnD5e/Library/Generic/Magic_Signs/ConjurationCircleOutro_02_Dark_Yellow_800x800.webm",
+    "assetName": "ConjurationCircleOutro_02_Dark_Yellow_800x800.webm",
+    "assetFolder": "Magic_Signs"
+  },
+  {
+    "name": "Presença do Medo",
+    "element": "fear",
+    "range": "personal",
+    "target": "Veja descrição da área",
+    "asset": "modules/JB2A_DnD5e/Library/Generic/Creature/FairiesOutwardBurst01_01_Regular_BluePurple_400x400.webm",
+    "assetName": "FairiesOutwardBurst01_01_Regular_BluePurple_400x400.webm",
+    "assetFolder": "Creature"
+  },
+  {
+    "name": "Pronunciar Sigilo",
+    "element": "knowledge",
+    "range": "short",
+    "target": "1 ser",
+    "asset": "modules/JB2A_DnD5e/Library/Generic/Magic_Signs/ConjurationCircleOutro_02_Regular_Yellow_800x800.webm",
+    "assetName": "ConjurationCircleOutro_02_Regular_Yellow_800x800.webm",
+    "assetFolder": "Magic_Signs"
+  },
+  {
+    "name": "Proteção contra Rituais",
+    "element": "fear",
+    "range": "touch",
+    "target": "1 ser",
+    "asset": "modules/JB2A_DnD5e/Library/Generic/Creature/FairiesComplete01_01_Regular_BluePurple_600x600.webm",
+    "assetName": "FairiesComplete01_01_Regular_BluePurple_600x600.webm",
+    "assetFolder": "Creature"
+  },
+  {
+    "name": "Purgatório",
+    "element": "blood",
+    "range": "short",
+    "target": "área de 6m de raio",
+    "asset": "modules/JB2A_DnD5e/Library/Generic/Creature/BatsLoop01_01_Regular_Red_600x600.webm",
+    "assetName": "BatsLoop01_01_Regular_Red_600x600.webm",
+    "assetFolder": "Creature"
+  },
+  {
+    "name": "Rejeitar Névoa",
+    "element": "fear",
+    "range": "short",
+    "target": "Veja descrição da área",
+    "asset": "modules/JB2A_DnD5e/Library/Generic/Celestial_Bodies/AsteroidLargeDiskIron01_01_Regular_Red_800x800.webm",
+    "assetName": "AsteroidLargeDiskIron01_01_Regular_Red_800x800.webm",
+    "assetFolder": "Celestial_Bodies"
+  },
+  {
+    "name": "Relembrar Fragmento",
+    "element": "knowledge",
+    "range": "touch",
+    "target": "1 objeto com texto",
+    "asset": "modules/JB2A_DnD5e/Library/Generic/Magic_Signs/Conjuration_01_Yellow_Circle_800x800.webm",
+    "assetName": "Conjuration_01_Yellow_Circle_800x800.webm",
+    "assetFolder": "Magic_Signs"
+  },
+  {
+    "name": "Salto Fantasma",
+    "element": "energy",
+    "range": "medium",
+    "target": "você",
+    "asset": "modules/JB2A_DnD5e/Library/Generic/Energy/EnergyBeam_01_Regular_Blue_30ft_1600x400.webm",
+    "assetName": "EnergyBeam_01_Regular_Blue_30ft_1600x400.webm",
+    "assetFolder": "Energy"
+  },
+  {
+    "name": "Sede de Adrenalina",
+    "element": "blood",
+    "range": "personal",
+    "target": "você",
+    "asset": "modules/JB2A_DnD5e/Library/Generic/Magic_Signs/EvocationCircleIntro_02_Regular_Red_800x800.webm",
+    "assetName": "EvocationCircleIntro_02_Regular_Red_800x800.webm",
+    "assetFolder": "Magic_Signs"
+  },
+  {
+    "name": "Singularidade Temporal",
+    "element": "death",
+    "range": "short",
+    "target": "1 objeto não paranormal Médio",
+    "asset": "modules/JB2A_DnD5e/Library/Generic/Smoke/SmokePlumesLoop01_03_Regular_Grey_400x400.webm",
+    "assetName": "SmokePlumesLoop01_03_Regular_Grey_400x400.webm",
+    "assetFolder": "Smoke"
+  },
+  {
+    "name": "Sopro do Caos",
+    "element": "energy",
+    "range": "medium",
+    "target": "Veja descrição da área",
+    "asset": "modules/JB2A_DnD5e/Library/Generic/Explosion/Explosion_04_Regular_Blue_400x400.webm",
+    "assetName": "Explosion_04_Regular_Blue_400x400.webm",
+    "assetFolder": "Explosion"
+  },
+  {
+    "name": "Tecer Ilusão",
+    "element": "knowledge",
+    "range": "medium",
+    "target": "Veja texto",
+    "asset": "modules/JB2A_DnD5e/Library/Generic/Eyes/Eyes_Single01_03_Dark_Green_300x300.webm",
+    "assetName": "Eyes_Single01_03_Dark_Green_300x300.webm",
+    "assetFolder": "Eyes"
+  },
+  {
+    "name": "Tela de Ruído",
+    "element": "energy",
+    "range": "personal",
+    "target": "você",
+    "asset": "modules/JB2A_DnD5e/Library/Generic/Energy/EnergyBeam_01_Regular_Blue_60ft_2800x400.webm",
+    "assetName": "EnergyBeam_01_Regular_Blue_60ft_2800x400.webm",
+    "assetFolder": "Energy"
+  },
+  {
+    "name": "Teletransporte",
+    "element": "energy",
+    "range": "touch",
+    "target": "até 5 seres voluntários",
+    "asset": "modules/JB2A_DnD5e/Library/Generic/Energy/EnergyBeam_01_Regular_Blue_90ft_4000x400.webm",
+    "assetName": "EnergyBeam_01_Regular_Blue_90ft_4000x400.webm",
+    "assetFolder": "Energy"
+  },
+  {
+    "name": "Tentáculos de Lodo",
+    "element": "death",
+    "range": "medium",
+    "target": "Veja descrição da área",
+    "asset": "modules/JB2A_DnD5e/Library/Generic/Energy/EnergyConduitCircle_01_Regular_BluePurple_30ft_1600x400.webm",
+    "assetName": "EnergyConduitCircle_01_Regular_BluePurple_30ft_1600x400.webm",
+    "assetFolder": "Energy"
+  },
+  {
+    "name": "Terceiro Olho",
+    "element": "knowledge",
+    "range": "personal",
+    "target": "você",
+    "asset": "modules/JB2A_DnD5e/Library/Generic/Magic_Signs/DivinationCircleIntro_02_Dark_Blue_800x800.webm",
+    "assetName": "DivinationCircleIntro_02_Dark_Blue_800x800.webm",
+    "assetFolder": "Magic_Signs"
+  },
+  {
+    "name": "Transfigurar Água",
+    "element": "energy",
+    "range": "long",
+    "target": "Veja descrição da área",
+    "asset": "modules/JB2A_DnD5e/Library/Generic/Energy/EnergyBeam_02_Regular_BluePink_05ft_600x400.webm",
+    "assetName": "EnergyBeam_02_Regular_BluePink_05ft_600x400.webm",
+    "assetFolder": "Energy"
+  },
+  {
+    "name": "Transfigurar Terra",
+    "element": "energy",
+    "range": "long",
+    "target": "Veja descrição da área",
+    "asset": "modules/JB2A_DnD5e/Library/Generic/Energy/EnergyBeam_02_Regular_BluePink_15ft_1000x400.webm",
+    "assetName": "EnergyBeam_02_Regular_BluePink_15ft_1000x400.webm",
+    "assetFolder": "Energy"
+  },
+  {
+    "name": "Transfusão Vital",
+    "element": "blood",
+    "range": "touch",
+    "target": "1 ser",
+    "asset": "modules/JB2A_DnD5e/Library/Generic/Energy/EnergyBeam_02_Regular_BluePink_30ft_1600x400.webm",
+    "assetName": "EnergyBeam_02_Regular_BluePink_30ft_1600x400.webm",
+    "assetFolder": "Energy"
+  },
+  {
+    "name": "Tremeluzir",
+    "element": "energy",
+    "range": "personal",
+    "target": "você",
+    "asset": "modules/JB2A_DnD5e/Library/Generic/Energy/EnergyBeam_02_Regular_BluePink_60ft_2800x400.webm",
+    "assetName": "EnergyBeam_02_Regular_BluePink_60ft_2800x400.webm",
+    "assetFolder": "Energy"
+  },
+  {
+    "name": "Velocidade Mortal",
+    "element": "death",
+    "range": "short",
+    "target": "1 ser",
+    "asset": "modules/JB2A_DnD5e/Library/Generic/Magic_Signs/DivinationCircleLoop_02_Dark_Blue_800x800.webm",
+    "assetName": "DivinationCircleLoop_02_Dark_Blue_800x800.webm",
+    "assetFolder": "Magic_Signs"
+  },
+  {
+    "name": "Vidência",
+    "element": "knowledge",
+    "range": "unlimited",
+    "target": "1 ser",
+    "asset": "modules/JB2A_DnD5e/Library/Generic/Liquid/LiquidSplashSide01_Regular_Blue_600x600.webm",
+    "assetName": "LiquidSplashSide01_Regular_Blue_600x600.webm",
+    "assetFolder": "Liquid"
+  },
+  {
+    "name": "Vínculo de Sangue",
+    "element": "blood",
+    "range": "short",
+    "target": "1 pessoa",
+    "asset": "modules/JB2A_DnD5e/Library/Generic/Creature/Bite_01_Regular_Red_200x200.webm",
+    "assetName": "Bite_01_Regular_Red_200x200.webm",
+    "assetFolder": "Creature"
+  },
+  {
+    "name": "Vomitar Pestes",
+    "element": "blood",
+    "range": "medium",
+    "target": "Veja texto",
+    "asset": "modules/JB2A_DnD5e/Library/Generic/Creature/Bite_01_Regular_Red_400x400.webm",
+    "assetName": "Bite_01_Regular_Red_400x400.webm",
+    "assetFolder": "Creature"
+  },
+  {
+    "name": "Zerar Entropia",
+    "element": "death",
+    "range": "short",
+    "target": "1 ser",
+    "asset": "modules/JB2A_DnD5e/Library/Generic/Celestial_Bodies/AsteroidLineIron01_01_Regular_Red_05x15_600x200.webm",
+    "assetName": "AsteroidLineIron01_01_Regular_Red_05x15_600x200.webm",
+    "assetFolder": "Celestial_Bodies"
+  }
+]

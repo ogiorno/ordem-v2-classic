@@ -56,6 +56,13 @@ export default function registerSystemSettings() {
 		default: "",
 	});
 
+	game.settings.register("ordem_v2_classic", "seenNotes", {
+		scope: "client",
+		config: false,
+		type: Array,
+		default: [],
+	});
+
 	game.settings.register("ordem_v2_classic", "patchNotes", {
 		name: "SETTINGS.opPatchNotes",
 		hint: "SETTINGS.opPatchNotesHint",
@@ -69,7 +76,7 @@ export default function registerSystemSettings() {
 		name: "SETTINGS.globalProgressRules",
 		hint: "SETTINGS.globalProgressRulesHint",
 		scope: "world", // "world" = sync to db, "client" = local storage
-		config: true, // false if you dont want it to show in module config
+		config: false, // obsoleta: a progressão agora depende sempre do Nível (NEX é independente)
 		type: Number, // Number, Boolean, String, Object
 		default: 1,
 		requiresReload: true, // true if you want to prompt the user to reload
@@ -77,6 +84,29 @@ export default function registerSystemSettings() {
 			1: "SETTINGS.nexProgressRule",
 			2: "SETTINGS.nexExpProgressRule",
 			// 3: 'SETTINGS.patentesProgressRule'
+		},
+	});
+
+	game.settings.register("ordem_v2_classic", "gmWhisperHighlight", {
+		name: "SETTINGS.gmWhisperHighlight",
+		hint: "SETTINGS.gmWhisperHighlightHint",
+		scope: "client",
+		config: true,
+		type: Boolean,
+		default: true,
+	});
+
+	game.settings.register("ordem_v2_classic", "damageApplication", {
+		name: "SETTINGS.damageApplication",
+		hint: "SETTINGS.damageApplicationHint",
+		scope: "world",
+		config: true,
+		type: String,
+		default: "attacker-click",
+		choices: {
+			"manual-gm": "SETTINGS.damageApplicationManual",
+			"attacker-click": "SETTINGS.damageApplicationClick",
+			auto: "SETTINGS.damageApplicationAuto",
 		},
 	});
 

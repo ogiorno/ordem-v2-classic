@@ -2,6 +2,7 @@
 /*  Author: @aMediocreDad                       */
 /* -------------------------------------------- */
 import semverComp from "../../utils/semver-compare.mjs";
+import { shouldDisplayMessage } from "./message-visibility.mjs";
 
 const SYSTEM_NAME = "ordem_v2_classic";
 
@@ -28,13 +29,24 @@ const stripJSON = (data) => {
 const handleDisplay = (msg, i, messages) => {
 	const { content, title, type } = msg;
 	if (!isCurrent(msg)) return;
+	if (msg.display === "once") markSeen(title);
 	if (type === "prompt") return displayPrompt(title, content, i, messages);
 	if (type === "chat") return sendToChat(title, content);
 };
 
+const markSeen = (title) => {
+	const seen = game.settings.get(SYSTEM_NAME, "seenNotes") ?? [];
+	if (!seen.includes(title)) game.settings.set(SYSTEM_NAME, "seenNotes", [...seen, title]);
+};
+
 const isCurrent = (msg) => {
-	const settings = game.settings.get(SYSTEM_NAME, "patchNotes");
-	const isDisplayable = !msg.display === "once" || !settings; /* !hasDisplayed(msg.title); */
+	// "patchNotes" = o usuário desligou as notas. Antes, `!msg.display === "once"` era sempre falso e a
+	// nota reaparecia a cada entrada, inclusive para jogadores.
+	const isDisplayable = shouldDisplayMessage(msg, {
+		isGM: game.user.isGM,
+		patchNotesDisabled: game.settings.get(SYSTEM_NAME, "patchNotes"),
+		seenTitles: game.settings.get(SYSTEM_NAME, "seenNotes") ?? [],
+	});
 	const correctCoreVersion =
 		foundry.utils.isNewerVersion(msg["max-core-version"] ?? "100.0.0", game.version) &&
 		foundry.utils.isNewerVersion(game.version, msg["min-core-version"] ?? "0.0.0");

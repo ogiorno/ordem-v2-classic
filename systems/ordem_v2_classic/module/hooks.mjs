@@ -1,3 +1,4 @@
+import { gmNotice } from "./helpers/gm-notice.mjs";
 import chatCommands from "./chat/chat-commands.mjs";
 import { shouldShowCombatantHP } from "./helpers/visibility.mjs";
 
@@ -102,6 +103,10 @@ async function _runExpireTemporaryEffects(combat, updateData = {}) {
 	}
 	for (const { actor, names } of namesByActor.values()) {
 		for (const name of names) {
+			if (actor.type === "threat") {
+				gmNotice(game.i18n.format("op.gmNotice.effectExpired", { effect: name, actor: actor.name }), { kind: "effect" });
+				continue;
+			}
 			ChatMessage.create({
 				content: game.i18n.format("op.effectExpired", { effect: name, actor: actor.name }),
 			});
@@ -135,10 +140,7 @@ export default function () {
 		if (actor?.type !== "threat") return;
 		const healed = await actor.applyThreatFastHealing();
 		if (healed > 0) {
-			ChatMessage.create({
-				content: game.i18n.format("op.threat.fastHealingChat", { actor: actor.name, value: healed }),
-				speaker: ChatMessage.getSpeaker({ actor }),
-			});
+			gmNotice(game.i18n.format("op.gmNotice.fastHealing", { actor: actor.name, value: healed }), { kind: "threat" });
 		}
 	});
 	/**
@@ -191,7 +193,9 @@ export default function () {
 		// TODO: APLICAR UMA CONFIGURAÇÃO DE BAR BRAWL PARA PD E OUTRA PARA PE E SAN.
 		// Filtrando por tipos de Actors disponíveis no sistema.
 		if (actor.type === "agent") {
-			const prototypeToken = { disposition: 1, actorLink: true }; // Set disposition to "Friendly"
+			// Amistoso, vinculado, com visão ligada (sem ela o jogador vê a cena toda preta) e retrato como token.
+			const prototypeToken = { disposition: 1, actorLink: true, sight: { enabled: true } };
+			if (data?.img) prototypeToken.texture = { src: data.img };
 			actor.updateSource({ prototypeToken });
 
 			/**

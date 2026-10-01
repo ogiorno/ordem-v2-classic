@@ -214,10 +214,10 @@ Hooks.once("quenchReady", (quench) => {
 			});
 
 			// ----------------------------------------------------------------
-			// calculateProgress — NEX < 5 (progress = 0)
+			// calculateProgress — NEX baixo não afeta o nível
 			// ----------------------------------------------------------------
 			describe("calculateProgress — NEX < 5 (progress = 0)", () => {
-				it("NEX=3 (non-survivor, rule=1): progress = 0", async () => {
+				it("NEX=3 com nível 1: progress = 1", async () => {
 					const actor = await Actor.create({
 						name: "[Quench] NEX=3",
 						type: "agent",

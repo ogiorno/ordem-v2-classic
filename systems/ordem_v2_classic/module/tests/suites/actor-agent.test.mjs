@@ -113,10 +113,10 @@ Hooks.once("quenchReady", (quench) => {
 			// ----------------------------------------------------------------
 			// Fighter class — progress=2 (NEX=10)
 			// ----------------------------------------------------------------
-			describe("fighter — NEX progress rule (progress=2)", () => {
+			describe("fighter — progress=2 (nível 2)", () => {
 				let actor;
 				before(async () => {
-					actor = await createAgent({ NEX: { value: 10 } });
+					actor = await createAgent({ nivel: { value: 2 }, NEX: { value: 10 } });
 					await mockClassItem(actor, "fighter");
 				});
 				after(async () => {
@@ -259,19 +259,17 @@ Hooks.once("quenchReady", (quench) => {
 			// ----------------------------------------------------------------
 			// Nivel progression rule (rule=2)
 			// ----------------------------------------------------------------
-			describe("nivel progression rule (globalProgressRules=2)", () => {
+			describe("nivel controla a progressão (NEX é independente)", () => {
 				let actor;
 				before(async () => {
-					await game.settings.set("ordem_v2_classic", "globalProgressRules", 2);
 					actor = await createAgent({ nivel: { value: 3 }, NEX: { value: 5 } });
 					await mockClassItem(actor, "fighter");
 				});
 				after(async () => {
-					await game.settings.set("ordem_v2_classic", "globalProgressRules", 1);
 					await actor?.delete();
 				});
 
-				it("nivel=3 rule=2 (progress=3): PV.max = 20+3+2×(4+3) = 37", () => {
+				it("nivel=3, NEX=5 (progress=3): PV.max = 20+3+2×(4+3) = 37", () => {
 					assert.equal(actor.system.PV.max, 37);
 				});
 				it("PE.perRound = 3 (progress=3)", () => {
@@ -352,11 +350,13 @@ Hooks.once("quenchReady", (quench) => {
 				before(async () => {
 					actorNormal = await createAgent({
 						class: "occultist",
+						nivel: { value: 2 },
 						NEX: { value: 10 },
 						attributes: { pre: { value: 2 }, vit: { value: 1 }, dex: { value: 1 }, str: { value: 1 }, int: { value: 1 } },
 					});
 					actorSurvivor = await createAgent({
 						class: "survivor",
+						nivel: { value: 2 },
 						NEX: { value: 10 },
 						attributes: { pre: { value: 3 }, vit: { value: 1 }, dex: { value: 1 }, str: { value: 1 }, int: { value: 1 } },
 					});
@@ -423,6 +423,7 @@ Hooks.once("quenchReady", (quench) => {
 						system: {
 							class: "fighter",
 							attributes: { vit: { value: 1 }, pre: { value: 1 }, dex: { value: 1 }, str: { value: 1 }, int: { value: 1 } },
+							nivel: { value: 20 },
 							NEX: { value: 99 },
 						},
 					});

@@ -5,6 +5,9 @@
  * https://github.com/foundryvtt/dnd5e/blob/a7f1404c7c38afa6d7dcc4f36a5fefd274034691/module/documents/item.mjs#L1639
  */
 
+import { damageApplicationMode, requestCardDamage } from "../helpers/card-damage.mjs";
+import { conditionDicePenalty } from "../helpers/conditions.mjs";
+import { gmNotice } from "../helpers/gm-notice.mjs";
 import { getReactionEligibility } from "../helpers/reaction-helpers.mjs";
 import { damageRecipients } from "../helpers/visibility.mjs";
 
@@ -177,15 +180,16 @@ export class OrdemItem extends Item {
 					extraRD,
 				});
 				const blockedMsg = result.blocked > 0 ? game.i18n.format("op.damageBlocked", { blocked: result.blocked }) : "";
-				ChatMessage.create({
-					content: game.i18n.format("op.applyDamageResult", {
+				gmNotice(
+					game.i18n.format("op.gmNotice.damageApplied", {
+						by: game.user.name,
 						amount: result.finalDamage,
 						target: targetActor.name,
-						blocked: blockedMsg,
-					}),
-					speaker: ChatMessage.getSpeaker({ actor: targetActor }),
-					whisper: _damageRecipients(targetActor),
-				});
+						before: "?",
+						after: result.newPV ?? "?",
+					}) + (blockedMsg ? ` (${blockedMsg})` : ""),
+					{ kind: "damage" }
+				);
 				await applyMessage.setFlag("ordem_v2_classic", "damageApplied", {
 					at: Date.now(),
 					by: game.user.id,
@@ -349,10 +353,12 @@ export class OrdemItem extends Item {
 		let attribute = this.parent.system.attributes[attack.attr];
 		let rollMode = "kh";
 
-		if (attribute.value < 1) {
+		// Condições (Agarrado, Enredado…) tiram d20 do ataque
+		const attackDice = attribute.value - conditionDicePenalty(this.parent, "attack");
+		if (attackDice < 1) {
 			attribute = 2;
 			rollMode = "kl";
-		} else attribute = attribute.value;
+		} else attribute = attackDice;
 
 		const { parts, data } = CONFIG.Dice.BasicRoll.constructParts({
 			degree: skill.degree.value || null,
@@ -633,7 +639,8 @@ export class OrdemItem extends Item {
 				: false);
 
 		const split = damage.formula.split("d");
-		if ((critical.isCritical && options.lastId) || options.event?.altKey) {
+		const critApplied = Boolean((critical.isCritical && options.lastId) || options.event?.altKey);
+		if (critApplied) {
 			prepareFormula.push(`${split[0] * (critical.multiplier ?? 2)}d${split[1]}`);
 		} else {
 			prepareFormula.push(damage.formula);
@@ -677,23 +684,47 @@ export class OrdemItem extends Item {
 			const partTypes = (damage.parts ?? []).map((p) => p?.[1]).filter(Boolean);
 			const hasMixedTypes = partTypes.some((t) => t !== damage.type);
 			if (hitResult?.actorUuid && !hasMixedTypes) {
+				let targetName = null;
+				try {
+					targetName = fromUuidSync(hitResult.actorUuid)?.name ?? null;
+				} catch (_err) {
+					targetName = null;
+				}
 				flags["ordem_v2_classic.damageTarget"] = {
 					actorUuid: hitResult.actorUuid,
+					targetName,
 					damageType: damage.type,
 					attackMessageId: options.attackMessageId ?? hitResult.attackMessageId ?? this.lastAttackMessageId ?? null,
 				};
+				flags["ordem_v2_classic.damageInfo"] = {
+					formula: formulas.replaceAll("+", " + "),
+					isCritical: critApplied,
+					multiplier: critApplied ? critical.multiplier ?? 2 : 1,
+					weapon: this.name,
+				};
 			}
 			// Mesma correção do attack roll: `rollMode` precisa ir no segundo argumento.
-			await roll.toMessage(
+			const damageMsg = await roll.toMessage(
 				{
 					speaker: ChatMessage.getSpeaker({ actor: this.actor }),
 					flavor:
 						game.i18n.format("op.rollDamageChat", { name: this.name, types: types }) +
-						(options._attackIndex ? ` (${options._attackIndex}/${options._attackTotal})` : ""),
+						(options._attackIndex ? ` (${options._attackIndex}/${options._attackTotal})` : "") +
+						(flags["ordem_v2_classic.damageTarget"]?.targetName ? ` → ${flags["ordem_v2_classic.damageTarget"].targetName}` : ""),
 					flags: Object.keys(flags).length ? flags : undefined,
 				},
 				{ rollMode: game.settings.get("core", "rollMode") }
 			);
+			// Modo automático: acertou e sem reação pendente -> aplica sozinho (o GM valida/aplica).
+			if (
+				damageMsg &&
+				flags["ordem_v2_classic.damageTarget"] &&
+				damageApplicationMode() === "auto" &&
+				hitResult?.hit === true &&
+				hitResult?.revealed !== false
+			) {
+				requestCardDamage(damageMsg).catch((err) => console.error("Ordem Paranormal | aplicação automática falhou", err));
+			}
 		}
 
 		/**
@@ -859,6 +890,7 @@ export class OrdemItem extends Item {
 			message,
 			chatMessageData,
 		});
+		return message;
 	}
 
 	/**

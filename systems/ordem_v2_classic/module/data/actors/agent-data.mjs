@@ -88,7 +88,7 @@ export class AgentData extends foundry.abstract.TypeDataModel {
 				value: new fields.NumberField({ integer: true, min: 1, initial: 1 }),
 			}),
 			nivel: new fields.SchemaField({
-				value: new fields.NumberField({ integer: true, min: 1, initial: 1 }),
+				value: new fields.NumberField({ integer: true, min: 1, max: 20, initial: 1 }),
 			}),
 			defense: new fields.SchemaField({
 				value: new fields.NumberField({ integer: true, initial: 10 }),
@@ -194,11 +194,10 @@ export class AgentData extends foundry.abstract.TypeDataModel {
 	}
 
 	prepareBaseData() {
-		const rule = game.settings.get("ordem_v2_classic", "globalProgressRules");
 		const isSurvivor = this.parent.itemTypes.class[0]?.system?.isSurvivor ?? false;
 		const withoutSanity = game.settings.get("ordem_v2_classic", "globalPlayingWithoutSanity");
 
-		const progress = calculateProgress(isSurvivor, rule, this.NEX.value, this.nivel.value, this.stage.value);
+		const progress = calculateProgress(isSurvivor, this.nivel.value, this.stage.value);
 		this._progress = progress;
 		this._isSurvivor = isSurvivor;
 		this._withoutSanity = withoutSanity;
