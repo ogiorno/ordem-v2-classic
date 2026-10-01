@@ -5,11 +5,11 @@
   "system": {
     "id": 0,
     "abilityType": "class",
-    "preRequisite": "Agilidade 2",
-    "description": "<p>Você pode encontrar esse conteúdo na <strong>página 14 do suplemento Sobrevivendo ao Horror</strong>.</p>",
+    "preRequisite": "Treinado em Intuição",
+    "description": "<p>Sabendo que nem toda batalha pode ser vencida, você desenvolveu um sexto sentido para prever quando é hora de fugir. Quando uma cena de perseguição (ou semelhante) tem início, você recebe +2 em todos os testes de perícia que fizer durante a cena. <em>Pré-requisito: treinado em Intuição.</em></p>",
     "chatDescription": "",
     "activation": "passive",
-    "cost": "2",
+    "cost": 0,
     "costType": "PE"
   },
   "effects": [],

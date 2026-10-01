@@ -5,10 +5,10 @@
   "system": {
     "id": 0,
     "abilityType": "class",
-    "preRequisite": "Força 2",
-    "description": "<p>Você pode encontrar esse conteúdo na <strong>página 15 do suplemento Sobrevivendo ao Horror</strong>.</p>",
+    "preRequisite": "Treinado em Atletismo",
+    "description": "<p>Diante de algo que não pode ser vencido, você abre mão da autopreservação para superar seus limites de fuga. Uma vez por cena de perseguição (p. 90), quando faz a ação esforço extra, você pode gastar 2 PE para passar automaticamente no teste de perícia. <em>Pré-requisito: treinado em Atletismo.</em></p>",
     "chatDescription": "",
-    "activation": "reaction",
+    "activation": "free",
     "cost": 2,
     "costType": "PE"
   },

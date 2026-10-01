@@ -5,11 +5,11 @@
   "system": {
     "id": 0,
     "abilityType": "class",
-    "preRequisite": "NEX 45%",
-    "description": "<p>Você pode encontrar esse conteúdo na <strong>página 14 do suplemento Sobrevivendo ao Horror</strong>.</p>",
+    "preRequisite": "",
+    "description": "<p>Não importa o quão profundos sejam seus ferimentos, você escolhe a agonia enlouquecedora da dor a perder a consciência diante da própria morte. Você não fica inconsciente por estar morrendo, mas sempre que terminar uma rodada nesta condição e consciente, perde 2 pontos de Sanidade.</p>",
     "chatDescription": "",
     "activation": "passive",
-    "cost": "",
+    "cost": 0,
     "costType": "PE"
   },
   "effects": [],

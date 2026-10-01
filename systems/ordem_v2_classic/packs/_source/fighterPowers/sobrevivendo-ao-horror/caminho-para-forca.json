@@ -5,10 +5,10 @@
   "system": {
     "id": 0,
     "abilityType": "class",
-    "preRequisite": "Crime",
-    "description": "<p>Você pode encontrar esse conteúdo na <strong>página 14 do suplemento Sobrevivendo ao Horror</strong>.</p>",
+    "preRequisite": "",
+    "description": "<p>Se for para alguém do seu grupo ser pego, que seja você. Quando usa a ação sacrifício em uma cena de perseguição (p. 90), você pode gastar 1 PE para fornecer @DisplayDice[qtd:1|sign:plus|dc:d20] extra (para um total de @DisplayDice[qtd:2|sign:plus|dc:d20]) nos testes dos outros personagens e, quando usa a ação chamar atenção em uma cena de furtividade (p. 92), você pode gastar 1 PE para diminuir a visibilidade de todos os seus aliados próximos em –2 (em vez de –1).</p>",
     "chatDescription": "",
-    "activation": "reaction",
+    "activation": "free",
     "cost": 1,
     "costType": "PE"
   },

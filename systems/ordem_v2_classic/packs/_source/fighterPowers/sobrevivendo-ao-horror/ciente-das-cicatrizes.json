@@ -5,11 +5,11 @@
   "system": {
     "id": 0,
     "abilityType": "class",
-    "preRequisite": "Vigor 3",
-    "description": "<p>Você pode encontrar esse conteúdo na <strong>página 14 do suplemento Sobrevivendo ao Horror</strong>.</p>",
+    "preRequisite": "Treinado em Luta ou Pontaria",
+    "description": "<p>Acostumado a manusear armas, você aprendeu também a identificar as marcas que elas deixam. Quando faz um teste para encontrar uma pista relacionada a armas ou ferimentos (como um teste para necropsia ou para identificar uma arma amaldiçoada), você pode usar Luta ou Pontaria no lugar da perícia original. <em>Pré-requisito: treinado em Luta ou Pontaria.</em></p>",
     "chatDescription": "",
-    "activation": "reaction",
-    "cost": "",
+    "activation": "passive",
+    "cost": 0,
     "costType": "PE"
   },
   "effects": [],

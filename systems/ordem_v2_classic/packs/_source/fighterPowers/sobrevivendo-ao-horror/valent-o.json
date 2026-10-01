@@ -5,8 +5,8 @@
   "system": {
     "id": 0,
     "abilityType": "class",
-    "preRequisite": "Força 2 & Intimidação",
-    "description": "<p>Você pode encontrar esse conteúdo na <strong>página 15 do suplemento Sobrevivendo ao Horror</strong>.</p>",
+    "preRequisite": "",
+    "description": "<p>Em algum momento, a vida lhe ensinou que a brutalidade pode ser amedrontadora, e agora esse é seu principal idioma. Você pode usar Força no lugar de Presença para Intimidação. Além disso, uma vez por cena, pode gastar 1 PE para fazer um teste de Intimidação para assustar como uma ação livre.</p>",
     "chatDescription": "",
     "activation": "free",
     "cost": 1,

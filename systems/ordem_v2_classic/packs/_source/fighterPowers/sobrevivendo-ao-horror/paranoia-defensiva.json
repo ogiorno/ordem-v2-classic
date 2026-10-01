@@ -6,7 +6,7 @@
     "id": 0,
     "abilityType": "class",
     "preRequisite": "",
-    "description": "<p>Você pode encontrar esse conteúdo na <strong>página 15 do suplemento Sobrevivendo ao Horror</strong>.</p>",
+    "description": "<p>Você sabe que eles estão lá fora, e fará tudo ao seu alcance para mantê-los assim. Uma vez por cena, você pode gastar uma rodada e 3 PE. Se fizer isso, você e cada aliado presente escolhe entre receber +5 na Defesa contra o próximo ataque que sofrer na cena ou receber um bônus de +5 em um único teste de perícia feito até o fim da cena.</p>",
     "chatDescription": "",
     "activation": "complete",
     "cost": 3,
