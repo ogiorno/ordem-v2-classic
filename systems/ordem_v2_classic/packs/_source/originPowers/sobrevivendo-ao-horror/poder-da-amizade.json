@@ -1,0 +1,35 @@
+{
+  "name": "Poder da Amizade",
+  "type": "ability",
+  "_id": "cHSbITrg1KwzxE47",
+  "img": "systems/ordemparanormal/media/icons/abilities/origin/poder-da-amizade.svg",
+  "system": {
+    "id": 0,
+    "chatDescription": "",
+    "abilityType": "origin",
+    "preRequisite": "",
+    "description": "<p>Escolha um personagem para ser seu melhor amigo. Se estiver em alcance médio dele e vocês puderem, pelo menos, trocar olhares, você recebe +2 em todos os testes de perícia. Entretanto, se ele morrer, seu total de PE é reduzido em –1 para cada 5% de NEX até o fim da missão. Se perder seu melhor amigo, você pode escolher outro entre os demais personagens no início da próxima missão.</p>",
+    "activation": "passive",
+    "cost": 0,
+    "costType": "PE"
+  },
+  "effects": [],
+  "folder": "5cSChcCq63dzK05t",
+  "sort": 4000,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.365",
+    "systemId": "ordem_v2_classic",
+    "systemVersion": "7.3.3",
+    "createdTime": 1784900000000,
+    "modifiedTime": 1784900000000,
+    "lastModifiedBy": null,
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!cHSbITrg1KwzxE47"
+}

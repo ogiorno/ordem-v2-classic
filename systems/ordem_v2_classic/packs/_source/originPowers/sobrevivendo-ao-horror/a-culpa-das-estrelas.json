@@ -1,0 +1,35 @@
+{
+  "name": "A Culpa é das Estrelas",
+  "type": "ability",
+  "_id": "b50tgHOkc68QmAMA",
+  "img": "systems/ordemparanormal/media/icons/abilities/origin/a-culpa-e-das-estrelas.svg",
+  "system": {
+    "id": 0,
+    "chatDescription": "",
+    "abilityType": "origin",
+    "preRequisite": "",
+    "description": "<p>Escolha um número da sorte entre 1 e 6. No início de cada cena, você pode gastar 1 PE e rolar 1d6. Se o resultado for seu número da sorte, você recebe +2 em testes de perícia até o fim da cena. Caso contrário, na próxima vez que usar esta habilidade, escolha mais um número como número da sorte.</p><p>Quando rolar um de seus números da sorte, a quantidade de números volta a 1.</p>",
+    "activation": "free",
+    "cost": 1,
+    "costType": "PE"
+  },
+  "effects": [],
+  "folder": "5cSChcCq63dzK05t",
+  "sort": 12000,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.365",
+    "systemId": "ordem_v2_classic",
+    "systemVersion": "7.3.3",
+    "createdTime": 1784900000000,
+    "modifiedTime": 1784900000000,
+    "lastModifiedBy": null,
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!b50tgHOkc68QmAMA"
+}

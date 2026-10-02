@@ -10,7 +10,7 @@
     "description": "<p>Voc&ecirc; recebe +1 PV para cada 5% de NEX.</p>",
     "chatDescription": "",
     "activation": "passive",
-    "cost": null
+    "cost": 0
   },
   "effects": [
     {
@@ -24,7 +24,7 @@
           {
             "key": "system.PV.bonus",
             "type": "add",
-            "value": "@NEX.value / 5",
+            "value": "@nivel.value",
             "phase": "initial",
             "priority": null
           }

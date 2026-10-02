@@ -1,0 +1,35 @@
+{
+  "name": "Encontrar a Verdade",
+  "type": "ability",
+  "_id": "qGZtXY0v8u3pxbyc",
+  "img": "systems/ordemparanormal/media/icons/abilities/origin/encontrar-a-verdade.svg",
+  "system": {
+    "id": 0,
+    "chatDescription": "",
+    "abilityType": "origin",
+    "preRequisite": "",
+    "description": "<p>Você pode usar Investigação no lugar de Diplomacia ao fazer testes para persuadir e mudar atitude e, quando faz um teste de Investigação, pode gastar 2 PE para receber +5 nesse teste.</p>",
+    "activation": "free",
+    "cost": 2,
+    "costType": "PE"
+  },
+  "effects": [],
+  "folder": "5cSChcCq63dzK05t",
+  "sort": 20000,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.365",
+    "systemId": "ordem_v2_classic",
+    "systemVersion": "7.3.3",
+    "createdTime": 1784900000000,
+    "modifiedTime": 1784900000000,
+    "lastModifiedBy": null,
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!qGZtXY0v8u3pxbyc"
+}

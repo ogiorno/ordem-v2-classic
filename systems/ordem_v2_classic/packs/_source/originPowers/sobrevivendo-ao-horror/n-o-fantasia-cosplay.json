@@ -1,0 +1,35 @@
+{
+  "name": "Não É Fantasia, É Cosplay!",
+  "type": "ability",
+  "_id": "k8D2NAl6QM4Bpz3y",
+  "img": "systems/ordemparanormal/media/icons/abilities/origin/nao-e-fantasia-e-cosplay.svg",
+  "system": {
+    "id": 0,
+    "chatDescription": "",
+    "abilityType": "origin",
+    "preRequisite": "",
+    "description": "<p>Você pode fazer testes de disfarce usando Artes em vez de Enganação. Além disso, ao fazer um teste de perícia, se estiver usando um cosplay que tem relação com ele, você recebe +2. Por exemplo, se estiver vestido de James Bones, o gato agente secreto do famoso videogame arcade dos anos 90, você recebe +2 em testes para ser furtivo, se equilibrar e outras coisas nas quais um gato seria considerado eficiente.</p>",
+    "activation": "passive",
+    "cost": 0,
+    "costType": "PE"
+  },
+  "effects": [],
+  "folder": "5cSChcCq63dzK05t",
+  "sort": 5000,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.365",
+    "systemId": "ordem_v2_classic",
+    "systemVersion": "7.3.3",
+    "createdTime": 1784900000000,
+    "modifiedTime": 1784900000000,
+    "lastModifiedBy": null,
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!k8D2NAl6QM4Bpz3y"
+}
