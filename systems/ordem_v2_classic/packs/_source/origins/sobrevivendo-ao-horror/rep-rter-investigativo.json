@@ -6,7 +6,7 @@
   "img": "systems/ordemparanormal/media/icons/origins/reporter-investigativo.svg",
   "system": {
     "id": 0,
-    "description": "<p>Você pode encontrar esse conteúdo na <strong>página 13 do suplemento Sobrevivendo ao Horror</strong>.</p>",
+    "description": "<p>Você está sempre em busca de histórias significativas, investigando eventos, entrevistando fontes e analisando dados para descobrir a verdade por trás dos acontecimentos. Profissionais do seu ramo costumam ser curiosos, persistentes e, em muitos casos, éticos em sua busca pela verdade. Por outro lado, essa profissão leva pessoas ao encontro do indescritível, e com você não foi diferente.</p><p><strong><em>Perícias treinadas.</em></strong> Atualidades e Investigação.</p><p><strong><em>Encontrar a Verdade.</em></strong> Você pode usar Investigação no lugar de Diplomacia ao fazer testes para persuadir e mudar atitude e, quando faz um teste de Investigação, pode gastar 2 PE para receber +5 nesse teste.</p>",
     "chatDescription": ""
   },
   "effects": [],

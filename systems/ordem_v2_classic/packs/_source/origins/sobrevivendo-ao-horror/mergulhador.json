@@ -6,7 +6,7 @@
   "img": "systems/ordemparanormal/media/icons/origins/mergulhador.svg",
   "system": {
     "id": 0,
-    "description": "<p>Você pode encontrar esse conteúdo na <strong>página 12 do suplemento Sobrevivendo ao Horror</strong>.</p>",
+    "description": "<p>Seja por profissão ou por hobby, você é um aventureiro subaquático que explora os mistérios e maravilhas do mundo submerso. Trajando seu equipamento de mergulho, você consegue se aventurar a grandes profundidades para descobrir um mundo totalmente diferente daquele que conhecemos na superfície. Infelizmente, no dia em que você olhou para o abismo, ele encarou você de volta.</p><p><strong><em>Perícias treinadas.</em></strong> Atletismo e Fortitude.</p><p><strong><em>Fôlego de Nadador.</em></strong> Você recebe +5 PV e pode prender a respiração por um número de rodadas igual ao dobro do seu Vigor. Além disso, quando passa em um teste de Atletismo para natação, você avança seu deslocamento normal (em vez da metade).</p>",
     "chatDescription": ""
   },
   "effects": [],

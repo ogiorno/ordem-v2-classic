@@ -1,12 +1,12 @@
 {
   "folder": "NNs4Mm1qnMBc4PM5",
-  "name": "Fánatico por Criaturas",
+  "name": "Fanático por Criaturas",
   "type": "origin",
   "_id": "WHYuFS6cmEaiY3vY",
   "img": "systems/ordemparanormal/media/icons/origins/fanatico-por-criaturas.svg",
   "system": {
     "id": 0,
-    "description": "<p>Você pode encontrar esse conteúdo na <strong>página 10 do suplemento Sobrevivendo ao Horror</strong>.</p>",
+    "description": "<p><em>Origem da comunidade — Everson “Akkiel” e Yasmim Furtado | Grimório Paranormal</em></p><p>Você sempre foi obcecado pelo sobrenatural. Desde que pode se lembrar, a ideia de encontrar uma criatura o fascina tanto quanto o assusta. Essa faísca fez você se tornar um “caçador de monstros”, dedicando-se a localizar as feras citadas em documentários sensacionalistas. Para você, todo rumor e crendice pode esconder um fundo de verdade. Talvez uma de suas pesquisas o tenha levado diretamente a uma criatura paranormal, ou talvez elas tenham encontrado você primeiro. Afinal, você nunca esteve se escondendo.</p><p><strong><em>Perícias treinadas.</em></strong> Investigação e Ocultismo.</p><p><strong><em>Conhecimento Oculto.</em></strong> Você pode fazer testes de Ocultismo para identificar criatura a partir de informações como uma imagem, rastros, indícios de sua presença ou outras pistas que o mestre considere suficientes. Se passar, você descobre as características da criatura (conforme descrito na perícia), mas não sua identidade ou tipo específico. Além disso, quando passa em um teste de Ocultismo para identificar criatura, você recebe também +2 em todos os testes contra a criatura até o fim da missão.</p>",
     "chatDescription": ""
   },
   "effects": [],

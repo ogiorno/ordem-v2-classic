@@ -6,7 +6,7 @@
   "img": "systems/ordemparanormal/media/icons/origins/nerd-entusiasta.svg",
   "system": {
     "id": 0,
-    "description": "<p>Você pode encontrar esse conteúdo na <strong>página 13 do suplemento Sobrevivendo ao Horror</strong>.</p>",
+    "description": "<p><em>Origem da comunidade — Daniel Dill e Lukas Castanho | Remate Paranormal</em></p><p>Você dedicou muito do seu tempo aprendendo sobre videogames, RPGs de mesa, ficção científica ou qualquer outro assunto considerado “nerd”. Sua obsessão em pesquisar fundo seus assuntos de interesse e sua capacidade em lidar com os mais variados temas chamou a atenção de organizações paranormais.</p><p><strong><em>Perícias treinadas.</em></strong> Ciências e Tecnologia.</p><p><strong><em>O Inteligentão.</em></strong> O bônus que você recebe ao utilizar a ação de interlúdio ler aumenta em +1 dado (de +1d6 para +2d6).</p>",
     "chatDescription": ""
   },
   "effects": [],

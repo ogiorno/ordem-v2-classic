@@ -6,7 +6,7 @@
   "img": "systems/ordemparanormal/media/icons/origins/diplomata.svg",
   "system": {
     "id": 0,
-    "description": "<p>Você pode encontrar esse conteúdo na <strong>página 9 do suplemento Sobrevivendo ao Horror</strong>.</p>",
+    "description": "<p>Você atuava em uma área onde as habilidades sociais e políticas eram ferramentas indispensáveis. Talvez fosse representante comercial de uma empresa, membro de um partido político ou embaixador do governo. Em algum momento, entretanto, você teve uma experiência paranormal que revelou entidades com as quais não se é possível negociar. Agora, você usa os contatos que adquiriu para combater o Outro Lado.</p><p><strong><em>Perícias treinadas.</em></strong> Atualidades e Diplomacia.</p><p><strong><em>Conexões.</em></strong> Você recebe +2 em Diplomacia. Além disso, se puder contatar um NPC capaz de lhe auxiliar, você pode gastar 10 minutos e 2 PE para substituir um teste de uma perícia relacionada ao conhecimento desse NPC, feito até o fim da cena, por um teste de Diplomacia.</p>",
     "chatDescription": ""
   },
   "effects": [],

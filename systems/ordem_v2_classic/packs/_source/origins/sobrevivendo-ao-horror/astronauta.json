@@ -6,7 +6,7 @@
   "img": "systems/ordemparanormal/media/icons/origins/astronauta.svg",
   "system": {
     "id": 0,
-    "description": "<p>Você pode encontrar esse conteúdo na <strong>página 8 do suplemento Sobrevivendo ao Horror</strong>.</p>",
+    "description": "<p>Outrora limitada a membros de algumas agências espaciais estatais, a profissão de explorador espacial se tornou mais acessível conforme mais países, e até mesmo empresas privadas, se envolveram com viagens na fronteira final. Como um astronauta, você se acostumou à pressão de ser responsável pela vida de seus colegas e por experimentos de milhões de reais. E foi na escuridão do espaço que você descobriu que não estamos sozinhos.</p><p><strong><em>Perícias treinadas.</em></strong> Ciências e Fortitude.</p><p><strong><em>Acostumado ao Extremo.</em></strong> Quando sofre dano de fogo, de frio ou mental, você pode gastar 1 PE para reduzir esse dano em 5. A cada vez que usa esta habilidade novamente na mesma cena, seu custo aumenta em +1 PE.</p>",
     "chatDescription": ""
   },
   "effects": [],
