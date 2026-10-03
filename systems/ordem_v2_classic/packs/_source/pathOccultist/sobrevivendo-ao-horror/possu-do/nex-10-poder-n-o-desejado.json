@@ -3,13 +3,13 @@
   "type": "ability",
   "img": "systems/ordemparanormal/media/icons/abilities/class/occultist/Possuido/possuido-10.svg",
   "system": {
-    "id": "zK9xLp2mQ5vR8jN4",
-    "abilityType": "class",
+    "id": 0,
+    "abilityType": "path",
     "preRequisite": "Trilha: Possuído",
     "description": "<p>Você sente o paranormal tomando forma em seu interior. Ele oferece um poder assustador, mas ao mesmo tempo exige que você siga o caminho que ele escolheu. Sempre que receber um novo poder de ocultista, em vez disso você recebe o poder Transcender. Entretanto, você possui uma reserva paranormal alimentada pela presença em seu interior. Essa reserva é representada por <strong>pontos de possessão (PP)</strong>; seu total de PP é igual a 3, mais 2 pontos para cada poder Transcender que possui. O limite de PP que você pode gastar por turno é igual à sua Presença; para cada PP gasto, você recupera <strong>10 PV</strong> ou <strong>2 PE</strong>. Você recupera 1 PP a cada ação de interlúdio dormir.</p>",
     "chatDescription": "",
     "activation": "passive",
-    "cost": "",
+    "cost": 0,
     "costType": "PE"
   },
   "effects": [],

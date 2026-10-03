@@ -3,8 +3,8 @@
   "type": "ability",
   "img": "systems/ordemparanormal/media/icons/abilities/class/occultist/Exorcista/exorcista-65.svg",
   "system": {
-    "id": "exo65nexGHI789",
-    "abilityType": "class",
+    "id": 0,
+    "abilityType": "path",
     "preRequisite": "Trilha: Exorcista",
     "description": "<p>Você conjura rituais com uma intensidade tão fervorosa que potencializa seus efeitos. <strong>Quando conjura um ritual</strong>, você pode gastar <strong>+2 PE</strong> para adicionar a ele um efeito equivalente ao de um <strong>catalisador ritualístico</strong> a sua escolha.</p>",
     "chatDescription": "",

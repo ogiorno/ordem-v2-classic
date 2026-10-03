@@ -1,15 +1,15 @@
 {
-  "name": "Nex 10% - Terapia",
+  "name": "NEX 10% - Terapia",
   "type": "ability",
   "img": "systems/ordemparanormal/media/icons/abilities/class/occultist/Parapsicologo/parapsicologo-10.svg",
   "system": {
-    "id": "pA7bNc3dE5fG9hI1",
-    "abilityType": "class",
+    "id": 0,
+    "abilityType": "path",
     "preRequisite": "Trilha: Parapsicólogo",
-    "description": "<p>Por meio de seus estudos parapsicológicos, você começa a compreender os efeitos do paranormal sobre a mente humana. <strong>Você pode usar Profissão (psicólogo) como Diplomacia.</strong> Além disso, uma vez por rodada, quando você ou um aliado em alcance curto falha em um teste de resistência contra um efeito que causa da mental, você pode gastar <strong>2 PE</strong> para fazer um teste de <strong>Profissão (psicólogo)</strong> e usar o resultado desse teste no lugar do teste de resistência falho. Se já possuir esta habilidade, em vez disso seu custo é reduzido em –1 PE e você recebe +2 em Profissão (psicólogo).</p>",
+    "description": "<p>Por meio de seus estudos parapsicológicos, você começa a compreender os efeitos do paranormal sobre a mente humana. <strong>Você pode usar Profissão (psicólogo) como Diplomacia.</strong> Além disso, uma vez por rodada, quando você ou um aliado em alcance curto falha em um teste de resistência contra um efeito que causa dano mental, você pode gastar <strong>2 PE</strong> para fazer um teste de <strong>Profissão (psicólogo)</strong> e usar o resultado desse teste no lugar do teste de resistência falho. Se já possuir esta habilidade, em vez disso seu custo é reduzido em –1 PE e você recebe +2 em Profissão (psicólogo).</p>",
     "chatDescription": "",
-    "activation": "free",
-    "cost": "2",
+    "activation": "reaction",
+    "cost": 2,
     "costType": "PE"
   },
   "effects": [],

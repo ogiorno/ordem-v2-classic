@@ -3,13 +3,13 @@
   "type": "ability",
   "img": "systems/ordemparanormal/media/icons/abilities/class/occultist/Exorcista/exorcista-10.svg",
   "system": {
-    "id": "exo10nexABC123",
-    "abilityType": "class",
+    "id": 0,
+    "abilityType": "path",
     "preRequisite": "Trilha: Exorcista",
     "description": "<p>Qualquer que seja sua fé, seus estudos teológicos o prepararam para perceber os sinais do paranormal. Você recebe treinamento em <strong>Religião</strong> ou, se já for treinado nesta perícia, recebe <strong>+2</strong> nela. Além disso, pode usar essa perícia no lugar de Investigação e Percepção para notar e encontrar seres, rastros ou pistas que tenham traços paranormais e no lugar de <strong>Ocultismo</strong>.</p>",
     "chatDescription": "",
     "activation": "passive",
-    "cost": null,
+    "cost": 0,
     "costType": "PE"
   },
   "effects": [],

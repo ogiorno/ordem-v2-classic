@@ -1,10 +1,10 @@
 {
-  "name": "Nex 99% - A Sanidade Está Lá Fora",
+  "name": "NEX 99% - A Sanidade Está Lá Fora",
   "type": "ability",
   "img": "systems/ordemparanormal/media/icons/abilities/class/occultist/Parapsicologo/parapsicologo-99.svg",
   "system": {
-    "id": "eF3gHi4jK6lM8nO0",
-    "abilityType": "class",
+    "id": 0,
+    "abilityType": "path",
     "preRequisite": "Trilha: Parapsicólogo",
     "description": "<p>Graças aos seus estudos, a capacidade de curar a mente humana de (quase) todas as mazelas está ao seu alcance. Você pode gastar <strong>uma ação de movimento</strong> e <strong>5 PE</strong> para remover todas as condições de medo ou mentais de uma pessoa adjacente (incluindo você mesmo).</p>",
     "chatDescription": "",

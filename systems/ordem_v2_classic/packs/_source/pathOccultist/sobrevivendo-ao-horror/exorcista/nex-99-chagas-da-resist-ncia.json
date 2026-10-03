@@ -3,13 +3,13 @@
   "type": "ability",
   "img": "systems/ordemparanormal/media/icons/abilities/class/occultist/Exorcista/exorcista-99.svg",
   "system": {
-    "id": "exo99nexJKL012",
-    "abilityType": "class",
+    "id": 0,
+    "abilityType": "path",
     "preRequisite": "Trilha: Exorcista",
     "description": "<p>Por meio de sua fé, sua mente consegue extrair forças de seu corpo para suportar qualquer agressão. Quando sua <strong>Sanidade</strong> é reduzida a <strong>0</strong>, você pode gastar <strong>10 PV</strong> para, em vez disso, ficar com <strong>SAN 1</strong>.</p>",
     "chatDescription": "",
     "activation": "reaction",
-    "cost": "10",
+    "cost": 0,
     "costType": "PE"
   },
   "effects": [],
