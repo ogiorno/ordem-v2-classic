@@ -5,11 +5,11 @@
   "system": {
     "id": 0,
     "abilityType": "paranormal",
-    "preRequisite": "Energia 1",
-    "description": "<p>Você pode encontrar esse conteúdo na <strong>página 47 do suplemento Sobrevivendo ao Horror</strong>.</p>",
+    "preRequisite": "",
+    "description": "<p>Você pode tentar manipular o caos do mundo ao seu redor, um ato que fornece grande poder às custas da ordem de sua mente. Quando faz um teste, você pode escolher tentar controlar o caos. Se fizer isso, você recebe @DisplayDice[qtd:1|sign:plus|dc:d20] nesse teste. Entretanto, se o teste for uma falha, ou se o resultado desse d20 adicional (use um dado de cor diferente para identificá-lo) for igual ou menor que 5, você perde 1d4 pontos de Sanidade.</p><p>Afinidade: você perde Sanidade se o teste for uma falha ou se o resultado do @DisplayDice[qtd:1|dc:d20] extra for 1 ou 2.</p>",
     "chatDescription": "",
-    "activation": "passive",
-    "cost": null,
+    "activation": "free",
+    "cost": 0,
     "costType": "PE"
   },
   "effects": [],

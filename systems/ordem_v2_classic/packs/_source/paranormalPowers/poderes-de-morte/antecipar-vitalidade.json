@@ -5,11 +5,11 @@
   "system": {
     "id": 0,
     "abilityType": "paranormal",
-    "preRequisite": "Morte 1",
-    "description": "<p>Você pode encontrar esse conteúdo na <strong>página 46 do suplemento Sobrevivendo ao Horror</strong>.</p>",
+    "preRequisite": "",
+    "description": "<p>Sua ligação com a Morte permite que você sacrifique sua vitalidade futura para auxiliar seu presente. Quando faz um teste, você pode acumular uma carga de antecipação para adicionar @DisplayDice[qtd:1|sign:plus|dc:d20] a esse teste. Você pode acumular um máximo de cargas de antecipação igual ao seu Vigor. Enquanto tiver uma carga de antecipação, em sua próxima ação de interlúdio dormir em vez de recuperar pontos de vida você perde uma dessas cargas.</p><p>Afinidade: você amplia sua capacidade de sacrificar o presente pelo futuro. O limite de cargas de antecipação que você pode acumular aumenta em +2 e você passa a perder 2 cargas por ação dormir.</p>",
     "chatDescription": "",
-    "activation": "passive",
-    "cost": null,
+    "activation": "free",
+    "cost": 0,
     "costType": "PE"
   },
   "effects": [],

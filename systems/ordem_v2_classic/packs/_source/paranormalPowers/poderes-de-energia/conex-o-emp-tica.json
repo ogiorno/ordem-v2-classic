@@ -6,7 +6,7 @@
     "id": 0,
     "abilityType": "paranormal",
     "preRequisite": "Energia 1",
-    "description": "<p>Você pode encontrar esse conteúdo na <strong>página 47 do suplemento Sobrevivendo ao Horror</strong>.</p>",
+    "description": "<p>Você consegue usar a Energia do Outro Lado para se conectar com objetos tecnológicos energizados. Você pode gastar uma ação completa e 2 PE para tocar um objeto elétrico que esteja ligado, como um celular, uma batedeira ou uma máquina de lavar roupa. Até o fim da cena, ou até deixar de tocá-lo, você pode conversar com o objeto como se ele fosse um ser senciente, e de algum jeito consegue escutar respostas. Um objeto tem percepção limitada de seus arredores, e sua personalidade e memórias são definidas apenas pelos arquivos ou programas que contém registrado em si; um objeto não tem lembranças do que ocorreu em seus arredores a não ser que tenha uma câmera e arquivos de vídeo em seu sistema, por exemplo. O objeto possui uma atitude inicial indiferente, mas pode ser persuadido com testes de Diplomacia (objetos normalmente têm Vontade 1, mas objetos particularmente sofisticados ou protegidos podem ter Vontade 2 ou 3, a critério do mestre). Apenas você é capaz de “ouvir” o objeto e precisa falar em voz alta para que ele te “escute”. Quando o efeito termina, o item emite um lamento enquanto experimenta uma sensação traumática de morte; se você tentar falar novamente com ele, sua atitude será hostil devido ao sofrimento ao qual foi exposto. Pré-requisito: Energia 1.</p><p>Afinidade: você recebe +5 em testes de perícias baseadas em Intelecto ou Presença com o item.</p>",
     "chatDescription": "",
     "activation": "complete",
     "cost": 2,

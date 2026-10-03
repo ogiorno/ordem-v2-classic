@@ -1,15 +1,15 @@
 {
-  "name": "Instinto Sanguinário",
+  "name": "Instintos Sanguinários",
   "type": "ability",
   "img": "systems/ordemparanormal/media/icons/abilities/paranormal/blood/instinto-sanguinario.svg",
   "system": {
     "id": 0,
     "abilityType": "paranormal",
-    "preRequisite": "Sangue 1",
-    "description": "<p>Você pode encontrar esse conteúdo na <strong>página 46 do suplemento Sobrevivendo ao Horror</strong>.</p>",
+    "preRequisite": "",
+    "description": "<p>Ao se conectar com o Sangue do Outro Lado, você desperta instintos animalescos paranormais. Você recebe visão no escuro e faro.</p><p>Afinidade: seus instintos aguçados transformam o terror da perseguição em uma tempestade viciante de adrenalina. Você não pode mais ser flanqueado, não fica desprevenido e recebe +5 em testes de resistência contra armadilhas da realidade ou paranormais.</p>",
     "chatDescription": "",
     "activation": "passive",
-    "cost": null,
+    "cost": 0,
     "costType": "PE"
   },
   "effects": [],

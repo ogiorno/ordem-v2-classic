@@ -6,7 +6,7 @@
     "id": 0,
     "abilityType": "paranormal",
     "preRequisite": "Conhecimento 1",
-    "description": "<p>Você pode encontrar esse conteúdo na <strong>página 46-47 do suplemento Sobrevivendo ao Horror</strong>.</p>",
+    "description": "<p>Saber tudo é perder tudo. Contudo, não se deve subestimar a capacidade de adaptação humana. Ao se conectar com o Conhecimento do Outro Lado, você usa as experiências grotescas que já viveu para desligar suas emoções e blindar sua mente. Quando faz um teste contra uma condição de medo, você pode gastar 2 PE para rolar o teste novamente. Você deve aceitar o resultado da segunda rolagem, mesmo que seja menor que a primeira. Pré-requisito: Conhecimento 1.</p><p>Afinidade: você pode usar esse poder depois de saber se passou no teste, além de poder escolher a melhor rolagem entre as duas.</p>",
     "chatDescription": "",
     "activation": "reaction",
     "cost": 2,
