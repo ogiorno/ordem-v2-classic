@@ -6,13 +6,59 @@
     "id": 0,
     "abilityType": "path",
     "preRequisite": "Trilha: Monstruoso (Conhecimento)",
-    "description": "<p>Conforme sua humanidade &eacute; substitu&iacute;da pela Entidade, as mudan&ccedil;as em seu corpo e mente se intensificam. A resist&ecirc;ncia a dano que voc&ecirc; recebe por executar a etapa ritual&iacute;stica de seu elemento aumenta para <strong>1d20</strong>, enquanto a penalidade em per&iacute;cias aumenta para <strong>@DisplayDice[qtd:2|sign:minus|dc:d20]</strong>.</p><p><strong>Conhecimento:</strong> Voc&ecirc; est&aacute; sempre vestindo joias de ouro puro ou roupas com ouro em suas linhas. Seu corpo est&aacute; quase inteiramente coberto de palavras que evocam medo, como famosas &uacute;ltimas frases ou pedidos de socorro. Voc&ecirc; j&aacute; sabe que &eacute; superior a todos eles. Seu Intelecto aumenta em +1. Al&eacute;m disso, voc&ecirc; pode usar Intelecto como atributo-chave para Engana&ccedil;&atilde;o e para calcular seus pontos de esfor&ccedil;o (em vez de Presen&ccedil;a).</p>",
+    "description": "<p>Conforme sua humanidade é substituída pela Entidade, as mudanças em seu corpo e mente se intensificam. A resistência a dano que você recebe por executar a etapa ritualística de seu elemento aumenta para 10, enquanto a penalidade em perícias aumenta para @DisplayDice[qtd:2|sign:minus|dc:d20]. Por fim, quando executa sua etapa ritualística, você recebe os efeitos adicionais incluídos na descrição de seu elemento, a seguir.</p><p>CONHECIMENTO: Você está sempre vestindo joias de ouro puro ou roupas com ouro em suas linhas. Seu corpo está quase inteiramente coberto de palavras que evocam medo, como famosas últimas frases ou pedidos de socorro. Você já sabe que é superior a todos eles. Seu Intelecto aumenta em +1. Além disso, você pode usar Intelecto como atributo-chave para Enganação e para calcular seus pontos de esforço (em vez de Presença).</p>",
     "chatDescription": "",
     "activation": "passive",
-    "cost": "",
+    "cost": 0,
     "costType": "PE"
   },
-  "effects": [],
+  "effects": [
+    {
+      "name": "Etapa ritualística (Conhecimento): Intelecto +1",
+      "img": "icons/svg/aura.svg",
+      "_id": "7LJznHuI6QGudcjt",
+      "type": "base",
+      "system": {
+        "changes": [
+          {
+            "key": "system.attributes.int.value",
+            "type": "add",
+            "value": 1,
+            "phase": "initial",
+            "priority": null
+          }
+        ]
+      },
+      "disabled": true,
+      "start": null,
+      "duration": {
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
+      },
+      "description": "Ligue este efeito no dia em que cumprir a etapa ritualística.",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "showIcon": 1,
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "coreVersion": "14.365",
+        "systemId": "ordem_v2_classic",
+        "systemVersion": "7.3.3",
+        "createdTime": 1784900000000,
+        "modifiedTime": 1784900000000,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!items.effects!64KOdQaXv01378TZ.7LJznHuI6QGudcjt"
+    }
+  ],
   "folder": "T7nHXNBc4tUJFZLO",
   "flags": {},
   "_stats": {

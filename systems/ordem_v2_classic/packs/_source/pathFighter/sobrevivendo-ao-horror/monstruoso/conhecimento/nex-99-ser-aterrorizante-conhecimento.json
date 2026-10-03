@@ -6,13 +6,104 @@
     "id": 0,
     "abilityType": "path",
     "preRequisite": "Trilha: Monstruoso (Conhecimento)",
-    "description": "<p>Voc&ecirc; foi transformado no habitat perfeito para a entidade que reside no interior de seu corpo e mente. Os efeitos por executar sua etapa ritual&iacute;stica se tornam permanentes (mas voc&ecirc; ainda precisa execut&aacute;-la para evitar sentir fome e sede) e voc&ecirc; passa a ser considerado uma criatura paranormal para efeitos de habilidades e itens. Al&eacute;m disso, a resist&ecirc;ncia a dano que voc&ecirc; recebe por essa trilha aumenta para <strong>20</strong>.</p><p><strong>Conhecimento:</strong> Sua boca desapareceu ap&oacute;s voc&ecirc; costur&aacute;-la com fios dourados, pois ningu&eacute;m &eacute; digno do seu ensinamento. Seus olhos aumentaram e ficaram mais profundos, com escleras negras. A verdade que voc&ecirc; deve esquecer est&aacute; atr&aacute;s de uma porta dourada. Sua For&ccedil;a diminui em &ndash;1 e seu Intelecto aumenta em +1. Al&eacute;m disso, voc&ecirc; recebe Percep&ccedil;&atilde;o &agrave;s Cegas e aprende um ritual de Conhecimento de 4&ordm; c&iacute;rculo a sua escolha. Entretanto, sempre que conjura esse ritual, voc&ecirc; perde a mem&oacute;ria de tudo que vivenciou desde o in&iacute;cio da cena.</p>",
+    "description": "<p>Você foi transformado no habitat perfeito para a entidade que reside no interior de seu corpo e mente. Os efeitos por executar sua etapa ritualística se tornam permanentes (mas você ainda precisa executá-la para evitar sentir fome e sede) e você passa a ser considerado uma criatura paranormal para efeitos de habilidades e itens. Além disso, a resistência a dano que você recebe por essa trilha aumenta para 20 e você recebe os seguintes efeitos adicionais associados ao seu elemento.</p><p>CONHECIMENTO: Sua boca desapareceu após você costurá-la com fios dourados, pois ninguém é digno do seu ensinamento. Seus olhos aumentaram e ficaram mais profundos, com escleras negras. Todos os seus membros se alongaram e ficaram mais finos. Suas tatuagens e textos se converteram em sigilos do Outro Lado. A verdade que você deve esquecer está atrás de uma porta dourada, e você consegue enxergá-la, mas sabe que ao abri-la, irá perder tudo. Sua Força diminui em –1 e seu Intelecto aumenta em +1. Além disso, você recebe Percepção às Cegas e aprende um ritual de Conhecimento de 4º círculo a sua escolha. Entretanto, sempre que conjura esse ritual, você perde a memória de tudo que vivenciou desde o início da cena.</p>",
     "chatDescription": "",
     "activation": "passive",
-    "cost": "",
+    "cost": 0,
     "costType": "PE"
   },
-  "effects": [],
+  "effects": [
+    {
+      "name": "Ser Aterrorizante (Conhecimento): Força −1",
+      "img": "icons/svg/aura.svg",
+      "_id": "MXkmfrYXrRE2vogY",
+      "type": "base",
+      "system": {
+        "changes": [
+          {
+            "key": "system.attributes.str.value",
+            "type": "add",
+            "value": -1,
+            "phase": "initial",
+            "priority": null
+          }
+        ]
+      },
+      "disabled": false,
+      "start": null,
+      "duration": {
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
+      },
+      "description": "",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "showIcon": 1,
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "coreVersion": "14.365",
+        "systemId": "ordem_v2_classic",
+        "systemVersion": "7.3.3",
+        "createdTime": 1784900000000,
+        "modifiedTime": 1784900000000,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!items.effects!fKpJmP51DR5FUjZR.MXkmfrYXrRE2vogY"
+    },
+    {
+      "name": "Ser Aterrorizante (Conhecimento): Intelecto +1",
+      "img": "icons/svg/aura.svg",
+      "_id": "GbzYZtEVrrzP6eUC",
+      "type": "base",
+      "system": {
+        "changes": [
+          {
+            "key": "system.attributes.int.value",
+            "type": "add",
+            "value": 1,
+            "phase": "initial",
+            "priority": null
+          }
+        ]
+      },
+      "disabled": false,
+      "start": null,
+      "duration": {
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
+      },
+      "description": "",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "showIcon": 1,
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "coreVersion": "14.365",
+        "systemId": "ordem_v2_classic",
+        "systemVersion": "7.3.3",
+        "createdTime": 1784900000000,
+        "modifiedTime": 1784900000000,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!items.effects!fKpJmP51DR5FUjZR.GbzYZtEVrrzP6eUC"
+    }
+  ],
   "folder": "T7nHXNBc4tUJFZLO",
   "flags": {},
   "_stats": {

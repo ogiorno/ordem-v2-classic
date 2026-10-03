@@ -10,7 +10,7 @@
     "description": "<p>Voc&ecirc; recebe +1 PV para cada 5% de NEX e, quando faz um bloqueio, soma seu Vigor na resist&ecirc;ncia a dano recebida.</p>",
     "chatDescription": "",
     "activation": "passive",
-    "cost": "",
+    "cost": 0,
     "costType": "PE"
   },
   "effects": [
@@ -25,7 +25,7 @@
           {
             "key": "system.PV.bonus",
             "type": "add",
-            "value": "@NEX.value / 5",
+            "value": "@nivel.value",
             "phase": "initial",
             "priority": null
           }

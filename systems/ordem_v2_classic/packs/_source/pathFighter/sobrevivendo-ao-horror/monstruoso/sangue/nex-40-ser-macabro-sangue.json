@@ -6,10 +6,10 @@
     "id": 0,
     "abilityType": "path",
     "preRequisite": "Trilha: Monstruoso (Sangue)",
-    "description": "<p>Conforme sua humanidade &eacute; substitu&iacute;da pela Entidade, as mudan&ccedil;as em seu corpo e mente se intensificam. A resist&ecirc;ncia a dano que voc&ecirc; recebe por executar a etapa ritual&iacute;stica de seu elemento aumenta para <strong>1d20</strong>, enquanto a penalidade em per&iacute;cias aumenta para <strong>@DisplayDice[qtd:2|sign:minus|dc:d20]</strong>.</p><p><strong>Sangue:</strong> Voc&ecirc; veste poucas roupas, expondo o m&aacute;ximo de sua pele sens&iacute;vel ao ambiente que puder. Seu corpo j&aacute; est&aacute; repleto de cicatrizes e feridas. Devorar qualquer coisa que n&atilde;o seja carne ou sangue n&atilde;o &eacute; capaz de conter sua fome. Voc&ecirc; pode usar For&ccedil;a para calcular seus pontos de esfor&ccedil;o (em vez de Presen&ccedil;a). Al&eacute;m disso, pode gastar uma a&ccedil;&atilde;o de movimento e 1 ou mais PE (limitado por sua For&ccedil;a) para recuperar 1d8 PV por PE gasto.</p>",
+    "description": "<p>Conforme sua humanidade é substituída pela Entidade, as mudanças em seu corpo e mente se intensificam. A resistência a dano que você recebe por executar a etapa ritualística de seu elemento aumenta para 10, enquanto a penalidade em perícias aumenta para @DisplayDice[qtd:2|sign:minus|dc:d20]. Por fim, quando executa sua etapa ritualística, você recebe os efeitos adicionais incluídos na descrição de seu elemento, a seguir.</p><p>SANGUE: Você veste poucas roupas, expondo o máximo de sua pele sensível ao ambiente que puder. Seu corpo já está repleto de cicatrizes e feridas, muitas causadas por você mesmo para saborear a dor. Devorar qualquer coisa que não seja carne ou sangue não é capaz de conter sua fome. Você pode usar Força para calcular seus pontos de esforço (em vez de Presença). Além disso, pode gastar uma ação de movimento e 1 ou mais PE (limitado por sua Força) para recuperar 1d8 PV por PE gasto.</p>",
     "chatDescription": "",
     "activation": "movement",
-    "cost": "",
+    "cost": 1,
     "costType": "PE"
   },
   "effects": [],

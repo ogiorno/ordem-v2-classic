@@ -6,13 +6,104 @@
     "id": 0,
     "abilityType": "path",
     "preRequisite": "Trilha: Monstruoso (Sangue)",
-    "description": "<p>Voc&ecirc; foi transformado no habitat perfeito para a entidade que reside no interior de seu corpo e mente. Os efeitos por executar sua etapa ritual&iacute;stica se tornam permanentes (mas voc&ecirc; ainda precisa execut&aacute;-la para evitar sentir fome e sede) e voc&ecirc; passa a ser considerado uma criatura paranormal para efeitos de habilidades e itens. Al&eacute;m disso, a resist&ecirc;ncia a dano que voc&ecirc; recebe por essa trilha aumenta para <strong>20</strong>.</p><p><strong>Sangue:</strong> Voc&ecirc; se move como uma criatura bestial; n&atilde;o existe sensibilidade ou empatia. Apenas o instinto e a necessidade de consumir mais. Seu Intelecto diminui em &ndash;1 e sua For&ccedil;a aumenta em +1. Sempre que causa dano com sua mordida em um ser, voc&ecirc; recupera 5 PV (esse ganho tamb&eacute;m &eacute; multiplicado em um acerto cr&iacute;tico). Al&eacute;m disso, voc&ecirc; aprende o ritual <em>Forma Monstruosa</em>. Entretanto, seu desejo de assumir essa forma pode sobrepujar sua pr&oacute;pria vontade; sempre que sofre dano, voc&ecirc; deve fazer um teste de Vontade (DT 10 + o dano sofrido). Se falhar e n&atilde;o estiver sob efeito de <em>Forma Monstruosa</em>, sua pr&oacute;xima a&ccedil;&atilde;o padr&atilde;o deve ser conjurar esse ritual (se n&atilde;o puder, voc&ecirc; perde a a&ccedil;&atilde;o).</p>",
+    "description": "<p>Você foi transformado no habitat perfeito para a entidade que reside no interior de seu corpo e mente. Os efeitos por executar sua etapa ritualística se tornam permanentes (mas você ainda precisa executá-la para evitar sentir fome e sede) e você passa a ser considerado uma criatura paranormal para efeitos de habilidades e itens. Além disso, a resistência a dano que você recebe por essa trilha aumenta para 20 e você recebe os seguintes efeitos adicionais associados ao seu elemento.</p><p>SANGUE: Você se move como uma criatura bestial; não existe sensibilidade ou empatia. Apenas o instinto e a necessidade de consumir mais. Se o resultado é devorar, essa é a decisão correta. Pensamentos são esporádicos e raros, como pequenos sustos de humanidade que são engolidos pelo fluxo que banha o Outro Lado. Seu Intelecto diminui em –1 e sua Força aumenta em +1. Sempre que causa dano com sua mordida em um ser, você recupera 5 PV (esse ganho também é multiplicado em um acerto crítico). Além disso, você aprende o ritual Forma Monstruosa. Entretanto, seu desejo de assumir essa forma pode sobrepujar sua própria vontade; sempre que sofre dano, você deve fazer um teste de Vontade (DT 10 + o dano sofrido). Se falhar e não estiver sob efeito de Forma Monstruosa, sua próxima ação padrão deve ser conjurar esse ritual (se não puder, você perde a ação).</p>",
     "chatDescription": "",
     "activation": "passive",
-    "cost": "",
+    "cost": 0,
     "costType": "PE"
   },
-  "effects": [],
+  "effects": [
+    {
+      "name": "Ser Aterrorizante (Sangue): Intelecto −1",
+      "img": "icons/svg/aura.svg",
+      "_id": "4qBuvoYUHw3t5aWT",
+      "type": "base",
+      "system": {
+        "changes": [
+          {
+            "key": "system.attributes.int.value",
+            "type": "add",
+            "value": -1,
+            "phase": "initial",
+            "priority": null
+          }
+        ]
+      },
+      "disabled": false,
+      "start": null,
+      "duration": {
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
+      },
+      "description": "",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "showIcon": 1,
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "coreVersion": "14.365",
+        "systemId": "ordem_v2_classic",
+        "systemVersion": "7.3.3",
+        "createdTime": 1784900000000,
+        "modifiedTime": 1784900000000,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!items.effects!GG6jZNUwnrsyXoLe.4qBuvoYUHw3t5aWT"
+    },
+    {
+      "name": "Ser Aterrorizante (Sangue): Força +1",
+      "img": "icons/svg/aura.svg",
+      "_id": "XAdmgHJYIxglxvAw",
+      "type": "base",
+      "system": {
+        "changes": [
+          {
+            "key": "system.attributes.str.value",
+            "type": "add",
+            "value": 1,
+            "phase": "initial",
+            "priority": null
+          }
+        ]
+      },
+      "disabled": false,
+      "start": null,
+      "duration": {
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
+      },
+      "description": "",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "showIcon": 1,
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "coreVersion": "14.365",
+        "systemId": "ordem_v2_classic",
+        "systemVersion": "7.3.3",
+        "createdTime": 1784900000000,
+        "modifiedTime": 1784900000000,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!items.effects!GG6jZNUwnrsyXoLe.XAdmgHJYIxglxvAw"
+    }
+  ],
   "folder": "RUYBbiKm4OwqxxFC",
   "flags": {},
   "_stats": {

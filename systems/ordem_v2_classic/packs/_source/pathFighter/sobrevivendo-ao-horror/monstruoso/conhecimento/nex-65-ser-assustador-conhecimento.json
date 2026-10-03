@@ -6,13 +6,59 @@
     "id": 0,
     "abilityType": "path",
     "preRequisite": "Trilha: Monstruoso (Conhecimento)",
-    "description": "<p>Como um parasita, voc&ecirc; sente a Entidade andar por todo o seu corpo, fazendo de voc&ecirc; uma morada. A resist&ecirc;ncia a dano que voc&ecirc; recebe por executar a etapa ritual&iacute;stica de seu elemento aumenta para <strong>15</strong>, mas sua Presen&ccedil;a &eacute; reduzida permanentemente em 1.</p><p><strong>Conhecimento:</strong> Voc&ecirc; injeta e ingere ouro l&iacute;quido esporadicamente e n&atilde;o h&aacute; mais espa&ccedil;o para tatuagens. Voc&ecirc; pode deixar de ser treinado em uma de suas per&iacute;cias para receber um n&uacute;mero de dados de b&ocirc;nus igual ao seu Intelecto. At&eacute; o fim da cena, sempre que fizer um teste, voc&ecirc; pode gastar um desses dados de b&ocirc;nus para receber @DisplayDice[qtd:1|sign:plus|dc:d20] nesse teste. Voc&ecirc; recupera todas as per&iacute;cias treinadas perdidas dessa forma ao final de seu pr&oacute;ximo interl&uacute;dio.</p>",
+    "description": "<p>Como um parasita, você sente a Entidade andar por todo o seu corpo, fazendo de você uma morada. A resistência a dano que você recebe por executar a etapa ritualística de seu elemento aumenta para 15, mas sua Presença é reduzida permanentemente em 1. Por fim, quando executa sua etapa ritualística, você recebe os seguintes efeitos adicionais associados ao seu elemento.</p><p>CONHECIMENTO: Você injeta e ingere ouro líquido esporadicamente e não há mais espaço para tatuagens. Ler, reler e escrever novos registros faz parte da sua rotina extremamente organizada e metódica. Você pode deixar de ser treinado em uma de suas perícias para receber um número de dados de bônus igual ao seu Intelecto. Até o fim da cena, sempre que fizer um teste, você pode gastar um desses dados de bônus para receber @DisplayDice[qtd:1|sign:plus|dc:d20] nesse teste. Você recupera todas as perícias treinadas perdidas dessa forma ao final de seu próximo interlúdio.</p>",
     "chatDescription": "",
     "activation": "passive",
-    "cost": "",
+    "cost": 0,
     "costType": "PE"
   },
-  "effects": [],
+  "effects": [
+    {
+      "name": "Ser Assustador: Presença −1",
+      "img": "icons/svg/aura.svg",
+      "_id": "cvEuTgAHcB0xhfO8",
+      "type": "base",
+      "system": {
+        "changes": [
+          {
+            "key": "system.attributes.pre.value",
+            "type": "add",
+            "value": -1,
+            "phase": "initial",
+            "priority": null
+          }
+        ]
+      },
+      "disabled": false,
+      "start": null,
+      "duration": {
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
+      },
+      "description": "",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "showIcon": 1,
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "coreVersion": "14.365",
+        "systemId": "ordem_v2_classic",
+        "systemVersion": "7.3.3",
+        "createdTime": 1784900000000,
+        "modifiedTime": 1784900000000,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!items.effects!hdDTPgezFqirAcS1.cvEuTgAHcB0xhfO8"
+    }
+  ],
   "folder": "T7nHXNBc4tUJFZLO",
   "flags": {},
   "_stats": {

@@ -7,10 +7,10 @@
     "id": 0,
     "abilityType": "path",
     "preRequisite": "Trilha: Agente Secreto",
-    "description": "<p>Escolha uma perícia entre <strong>Diplomacia</strong> ou <strong>Enganação</strong>. Você recebe treinamento na perícia escolhida ou, se já for treinado, recebe <strong>+2</strong> nela. Como parte do esforço conjunto da sua agência e da Ordem, no início de cada missão você recebe documentos que lhe fornecem privilégios jurídicos especiais. Esses documentos podem incluir a sua identidade verdadeira ou não, e podem ser individuais ou incluir os demais membros da sua equipe (confor\u0002me apropriado à missão). Os benefícios específicos desses documentos ficam a critério do mestre, mas em geral incluem acesso a locais restritos ou proibidos, permissão para portar armas de fogo e autoridade para assumir a jurisdição de investigações da polícia. Pessoas comuns não conseguem perceber que seus documentos são falsos, mas membros de agências de segurança ou indivíduos veteranos em <strong>Crime</strong> podem desconfiar de sua veracidade. Os documentos contam como itens operacionais que não ocupam espaço — mas cuidado para não perdê-los em locais onde novos não podem ser fornecidos!</p>",
+    "description": "<p>Escolha uma perícia entre <strong>Diplomacia</strong> ou <strong>Enganação</strong>. Você recebe treinamento na perícia escolhida ou, se já for treinado, recebe <strong>+2</strong> nela. Como parte do esforço conjunto da sua agência e da Ordem, no início de cada missão você recebe documentos que lhe fornecem privilégios jurídicos especiais. Esses documentos podem incluir a sua identidade verdadeira ou não, e podem ser individuais ou incluir os demais membros da sua equipe (conforme apropriado à missão). Os benefícios específicos desses documentos ficam a critério do mestre, mas em geral incluem acesso a locais restritos ou proibidos, permissão para portar armas de fogo e autoridade para assumir a jurisdição de investigações da polícia. Pessoas comuns não conseguem perceber que seus documentos são falsos, mas membros de agências de segurança ou indivíduos veteranos em <strong>Crime</strong> podem desconfiar de sua veracidade. Os documentos contam como itens operacionais que não ocupam espaço — mas cuidado para não perdê-los em locais onde novos não podem ser fornecidos!</p>",
     "chatDescription": "",
     "activation": "passive",
-    "cost": null,
+    "cost": 0,
     "costType": "PE"
   },
   "effects": [],

@@ -6,10 +6,10 @@
     "id": 0,
     "abilityType": "path",
     "preRequisite": "Trilha: Monstruoso (Morte)",
-    "description": "<p>Conforme sua humanidade &eacute; substitu&iacute;da pela Entidade, as mudan&ccedil;as em seu corpo e mente se intensificam. A resist&ecirc;ncia a dano que voc&ecirc; recebe por executar a etapa ritual&iacute;stica de seu elemento aumenta para <strong>1d20</strong>, enquanto a penalidade em per&iacute;cias aumenta para <strong>@DisplayDice[qtd:2|sign:minus|dc:d20]</strong>.</p><p><strong>Morte:</strong> Roupas modernas e complexas n&atilde;o parecem fazer sentido pra voc&ecirc;. Seus trajes s&atilde;o anacr&ocirc;nicos e simples. Voc&ecirc; recebe <strong>+5 em Intimida&ccedil;&atilde;o</strong> e pode usar Vigor para calcular seus pontos de esfor&ccedil;o (em vez de Presen&ccedil;a). Al&eacute;m disso, morre se iniciar quatro turnos morrendo na mesma cena (e n&atilde;o apenas tr&ecirc;s) e n&atilde;o precisa mais comer ou beber para viver, mas ainda sofre da fome paranormal causada por essa trilha.</p>",
+    "description": "<p>Conforme sua humanidade é substituída pela Entidade, as mudanças em seu corpo e mente se intensificam. A resistência a dano que você recebe por executar a etapa ritualística de seu elemento aumenta para 10, enquanto a penalidade em perícias aumenta para @DisplayDice[qtd:2|sign:minus|dc:d20]. Por fim, quando executa sua etapa ritualística, você recebe os efeitos adicionais incluídos na descrição de seu elemento, a seguir.</p><p>MORTE: Roupas modernas e complexas não parecem fazer sentido pra você. Seus trajes são anacrônicos e simples, às vezes adornado de cristais, esqueletos de pequenas criaturas pendurados, pedras, raízes e plantas mortas. Você recebe @DisplayDice[qtd:1|sign:plus|dc:d20] em Intimidação e pode usar Vigor para calcular seus pontos de esforço (em vez de Presença). Além disso, morre se iniciar quatro turnos morrendo na mesma cena (e não apenas três) e não precisa mais comer ou beber para viver, mas ainda sofre da fome paranormal causada por essa trilha.</p>",
     "chatDescription": "",
     "activation": "passive",
-    "cost": "",
+    "cost": 0,
     "costType": "PE"
   },
   "effects": [],

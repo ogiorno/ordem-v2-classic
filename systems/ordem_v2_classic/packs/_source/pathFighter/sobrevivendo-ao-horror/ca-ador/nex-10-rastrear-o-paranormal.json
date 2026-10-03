@@ -10,7 +10,7 @@
     "description": "<p>Você estudou criaturas paranormais o suficiente para saber como identificar seus sinais e seguir seus rastros. Você recebe treinamento em <strong>Sobrevivência</strong> ou, se já for treinado nesta perícia, recebe <strong>+2</strong> nela. Além disso, pode usar essa perícia no lugar de <strong>Ocultismo</strong> para identificar criaturas e no lugar de <strong>Investigação</strong> e <strong>Percepção</strong> para perceber e encontrar rastros, pistas e criaturas que tenham traços paranormais.</p>",
     "chatDescription": "",
     "activation": "passive",
-    "cost": "",
+    "cost": 0,
     "costType": "PE"
   },
   "effects": [],

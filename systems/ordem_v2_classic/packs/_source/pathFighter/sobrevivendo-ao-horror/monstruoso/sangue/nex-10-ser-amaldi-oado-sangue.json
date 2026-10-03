@@ -6,10 +6,10 @@
     "id": 0,
     "abilityType": "path",
     "preRequisite": "Trilha: Monstruoso (Sangue)",
-    "description": "<p>Voc&ecirc; se torna treinado em Ocultismo (se j&aacute; for treinado, em vez disso recebe +2 nessa per&iacute;cia). Uma vez por dia, voc&ecirc; precisa executar uma etapa ritual&iacute;stica desse elemento. Se fizer isso, at&eacute; o fim do dia voc&ecirc; recebe os efeitos descritos a seguir, conforme o elemento escolhido. Caso contr&aacute;rio, voc&ecirc; sofre de fome e sede nesse dia.</p><p><strong>Sangue:</strong> Suas presas ficam protuberantes e seus olhos se tornam vermelhos. Voc&ecirc; recebe resist&ecirc;ncia a bal&iacute;stico e Sangue 5 e faro e, quando faz um contra-ataque bem-sucedido, soma seu Vigor na rolagem de dano, mas sofre <strong>@DisplayDice[qtd:1|sign:minus|dc:d20]</strong> em Ci&ecirc;ncias e Intui&ccedil;&atilde;o.</p>",
+    "description": "<p>Em suas veias corre uma maldição paranormal que aos poucos o está transformando em um monstro. Você se torna treinado em Ocultismo (se já for treinado, em vez disso recebe +2 nessa perícia). Escolha um elemento paranormal entre Sangue, Morte, Conhecimento ou Energia. Uma vez por dia, você precisa executar uma etapa ritualística desse elemento (por exemplo, beber sangue humano para Sangue, inalar cinzas de mortos para Morte, tatuar palavras que causam medo para Conhecimento ou receber choques de cabos elétricos para Energia). Se fizer isso, até o fim do dia você recebe os efeitos descritos a seguir, conforme o elemento escolhido. Caso contrário, você sofre de fome e sede nesse dia (OPRPG, p. 292). Por fim, se adquirir afinidade com um elemento, deverá escolher aquele selecionado para esta habilidade.</p><p>SANGUE: Suas presas ficam protuberantes e seus olhos se tornam vermelhos. Você recebe resistência a balístico e Sangue 5 e faro e, quando faz um contra-ataque bem-sucedido, soma seu Vigor na rolagem de dano, mas sofre @DisplayDice[qtd:1|sign:minus|dc:d20] em Ciências e Intuição.</p>",
     "chatDescription": "",
     "activation": "passive",
-    "cost": "",
+    "cost": 0,
     "costType": "PE"
   },
   "effects": [],
