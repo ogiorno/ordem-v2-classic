@@ -5,11 +5,11 @@
   "system": {
     "id": 0,
     "abilityType": "class",
-    "preRequisite": "",
-    "description": "<p>Você pode encontrar esse conteúdo na <strong>página 22 do suplemento Sobrevivendo ao Horror</strong>.</p>",
+    "preRequisite": "Treinado em Intuição",
+    "description": "<p>Você estudou técnicas de “leitura fria”, a capacidade de analisar e compreender uma pessoa através de suas mais sutis reações. Uma vez em cada interlúdio, se passar alguns minutos interagindo com uma pessoa, ou mesmo observando-a no mesmo ambiente, você pode fazer três perguntas pessoais sobre ela, tais como “Qual seu filme favorito?”, “Qual sua profissão?” “Tem algum animal de estimação?”. O mestre pode responder com a verdade ou se negar a responder, mas, para cada pergunta não respondida, você recebe 2 PE temporários que duram até o fim da missão. Esse poder só pode ser usado uma vez em cada pessoa, e apenas em NPCs. <em>Pré-requisito: treinado em Intuição.</em></p>",
     "chatDescription": "",
     "activation": "passive",
-    "cost": "",
+    "cost": 0,
     "costType": "PE"
   },
   "effects": [],

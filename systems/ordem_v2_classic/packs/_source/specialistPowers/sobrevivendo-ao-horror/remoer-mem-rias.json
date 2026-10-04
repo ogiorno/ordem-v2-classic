@@ -5,11 +5,11 @@
   "system": {
     "id": 0,
     "abilityType": "class",
-    "preRequisite": "",
-    "description": "<p>Você pode encontrar esse conteúdo na <strong>página 23 do suplemento Sobrevivendo ao Horror</strong>.</p>",
+    "preRequisite": "Intelecto 1",
+    "description": "<p>Sua mente está constantemente revivendo memórias do passado, sejam elas boas ou ruins. Uma vez por cena, quando faz um teste de perícia baseada em Intelecto ou Presença, você pode gastar 2 PE para substituir esse teste por um teste de Intelecto com DT 15. <em>Pré-requisito: Int 1.</em></p>",
     "chatDescription": "",
-    "activation": "reaction",
-    "cost": "2",
+    "activation": "free",
+    "cost": 2,
     "costType": "PE"
   },
   "effects": [],

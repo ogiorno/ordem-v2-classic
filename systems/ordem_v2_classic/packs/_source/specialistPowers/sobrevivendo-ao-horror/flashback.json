@@ -6,10 +6,10 @@
     "id": 0,
     "abilityType": "class",
     "preRequisite": "",
-    "description": "<p>Você pode encontrar esse conteúdo na <strong>página 22 do suplemento Sobrevivendo ao Horror</strong>.</p>",
+    "description": "<p>Um novo trauma recente desbloqueia um conhecimento adormecido. Talvez fosse uma memória enterrada fundo em sua mente, ou uma habilidade desenvolvida por seu cérebro como um mecanismo de defesa. Escolha uma origem que não seja a sua. Você recebe o poder dessa origem.</p>",
     "chatDescription": "",
     "activation": "passive",
-    "cost": "",
+    "cost": 0,
     "costType": "PE"
   },
   "effects": [],

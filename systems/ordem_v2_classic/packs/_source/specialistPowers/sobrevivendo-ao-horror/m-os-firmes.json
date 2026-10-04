@@ -5,8 +5,8 @@
   "system": {
     "id": 0,
     "abilityType": "class",
-    "preRequisite": "",
-    "description": "<p>Você pode encontrar esse conteúdo na <strong>página 22 do suplemento Sobrevivendo ao Horror</strong>.</p>",
+    "preRequisite": "Treinado em Furtividade",
+    "description": "<p>Quando há um caçador à espreita, derrubar sequer uma agulha pode ser o suficiente para revelar sua localização. E você não quer que isso aconteça. Quando faz um teste de Furtividade para esconder-se ou para executar uma ação discreta que envolva manipular um objeto (como em uma cena de furtividade), você pode gastar 2 PE para receber @DisplayDice[qtd:1|sign:plus|dc:d20] nesse teste. <em>Pré-requisito: treinado em Furtividade.</em></p>",
     "chatDescription": "",
     "activation": "free",
     "cost": 2,

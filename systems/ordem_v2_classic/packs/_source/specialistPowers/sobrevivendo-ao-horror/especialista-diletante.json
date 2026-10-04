@@ -5,11 +5,11 @@
   "system": {
     "id": 0,
     "abilityType": "class",
-    "preRequisite": "",
-    "description": "<p>Você pode encontrar esse conteúdo na <strong>página 22 do suplemento Sobrevivendo ao Horror</strong>.</p>",
+    "preRequisite": "NEX 30%",
+    "description": "<p>A vida lhe ensinou que todo tipo de conhecimento pode ser útil. Você aprende um poder que não pertença à sua classe (exceto poderes de trilha ou paranormais), à sua escolha, cujos pré-requisitos possa cumprir. <em>Pré-requisito: NEX 30%.</em></p>",
     "chatDescription": "",
     "activation": "passive",
-    "cost": "",
+    "cost": 0,
     "costType": "PE"
   },
   "effects": [],

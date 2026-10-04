@@ -5,11 +5,11 @@
   "system": {
     "id": 0,
     "abilityType": "class",
-    "preRequisite": "",
-    "description": "<p>Você pode encontrar esse conteúdo na <strong>página 22 do suplemento Sobrevivendo ao Horror</strong>.</p>",
+    "preRequisite": "Treinado em Crime",
+    "description": "<p>Ao longo de sua vida, você fez amizades úteis com pessoas de vários tipos em muitos lugares. Você pode usar uma ação de interlúdio para acionar seus contatos locais. Você recebe um aliado de um tipo à sua escolha (veja OPRPG, p. 170), que lhe acompanha até o fim da missão ou até ser dispensado. Você só pode ter um desses aliados por vez, e o mestre tem a palavra final sobre a disponibilidade de cada aliado. <em>Pré-requisito: treinado em Crime.</em></p>",
     "chatDescription": "",
-    "activation": "",
-    "cost": "",
+    "activation": "passive",
+    "cost": 0,
     "costType": "PE"
   },
   "effects": [],

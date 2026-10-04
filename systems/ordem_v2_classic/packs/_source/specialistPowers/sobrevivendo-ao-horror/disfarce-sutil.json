@@ -5,11 +5,11 @@
   "system": {
     "id": 0,
     "abilityType": "class",
-    "preRequisite": "",
-    "description": "<p>Você pode encontrar esse conteúdo na <strong>página 22 do suplemento Sobrevivendo ao Horror</strong>.</p>",
+    "preRequisite": "Presença 2, treinado em Enganação",
+    "description": "<p>Você sabe como se disfarçar rapidamente, usando pequenos detalhes para alterar sua aparência. Quando faz um disfarce em si mesmo usando Enganação, você pode gastar 1 PE para se disfarçar como uma ação completa e sem necessidade de um kit de disfarces (se usar um kit, recebe +5 no teste). <em>Pré-requisitos: Pre 2, treinado em Enganação.</em></p>",
     "chatDescription": "",
     "activation": "complete",
-    "cost": "1",
+    "cost": 1,
     "costType": "PE"
   },
   "effects": [],

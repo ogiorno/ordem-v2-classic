@@ -5,11 +5,11 @@
   "system": {
     "id": 0,
     "abilityType": "class",
-    "preRequisite": "",
-    "description": "<p>Você pode encontrar esse conteúdo na <strong>página 23 do suplemento Sobrevivendo ao Horror</strong>.</p>",
+    "preRequisite": "Treinado em Investigação",
+    "description": "<p>A ansiedade de correr contra o relógio o deixa mais eficiente. Uma vez por cena de investigação, você pode gastar 5 PE para coordenar os esforços de seus companheiros. A urgência da investigação aumenta em 1 rodada, e durante esta rodada adicional todos os personagens (incluindo você) recebem +2 em testes de perícia. <em>Pré-requisito: treinado em Investigação.</em></p>",
     "chatDescription": "",
-    "activation": "passive",
-    "cost": "5",
+    "activation": "default",
+    "cost": 5,
     "costType": "PE"
   },
   "effects": [],
