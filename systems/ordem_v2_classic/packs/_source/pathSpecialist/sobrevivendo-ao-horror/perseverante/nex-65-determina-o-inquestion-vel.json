@@ -7,7 +7,7 @@
     "abilityType": "path",
     "preRequisite": "Trilha: Perseverante",
     "description": "<p>Nos momentos mais sombrios, você consegue encontrar em seu interior a força para perseverar. Uma vez por cena, você pode gastar <strong>5 PE</strong> e uma <strong>ação padrão</strong> para remover uma condição de <strong>medo</strong>, <strong>mental</strong> ou de <strong>paralisia</strong> que esteja lhe afligindo. A critério do mestre, certas condições, como paralisia causada por uma doença, não podem ser removidas por essa habilidade.</p>",
-    "cost": "3",
+    "cost": 5,
     "costType": "PE",
     "activation": "default"
   },

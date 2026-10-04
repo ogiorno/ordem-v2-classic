@@ -9,7 +9,7 @@
     "description": "<p>Entre protótipos e itens encontrados durante a missão, sua mochila sempre pode ter a ferramenta certa para a ocasião. Você pode gastar uma <strong>ação completa</strong> e <strong>5 PE</strong> para “produzir” um item de até <strong>categoria III</strong> (exceto itens paranormais). O item pode ser um protótipo em que você estava trabalhando, um item encontrado anteriormente na missão ou qualquer outra justificativa aprovada pelo mestre. O item permanece em funcionamento até o fim da cena, quando então deixa de funcionar permanentemente (fica sem energia ou munição, uma peça fundamental se gasta ou quebra etc).</p>",
     "chatDescription": "",
     "activation": "complete",
-    "cost": "5",
+    "cost": 5,
     "costType": "PE"
   },
   "effects": [],

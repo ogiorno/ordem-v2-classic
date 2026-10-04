@@ -9,7 +9,7 @@
     "description": "<p>Seu instinto de sobrevivência lhe impulsiona para desprender as mais desesperadas fugas. Você recebe <strong>@DisplayDice[qtd:1|sign:plus|dc:d20]</strong> em testes de perícia para fugir de um inimigo (seja em uma perseguição ou não). Além disso, em <strong>cenas de perseguição</strong>, se você for a presa, pode acumular até 4 falhas antes de ser pego.</p>",
     "chatDescription": "",
     "activation": "passive",
-    "cost": "",
+    "cost": 0,
     "costType": "PE"
   },
   "effects": [],

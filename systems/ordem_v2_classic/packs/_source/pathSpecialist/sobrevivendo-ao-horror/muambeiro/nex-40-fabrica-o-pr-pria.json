@@ -9,7 +9,7 @@
     "description": "<p>Você desenvolveu suas próprias técnicas para fabricar equipamentos rapidamente. Você leva apenas metade do tempo para fabricar itens mundanos. Ou seja, com uma ação de manutenção pode fabricar duas munições, explosivos e demais consumíveis, e precisa de apenas uma ação de manutenção para armas, proteções e demais equipamentos gerais (itens modificados ou paranormais não são afetados por esta habilidade).</p>",
     "chatDescription": "",
     "activation": "passive",
-    "cost": "",
+    "cost": 0,
     "costType": "PE"
   },
   "effects": [],

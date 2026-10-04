@@ -9,10 +9,56 @@
     "description": "<p>Você aprendeu um ofício útil e desenvolveu métodos para ter sempre à mão o que precisa para praticá-lo. Você recebe treinamento em uma <strong>Profissão</strong> à sua escolha entre armeiro, engenheiro ou químico, e recebe +5 em sua capacidade de carga. Além disso, quando fabrica um item improvisado a DT é reduzida em –10 (em vez de –5).</p>",
     "chatDescription": "",
     "activation": "passive",
-    "cost": "",
+    "cost": 0,
     "costType": "PE"
   },
-  "effects": [],
+  "effects": [
+    {
+      "name": "Mascate (+5 espaços de carga)",
+      "img": "icons/svg/aura.svg",
+      "_id": "PvhwSIdEKbCsqUyn",
+      "type": "base",
+      "system": {
+        "changes": [
+          {
+            "key": "system.spaces.bonus.max",
+            "type": "add",
+            "value": 5,
+            "phase": "initial",
+            "priority": null
+          }
+        ]
+      },
+      "disabled": false,
+      "start": null,
+      "duration": {
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
+      },
+      "description": "",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "showIcon": 1,
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "coreVersion": "14.365",
+        "systemId": "ordem_v2_classic",
+        "systemVersion": "7.3.3",
+        "createdTime": 1784900000000,
+        "modifiedTime": 1784900000000,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!items.effects!VfxD1TrgeYBdjJp0.PvhwSIdEKbCsqUyn"
+    }
+  ],
   "folder": "5dbEqkTRU9YiATQg",
   "flags": {},
   "_stats": {

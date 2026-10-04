@@ -7,7 +7,7 @@
     "id": 0,
     "abilityType": "path",
     "preRequisite": "",
-    "description": "<p>Voc&ecirc; pode improvisar equipamentos com materiais ao seu redor. Escolha um equipamento geral e gaste uma a&ccedil;&atilde;o completa e 2 PE, mais 2 PE por categoria do item escolhido. Voc&ecirc; cria uma vers&atilde;o funcional do equipamento, que segue suas regras de espa&ccedil;o e categoria como normal. Ao final da cena, seu equipamento impro\u0002visado se torna in&uacute;til.</p>",
+    "description": "<p>Voc&ecirc; pode improvisar equipamentos com materiais ao seu redor. Escolha um equipamento geral e gaste uma a&ccedil;&atilde;o completa e 2 PE, mais 2 PE por categoria do item escolhido. Voc&ecirc; cria uma vers&atilde;o funcional do equipamento, que segue suas regras de espa&ccedil;o e categoria como normal. Ao final da cena, seu equipamento improvisado se torna in&uacute;til.</p>",
     "chatDescription": "",
     "activation": "complete",
     "cost": 2,

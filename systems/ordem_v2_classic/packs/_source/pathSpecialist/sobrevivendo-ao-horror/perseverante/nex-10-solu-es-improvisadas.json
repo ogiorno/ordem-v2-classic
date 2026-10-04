@@ -9,7 +9,7 @@
     "description": "<p>Você não é um sobrevivente à toa. Quando as coisas dão errado, você consegue pensar em alguma solução inusitada. Você pode gastar <strong>2 PE</strong> para rolar novamente 1 dos dados de um teste recém-realizado (apenas uma vez por teste) e ficar com o melhor resultado entre as duas rolagens.</p>",
     "chatDescription": "",
     "activation": "free",
-    "cost": "2",
+    "cost": 2,
     "costType": "PE"
   },
   "effects": [],

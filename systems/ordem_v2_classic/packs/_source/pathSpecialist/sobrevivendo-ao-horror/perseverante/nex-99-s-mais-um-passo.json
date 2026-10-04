@@ -7,9 +7,9 @@
     "abilityType": "path",
     "preRequisite": "Trilha: Perseverante",
     "description": "<p>Você não chegou até aqui para morrer, e fará qualquer coisa para escapar com vida. <strong>Uma vez por rodada</strong>, quando sofre dano que reduziria seus PV a 0, você pode gastar <strong>5 PE</strong> para, em vez disso, ficar com 1 PV. Esta habilidade não funciona contra dano massivo.</p>",
-    "cost": "5",
+    "cost": 5,
     "costType": "PE",
-    "activation": ""
+    "activation": "reaction"
   },
   "effects": [],
   "folder": "AMgdnmCO4bzW70V9",

@@ -9,10 +9,101 @@
     "description": "<p>Tanto tempo passado entre livros e textos fortaleceu sua mente. Seu <strong>Intelecto</strong> aumenta em <strong>+1</strong> e você soma o valor desse atributo em seu total de <strong>PE</strong>. Além disso, escolha uma perícia qualquer. Você troca o atributo-base dessa perícia para Intelecto.</p>",
     "chatDescription": "",
     "activation": "passive",
-    "cost": "",
+    "cost": 0,
     "costType": "PE"
   },
-  "effects": [],
+  "effects": [
+    {
+      "name": "A Força do Saber (Intelecto +1)",
+      "img": "icons/svg/aura.svg",
+      "_id": "FR7Y0hm5b2U92EwP",
+      "type": "base",
+      "system": {
+        "changes": [
+          {
+            "key": "system.attributes.int.value",
+            "type": "add",
+            "value": 1,
+            "phase": "initial",
+            "priority": null
+          }
+        ]
+      },
+      "disabled": false,
+      "start": null,
+      "duration": {
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
+      },
+      "description": "",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "showIcon": 1,
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "coreVersion": "14.365",
+        "systemId": "ordem_v2_classic",
+        "systemVersion": "7.3.3",
+        "createdTime": 1784900000000,
+        "modifiedTime": 1784900000000,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!items.effects!NLbgukacG78oqOxX.FR7Y0hm5b2U92EwP"
+    },
+    {
+      "name": "A Força do Saber (+Intelecto em PE)",
+      "img": "icons/svg/aura.svg",
+      "_id": "1vmEcVJqwBFLHS37",
+      "type": "base",
+      "system": {
+        "changes": [
+          {
+            "key": "system.PE.bonus",
+            "type": "add",
+            "value": "@attributes.int.value + 1",
+            "phase": "initial",
+            "priority": null
+          }
+        ]
+      },
+      "disabled": false,
+      "start": null,
+      "duration": {
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
+      },
+      "description": "",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "showIcon": 1,
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "coreVersion": "14.365",
+        "systemId": "ordem_v2_classic",
+        "systemVersion": "7.3.3",
+        "createdTime": 1784900000000,
+        "modifiedTime": 1784900000000,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!items.effects!NLbgukacG78oqOxX.1vmEcVJqwBFLHS37"
+    }
+  ],
   "folder": "diewwdueVbtezoUg",
   "flags": {},
   "_stats": {
