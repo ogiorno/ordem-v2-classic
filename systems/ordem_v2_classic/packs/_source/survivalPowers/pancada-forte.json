@@ -1,21 +1,21 @@
 {
-  "name": "Pancada Forte",
+  "name": "Estágio 4 - Pancada Forte",
   "type": "ability",
   "_id": "Bd8HCQ7NjetfvTqC",
   "img": "systems/ordemparanormal/media/icons/abilities/class/survivor/pancada-forte.svg",
   "system": {
     "id": 0,
     "abilityType": "class",
-    "preRequisite": "",
-    "description": "<p>Você pode encontrar esse conteúdo na <strong>página 31 do suplemento Sobrevivendo ao Horror</strong>.</p>",
+    "preRequisite": "Trilha: Durão",
+    "description": "<p>Quando faz um ataque, você pode gastar 1 PE para receber @DisplayDice[qtd:1|sign:plus|dc:d20] no teste de ataque. Se você se tornar um combatente (veja “Treinamento Especial”), perde esta habilidade, mas reduz o custo de ativação de Ataque Especial em –1 PE.</p>",
     "chatDescription": "",
-    "activation": "reaction",
+    "activation": "free",
     "cost": 1,
     "costType": "PE"
   },
   "effects": [],
-  "folder": null,
-  "sort": 0,
+  "folder": "aQaqPff4hLO3gB3w",
+  "sort": 50000,
   "ownership": {
     "default": 0,
     "uX8kbsijC8bcpBa3": 3

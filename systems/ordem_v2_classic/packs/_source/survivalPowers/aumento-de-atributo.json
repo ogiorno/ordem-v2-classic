@@ -1,0 +1,35 @@
+{
+  "name": "Aumento de Atributo",
+  "type": "ability",
+  "_id": "W7IoptBarlDdoG0b",
+  "img": "systems/ordemparanormal/media/icons/abilities/class/survivor/empenho.svg",
+  "system": {
+    "id": 0,
+    "chatDescription": "",
+    "abilityType": "class",
+    "preRequisite": "",
+    "description": "<p>No 3º estágio, aumente um atributo a sua escolha em +1. Você não pode aumentar um atributo desta forma além de 3. Note que, se você aumentar Vigor, aumentará seus PV; se aumentar Presença, aumentará seus PE, e, se aumentar Intelecto, ganhará uma nova perícia treinada.</p>",
+    "activation": "passive",
+    "cost": 0,
+    "costType": "PE"
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 20000,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.365",
+    "systemId": "ordem_v2_classic",
+    "systemVersion": "7.3.3",
+    "createdTime": 1784900000000,
+    "modifiedTime": 1784900000000,
+    "lastModifiedBy": null,
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!W7IoptBarlDdoG0b"
+}

@@ -1,21 +1,21 @@
 {
-  "name": "Esperto",
+  "name": "Estágio 2 - Esperto",
   "type": "ability",
   "_id": "oLSymQN1wrnEbcyp",
   "img": "systems/ordemparanormal/media/icons/abilities/class/survivor/esperto.svg",
   "system": {
     "id": 0,
     "abilityType": "class",
-    "preRequisite": "",
-    "description": "<p>Você pode encontrar esse conteúdo na <strong>página 32 do suplemento Sobrevivendo ao Horror</strong>.</p>",
+    "preRequisite": "Trilha: Esperto",
+    "description": "<p>Você se torna treinado em uma perícia adicional a sua escolha.</p>",
     "chatDescription": "",
     "activation": "passive",
-    "cost": "",
+    "cost": 0,
     "costType": "PE"
   },
   "effects": [],
-  "folder": null,
-  "sort": 0,
+  "folder": "cUCkOk2pQGP1sEsw",
+  "sort": 60000,
   "ownership": {
     "default": 0,
     "uX8kbsijC8bcpBa3": 3

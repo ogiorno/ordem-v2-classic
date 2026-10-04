@@ -1,21 +1,21 @@
 {
-  "name": "Entendido",
+  "name": "Estágio 4 - Entendido",
   "type": "ability",
   "_id": "jNDnb1eqrYlA9pk2",
   "img": "systems/ordemparanormal/media/icons/abilities/class/survivor/entendido.svg",
   "system": {
     "id": 0,
     "abilityType": "class",
-    "preRequisite": "",
-    "description": "<p>Você pode encontrar esse conteúdo na <strong>página 32 do suplemento Sobrevivendo ao Horror</strong>.</p>",
+    "preRequisite": "Trilha: Esperto",
+    "description": "<p>Escolha duas perícias nas quais você é treinado (exceto Luta e Pontaria). Quando faz um teste de uma dessas perícias, você pode gastar 1 PE para somar +1d4 no resultado do teste. Se você se tornar um especialista (veja “Treinamento Especial”), perde esta habilidade, mas reduz o custo de ativação de Perito em –1 PE.</p>",
     "chatDescription": "",
-    "activation": "reaction",
+    "activation": "free",
     "cost": 1,
     "costType": "PE"
   },
   "effects": [],
-  "folder": null,
-  "sort": 0,
+  "folder": "cUCkOk2pQGP1sEsw",
+  "sort": 70000,
   "ownership": {
     "default": 0,
     "uX8kbsijC8bcpBa3": 3

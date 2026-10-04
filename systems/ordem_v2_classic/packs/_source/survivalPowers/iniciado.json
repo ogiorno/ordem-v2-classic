@@ -1,21 +1,21 @@
 {
-  "name": "Iniciado",
+  "name": "Estágio 4 - Iniciado",
   "type": "ability",
   "_id": "xW6IJ8kzVp4QO2MN",
   "img": "systems/ordemparanormal/media/icons/abilities/class/survivor/iniciado.svg",
   "system": {
     "id": 0,
     "abilityType": "class",
-    "preRequisite": "",
-    "description": "<p>Você pode encontrar esse conteúdo na <strong>página 32 do suplemento Sobrevivendo ao Horror</strong>.</p>",
+    "preRequisite": "Trilha: Esotérico",
+    "description": "<p>Você aprende e pode conjurar um ritual de 1º círculo a sua escolha. Se você se tornar um ocultista (veja “Treinamento Especial”), soma este ritual aos três rituais que aprende com Escolhido pelo Outro Lado.</p>",
     "chatDescription": "",
     "activation": "passive",
-    "cost": "",
+    "cost": 0,
     "costType": "PE"
   },
   "effects": [],
-  "folder": null,
-  "sort": 0,
+  "folder": "ma3ciEdFx2up41Z7",
+  "sort": 90000,
   "ownership": {
     "default": 0,
     "uX8kbsijC8bcpBa3": 3

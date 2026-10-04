@@ -7,15 +7,15 @@
     "id": 0,
     "abilityType": "class",
     "preRequisite": "",
-    "description": "<p>Você pode encontrar esse conteúdo na <strong>página 31 do suplemento Sobrevivendo ao Horror</strong>.</p>",
+    "description": "<p>Você pode não ter treinamento especial, mas compensa com dedicação e esforço. Quando faz um teste de perícia, você pode gastar 1 PE para receber +2 nesse teste.</p>",
     "chatDescription": "",
-    "activation": "reaction",
+    "activation": "free",
     "cost": 1,
     "costType": "PE"
   },
   "effects": [],
   "folder": null,
-  "sort": 0,
+  "sort": 10000,
   "ownership": {
     "default": 0,
     "uX8kbsijC8bcpBa3": 3
