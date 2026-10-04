@@ -1,0 +1,30 @@
+{
+  "name": "Durão",
+  "type": "path",
+  "_id": "1SozVcKBZa0cJIEM",
+  "img": "systems/ordemparanormal/media/icons/abilities/class/survivor/durao.svg",
+  "system": {
+    "id": 0,
+    "description": "<p>Você é um indivíduo resistente, que consegue defender a si mesmo ou aos outros em situações de perigo. Pode ser um atleta, segurança, trabalhador da construção civil etc.</p>",
+    "chatDescription": ""
+  },
+  "effects": [],
+  "folder": "4Hf6p412nR3F0Ha4",
+  "sort": 100000,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.365",
+    "systemId": "ordem_v2_classic",
+    "systemVersion": "7.3.3",
+    "createdTime": 1784900000000,
+    "modifiedTime": 1784900000000,
+    "lastModifiedBy": null,
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!1SozVcKBZa0cJIEM"
+}

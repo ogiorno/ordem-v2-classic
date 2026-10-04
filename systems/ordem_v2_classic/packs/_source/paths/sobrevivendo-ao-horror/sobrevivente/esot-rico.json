@@ -1,0 +1,30 @@
+{
+  "name": "Esotérico",
+  "type": "path",
+  "_id": "Y9EsESlkLk9x9iUJ",
+  "img": "systems/ordemparanormal/media/icons/abilities/class/survivor/esoterico.svg",
+  "system": {
+    "id": 0,
+    "description": "<p>Você é uma pessoa ligada a aspectos espirituais do mundo, como religiões, astrologia e cartomancia, ou apenas possui um sexto sentido em relação ao paranormal e ao Outro Lado.</p>",
+    "chatDescription": ""
+  },
+  "effects": [],
+  "folder": "4Hf6p412nR3F0Ha4",
+  "sort": 300000,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.365",
+    "systemId": "ordem_v2_classic",
+    "systemVersion": "7.3.3",
+    "createdTime": 1784900000000,
+    "modifiedTime": 1784900000000,
+    "lastModifiedBy": null,
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!Y9EsESlkLk9x9iUJ"
+}

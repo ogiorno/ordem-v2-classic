@@ -1,0 +1,23 @@
+{
+  "type": "Item",
+  "folder": "4gQ8UPJoclrxP5Z1",
+  "name": "Sobrevivente",
+  "color": null,
+  "sorting": "a",
+  "_id": "4Hf6p412nR3F0Ha4",
+  "description": "",
+  "sort": 0,
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.365",
+    "systemId": "ordem_v2_classic",
+    "systemVersion": "7.3.3",
+    "createdTime": 1784900000000,
+    "modifiedTime": 1784900000000,
+    "lastModifiedBy": null,
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!folders!4Hf6p412nR3F0Ha4"
+}
