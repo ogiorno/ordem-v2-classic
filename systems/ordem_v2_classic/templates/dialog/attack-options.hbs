@@ -1,0 +1,72 @@
+<form class="op-attack-form">
+	<p class="op-ad-sub">{{skillLine}}</p>
+
+	{{#if passive.length}}
+	<section class="op-ad-block">
+		<h4>{{localize "op.attackDialog.applied"}}</h4>
+		<div class="op-ad-applied">
+			{{#each passive}}<div class="op-ad-applied-row {{#if bad}}is-bad{{else}}is-good{{/if}}"><span><strong>{{label}}</strong> {{value}}{{#if source}} <em>({{source}})</em>{{/if}}</span>{{#if description}}<small>{{description}}</small>{{/if}}</div>{{/each}}
+			{{#each autos}}<div class="op-ad-applied-row is-good"><span><strong>{{label}}</strong>{{#if summary}} {{summary}}{{/if}}{{#if source}} <em>({{source}})</em>{{/if}}</span>{{#if description}}<small>{{description}}</small>{{/if}}</div>{{/each}}
+		</div>
+	</section>
+	{{else if autos.length}}
+	<section class="op-ad-block">
+		<h4>{{localize "op.attackDialog.applied"}}</h4>
+		<div class="op-ad-applied">
+			{{#each autos}}<div class="op-ad-applied-row is-good"><span><strong>{{label}}</strong>{{#if summary}} {{summary}}{{/if}}{{#if source}} <em>({{source}})</em>{{/if}}</span>{{#if description}}<small>{{description}}</small>{{/if}}</div>{{/each}}
+		</div>
+	</section>
+	{{/if}}
+
+	<section class="op-ad-block op-ad-conditions" data-condition-block {{#unless conditions.length}}hidden{{/unless}}>
+		<h4>{{localize "op.attackDialog.conditions"}}</h4>
+		<div class="op-ad-condition-list" data-condition-list>
+			{{#each conditions}}
+			<div class="op-ad-condition">
+				<span class="op-ad-condition-label">{{name}}{{#if detail}} · {{detail}}{{/if}}{{#if description}}<small>{{description}}</small>{{/if}}</span>
+				{{#if ../canRemoveConditions}}<button type="button" data-action="remove-condition" data-effect-id="{{id}}">{{localize "op.attackDialog.removeCondition"}}</button>{{/if}}
+			</div>
+			{{/each}}
+		</div>
+	</section>
+
+	{{#if hasChoices}}
+	<section class="op-ad-block">
+		<h4>{{localize "op.attackDialog.options"}}</h4>
+		<div class="op-ad-list">
+			{{#each pools}}
+			<div class="op-ad-row op-ad-pool">
+				<div class="op-ad-name"><strong>{{label}}</strong>{{#if summary}}<small>{{summary}} · {{localize "op.attackDialog.upTo" max=max}}</small>{{/if}}{{#if source}}<small>{{source}}</small>{{/if}}</div>
+				<label class="op-ad-step">{{localize "op.attackDialog.inAttack"}} <input type="number" name="pool.{{id}}.attack" min="0" max="{{max}}" step="1" value="0"></label>
+				<label class="op-ad-step">{{localize "op.attackDialog.inDamage"}} <input type="number" name="pool.{{id}}.damage" min="0" max="{{max}}" step="1" value="0"></label>
+				<span class="op-ad-cost">{{onUse.cost}}{{#if onUse.stepCost}}+{{onUse.stepCost}}{{/if}} {{../resource}}</span>
+			</div>
+			{{/each}}
+			{{#each stackables}}
+			<div class="op-ad-row">
+				<div class="op-ad-name"><strong>{{label}}</strong>{{#if summary}}<small>{{summary}}</small>{{/if}}{{#if source}}<small>{{source}}</small>{{/if}}</div>
+				<label class="op-ad-step"><input type="number" name="opt.{{id}}" min="0" max="{{max}}" step="1" value="0"></label>
+				<span class="op-ad-cost">{{onUse.cost}} {{../resource}}</span>
+			</div>
+			{{/each}}
+			{{#each toggles}}
+			<label class="op-ad-row">
+				<span class="op-ad-check"><input type="checkbox" name="opt.{{id}}" value="1"></span>
+				<span class="op-ad-name"><strong>{{label}}</strong>{{#if summary}}<small>{{summary}}</small>{{/if}}{{#if source}}<small>{{source}}</small>{{/if}}</span>
+				<span class="op-ad-cost">{{#if onUse.cost}}{{onUse.cost}} {{../resource}}{{else}}—{{/if}}</span>
+			</label>
+			{{/each}}
+		</div>
+	</section>
+	{{/if}}
+
+	<section class="op-ad-free">
+		<label>{{localize "op.attackDialog.freeAttack"}}<input type="text" name="freeAttack" placeholder="+2 · −1d"></label>
+		<label>{{localize "op.attackDialog.freeDamage"}}<input type="text" name="freeDamage" placeholder="+1d6"></label>
+	</section>
+
+	<footer class="op-ad-foot">
+		<span>{{localize "op.attackDialog.total"}} <strong data-total>0 {{resource}}</strong> · {{localize "op.attackDialog.left"}} <span data-left>{{balance}}</span> {{resource}}</span>
+		<span class="op-ad-hint">{{localize "op.attackDialog.shiftHint"}}</span>
+	</footer>
+</form>

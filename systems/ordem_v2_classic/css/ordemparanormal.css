@@ -4352,3 +4352,36 @@ body.theme-dark,
 	color: var(--op-notice-fg);
 	border-radius: 3px;
 }
+
+/* ---- Tela de ataque (docs/spec-tela-de-ataque.md) ---- */
+.op-attack-dialog .op-attack-form { display: flex; flex-direction: column; gap: 10px; min-width: 460px; }
+.op-attack-dialog .op-ad-sub { margin: 0; font-size: 12px; opacity: 0.75; }
+.op-attack-dialog .op-ad-block h4 { margin: 0 0 4px; font-size: 12px; text-transform: none; letter-spacing: 0; opacity: 0.8; border: 0; }
+.op-attack-dialog .op-ad-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.op-attack-dialog .op-ad-chip { font-size: 12px; padding: 2px 9px; border-radius: 6px; background: rgba(120, 120, 120, 0.2); }
+.op-attack-dialog .op-ad-chip.is-good { background: rgba(60, 160, 90, 0.25); }
+.op-attack-dialog .op-ad-chip.is-bad { background: rgba(200, 140, 40, 0.28); }
+.op-attack-dialog .op-ad-list { border: 1px solid rgba(120, 120, 120, 0.35); border-radius: 6px; }
+.op-attack-dialog .op-ad-row { display: flex; align-items: center; gap: 10px; padding: 6px 10px; border-bottom: 1px solid rgba(120, 120, 120, 0.25); cursor: pointer; }
+.op-attack-dialog .op-ad-row:last-child { border-bottom: 0; }
+.op-attack-dialog .op-ad-name { flex: 1; display: flex; flex-direction: column; }
+.op-attack-dialog .op-ad-name small { font-size: 11px; opacity: 0.7; }
+.op-attack-dialog .op-ad-cost { font-size: 12px; min-width: 56px; text-align: right; opacity: 0.85; }
+.op-attack-dialog .op-ad-step { display: flex; align-items: center; gap: 4px; font-size: 12px; }
+.op-attack-dialog .op-ad-step input { width: 44px; }
+.op-attack-dialog .op-ad-free { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.op-attack-dialog .op-ad-free label { display: flex; flex-direction: column; gap: 3px; font-size: 12px; }
+.op-attack-dialog .op-ad-foot { display: flex; flex-direction: column; gap: 2px; font-size: 13px; padding-top: 6px; border-top: 1px solid rgba(120, 120, 120, 0.35); }
+.op-attack-dialog .op-ad-foot [data-total].is-short { color: #d4533a; }
+.op-attack-dialog .op-ad-hint { font-size: 11px; opacity: 0.6; }
+.op-attack-dialog .op-ad-condition-list { display: flex; flex-direction: column; gap: 4px; }
+.op-attack-dialog .op-ad-condition { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 4px 8px; border-left: 3px solid #c45b52; border-radius: 4px; background: rgba(190, 65, 55, 0.12); }
+.op-attack-dialog .op-ad-condition-label { font-size: 12px; }
+.op-attack-dialog .op-ad-condition button { flex: 0 0 auto; width: auto; min-height: 24px; padding: 2px 7px; font-size: 11px; }
+.op-onuse-config { margin-top: 12px; }
+
+.op-attack-dialog .op-ad-applied { display: flex; flex-direction: column; gap: 4px; }
+.op-attack-dialog .op-ad-applied-row { display: flex; flex-direction: column; gap: 1px; padding: 4px 8px; border-left: 3px solid #3ca05a; border-radius: 4px; background: rgba(60, 160, 90, 0.14); font-size: 12px; }
+.op-attack-dialog .op-ad-applied-row.is-bad { border-left-color: #c8942a; background: rgba(200, 140, 40, 0.18); }
+.op-attack-dialog .op-ad-applied-row em { opacity: 0.7; font-style: normal; }
+.op-attack-dialog .op-ad-applied-row small, .op-attack-dialog .op-ad-condition-label small { display: block; opacity: 0.8; font-size: 11px; line-height: 1.3; }
