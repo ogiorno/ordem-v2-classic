@@ -2,3 +2,5 @@ node_modules/
 *.log
 systems/*/packs/*
 !systems/*/packs/_source
+.playwright-cli/
+work/

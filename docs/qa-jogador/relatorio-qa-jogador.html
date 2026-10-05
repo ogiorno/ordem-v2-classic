@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>QA da experiência do jogador — Ordem Paranormal no Foundry</title>
+<style>
+  @page { size: A4; margin: 16mm 14mm; }
+  body { font: 11pt/1.45 "Segoe UI", Arial, sans-serif; color: #1c1c22; margin: 0; }
+  h1 { font-size: 22pt; margin: 0 0 4px; }
+  h2 { font-size: 15pt; margin: 26px 0 8px; border-bottom: 2px solid #8b1a1a; padding-bottom: 3px; page-break-after: avoid; }
+  h3 { font-size: 12pt; margin: 16px 0 4px; page-break-after: avoid; }
+  .sub { color: #555; margin-bottom: 14px; }
+  figure { margin: 8px 0 14px; page-break-inside: avoid; }
+  figure img { width: 100%; border: 1px solid #bbb; border-radius: 4px; }
+  figcaption { font-size: 9.5pt; color: #444; margin-top: 3px; }
+  table { border-collapse: collapse; width: 100%; font-size: 10pt; margin: 8px 0; page-break-inside: avoid; }
+  th, td { border: 1px solid #bbb; padding: 4px 7px; text-align: left; vertical-align: top; }
+  th { background: #efe9e9; }
+  .ok { color: #1a6b2f; font-weight: 600; }
+  .bug { color: #a31515; font-weight: 600; }
+  .tip { color: #9a5b00; font-weight: 600; }
+  .box { border-left: 4px solid #8b1a1a; background: #f7f1f1; padding: 8px 12px; margin: 10px 0; page-break-inside: avoid; }
+  ul { margin: 4px 0 8px 18px; padding: 0; }
+  code { background: #eee; padding: 0 3px; border-radius: 3px; }
+  .pb { page-break-before: always; }
+</style>
+</head>
+<body>
+
+<h1>QA da experiência do jogador</h1>
+<div class="sub">Ordem Paranormal (sistema <code>ordem_v2_classic</code> 8.0.2) · Foundry VTT 14.369 · mundo <em>nova-ordem</em> · cena de teste <em>Escola 8x</em> · 17/10/2026</div>
+
+<div class="box">
+<strong>Como foi feito.</strong> Com o Playwright, entrei no mundo como três usuários de teste sem senha: <strong>QA1</strong> (Combatente, nível 3), <strong>QA2</strong> (Ocultista, nível 3) e <strong>QA Mestra</strong> (GM). Joguei a "Escola 8x" como um jogador joga: andei, abri uma porta, abri a ficha, rolei perícias, ataquei, conjurei ritual, entrei em combate e usei o chat. Todos os prints deste documento são dessa sessão.
+<br><strong>O que não deu para testar:</strong> arrastar o token com o mouse (o clique sintético do Playwright não moveu o token), condições (morrendo, sangrando), reações de defesa/esquiva, áudio e o efeito dos dados 3D. Ficam para um teste com pessoas.
+</div>
+
+<h2>1. Resumo: o que está bom e o que mais incomoda</h2>
+<table>
+<tr><th style="width:50%">Funciona bem</th><th>Mais incomoda o jogador</th></tr>
+<tr><td>
+<ul>
+<li>Ficha limpa, com <strong>Nível</strong> e <strong>NEX</strong> lado a lado, PV, PD, atributos e perícias numa tela só.</li>
+<li>Porta abre com um clique e a visão do mapa muda na hora.</li>
+<li>Janela de conjurar ritual: busca, filtro, três efeitos (Básico, Discente, Verdadeiro) e custo explícito.</li>
+<li>Chat: <code>/r</code>, <code>/w</code> e <code>/gmroll</code> funcionam. Os cartões de ataque e dano mostram o alvo e o tipo de dano.</li>
+<li>Combate: ordem de iniciativa, destaque do token da vez e botão <em>Encerrar Turno</em> claros.</li>
+</ul></td><td>
+<ul>
+<li class="bug">Janela "8.0.2 Release Notes" abre em tela cheia para o jogador, a cada entrada. Ela fala de backup do Foundry, assunto do GM.</li>
+<li class="bug">Chave de tradução crua na ficha: <code>op.targetchoices.1 ser</code>.</li>
+<li class="bug">Personagem novo começa com PV 5/37 e PD 5/15 (valor atual 5, máximo 37).</li>
+<li class="bug">Resultado do ataque ambíguo ("CRÍTICO", "FALHA") e só o mestre pode aplicar o dano, sem aviso ao jogador.</li>
+<li class="tip">Texto do chat de ritual mistura PE, PD e SAN e fala como mensagem de programador.</li>
+<li class="tip">Rolagem mostra <code>3d20kh</code>, um código que o jogador não conhece.</li>
+</ul></td></tr>
+</table>
+
+<h2 class="pb">2. Entrada no jogo</h2>
+<figure><img src="img/10-qa1-entrada.png"><figcaption>Primeira tela do jogador: o mapa fica preto e uma janela de notas de atualização cobre o centro.</figcaption></figure>
+<ul>
+<li><span class="bug">Popup de notas de versão</span> para o jogador. Sugestão: mostrar só ao GM, ou uma vez por versão e por usuário.</li>
+<li><span class="bug">Mapa preto.</span> O token novo não tinha visão ativada e a cena tem visão de token ligada. Para o jogador isso parece que o jogo quebrou. Sugestão: tokens de agente com visão ligada por padrão e um aviso ao GM quando um token de jogador não enxerga nada.</li>
+<li><span class="tip">Mensagem do Dice So Nice!</span> (tour dos dados 3D) abre o chat em cima de outras coisas. Sugestão: desativar o texto de primeira vez para jogadores.</li>
+<li>O token novo aparece com o ícone genérico de encapuzado. Sugestão: usar a imagem do personagem na ficha como token.</li>
+</ul>
+<figure><img src="img/11-qa1-mapa.png"><figcaption>Depois de ligar a visão: o jogador enxerga só a sala. A porta (ícone à esquerda) está fechada.</figcaption></figure>
+
+<h2 class="pb">3. Andar e abrir portas</h2>
+<figure><img src="img/14-qa1-perto-da-porta.png"><figcaption>QA1 junto da porta, no teclado (tecla A). O token fica cortado pela parede.</figcaption></figure>
+<figure><img src="img/15-qa1-porta-aberta.png"><figcaption>Porta aberta com um clique: aparece o corredor e a Aberração de Carne, que já estava lá.</figcaption></figure>
+<table>
+<tr><th>Teste</th><th>Resultado</th></tr>
+<tr><td>WASD</td><td class="ok">Anda. A cena não tem grade, então cada toque move 35% de um quadrado (configuração do módulo <code>meu-modulo</code>).</td></tr>
+<tr><td>Setas do teclado</td><td class="bug">Não moveram o token. O jogador acostumado com as setas acha que o jogo travou.</td></tr>
+<tr><td>Abrir porta (clique no ícone)</td><td class="ok">Abre na hora e libera a visão.</td></tr>
+<tr><td>Feedback ao abrir</td><td class="tip">Nada no chat nem na tela diz que a porta abriu.</td></tr>
+</table>
+<p><strong>Sugestões.</strong> Fazer as setas também andarem. Mostrar o deslocamento gasto e o que resta (a ficha diz "Deslocamento 9", sem unidade). Opcional: linha discreta no chat, como "QA1 abriu a porta".</p>
+
+<h2 class="pb">4. Ficha do agente e subida de nível</h2>
+<figure><img src="img/16-qa1-ficha.png"><figcaption>Ficha do QA1. <strong>Nível 3</strong> e <strong>NEX 15</strong> no topo; PV 37/37 e PD 15/15 já calculados pela classe e pelo nível. As habilidades vieram da origem e da trilha.</figcaption></figure>
+<h3>Progressão por nível (verificada no jogo)</h3>
+<p>Mudei o campo Nível com o jogador logado e conferi PV, PD e habilidades. Os números batem com o livro (Combatente, Vigor 3, Presença 1):</p>
+<table>
+<tr><th>Nível</th><th>PV máx.</th><th>PD máx.</th><th>Habilidades recebidas automaticamente</th></tr>
+<tr><td>3</td><td>37</td><td>15</td><td>Para Bellum (origem Militar), NEX 10% – A Favorita (trilha Aniquilador)</td></tr>
+<tr><td>4</td><td>44</td><td>19</td><td>—</td></tr>
+<tr><td>8</td><td>72</td><td>35</td><td>+ NEX 40% – Técnica Secreta</td></tr>
+<tr><td>13</td><td>107</td><td>55</td><td>+ NEX 65% – Técnica Sublime</td></tr>
+<tr><td>20</td><td>156</td><td>83</td><td>+ NEX 99% – Máquina de Matar</td></tr>
+<tr><td>3 (voltando)</td><td>37</td><td>15</td><td>As habilidades de nível mais alto saem</td></tr>
+</table>
+<p>Ao subir de nível, o valor <em>atual</em> de PV e PD sobe junto com o máximo (do nível 3 ao 4, PV 37 → 44 e PD 15 → 19).</p>
+<figure><img src="img/20-qa1-inventario.png"><figcaption>Aba Inventário: armas com ícones à direita (balão, estrela, editar, lixeira).</figcaption></figure>
+<ul>
+<li><span class="bug">PV/PD atuais começam em 5.</span> O QA1 abriu a ficha com PV 5/37 e o QA2 com PV 5/22. Sugestão: ao definir classe e nível, preencher os valores atuais com o máximo.</li>
+<li><span class="tip">Colunas sem rótulo.</span> Em cada perícia há duas caixas ("+0" e "0") sem título. O jogador não sabe qual é bônus e qual é total.</li>
+<li><span class="tip">Siglas cortadas.</span> O seletor de treinamento mostra "Des"/"De" e o nome do personagem some no título ("QA Agente 1 (Combatente").</li>
+<li><span class="tip">Sem unidade.</span> Deslocamento "9": metros? quadrados?</li>
+</ul>
+
+<h2 class="pb">5. Rolagens e chat</h2>
+<figure><img src="img/18-qa1-rolagem-luta.png"><figcaption>Clique em "Luta": janela "Teste de Luta com Força".</figcaption></figure>
+<figure><img src="img/19-qa1-chat-resultado-luta.png"><figcaption>Resultado no chat: só a fórmula <code>3d20kh</code> e o número 9.</figcaption></figure>
+<ul>
+<li><span class="tip"><code>3d20kh</code></span> é notação de programador. Sugestão: "3 dados, vale o maior" (e "2 dados, vale o menor" quando houver penalidade).</li>
+<li><span class="tip">"Rolagem Situacional"</span> e <span class="tip">"Público como Usuário"</span> pedem explicação. Sugestão: "Bônus ou penalidade da situação" e "Rolagem pública".</li>
+<li><span class="tip">Sem decomposição.</span> O card não diz de onde vêm os dados nem o bônus (perícia Luta, Força 3). Sugestão: linha pequena "Luta (Treinado, +5) · Força 3".</li>
+<li><span class="tip">Sem sucesso ou falha</span> quando não há DT. Sugestão: perguntar a DT na hora, ou mostrar "total 9 (precisa da DT do mestre)".</li>
+</ul>
+<figure><img src="img/40-qa1-chat-comandos.png"><figcaption>Comandos de chat: <code>/r 2d6+3</code>, mensagem privada <code>/w QA2</code> e <code>/gmroll 1d20</code>.</figcaption></figure>
+<ul>
+<li><span class="ok">Comandos funcionam.</span></li>
+<li><span class="tip">/gmroll</span> mostra ao jogador só o selo "WHISPER" e o resultado. Para o jogador não fica claro que o mestre também viu, nem que esse resultado é privado.</li>
+<li><span class="tip">Chat pesado.</span> Cada mensagem tem avatar e cabeçalho grandes; numa cena de combate o histórico enche rápido. Sugestão: modo compacto, com mensagens consecutivas do mesmo personagem agrupadas.</li>
+<li>Com o painel lateral na aba Combate, o jogador não vê o chat e precisa trocar de aba para ler o resultado das rolagens. Sugestão: manter o chat visível durante o combate.</li>
+</ul>
+
+<h2 class="pb">6. Combate</h2>
+<figure><img src="img/24-qa1-combate.png"><figcaption>Combate para o jogador: faixa de iniciativa em cima, lista na lateral, token da vez destacado, botão Encerrar Turno.</figcaption></figure>
+<figure><img src="img/23-qa1-clicou-icone-faca.png"><figcaption>Clicar no ícone da Faca posta o card da arma, com "Rolar Ataque" e "Rolar Dano".</figcaption></figure>
+<figure><img src="img/25-qa1-dialogo-ataque.png"><figcaption>"Rolar Ataque" com o alvo marcado (tecla T): "Atacou com Faca → Aberração de Carne", 19, CRÍTICO.</figcaption></figure>
+<figure><img src="img/26-qa1-dano.png"><figcaption>Dano: "Deu dano com Faca (Corte)", 2d4 + 3 = 8.</figcaption></figure>
+<table>
+<tr><th>Ponto</th><th>Observação</th></tr>
+<tr><td>Iniciativa</td><td class="ok">Rolada pelo GM para todos; aparece no chat e no tracker.</td></tr>
+<tr><td>Dois jeitos de usar uma arma</td><td class="bug">O balão posta só a descrição da arma. O ícone da arma posta o card com os botões de ataque. Quem clica no balão não acha como atacar. Sugestão: botão "Atacar" explícito na linha da arma, e trocar o balão por "Ver descrição".</td></tr>
+<tr><td>Acerto ou erro</td><td class="bug">O sistema calcula acerto contra a Defesa e mostra ACERTO, FALHA ou CRÍTICO, mas "CRÍTICO" não diz que acertou e "FALHA" parece falha de teste. Sugestão: "Acertou", "Acertou — crítico" e "Errou o ataque".</td></tr>
+<tr><td>Aplicar dano</td><td class="bug">O botão "Aplicar ao Alvo" existe só para o GM. O monstro continuou com 70/70 PV e nada avisa o jogador que o dano espera o mestre.</td></tr>
+<tr><td>Crítico no dano</td><td class="tip">O dano mostra <code>2d4 + 3</code> sem dizer que os dados dobraram por causa do crítico (Faca 19).</td></tr>
+<tr><td>Texto do chat</td><td class="tip">"Atacou com Faca → Aberração de Carne" e "Deu dano com Faca" estão claros. Falta o nome do alvo no card de dano.</td></tr>
+</table>
+
+<h2 class="pb">7. Rituais (Ocultista)</h2>
+<figure><img src="img/30-qa2-ficha-rituais.png"><figcaption>Aba Rituais do QA2: no campo "Alvo" aparece <code>op.targetchoices.1 ser</code>, uma chave de tradução não resolvida.</figcaption></figure>
+<figure><img src="img/31-qa2-ritual-card.png"><figcaption>Janela "Conjurar Ritual": efeitos Básico, Discente e Verdadeiro, com custo.</figcaption></figure>
+<figure><img src="img/32-qa2-ritual-resultado.png"><figcaption>Depois de conjurar: o jogo exige um teste de Ocultismo (DT 21) e mostra um popup vermelho "FALHA (DT 21)".</figcaption></figure>
+<ul>
+<li><span class="bug">Chave de tradução crua</span> <code>op.targetchoices.1 ser</code> (deveria ser "1 ser").</li>
+<li><span class="bug">Mistura de PE e PD.</span> A janela mostra "1 PE" e "5 PE" nos efeitos, e o botão diz "pagar PD". A ficha usa "1º CÍRCULO - 1 PD". Com a regra "Jogando sem Sanidade", tudo deveria falar PD.</li>
+<li><span class="tip">Teste surpresa.</span> Depois de confirmar o ritual abre "Teste de Ocultismo com Intelecto", com DT 21 já preenchida, sem explicar que é o "Custo do Paranormal". A ficha mostra "DT DE RITUAL É 16", e a janela mostra DT 21. O jogador não entende de onde vem 21.</li>
+<li><span class="tip">Texto do chat com cara de nota de desenvolvimento.</span> Exemplos reais:
+  <ul>
+  <li>"Ritual conjurado. Resolva efeitos narrativos/manual do Mestre conforme a descrição."</li>
+  <li>"Custo do círculo: 1 PE, debitado de PD · consequência de SAN no saldo fundido: 1 PD."</li>
+  <li>"Alvo(s): Defina o alvo em cena e resolva a resistência ou o efeito conforme a descrição."</li>
+  </ul>
+  Sugestão: "Cicatrização conjurada. Custo: 1 PD. Falhou no teste de Ocultismo (20 contra DT 21): perde mais 1 PD." E uma linha de alvo só quando houver alvo.</li>
+<li>O efeito do ritual (cura 3d8+3) não é aplicado nem rolado. Hoje o jogador e o mestre precisam fazer na mão.</li>
+</ul>
+
+<h2 class="pb">8. Visão do mestre</h2>
+<figure><img src="img/50-mestra-visao.png"><figcaption>QA Mestra: mapa inteiro, todos os tokens, barra de combate com PV (70/70 no monstro) e a lista de jogadores.</figcaption></figure>
+<ul>
+<li>A visão do GM mostra tudo, e o contraste com o jogador (só a sala) é bom para checar visão e paredes.</li>
+<li>O popup de release notes também aparece para o GM a cada recarga da página.</li>
+<li>Mudar a cena ativa derruba todos os jogadores da cena anterior. Sugestão: um aviso "isso move todos os jogadores", ou uma cena de teste separada para QA.</li>
+</ul>
+
+<h2 class="pb">9. Lista priorizada de melhorias</h2>
+<table>
+<tr><th style="width:5%">#</th><th style="width:12%">Prioridade</th><th>Melhoria</th></tr>
+<tr><td>1</td><td class="bug">Alta</td><td>Traduzir <code>op.targetchoices.1 ser</code> na lista de rituais e revisar as demais chaves de tradução.</td></tr>
+<tr><td>2</td><td class="bug">Alta</td><td>Iniciar PV e PD atuais no máximo ao definir classe e nível (hoje começam em 5).</td></tr>
+<tr><td>3</td><td class="bug">Alta</td><td>Ataque: rótulos claros ("Acertou"/"Errou") e botão "Aplicar dano" para quem atacou (validado pelo mestre), com modo automático opcional. Ver spec-experiencia-jogador.md.</td></tr>
+<tr><td>4</td><td class="bug">Alta</td><td>Popup de release notes: só para o GM, uma vez por versão.</td></tr>
+<tr><td>5</td><td class="bug">Alta</td><td>Tokens de agente com visão ligada por padrão; evitar o mapa preto na primeira entrada.</td></tr>
+<tr><td>6</td><td class="tip">Média</td><td>Padronizar PE/PD/SAN no texto, de acordo com a regra de sanidade escolhida pela mesa (janela de ritual, ficha e chat).</td></tr>
+<tr><td>7</td><td class="tip">Média</td><td>Reescrever os textos do chat de ritual em linguagem de jogador (ver exemplos na seção 7) e explicar o teste "Custo do Paranormal" antes de rolar.</td></tr>
+<tr><td>8</td><td class="tip">Média</td><td>Trocar <code>3d20kh</code> por "3 dados, vale o maior" e mostrar de onde vêm os dados e o bônus.</td></tr>
+<tr><td>9</td><td class="tip">Média</td><td>Botão "Atacar" explícito na linha da arma; trocar o balão por "Ver descrição".</td></tr>
+<tr><td>10</td><td class="tip">Média</td><td>Setas do teclado movendo o token, com deslocamento mostrado e unidade na ficha.</td></tr>
+<tr><td>11</td><td class="tip">Baixa</td><td>Rótulos nas duas caixas de cada perícia; selects de treinamento sem texto cortado; nome do personagem completo no título.</td></tr>
+<tr><td>12</td><td class="tip">Baixa</td><td>Modo compacto de chat; mensagens consecutivas agrupadas.</td></tr>
+<tr><td>13</td><td class="tip">Baixa</td><td>Linha opcional no chat ao abrir e fechar porta.</td></tr>
+<tr><td>14</td><td class="tip">Baixa</td><td>Dizer ao jogador, no /gmroll, que o mestre também recebe o resultado.</td></tr>
+</table>
+
+<h2>10. O que ficou no mundo depois do teste</h2>
+<ul>
+<li>Criados: usuários <strong>QA1</strong>, <strong>QA2</strong> (jogadores, sem senha) e <strong>QA Mestra</strong> (<em>GM sem senha</em>), os agentes "QA Agente 1 (Combatente)" e "QA Agente 2 (Ocultista)", seus tokens, e paredes com uma porta na cena "Escola 8x" (luz global ligada, visão de token ligada).</li>
+<li><span class="bug">Atenção:</span> o servidor tem UPnP ligado. Um GM sem senha é um risco se o mundo estiver acessível na internet. Recomendo apagar a <strong>QA Mestra</strong> (ou pôr senha) quando terminar.</li>
+<li>Apaguei o combate de teste e as mensagens de chat dos usuários QA. A cena ativa voltou para "Escola – 1º andar" e o combate dela não foi tocado.</li>
+<li>Removi o script de criação dos usuários de QA do módulo <code>meu-modulo</code>.</li>
+</ul>
+
+</body>
+</html>
