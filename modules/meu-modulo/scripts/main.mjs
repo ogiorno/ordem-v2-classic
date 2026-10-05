@@ -1,3 +1,4 @@
+import "./lupa.mjs";
 import "./escadas.mjs";
 import "./passos.mjs";
 
