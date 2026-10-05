@@ -9,10 +9,60 @@
     "description": "<p>Quando faz um ataque, você pode gastar 2 PE para receber +5 no teste de ataque ou na rolagem de dano. Conforme avança de NEX, você pode gastar +1 PE para receber mais bônus de +5 (veja a Tabela 1.3). Você pode aplicar cada bônus de +5 em ataque ou dano. Por exemplo, em NEX 55%, você pode gastar 4 PE para receber +5 no teste de ataque e +10 na rolagem de dano.</p>",
     "chatDescription": "",
     "activation": "reaction",
-    "cost": "2",
+    "cost": 2,
     "costType": "PE"
   },
-  "effects": [],
+  "effects": [
+    {
+      "name": "Ataque Especial",
+      "img": "icons/svg/aura.svg",
+      "_id": "QpBSLd7I4U94holQ",
+      "type": "base",
+      "system": {
+        "changes": []
+      },
+      "disabled": true,
+      "start": null,
+      "duration": {
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
+      },
+      "description": "Quando faz um ataque, gaste 2 PE para receber +5 no teste de ataque ou na rolagem de dano; cada +5 adicional custa +1 PE. O limite de acúmulos cresce com o nível (NEX 25%, 55% e 85%).",
+      "tint": "#ffffff",
+      "transfer": false,
+      "statuses": [],
+      "showIcon": 1,
+      "folder": null,
+      "sort": 0,
+      "flags": {
+        "ordem_v2_classic": {
+          "onUse": {
+            "enabled": true,
+            "applies": "all",
+            "pool": true,
+            "maxMode": "special",
+            "unit": 5,
+            "cost": 2,
+            "stepCost": 1
+          }
+        }
+      },
+      "_stats": {
+        "coreVersion": "14.365",
+        "systemId": "ordem_v2_classic",
+        "systemVersion": "7.3.3",
+        "createdTime": 1784900000000,
+        "modifiedTime": 1784900000000,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!items.effects!KQVFxaXeDflAHUoN.QpBSLd7I4U94holQ"
+    }
+  ],
   "flags": {},
   "_stats": {
     "compendiumSource": null,
