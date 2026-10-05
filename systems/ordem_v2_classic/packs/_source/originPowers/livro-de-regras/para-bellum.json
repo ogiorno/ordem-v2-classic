@@ -10,9 +10,56 @@
     "description": "<p>Voc&ecirc; recebe +2 em rolagens de dano&nbsp;com armas de fogo.</p>",
     "chatDescription": "",
     "activation": "passive",
-    "cost": null
+    "cost": 0
   },
-  "effects": [],
+  "effects": [
+    {
+      "name": "Para Bellum",
+      "img": "icons/svg/aura.svg",
+      "_id": "ev0UDmla6MvvdxNQ",
+      "type": "base",
+      "system": {
+        "changes": []
+      },
+      "disabled": true,
+      "start": null,
+      "duration": {
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
+      },
+      "description": "+2 nas rolagens de dano com armas de fogo.",
+      "tint": "#ffffff",
+      "transfer": false,
+      "statuses": [],
+      "showIcon": 1,
+      "folder": null,
+      "sort": 0,
+      "flags": {
+        "ordem_v2_classic": {
+          "onUse": {
+            "enabled": true,
+            "applies": "fire",
+            "auto": true,
+            "damageBonus": 2
+          }
+        }
+      },
+      "_stats": {
+        "coreVersion": "14.365",
+        "systemId": "ordem_v2_classic",
+        "systemVersion": "7.3.3",
+        "createdTime": 1784900000000,
+        "modifiedTime": 1784900000000,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!items.effects!NiYXA1QZO5Z0D59k.ev0UDmla6MvvdxNQ"
+    }
+  ],
   "folder": "MbVRx0qCgZMO02wU",
   "sort": 1800000,
   "ownership": {
