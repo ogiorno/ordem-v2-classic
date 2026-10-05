@@ -38,6 +38,7 @@ import { registerCombatChatNotice } from "./helpers/chat-notice.mjs";
 import { registerPlayerOnboarding } from "./helpers/player-onboarding.mjs";
 import { registerDefensePrivacy } from "./helpers/defense-privacy.mjs";
 import { registerRitualAnimations } from "./integrations/ritual-animations.mjs";
+import "./helpers/attack-options-config.mjs";
 
 // import { rescueAllPathEffects } from '../utils/__test__/effects.mjs';
 

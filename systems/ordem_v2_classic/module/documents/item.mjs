@@ -5,6 +5,8 @@
  * https://github.com/foundryvtt/dnd5e/blob/a7f1404c7c38afa6d7dcc4f36a5fefd274034691/module/documents/item.mjs#L1639
  */
 
+import { defaultSelection, promptAttackOptions } from "../helpers/attack-options.mjs";
+import { damageFormulaParts } from "../helpers/attack-options-rules.mjs";
 import { damageApplicationMode, requestCardDamage } from "../helpers/card-damage.mjs";
 import { conditionDicePenalty } from "../helpers/conditions.mjs";
 import { gmNotice } from "../helpers/gm-notice.mjs";
@@ -117,7 +119,9 @@ export class OrdemItem extends Item {
 				const rollAttack = await item.rollAttack({
 					event: event,
 				});
+				if (!rollAttack) break; // tela de ataque cancelada
 				item.lastMessageId = messageId;
+				if (rollAttack.attackOptions?.lines?.length || rollAttack.attackOptions?.conditions?.length) message.setFlag("ordem_v2_classic", "attackOptions", rollAttack.attackOptions);
 				item.critical = rollAttack.criticalStatus;
 				item.hitResult = rollAttack.hitResult ?? null;
 				if (rollAttack.hitResult !== null) {
@@ -127,6 +131,7 @@ export class OrdemItem extends Item {
 			}
 			case "damage": {
 				const persistedHit = message?.getFlag("ordem_v2_classic", "hitResult") ?? null;
+				const attackOptions = message?.getFlag("ordem_v2_classic", "attackOptions") ?? null;
 				const volleyEntries = persistedHit?.attackResults;
 				if (volleyEntries?.length) {
 					// Multi-attack volley -> one damage roll PER hitting attack. Each
@@ -135,7 +140,7 @@ export class OrdemItem extends Item {
 					// that swing), and each is routed to the actor it struck. A dodged
 					// attack has hit=false (synced by syncItemCardHitResult) so it
 					// simply contributes no damage.
-					await item.rollVolleyDamage(volleyEntries, { event });
+					await item.rollVolleyDamage(volleyEntries, { event, attackOptions });
 				} else {
 					// Single attack (or a chat reload that dropped in-memory state):
 					// fall back to the persisted hitResult so apply-damage keeps working,
@@ -151,6 +156,7 @@ export class OrdemItem extends Item {
 					}
 					await item.rollDamage({
 						event: event,
+						attackOptions,
 						critical,
 						lastId: item.lastMessageId ? item.lastMessageId === messageId : true,
 						hitResult,
@@ -284,6 +290,15 @@ export class OrdemItem extends Item {
 		// agregador de hitResult no item card para distinguir uma volley nova de
 		// uma anterior, evitando que um miss em N+1 sobrescreva um hit em N.
 		const isInnerRecursion = options._forcedTarget !== undefined || options._attackIndex !== undefined;
+		// Tela de ataque (docs/spec-tela-de-ataque.md): só para agentes e só quando a chamada veio de um clique.
+		// Shift+clique ataca direto; mesmo assim valem os bônus automáticos (ex.: Mão Pesada).
+		if (!isInnerRecursion && !options.attackOptions && this.parent?.type === "agent") {
+			if (options.event && !options.event.shiftKey) {
+				const chosen = await promptAttackOptions(this);
+				if (!chosen) return null;
+				options.attackOptions = chosen;
+			} else options.attackOptions = defaultSelection(this);
+		}
 		if (!isInnerRecursion) {
 			const numAttacks = this.system.numberOfAttacks ?? 1;
 			const targetList = [...(game.user?.targets ?? new Set())];
@@ -354,18 +369,22 @@ export class OrdemItem extends Item {
 		let rollMode = "kh";
 
 		// Condições (Agarrado, Enredado…) tiram d20 do ataque
-		const attackDice = attribute.value - conditionDicePenalty(this.parent, "attack");
+		const attackDice = attribute.value - conditionDicePenalty(this.parent, "attack") + (options.attackOptions?.attackDice ?? 0);
 		if (attackDice < 1) {
 			attribute = 2;
 			rollMode = "kl";
 		} else attribute = attackDice;
 
-		const { parts, data } = CONFIG.Dice.BasicRoll.constructParts({
+		const { parts: baseParts, data } = CONFIG.Dice.BasicRoll.constructParts({
 			degree: skill.degree.value || null,
 			bonus: skill.value || null,
 			modifier: skill.mod || null,
 			attackBonus: attack.bonus || null,
 		});
+		const parts = [...(baseParts ?? [])];
+		const chosenOptions = options.attackOptions ?? null;
+		if (chosenOptions?.attackFlat) parts.push(String(chosenOptions.attackFlat));
+		for (const term of chosenOptions?.attackTerms ?? []) parts.push(term.replace(/^\+/, ""));
 
 		const rollConfig = {
 			parts: (parts ?? []).join(" + "),
@@ -469,6 +488,7 @@ export class OrdemItem extends Item {
 			// this, the only "attacker" signal is `message.speaker.actor`, which
 			// doesn't map 1:1 to a user (GM controlling NPC, shared actors, etc).
 			flags["ordem_v2_classic.attackerUserId"] = game.userId;
+			if (chosenOptions?.lines?.length || chosenOptions?.conditions?.length) flags["ordem_v2_classic.attackOptions"] = chosenOptions;
 
 			const targetName = targetToken?.name ?? null;
 			// Hit/miss is intentionally absent from the flavor — it would leak to
@@ -480,6 +500,14 @@ export class OrdemItem extends Item {
 			// landed on a specific token.
 			const flavorSuffix = targetName ? ` → ${targetName}` : "";
 			const attackIndexSuffix = options._attackIndex ? ` (${options._attackIndex}/${options._attackTotal})` : "";
+			const optionsSuffix = chosenOptions?.lines?.length
+				? ` — ${chosenOptions.lines.join(", ")}${chosenOptions.cost ? ` (−${chosenOptions.cost} ${chosenOptions.resource})` : ""}`
+				: "";
+			const conditionsSuffix = chosenOptions?.conditions?.length
+				? ` · ${game.i18n.localize("op.attackDialog.conditionsInline")}: ${chosenOptions.conditions
+						.map((condition) => `${foundry.utils.escapeHTML(condition.name)}${condition.detail ? ` (${foundry.utils.escapeHTML(condition.detail)})` : ""}`)
+						.join(", ")}`
+				: "";
 
 			// Foundry assina `Roll.toMessage(messageData, { create, rollMode })`. Passar
 			// `rollMode` DENTRO de `messageData` é silenciosamente ignorado — `applyRollMode`
@@ -488,7 +516,7 @@ export class OrdemItem extends Item {
 			const attackMsg = await roll.toMessage(
 				{
 					speaker: ChatMessage.getSpeaker({ actor: this.actor }),
-					flavor: `${game.i18n.format("op.attackedWith", { name: this.name })}${attackIndexSuffix}${flavorSuffix}`,
+					flavor: `${game.i18n.format("op.attackedWith", { name: this.name })}${attackIndexSuffix}${flavorSuffix}${optionsSuffix}${conditionsSuffix}`,
 					flags,
 				},
 				{ rollMode: options.rollMode ?? game.settings.get("core", "rollMode") }
@@ -557,7 +585,7 @@ export class OrdemItem extends Item {
 		 */
 		Hooks.callAll("ordemparanormal.rollFormula", this, roll);
 
-		return { roll, criticalStatus, hitResult };
+		return { roll, criticalStatus, hitResult, attackOptions: chosenOptions };
 	}
 
 	/**
@@ -638,13 +666,15 @@ export class OrdemItem extends Item {
 				? { isCritical: true, multiplier: this.constructor._parseCriticalMultiplier(this.system.critical) }
 				: false);
 
-		const split = damage.formula.split("d");
 		const critApplied = Boolean((critical.isCritical && options.lastId) || options.event?.altKey);
-		if (critApplied) {
-			prepareFormula.push(`${split[0] * (critical.multiplier ?? 2)}d${split[1]}`);
-		} else {
-			prepareFormula.push(damage.formula);
-		}
+		// Opções escolhidas na tela de ataque (ou só as automáticas, se a chamada não trouxe nenhuma).
+		const extra = options.attackOptions ?? (this.parent?.type === "agent" ? defaultSelection(this) : null);
+		prepareFormula.push(
+			...damageFormulaParts(damage.formula, {
+				critMultiplier: critApplied ? critical.multiplier ?? 2 : 1,
+				extraDice: extra?.damageDice ?? 0,
+			})
+		);
 
 		// Verify the attributes
 		for (const [name, attrObject] of Object.entries(this.parent.system.attributes)) {
@@ -657,6 +687,10 @@ export class OrdemItem extends Item {
 				? game.i18n.localize("op.damageTypeAbv." + damage.type)
 				: game.i18n.localize("op.undefined")
 		);
+
+		// Bônus de dano das opções de ataque
+		if (extra?.damageFlat) prepareFormula.push(extra.damageFlat);
+		for (const term of extra?.damageTerms ?? []) prepareFormula.push(term.replace(/^\+/, ""));
 
 		// Get all the other formulas
 		for (const parts of damage.parts) {
@@ -751,7 +785,7 @@ export class OrdemItem extends Item {
 	 * @param {Event}  [options.event]       Originating click (altKey forces crit).
 	 * @returns {Promise<Roll[]>}            One Roll per hitting attack.
 	 */
-	async rollVolleyDamage(attackResults, { event } = {}) {
+	async rollVolleyDamage(attackResults, { event, attackOptions } = {}) {
 		const entries = attackResults ?? [];
 		const hits = entries.filter((a) => a?.hit === true && a?.revealed !== false);
 		const rolls = [];
@@ -762,6 +796,7 @@ export class OrdemItem extends Item {
 			rolls.push(
 				await this.rollDamage({
 					event,
+					attackOptions,
 					critical,
 					lastId: true,
 					hitResult: {

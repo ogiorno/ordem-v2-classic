@@ -143,6 +143,8 @@ export async function plan(agentIndex, ritualName, form = "basic", choiceId = nu
 export async function prepare(p) {
 	const agent = arena.agents.find((a) => a.token.id === p.agentTokenId);
 	canvas.tokens.activate();
+	// PD cheio a cada caso: o teste cobre centenas de conjurações e não deve parar por falta de PD
+	if (Number(agent.actor.system.PD.value) < 300) await agent.actor.update({ "system.PD.value": 900 });
 	agent.token.control({ releaseOthers: true });
 	game.user.targets.forEach((token) => token.setTarget(false, { releaseOthers: false }));
 	for (const id of p.targetIds) canvas.tokens.get(id)?.setTarget(true, { releaseOthers: false, groupSelection: false });

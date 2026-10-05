@@ -104,16 +104,22 @@ async function castRitual({ agent, ritual, form = "basic", targets = [], area = 
 	document.querySelectorAll("#notifications .notification").forEach((node) => node.remove());
 	const warnings = [];
 	const hook = Hooks.on("renderNotifications", () => {});
-	const watch = new MutationObserver(() => {
-		document.querySelectorAll("#notifications .notification").forEach((node) => warnings.push(node.innerText));
-	});
-	watch.observe(document.body, { childList: true, subtree: true });
+	// registra os avisos direto na chamada (ler o DOM perde os avisos de vida curta)
+	const originals = {};
+	for (const level of ["info", "warn", "error"]) {
+		originals[level] = ui.notifications[level];
+		ui.notifications[level] = function (message, ...rest) {
+			warnings.push(String(message));
+			return originals[level].call(this, message, ...rest);
+		};
+	}
+	const watch = { disconnect: () => { for (const level of Object.keys(originals)) ui.notifications[level] = originals[level]; } };
 	const macro = runRitualCasterMacro(actor, item.id);
 	let done = false;
 	macro.finally(() => { done = true; });
 
 	const dlg = await waitFor(() => dialogByTitle("Conjurar Ritual"));
-	if (!dlg) throw new Error("A janela de conjuração não abriu.");
+	if (!dlg) { watch.disconnect(); throw new Error("A janela de conjuração não abriu."); }
 	[...dlg.querySelectorAll("button")].find((button) => button.innerText.includes(ritual))?.click();
 	await pause(500);
 	if (form !== "basic") {

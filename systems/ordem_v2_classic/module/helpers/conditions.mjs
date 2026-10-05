@@ -26,6 +26,18 @@ export const CONDITIONS = Object.freeze({
 	noHealing: { name: "Sem recuperar PV", img: "icons/svg/blood.svg", changes: [], condition: { noHealing: true } },
 });
 
+/** Texto da regra de cada condição, mostrado na tela de ataque. */
+export const CONDITION_RULES = Object.freeze({
+	vulnerable: "−2 na Defesa.",
+	stun: "−5 na Defesa, −1 dado em Reflexos e não pode realizar ações.",
+	grabbed: "−5 na Defesa, −1 dado em Reflexos e em ataques, e fica imóvel.",
+	deaf: "−2 dados em Iniciativa e dificulta a conjuração de rituais.",
+	silence: "Não pode conjurar rituais.",
+	bleeding: "No início do turno faz um teste de Vigor (DT 20); se falhar, perde 1d6 PV.",
+	nauseated: "Só pode realizar uma ação por rodada.",
+	noHealing: "Não recupera PV.",
+});
+
 /** Nome/status usados nas regras de ritual → id do catálogo. */
 const ALIASES = Object.freeze({
 	stun: "stun", restrain: "grabbed", deaf: "deaf", silence: "silence", bleeding: "bleeding",
@@ -62,6 +74,30 @@ export function activeConditions(actor, id = null) {
 	});
 }
 
+/** Resumo das condições mecânicas ativas, para a tela e o cartão de ataque. */
+export function attackConditionDetails(actor) {
+	return activeConditions(actor).map((effect) => {
+		const data = effect.getFlag(SYSTEM, CONDITION_FLAG) ?? {};
+		const dice = data.dice ?? {};
+		const attackPenalty = Math.max(0, Number(dice.attack) || 0) + Math.max(0, Number(dice.all) || 0);
+		const details = [];
+		if (attackPenalty) details.push(`−${attackPenalty} dado${attackPenalty === 1 ? "" : "s"} no ataque`);
+		if (Number(data.defense)) {
+			const defense = Number(data.defense);
+			details.push(`${defense < 0 ? "−" : "+"}${Math.abs(defense)} Defesa`);
+		}
+		if (data.noActions) details.push("sem ações");
+		else if (data.oneAction) details.push("uma ação por rodada");
+		if (data.immobile) details.push("imóvel");
+		if (data.bleed) details.push("sangramento");
+		if (data.noHealing) details.push("não recupera PV");
+		if (data.noRituals) details.push("não conjura rituais");
+		if (data.badCasting) details.push("dificulta conjuração");
+		const text = String(effect.description ?? "").replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim();
+		return { id: effect.id, name: effect.name, detail: details.join(" · "), description: text || CONDITION_RULES[data.id] || "", attackPenalty };
+	});
+}
+
 /** Algum efeito ativo do ator tem a propriedade `prop` (ex.: "noRituals")? */
 export function hasConditionProp(actor, prop) {
 	return activeConditions(actor).some((effect) => effect.getFlag(SYSTEM, CONDITION_FLAG)?.[prop]);
@@ -77,7 +113,7 @@ export function conditionDicePenalty(actor, kind) {
 	for (const effect of activeConditions(actor)) {
 		const dice = effect.getFlag(SYSTEM, CONDITION_FLAG)?.dice;
 		if (!dice) continue;
-		total += Number(dice[kind] ?? 0) + (kind === "attack" ? 0 : Number(dice.all ?? 0));
+		total += Number(dice[kind] ?? 0) + Number(dice.all ?? 0);
 	}
 	return total;
 }

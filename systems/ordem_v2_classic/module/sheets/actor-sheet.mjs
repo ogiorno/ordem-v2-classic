@@ -1,6 +1,7 @@
 /* eslint-disable new-cap */
 // TABS: https://foundryvtt.wiki/en/development/guides/Tabs-and-Templates/Tabs-in-AppV2
 
+import { promptAttackOptions } from "../helpers/attack-options.mjs";
 import { AgentConfigApp } from "../applications/agent-config-app.mjs";
 import { prepareActiveEffectCategories } from "../helpers/effects.mjs";
 
@@ -836,12 +837,21 @@ export class OrdemActorSheet extends api.HandlebarsApplicationMixin(sheets.Actor
 		const dataset = target.dataset;
 
 		// Botão "Atacar": posta o cartão da arma e já rola o ataque (um clique só).
-		if (dataset.rollType === "attack") {
-			const item = this.actor.items.get(target.closest(".item").dataset.itemId);
+		const clicked = dataset.rollType === "item" ? this.actor.items.get(target.closest(".item")?.dataset.itemId) : null;
+		if (dataset.rollType === "attack" || clicked?.type === "armament") {
+			const item = clicked ?? this.actor.items.get(target.closest(".item").dataset.itemId);
 			if (!item) return;
+			// A tela de ataque abre antes do cartão: cancelar não deixa cartão solto no chat.
+			let attackOptions;
+			if (this.actor.type === "agent" && !event.shiftKey) {
+				attackOptions = await promptAttackOptions(item);
+				if (!attackOptions) return;
+			}
 			const message = await item.roll();
 			if (!message) return;
-			const result = await item.rollAttack({ event });
+			const result = await item.rollAttack({ event, attackOptions });
+			if (!result) return;
+			if (result.attackOptions?.lines?.length || result.attackOptions?.conditions?.length) await message.setFlag("ordem_v2_classic", "attackOptions", result.attackOptions);
 			item.lastMessageId = message.id;
 			item.critical = result.criticalStatus;
 			item.hitResult = result.hitResult ?? null;
