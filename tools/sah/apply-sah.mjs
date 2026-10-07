@@ -7,7 +7,7 @@ const sameEffects = (current, wanted) => {
 	const norm = (list) =>
 		JSON.stringify(
 			list
-				.map((e) => ({ id: e._id ?? e.id, name: e.name, disabled: Boolean(e.disabled), changes: (e.system?.changes ?? e.changes ?? []).map((c) => ({ key: c.key, value: c.value, type: c.type })) }))
+				.map((e) => ({ id: e._id ?? e.id, name: e.name, disabled: Boolean(e.disabled), onUse: e.flags?.ordem_v2_classic?.onUse ?? null, changes: (e.system?.changes ?? e.changes ?? []).map((c) => ({ key: c.key, value: c.value, type: c.type })) }))
 				.sort((a, b) => a.id.localeCompare(b.id))
 		);
 	return norm(current) === norm(wanted);

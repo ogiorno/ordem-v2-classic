@@ -26,6 +26,8 @@ async (page) => {
 				const record = { ritual: entry.name, form, choice, circulo: entry.circle };
 				try {
 					await rt("cleanup"); // fecha restos de um caso anterior (janelas, prévia da área)
+						// os cartoes de rolagem flutuantes ficam por cima do mapa e engolem o clique da area
+						await page.evaluate(() => { if (!document.getElementById("rt-no-popups")) { const s = document.createElement("style"); s.id = "rt-no-popups"; s.textContent = "#chat-notifications{pointer-events:none !important}"; document.head.append(s); } });
 					const plan = await rt("plan", n++, entry.name, form, choice);
 					Object.assign(record, { agente: plan.agent, modo: plan.mode, alvos: plan.targetIds.length, alcance: plan.range, exige: plan.req, regra: plan.rule });
 					await rt("prepare", plan);

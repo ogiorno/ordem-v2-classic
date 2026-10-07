@@ -19,6 +19,7 @@ import {
 	SURVIVOR_PATHS,
 } from "./content-paths.mjs";
 import { buildItems } from "./build-items.mjs";
+import { ONUSE } from "./content-onuse.mjs";
 import { PackSource, STATS, buildEffect, buildFolder, iconSlug, normalize, slug, stableId, toHtml } from "./lib.mjs";
 
 const ops = []; // montado no fim: { pack, kind: "item"|"folder", id, data } (o script do mundo faz upsert)
@@ -340,6 +341,28 @@ for (const [packName, name] of [["originPowers", "Calejado"], ["pathFighter", "N
 	}
 	if (changed) pack(packName).save(doc);
 	touch(packName, doc.json._id);
+}
+
+// ------------------------------------------------------------------ opções da tela de ataque
+for (const def of ONUSE) {
+	const doc = pack(def.pack).findItem(def.item);
+	if (!doc) {
+		report.missing.push(`${def.pack}: ${def.item}`);
+		continue;
+	}
+	const id = stableId("onuse", doc.json._id, def.effect);
+	doc.json.effects = (doc.json.effects ?? []).filter((e) => e._id !== id);
+	const effect = buildEffect(doc.json._id, { name: def.effect, key: "system.defense.value", value: 0 });
+	effect._id = id;
+	effect._key = `!items.effects!${doc.json._id}.${id}`;
+	effect.system = { changes: [] };
+	effect.disabled = true;
+	effect.transfer = false;
+	effect.description = def.description;
+	effect.flags = { ordem_v2_classic: { onUse: def.onUse } };
+	doc.json.effects.push(effect);
+	pack(def.pack).save(doc);
+	touch(def.pack, doc.json._id);
 }
 
 // ------------------------------------------------------------------ correções pontuais de texto
