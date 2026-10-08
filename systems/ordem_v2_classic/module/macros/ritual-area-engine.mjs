@@ -5,6 +5,8 @@
 import { regionContains } from "./ritual-area.mjs";
 import { CONDITION_FLAG, activeConditions, conditionEffectData, conditionIdFor, hasConditionProp } from "../helpers/conditions.mjs";
 
+import { BLEED_DT, bleedCardOpen, bleedMode, bleedOutcome } from "../helpers/turn-effects-rules.mjs";
+
 const SYSTEM = "ordem_v2_classic";
 const ZONE_FLAG = "ritualZone";
 const debug = (...args) => { if (globalThis.__areaDebug) console.log("[ritual-area]", ...args); };
@@ -348,15 +350,10 @@ async function processConditionsAtTurnStart(combatant, combat) {
 			continue;
 		}
 		if (data.bleed) {
-			const save = await autoRoll(actor, "resilience", 20);
-			if (save?.success) {
-				await effect.delete();
-				await ChatMessage.create({ speaker, content: `<p>${escapeHtml(actor.name)} passou em Vigor (DT 20) e estancou o sangramento.</p>` });
-			} else {
-				const roll = await new Roll("1d6").evaluate();
-				await roll.toMessage({ speaker, flavor: `${actor.name} — Sangrando: perde PV` }, { rollMode: game.settings.get("core", "rollMode") });
-				await actor.applyDamage(Math.max(0, Math.floor(Number(roll.total))), { ignoreRD: true });
-			}
+			const hasOnlineOwner = game.users.some((u) => !u.isGM && u.active && actor.testUserPermission(u, "OWNER"));
+			const mode = bleedMode({ setting: game.settings.get(SYSTEM, "turnSavePrompt"), actorType: actor.type, hasOnlineOwner });
+			if (mode === "ask") await postBleedCard(actor, effect, speaker);
+			else await resolveBleed(actor, effect.id);
 		}
 		if (data.noActions && combat.combatant?.id === combatant.id) {
 			await ChatMessage.create({ speaker, content: `<p>${escapeHtml(actor.name)} está ${escapeHtml(effect.name)} e não pode fazer ações: perde o turno.</p>` });
@@ -364,6 +361,51 @@ async function processConditionsAtTurnStart(combatant, combat) {
 			return;
 		}
 	}
+}
+
+/** Teste de Vigor do Sangrando (DT 20): passou estanca; falhou perde 1d6 PV e continua. Roda no cliente do Mestre. */
+export async function resolveBleed(actor, effectId) {
+	const effect = actor.effects.get(effectId);
+	if (!effect) return null;
+	const speaker = ChatMessage.getSpeaker({ actor });
+	const save = await autoRoll(actor, "resilience", BLEED_DT);
+	if (bleedOutcome(save?.total) === "stanched") {
+		await effect.delete();
+		await ChatMessage.create({ speaker, content: `<p>${escapeHtml(actor.name)} passou em Vigor (DT ${BLEED_DT}) e estancou o sangramento.</p>` });
+		return "stanched";
+	}
+	const roll = await new Roll("1d6").evaluate();
+	await roll.toMessage({ speaker, flavor: `${actor.name} — Sangrando: perde PV` }, { rollMode: game.settings.get("core", "rollMode") });
+	await actor.applyDamage(Math.max(0, Math.floor(Number(roll.total))), { ignoreRD: true });
+	return "bleeds";
+}
+
+/** Cartão pedindo ao jogador o teste de Sangrando; um cartão aberto por efeito. */
+async function postBleedCard(actor, effect, speaker) {
+	const open = game.messages.some((m) => {
+		const flag = m.getFlag(SYSTEM, "bleedPending");
+		return flag && flag.effectId === effect.id && bleedCardOpen(flag);
+	});
+	if (open) return;
+	await ChatMessage.create({
+		speaker,
+		content: `<div class="op-turn-save"><p><strong>${escapeHtml(actor.name)}</strong> está Sangrando. Faça um teste de Vigor (DT ${BLEED_DT}); se falhar, perde 1d6 PV.</p>
+			<button type="button" data-action="bleed-test"><i class="fa-solid fa-dice-d20"></i> Rolar Vigor</button></div>`,
+		flags: { [SYSTEM]: { bleedPending: { actorId: actor.id, effectId: effect.id, dt: BLEED_DT, resolved: false } } },
+	});
+}
+
+/** Resolve o cartão (clique do dono ou do Mestre). Idempotente: o segundo clique não faz nada. */
+export async function resolvePendingBleed(messageId) {
+	const message = game.messages.get(messageId);
+	const flag = message?.getFlag(SYSTEM, "bleedPending");
+	if (!bleedCardOpen(flag)) return null;
+	await message.setFlag(SYSTEM, "bleedPending", { ...flag, resolved: true });
+	const actor = game.actors.get(flag.actorId);
+	const result = actor ? await resolveBleed(actor, flag.effectId) : null;
+	const text = result === "stanched" ? "estancou o sangramento." : result === "bleeds" ? "continua sangrando." : "não está mais sangrando.";
+	await message.update({ content: `<div class="op-turn-save"><p><strong>${escapeHtml(actor?.name ?? "")}</strong> testou Vigor: ${text}</p></div>` });
+	return result;
 }
 
 /** Impede a recuperação de PV de quem está com "Sem recuperar PV". */

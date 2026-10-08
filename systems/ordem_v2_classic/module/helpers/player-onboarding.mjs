@@ -46,6 +46,16 @@ export function registerPlayerOnboarding() {
 	});
 	Hooks.once("ready", () => document.body.classList.toggle("op-compact-chat", game.settings.get(SYSTEM, "compactChat")));
 
+	game.settings.register(SYSTEM, "turnSavePrompt", {
+		name: "SETTINGS.turnSavePrompt",
+		hint: "SETTINGS.turnSavePromptHint",
+		scope: "world",
+		config: true,
+		type: String,
+		choices: { ask: "SETTINGS.turnSavePromptAsk", auto: "SETTINGS.turnSavePromptAuto" },
+		default: "ask",
+	});
+
 	game.settings.register(SYSTEM, "doorChatLog", {
 		name: "SETTINGS.doorChatLog",
 		hint: "SETTINGS.doorChatLogHint",

@@ -8,6 +8,7 @@
 
 /* eslint-disable no-undef */
 // Import document classes.
+import { canRollBleed } from "./helpers/turn-effects-rules.mjs";
 import { OrdemActor } from "./documents/actor.mjs";
 import { OrdemItem } from "./documents/item.mjs";
 import { OrdemCombat } from "./documents/combat.mjs";
@@ -263,6 +264,16 @@ Hooks.once("ready", function () {
 		}
 
 		if (data.type === "opostoResult") {
+		if (data.type === "bleedTest") {
+			const sender = data.userId ? game.users.get(data.userId) : null;
+			const message = data.messageId ? game.messages.get(data.messageId) : null;
+			const pending = message?.getFlag("ordem_v2_classic", "bleedPending");
+			const actor = pending?.actorId ? game.actors.get(pending.actorId) : null;
+			if (!sender || !actor || !canRollBleed({ isGM: sender.isGM, isOwner: actor.testUserPermission?.(sender, "OWNER") })) return;
+			const { resolvePendingBleed } = await import("./macros/ritual-area-engine.mjs");
+			await resolvePendingBleed(message.id);
+		}
+
 			if (!utils.isOpostoSenderAuthorized(data)) return;
 			await handleOpostoResult(data);
 		}
@@ -596,6 +607,21 @@ async function handleChatCommandClick(event) {
 	}
 
 	const areaButton = event.target.closest('[data-action="ritual-area-roll"], [data-action="ritual-area-place"]');
+	const bleedButton = event.target.closest?.('[data-action="bleed-test"]');
+	if (bleedButton) {
+		event.preventDefault();
+		const messageId = bleedButton.closest(".message")?.dataset.messageId;
+		if (!messageId) return;
+		bleedButton.disabled = true;
+		if (game.user.isGM) {
+			const { resolvePendingBleed } = await import("./macros/ritual-area-engine.mjs");
+			await resolvePendingBleed(messageId);
+		} else {
+			game.socket.emit("system.ordem_v2_classic", { type: "bleedTest", messageId, userId: game.user.id });
+		}
+		return;
+	}
+
 	if (areaButton) {
 		event.preventDefault();
 		const messageId = areaButton.closest(".message")?.dataset.messageId;
