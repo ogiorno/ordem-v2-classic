@@ -39,15 +39,18 @@ async function usarEscada(note) {
   await token.document.update(alvo, { animate: false });
 }
 
+// Com a camada de Notas ativa (mestre editando o mapa), o pino se comporta como nota comum: dá para arrastar.
+const editando = () => game.user.isGM && canvas.notes?.active;
+
 Hooks.once("init", () => {
   const Note = foundry.canvas.placeables.Note;
   const original = Note.prototype._onClickLeft;
   Note.prototype._onClickLeft = function (event) {
-    if (!this.document.getFlag(MODULE_ID, "regionUuid")) return original.call(this, event);
+    if (!this.document.getFlag(MODULE_ID, "regionUuid") || editando()) return original.call(this, event);
     event.stopPropagation?.();
     return usarEscada(this);
   };
 });
 
 // duplo clique também usa a escada, em vez de abrir o diário
-Hooks.on("activateNote", (note) => (note.document.getFlag(MODULE_ID, "regionUuid") ? false : undefined));
+Hooks.on("activateNote", (note) => (note.document.getFlag(MODULE_ID, "regionUuid") && !editando() ? false : undefined));
