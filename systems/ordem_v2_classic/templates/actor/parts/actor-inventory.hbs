@@ -29,50 +29,18 @@
 		<div class="category-limits">
 			<span class="section-title"><i class="fas fa-shield-halved"></i> {{localize "op.categoryLimits"}}</span>
 			<div class="limits-grid">
-				<div class="limit-badge font-cat-1">
-					<label>I</label>
-					<input
-						type="number"
-						name="system.patent.itemLimit1"
-						value="{{system.patent.itemLimit1}}"
-						placeholder="0"
-						data-dtype="Number"
-						disabled
-					/>
-				</div>
-				<div class="limit-badge font-cat-2">
-					<label>II</label>
-					<input
-						type="number"
-						name="system.patent.itemLimit2"
-						value="{{system.patent.itemLimit2}}"
-						placeholder="0"
-						data-dtype="Number"
-						disabled
-					/>
-				</div>
-				<div class="limit-badge font-cat-3">
-					<label>III</label>
-					<input
-						type="number"
-						name="system.patent.itemLimit3"
-						value="{{system.patent.itemLimit3}}"
-						placeholder="0"
-						data-dtype="Number"
-						disabled
-					/>
-				</div>
-				<div class="limit-badge font-cat-4">
-					<label>IV</label>
-					<input
-						type="number"
-						name="system.patent.itemLimit4"
-						value="{{system.patent.itemLimit4}}"
-						placeholder="0"
-						data-dtype="Number"
-						disabled
-					/>
-				</div>
+				{{#each categoryUsage.rows as |row|}}
+					<div class="limit-badge font-cat-{{row.cat}} op-cat-limit {{#if row.over}}is-over{{/if}}" data-tooltip="Itens de categoria {{row.label}}: {{row.used}} de {{row.limit}} que a patente permite">
+						<label>{{row.label}}</label>
+						<span class="op-cat-used">{{row.used}}</span><span class="op-cat-sep">/</span><span class="op-cat-max">{{row.limit}}</span>
+					</div>
+				{{/each}}
+				{{#if categoryUsage.above.used}}
+					<div class="limit-badge op-cat-limit is-over" data-tooltip="Itens acima da categoria IV: {{categoryUsage.above.used}} (a patente não permite nenhum)">
+						<label>V+</label>
+						<span class="op-cat-used">{{categoryUsage.above.used}}</span>
+					</div>
+				{{/if}}
 			</div>
 		</div>
 	</header>
@@ -124,6 +92,7 @@
 									<a class="rollable" data-roll-type="item" data-action="onRoll"><i class="fa-solid fa-dice-d20"></i></a>
 								</div>
 								<span class="item-name item-toggle" style="cursor: pointer;" data-tooltip="{{item.name}}">{{item.name}}</span>
+								{{#if item.categoryInfo.category}}<span class="op-cat-pill {{#if item.categoryInfo.over}}is-over{{/if}}" data-tooltip="{{item.categoryInfo.tip}}">{{item.categoryInfo.label}}</span>{{/if}}
 							</div>
 
 							<div class="item-meta-col col-prop">
@@ -227,11 +196,12 @@
 									<a class="rollable" data-action="onRoll" data-roll-type="item"><i class="fa-solid fa-dice-d20"></i></a>
 								</div>
 								<span class="item-name item-toggle" style="cursor: pointer;" data-tooltip="{{item.name}}">{{item.name}}</span>
+								{{#if item.categoryInfo.category}}<span class="op-cat-pill {{#if item.categoryInfo.over}}is-over{{/if}}" data-tooltip="{{item.categoryInfo.tip}}">{{item.categoryInfo.label}}</span>{{/if}}
 							</div>
 
 							<div class="item-meta-col col-category item-editable-resource">
 								<input
-									class="inline-input badge-cat-input"
+									class="inline-input badge-cat-input {{#if item.categoryInfo.over}}is-over{{/if}}"
 									type="number"
 									value="{{item.system.category}}"
 									data-dtype="Number"
@@ -345,6 +315,7 @@
 									<a class="rollable" data-action="onRoll" data-roll-type="item"><i class="fa-solid fa-dice-d20"></i></a>
 								</div>
 								<span class="item-name item-toggle" style="cursor: pointer;" data-tooltip="{{item.name}}">{{item.name}}</span>
+								{{#if item.categoryInfo.category}}<span class="op-cat-pill {{#if item.categoryInfo.over}}is-over{{/if}}" data-tooltip="{{item.categoryInfo.tip}}">{{item.categoryInfo.label}}</span>{{/if}}
 							</div>
 
 							<div class="item-meta-col col-category">

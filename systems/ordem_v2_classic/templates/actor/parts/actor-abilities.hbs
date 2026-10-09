@@ -146,7 +146,7 @@
 										<img src="{{item.img}}" title="{{item.name}}" class="item-toggle" style="cursor: pointer;" />
 										<a class="rollable" data-roll-type="item" data-action="onRoll"><i class="fa-solid fa-dice-d20"></i></a>
 									</div>
-									<span class="item-name item-toggle" style="cursor: pointer;" data-tooltip="{{item.name}}">{{item.name}}</span>
+									<span class="item-name item-toggle" style="cursor: pointer;" data-tooltip="{{item.name}}">{{item.name}}</span>{{#if item.hasAttackOption}}<i class="fa-solid fa-crosshairs op-attack-badge" data-tooltip="Aparece na tela de ataque"></i>{{/if}}
 								</div>
 
 								<div class="item-meta-col col-cost">
@@ -192,7 +192,7 @@
 										<img src="{{item.img}}" title="{{item.name}}" class="item-toggle" style="cursor: pointer;" />
 										<a class="rollable" data-roll-type="item" data-action="onRoll"><i class="fa-solid fa-dice-d20"></i></a>
 									</div>
-									<span class="item-name item-toggle" style="cursor: pointer;" data-tooltip="{{item.name}}">{{item.name}}</span>
+									<span class="item-name item-toggle" style="cursor: pointer;" data-tooltip="{{item.name}}">{{item.name}}</span>{{#if item.hasAttackOption}}<i class="fa-solid fa-crosshairs op-attack-badge" data-tooltip="Aparece na tela de ataque"></i>{{/if}}
 								</div>
 
 								<div class="item-meta-col col-type"><span class="badge-cat">—</span></div>

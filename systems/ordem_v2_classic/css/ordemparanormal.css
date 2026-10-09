@@ -4369,6 +4369,10 @@ body.theme-dark,
 .op-attack-dialog .op-ad-cost { font-size: 12px; min-width: 56px; text-align: right; opacity: 0.85; }
 .op-attack-dialog .op-ad-step { display: flex; align-items: center; gap: 4px; font-size: 12px; }
 .op-attack-dialog .op-ad-step input { width: 44px; }
+.op-attack-dialog .op-ad-pool { flex-wrap: wrap; }
+.op-attack-dialog .op-ad-pool-flag { flex-basis: 100%; margin: 0; padding: 3px 8px; border-radius: 4px; font-size: 11px; font-weight: 600; background: rgba(230, 160, 40, 0.18); color: #f0b84a; }
+.op-attack-dialog .op-ad-pool-flag[data-limit="turn"] { background: rgba(220, 70, 70, 0.18); color: #ff8a8a; }
+.op-attack-dialog .op-ad-pool-flag[hidden] { display: none; }
 .op-attack-dialog .op-ad-free { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
 .op-attack-dialog .op-ad-free label { display: flex; flex-direction: column; gap: 3px; font-size: 12px; }
 .op-attack-dialog .op-ad-foot { display: flex; flex-direction: column; gap: 2px; font-size: 13px; padding-top: 6px; border-top: 1px solid rgba(120, 120, 120, 0.35); }
@@ -4383,5 +4387,75 @@ body.theme-dark,
 .op-attack-dialog .op-ad-applied { display: flex; flex-direction: column; gap: 4px; }
 .op-attack-dialog .op-ad-applied-row { display: flex; flex-direction: column; gap: 1px; padding: 4px 8px; border-left: 3px solid #3ca05a; border-radius: 4px; background: rgba(60, 160, 90, 0.14); font-size: 12px; }
 .op-attack-dialog .op-ad-applied-row.is-bad { border-left-color: #c8942a; background: rgba(200, 140, 40, 0.18); }
+.op-attack-dialog .op-ad-applied-row.is-info { border-left-color: #6b7a8f; background: rgba(110, 125, 145, 0.16); }
+.op-attack-dialog .op-ad-weapon [data-rules] { margin: 4px 0; }
+.op-attack-dialog .op-ad-rule-choice { display: flex; align-items: center; gap: 6px; margin: 4px 0; font-size: 12px; }
+.op-attack-dialog .op-ad-rule-choice[hidden], .op-attack-dialog [data-rules][hidden] { display: none; }
 .op-attack-dialog .op-ad-applied-row em { opacity: 0.7; font-style: normal; }
 .op-attack-dialog .op-ad-applied-row small, .op-attack-dialog .op-ad-condition-label small { display: block; opacity: 0.8; font-size: 11px; line-height: 1.3; }
+
+/* Tela de ataque: bloco da arma (empunhadura, modos, alcance) */
+.op-attack-dialog .op-ad-weapon .op-ad-chips { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 6px; }
+.op-attack-dialog .op-ad-weapon-tag { padding: 1px 8px; border-radius: 10px; border: 1px solid var(--color-border-light-tertiary, #8884); font-size: 0.8em; }
+.op-attack-dialog .op-ad-modes { display: flex; flex-direction: column; gap: 2px; margin: 4px 0; }
+.op-attack-dialog .op-ad-field { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin: 4px 0; }
+.op-attack-dialog .op-ad-range { margin: 6px 0 0; padding: 4px 8px; border-radius: 4px; font-size: 0.85em; background: #2e7d3222; }
+.op-attack-dialog .op-ad-range.is-penalty { background: #f9a82522; }
+.op-attack-dialog .op-ad-range.is-blocked { background: #c6282822; font-weight: 600; }
+
+/* Poder com opção na tela de ataque */
+.op-attack-badge { margin-left: 6px; font-size: 0.8em; opacity: 0.75; }
+
+/* ---- Limite de itens por categoria (docs/spec-categoria-de-itens.md): só informa, nunca trava ---- */
+.op-cat-limit {
+	display: inline-flex;
+	align-items: center;
+	gap: 2px;
+	padding: 0 6px 0 0;
+	border: 1px solid rgba(128, 128, 128, 0.45);
+	border-radius: 4px;
+	height: 24px;
+	overflow: hidden;
+	font-weight: 700;
+	font-size: 12px;
+}
+.op-cat-limit label {
+	display: flex;
+	align-items: center;
+	height: 100%;
+	padding: 0 6px;
+	margin-right: 4px;
+	font-weight: 900;
+	background: rgba(128, 128, 128, 0.18);
+}
+.op-cat-limit .op-cat-sep,
+.op-cat-limit .op-cat-max {
+	opacity: 0.7;
+	font-weight: 600;
+}
+.op-cat-limit.is-over {
+	border-color: #d32f2f;
+}
+.op-cat-limit.is-over .op-cat-used {
+	color: #d32f2f;
+	font-weight: 900;
+}
+.op-cat-pill {
+	display: inline-block;
+	margin-left: 6px;
+	padding: 0 6px;
+	border-radius: 8px;
+	font-size: 11px;
+	font-weight: 800;
+	line-height: 16px;
+	background: rgba(128, 128, 128, 0.22);
+	white-space: nowrap;
+}
+.op-cat-pill.is-over {
+	color: #fff;
+	background: #d32f2f;
+}
+input.badge-cat-input.is-over {
+	color: #d32f2f !important;
+	font-weight: 900;
+}

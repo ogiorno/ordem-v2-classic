@@ -1,0 +1,66 @@
+/* ===== Tela de recompensa ao subir de nível ===== */
+.op-levelup-overlay { position: fixed; inset: 0; z-index: 10000; display: flex; align-items: center; justify-content: center; padding: 16px;
+	background: radial-gradient(ellipse at center, #1b1230cc 0%, #05030bee 75%); backdrop-filter: blur(3px); opacity: 0; transition: opacity 0.25s ease; }
+.op-levelup-overlay.is-open { opacity: 1; }
+.op-levelup-overlay.is-closing { opacity: 0; }
+.op-levelup-card { position: relative; width: min(560px, 100%); max-height: 92vh; display: flex; flex-direction: column; overflow: hidden; color: #efe6cf;
+	background: linear-gradient(170deg, #241838 0%, #120c1f 60%, #0b0714 100%); border: 2px solid #d9a93e; border-radius: 14px;
+	box-shadow: 0 0 0 4px #0b0714, 0 0 0 5px #8a6a22, 0 0 60px #d9a93e55, 0 20px 60px #000c; transform: scale(0.85) translateY(20px); transition: transform 0.45s cubic-bezier(0.2, 1.3, 0.4, 1); }
+.op-levelup-overlay.is-open .op-levelup-card { transform: none; }
+.op-lu-rays { position: absolute; top: -140px; left: 50%; width: 520px; height: 520px; margin-left: -260px; pointer-events: none; opacity: 0.35;
+	background: repeating-conic-gradient(from 0deg, #f3c65a 0deg 6deg, transparent 6deg 18deg); -webkit-mask: radial-gradient(circle, #000 0%, transparent 68%); mask: radial-gradient(circle, #000 0%, transparent 68%);
+	animation: op-lu-spin 40s linear infinite; }
+@keyframes op-lu-spin { to { transform: rotate(360deg); } }
+.op-lu-head { position: relative; text-align: center; padding: 22px 20px 10px; }
+.op-lu-kicker { display: block; font-size: 0.95em; letter-spacing: 0.35em; text-transform: uppercase; color: #f3c65a; text-shadow: 0 0 12px #f3c65a99; }
+.op-lu-level { font-size: 5.2em; line-height: 1.05; font-weight: 800; color: #fff3cf; text-shadow: 0 0 22px #f3c65acc, 0 3px 0 #8a6a22; animation: op-lu-pop 0.7s 0.15s cubic-bezier(0.2, 1.6, 0.4, 1) both; }
+.op-lu-level small { font-size: 0.35em; opacity: 0.7; font-weight: 600; }
+@keyframes op-lu-pop { from { transform: scale(0.2); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+.op-lu-who { display: inline-flex; align-items: center; gap: 10px; margin-top: 4px; text-align: left; }
+.op-lu-who img { width: 42px; height: 42px; border-radius: 50%; object-fit: cover; border: 2px solid #d9a93e; }
+.op-lu-who b { display: block; font-size: 1.1em; }
+.op-lu-who span { font-size: 0.85em; opacity: 0.7; }
+.op-lu-body { position: relative; overflow-y: auto; padding: 4px 22px 8px; }
+.op-lu-body section { margin-top: 14px; animation: op-lu-rise 0.5s both; }
+.op-lu-body section:nth-child(2) { animation-delay: 0.25s; }
+.op-lu-body section:nth-child(3) { animation-delay: 0.4s; }
+@keyframes op-lu-rise { from { transform: translateY(14px); opacity: 0; } to { transform: none; opacity: 1; } }
+.op-lu-body h3 { margin: 0 0 8px; padding: 0 0 4px; border: 0; border-bottom: 1px solid #d9a93e66; font-size: 0.85em; letter-spacing: 0.2em; text-transform: uppercase; color: #f3c65a; }
+.op-lu-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap: 10px; }
+.op-lu-stat { display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 10px 6px; border-radius: 10px; border: 1px solid #ffffff22; background: #ffffff0d; }
+.op-lu-stat i { font-size: 1.4em; margin-bottom: 2px; }
+.op-lu-stat-gain { font-size: 2em; font-weight: 800; line-height: 1; }
+.op-lu-stat-name { font-size: 0.75em; text-transform: uppercase; letter-spacing: 0.08em; opacity: 0.85; text-align: center; }
+.op-lu-stat-total { font-size: 0.8em; opacity: 0.65; }
+.op-lu-PV { color: #ff7a7a; box-shadow: inset 0 0 18px #ff4d4d22; }
+.op-lu-PE { color: #ffd45e; box-shadow: inset 0 0 18px #ffc10722; }
+.op-lu-PD { color: #7fd0ff; box-shadow: inset 0 0 18px #29a8ff22; }
+.op-lu-SAN { color: #c79bff; box-shadow: inset 0 0 18px #a56bff22; }
+.op-lu-round { margin: 10px 0 0; font-size: 0.9em; opacity: 0.85; text-align: center; }
+.op-lu-list, .op-lu-features { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 8px; }
+.op-lu-ability { display: flex; gap: 10px; align-items: flex-start; padding: 8px; border-radius: 8px; border: 1px solid #d9a93e55; background: #d9a93e14; }
+.op-lu-ability img { width: 38px; height: 38px; flex: none; border-radius: 6px; border: 1px solid #d9a93e88; object-fit: cover; }
+.op-lu-ability b, .op-lu-ability a { color: #ffe39a; }
+.op-lu-ability p { margin: 2px 0 0; font-size: 0.85em; opacity: 0.8; }
+.op-lu-features li { padding: 6px 10px; border-radius: 6px; background: #ffffff0a; font-size: 0.92em; }
+.op-lu-features li b { color: #f3c65a; margin-right: 4px; }
+.op-lu-features li.is-choice { border-left: 3px solid #f3c65a; }
+.op-lu-choice { margin-left: 6px; padding: 1px 7px; border-radius: 10px; font-size: 0.75em; font-style: normal; color: #1b1230; background: #f3c65a; white-space: nowrap; }
+.op-lu-empty { text-align: center; opacity: 0.7; }
+.op-levelup-card footer { position: relative; padding: 12px 22px 18px; text-align: center; }
+.op-lu-close { min-width: 180px; padding: 9px 18px; font-size: 1em; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; color: #2a1c05; border: 1px solid #fff0b8;
+	border-radius: 8px; background: linear-gradient(180deg, #ffe08a, #d9a93e); box-shadow: 0 0 18px #f3c65a77; }
+.op-lu-close:hover, .op-lu-close:focus { filter: brightness(1.12); box-shadow: 0 0 26px #f3c65acc; }
+@media (prefers-reduced-motion: reduce) { .op-lu-rays, .op-lu-level, .op-lu-body section, .op-levelup-card { animation: none; transition: none; } }
+.op-lu-PP { color: #9ff0c8; box-shadow: inset 0 0 18px #3ddc9722; }
+
+/* Com a biblioteca Motion, o JS controla a entrada: começa tudo escondido e sem animações de CSS. */
+.op-lu-flash { position: absolute; inset: 0; pointer-events: none; opacity: 0; background: radial-gradient(circle at 50% 22%, #fff3cf 0%, #f3c65a66 30%, transparent 65%); }
+.op-lu-sparks { position: absolute; left: 50%; top: 110px; width: 0; height: 0; pointer-events: none; z-index: 2; }
+.op-lu-spark { position: absolute; left: -4px; top: -4px; width: 8px; height: 8px; border-radius: 50%; background: #ffe39a; box-shadow: 0 0 10px 2px #f3c65acc; }
+.op-lu-motion .op-levelup-card { transform: none; transition: none; opacity: 0; }
+.op-lu-motion .op-lu-level, .op-lu-motion .op-lu-body section, .op-lu-motion .op-lu-level { animation: none; }
+.op-lu-motion .op-lu-kicker, .op-lu-motion .op-lu-level, .op-lu-motion .op-lu-who, .op-lu-motion .op-lu-body section, .op-lu-motion .op-lu-stat,
+.op-lu-motion .op-lu-ability, .op-lu-motion .op-lu-features li, .op-lu-motion .op-lu-round, .op-lu-motion footer { opacity: 0; }
+.op-lu-motion .op-lu-close { animation: op-lu-pulse 2.2s 2.5s ease-in-out infinite; }
+@keyframes op-lu-pulse { 50% { box-shadow: 0 0 30px #f3c65aee; } }

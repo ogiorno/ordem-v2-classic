@@ -1,6 +1,33 @@
 <form class="op-attack-form">
 	<p class="op-ad-sub">{{skillLine}}</p>
 
+	<section class="op-ad-block op-ad-weapon" data-weapon-block>
+		<h4>{{localize "op.attackDialog.weapon"}}</h4>
+		{{#if weapon.chips.length}}<div class="op-ad-chips">{{#each weapon.chips}}<span class="op-ad-weapon-tag">{{this}}</span>{{/each}}</div>{{/if}}
+		{{#if weapon.showModes}}
+		<div class="op-ad-modes">
+			{{#each weapon.modes}}<label class="op-ad-mode"><input type="radio" name="weaponMode" value="{{id}}" {{#if checked}}checked{{/if}}> {{label}}</label>{{/each}}
+		</div>
+		{{/if}}
+		{{#if weapon.attrChoice}}
+		<label class="op-ad-field" data-attr-row>{{localize "op.attackDialog.attackWith"}}
+			<select name="weaponAttr">{{#each weapon.attrChoice}}<option value="{{id}}" {{#if selected}}selected{{/if}}>{{label}}</option>{{/each}}</select>
+		</label>
+		{{/if}}
+		{{#if weapon.grips}}
+		<label class="op-ad-field">{{localize "op.attackDialog.grip"}}
+			<select name="weaponGrip">{{#each weapon.grips}}<option value="{{id}}" {{#if selected}}selected{{/if}} {{#if disabled}}disabled{{/if}}>{{label}}</option>{{/each}}</select>
+		</label>
+		{{/if}}
+		{{#each weapon.ruleChoices}}
+		<label class="op-ad-rule-choice" data-rule-choice="{{id}}"><input type="checkbox" name="{{id}}" {{#if checked}}checked{{/if}}> {{label}}</label>
+		{{/each}}
+		<div class="op-ad-applied" data-rules {{#unless weapon.rules.length}}hidden{{/unless}}>
+			{{#each weapon.rules}}<div class="op-ad-applied-row is-{{state}}">{{text}}</div>{{/each}}
+		</div>
+		<p class="op-ad-range" data-range-note hidden></p>
+	</section>
+
 	{{#if passive.length}}
 	<section class="op-ad-block">
 		<h4>{{localize "op.attackDialog.applied"}}</h4>
@@ -35,11 +62,12 @@
 		<h4>{{localize "op.attackDialog.options"}}</h4>
 		<div class="op-ad-list">
 			{{#each pools}}
-			<div class="op-ad-row op-ad-pool">
-				<div class="op-ad-name"><strong>{{label}}</strong>{{#if summary}}<small>{{summary}} · {{localize "op.attackDialog.upTo" max=max}}</small>{{/if}}{{#if source}}<small>{{source}}</small>{{/if}}</div>
-				<label class="op-ad-step">{{localize "op.attackDialog.inAttack"}} <input type="number" name="pool.{{id}}.attack" min="0" max="{{max}}" step="1" value="0"></label>
-				<label class="op-ad-step">{{localize "op.attackDialog.inDamage"}} <input type="number" name="pool.{{id}}.damage" min="0" max="{{max}}" step="1" value="0"></label>
-				<span class="op-ad-cost">{{onUse.cost}}{{#if onUse.stepCost}}+{{onUse.stepCost}}{{/if}} {{../resource}}</span>
+			<div class="op-ad-row op-ad-pool" data-pool="{{id}}" data-max="{{max}}" data-ability-max="{{abilityMax}}" data-limit="{{limit}}" data-per-turn="{{perTurn}}">
+				<div class="op-ad-name"><strong>{{label}}</strong>{{#if summary}}<small>{{summary}} · {{localize "op.attackDialog.upTo" max=abilityMax}}</small>{{/if}}{{#if source}}<small>{{source}}</small>{{/if}}</div>
+				<label class="op-ad-step">{{localize "op.attackDialog.inAttack"}} <select name="pool.{{id}}.attack">{{#each choices}}<option value="{{stacks}}">{{label}}</option>{{/each}}</select></label>
+				<label class="op-ad-step">{{localize "op.attackDialog.inDamage"}} <select name="pool.{{id}}.damage">{{#each choices}}<option value="{{stacks}}">{{label}}</option>{{/each}}</select></label>
+				<span class="op-ad-cost" data-pool-cost>{{onUse.cost}}{{#if onUse.stepCost}}+{{onUse.stepCost}}{{/if}} {{../resource}}</span>
+				<p class="op-ad-pool-flag" data-pool-flag hidden></p>
 			</div>
 			{{/each}}
 			{{#each stackables}}
