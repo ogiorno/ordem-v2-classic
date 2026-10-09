@@ -1,4 +1,4 @@
-import { abilityUnlockLevel, findOriginPower, folderMatchesPath, nexToLevel, normalizeName, survivorClassStage } from "./level-progression-rules.mjs";
+import { abilityUnlockLevel, findOriginPower, folderMatchesPath, nexToLevel, normalizeName, stripHtml, survivorClassStage } from "./level-progression-rules.mjs";
 
 const SYSTEM = "ordem_v2_classic";
 const PATH_PACKS = ["pathFighter", "pathSpecialist", "pathOccultist", "survivalPowers"];
@@ -74,7 +74,19 @@ async function grantEntries(actor, source, kind, entries) {
  * Sincroniza as habilidades de trilha com o Nível atual (ou o estágio, no Sobrevivente): concede as liberadas
  * e remove as ainda bloqueadas. O Sobrevivente também recebe as habilidades de classe do seu estágio.
  */
-export async function syncPathAbilities(actor) {
+export function syncPathAbilities(actor) {
+	// Em fila por ficha: duas sincronizações ao mesmo tempo (ex.: classe e trilha criadas juntas, ou dois níveis
+	// seguidos) liam a ficha antes uma da outra e concediam a mesma habilidade duas vezes.
+	const previous = syncQueue.get(actor.id) ?? Promise.resolve();
+	const run = previous.catch(() => {}).then(() => syncPathAbilitiesNow(actor));
+	syncQueue.set(actor.id, run);
+	run.finally(() => syncQueue.get(actor.id) === run && syncQueue.delete(actor.id)).catch(() => {});
+	return run;
+}
+
+const syncQueue = new Map();
+
+async function syncPathAbilitiesNow(actor) {
 	if (actor.type !== "agent") return;
 	const nivel = actor.system._progress ?? actor.system.nivel.value;
 	for (const path of actor.itemTypes.path) {
@@ -93,6 +105,33 @@ export async function syncPathAbilities(actor) {
 		})
 		.map((i) => i.id);
 	if (locked.length) await actor.deleteEmbeddedDocuments("Item", locked, { opAutoGrant: true });
+}
+
+/**
+ * Habilidades de trilha/classe que o personagem recebe ao ir de `from` para `to` (para a tela de recompensa).
+ * Lê só os índices dos compêndios; não depende de os itens já terem sido criados na ficha.
+ * @returns {Promise<{name: string, img: string, uuid: string, summary: string, level: number}[]>}
+ */
+export async function newAbilitiesBetween(actor, from, to) {
+	if (actor.type !== "agent") return [];
+	const inRange = (e) => e.level > from && e.level <= to;
+	const entries = [];
+	for (const path of actor.itemTypes.path) entries.push(...(await pathAbilityEntries(path.name)).filter(inRange));
+	if (actor.system._isSurvivor && actor.itemTypes.class[0]) entries.push(...(await survivorClassEntries()).filter(inRange));
+	entries.sort((a, b) => a.level - b.level);
+	const result = [];
+	for (const { pack, entry, level } of entries) {
+		const doc = await pack.getDocument(entry._id);
+		const text = stripHtml(doc?.system?.description).replace(/\s+/g, " ").trim();
+		result.push({
+			name: entry.name,
+			img: doc?.img ?? entry.img ?? "icons/svg/item-bag.svg",
+			uuid: doc?.uuid ?? `Compendium.${pack.collection}.${entry._id}`,
+			summary: text.length > 170 ? `${text.slice(0, 167)}…` : text,
+			level,
+		});
+	}
+	return result;
 }
 
 async function removeGranted(actor, sourceId) {

@@ -1,4 +1,5 @@
 import D20RollConfigurationDialog from "./d20-configuration-dialog.mjs";
+import { peritoFor } from "../helpers/perito.mjs";
 
 /**
  * @typedef {BasicRollConfigurationDialogOptions} SkillToolRollConfigurationDialogOptions
@@ -31,6 +32,16 @@ export default class SkillToolRollConfigurationDialog extends D20RollConfigurati
 				name: "attribute",
 				value: this.config.attributeId,
 				options: Object.entries(CONFIG.op.attributes).map(([value, l]) => ({ value, label: game.i18n.localize(l) })),
+			});
+		const perito = this.config.skill ? peritoFor(this.config.subject, this.config.skill) : null;
+		if (perito)
+			context.fields.push({
+				field: new foundry.data.fields.BooleanField({
+					label: game.i18n.format("op.perito.label", { pe: perito.pe, die: perito.die, resource: perito.resource }),
+					hint: perito.canPay ? "" : game.i18n.format("op.attackDialog.noBalance", { cost: perito.pe, balance: perito.pe - perito.missing, resource: perito.resource }),
+				}),
+				name: "perito",
+				value: false,
 			});
 		context.fields.push({
 			field: new foundry.data.fields.NumberField({

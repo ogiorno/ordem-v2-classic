@@ -9,6 +9,7 @@
 /* eslint-disable no-undef */
 // Import document classes.
 import { canRollBleed } from "./helpers/turn-effects-rules.mjs";
+import { registerDeathHooks } from "./helpers/death.mjs";
 import { OrdemActor } from "./documents/actor.mjs";
 import { OrdemItem } from "./documents/item.mjs";
 import { OrdemCombat } from "./documents/combat.mjs";
@@ -36,9 +37,12 @@ import { applyDamageFromMessage, damageApplicationMode } from "./helpers/card-da
 import { describeD20Pool } from "./helpers/dice-labels.mjs";
 import { registerLevelProgressionHooks } from "./helpers/level-progression.mjs";
 import { registerCombatChatNotice } from "./helpers/chat-notice.mjs";
+import { registerLevelUpScreen } from "./helpers/level-up-screen.mjs";
 import { registerPlayerOnboarding } from "./helpers/player-onboarding.mjs";
 import { registerDefensePrivacy } from "./helpers/defense-privacy.mjs";
+import { registerPeritoHooks } from "./helpers/perito.mjs";
 import { registerRitualAnimations } from "./integrations/ritual-animations.mjs";
+import "./integrations/attack-animations.mjs";
 import "./helpers/attack-options-config.mjs";
 
 // import { rescueAllPathEffects } from '../utils/__test__/effects.mjs';
@@ -126,9 +130,11 @@ Hooks.once("init", function () {
 	utils.preloadHandlebarsTemplates();
 	registerEnrichers();
 	registerLevelProgressionHooks();
+	registerLevelUpScreen();
 	registerCombatChatNotice();
 	registerPlayerOnboarding();
 	registerDefensePrivacy();
+	registerPeritoHooks();
 
 	// Change the logo of Foundry for Ordem Paranormal logo.
 	if (navigator.onLine) document.querySelector("#logo")?.setAttribute("src", "https://i.imgur.com/TTrDGM4.png");
@@ -149,6 +155,7 @@ Hooks.on("aa.initialize", () => {
 Hooks.once("ready", function () {
 	// Display welcome messages, reports and release notes.
 	displayMessages();
+	registerDeathHooks();
 
 	// GM-authoritative socket handler — only the first active GM processes requests
 	/**
@@ -263,7 +270,6 @@ Hooks.once("ready", function () {
 			await resolvePendingRitualCast(message.id);
 		}
 
-		if (data.type === "opostoResult") {
 		if (data.type === "bleedTest") {
 			const sender = data.userId ? game.users.get(data.userId) : null;
 			const message = data.messageId ? game.messages.get(data.messageId) : null;
@@ -274,6 +280,15 @@ Hooks.once("ready", function () {
 			await resolvePendingBleed(message.id);
 		}
 
+		if (data.type === "stabilize") {
+			const sender = data.userId ? game.users.get(data.userId) : null;
+			const medic = data.medicId ? game.actors.get(data.medicId) : null;
+			if (!sender || !medic || !(sender.isGM || medic.testUserPermission?.(sender, "OWNER"))) return;
+			const { resolveStabilize } = await import("./helpers/death.mjs");
+			await resolveStabilize(data.messageId, medic);
+		}
+
+		if (data.type === "opostoResult") {
 			if (!utils.isOpostoSenderAuthorized(data)) return;
 			await handleOpostoResult(data);
 		}
@@ -606,7 +621,6 @@ async function handleChatCommandClick(event) {
 		return;
 	}
 
-	const areaButton = event.target.closest('[data-action="ritual-area-roll"], [data-action="ritual-area-place"]');
 	const bleedButton = event.target.closest?.('[data-action="bleed-test"]');
 	if (bleedButton) {
 		event.preventDefault();
@@ -622,6 +636,23 @@ async function handleChatCommandClick(event) {
 		return;
 	}
 
+	const stabilizeButton = event.target.closest?.('[data-action="stabilize"]');
+	if (stabilizeButton) {
+		event.preventDefault();
+		const messageId = stabilizeButton.closest(".message")?.dataset.messageId;
+		const medic = canvas?.tokens?.controlled?.[0]?.actor ?? game.user.character;
+		if (!messageId) return;
+		if (!medic) return ui.notifications.warn("Selecione o token de quem vai estabilizar (ou defina seu personagem).");
+		if (game.user.isGM) {
+			const { resolveStabilize } = await import("./helpers/death.mjs");
+			await resolveStabilize(messageId, medic);
+		} else {
+			game.socket.emit("system.ordem_v2_classic", { type: "stabilize", messageId, medicId: medic.id, userId: game.user.id });
+		}
+		return;
+	}
+
+	const areaButton = event.target.closest('[data-action="ritual-area-roll"], [data-action="ritual-area-place"]');
 	if (areaButton) {
 		event.preventDefault();
 		const messageId = areaButton.closest(".message")?.dataset.messageId;

@@ -6,6 +6,8 @@ import SkillToolRollConfigurationDialog from "../applications/skill-tool-configu
 import AttributeRollConfigurationDialog from "../applications/attribute-configuration-dialog.mjs";
 import { calculateSpaces, calculateDefense, calculateStatusMaxima } from "../helpers/actor-calculations.mjs";
 import { fastHealingAmount, resolveDamage } from "../helpers/threat-calc.mjs";
+import { massiveDamageDT, triggersMassiveDamage } from "../helpers/death-rules.mjs";
+import { payPerito, peritoFor } from "../helpers/perito.mjs";
 
 /**
  * Extend the base Actor document by defining a custom roll data structure which is ideal for the Simple system.
@@ -301,7 +303,15 @@ export class OrdemActor extends Actor {
 			return { finalDamage, blocked, newPV: resource.value, conditions };
 		}
 
-		const newPV = Math.max(0, resource.value - finalDamage);
+		let newPV = Math.max(0, resource.value - finalDamage);
+		// Dano Massivo (agente): dano ≥ metade dos PV totais sem zerar os PV pede Fortitude; se falhar, cai a 0 PV.
+		if (!isThreat && triggersMassiveDamage({ damage: finalDamage, maxPV: resource.max, newPV })) {
+			const { massiveDamageSave } = await import("../helpers/death.mjs");
+			if (await massiveDamageSave(this, finalDamage, massiveDamageDT(finalDamage))) {
+				newPV = 0;
+				conditions.push("danoMassivo");
+			}
+		}
 		const hpKey = isThreat ? "system.attributes.hp.value" : "system.PV.value";
 		const hpUpdate = { [hpKey]: newPV };
 		// Cura Acelerada precisa saber o tipo do último dano (ex.: "10/químico").
@@ -628,6 +638,9 @@ export class OrdemActor extends Actor {
 
 		if (!rolls.length) return null;
 
+		// Perito: o PE só é gasto se a rolagem saiu com o dado extra
+		if (type === "skill") await payPerito(this, rollConfig);
+
 		return rolls;
 	}
 
@@ -664,6 +677,12 @@ export class OrdemActor extends Actor {
 		config.parts = [...(config.parts ?? []), ...parts];
 		config.data = { ...data, ...(config.data ?? {}) };
 		config.data.attributeId = attributeId;
+		// Perito (Especialista): marcado na janela, soma o dado da faixa do nível e guarda o custo para cobrar depois
+		const perito = formData?.get("perito") ? peritoFor(this, process.skill) : null;
+		if (perito) {
+			config.parts.push(perito.die);
+			config.options = { ...(config.options ?? {}), perito: { pe: perito.pe, die: perito.die, resource: perito.resource } };
+		}
 		// Condições (Atordoado, Agarrado, Surdo…) tiram d20 do teste: -1d20 / -2d20
 		const dicePenalty = conditionDicePenalty(this, process.skill);
 		if (dicePenalty) config.options = { ...(config.options ?? {}), dicePenalty };

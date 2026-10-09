@@ -5,10 +5,11 @@
  * https://github.com/foundryvtt/dnd5e/blob/a7f1404c7c38afa6d7dcc4f36a5fefd274034691/module/documents/item.mjs#L1639
  */
 
-import { defaultSelection, promptAttackOptions } from "../helpers/attack-options.mjs";
+import { attackBlockReason, attackTokens, defaultSelection, promptAttackOptions, syncOnUseEffects } from "../helpers/attack-options.mjs";
 import { damageFormulaParts } from "../helpers/attack-options-rules.mjs";
 import { damageApplicationMode, requestCardDamage } from "../helpers/card-damage.mjs";
 import { conditionDicePenalty } from "../helpers/conditions.mjs";
+import { resolveWeaponArea } from "../helpers/weapon-area-resolve.mjs";
 import { gmNotice } from "../helpers/gm-notice.mjs";
 import { getReactionEligibility } from "../helpers/reaction-helpers.mjs";
 import { damageRecipients } from "../helpers/visibility.mjs";
@@ -297,7 +298,17 @@ export class OrdemItem extends Item {
 				const chosen = await promptAttackOptions(this);
 				if (!chosen) return null;
 				options.attackOptions = chosen;
-			} else options.attackOptions = defaultSelection(this);
+			} else {
+				await syncOnUseEffects(this.parent).catch(() => {});
+				options.attackOptions = defaultSelection(this);
+			}
+		}
+		if (!isInnerRecursion && this.parent?.type === "agent") {
+			const blocked = attackBlockReason(this, options.attackOptions);
+			if (blocked) {
+				ui.notifications.warn(blocked);
+				return null;
+			}
 		}
 		if (!isInnerRecursion) {
 			const numAttacks = this.system.numberOfAttacks ?? 1;
@@ -364,8 +375,9 @@ export class OrdemItem extends Item {
 		}
 
 		const attack = this.system.formulas.attack;
-		const skill = this.parent.system.skills[attack.skill];
-		let attribute = this.parent.system.attributes[attack.attr];
+		const weaponPick = options.attackOptions?.weapon ?? null;
+		const skill = this.parent.system.skills[weaponPick?.skill || attack.skill];
+		let attribute = this.parent.system.attributes[weaponPick?.attr || attack.attr];
 		let rollMode = "kh";
 
 		// Condições (Agarrado, Enredado…) tiram d20 do ataque
@@ -401,10 +413,13 @@ export class OrdemItem extends Item {
 		const roll = await new Roll(rollConfig.formula, rollConfig.data).evaluate();
 
 		// Verificações de Crítico
-		const criticalStatus = this.isCritical({
-			crtalFormula: this.system.critical,
-			roll,
-		});
+		const criticalStatus = this.isCritical(
+			{
+				crtalFormula: this.system.critical,
+				roll,
+			},
+			{ marginBonus: options.attackOptions?.critMargin ?? 0 }
+		);
 
 		// Resolve target info. Quando _forcedTarget veio do scheduler (mesmo `null`),
 		// respeitamos a escolha — usar `??` aqui faria um null explícito cair de volta
@@ -417,7 +432,7 @@ export class OrdemItem extends Item {
 			const _targets = game.user?.targets ?? new Set();
 			targetToken = _targets.size === 1 ? [..._targets][0] : null;
 		}
-		const hitResult = targetToken ? this._compareWithDefense(targetToken.actor, roll.total, criticalStatus) : null;
+		const hitResult = targetToken ? { ...this._compareWithDefense(targetToken.actor, roll.total, criticalStatus), targetTokenUuid: targetToken.document?.uuid ?? null, attackTotal: roll.total } : null;
 
 		// Build the pending-reaction descriptor when the defender is an Agent (PCs only — Threats don't react).
 		// Skip when the attacker IS the defender (counter-attacks), the attacker has no actor,
@@ -488,6 +503,10 @@ export class OrdemItem extends Item {
 			// this, the only "attacker" signal is `message.speaker.actor`, which
 			// doesn't map 1:1 to a user (GM controlling NPC, shared actors, etc).
 			flags["ordem_v2_classic.attackerUserId"] = game.userId;
+			{
+				const { attacker } = attackTokens(this);
+				if (attacker && targetToken) flags["ordem_v2_classic.attackAnim"] = { from: attacker.document.uuid, to: targetToken.document.uuid, kind: weaponPick?.mode === "throw" ? "throw" : this.system.types?.rangeType?.name === "ranged" && weaponPick?.mode !== "blow" ? (weaponPick?.mode === "burst" ? "burst" : "shot") : "melee", weapon: this.name };
+			}
 			if (chosenOptions?.lines?.length || chosenOptions?.conditions?.length) flags["ordem_v2_classic.attackOptions"] = chosenOptions;
 
 			const targetName = targetToken?.name ?? null;
@@ -558,6 +577,8 @@ export class OrdemItem extends Item {
 						isCritical: hitResult.isCritical,
 						targetDefense: hitResult.targetDefense,
 						actorUuid: hitResult.actorUuid,
+						targetTokenUuid: hitResult.targetTokenUuid ?? null,
+						attackTotal: hitResult.attackTotal ?? null,
 					};
 					const attackResults = sameVolley ? [...(previous.attackResults ?? []), entry] : [entry];
 					const anyHitOrPending = attackResults.some((a) => a.hit === true || a.revealed === false);
@@ -637,6 +658,7 @@ export class OrdemItem extends Item {
 			critical.multiplier = (formulaCritical.includes("x") && Number(formulaCritical.replaceAll("x", ""))) || 2;
 			critical.margin = (!formulaCritical.includes("x") && Number(formulaCritical)) || 20;
 		}
+		if (options.marginBonus) critical.margin -= options.marginBonus; // ex.: Técnica Letal (+2 na margem de ameaça)
 		critical.isCritical = (Number(critical.roll.result.split("+")[0]) || critical.roll.result) >= critical.margin && true;
 		return critical;
 	}
@@ -652,7 +674,11 @@ export class OrdemItem extends Item {
 		const damageTypes = [];
 
 		// Damage Access
-		const damage = this.system.formulas.damage;
+		const damage = { ...this.system.formulas.damage };
+		const weaponPick = options.attackOptions?.weapon ?? null;
+		if (weaponPick?.damageFormula) damage.formula = weaponPick.damageFormula;
+		if (weaponPick?.damageType) damage.type = weaponPick.damageType;
+		if (weaponPick?.damageAttr) damage.attr = weaponPick.damageAttr;
 
 		// Critical variable — auto-detect from hitResult if not explicitly passed.
 		// O multiplier vem da fórmula da arma (e.g. "19/x3" → 3, "x4" → 4); usar `2`
@@ -673,6 +699,7 @@ export class OrdemItem extends Item {
 			...damageFormulaParts(damage.formula, {
 				critMultiplier: critApplied ? critical.multiplier ?? 2 : 1,
 				extraDice: extra?.damageDice ?? 0,
+				explode: Boolean(extra?.weapon?.explode),
 			})
 		);
 
@@ -699,7 +726,8 @@ export class OrdemItem extends Item {
 		}
 
 		// Combine all formulas and types
-		const formulas = prepareFormula.join("+");
+		// Espingarda em alcance médio ou maior: metade do dano, arredondada para baixo
+		const formulas = extra?.weapon?.halve ? `floor((${prepareFormula.join("+")})/2)` : prepareFormula.join("+");
 		const types = damageTypes.join("+").replaceAll("+", " + ");
 
 		const rollConfig = {
@@ -768,9 +796,39 @@ export class OrdemItem extends Item {
 		 * @param {Ordemitem} item  Item for which the roll was performed.
 		 * @param {Roll} roll       The resulting roll.
 		 */
+		// Armas de área (Bazuca, Lança-chamas): o mesmo dano atinge os outros seres da área
+		if (extra?.weapon?.area && !options._attackIndex) {
+			await resolveWeaponArea({
+				item: this,
+				weapon: extra.weapon,
+				total: Math.max(0, Math.floor(Number(roll.total))),
+				damageType: damage.type,
+				hitResult,
+				messageId: extra.weapon.mode === "point" ? null : (options.attackMessageId ?? hitResult?.attackMessageId ?? this.lastAttackMessageId ?? null), // o disparo num ponto não tem cartão de ataque
+			}).catch((err) => console.error("Ordem Paranormal | área da arma falhou", err));
+		}
+
 		Hooks.callAll("ordemparanormal.rollFormula", this, roll);
 
 		return roll;
+	}
+
+	/**
+	 * Bazuca num ponto: sem teste de ataque, não erra e ninguém é atingido diretamente.
+	 * O ponto é a posição do alvo marcado; o dano atinge todos no raio (Reflexos pela metade).
+	 */
+	async rollAreaPoint({ attackOptions } = {}) {
+		const targets = [...(game.user?.targets ?? [])];
+		if (targets.length !== 1) {
+			ui.notifications.warn("Marque o alvo que define o ponto do disparo.");
+			return null;
+		}
+		return this.rollDamage({
+			attackOptions,
+			critical: false,
+			lastId: true,
+			hitResult: { hit: true, point: true, targetTokenUuid: targets[0].document?.uuid ?? null },
+		});
 	}
 
 	/**
@@ -804,6 +862,8 @@ export class OrdemItem extends Item {
 						attackMessageId: atk.attackMessageId ?? null,
 						isCritical: Boolean(atk.isCritical),
 						hit: true,
+						targetTokenUuid: atk.targetTokenUuid ?? null,
+						attackTotal: atk.attackTotal ?? null,
 					},
 					_attackIndex: atk.attackIndex ?? null,
 					_attackTotal: entries.length,

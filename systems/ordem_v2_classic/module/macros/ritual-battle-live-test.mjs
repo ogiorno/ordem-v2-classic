@@ -118,7 +118,13 @@ async function castRitual({ agent, ritual, form = "basic", targets = [], area = 
 	let done = false;
 	macro.finally(() => { done = true; });
 
-	const dlg = await waitFor(() => dialogByTitle("Conjurar Ritual"));
+	const dlg = await waitFor(() => dialogByTitle("Conjurar Ritual") ?? (done ? "closed" : null));
+	if (dlg === "closed") {
+		// a macro terminou sem abrir a janela (ex.: Silenciado bloqueia antes): conta como bloqueada, com os avisos
+		watch.disconnect();
+		Hooks.off("renderNotifications", hook);
+		return { blocked: true, card: null, pdSpent: pdBefore - Number(actor.system.PD.value), warnings: [...new Set(warnings)] };
+	}
 	if (!dlg) { watch.disconnect(); throw new Error("A janela de conjuração não abriu."); }
 	[...dlg.querySelectorAll("button")].find((button) => button.innerText.includes(ritual))?.click();
 	await pause(500);
@@ -201,6 +207,35 @@ async function rollFormula(actor, skill) {
 	return roll?.formula ?? "";
 }
 
+async function bleedStackCases(arena, add) {
+	const [{ token: agentToken }] = arena.agents;
+	const origin = { zoneId: null, itemId: "teste", itemUuid: null };
+	// SG-01/02: Sangrando acumula (2 aplicações = 1 efeito ×2; falha custa 2d6; passar estanca tudo)
+	for (const [id, label, mode] of [["SG-01", "Sangrando ×2: falhou em Vigor, perde 2d6 PV e segue ×2", "fail"], ["SG-02", "Sangrando ×2: passou em Vigor e estanca tudo", "pass"]]) {
+		const target = await arena.mkThreat(`ZZ sangra x2 ${mode}`, 2200, 900);
+		await tuneThreat(target, mode);
+		await applyCondition(target.actor, { key: "bleeding" }, origin);
+		await applyCondition(target.actor, { key: "bleeding" }, origin);
+		const effects = activeConditions(target.actor, "bleeding");
+		const stacksBefore = effects[0]?.getFlag(SYSTEM, "condition")?.stacks;
+		const known = new Set(game.messages.contents.map((message) => message.id));
+		const before = hp(target);
+		await withCombat(arena, [agentToken, target], async (combat) => {
+			await advanceTo(combat, target.id);
+			await pause(2200);
+		});
+		const lost = before - hp(target);
+		const left = activeConditions(target.actor, "bleeding");
+		const formula = game.messages.contents.find((message) => !known.has(message.id) && /Sangrando ×2/.test(message.flavor ?? ""))?.rolls?.[0]?.formula;
+		const setup = effects.length === 1 && stacksBefore === 2;
+		const ok = setup && (mode === "fail"
+			? lost >= 2 && lost <= 12 && formula === "2d6" && left.length === 1 && left[0].getFlag(SYSTEM, "condition")?.stacks === 2
+			: lost === 0 && left.length === 0);
+		add(id, label, ok, `efeitos ${effects.length}, acúmulos ${stacksBefore}; PV ${before} → ${hp(target)}; dano ${formula ?? "—"}; ainda sangrando: ${left.length}`);
+		await target.document.delete();
+	}
+}
+
 async function conditionCases(arena, add) {
 	const [{ actor: agent, token: agentToken }] = arena.agents;
 	const threat = await arena.mkThreat("ZZ ameaça", 1600, 900);
@@ -245,7 +280,9 @@ async function conditionCases(arena, add) {
 	{
 		const weapon = await ensureWeapon(agent, "Revólver");
 		const dex = agent.system.attributes[weapon.system.formulas.attack.attr].value;
-		setTargets([threat]);
+		// alvo colado no agente: além do alcance o ataque já perde 1d20 e contaminaria a conta
+		const attackTarget = await arena.mkThreat("ZZ alvo do ataque", agentToken.center.x + 150, agentToken.center.y);
+		setTargets([attackTarget]);
 		const known = new Set(game.messages.contents.map((message) => message.id));
 		await weapon.rollAttack();
 		await pause(800);
@@ -256,6 +293,7 @@ async function conditionCases(arena, add) {
 		await pause(800);
 		const grabRoll = game.messages.contents.filter((message) => !known2.has(message.id) && message.rolls.length).at(0)?.rolls[0];
 		await activeConditions(agent).forEach((effect) => effect.delete());
+		await attackTarget.document.delete();
 		const a = normalizeDice(baseRoll?.formula ?? "");
 		const b = normalizeDice(grabRoll?.formula ?? "");
 		const expectedN = dex - 1 < 1 ? 2 : dex - 1;
@@ -565,6 +603,11 @@ export async function runBattleTests({ only = null } = {}) {
 	const results = [];
 	const wanted = (prefix) => !only || prefix.startsWith(only) || only.startsWith(prefix);
 	const add = (id, caso, ok, detalhe) => results.push({ id, caso, ok: !!ok, detalhe });
+	// a macro de conjuração só funciona com "Jogando sem Sanidade" (PD); liga durante o teste e devolve o valor do mundo
+	const sanityKey = "globalPlayingWithoutSanity";
+	const sanityBefore = game.settings.get(SYSTEM, sanityKey);
+	if (!sanityBefore) await game.settings.set(SYSTEM, sanityKey, true);
+	try {
 	await withArena(async (arena) => {
 		const guard = async (prefix, fn) => {
 			if (!wanted(prefix)) return;
@@ -575,9 +618,13 @@ export async function runBattleTests({ only = null } = {}) {
 			}
 		};
 		await guard("CD", () => conditionCases(arena, add));
+		await guard("SG", () => bleedStackCases(arena, add));
 		await guard("TG", () => targetingCases(arena, add));
 		await guard("BT", () => battleCase(arena, add));
 	}, { agents: DEFAULT_AGENTS, pd: 200 });
+	} finally {
+		if (!sanityBefore) await game.settings.set(SYSTEM, sanityKey, sanityBefore);
+	}
 	console.table(results);
 	return results;
 }

@@ -5,7 +5,7 @@
 import { regionContains } from "./ritual-area.mjs";
 import { CONDITION_FLAG, activeConditions, conditionEffectData, conditionIdFor, hasConditionProp } from "../helpers/conditions.mjs";
 
-import { BLEED_DT, bleedCardOpen, bleedMode, bleedOutcome } from "../helpers/turn-effects-rules.mjs";
+import { BURN_DAMAGE_FORMULA, BURN_DAMAGE_TYPE, BLEED_DT, bleedCardOpen, bleedDamageFormula, bleedMode, bleedOutcome, bleedStacks } from "../helpers/turn-effects-rules.mjs";
 
 const SYSTEM = "ordem_v2_classic";
 const ZONE_FLAG = "ritualZone";
@@ -19,7 +19,7 @@ const hpOf = (actor) => Number(actor.type === "threat" ? actor.system.attributes
 /* -------------------------------------------- */
 
 /** Rola uma perícia sem diálogo e posta a carta normal de perícia no chat. Devolve { total, success }. */
-async function autoRoll(actor, skill, dt) {
+export async function autoRoll(actor, skill, dt) {
 	const rolls = await actor.rollSkill({ skill, rolls: [{ options: { target: dt } }] }, { configure: false }, { create: false });
 	const roll = Array.isArray(rolls) ? rolls[0] : rolls;
 	const total = Number(roll?.total);
@@ -68,6 +68,15 @@ export async function applyCondition(actor, cond, origin = {}) {
 	const areaEffect = { zoneId: origin.zoneId ?? null, itemId: origin.itemId ?? null, key: cond.key ?? null };
 	const id = conditionIdFor(cond);
 	let data;
+	if (id === "bleeding") {
+		// Sangrando acumula: nova aplicação soma 1 no efeito que já existe (1d6 a mais por acúmulo)
+		const current = activeConditions(actor, "bleeding")[0];
+		if (current) {
+			const stacks = bleedStacks(current.getFlag(SYSTEM, CONDITION_FLAG)) + 1;
+			await current.setFlag(SYSTEM, CONDITION_FLAG, { ...current.getFlag(SYSTEM, CONDITION_FLAG), stacks });
+			return { effect: current, name: `${current.name} (×${stacks})`, rounds, stacks };
+		}
+	}
 	if (id) {
 		// condição com efeito mecânico (defesa, d20 a menos, sangramento…): ver helpers/conditions.mjs
 		data = conditionEffectData(id, { name: cond.label, rounds, origin: origin.itemUuid ?? null, startRound: game.combat?.round ?? null, extraFlags: { areaEffect } });
@@ -339,7 +348,7 @@ function areaRuleFromInfo(item, info) {
 const hpPath = (actor) => (actor.type === "threat" ? "system.attributes.hp.value" : "system.PV.value");
 
 /** Início do turno de quem carrega condições: expira as vencidas, faz o teste do Sangrando e pula o turno de quem não pode agir. */
-async function processConditionsAtTurnStart(combatant, combat) {
+export async function processConditionsAtTurnStart(combatant, combat) {
 	const actor = combatant.actor;
 	if (!actor) return;
 	const speaker = ChatMessage.getSpeaker({ actor });
@@ -355,6 +364,11 @@ async function processConditionsAtTurnStart(combatant, combat) {
 			if (mode === "ask") await postBleedCard(actor, effect, speaker);
 			else await resolveBleed(actor, effect.id);
 		}
+		if (data.burn) {
+			const roll = await new Roll(BURN_DAMAGE_FORMULA).evaluate();
+			await roll.toMessage({ speaker, flavor: `${actor.name} — Em Chamas: dano de fogo` }, { rollMode: game.settings.get("core", "rollMode") });
+			await actor.applyDamage(Math.max(0, Math.floor(Number(roll.total))), { damageType: BURN_DAMAGE_TYPE });
+		}
 		if (data.noActions && combat.combatant?.id === combatant.id) {
 			await ChatMessage.create({ speaker, content: `<p>${escapeHtml(actor.name)} está ${escapeHtml(effect.name)} e não pode fazer ações: perde o turno.</p>` });
 			await combat.nextTurn();
@@ -368,14 +382,15 @@ export async function resolveBleed(actor, effectId) {
 	const effect = actor.effects.get(effectId);
 	if (!effect) return null;
 	const speaker = ChatMessage.getSpeaker({ actor });
+	const stacks = bleedStacks(effect.getFlag(SYSTEM, CONDITION_FLAG));
 	const save = await autoRoll(actor, "resilience", BLEED_DT);
 	if (bleedOutcome(save?.total) === "stanched") {
 		await effect.delete();
 		await ChatMessage.create({ speaker, content: `<p>${escapeHtml(actor.name)} passou em Vigor (DT ${BLEED_DT}) e estancou o sangramento.</p>` });
 		return "stanched";
 	}
-	const roll = await new Roll("1d6").evaluate();
-	await roll.toMessage({ speaker, flavor: `${actor.name} — Sangrando: perde PV` }, { rollMode: game.settings.get("core", "rollMode") });
+	const roll = await new Roll(bleedDamageFormula(stacks)).evaluate();
+	await roll.toMessage({ speaker, flavor: `${actor.name} — Sangrando${stacks > 1 ? ` ×${stacks}` : ""}: perde PV` }, { rollMode: game.settings.get("core", "rollMode") });
 	await actor.applyDamage(Math.max(0, Math.floor(Number(roll.total))), { ignoreRD: true });
 	return "bleeds";
 }
@@ -387,11 +402,12 @@ async function postBleedCard(actor, effect, speaker) {
 		return flag && flag.effectId === effect.id && bleedCardOpen(flag);
 	});
 	if (open) return;
+	const stacks = bleedStacks(effect.getFlag(SYSTEM, CONDITION_FLAG));
 	await ChatMessage.create({
 		speaker,
-		content: `<div class="op-turn-save"><p><strong>${escapeHtml(actor.name)}</strong> está Sangrando. Faça um teste de Vigor (DT ${BLEED_DT}); se falhar, perde 1d6 PV.</p>
+		content: `<div class="op-turn-save"><p><strong>${escapeHtml(actor.name)}</strong> está Sangrando${stacks > 1 ? ` (×${stacks})` : ""}. Faça um teste de Vigor (DT ${BLEED_DT}); se falhar, perde ${bleedDamageFormula(stacks)} PV.</p>
 			<button type="button" data-action="bleed-test"><i class="fa-solid fa-dice-d20"></i> Rolar Vigor</button></div>`,
-		flags: { [SYSTEM]: { bleedPending: { actorId: actor.id, effectId: effect.id, dt: BLEED_DT, resolved: false } } },
+		flags: { [SYSTEM]: { bleedPending: { actorId: actor.id, effectId: effect.id, dt: BLEED_DT, stacks, resolved: false } } },
 	});
 }
 
@@ -423,7 +439,41 @@ function blockHealing(actor, changes) {
 /*  Hooks                                       */
 /* -------------------------------------------- */
 
+/* Modal do Sangrando: abre para o dono (jogador) quando o cartão do teste é criado e fecha quando ele é resolvido. */
+const bleedDialogs = new Map();
+
+function openBleedDialog(message) {
+	const flag = message.getFlag(SYSTEM, "bleedPending");
+	const actor = flag ? game.actors.get(flag.actorId) : null;
+	if (!actor || game.user.isGM || !bleedCardOpen(flag) || !actor.testUserPermission(game.user, "OWNER")) return;
+	if (bleedDialogs.get(message.id)?.rendered) return;
+	const stacks = bleedStacks(flag);
+	const dialog = new foundry.applications.api.DialogV2({
+		window: { title: "Sangrando", icon: "fa-solid fa-droplet" },
+		classes: ["op-bleed-dialog"],
+		content: `<p><strong>${escapeHtml(actor.name)}</strong> está Sangrando${stacks > 1 ? ` <strong>(×${stacks})</strong>` : ""}.</p>
+			<p>Faça um teste de Vigor (DT ${BLEED_DT}). Se passar, o sangramento estanca; se falhar, perde <strong>${bleedDamageFormula(stacks)}</strong> PV e continua sangrando.</p>`,
+		buttons: [{
+			action: "roll",
+			label: "Rolar Vigor",
+			icon: "fa-solid fa-dice-d20",
+			default: true,
+			callback: async () => {
+				game.socket.emit("system.ordem_v2_classic", { type: "bleedTest", messageId: message.id, userId: game.user.id });
+			},
+		}],
+		rejectClose: false,
+	});
+	bleedDialogs.set(message.id, dialog);
+	dialog.render({ force: true });
+}
+
 export function registerAreaHooks() {
+	Hooks.on("createChatMessage", (message) => { if (message.getFlag(SYSTEM, "bleedPending")) openBleedDialog(message); });
+	Hooks.on("updateChatMessage", (message) => {
+		const flag = message.getFlag(SYSTEM, "bleedPending");
+		if (flag && !bleedCardOpen(flag)) { bleedDialogs.get(message.id)?.close(); bleedDialogs.delete(message.id); }
+	});
 	Hooks.on("combatTurnChange", async (combat, _previous, current) => {
 		if (!game.user.isActiveGM) return;
 		const combatant = combat.combatants.get(current?.combatantId);

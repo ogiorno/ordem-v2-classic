@@ -1,12 +1,15 @@
 /* eslint-disable new-cap */
 // TABS: https://foundryvtt.wiki/en/development/guides/Tabs-and-Templates/Tabs-in-AppV2
 
-import { promptAttackOptions } from "../helpers/attack-options.mjs";
+import { attackBlockReason, defaultSelection, markReload, onUseOf, promptAttackOptions } from "../helpers/attack-options.mjs";
+import { powerEffectFor } from "../helpers/attack-power-effects.mjs";
 import { AgentConfigApp } from "../applications/agent-config-app.mjs";
 import { prepareActiveEffectCategories } from "../helpers/effects.mjs";
 
 const { api, sheets } = foundry.applications;
 // const TextEditor = foundry.applications.ux.TextEditor.implementation;
+
+import { categoryReducer, categoryUsage, itemCategoryInfo } from "../helpers/item-categories.mjs";
 
 /**
  * Extend the basic ActorSheet with some very simple modifications
@@ -363,6 +366,8 @@ export class OrdemActorSheet extends api.HandlebarsApplicationMixin(sheets.Actor
 			// Append to abilities.
 			else if (i.type === "ability") {
 				const abilityType = i.system.abilityType;
+				// Poder que aparece na tela de ataque (opção "ao usar" ou registrado)
+				i.hasAttackOption = Boolean(this.actor.items.get(i._id)?.effects.some((e) => onUseOf(e)) || powerEffectFor(i.name));
 				const costVal = i.system.cost || "";
 
 				// Em vez de ler i.system.costType, usamos a configuração global (labelCusto)
@@ -404,6 +409,12 @@ export class OrdemActorSheet extends api.HandlebarsApplicationMixin(sheets.Actor
 		context.protection = protection.sort((a, b) => (a.sort || 0) - (b.sort || 0));
 		context.generalEquip = generalEquipment.sort((a, b) => (a.sort || 0) - (b.sort || 0));
 		context.armament = armament.sort((a, b) => (a.sort || 0) - (b.sort || 0));
+
+		// Limite de itens por categoria da patente: só informa (número vermelho quando passa), nunca trava
+		const reduce = categoryReducer(this.actor.items.filter((i) => i.type === "ability").map((i) => i.name));
+		const usage = categoryUsage([...armament, ...protection, ...generalEquipment], this.actor.system.patent, reduce);
+		for (const item of [...armament, ...protection, ...generalEquipment]) item.categoryInfo = itemCategoryInfo(item, usage, reduce);
+		context.categoryUsage = usage;
 	}
 
 	/**
@@ -847,11 +858,23 @@ export class OrdemActorSheet extends api.HandlebarsApplicationMixin(sheets.Actor
 				attackOptions = await promptAttackOptions(item);
 				if (!attackOptions) return;
 			}
+			if (this.actor.type === "agent") {
+				// Atordoado ou alvo fora do alcance: avisa antes de postar o cartão da arma
+				const blocked = attackBlockReason(item, attackOptions);
+				if (blocked) return ui.notifications.warn(blocked);
+			}
 			const message = await item.roll();
 			if (!message) return;
+			if (attackOptions?.weapon?.noRoll) {
+				// Bazuca num ponto: sem teste de ataque; o dano e a área saem na hora
+				await item.rollAreaPoint({ attackOptions });
+				await markReload(item, attackOptions);
+				return;
+			}
 			const result = await item.rollAttack({ event, attackOptions });
 			if (!result) return;
 			if (result.attackOptions?.lines?.length || result.attackOptions?.conditions?.length) await message.setFlag("ordem_v2_classic", "attackOptions", result.attackOptions);
+			if (this.actor.type === "agent") await markReload(item, attackOptions ?? defaultSelection(item));
 			item.lastMessageId = message.id;
 			item.critical = result.criticalStatus;
 			item.hitResult = result.hitResult ?? null;

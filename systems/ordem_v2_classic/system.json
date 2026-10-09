@@ -19,9 +19,12 @@
   ],
   "styles": [
     "css/ordemparanormal.css",
-    "css/threat-sheet.css"
+    "css/threat-sheet.css",
+    "css/level-up-screen.css"
   ],
-  "scripts": [],
+  "scripts": [
+    "lib/motion.min.js"
+  ],
   "packs": [
     {
       "name": "others",

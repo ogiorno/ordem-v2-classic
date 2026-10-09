@@ -24,6 +24,9 @@ export const CONDITIONS = Object.freeze({
 	bleeding: { name: "Sangrando", status: "bleeding", changes: [], condition: { bleed: true } },
 	nauseated: { name: "Enjoado", img: "icons/svg/hazard.svg", changes: [], condition: { oneAction: true } },
 	noHealing: { name: "Sem recuperar PV", img: "icons/svg/blood.svg", changes: [], condition: { noHealing: true } },
+	burning: { name: "Em Chamas", img: "icons/svg/fire.svg", changes: [], condition: { burn: true } },
+	unconscious: { name: "Inconsciente", status: "unconscious", changes: defense(-5), condition: { defense: -5, noActions: true, unconscious: true } },
+	dying: { name: "Morrendo", img: "icons/svg/skull.svg", changes: [], condition: { dying: true } },
 });
 
 /** Texto da regra de cada condição, mostrado na tela de ataque. */
@@ -36,11 +39,14 @@ export const CONDITION_RULES = Object.freeze({
 	bleeding: "No início do turno faz um teste de Vigor (DT 20); se falhar, perde 1d6 PV.",
 	nauseated: "Só pode realizar uma ação por rodada.",
 	noHealing: "Não recupera PV.",
+	burning: "No início do turno sofre 1d6 de dano de fogo; gastar uma ação padrão apaga as chamas.",
+	unconscious: "Indefeso (−5 na Defesa) e não pode realizar ações. Termina com qualquer efeito que cure pelo menos 1 PV.",
+	dying: "Com 0 PV. Ao iniciar três turnos morrendo na mesma cena, morre. Só termina com Medicina (DT 20) ou efeitos específicos.",
 });
 
 /** Nome/status usados nas regras de ritual → id do catálogo. */
 const ALIASES = Object.freeze({
-	stun: "stun", restrain: "grabbed", deaf: "deaf", silence: "silence", bleeding: "bleeding",
+	stun: "stun", burning: "burning", "Em Chamas": "burning", restrain: "grabbed", deaf: "deaf", silence: "silence", bleeding: "bleeding",
 	"Vulnerável": "vulnerable", "Enjoado": "nauseated", "Sem recuperar PV (1 rodada)": "noHealing",
 	"Agarrado (Tentáculos de Lodo)": "grabbed",
 });
@@ -90,6 +96,7 @@ export function attackConditionDetails(actor) {
 		else if (data.oneAction) details.push("uma ação por rodada");
 		if (data.immobile) details.push("imóvel");
 		if (data.bleed) details.push("sangramento");
+		if (data.burn) details.push("1d6 de fogo por turno");
 		if (data.noHealing) details.push("não recupera PV");
 		if (data.noRituals) details.push("não conjura rituais");
 		if (data.badCasting) details.push("dificulta conjuração");

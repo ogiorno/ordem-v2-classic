@@ -6,6 +6,8 @@ export class GeneralEquipmentData extends foundry.abstract.TypeDataModel {
 			chatDescription: new fields.HTMLField({ initial: "" }),
 			weight: new fields.NumberField({ required: true, integer: false, initial: 1 }),
 			category: new fields.NumberField({ required: true, integer: true, initial: 0 }),
+			// item escolhido para as habilidades que reduzem a categoria (A Favorita, Ferramentas Favoritas)
+			favorite: new fields.BooleanField({ initial: false }),
 			using: new fields.SchemaField({
 				state: new fields.BooleanField({ initial: true }),
 				class: new fields.StringField({ initial: "fas" }),

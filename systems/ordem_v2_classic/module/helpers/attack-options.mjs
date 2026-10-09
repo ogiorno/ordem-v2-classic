@@ -2,9 +2,11 @@
  * Tela de ataque: reúne as opções "ao usar" e os bônus já aplicados, abre a janela e paga o custo.
  * Regras puras em attack-options-rules.mjs; especificação em docs/spec-tela-de-ataque.md.
  */
-import { appliesTo, combineSelection, specialAttackMax, weaponTags } from "./attack-options-rules.mjs";
+import { combineSelection, optionCost, poolCap, poolChoices, poolState, scaleOnUse, specialAttackMax, weaponMatches, weaponTags } from "./attack-options-rules.mjs";
 import { activeConditions, attackConditionDetails, conditionDicePenalty } from "./conditions.mjs";
-import { actionBlock, applyMode, canChooseAttribute, gripChoices, isMelee, rangeCheck, squaresBetween, weaponModes } from "./weapon-rules.mjs";
+import { powerEffectData, powerEffectFor } from "./attack-power-effects.mjs";
+import { areaKind } from "./weapon-area.mjs";
+import { actionBlock, applyMode, canChooseAttribute, consumesReload, effectiveGrip, gripChoices, rangeCheck, squaresBetween, weaponModes, weaponRules } from "./weapon-rules.mjs";
 
 const SYSTEM = "ordem_v2_classic";
 export const ON_USE_FLAG = "onUse";
@@ -47,10 +49,17 @@ export function collectOptions(item) {
 	const tags = weaponTags(item.system);
 	const nivel = actor.system?.nivel?.value ?? 1;
 	const found = [];
+	// Potência Máxima (Guerreiro, NEX 99%): com arma corpo a corpo, os bônus do Ataque Especial valem o dobro
+	const doubled = actor.items.some((i) => i.type === "ability" && norm(i.name).endsWith("potenciamaxima"));
 	const consider = (effect, owner) => {
-		const u = onUseOf(effect);
-		if (!u || !appliesTo(u.applies, tags)) return;
-		const max = u.pool && u.maxMode === "special" ? specialAttackMax(nivel) : Math.max(1, Math.trunc(num(u.max)) || 1);
+		const raw = onUseOf(effect);
+		if (!raw || !weaponMatches(raw, item.system)) return;
+		const u = scaleOnUse(raw, { nivel, doubleUnit: doubled && tags.has("melee") });
+		const abilityMax = u.pool && u.maxMode === "special" ? specialAttackMax(nivel) : Math.max(1, Math.trunc(num(u.max)) || 1);
+		// opção de bônus: também não passa do limite de PE por turno do agente
+		const perTurn = num(actor.system?.[costResource(actor)]?.perRound);
+		const cap = u.pool ? poolCap(u, abilityMax, perTurn) : null;
+		const max = cap ? cap.max : abilityMax;
 		found.push({
 			id: `${owner?.id ?? "actor"}-${effect.id}`,
 			label: effect.name,
@@ -59,6 +68,9 @@ export function collectOptions(item) {
 			onUse: u,
 			auto: Boolean(u.auto),
 			max,
+			abilityMax,
+			perTurn,
+			limit: cap?.limit ?? "ability",
 			stackable: !u.pool && max > 1,
 			source: owner && owner.id !== item.id ? owner.name : null,
 		});
@@ -107,10 +119,27 @@ const onUseSource = new Map();
  * Habilidades copiadas para a ficha antes de o compêndio ganhar a opção "ao usar" não trazem o efeito.
  * Antes de abrir a tela, completa a ficha com os efeitos "ao usar" do compêndio (uma vez por habilidade).
  */
-export async function syncOnUseEffects(actor) {
-	if (!actor?.isOwner) return;
+const syncLocks = new Map();
+export function syncOnUseEffects(actor) {
+	if (!actor?.isOwner) return Promise.resolve();
+	// uma sincronização por vez por ficha: vários poderes novos juntos não duplicam o efeito
+	const next = (syncLocks.get(actor.id) ?? Promise.resolve()).then(() => syncOnUseEffectsNow(actor)).catch((err) => console.warn("Ordem Paranormal | sincronização das opções de ataque:", err));
+	syncLocks.set(actor.id, next);
+	return next;
+}
+
+async function syncOnUseEffectsNow(actor) {
 	for (const item of actor.items) {
 		if (item.type !== "ability") continue;
+		// efeitos "ao usar" repetidos (a ficha pode ter criado o mesmo duas vezes): fica um só por nome
+		const seen = new Set();
+		const repeated = item.effects.filter((e) => onUseOf(e)).filter((e) => (seen.has(e.name) ? true : (seen.add(e.name), false)));
+		if (repeated.length) await item.deleteEmbeddedDocuments("ActiveEffect", repeated.map((e) => e.id));
+		const registered = powerEffectFor(item.name);
+		if (registered) {
+			if (!item.effects.some((e) => onUseOf(e))) await item.createEmbeddedDocuments("ActiveEffect", [powerEffectData(item.name, registered)]);
+			continue;
+		}
 		const entry = ON_USE_PACKS.find(([, name]) => norm(name) === norm(item.name));
 		if (!entry || item.effects.some((e) => onUseOf(e))) continue;
 		if (!onUseSource.has(entry[1])) {
@@ -133,7 +162,7 @@ export function defaultSelection(item) {
 }
 
 const ATTR_NAMES = { str: "Força", dex: "Agilidade", vit: "Vigor", int: "Intelecto", pre: "Presença" };
-const MODE_NAMES = { normal: "Ataque normal", burst: "Rajada (−1d20, +1 dado de dano)", throw: "Arremessar a arma", blow: "Coronhada (corpo a corpo)" };
+const MODE_NAMES = { normal: "Ataque normal", burst: "Rajada (−1d20, +1 dado de dano)", throw: "Arremessar a arma", blow: "Coronhada (corpo a corpo)", point: "Disparar num ponto (sem ataque, raio de 3 m)" };
 const GRIP_NAMES = { light: "Leve", oneHand: "Uma mão", twoHands: "Duas mãos" };
 
 /** Token de quem ataca e o alvo marcado (um só), ou nulos se não houver mapa/alvo. */
@@ -161,13 +190,30 @@ export function defaultAttribute(item, mode = "normal") {
 	return num(a.dex?.value) > num(a.str?.value) ? "dex" : "str";
 }
 
+/** Dados da ficha e da tela que as regras próprias da arma consultam (Força, graus de Luta e Pontaria, distância, caixas marcadas). */
+function ruleContext(item, mode, pick = {}, distance = null) {
+	const sys = item.parent.system;
+	return {
+		mode,
+		grip: pick.grip || "",
+		str: num(sys.attributes?.str?.value),
+		fightingDegree: num(sys.skills?.fighting?.degree?.value),
+		aimDegree: num(sys.skills?.aim?.degree?.value),
+		distance,
+		picked: { tripod: Boolean(pick.tripod), aimed: Boolean(pick.aimed), far: Boolean(pick.far), maneuver: Boolean(pick.maneuver), reloaded: Boolean(pick.reloaded) },
+		reload: { pending: Boolean(item.getFlag?.(SYSTEM, "reload")?.pending) },
+	};
+}
+
 /** O que a tela mostra sobre a arma: peculiaridades, modos, atributo, empunhadura e alvo. */
 export function weaponContext(item, picked = {}) {
 	const s = item.system;
 	const modes = weaponModes(s, item.name);
 	const mode = modes.includes(picked.mode) ? picked.mode : "normal";
-	const grip = gripChoices(s, item.name);
+	const fightingDegree = num(item.parent.system.skills?.fighting?.degree?.value);
+	const grip = gripChoices(s, item.name, { fightingDegree });
 	const attr = canChooseAttribute(s, mode) ? (picked.attr || defaultAttribute(item, mode)) : null;
+	const rules = weaponRules(s, item.name, ruleContext(item, "normal", {}, squaresToTarget(item).distance));
 	const chips = [];
 	if (s.types?.gripType) chips.push(GRIP_NAMES[s.types.gripType] ?? s.types.gripType);
 	if (s.conditions?.agile) chips.push("Ágil: usa Agilidade ou Força");
@@ -182,7 +228,9 @@ export function weaponContext(item, picked = {}) {
 		modes: modes.map((id) => ({ id, label: MODE_NAMES[id], checked: id === mode })),
 		showModes: modes.length > 1,
 		attrChoice: canChooseAttribute(s, mode) ? ["str", "dex"].map((id) => ({ id, label: `${ATTR_NAMES[id]} (${item.parent.system.attributes[id]?.value ?? 0})`, selected: id === attr })) : null,
-		grips: grip.adaptable ? grip.options.map((id) => ({ id, label: GRIP_NAMES[id], selected: id === (picked.grip || grip.base) })) : null,
+		grips: grip.adaptable ? grip.options.map((id) => ({ id, label: GRIP_NAMES[id], selected: id === (picked.grip || grip.base), disabled: grip.locked.includes(id) })) : null,
+		rules: rules.notes,
+		ruleChoices: rules.choices,
 	};
 }
 
@@ -198,18 +246,20 @@ export function buildConfig(item, options, selection = {}) {
 	if (mode !== "normal") weaponLines.push(reach.label);
 	if (attrPick && attrPick !== item.system.formulas.attack.attr) weaponLines.push(`ataque com ${ATTR_NAMES[attrPick]}`);
 	if (range.state === "penalty") weaponLines.push("além do alcance (−1d20)");
-	const grip = gripChoices(item.system, item.name);
-	if (grip.adaptable && selection.weapon?.grip === "oneHand") weaponLines.push("empunhada com uma mão");
+	const pick = selection.weapon ?? {};
+	const rules = weaponRules(item.system, item.name, ruleContext(item, mode, pick, distance));
+	if (gripChoices(item.system, item.name).adaptable && mode === "normal" && pick.grip && !rules.lines.some((l) => /mão|mãos/.test(l))) weaponLines.push(pick.grip === "oneHand" ? "empunhada com uma mão" : "empunhada com duas mãos");
+	weaponLines.push(...rules.lines);
 	const attrs = item.parent.system.attributes;
 	const damageFlat = combined.damageFlat + combined.damageAttrs.reduce((sum, key) => sum + num(attrs[key]?.value), 0);
 	return {
-		attackDice: combined.attackDice + reach.attackDice + (range.state === "penalty" ? range.attackDice : 0),
-		attackFlat: combined.attackFlat,
+		attackDice: combined.attackDice + reach.attackDice + rules.attackDice + (range.state === "penalty" ? range.attackDice : 0),
+		attackFlat: combined.attackFlat + rules.attackFlat,
 		attackTerms: combined.attackTerms,
 		damageFlat,
 		damageTerms: combined.damageTerms,
 		damageDice: combined.damageDice + reach.damageDice,
-		critMargin: combined.critMargin,
+		critMargin: combined.critMargin + rules.critMargin,
 		cost: combined.cost,
 		lines: [...weaponLines, ...combined.lines],
 		conditions,
@@ -219,10 +269,16 @@ export function buildConfig(item, options, selection = {}) {
 			mode,
 			skill: reach.skill ?? null,
 			attr: reach.attr ?? attrPick ?? null,
-			damageFormula: reach.damageFormula ?? null,
+			damageFormula: reach.damageFormula ?? rules.damageFormula ?? null,
+				explode: rules.explode,
+				halve: rules.halve,
+				noRoll: Boolean(reach.noRoll),
+				area: areaKind(item.name),
+				block: rules.block,
+				rules: { notes: rules.notes, choices: rules.choices },
 			damageType: reach.damageType ?? null,
 			damageAttr: reach.damageAttr ?? null,
-			grip: selection.weapon?.grip || null,
+			grip: pick.grip || null,
 		},
 		range: { ...range, target: target?.name ?? null },
 	};
@@ -233,9 +289,18 @@ export function attackBlockReason(item, config) {
 	const flags = activeConditions(item.parent).map((e) => e.getFlag(SYSTEM, "condition"));
 	const stunned = actionBlock(flags);
 	if (stunned) return stunned;
-	const range = (config ?? defaultSelection(item)).range;
+	const chosen = config ?? defaultSelection(item);
+	if (chosen.weapon?.block) return chosen.weapon.block;
+	if (chosen.weapon?.noRoll && !chosen.range?.target) return "Marque o alvo que define o ponto do disparo.";
+	const range = chosen.range;
 	if (range?.state === "blocked") return range.text;
 	return null;
+}
+
+/** Depois de um disparo de arma que recarrega (Balestra, Besta, Bazuca), deixa a recarga pendente para o próximo ataque. */
+export async function markReload(item, config) {
+	if (!item.parent || !consumesReload(item.name, config?.weapon?.mode ?? "normal")) return;
+	await item.setFlag(SYSTEM, "reload", { pending: true });
 }
 
 /** Paga o custo; devolve false (sem gastar) se não houver saldo. */
@@ -260,7 +325,7 @@ const readSelection = (form) => {
 		m = /^pool\.(.+)\.(attack|damage)$/.exec(name);
 		if (m) (counts[m[1]] ??= {})[m[2]] = Number(value) || 0;
 	}
-	return { counts, freeAttack: fd.freeAttack ?? "", freeDamage: fd.freeDamage ?? "" };
+	return { counts, freeAttack: fd.freeAttack ?? "", freeDamage: fd.freeDamage ?? "", weapon: { mode: fd.weaponMode || "normal", attr: fd.weaponAttr || "", grip: fd.weaponGrip || "", tripod: Boolean(fd.ruleTripod), aimed: Boolean(fd.ruleAim), far: Boolean(fd.ruleFar), maneuver: Boolean(fd.ruleManeuver), reloaded: Boolean(fd.ruleReload) } };
 };
 
 /**
@@ -279,12 +344,13 @@ export async function promptAttackOptions(item) {
 		weapon: item.name,
 		skillLine: `${game.i18n.localize(CONFIG.op?.skills?.[item.system.formulas.attack.skill] ?? item.system.formulas.attack.skill)} · ${item.system.critical || "—"}`,
 		passive: passiveBuffs(item),
+		weapon: weaponContext(item),
 		conditions: attackConditionDetails(actor),
 		canRemoveConditions: actor.isOwner,
 		autos,
 		toggles: choices.filter((o) => !o.onUse.pool && !o.stackable),
 		stackables: choices.filter((o) => o.stackable),
-		pools: choices.filter((o) => o.onUse.pool),
+		pools: choices.filter((o) => o.onUse.pool).map((o) => ({ ...o, choices: poolChoices(o.onUse.unit, o.max) })),
 		hasChoices: choices.length > 0,
 		resource,
 		balance,
@@ -348,8 +414,50 @@ export async function promptAttackOptions(item) {
 						conditionList.append(row);
 					}
 				};
+				const attackButton = dialog.element.querySelector("button[data-action=attack]");
+				const rangeNote = dialog.element.querySelector("[data-range-note]");
+				const attrRow = dialog.element.querySelector("[data-attr-row]");
+				const rulesList = dialog.element.querySelector("[data-rules]");
+				const refreshPools = () => {
+					for (const row of dialog.element.querySelectorAll("[data-pool]")) {
+						const option = options.find((o) => o.id === row.dataset.pool);
+						const attack = row.querySelector('select[name$=".attack"]');
+						const damage = row.querySelector('select[name$=".damage"]');
+						const state = poolState({ max: row.dataset.max, limit: row.dataset.limit, attack: attack.value, damage: damage.value });
+						for (const [select, room] of [[attack, state.attackRoom], [damage, state.damageRoom]]) {
+							for (const opt of select.options) opt.disabled = Number(opt.value) > room;
+						}
+						const flag = row.querySelector("[data-pool-flag]");
+						flag.hidden = !state.flag;
+						flag.dataset.limit = state.flag?.key ?? "";
+						flag.textContent = state.flag ? game.i18n.format(`op.attackDialog.max.${state.flag.key}`, { max: state.flag.max, ability: row.dataset.abilityMax, perTurn: row.dataset.perTurn, resource }) : "";
+						row.querySelector("[data-pool-cost]").textContent = `${option ? optionCost(option.onUse, state.total) : 0} ${resource}`;
+					}
+				};
 				const refresh = () => {
-					const chosen = buildConfig(item, options, readSelection(form));
+					refreshPools();
+					const picked = readSelection(form);
+					const chosen = buildConfig(item, options, picked);
+					if (attrRow) attrRow.hidden = !canChooseAttribute(item.system, chosen.weapon.mode);
+					if (rulesList) {
+						const live = new Set(chosen.weapon.rules.choices.map((c) => c.id));
+						for (const row of dialog.element.querySelectorAll("[data-rule-choice]")) row.hidden = !live.has(row.dataset.ruleChoice);
+						rulesList.replaceChildren(...chosen.weapon.rules.notes.map((note) => {
+							const row = document.createElement("div");
+							row.className = `op-ad-applied-row is-${note.state}`;
+							row.textContent = note.text;
+							return row;
+						}));
+						rulesList.hidden = chosen.weapon.rules.notes.length === 0;
+					}
+					const reason = attackBlockReason(item, chosen);
+					if (rangeNote) {
+						rangeNote.textContent = reason ?? chosen.range.text;
+						rangeNote.classList.toggle("is-blocked", Boolean(reason));
+						rangeNote.classList.toggle("is-penalty", !reason && chosen.range.state === "penalty");
+						rangeNote.hidden = !rangeNote.textContent;
+					}
+					if (attackButton) attackButton.disabled = Boolean(reason);
 					total.textContent = `${chosen.cost} ${resource}`;
 					left.textContent = `${balance - chosen.cost}`;
 					total.classList.toggle("is-short", chosen.cost > balance);
@@ -380,6 +488,13 @@ export async function promptAttackOptions(item) {
 	if (!config) return null;
 	return (await payCost(actor, config)) ? config : null;
 }
+
+// Poder novo na ficha: já ganha a opção "ao usar" (aparece na tela de ataque sem esperar o primeiro clique).
+Hooks.on("createItem", (item) => {
+	if (item.type !== "ability" || item.parent?.type !== "agent" || !item.parent.isOwner) return;
+	// um instante depois da criação, quando a ficha já terminou de gravar o poder
+	setTimeout(() => syncOnUseEffects(item.parent), 600);
+});
 
 // O mestre completa, ao abrir o mundo, as fichas de agentes criadas antes das opções "ao usar" existirem.
 Hooks.once("ready", () => {

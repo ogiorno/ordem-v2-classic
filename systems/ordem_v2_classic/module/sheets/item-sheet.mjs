@@ -205,11 +205,17 @@ export class OrdemItemSheet extends api.HandlebarsApplicationMixin(sheets.ItemSh
 					  })
 					: null;
 				break;
+			case "armamentSpec":
+			case "protectionAttr":
+				context.tab = context.tabs[partId];
+				context.modificationsHTML = this._modificationsHTML();
+				break;
+			case "generalAttr":
+				context.tab = context.tabs[partId];
+				context.modificationsHTML = this._modificationsHTML();
+				break;
 			case "abilityAttr":
 			case "armamentCombat":
-			case "armamentSpec":
-			case "generalAttr":
-			case "protectionAttr":
 			case "ritualAttr":
 			case "classAttr":
 				context.tab = context.tabs[partId];
@@ -221,6 +227,27 @@ export class OrdemItemSheet extends api.HandlebarsApplicationMixin(sheets.ItemSh
 				break;
 		}
 		return context;
+	}
+
+	/** Seletor das modificações do item (cada uma sobe a categoria em I). */
+	_modificationsHTML() {
+		const schema = this.item.system.schema;
+		let html = "";
+		const mods = schema?.getField?.("modifications");
+		if (mods) {
+			html += mods.toFormGroup(
+				{ label: "Modificações", hint: "Cada modificação aumenta a categoria do item em I; a ficha do agente mostra o limite da patente." },
+				{ name: "system.modifications", value: Array.from(this.item.system.modifications ?? []), localize: false }
+			).outerHTML;
+		}
+		const favorite = schema?.getField?.("favorite");
+		if (favorite) {
+			html += favorite.toFormGroup(
+				{ label: "Item favorito", hint: "Marque o item escolhido por A Favorita, Ferramentas Favoritas e similares: a habilidade reduz a categoria dele." },
+				{ name: "system.favorite", value: Boolean(this.item.system.favorite), localize: false }
+			).outerHTML;
+		}
+		return html;
 	}
 
 	/**

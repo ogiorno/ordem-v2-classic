@@ -1,3 +1,5 @@
+import { PROTECTION_MODIFICATIONS } from "../../helpers/item-categories.mjs";
+
 export class ProtectionData extends foundry.abstract.TypeDataModel {
 	static defineSchema() {
 		const fields = foundry.data.fields;
@@ -6,6 +8,10 @@ export class ProtectionData extends foundry.abstract.TypeDataModel {
 			chatDescription: new fields.HTMLField({ initial: "" }),
 			weight: new fields.NumberField({ required: true, integer: false, initial: 1 }),
 			category: new fields.NumberField({ required: true, integer: true, initial: 0 }),
+			// item escolhido para as habilidades que reduzem a categoria (A Favorita, Ferramentas Favoritas)
+			favorite: new fields.BooleanField({ initial: false }),
+			// cada modificação sobe a categoria do item em I (só informa na ficha, não trava)
+			modifications: new fields.SetField(new fields.StringField({ choices: PROTECTION_MODIFICATIONS })),
 			using: new fields.SchemaField({
 				state: new fields.BooleanField({ initial: true }),
 				class: new fields.StringField({ initial: "fas" }),

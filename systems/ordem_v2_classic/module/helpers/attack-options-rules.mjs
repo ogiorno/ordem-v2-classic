@@ -22,6 +22,33 @@ export function appliesTo(applies, tags) {
 	return wanted === "all" || tags.has(wanted);
 }
 
+/**
+ * A opção vale para esta arma? Além de `applies` (tipo de arma), a opção pode exigir `proficiency` (ex.: "tacticalWeapons"),
+ * `ammo` (tipo de munição, ex.: "longBullets") e recusar uma etiqueta em `exclude` (ex.: "fire").
+ */
+export function weaponMatches(onUse, system = {}) {
+	const tags = weaponTags(system);
+	if (!appliesTo(onUse.applies, tags)) return false;
+	if (onUse.exclude && tags.has(onUse.exclude)) return false;
+	if (onUse.proficiency && system.proficiency !== onUse.proficiency) return false;
+	if (onUse.ammo && system.types?.ammunitionType !== onUse.ammo) return false;
+	return true;
+}
+
+/**
+ * Valores da opção que dependem do personagem: `byLevel` ([[nível, "2d6"], …]) escolhe o bônus de dano da faixa alcançada
+ * (Ataque Furtivo: 1d6 → 4d6) e `doubleUnit` dobra o valor de cada acúmulo (Potência Máxima, NEX 99%, no Ataque Especial corpo a corpo).
+ */
+export function scaleOnUse(onUse, { nivel = 1, doubleUnit = false } = {}) {
+	const out = { ...onUse };
+	if (Array.isArray(onUse.byLevel) && onUse.byLevel.length) {
+		const reached = onUse.byLevel.filter(([level]) => Number(nivel) >= Number(level));
+		out.damageBonus = reached.length ? reached[reached.length - 1][1] : "";
+	}
+	if (doubleUnit && onUse.pool) out.unit = (Number(onUse.unit) || 5) * 2;
+	return out;
+}
+
 /** Custo em PE de usar a opção `count` vezes: o primeiro uso custa `cost`, cada seguinte `stepCost` (padrão = cost). */
 export function optionCost(onUse, count) {
 	const n = Math.max(0, Math.trunc(Number(count)) || 0);
@@ -35,6 +62,46 @@ export function optionCost(onUse, count) {
 export function specialAttackMax(nivel) {
 	const n = Number(nivel) || 1;
 	return 1 + (n >= 5 ? 1 : 0) + (n >= 11 ? 1 : 0) + (n >= 17 ? 1 : 0);
+}
+
+/**
+ * Teto de acúmulos de uma opção com acúmulos: o menor entre o limite da habilidade (`abilityMax`, no Ataque Especial pelo nível)
+ * e o que cabe no limite de PE por turno (`perTurn`, o gasto total da opção não passa dele), garantido ao menos 1 acúmulo.
+ * @returns {{ max: number, abilityMax: number, limit: "ability"|"turn" }} limit = o que está barrando o próximo acúmulo.
+ */
+export function poolCap(onUse, abilityMax, perTurn) {
+	const ability = Math.max(0, Math.trunc(Number(abilityMax)) || 0);
+	const turn = Number(perTurn);
+	let max = ability;
+	// o primeiro acúmulo é sempre permitido: o custo e o limite da própria habilidade valem sobre o limite geral (Ataque Especial custa 2 PE já em NEX 5%)
+	if (Number.isFinite(turn) && turn > 0) while (max > 1 && optionCost(onUse, max) > turn) max--;
+	return { max, abilityMax: ability, limit: max < ability ? "turn" : "ability" };
+}
+
+/**
+ * Estado dos dois selects (ataque e dano) de uma opção com acúmulos que dividem o mesmo teto `max`.
+ * @returns {{ total: number, atMax: boolean, attackRoom: number, damageRoom: number, flag: null|{key:string, max:number} }}
+ * attackRoom/damageRoom = até quantos acúmulos cada select ainda pode ir; flag = aviso de teto atingido.
+ */
+export function poolState({ max, limit, attack = 0, damage = 0 }) {
+	const cap = Math.max(0, Math.trunc(Number(max)) || 0);
+	const a = Math.max(0, Math.trunc(Number(attack)) || 0);
+	const d = Math.max(0, Math.trunc(Number(damage)) || 0);
+	const total = Math.min(a + d, cap);
+	const atMax = total >= cap;
+	return {
+		total,
+		atMax,
+		attackRoom: Math.max(0, cap - d),
+		damageRoom: Math.max(0, cap - a),
+		flag: atMax ? { key: limit === "turn" ? "turn" : "ability", max: cap } : null,
+	};
+}
+
+/** Valores do select de um bônus em acúmulos: 0, +5, +10… até `room` acúmulos (os acima ficam fora). */
+export function poolChoices(unit, room) {
+	const step = Number(unit) || 5;
+	return Array.from({ length: Math.max(0, Math.trunc(room)) + 1 }, (_, n) => ({ stacks: n, bonus: n * step, label: n ? `+${n * step}` : "—" }));
 }
 
 /**
@@ -128,9 +195,9 @@ export function combineSelection(options, selection = {}) {
 }
 
 /** Fórmula do dano com os bônus escolhidos: dados extras antes do crítico, depois bônus. */
-export function damageFormulaParts(baseFormula, { critMultiplier = 1, extraDice = 0 } = {}) {
+export function damageFormulaParts(baseFormula, { critMultiplier = 1, extraDice = 0, explode = false } = {}) {
 	const [count, faces] = String(baseFormula).split("d");
 	if (faces === undefined) return [String(baseFormula)];
 	const total = (Number(count) || 0) + (Number(extraDice) || 0);
-	return [`${total * (critMultiplier || 1)}d${faces}`];
+	return [`${total * (critMultiplier || 1)}d${faces}${explode ? "x" : ""}`]; // "x": cada resultado máximo rola outro dado (Motosserra)
 }
