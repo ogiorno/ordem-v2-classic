@@ -16,7 +16,7 @@
     "types": {
       "rangeType": {
         "name": "ranged",
-        "subRangeType": "shoot"
+        "subRangeType": "fire"
       },
       "ammunitionType": "",
       "gripType": "oneHand"

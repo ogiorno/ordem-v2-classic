@@ -26,7 +26,7 @@
     "formulas": {
       "attack": {
         "formula": "1d20",
-        "attr": "str",
+        "attr": "dex",
         "skill": "aim",
         "bonus": "0"
       },
