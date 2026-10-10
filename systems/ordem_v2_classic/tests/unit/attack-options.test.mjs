@@ -1,7 +1,7 @@
 // Rodar: npm test. Regras puras da tela de ataque (docs/spec-tela-de-ataque.md).
 import { describe, it } from "node:test";
 import assert from "node:assert/strict";
-import { appliesTo, combineSelection, damageFormulaParts, optionCost, parseBonus, specialAttackMax, weaponTags } from "../../module/helpers/attack-options-rules.mjs";
+import { appliesTo, combineSelection, damageFormulaParts, optionCost, parseBonus, poolCap, poolChoices, poolState, specialAttackMax, weaponTags } from "../../module/helpers/attack-options-rules.mjs";
 import { attackConditionDetails, conditionDicePenalty } from "../../module/helpers/conditions.mjs";
 
 const fire = { types: { rangeType: { name: "ranged", subRangeType: "fire" } } };
@@ -143,5 +143,45 @@ describe("condições no ataque", () => {
 		const [stun, fear] = attackConditionDetails(actor);
 		assert.match(stun.description, /não pode realizar ações/);
 		assert.equal(fear.description, "Tem medo .");
+	});
+});
+
+describe("Ataque Especial em acúmulos de +5 (select)", () => {
+	const ae = { pool: true, unit: 5, cost: 2, stepCost: 1 };
+	it("select oferece 0, +5, +10… até o teto", () => {
+		assert.deepEqual(poolChoices(5, 3).map((c) => c.label), ["—", "+5", "+10", "+15"]);
+		assert.deepEqual(poolChoices(5, 0).map((c) => c.stacks), [0]);
+	});
+	it("cada +5 soma 1 PE (2, 3, 4, 5)", () => {
+		assert.deepEqual(poolChoices(5, 4).map((c) => optionCost(ae, c.stacks)), [0, 2, 3, 4, 5]);
+	});
+	it("limite da habilidade vale quando o PE por turno sobra", () => {
+		assert.deepEqual(poolCap(ae, 2, 10), { max: 2, abilityMax: 2, limit: "ability" });
+	});
+	it("limite de PE por turno corta os acúmulos (4 PE por turno = 3 acúmulos)", () => {
+		assert.deepEqual(poolCap(ae, 4, 4), { max: 3, abilityMax: 4, limit: "turn" });
+		assert.deepEqual(poolCap(ae, 4, 3), { max: 2, abilityMax: 4, limit: "turn" });
+	});
+	it("PE por turno menor que o custo inicial não anula a habilidade: sobra o primeiro acúmulo", () => {
+		assert.deepEqual(poolCap(ae, 1, 1), { max: 1, abilityMax: 1, limit: "ability" });
+		assert.equal(poolCap(ae, 3, 1).max, 1);
+	});
+	it("sem PE por turno conhecido, vale só o limite da habilidade", () => {
+		assert.equal(poolCap(ae, 3, undefined).max, 3);
+		assert.equal(poolCap(ae, 3, 0).max, 3);
+	});
+	it("ataque e dano dividem o mesmo teto e o aviso aparece no máximo", () => {
+		let s = poolState({ max: 3, limit: "ability", attack: 1, damage: 1 });
+		assert.deepEqual([s.total, s.atMax, s.attackRoom, s.damageRoom, s.flag], [2, false, 2, 2, null]);
+		s = poolState({ max: 3, limit: "ability", attack: 2, damage: 1 });
+		assert.deepEqual([s.total, s.atMax, s.attackRoom, s.damageRoom], [3, true, 2, 1]);
+		assert.deepEqual(s.flag, { key: "ability", max: 3 });
+		assert.deepEqual(poolState({ max: 2, limit: "turn", attack: 2, damage: 0 }).flag, { key: "turn", max: 2 });
+	});
+	it("o excesso escolhido é cortado e o custo segue o teto", () => {
+		const opt = { id: "ae", label: "Ataque Especial", onUse: ae, max: poolCap(ae, 4, 4).max };
+		const r = combineSelection([opt], { counts: { ae: { attack: 2, damage: 2 } } });
+		assert.equal(r.attackFlat + r.damageFlat, 15);
+		assert.equal(r.cost, 4);
 	});
 });

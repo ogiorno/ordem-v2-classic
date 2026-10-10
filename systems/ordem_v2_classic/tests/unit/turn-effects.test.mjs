@@ -1,6 +1,16 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { BLEED_DT, bleedCardOpen, bleedMode, bleedOutcome, canRollBleed } from "../../module/helpers/turn-effects-rules.mjs";
+import { BLEED_DT, bleedCardOpen, bleedDamageFormula, bleedMode, bleedOutcome, bleedStacks, canRollBleed } from "../../module/helpers/turn-effects-rules.mjs";
+
+test("Sangrando acumula: 1d6 por acúmulo, mínimo 1", () => {
+	assert.equal(bleedStacks(undefined), 1);
+	assert.equal(bleedStacks({}), 1);
+	assert.equal(bleedStacks({ stacks: 0 }), 1);
+	assert.equal(bleedStacks({ stacks: 3 }), 3);
+	assert.equal(bleedDamageFormula(1), "1d6");
+	assert.equal(bleedDamageFormula(2), "2d6");
+	assert.equal(bleedDamageFormula(undefined), "1d6");
+});
 
 test("pergunta só para agente com dono jogador conectado e opção 'ask'", () => {
 	assert.equal(bleedMode({ setting: "ask", actorType: "agent", hasOnlineOwner: true }), "ask");

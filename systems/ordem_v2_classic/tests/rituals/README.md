@@ -58,3 +58,7 @@ playwright-cli --raw eval "window.__rt.close()"
 ```
 
 Detalhes que já derrubaram o teste: o `eval` do Playwright aceita uma expressão só (use `(()=>{...})()` para vários comandos); acentos em argumentos de linha de comando precisam de escape (`ç`); mexer em arquivos de `systems/` ou `modules/` recarrega o navegador e derruba a arena; feche a arena com `close()` antes de recarregar.
+
+## Morte do agente
+
+Morrendo, Dano Massivo e estabilização: `docs/spec-morte-do-jogador.md`. Ao vivo: `(await import("/systems/ordem_v2_classic/module/macros/death-live-test.mjs")).runDeathTests()`.
