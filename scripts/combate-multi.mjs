@@ -170,6 +170,31 @@ try {
 			return { id: th.id, name: th.name, hp0: th.actor?.system?.attributes?.hp?.value ?? null, dist: Math.round(cells * 10) / 10, targets: game.user.targets.size };
 		}, [cur.tokenId, cur.type]);
 		entry.alvo = `${tgt.name} a ${tgt.dist} m`;
+		if (cur.type === "agent") {
+			const reach = await who.evaluate(async ([aid, wid, tid]) => {
+				const m = await import("/systems/ordem_v2_classic/module/helpers/attack-options.mjs");
+				const item = game.actors.get(aid).items.get(wid);
+				const before = m.attackBlockReason(item);
+				const melee = item.system.types?.rangeType?.name === "melee";
+				return { melee, before, name: item.name };
+			}, [cur.actorId, row.weaponId, tgt.id]);
+			entry.antesDeAproximar = reach.before;
+			if (reach.melee) {
+				if (tgt.dist > 2.3) check(`MC-12-${entry.n}`, `${row.user ?? "mestre"} (${row.weapon}), rodada ${cur.round}: corpo a corpo a ${tgt.dist} m é barrado antes de se aproximar`, !!reach.before, "ataque liberado de longe");
+				else entry.jaAdjacente = true;
+				await who.evaluate(async ([tokenId, tid]) => {
+					const me = canvas.tokens.get(tokenId), th = canvas.tokens.get(tid);
+					await me.document.update({ x: th.document.x - canvas.grid.size, y: th.document.y }, { animate: false });
+					for (let i = 0; i < 20 && Math.abs(me.document.x - (th.document.x - canvas.grid.size)) > 1; i++) await new Promise((r) => setTimeout(r, 250));
+					await new Promise((r) => setTimeout(r, 400));
+					game.user.targets.forEach((t) => t.setTarget(false, { releaseOthers: false }));
+					th.setTarget(true, { releaseOthers: false, groupSelection: false });
+				}, [cur.tokenId, tgt.id]);
+				entry.aproximou = true;
+			}
+			const after = await who.evaluate(async ([aid, wid]) => (await import("/systems/ordem_v2_classic/module/helpers/attack-options.mjs")).attackBlockReason(game.actors.get(aid).items.get(wid)), [cur.actorId, row.weaponId]);
+			if (after) check(`MC-12B-${entry.n}`, `${row.user} (${row.weapon}): ataque liberado depois de se posicionar`, false, after);
+		}
 
 		await who.evaluate(() => { window.__spy.notes.length = 0; window.__spy.seq0 = window.__spy.seq; window.__known = new Set(game.messages.contents.map((m) => m.id)); });
 		const mode = cur.round === 1 ? "tela" : "shift";
@@ -264,8 +289,16 @@ try {
 		}
 		report.turnos.push(entry);
 		save();
-		await qagm.locator("button.crlngn-advance-turn").first().click({ timeout: 8000 }).catch(() => { entry.semBotao = true; });
-		await sleep(2200);
+		const turnKey = () => qagm.evaluate(([cid]) => { const c = game.combats.get(cid); return `${c.round}:${c.turn}`; }, [setup.combatId]);
+		const before = await turnKey();
+		for (let tries = 0; tries < 4; tries++) {
+			await qagm.locator("button.crlngn-advance-turn").first().click({ timeout: 8000 }).catch(() => {});
+			for (let w = 0; w < 12 && (await turnKey()) === before; w++) await sleep(500);
+			if ((await turnKey()) !== before) break;
+			entry.tentativasAvanco = tries + 1;
+		}
+		if ((await turnKey()) === before) entry.semBotao = true;
+		await sleep(1200);
 	}
 
 	// ---------- resultados agregados
@@ -278,11 +311,10 @@ try {
 	const sem = report.turnos.filter((t) => t.semBotao).length;
 	check("MC-09", "O carrossel de combate avançou todos os turnos", sem === 0, `sem botão em ${sem} turnos`);
 	check("MC-11", "Ameaças atacaram pela ficha sem abrir a tela de ataque", report.turnos.filter((t) => t.type === "threat").every((t) => t.tela === false || t.tela === undefined), "");
-	// distância
-	const melee = ag.filter((t) => /Machete/.test(setup.rows.find((r) => r.actorId === t.actorId)?.weapon ?? ""));
-	report.distancia = ag.map((t) => ({ quem: t.cliente, arma: setup.rows.find((r) => r.actorId === t.actorId)?.weapon, alvo: t.alvo, avisos: t.avisos }));
-	check("MC-12", "Regra de distância: ataque corpo a corpo (Machete) a mais de 1 casa é avisado ou barrado", melee.every((t) => (t.avisos ?? []).some((a) => /dist|alcance|longe|range/i.test(a))), `Machete atacou de longe sem aviso: ${JSON.stringify(melee.map((t) => [t.cliente, t.alvo, t.avisos]))}`);
-	check("MC-13", "Animação de ataque (Sequencer) disparou nos ataques com arma", stats.anim > 0, `${stats.anim} de ${ag.length} turnos de agente dispararam efeitos`);
+	// animações de ataque (Sequencer): um efeito por ataque de agente
+	const atacantes = ag.filter((t) => t.ataque);
+	check("MC-13", "Animação de ataque disparou em todos os ataques de agente com alvo marcado", atacantes.length > 0 && atacantes.every((t) => t.animacoes > 0), JSON.stringify(atacantes.map((t) => [t.cliente, t.animacoes])));
+	report.distancia = ag.map((t) => ({ quem: t.cliente, arma: setup.rows.find((r) => r.actorId === t.actorId)?.weapon, alvo: t.alvo, aviso: t.antesDeAproximar }));
 	report.stats = stats;
 } catch (e) {
 	report.erro = String(e?.stack ?? e);

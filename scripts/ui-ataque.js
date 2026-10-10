@@ -44,7 +44,7 @@ async (page) => {
 		const info = open ? await ev(() => {
 			const d = document.querySelector(".op-attack-dialog");
 			return {
-				aplicados: [...d.querySelectorAll(".op-ad-chip")].map((c) => c.innerText),
+				aplicados: [...d.querySelectorAll(".op-ad-applied-row")].map((c) => c.innerText),
 				pool: d.querySelectorAll("input[name^='pool.']").length,
 				livres: [!!d.querySelector("input[name=freeAttack]"), !!d.querySelector("input[name=freeDamage]")],
 				total: d.querySelector("[data-total]")?.innerText, saldo: d.querySelector("[data-left]")?.innerText,

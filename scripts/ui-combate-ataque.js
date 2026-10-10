@@ -119,7 +119,7 @@ async (page) => {
 				entry.tela = !!(await dialog.count());
 				if (entry.tela) {
 					screens++;
-					entry.aplicados = await ev(() => [...document.querySelectorAll(".op-attack-dialog .op-ad-chip")].map((c) => c.innerText));
+					entry.aplicados = await ev(() => [...document.querySelectorAll(".op-attack-dialog .op-ad-applied-row")].map((c) => c.innerText));
 					const melee = /Machete/.test(row.weapon);
 					const hasMao = entry.aplicados.some((c) => /M.o Pesada/i.test(c));
 					const hasPara = entry.aplicados.some((c) => /Para Bellum/i.test(c));
