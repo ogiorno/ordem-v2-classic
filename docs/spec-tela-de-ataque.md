@@ -111,3 +111,104 @@ Script: `scripts/ui-armas.js` (pela interface, como Mestre; cria e apaga só "[A
 - Modificações (AR-10 a AR-14): bônus de ataque da arma, efeito "ao usar" da arma (ex.: mira laser) em "Já aplicados", no ataque e no dano, e efeito de ficha na perícia do ataque.
 - Poderes de classe (AR-15 a AR-18): classe Combatente e os 29 poderes aparecem na ficha; só o Ataque Especial vira opção na tela; remover o poder tira ficha e opção.
 - Divergência: o código passou a ignorar efeitos "ao usar" desativados, mas esta spec manda o efeito ficar desligado. Um dos dois precisa mudar.
+
+## A arma na tela (peculiaridades)
+
+A tela mostra um bloco **A arma** antes de tudo: etiquetas da arma (empunhadura, ágil, automática, arremessável, adaptável, coronhada, alcance, crítico) e as escolhas que ela permite. Livro de Regras v1.3, cap. 3.
+
+| Peculiaridade | O que a tela oferece | Efeito |
+| --- | --- | --- |
+| Arma ágil (corpo a corpo) | Atacar com Força ou Agilidade (vem marcado o maior) | o teste de ataque usa o atributo escolhido |
+| Automática | Modo Rajada | −1d20 no ataque e +1 dado de dano do mesmo tipo (dobra no crítico) |
+| Arremessável, ou arma corpo a corpo sem alcance | Modo Arremessar | Pontaria com Agilidade, soma Força no dano, alcance curto; arma que não é de arremesso paga −1d20 |
+| Coronhada (arma de fogo) | Modo Coronhada | vira corpo a corpo: Luta com Força, dano 1d4 (leve/uma mão) ou 1d6 (duas mãos), impacto |
+| Empunhadura adaptável (ex.: Katana) | Duas mãos ou uma mão | fica registrada no cartão do ataque (veterano em Luta pode usar uma mão) |
+
+### Alcance
+O alvo marcado (um só) e o token de quem ataca definem a distância em quadrados (1 quadrado = 1,5 m, adjacente = 1). Corpo a corpo só alcança adjacente. À distância: dentro do alcance (curto 6, médio 12, longo 24, extremo 60 quadrados) sem penalidade, até o dobro com −1d20, além disso o ataque é barrado. A tela mostra a distância e, quando barrado, desabilita o botão Atacar. Sem alvo ou sem mapa nada é exigido.
+
+### Condições que impedem o ataque
+Atordoado ("sem ações") barra o ataque: a tela abre com o motivo e o botão desabilitado; Shift+clique e macros avisam e não rolam. Agarrado tira 1d20 e aparece na tela.
+
+### Poderes integrados ao ataque
+Ao entrar na ficha, o poder ganha sozinho a opção "ao usar" (registro em `attack-power-effects.mjs`) e a ficha marca o poder com um selo de mira.
+
+| Poder | Efeito na tela |
+| --- | --- |
+| Golpe Pesado | automático em corpo a corpo: +1 dado de dano |
+| Tiro Certeiro | automático em arma de disparo: soma Agilidade no dano |
+| Técnica Letal | automático em corpo a corpo: +2 na margem de ameaça |
+| Golpe Demolidor | escolha, 1 PE: +2 dados de dano |
+| Combate Defensivo | escolha: −1d20 no ataque (a Defesa +5 ainda é aplicada à mão) |
+| Ataque Especial, Mão Pesada, Para Bellum, Pancada Forte | como antes |
+
+Ainda sem integração (criam ataque extra ou manobra): Ataque Extra, Segurar o Gatilho, Combater com Duas Armas, Tiro de Cobertura, Ataque de Oportunidade, Saque Rápido e as demais técnicas de trilha.
+
+### Animação
+Quando o ataque tem alvo, o cartão guarda de quem para quem e cada cliente toca a animação (Sequencer + JB2A): golpe corpo a corpo, tiro, rajada (3 tiros) ou arremesso. Opção por navegador: "Animações de ataque com arma". Sem Sequencer nada acontece.
+
+## Resultado: armas, condições, poderes e combate com vários clientes (18/10/2026)
+
+| Camada | Como rodar | Resultado |
+| --- | --- | --- |
+| Regras puras | `npm test` (inclui `tests/unit/weapon-rules.test.mjs`) | 266/266 |
+| Tela de ataque (rolagem, armas, condições, alcance, poderes) | `playwright-cli -s=ar run-code --filename=scripts/ui-armas.js` | 43/43 (6 execuções seguidas) |
+| Tela de ataque, fluxo básico | `scripts/ui-ataque.js` | 13/13 |
+| Combate real: 4 jogadores, mestre de teste, Gamemaster, iniciativa, carrossel, distância, animação | `node scripts/combate-multi.mjs` | 14/14 |
+
+Corrigido nesta rodada: poderes iniciais sumiam da tela (efeito desligado era ignorado); Atordoado não impedia o ataque; não havia regra de distância nem animação; as peculiaridades da arma não apareciam; poderes de combate não entravam no ataque.
+Não coberto: Defesa +5 do Combate Defensivo (aplicada à mão), poderes que criam ataque extra, jogador em outro dispositivo, animação vista por todos os clientes ao mesmo tempo (conferido que cada cliente dispara a sua).
+
+
+## Regras próprias de cada arma (Livro de Regras v1.3, "Descrição das armas")
+
+Cada regra aparece no bloco **A arma** como uma linha colorida (verde ajuda, laranja atrapalha, cinza informa) e, quando depende de uma resposta do jogador, como caixa de marcar. O que foi aplicado vai para a lista do cartão do ataque. Regras puras em `weaponRules()` (`weapon-rules.mjs`); a tela monta tudo em `attack-options.mjs`; o dano usa `explode`/`halve` da configuração em `rollDamage`.
+
+| Arma | Regra do livro | Na tela | Efeito |
+| --- | --- | --- | --- |
+| Bastão | 1d6 com uma mão, 1d8 com duas | escolha da empunhadura + linha "Uma mão: dano 1d6" / "Duas mãos: dano 1d8" | o dado de dano da arma é trocado pelo da empunhadura escolhida; o cartão registra |
+| Espada | 1d8 com uma mão, 1d10 com duas | idem | idem |
+| Katana | ágil; veterano em Luta (grau 10) pode usar com uma mão | escolha da empunhadura; "uma mão" fica desabilitada com o motivo se a Luta não é veterana | o dano não muda (1d10); sem veterano, cai para duas mãos |
+| Motosserra | −1d20 em todos os ataques; cada 6 num dado de dano rola um dado adicional | duas linhas | −1 dado no ataque; o dano usa `Nd6x` (o dado extra também explode); só no ataque normal (arremesso improvisado já paga −1d20) |
+| Metralhadora | −5 no ataque sem Força 4 ou sem tripé | com Força < 4: caixa "Apoiada no tripé (gastou uma ação de movimento)" e a linha de −5; com Força 4+: "sem penalidade" | −5 fixo no ataque normal e na rajada; não vale na coronhada |
+| Espingarda, Espingarda de Cano Duplo | metade do dano em alcance médio ou maior | com alvo marcado a distância decide (mais de 6 quadrados = 9 m = médio); sem alvo, caixa "Alvo em alcance médio ou maior" | o dano rolado vira `floor((fórmula) / 2)` (arredonda para baixo, depois de dobrar no crítico); não vale na coronhada |
+| Fuzil de Precisão | veterano em Pontaria que mira: +5 na margem de ameaça | veterano: caixa "Mirou (ação de movimento)"; não veterano: só a linha explicando | `critMargin` +5 (crítico 19 vira 14) |
+
+Veterano = grau de treinamento 10 (`degree.label` "veteran" ou acima; o grau é calculado a partir do nome, então os testes mudam `degree.label`, nunca `degree.value`).
+
+### Dados corrigidos (item 8 do relatório de todas as armas)
+- Espingarda de Cano Duplo e Pregador Pneumático passaram de "disparo" para "arma de fogo" (o texto do livro diz que o pregador conta como arma de fogo para poderes), então Para Bellum, Segurar o Gatilho etc. passam a valer para elas.
+- Shuriken ataca com Pontaria + **Agilidade**, como as demais armas de disparo e de arremesso.
+- Fica como estava (sem o PDF à mão para conferir): Bastão Policial com alcance "Curto" sem ser arremessável; Punhal com alcance "Pessoal" (o sistema o trata como corpo a corpo).
+
+### Resultado (18/10/2026)
+| Camada | Como rodar | Resultado |
+| --- | --- | --- |
+| Regras puras | `npm test` (`tests/unit/weapon-rules.test.mjs`) | 283/283 |
+| Interface, regras de cada arma (AR-45 a AR-58) | `scripts/ui-armas.js` como Mestre | 57/57 na última execução completa (cada caso com cliques reais, atores/cena "[AR]" apagados no fim) |
+| Interface, todas as armas | `scripts/ui-todas-armas.js` | camada B 46/46; camada A 533/534 |
+
+A falha da camada A (Bazuca / NEX 25) foi uma rolagem alheia (`2d6`, `- 100`) que caiu no chat durante o teste, pois outra pessoa usava o mundo; não é da arma.
+Os testes passaram a definir o treino por `degree.label` ("trained", "veteran"): antes mudavam `degree.value`, que é recalculado e voltava a 0 (a checagem do treino somado, na camada A, era vazia).
+
+Lacunas: Motosserra não cobra a ação de movimento para ligar; Metralhadora não verifica se o tripé foi realmente montado (é a palavra do jogador); Espingarda sem alvo depende da caixa marcada; "mirar" do Fuzil de Precisão não gasta a ação de movimento nem checa o turno; a rajada e o crítico combinados com `floor` não têm teste próprio além da fórmula; os itens 6 e 7 do relatório de todas as armas (área da Bazuca/Lança-chamas, Corrente, recarga, Cajado) seguem sem implementação.
+
+### Regras que faltavam (Corrente, recarga, Cajado, Bazuca, Lança-chamas, Em Chamas)
+Ver `docs/spec-armas-area-recarga.md`.
+
+## Poderes integrados (atualização)
+
+Entram na tela de ataque, sem o jogador somar à mão (testes: `tests/unit/habilidades-de-ataque.test.mjs` e `docs/macros/poderes-ataque-live-test.playwright.js`):
+
+| Poder | O que faz na tela |
+|---|---|
+| Balística Avançada | +2 no dano com arma tática de fogo |
+| Ninja Urbano | +2 no dano com arma tática corpo a corpo ou de disparo (nunca de fogo) |
+| Mira de Elite | soma o Intelecto no dano com arma de fogo de balas longas |
+| Ataque Furtivo | caixa "1 PE": +1d6 (nível 2), +2d6 (8), +3d6 (13), +4d6 (20) de dano |
+| Disparo Letal | caixa "1 PE": +2 na margem de ameaça (armas de ataque à distância) |
+| Potência Máxima | com arma corpo a corpo, cada acúmulo do Ataque Especial vale +10 (o custo em PE não muda) |
+
+Filtros novos em `onUse`: `proficiency`, `ammo`, `exclude`; `byLevel` ([[nível, "2d6"]…]) escolhe o dano pela faixa do nível. Ataque Especial: custo 2, 3, 4, 5 PE para 1 a 4 acúmulos, testado ao vivo nos níveis 1, 5, 11, 17 e 20 (ataque, dano e custo).
+
+Ainda manuais (precisam de escolha na ficha): Técnica Secreta e Técnica Sublime, Máquina de Matar (arma favorita), Ferramentas de Trabalho (arma escolhida), Assassinar (dobra o furtivo no próximo ataque).

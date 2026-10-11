@@ -44,3 +44,6 @@ Feche o app desktop antes. Editou JS/CSS/HTML/lang → **F5** no navegador. Só 
     `await import("/systems/ordem_v2_classic/module/tests/mini-quench.mjs"); await miniQuench("/systems/ordem_v2_classic/module/tests/suites/threat-sheet-book.test.mjs")`
 - Spec e decisões: `docs/spec-ficha-ameaca.md` (seção 11), regras do livro: `docs/ficha-ameaca-regras.md`, auditoria: `docs/auditoria-ficha-ameaca-atual.md`.
 - CSS do sistema usa a classe raiz `.system-ordemparanormal`, que NÃO existe neste id (`system-ordem_v2_classic`): o CSS antigo não casa. A ficha nova (`css/threat-sheet.css`) não depende dela.
+
+## Regras do jogo
+Texto das regras (livro básico + Sobrevivendo ao Horror) em `regras/`; veja a seção "Regras do jogo" em `AGENTS.md`. Consulte antes de implementar ou afirmar qualquer regra.

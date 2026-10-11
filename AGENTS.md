@@ -45,3 +45,14 @@ Instalação e ativação conferidas em 17/10/2026. Os módulos sem ajuste espec
 O sistema mantém um mapa específico para os 98 rituais da biblioteca em `systems/ordem_v2_classic/module/macros/ritual-animation-map.json`. Cada ritual tem um arquivo JB2A Free em `modules/JB2A_DnD5e/Library/Generic/`, com matiz definida pela afinidade. Em `aa.initialize`, `module/integrations/ritual-animations.mjs` mescla esses registros no reconhecimento **On Token** do Automated Animations, preserva outras animações e migra o registro legado de Eletrocussão.
 
 A macro `module/macros/ritual-caster.mjs` dispara `aa.workflow` depois de resolver uma conjuração não interrompida. A animação é uma representação visual da conjuração sobre o token do conjurador; não cobra PD, não rola dados e não aplica dano/condições novamente. O token do conjurador precisa estar na cena; escolher um alvo é opcional. Ao atualizar o mapa, confirme que todos os caminhos JB2A existem e mantenha cada animação coerente com o elemento e o texto do ritual.
+
+## Regras do jogo (fonte de consulta)
+
+As regras de Ordem Paranormal RPG v1.3 estão extraídas em `regras/`. Consulte essa pasta antes de afirmar, implementar ou alterar qualquer regra; não responda de memória.
+
+- Comece por `regras/INDICE.md` e `regras/LEIA-ME.md`. Capítulos: `01-introducao` a `10-apendice` (livro básico, um arquivo por regra, com a página do PDF) e `11-sobrevivendo-ao-horror/` (suplemento: origens, habilidades, poderes, equipamentos, itens amaldiçoados, rituais; índice próprio em `11-sobrevivendo-ao-horror/INDICE.md`).
+- A ficha mais recente é `regras/02-criacao-de-personagem/FICHA-DE-AGENTE-ATUALIZADA.md` (Sobrevivendo ao Horror v1.3).
+- Os arquivos de contexto linkam seus subitens; ao aplicar uma regra isolada, leia também o contexto indicado. Tabelas ficam em blocos de código; o símbolo do dado aparece como `d20` (`+d20` = um dado adicional).
+- A extração é automática e não foi revisada à mão: em dúvida sobre tabela, coluna ou texto sobre ilustração, confira no PDF (`_referencia-por-pagina/`, `VERIFICACAO.md`, `MANIFESTO.json`).
+- PDFs originais: `D:\[LIVROS]\[RPG]\[ORDEM-PARANORMAL]\` (Livro de Regras v1-3 e Sobrevivendo ao Horror v1-3). São grandes demais para leitura direta; use PyMuPDF (`tools/sah/pdf_extract.py` lê na ordem certa das colunas e marca o dado como `[d]`).
+- Não edite `regras/` para "corrigir" regra por conveniência do código; o código segue o livro, não o contrário.
