@@ -18,8 +18,35 @@
     "assetFolder": "Magic_Signs"
   },
   {
-    "name": "Amaldiçoar Arma",
+    "name": "Amaldiçoar Arma - Conhecimento",
     "element": "knowledge",
+    "range": "touch",
+    "target": "",
+    "asset": "modules/JB2A_DnD5e/Library/Generic/Celestial_Bodies/PlanetAtmo_01_Regular_BlueOrange_800x800.webm",
+    "assetName": "PlanetAtmo_01_Regular_BlueOrange_800x800.webm",
+    "assetFolder": "Celestial_Bodies"
+  },
+  {
+    "name": "Amaldiçoar Arma - Energia",
+    "element": "energy",
+    "range": "touch",
+    "target": "",
+    "asset": "modules/JB2A_DnD5e/Library/Generic/Celestial_Bodies/PlanetAtmo_01_Regular_BlueOrange_800x800.webm",
+    "assetName": "PlanetAtmo_01_Regular_BlueOrange_800x800.webm",
+    "assetFolder": "Celestial_Bodies"
+  },
+  {
+    "name": "Amaldiçoar Arma - Morte",
+    "element": "death",
+    "range": "touch",
+    "target": "",
+    "asset": "modules/JB2A_DnD5e/Library/Generic/Celestial_Bodies/PlanetAtmo_01_Regular_BlueOrange_800x800.webm",
+    "assetName": "PlanetAtmo_01_Regular_BlueOrange_800x800.webm",
+    "assetFolder": "Celestial_Bodies"
+  },
+  {
+    "name": "Amaldiçoar Arma - Sangue",
+    "element": "blood",
     "range": "touch",
     "target": "",
     "asset": "modules/JB2A_DnD5e/Library/Generic/Celestial_Bodies/PlanetAtmo_01_Regular_BlueOrange_800x800.webm",

@@ -55,6 +55,15 @@ function attrField() {
 	});
 }
 
+function resistanceField() {
+	const fields = foundry.data.fields;
+	return new fields.SchemaField({
+		value: new fields.NumberField({ integer: true, initial: 0 }),
+		vulnerable: new fields.BooleanField({ initial: false }),
+		immune: new fields.BooleanField({ initial: false }),
+	});
+}
+
 function agentSkillField(defaultAttr = "dex") {
 	const fields = foundry.data.fields;
 	return new fields.SchemaField({
@@ -98,6 +107,25 @@ export class AgentData extends foundry.abstract.TypeDataModel {
 			desloc: new fields.SchemaField({
 				value: new fields.NumberField({ integer: true, initial: 9 }),
 				bonus: new fields.NumberField({ integer: true, initial: 0 }),
+			}),
+			// Resistência a dano geral (todo tipo); poderes passivos como Mutação somam aqui
+			genericRd: new fields.SchemaField({
+				value: new fields.NumberField({ integer: true, min: 0, initial: 0 }),
+			}),
+			// Resistência por tipo de dano (maldições de itens somam aqui); mesmo formato da ameaça
+			resistances: new fields.SchemaField({
+				knowledgeDamage: resistanceField(),
+				energyDamage: resistanceField(),
+				deathDamage: resistanceField(),
+				bloodDamage: resistanceField(),
+				mentalDamage: resistanceField(),
+			}),
+			// Conexão (NEX 50%) e afinidade com um elemento; regras em helpers/affinity-rules.mjs
+			paranormal: new fields.SchemaField({
+				connection: new fields.StringField({ blank: true, initial: "" }),
+				affinity: new fields.StringField({ blank: true, initial: "" }),
+				graceLevel: new fields.NumberField({ integer: true, min: 0, initial: 0 }),
+				connectedAtNex: new fields.NumberField({ integer: true, min: 0, initial: 0 }),
 			}),
 			spaces: new fields.SchemaField({
 				bonus: new fields.SchemaField({

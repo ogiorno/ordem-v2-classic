@@ -1,10 +1,10 @@
 /**
- * Regras puras dos efeitos de início de turno (sem Foundry — testável em Node). Ver docs/spec-teste-de-turno.md.
+ * Regras puras dos efeitos de início de turno (sem Foundry — testável em Node). Ver docs/arquivo/spec-teste-de-turno.md.
  */
 
 export const BLEED_DT = 20;
 
-/** Em Chamas: dano de fogo no início do turno (docs/spec-armas-area-recarga.md, seção 4). */
+/** Em Chamas: dano de fogo no início do turno (docs/arquivo/spec-armas-area-recarga.md, seção 4). */
 export const BURN_DAMAGE_FORMULA = "1d6";
 export const BURN_DAMAGE_TYPE = "fireDamage";
 

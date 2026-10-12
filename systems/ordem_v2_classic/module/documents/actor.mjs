@@ -4,10 +4,16 @@ import { conditionDicePenalty } from "../helpers/conditions.mjs";
 import BasicRoll from "../dice/basic-roll.mjs";
 import SkillToolRollConfigurationDialog from "../applications/skill-tool-configuration-dialog.mjs";
 import AttributeRollConfigurationDialog from "../applications/attribute-configuration-dialog.mjs";
-import { calculateSpaces, calculateDefense, calculateStatusMaxima } from "../helpers/actor-calculations.mjs";
+import { calculateSpaces, calculateDefense, calculateStatusMaxima, splitEffortBonuses } from "../helpers/actor-calculations.mjs";
 import { fastHealingAmount, resolveDamage } from "../helpers/threat-calc.mjs";
+import { hasWeaknessResist } from "../helpers/weapon-curse.mjs";
 import { massiveDamageDT, triggersMassiveDamage } from "../helpers/death-rules.mjs";
 import { payPerito, peritoFor } from "../helpers/perito.mjs";
+import { trainingMap } from "../helpers/passive-effects-rules.mjs";
+import { focusDice } from "../helpers/skill-training-rules.mjs";
+import { eclecticFor, payEclectic } from "../helpers/eclectic.mjs";
+import { fearDieBonus } from "../helpers/scars.mjs";
+import { testDiceDelta } from "../helpers/affinity-rules.mjs";
 
 /**
  * Extend the base Actor document by defining a custom roll data structure which is ideal for the Simple system.
@@ -111,10 +117,16 @@ export class OrdemActor extends Actor {
 			const sanBonus = Number(this.system.SAN.bonus) || 0;
 
 			this.system.PV.max = maxStatus.PV_max + pvBonus;
-			this.system.PE.max = maxStatus.PE_max + peBonus;
-			this.system.PD.max = maxStatus.PD_max + pdBonus;
+			// com "Jogando sem Sanidade" o PD substitui o PE: o bônus de PE dos poderes vai para o PD
+			const effort = splitEffortBonuses({ withoutSanity, peBonus, pdBonus });
+			this.system.PE.max = maxStatus.PE_max + effort.PE;
+			this.system.PD.max = maxStatus.PD_max + effort.PD;
 			this.system.SAN.max = maxStatus.SAN_max + sanBonus;
 		}
+		// limite de PE por turno (Dedicação): sobe no recurso que o mundo usa
+		const perRound = splitEffortBonuses({ withoutSanity, perRoundBonus: this.system.PE.perRoundBonus });
+		this.system.PE.perRound += perRound.perRoundPE;
+		this.system.PD.perRound += perRound.perRoundPD;
 	}
 
 	/**
@@ -248,6 +260,8 @@ export class OrdemActor extends Actor {
 			desloc: system.desloc,
 			attributes: system.attributes,
 			skills: system.skills,
+			// 1 quando a perícia já é treinada: os poderes "treinamento ou +2" usam `@treino.<perícia>`
+			treino: trainingMap(system.skills),
 		};
 	}
 
@@ -260,39 +274,28 @@ export class OrdemActor extends Actor {
 	 * @param {boolean} [options.ignoreRD=false]   Bypass damage resistance (Perda de Vida rule).
 	 * @param {boolean} [options.nonLethal=false]  Apply as non-lethal damage (tracked separately).
 	 * @param {number} [options.extraRD=0]         Extra DR (e.g. from a Bloqueio reaction) added to base RD.
-	 * @returns {Promise<{finalDamage: number, blocked: number, newPV: number, conditions: string[]}>}
+	 * @param {object} [options.fx]                Contexto só visual da animação de dano: { sourceUuid, crit, areaCenter }.
+	 * @returns {Promise<{finalDamage: number, blocked: number, multiplier: number, vulnerabilityIgnored: boolean, newPV: number, conditions: string[]}>}
 	 */
-	async applyDamage(amount, { damageType, ignoreRD = false, nonLethal = false, extraRD = 0 } = {}) {
+	async applyDamage(amount, { damageType, ignoreRD = false, nonLethal = false, extraRD = 0, fx = null } = {}) {
 		const isThreat = this.type === "threat";
 		const resource = isThreat ? this.system.attributes?.hp : this.system.PV;
 		const resistances = this.system.resistances ?? {};
 
 		// RD tipada, RD geral com exceção ("RD 10/Morte"), vulnerabilidade (dobra) e imunidade (zera).
-		const { finalDamage, blocked } = resolveDamage(amount, damageType, {
+		const { finalDamage, blocked, multiplier, vulnerabilityIgnored } = resolveDamage(amount, damageType, {
 			resistances,
-			genericRd: isThreat ? this.system.genericRd : null,
+			genericRd: this.system.genericRd,
 			extraRd: extraRD,
 			ignoreRd: ignoreRD,
+			// Efeito Resistência à Fraqueza: a vulnerabilidade àquele tipo não dobra o dano.
+			ignoreVulnerable: hasWeaknessResist(this.effects, damageType),
 		});
 
-		// Delegate to GM via socket when the current user doesn't own this actor
+		// An unowned target needs a verified chat card or a manual GM action.
 		if (!this.isOwner) {
-			// No-GM guard (Foundry docs: GM-authoritative socket pattern) — without this,
-			// emit silently drops if no GM is connected.
-			const gmOnline = game.users.some((u) => u.isGM && u.active);
-			if (!gmOnline) {
-				ui.notifications.warn(game.i18n.localize("op.applyDamageNeedsGM"));
-				return { finalDamage: 0, blocked: 0, newPV: null, conditions: [] };
-			}
-			game.socket.emit("system.ordem_v2_classic", {
-				type: "applyDamage",
-				actorUuid: this.uuid,
-				amount,
-				options: { damageType, ignoreRD, nonLethal, extraRD },
-				userId: game.user.id,
-			});
-			// newPV is unknown here — update happens asynchronously on the GM client
-			return { finalDamage, blocked, newPV: null, conditions: [] };
+			ui.notifications.warn(game.i18n.localize("op.applyDamageManualGM"));
+			return { finalDamage: 0, blocked: 0, multiplier, vulnerabilityIgnored, newPV: null, conditions: [], needsGM: true };
 		}
 
 		const conditions = [];
@@ -300,7 +303,7 @@ export class OrdemActor extends Actor {
 		if (!isThreat && nonLethal) {
 			const newNonLethal = (resource.nonLethal ?? 0) + finalDamage;
 			await this.update({ "system.PV.nonLethal": newNonLethal });
-			return { finalDamage, blocked, newPV: resource.value, conditions };
+			return { finalDamage, blocked, multiplier, vulnerabilityIgnored, newPV: resource.value, conditions };
 		}
 
 		let newPV = Math.max(0, resource.value - finalDamage);
@@ -316,12 +319,16 @@ export class OrdemActor extends Actor {
 		const hpUpdate = { [hpKey]: newPV };
 		// Cura Acelerada precisa saber o tipo do último dano (ex.: "10/químico").
 		if (isThreat && damageType) hpUpdate["flags.ordem_v2_classic.lastDamageType"] = damageType;
-		await this.update(hpUpdate);
+		// Animação de dano: o contexto do golpe viaja nas opções do update e chega a todos os clientes (só visual).
+		// Dano zerado não muda o PV: um carimbo de tempo no ator força o `updateActor` para o bloqueio aparecer.
+		const opDamageFx = { finalDamage, blocked, multiplier, damageType: damageType ?? null, ...(fx ?? {}) };
+		if (isThreat && finalDamage === 0) hpUpdate[`flags.ordem_v2_classic.fxBlockAt`] = Date.now();
+		await this.update(hpUpdate, { opDamageFx });
 
 		if (newPV <= 0) conditions.push("morrendo");
 		if (newPV <= resource.max / 2) conditions.push("machucado");
 
-		return { finalDamage, blocked, newPV, conditions };
+		return { finalDamage, blocked, multiplier, vulnerabilityIgnored, newPV, conditions };
 	}
 
 	/**
@@ -639,7 +646,10 @@ export class OrdemActor extends Actor {
 		if (!rolls.length) return null;
 
 		// Perito: o PE só é gasto se a rolagem saiu com o dado extra
-		if (type === "skill") await payPerito(this, rollConfig);
+		if (type === "skill") {
+			await payPerito(this, rollConfig);
+			await payEclectic(this, rollConfig);
+		}
 
 		return rolls;
 	}
@@ -684,8 +694,22 @@ export class OrdemActor extends Actor {
 			config.options = { ...(config.options ?? {}), perito: { pe: perito.pe, die: perito.die, resource: perito.resource } };
 		}
 		// Condições (Atordoado, Agarrado, Surdo…) tiram d20 do teste: -1d20 / -2d20
-		const dicePenalty = conditionDicePenalty(this, process.skill);
+		// Foco em Perícia: +1 dado (d20) no teste da perícia escolhida; entra como "penalidade" negativa de dados
+		const focus = this.type === "agent" ? focusDice(this.items.filter((i) => i.type === "ability").map((i) => ({ name: i.name, focusSkill: i.getFlag?.("ordem_v2_classic", "focusSkill") })), process.skill) : 0;
+		// Cicatrizes Psicológicas (sem Sanidade): +1 dado em Vontade contra efeito de medo, quando o jogador marca
+		const fear = this.type === "agent" ? fearDieBonus({ marked: Boolean(formData?.get("fear")), withoutSanity: this.usingWithoutSanityRule, names: this.items.filter((i) => i.type === "ability").map((i) => i.name), skill: process.skill }) : 0;
+		// Afinidade: +1 dado contra efeitos do próprio elemento, -1 dado contra o elemento opressor (docs/spec-afinidade.md, Fase 3)
+		const effectElement = formData?.get("effectElement") ?? process.effectElement ?? "";
+		const affinityDice = this.type === "agent" ? testDiceDelta(this.system.paranormal, effectElement) : 0;
+		const dicePenalty = conditionDicePenalty(this, process.skill) - focus - fear - affinityDice;
 		if (dicePenalty) config.options = { ...(config.options ?? {}), dicePenalty };
+		if (affinityDice) config.options = { ...(config.options ?? {}), affinity: { element: effectElement, dice: affinityDice } };
+		// Eclético / Engenhosidade: testa como treinado, veterano ou expert neste teste (sem mudar a ficha)
+		const eclectic = formData?.get("eclectic") ? eclecticFor(this, process.skill).find((o) => o.degree === formData.get("eclectic")) : null;
+		if (eclectic) {
+			config.parts.push(String(eclectic.bonus));
+			config.options = { ...(config.options ?? {}), eclectic: { pe: eclectic.pe, degree: eclectic.degree, resource: eclectic.resource } };
+		}
 	}
 
 	/** */

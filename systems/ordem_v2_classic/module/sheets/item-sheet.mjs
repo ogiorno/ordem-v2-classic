@@ -1,5 +1,14 @@
 ﻿/* eslint-disable new-cap */
 import { prepareActiveEffectCategories } from "../helpers/effects.mjs";
+import { addEntry, createExecution, removeEntry, setBlock, setField } from "../helpers/threat-ability-editor.mjs";
+import { buildEditorViewModel } from "../helpers/threat-ability-editor.mjs";
+import { normalizeExecution } from "../helpers/threat-ability-execution.mjs";
+import { paranormalItemView, useParanormalItem } from "../helpers/paranormal-items.mjs";
+import { addCurse, applyCurseDocument, cursesView, isCursable, promptCursePrice, removeCurse, useCurse } from "../helpers/curses.mjs";
+import { CURSES, ELEMENTS } from "../helpers/curse-rules.mjs";
+import { originGrantsView } from "../helpers/origin-grants.mjs";
+import { grimoireLinkHtml } from "../helpers/grimoire-links.mjs";
+import { loadOriginPowers } from "../helpers/origin-powers.mjs";
 
 const { api, sheets } = foundry.applications;
 const DragDrop = foundry.applications.ux.DragDrop;
@@ -30,8 +39,19 @@ export class OrdemItemSheet extends api.HandlebarsApplicationMixin(sheets.ItemSh
 			deleteDoc: this.#deleteEffect,
 			toggleEffect: this.#toggleEffect,
 			onDamageControl: this.#onDamageControl,
+			execEnable: this.#execEnable,
+			execDisable: this.#execDisable,
+			execToggleBlock: this.#execToggleBlock,
+			execAddEntry: this.#execAddEntry,
+			execRemoveEntry: this.#execRemoveEntry,
 			editDescription: this.#toggleDescriptionEdit,
 			editChatDescription: this.#toggleDescriptionEdit,
+			addCurse: this.#addCurse,
+			removeCurse: this.#removeCurse,
+			useCurse: this.#useCurse,
+			useParanormalItem: this.#useParanormalItem,
+			applyCurse: this.#applyCurse,
+			cursePrice: this.#cursePrice,
 		},
 		form: {
 			submitOnChange: true,
@@ -80,6 +100,18 @@ export class OrdemItemSheet extends api.HandlebarsApplicationMixin(sheets.ItemSh
 			template: "systems/ordem_v2_classic/templates/item/parts/item-class-attributes.hbs",
 			scrollable: [".scrollable"],
 		},
+		curses: {
+			template: "systems/ordem_v2_classic/templates/item/parts/item-curses.hbs",
+			scrollable: [".scrollable"],
+		},
+		paranormal: {
+			template: "systems/ordem_v2_classic/templates/item/parts/item-paranormal.hbs",
+			scrollable: [".scrollable"],
+		},
+		curseAttr: {
+			template: "systems/ordem_v2_classic/templates/item/parts/item-curse-attributes.hbs",
+			scrollable: [".scrollable"],
+		},
 		effects: { template: "systems/ordem_v2_classic/templates/shared/effects.hbs", scrollable: [".scrollable"] },
 	};
 
@@ -96,16 +128,21 @@ export class OrdemItemSheet extends api.HandlebarsApplicationMixin(sheets.ItemSh
 				options.parts.push("description", "abilityAttr", "effects");
 				break;
 			case "armament":
-				options.parts.push("description", "armamentCombat", "armamentSpec", "effects");
+				options.parts.push("description", "armamentCombat", "armamentSpec", "curses", "effects");
 				break;
 			case "generalEquipment":
-				options.parts.push("description", "generalAttr", "effects");
+				options.parts.push("description", "generalAttr");
+				if (paranormalItemView(this.document)) options.parts.push("paranormal");
+				options.parts.push("curses", "effects");
 				break;
 			case "protection":
-				options.parts.push("description", "protectionAttr", "effects");
+				options.parts.push("description", "protectionAttr", "curses", "effects");
 				break;
 			case "ritual":
 				options.parts.push("description", "ritualAttr", "effects");
+				break;
+			case "curse":
+				options.parts.push("description", "curseAttr", "effects");
 				break;
 			case "origin":
 				options.parts.push("description", "effects");
@@ -189,6 +226,15 @@ export class OrdemItemSheet extends api.HandlebarsApplicationMixin(sheets.ItemSh
 				break;
 			case "description":
 				context.tab = context.tabs[partId];
+				if (this.item.type === "origin") {
+					const view = originGrantsView({ name: this.item.name, description: this.item.system.description }, await loadOriginPowers());
+					context.originGrants = view.status === "none" ? null : {
+						rows: view.rows.map((row) => ({
+							...row,
+							items: row.items.map((i) => ({ ...i, html: i.link ? grimoireLinkHtml({ kind: i.link.kind, name: i.link.name }) : foundry.utils.escapeHTML(i.text) })),
+						})),
+					};
+				}
 				context.enrichedDescription = await foundry.applications.ux.TextEditor.implementation.enrichHTML(
 					this.item.system.description,
 					{
@@ -215,6 +261,21 @@ export class OrdemItemSheet extends api.HandlebarsApplicationMixin(sheets.ItemSh
 				context.modificationsHTML = this._modificationsHTML();
 				break;
 			case "abilityAttr":
+				context.tab = context.tabs[partId];
+				context.exec = buildEditorViewModel(this.item.system);
+				break;
+			case "curses":
+				context.tab = context.tabs[partId];
+				context.curses = cursesView(this.item);
+				break;
+			case "paranormal":
+				context.tab = context.tabs[partId];
+				context.paranormal = paranormalItemView(this.item);
+				break;
+			case "curseAttr":
+				context.tab = context.tabs[partId];
+				context.curseInfo = this._curseInfo();
+				break;
 			case "armamentCombat":
 			case "ritualAttr":
 			case "classAttr":
@@ -227,6 +288,22 @@ export class OrdemItemSheet extends api.HandlebarsApplicationMixin(sheets.ItemSh
 				break;
 		}
 		return context;
+	}
+
+	/** Dados da maldição avulsa (item `curse`) para a aba de atributos. */
+	_curseInfo() {
+		const def = CURSES[this.item.system.curseKey];
+		if (!def) return null;
+		const actor = this.item.parent;
+		return {
+			label: def.label,
+			element: ELEMENTS[def.element].label,
+			kind: { weapon: "arma", protection: "proteção", accessory: "acessório" }[def.kind],
+			text: def.text,
+			mode: { auto: "automática", semi: "semi", manual: "manual" }[def.mode],
+			use: def.use ? def.use.label : "",
+			actorName: actor?.name ?? "",
+		};
 	}
 
 	/** Seletor das modificações do item (cada uma sobe a categoria em I). */
@@ -308,6 +385,18 @@ export class OrdemItemSheet extends api.HandlebarsApplicationMixin(sheets.ItemSh
 					tab.id = "classAttr";
 					tab.label += "attributes";
 					break;
+				case "curses":
+					tab.id = "curses";
+					tab.label += "curses";
+					break;
+				case "paranormal":
+					tab.id = "paranormal";
+					tab.label += "uses";
+					break;
+				case "curseAttr":
+					tab.id = "curseAttr";
+					tab.label += "attributes";
+					break;
 				case "effects":
 					tab.id = "effects";
 					tab.label += "effects";
@@ -348,6 +437,16 @@ export class OrdemItemSheet extends api.HandlebarsApplicationMixin(sheets.ItemSh
 				drop: this._onDrop.bind(this),
 			},
 		}).bind(this.element);
+
+		// Editor de execução da habilidade: campos sem name gravam o bloco inteiro.
+		for (const el of this.element.querySelectorAll("[data-exec]")) {
+			el.addEventListener("change", (event) => {
+				event.stopPropagation();
+				const target = event.currentTarget;
+				const value = target.type === "checkbox" ? target.checked : target.value;
+				this.#writeExecution((current) => setField(current, target.dataset.exec, value));
+			});
+		}
 
 		// Controle do Fullscreen
 		const isEditing = this._isEditingDescription || this._isEditingChatDescription;
@@ -410,6 +509,40 @@ export class OrdemItemSheet extends api.HandlebarsApplicationMixin(sheets.ItemSh
 	 * @returns {Promise}
 	 * @protected
 	 */
+	/** Aplica uma mudança pura ao bloco execution e grava (substitui o objeto inteiro). */
+	async #writeExecution(change) {
+		if (!this.isEditable) return;
+		const current = normalizeExecution(this.item.system.execution);
+		if (!current) return;
+		await this.item.update({ "system.==execution": change(current) });
+	}
+
+	static async #execEnable() {
+		if (!this.isEditable || this.item.system.execution) return;
+		await this.item.update({ "system.==execution": createExecution() });
+	}
+
+	static async #execDisable() {
+		if (!this.isEditable) return;
+		const ok = await foundry.applications.api.DialogV2.confirm({
+			window: { title: game.i18n.localize("op.threatExec.disable") },
+			content: `<p>${game.i18n.localize("op.threatExec.disableConfirm")}</p>`,
+		});
+		if (ok) await this.item.update({ "system.==execution": null });
+	}
+
+	static async #execToggleBlock(event, target) {
+		await this.#writeExecution((c) => setBlock(c, target.dataset.block, target.dataset.enabled === "true"));
+	}
+
+	static async #execAddEntry(event, target) {
+		await this.#writeExecution((c) => addEntry(c, target.dataset.list));
+	}
+
+	static async #execRemoveEntry(event, target) {
+		await this.#writeExecution((c) => removeEntry(c, target.dataset.list, target.dataset.index));
+	}
+
 	static async #onEditImage(event, target) {
 		const attrElement = target.closest(".profile-img-wrapper")?.querySelector("[data-edit]");
 		const attr = attrElement ? attrElement.dataset.edit : "img";
@@ -583,6 +716,11 @@ export class OrdemItemSheet extends api.HandlebarsApplicationMixin(sheets.ItemSh
 		// V13: Use namespaced TextEditor
 		const data = foundry.applications.ux.TextEditor.implementation.getDragEventData(event);
 		const item = this.item;
+		// Maldição solta no item: ela vai para este item (sem perguntar qual)
+		if (data.type === "Item" && isCursable(item)) {
+			const dropped = await Item.implementation.fromDropData(data).catch(() => null);
+			if (dropped?.type === "curse") return applyCurseDocument(dropped, { target: item });
+		}
 		// CANCELABLE HOOK — `dropItemSheetData` listeners MUST be synchronous;
 		// async listeners return a Promise (truthy) and cannot block the drop.
 		const allowed = Hooks.call("dropItemSheetData", item, this, data);
@@ -713,6 +851,36 @@ export class OrdemItemSheet extends api.HandlebarsApplicationMixin(sheets.ItemSh
 	 * @returns {Promise<OrdemItemSheet>|null}  Item with updates applied.
 	 * @private
 	 */
+	static async #addCurse(event, target) {
+		const select = target.closest(".op-curses")?.querySelector("select[name='curseKey']");
+		if (!select?.value) return;
+		if (await addCurse(this.item, select.value)) this.render();
+	}
+
+	static async #removeCurse(event, target) {
+		await removeCurse(this.item, target.dataset.curse);
+		this.render();
+	}
+
+	static async #useParanormalItem(event, target) {
+		await useParanormalItem(this.item, target.dataset.use);
+	}
+
+	static async #useCurse(event, target) {
+		await useCurse(this.item, target.dataset.curse);
+	}
+
+	/** Botão da maldição avulsa: escolhe o item da ficha que vira amaldiçoado. */
+	static async #applyCurse() {
+		const done = await applyCurseDocument(this.item, { actor: this.item.parent });
+		if (done && !this.item.parent?.items?.get(this.item.id)) this.close();
+	}
+
+	static async #cursePrice() {
+		const actor = this.item.parent;
+		if (actor) await promptCursePrice(actor);
+	}
+
 	static async #onDamageControl(event, target) {
 		event.preventDefault();
 		const a = target;

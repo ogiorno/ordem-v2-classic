@@ -1,8 +1,10 @@
 /* eslint-disable new-cap */
 import { prepareActiveEffectCategories } from "../helpers/effects.mjs";
+import { promptWeaknessResist } from "../helpers/weapon-curse-runtime.mjs";
 import { ResistanceConfig } from "../applications/resistance-config.mjs";
 import { TraitsConfig } from "../applications/traits-config.mjs";
 import { SKILL_DEFAULT_ATTR, formatTest, formatTestHtml, signed, summarizeResistances } from "../helpers/threat-calc.mjs";
+import { routeUse } from "../helpers/threat-ability-flow.mjs";
 
 const { api, sheets } = foundry.applications;
 
@@ -33,13 +35,15 @@ export class OrdemThreatSheet extends api.HandlebarsApplicationMixin(sheets.Acto
 		super(options);
 		/** Modo de edição da ficha (campos extras visíveis). Só vive na instância. */
 		this.editMode = false;
+		/** Aba ativa ("stats" | "actions" | "description" | "effects"). Só vive na instância. */
+		this.activeTab = "stats";
 	}
 
 	/** @inheritDoc */
 	static DEFAULT_OPTIONS = {
 		classes: ["ordemparanormal", "sheet", "actor", "threat", "themed", "theme-light"],
 		tag: "form",
-		position: { width: 560, height: 820 },
+		position: { width: 720, height: 640 },
 		window: {
 			resizable: true,
 			title: "op.threatSheetTitle",
@@ -51,11 +55,15 @@ export class OrdemThreatSheet extends api.HandlebarsApplicationMixin(sheets.Acto
 		actions: {
 			onEditImage: this.prototype._onEditImage,
 			toggleEdit: this.#onToggleEdit,
+			sbTab: this.#onSwitchTab,
+			sbEditText: this.#onEditText,
+			removeElement: this.#onRemoveElement,
 
 			// Rolagens
 			rollThreatTest: this.#onRollThreatTest,
 			rollThreatExtra: this.#onRollThreatExtra,
 			rollThreatItem: this.#onRollThreatItem,
+			useThreatAbility: this.#onUseThreatAbility,
 			addExtraSkill: this.#onAddExtraSkill,
 			removeExtraSkill: this.#onRemoveExtraSkill,
 			onRollAttributeTest: this.#onRollAttributeTest,
@@ -72,6 +80,9 @@ export class OrdemThreatSheet extends api.HandlebarsApplicationMixin(sheets.Acto
 			deleteDoc: this.prototype._onDeleteDoc,
 			toggleDescription: this.prototype._onToggleDescription,
 			toggleEffect: this.prototype._onToggleEffect,
+			addWeaknessResist: function () {
+				return promptWeaknessResist(this.actor);
+			},
 			// Configurações
 			openResistanceConfig: this.#onOpenResistanceConfig,
 			openTraitsConfig: this.#onOpenTraitsConfig,
@@ -90,7 +101,7 @@ export class OrdemThreatSheet extends api.HandlebarsApplicationMixin(sheets.Acto
 			template: "systems/ordem_v2_classic/templates/threat/parts/threat-enigmas.hbs",
 			scrollable: [""],
 		},
-		effects: { id: "effects", template: "systems/ordem_v2_classic/templates/shared/effects.hbs", scrollable: [""] },
+		effects: { id: "effects", template: "systems/ordem_v2_classic/templates/threat/parts/threat-effects.hbs", scrollable: [""] },
 	};
 
 	/** @override */
@@ -107,6 +118,16 @@ export class OrdemThreatSheet extends api.HandlebarsApplicationMixin(sheets.Acto
 	async _onRender(context, options) {
 		await super._onRender(context, options);
 		this.#disableOverrides();
+
+		this.#applyTab();
+
+		// Seletor "+ Elemento": acrescenta um elemento secundário à criatura.
+		this.element.querySelector("[data-element-picker]")?.addEventListener("change", async (event) => {
+			event.stopPropagation();
+			const value = event.target.value;
+			event.target.value = "";
+			if (value) await this.addElement(value);
+		});
 
 		// Seletor "+ Perícia": escolher uma perícia do sistema (ou "Outra…") adiciona a linha já configurada.
 		this.element.querySelector("[data-skill-picker]")?.addEventListener("change", async (event) => {
@@ -176,6 +197,33 @@ export class OrdemThreatSheet extends api.HandlebarsApplicationMixin(sheets.Acto
 		context.elementLabel = label(CONFIG.op.dropdownElement, system.elements?.main);
 		context.typeLabel = label(CONFIG.op.dropdownThreatType, system.details?.creatureType);
 		context.sizeLabel = label(CONFIG.op.dropdownThreatSize, system.size || "medium");
+		const mainKey = system.elements?.main;
+		const others = this.#otherElementKeys();
+		context.otherElements = others.map((key) => ({ key, label: label(CONFIG.op.dropdownElement, key) }));
+		context.elementPicker = Object.keys(CONFIG.op.dropdownElement ?? {})
+			.filter((key) => key !== mainKey && !others.includes(key))
+			.map((key) => ({ key, label: label(CONFIG.op.dropdownElement, key) }));
+		const hasEffects = !this.document.limited;
+		context.activeEffectsCount = Array.from(this.actor.allApplicableEffects()).filter((e) => !e.disabled).length;
+		context.tabs = [
+			{ id: "stats", icon: "fa-solid fa-file-lines", label: L("op.threat.tab.stats") },
+			{ id: "actions", icon: "fa-solid fa-hand-fist", label: L("op.threat.tab.actions") },
+			...(hasEffects
+				? [
+						{ id: "effects", icon: "fa-solid fa-wand-sparkles", label: L("op.threat.tab.effects") },
+						{ id: "description", icon: "fa-solid fa-book-open", label: L("op.threat.tab.description") },
+				  ]
+				: []),
+		].map((t) => ({ ...t, active: t.id === this.activeTab }));
+		const hp = system.attributes?.hp;
+		context.hpPercent = hp?.max > 0 ? Math.round(Math.clamp((hp.value / hp.max) * 100, 0, 100)) : 0;
+		context.resistanceRows = Object.entries(CONFIG.op.dropdownDamageType ?? {}).map(([key, i18n]) => ({
+			key,
+			label: L(i18n),
+			value: system.resistances?.[key]?.value ?? 0,
+			vulnerable: !!system.resistances?.[key]?.vulnerable,
+			immune: !!system.resistances?.[key]?.immune,
+		}));
 		context.isCreature = system.details?.creatureType === "creature";
 
 		// Atributos (siglas do livro)
@@ -384,6 +432,14 @@ export class OrdemThreatSheet extends api.HandlebarsApplicationMixin(sheets.Acto
 				i.damageLabel = "";
 				i.editAction = "viewDoc";
 				i.dieTooltip = L("op.threat.rollAbility");
+				// Habilidade configurada para uso no jogo (execution): botão Usar/Acionar; o dado vira "Mostrar no chat".
+				const route = routeUse(i);
+				if (route.usable) {
+					i.canUse = true;
+					i.useIncomplete = route.route === "incomplete";
+					i.useLabel = L(route.triggered ? "op.threatUse.trigger" : "op.threatUse.use");
+					i.dieTooltip = L("op.threatUse.showInChat");
+				}
 				// Sem execução definida conta como passiva (habilidade sempre ativa)
 				i.groupKey = i.system.activation || "passive";
 				abilities.push(i);
@@ -448,6 +504,69 @@ export class OrdemThreatSheet extends api.HandlebarsApplicationMixin(sheets.Acto
 	/* -------------------------------------------- */
 	/* Action Handlers (MÉTODOS DE INSTÂNCIA)      */
 	/* -------------------------------------------- */
+
+	/** Chaves dos elementos secundários (`system.elements.others`, lista separada por vírgula). */
+	#otherElementKeys() {
+		const known = CONFIG.op.dropdownElement ?? {};
+		const raw = String(this.document.system.elements?.others ?? "");
+		return [...new Set(raw.split(",").map((k) => k.trim()).filter((k) => k in known))];
+	}
+
+	/**
+	 * Acrescenta um elemento secundário à criatura (ignora o principal e repetidos).
+	 * @param {string} key  Chave de CONFIG.op.dropdownElement.
+	 */
+	async addElement(key) {
+		if (!(key in (CONFIG.op.dropdownElement ?? {}))) return;
+		if (key === this.document.system.elements?.main) return;
+		const list = this.#otherElementKeys();
+		if (list.includes(key)) return;
+		await this.document.update({ "system.elements.others": [...list, key].join(",") });
+	}
+
+	/** Remove um elemento secundário. */
+	async removeElement(key) {
+		const list = this.#otherElementKeys().filter((k) => k !== key);
+		await this.document.update({ "system.elements.others": list.join(",") });
+	}
+
+	static async #onRemoveElement(event, target) {
+		event.preventDefault();
+		await this.removeElement(target.dataset.key);
+	}
+
+	/** Mostra só o conteúdo da aba ativa (as seções internas e as partes enigmas/efeitos). */
+	#applyTab() {
+		const tab = this.activeTab;
+		for (const el of this.element.querySelectorAll(".sb-tab[data-sb-tab]")) el.hidden = el.dataset.sbTab !== tab;
+		const partTab = { enigmas: "description", effects: "effects" };
+		for (const [part, id] of Object.entries(partTab)) {
+			const el = this.element.querySelector(`[data-application-part="${part}"]`);
+			if (el) el.toggleAttribute("data-sb-hidden", id !== tab);
+		}
+		for (const link of this.element.querySelectorAll(".sb-tab-link")) {
+			link.classList.toggle("active", link.dataset.tab === tab);
+		}
+	}
+
+	/**
+	 * Abre o editor de texto (enigma ou descrição) do cartão: mostra o editor escondido
+	 * e aciona o botão de edição do próprio <prose-mirror>.
+	 */
+	static #onEditText(event, target) {
+		event.preventDefault();
+		const card = target.closest("[data-text-card]");
+		card?.querySelector(".fx-emptystate")?.remove();
+		card?.querySelector(".fx-text")?.classList.remove("is-empty");
+		card?.querySelector("prose-mirror button.toggle, prose-mirror .toggle, prose-mirror button")?.click();
+	}
+
+	/** Troca de aba sem recarregar a ficha. */
+	static #onSwitchTab(event, target) {
+		event.preventDefault();
+		this.activeTab = target.dataset.tab;
+		this.#applyTab();
+	}
 
 	/** Alterna o modo de edição (campos extras da ficha) sem recarregar a janela. */
 	static #onToggleEdit(event) {
@@ -587,6 +706,15 @@ export class OrdemThreatSheet extends api.HandlebarsApplicationMixin(sheets.Acto
 	 * Dado à direita da ação. Habilidades postam o card normalmente; ataques já rolam o teste de ataque
 	 * (o card continua com o botão "Rolar dano", que respeita alvo, crítico e reações do sistema).
 	 */
+	/** Botão Usar: fluxo da habilidade configurada (alvo/área, custo, painel do Mestre). Ações sem configuração seguem no chat. */
+	static async #onUseThreatAbility(event, target) {
+		event.preventDefault();
+		const item = this.actor.items.get(target.closest("[data-item-id]")?.dataset.itemId);
+		if (!item) return;
+		const { useAbility } = await import("../macros/threat-ability-use.mjs");
+		await useAbility({ actor: this.actor, item });
+	}
+
 	static async #onRollThreatItem(event, target) {
 		event.preventDefault();
 		const item = this.actor.items.get(target.closest("[data-item-id]")?.dataset.itemId);
@@ -719,29 +847,10 @@ export class OrdemThreatSheet extends api.HandlebarsApplicationMixin(sheets.Acto
 	}
 
 	/** */
-	static async #onRollMentalDamage(event, target) {
+	static async #onRollMentalDamage(event, _target) {
 		event.preventDefault();
-		let formula = this.document.system.disturbingPresence.mentalDamage;
-
-		// Tenta pegar do input se não estiver salvo
-		if (!formula || formula.trim() === "") {
-			const inputElement = target.closest("div").querySelector("input");
-			if (inputElement) formula = inputElement.value;
-		}
-
-		if (!formula || formula.trim() === "") {
-			return ui.notifications.warn(game.i18n.localize("op.disturbingPresence.noFormula"));
-		}
-
-		try {
-			const roll = await new Roll(formula, this.actor.getRollData()).evaluate();
-			await roll.toMessage({
-				flavor: game.i18n.localize("op.disturbingPresence.mentalDamageRollFlavor"),
-				speaker: ChatMessage.getSpeaker({ actor: this.document }),
-			});
-		} catch (err) {
-			ui.notifications.error(`${game.i18n.localize("op.disturbingPresence.errorFormula")} ${err.message}`);
-		}
+		const { rollDisturbingPresence } = await import("../macros/threat-presence.mjs");
+		await rollDisturbingPresence(this.document);
 	}
 
 	/** */

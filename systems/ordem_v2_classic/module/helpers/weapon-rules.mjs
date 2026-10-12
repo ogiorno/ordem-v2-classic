@@ -1,5 +1,5 @@
 /**
- * Regras puras das peculiaridades da arma na tela de ataque (docs/spec-tela-de-ataque.md, seção "A arma").
+ * Regras puras das peculiaridades da arma na tela de ataque (docs/arquivo/spec-tela-de-ataque.md, seção "A arma").
  * Livro de Regras v1.3, cap. 3: arma ágil, automática (rajada), arremesso, coronhada, empunhadura e alcance.
  */
 

@@ -1,5 +1,5 @@
 /**
- * Opções "ao usar" dos poderes que mexem no ataque (docs/spec-tela-de-ataque.md, seção "Poderes integrados").
+ * Opções "ao usar" dos poderes que mexem no ataque (docs/arquivo/spec-tela-de-ataque.md, seção "Poderes integrados").
  * Cada entrada vira um Efeito Ativo desligado, com `flags.ordem_v2_classic.onUse`, no poder da ficha
  * (feito por syncOnUseEffects ao abrir a tela de ataque). A chave é o fim do nome do poder, sem acento.
  */
@@ -12,6 +12,7 @@ export const POWER_EFFECTS = Object.freeze({
 	"golpe demolidor": { description: "Ao quebrar ou atacar um objeto, gaste 1 PE para causar dois dados de dano extra do mesmo tipo.", onUse: { enabled: true, applies: "all", cost: 1, damageDice: 2 } },
 	"balistica avancada": { description: "+2 nas rolagens de dano com armas táticas de fogo.", onUse: auto({ applies: "fire", proficiency: "tacticalWeapons", damageBonus: 2 }) },
 	"ninja urbano": { description: "+2 nas rolagens de dano com armas táticas corpo a corpo e de disparo (exceto de fogo).", onUse: auto({ applies: "all", proficiency: "tacticalWeapons", exclude: "fire", damageBonus: 2 }) },
+	"golpe de sorte": { description: "Seus ataques recebem +1 na margem de ameaça.", onUse: auto({ applies: "all", critMargin: 1 }) },
 	"mira de elite": { description: "Soma o Intelecto nas rolagens de dano com armas de fogo que usam balas longas.", onUse: auto({ applies: "fire", ammo: "longBullets", damageAttr: "int" }) },
 	"ataque furtivo": { description: "Alvo desprevenido ou flanqueado, uma vez por rodada: gaste 1 PE para +1d6 de dano (+2d6 em NEX 40%, +3d6 em 65%, +4d6 em 99%).", onUse: { enabled: true, applies: "all", cost: 1, byLevel: [[2, "1d6"], [8, "2d6"], [13, "3d6"], [20, "4d6"]] } },
 	"disparo letal": { description: "Depois de mirar, gaste 1 PE para +2 na margem de ameaça do próximo ataque.", onUse: { enabled: true, applies: "ranged", cost: 1, critMargin: 2 } },

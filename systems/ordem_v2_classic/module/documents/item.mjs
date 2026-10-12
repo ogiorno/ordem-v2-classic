@@ -10,9 +10,11 @@ import { damageFormulaParts } from "../helpers/attack-options-rules.mjs";
 import { damageApplicationMode, requestCardDamage } from "../helpers/card-damage.mjs";
 import { conditionDicePenalty } from "../helpers/conditions.mjs";
 import { resolveWeaponArea } from "../helpers/weapon-area-resolve.mjs";
-import { gmNotice } from "../helpers/gm-notice.mjs";
+import { areaKind } from "../helpers/weapon-area.mjs";
 import { getReactionEligibility } from "../helpers/reaction-helpers.mjs";
 import { damageRecipients } from "../helpers/visibility.mjs";
+import { rollWeaponCurseDamage } from "../helpers/weapon-curse-runtime.mjs";
+import { convertedDamageType, ignoresRd, rollCurseDamage } from "../helpers/curses.mjs";
 
 /**
  * Wrapper sobre `damageRecipients` que injeta `game.users` atual. O helper puro
@@ -170,39 +172,7 @@ export class OrdemItem extends Item {
 				break;
 			case "applyDamage": {
 				const applyMessage = game.messages.get(messageId);
-				const damageTarget = applyMessage?.getFlag("ordem_v2_classic", "damageTarget");
-				if (!damageTarget) break;
-				// Guarda de idempotência: se já foi aplicado antes (re-render reabriu o
-				// botão ou o GM clicou rápido o suficiente pra burlar o disable local),
-				// não duplica. A flag é a source-of-truth persistida.
-				if (applyMessage.getFlag("ordem_v2_classic", "damageApplied")) break;
-				const targetActor = await fromUuid(damageTarget.actorUuid);
-				if (!targetActor) break;
-				const applyRoll = applyMessage.rolls?.[0];
-				if (!applyRoll) break;
-				const attackMsg = damageTarget.attackMessageId ? game.messages.get(damageTarget.attackMessageId) : null;
-				const extraRD = attackMsg?.getFlag("ordem_v2_classic", "damageBlock")?.amount ?? 0;
-				const result = await targetActor.applyDamage(applyRoll.total, {
-					damageType: damageTarget.damageType,
-					extraRD,
-				});
-				const blockedMsg = result.blocked > 0 ? game.i18n.format("op.damageBlocked", { blocked: result.blocked }) : "";
-				gmNotice(
-					game.i18n.format("op.gmNotice.damageApplied", {
-						by: game.user.name,
-						amount: result.finalDamage,
-						target: targetActor.name,
-						before: "?",
-						after: result.newPV ?? "?",
-					}) + (blockedMsg ? ` (${blockedMsg})` : ""),
-					{ kind: "damage" }
-				);
-				await applyMessage.setFlag("ordem_v2_classic", "damageApplied", {
-					at: Date.now(),
-					by: game.user.id,
-					amount: result.finalDamage,
-					targetUuid: damageTarget.actorUuid,
-				});
+				if (applyMessage) await requestCardDamage(applyMessage);
 				break;
 			}
 			case "teste":
@@ -291,7 +261,7 @@ export class OrdemItem extends Item {
 		// agregador de hitResult no item card para distinguir uma volley nova de
 		// uma anterior, evitando que um miss em N+1 sobrescreva um hit em N.
 		const isInnerRecursion = options._forcedTarget !== undefined || options._attackIndex !== undefined;
-		// Tela de ataque (docs/spec-tela-de-ataque.md): só para agentes e só quando a chamada veio de um clique.
+		// Tela de ataque (docs/arquivo/spec-tela-de-ataque.md): só para agentes e só quando a chamada veio de um clique.
 		// Shift+clique ataca direto; mesmo assim valem os bônus automáticos (ex.: Mão Pesada).
 		if (!isInnerRecursion && !options.attackOptions && this.parent?.type === "agent") {
 			if (options.event && !options.event.shiftKey) {
@@ -505,7 +475,7 @@ export class OrdemItem extends Item {
 			flags["ordem_v2_classic.attackerUserId"] = game.userId;
 			{
 				const { attacker } = attackTokens(this);
-				if (attacker && targetToken) flags["ordem_v2_classic.attackAnim"] = { from: attacker.document.uuid, to: targetToken.document.uuid, kind: weaponPick?.mode === "throw" ? "throw" : this.system.types?.rangeType?.name === "ranged" && weaponPick?.mode !== "blow" ? (weaponPick?.mode === "burst" ? "burst" : "shot") : "melee", weapon: this.name };
+				if (attacker && targetToken) flags["ordem_v2_classic.attackAnim"] = { from: attacker.document.uuid, to: targetToken.document.uuid, kind: areaKind(this.name) === "radius" ? "rocket" : areaKind(this.name) === "line" ? "flame" : weaponPick?.mode === "throw" ? "throw" : this.system.types?.rangeType?.name === "ranged" && weaponPick?.mode !== "blow" ? (weaponPick?.mode === "burst" ? "burst" : "shot") : "melee", weapon: this.name };
 			}
 			if (chosenOptions?.lines?.length || chosenOptions?.conditions?.length) flags["ordem_v2_classic.attackOptions"] = chosenOptions;
 
@@ -695,6 +665,9 @@ export class OrdemItem extends Item {
 		const critApplied = Boolean((critical.isCritical && options.lastId) || options.event?.altKey);
 		// Opções escolhidas na tela de ataque (ou só as automáticas, se a chamada não trouxe nenhuma).
 		const extra = options.attackOptions ?? (this.parent?.type === "agent" ? defaultSelection(this) : null);
+		// Maldição Energética: o dano do ataque vira Energia
+		const convertedType = convertedDamageType(this, extra);
+		if (convertedType) damage.type = convertedType;
 		prepareFormula.push(
 			...damageFormulaParts(damage.formula, {
 				critMultiplier: critApplied ? critical.multiplier ?? 2 : 1,
@@ -757,6 +730,7 @@ export class OrdemItem extends Item {
 					targetName,
 					damageType: damage.type,
 					attackMessageId: options.attackMessageId ?? hitResult.attackMessageId ?? this.lastAttackMessageId ?? null,
+					...(ignoresRd(this, extra) ? { ignoreRd: true } : {}),
 				};
 				flags["ordem_v2_classic.damageInfo"] = {
 					formula: formulas.replaceAll("+", " + "),
@@ -786,6 +760,24 @@ export class OrdemItem extends Item {
 				hitResult?.revealed !== false
 			) {
 				requestCardDamage(damageMsg).catch((err) => console.error("Ordem Paranormal | aplicação automática falhou", err));
+			}
+			// Amaldiçoar Arma: o dano do elemento sai em carta própria, separado do dano da arma (não dobra no crítico).
+			if (!extra?.weapon?.area) {
+				await rollWeaponCurseDamage(this, {
+					hitResult,
+					attackMessageId: options.attackMessageId ?? hitResult?.attackMessageId ?? this.lastAttackMessageId ?? null,
+					attackIndex: options._attackIndex ?? null,
+					attackTotal: options._attackTotal ?? null,
+				}).catch((err) => console.error("Ordem Paranormal | dano do Amaldiçoar Arma falhou", err));
+				// Maldições da arma (Lancinante, Erosiva, Antielemento): dano do elemento em carta própria
+				await rollCurseDamage(this, {
+					attackOptions: extra,
+					hitResult,
+					critical: critApplied ? { isCritical: true, multiplier: critical.multiplier ?? 2 } : null,
+					attackMessageId: options.attackMessageId ?? hitResult?.attackMessageId ?? this.lastAttackMessageId ?? null,
+					attackIndex: options._attackIndex ?? null,
+					attackTotal: options._attackTotal ?? null,
+				}).catch((err) => console.error("Ordem Paranormal | dano das maldições falhou", err));
 			}
 		}
 
@@ -819,15 +811,16 @@ export class OrdemItem extends Item {
 	 */
 	async rollAreaPoint({ attackOptions } = {}) {
 		const targets = [...(game.user?.targets ?? [])];
-		if (targets.length !== 1) {
-			ui.notifications.warn("Marque o alvo que define o ponto do disparo.");
+		const areaPoint = attackOptions?.weapon?.areaPoint ?? null;
+		if (!areaPoint && targets.length !== 1) {
+			ui.notifications.warn("Escolha a área no mapa ou marque o alvo que define o ponto do disparo.");
 			return null;
 		}
 		return this.rollDamage({
 			attackOptions,
 			critical: false,
 			lastId: true,
-			hitResult: { hit: true, point: true, targetTokenUuid: targets[0].document?.uuid ?? null },
+			hitResult: { hit: true, point: true, areaPoint, targetTokenUuid: areaPoint ? null : (targets[0].document?.uuid ?? null) },
 		});
 	}
 

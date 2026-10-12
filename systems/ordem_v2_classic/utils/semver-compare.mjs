@@ -45,7 +45,6 @@ export default function semverComp(min, curr, max, opt = {}) {
 	return false;
 }
 
-// eslint-disable-next-line require-jsdoc
 function coerceNum(string) {
 	if (typeof string !== "string") throw new Error(`Wrong term passed: ${string} (var)`);
 	const array = Array.from(string.split("."), (v) => parseInt(v));

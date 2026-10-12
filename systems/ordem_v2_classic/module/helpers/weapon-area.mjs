@@ -1,5 +1,5 @@
 /**
- * Regras puras das armas de área (docs/spec-armas-area-recarga.md, seções 5 e 6): Bazuca (raio) e Lança-chamas (linha).
+ * Regras puras das armas de área (docs/arquivo/spec-armas-area-recarga.md, seções 5 e 6): Bazuca (raio) e Lança-chamas (linha).
  * Posições em quadrados do mapa, sempre o centro do ser.
  */
 

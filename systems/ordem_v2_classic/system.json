@@ -20,7 +20,8 @@
   "styles": [
     "css/ordemparanormal.css",
     "css/threat-sheet.css",
-    "css/level-up-screen.css"
+    "css/level-up-screen.css",
+    "css/curses.css"
   ],
   "scripts": [
     "lib/motion.min.js"
@@ -167,6 +168,26 @@
       }
     },
     {
+      "name": "curses",
+      "label": "Maldições Paranormais",
+      "system": "ordem_v2_classic",
+      "path": "packs/curses",
+      "type": "Item",
+      "ownership": {
+        "PLAYER": "OBSERVER"
+      }
+    },
+    {
+      "name": "rituals",
+      "label": "Rituais",
+      "system": "ordem_v2_classic",
+      "path": "packs/rituals",
+      "type": "Item",
+      "ownership": {
+        "PLAYER": "OBSERVER"
+      }
+    },
+    {
       "name": "paranormalPowers",
       "label": "Poderes Paranormais",
       "system": "ordem_v2_classic",
@@ -192,6 +213,16 @@
       "system": "ordem_v2_classic",
       "path": "packs/threats",
       "type": "Actor",
+      "ownership": {
+        "PLAYER": "OBSERVER"
+      }
+    },
+    {
+      "name": "threatAbilities",
+      "label": "Habilidades de Ameaças",
+      "system": "ordem_v2_classic",
+      "path": "packs/threatAbilities",
+      "type": "Item",
       "ownership": {
         "PLAYER": "OBSERVER"
       }
@@ -307,7 +338,8 @@
           "packs": [
             "originPowers",
             "generalPowers",
-            "paranormalPowers"
+            "paranormalPowers",
+            "rituals"
           ]
         },
         {
@@ -316,7 +348,8 @@
           "color": "#555555",
           "packs": [
             "agents",
-            "threats"
+            "threats",
+            "threatAbilities"
           ]
         }
       ]
@@ -393,7 +426,8 @@
       "ritual": {},
       "path": {},
       "class": {},
-      "origin": {}
+      "origin": {},
+      "curse": {}
     }
   },
   "socket": true,

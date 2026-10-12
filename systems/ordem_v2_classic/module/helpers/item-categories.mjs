@@ -1,5 +1,5 @@
 /**
- * Categoria dos itens e limite da patente (sem Foundry — testável em Node). Ver docs/spec-categoria-de-itens.md.
+ * Categoria dos itens e limite da patente (sem Foundry — testável em Node). Ver docs/arquivo/spec-categoria-de-itens.md.
  *
  * Cada modificação de arma ou proteção aumenta a categoria do item em I (Livro de Regras, "Modificações").
  * A patente limita quantos itens de cada categoria o agente escolhe por missão (Tabela 3.1). Passar do limite não
@@ -34,6 +34,7 @@ export const PROTECTION_MODIFICATIONS = Object.freeze({
 });
 
 export const ROMAN = Object.freeze(["0", "I", "II", "III", "IV"]);
+import { curseCategoryBonus, curseCount } from "./curse-rules.mjs";
 const PHYSICAL = ["armament", "protection", "generalEquipment"];
 
 const int = (v) => Math.max(0, Math.trunc(Number(v)) || 0);
@@ -45,10 +46,15 @@ export function modificationCount(system = {}) {
 	return new Set(Array.from(mods).filter(Boolean)).size;
 }
 
-/** Categoria do item: a escrita nele mais uma por modificação, menos a redução das habilidades (nunca abaixo de 0). */
+/** Bônus de categoria das maldições do item: a primeira soma II e cada seguinte I (curse-rules.mjs). */
+export function curseBonus(system = {}) {
+	return curseCategoryBonus(curseCount(system));
+}
+
+/** Categoria do item: a escrita nele mais uma por modificação e as maldições, menos a redução das habilidades (nunca abaixo de 0). */
 export function effectiveCategory(item, reduceFn = noReduction) {
 	const base = int(item?.system?.category);
-	return Math.max(0, base + modificationCount(item?.system) - int(reduceFn(item)));
+	return Math.max(0, base + modificationCount(item?.system) + curseBonus(item?.system) - int(reduceFn(item)));
 }
 
 const noReduction = () => 0;
@@ -119,13 +125,16 @@ export function categoryUsage(items = [], patent = {}, reduceFn = noReduction) {
 export function itemCategoryInfo(item, usage, reduceFn = noReduction) {
 	const base = int(item?.system?.category);
 	const mods = modificationCount(item?.system);
-	const reduced = Math.min(int(reduceFn(item)), base + mods);
-	const category = base + mods - reduced;
+	const curses = curseCount(item?.system);
+	const cursed = curseCategoryBonus(curses);
+	const reduced = Math.min(int(reduceFn(item)), base + mods + cursed);
+	const category = base + mods + cursed - reduced;
 	const row = usage?.rows?.find((r) => r.cat === category);
 	const over = category > 4 ? Boolean(usage?.above?.over) : Boolean(row?.over);
 	const parts = [`Categoria ${categoryLabel(base)}`];
 	if (mods) parts.push(`+ ${mods} ${mods === 1 ? "modificação" : "modificações"}`);
+	if (curses) parts.push(`+ ${categoryLabel(cursed)} (${curses} ${curses === 1 ? "maldição" : "maldições"})`);
 	if (reduced) parts.push(`− ${reduced} (habilidade)`);
 	const tip = parts.length > 1 ? `${parts.join(" ")} = ${categoryLabel(category)}` : parts[0];
-	return { category, label: categoryLabel(category), base, mods, reduced, over: over && category > 0, tip };
+	return { category, label: categoryLabel(category), base, mods, curses, cursed, reduced, over: over && category > 0, tip };
 }

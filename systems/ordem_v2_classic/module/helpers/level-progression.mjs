@@ -1,4 +1,5 @@
-import { abilityUnlockLevel, findOriginPower, folderMatchesPath, nexToLevel, normalizeName, stripHtml, survivorClassStage } from "./level-progression-rules.mjs";
+import { createTaskQueue } from "./actor-task-queue.mjs";
+import { abilityUnlockLevel, duplicateGrantIds, findOriginPower, folderMatchesPath, nexToLevel, normalizeName, stripHtml, survivorClassStage } from "./level-progression-rules.mjs";
 
 const SYSTEM = "ordem_v2_classic";
 const PATH_PACKS = ["pathFighter", "pathSpecialist", "pathOccultist", "survivalPowers"];
@@ -67,6 +68,7 @@ async function grantEntries(actor, source, kind, entries) {
 		owned.add(normalizeName(entry.name));
 	}
 	if (toCreate.length) await actor.createEmbeddedDocuments("Item", toCreate, { opAutoGrant: true });
+	await dropDuplicateGrants(actor);
 	return toCreate.length;
 }
 
@@ -75,16 +77,24 @@ async function grantEntries(actor, source, kind, entries) {
  * e remove as ainda bloqueadas. O Sobrevivente também recebe as habilidades de classe do seu estágio.
  */
 export function syncPathAbilities(actor) {
-	// Em fila por ficha: duas sincronizações ao mesmo tempo (ex.: classe e trilha criadas juntas, ou dois níveis
-	// seguidos) liam a ficha antes uma da outra e concediam a mesma habilidade duas vezes.
-	const previous = syncQueue.get(actor.id) ?? Promise.resolve();
-	const run = previous.catch(() => {}).then(() => syncPathAbilitiesNow(actor));
-	syncQueue.set(actor.id, run);
-	run.finally(() => syncQueue.get(actor.id) === run && syncQueue.delete(actor.id)).catch(() => {});
-	return run;
+	return enqueue(actor, () => syncPathAbilitiesNow(actor));
 }
 
-const syncQueue = new Map();
+/**
+ * Toda concessão e remoção automática de uma ficha passa por esta fila. Sem ela, duas concessões ao mesmo tempo
+ * (várias origens, classe e trilha criadas juntas, a migração junto com um hook) liam a ficha antes uma da outra
+ * e criavam a mesma habilidade duas vezes.
+ */
+const grantQueue = createTaskQueue();
+const enqueue = (actor, task) => grantQueue(actor.id, task);
+
+/** Concede o poder da origem recém-criada (se o suplemento tiver um). */
+export function grantOriginPower(actor, origin) {
+	return enqueue(actor, async () => {
+		const found = await originPowerEntry(origin);
+		if (found) await grantEntries(actor, origin, "origin", [found]);
+	});
+}
 
 async function syncPathAbilitiesNow(actor) {
 	if (actor.type !== "agent") return;
@@ -134,9 +144,17 @@ export async function newAbilitiesBetween(actor, from, to) {
 	return result;
 }
 
-async function removeGranted(actor, sourceId) {
-	const ids = actor.items.filter((i) => grantedFlag(i)?.source === sourceId).map((i) => i.id);
-	if (ids.length) await actor.deleteEmbeddedDocuments("Item", ids, { opAutoGrant: true });
+/** Rede de segurança: tira da ficha as habilidades concedidas que ficaram repetidas, mantendo a primeira. */
+async function dropDuplicateGrants(actor) {
+	const extra = duplicateGrantIds(actor.items.filter((i) => i.type === "ability").map((i) => ({ id: i.id, name: i.name, granted: grantedFlag(i) ?? null })));
+	if (extra.length) await actor.deleteEmbeddedDocuments("Item", extra, { opAutoGrant: true });
+}
+
+function removeGranted(actor, sourceId) {
+	return enqueue(actor, async () => {
+		const ids = actor.items.filter((i) => grantedFlag(i)?.source === sourceId).map((i) => i.id);
+		if (ids.length) await actor.deleteEmbeddedDocuments("Item", ids, { opAutoGrant: true });
+	});
 }
 
 /**
@@ -161,10 +179,7 @@ async function migrateAutoGrants() {
 	if (!game.user.isGM || game.settings.get(SYSTEM, "autoGrantsMigrated")) return;
 	for (const actor of game.actors) {
 		if (actor.type !== "agent") continue;
-		for (const origin of actor.itemTypes.origin) {
-			const found = await originPowerEntry(origin);
-			if (found) await grantEntries(actor, origin, "origin", [found]);
-		}
+		for (const origin of actor.itemTypes.origin) await grantOriginPower(actor, origin);
 		await syncPathAbilities(actor);
 	}
 	await game.settings.set(SYSTEM, "autoGrantsMigrated", true);
@@ -191,8 +206,7 @@ export function registerLevelProgressionHooks() {
 		if (options?.opAutoGrant) return;
 		try {
 			if (item.type === "origin") {
-				const found = await originPowerEntry(item);
-				if (found) await grantEntries(actor, item, "origin", [found]);
+				await grantOriginPower(actor, item);
 			} else if (item.type === "path" || item.type === "class") {
 				await syncPathAbilities(actor);
 			}

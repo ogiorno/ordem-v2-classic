@@ -1,6 +1,6 @@
 /**
  * Seção "Opção de ataque" na janela de configuração do Efeito Ativo (aba Detalhes).
- * Grava em flags.ordem_v2_classic.onUse (ver docs/spec-tela-de-ataque.md).
+ * Grava em flags.ordem_v2_classic.onUse (ver docs/arquivo/spec-tela-de-ataque.md).
  */
 const SYSTEM = "ordem_v2_classic";
 const t = (key) => game.i18n.localize(`op.attackDialog.cfg.${key}`);

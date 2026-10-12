@@ -194,7 +194,7 @@ export function result(p) {
 		buttons: [...(card?.content.matchAll(/data-action="([^"]+)"/g) ?? [])].map((match) => match[1]),
 		pdSpent: window.__pd0 - Number(agent.actor.system.PD.value),
 		resumo: text.slice(0, 160),
-		linhasArea: (text.match(/Ritual de área (.*?)(Consequências|Descrição)/)?.[1] ?? "").slice(0, 300),
+		linhasArea: (text.match(/Ritual de área (.*?)(Consequências|Detalhes)/)?.[1] ?? "").slice(0, 300),
 		avisos: notes.splice(0),
 		erros: errors.splice(0),
 	};

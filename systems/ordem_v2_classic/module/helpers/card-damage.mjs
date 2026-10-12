@@ -1,11 +1,21 @@
 import { gmNotice } from "./gm-notice.mjs";
 import { canUndoDamage, damageStateKey } from "./card-damage-rules.mjs";
+import { vulnerabilityNote } from "./weapon-curse.mjs";
 
 const SYSTEM = "ordem_v2_classic";
+const pendingApplications = new Map();
 
 /** Modo de aplicação de dano do mundo: manual-gm | attacker-click | auto. */
 export function damageApplicationMode() {
 	return game.settings.get(SYSTEM, "damageApplication") ?? "attacker-click";
+}
+
+/** De onde veio o golpe e se foi crítico, só para a animação de dano (docs/spec-animacao-dano-criaturas.md). */
+export function damageFxContext(damageMessage, attackMessage) {
+	return {
+		sourceUuid: attackMessage?.getFlag(SYSTEM, "attackAnim")?.from ?? null,
+		crit: Boolean(damageMessage?.getFlag(SYSTEM, "damageInfo")?.isCritical),
+	};
 }
 
 /**
@@ -15,7 +25,16 @@ export function damageApplicationMode() {
  * @param {{byUserId?: string}} [options]
  * @returns {Promise<object|null>}
  */
-export async function applyDamageFromMessage(message, { byUserId = game.user.id } = {}) {
+export function applyDamageFromMessage(message, { byUserId = game.user.id } = {}) {
+	if (!message?.id) return Promise.resolve(null);
+	if (pendingApplications.has(message.id)) return pendingApplications.get(message.id);
+	const operation = applyDamageFromMessageOnce(message, byUserId);
+	pendingApplications.set(message.id, operation);
+	operation.finally(() => pendingApplications.delete(message.id)).catch(() => {});
+	return operation;
+}
+
+async function applyDamageFromMessageOnce(message, byUserId) {
 	const damageTarget = message?.getFlag(SYSTEM, "damageTarget");
 	if (!damageTarget || message.getFlag(SYSTEM, "damageApplied")) return null;
 	const targetActor = await fromUuid(damageTarget.actorUuid);
@@ -28,7 +47,23 @@ export async function applyDamageFromMessage(message, { byUserId = game.user.id 
 	const isThreat = targetActor.type === "threat";
 	const hpKey = isThreat ? "system.attributes.hp.value" : "system.PV.value";
 	const pvBefore = foundry.utils.getProperty(targetActor, hpKey);
-	const result = await targetActor.applyDamage(roll.total, { damageType: damageTarget.damageType, extraRD });
+	const pending = message.getFlag(SYSTEM, "damagePending");
+	if (pending) {
+		const last = targetActor.getFlag(SYSTEM, "lastDamage");
+		if (last?.messageId !== message.id) {
+			ui.notifications.warn(game.i18n.localize("op.dmgCard.undoStale"));
+			return null; // Estado incerto: o Mestre precisa conferir o PV antes de tentar de novo.
+		}
+		await message.setFlag(SYSTEM, "damageApplied", {
+			at: last.at, by: pending.by, amount: Math.max(0, last.pvBefore - last.pvAfter),
+			targetUuid: damageTarget.actorUuid, targetName: damageTarget.targetName ?? targetActor.name,
+			state: damageStateKey(last.pvAfter, max ?? 0),
+		});
+		await message.unsetFlag(SYSTEM, "damagePending");
+		return null;
+	}
+	await message.setFlag(SYSTEM, "damagePending", { by: byUserId, at: Date.now() });
+	const result = await targetActor.applyDamage(roll.total, { damageType: damageTarget.damageType, extraRD, ignoreRD: Boolean(damageTarget.ignoreRd), fx: damageFxContext(message, attackMsg) });
 	// PV antes/depois ficam no ator (flags de ator não vão para quem não tem permissão), nunca na mensagem.
 	if (result.newPV !== null && result.newPV !== undefined) {
 		await targetActor.setFlag(SYSTEM, "lastDamage", {
@@ -39,7 +74,8 @@ export async function applyDamageFromMessage(message, { byUserId = game.user.id 
 		});
 	}
 
-	const blockedNote = result.blocked > 0 ? ` (${game.i18n.format("op.damageBlocked", { blocked: result.blocked })})` : "";
+	const notes = [result.blocked > 0 ? game.i18n.format("op.damageBlocked", { blocked: result.blocked }) : "", vulnerabilityNote(result)].filter(Boolean);
+	const blockedNote = notes.length ? ` (${notes.join("; ")})` : "";
 	await gmNotice(
 		game.i18n.format("op.gmNotice.damageApplied", {
 			by: game.users.get(byUserId)?.name ?? "",
@@ -59,6 +95,7 @@ export async function applyDamageFromMessage(message, { byUserId = game.user.id 
 		targetName: damageTarget.targetName ?? targetActor.name,
 		state: result.newPV === null || result.newPV === undefined ? null : damageStateKey(result.newPV, max ?? 0),
 	});
+	await message.unsetFlag(SYSTEM, "damagePending");
 	return result;
 }
 

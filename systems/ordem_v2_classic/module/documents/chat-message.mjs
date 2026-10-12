@@ -1,9 +1,44 @@
 import { getReactionEligibility } from "../helpers/reaction-helpers.mjs";
 import { dispatchReaction, pickCounterAttackWeapon } from "../helpers/reactions.mjs";
 import { damageRecipients, gmDefenseValue, isAttackParticipant, shouldShowDefenseValue } from "../helpers/visibility.mjs";
-import { UNDO_WINDOW_MS, canApplyDamage } from "../helpers/card-damage-rules.mjs";
+import { UNDO_WINDOW_MS, canApplyDamage, damageTypeColor } from "../helpers/card-damage-rules.mjs";
 import { damageApplicationMode, requestCardDamage, undoCardDamage } from "../helpers/card-damage.mjs";
 import { describeD20Pool } from "../helpers/dice-labels.mjs";
+
+const CRIT_SEEN_KEY = "op.critDamageSeen";
+
+/** O jogador já clicou no dano deste crítico neste navegador? */
+function critDamageSeen(messageId) {
+	try {
+		return JSON.parse(localStorage.getItem(CRIT_SEEN_KEY) ?? "[]").includes(messageId);
+	} catch {
+		return false;
+	}
+}
+
+function markCritDamageSeen(messageId) {
+	try {
+		const seen = JSON.parse(localStorage.getItem(CRIT_SEEN_KEY) ?? "[]");
+		localStorage.setItem(CRIT_SEEN_KEY, JSON.stringify([...seen.filter((id) => id !== messageId), messageId].slice(-200)));
+	} catch {
+		/* sem armazenamento: o brilho some só nesta renderização */
+	}
+}
+
+/** Brilho pulsante dourado na borda do botão de dano (biblioteca Motion; sem ela ou com "reduzir movimento", só o brilho fixo do CSS). */
+function startCritGlow(button) {
+	const Motion = globalThis.Motion;
+	if (typeof Motion?.animate !== "function" || globalThis.matchMedia?.("(prefers-reduced-motion: reduce)").matches) return null;
+	const control = Motion.animate(
+		button,
+		{ boxShadow: ["0 0 3px 0 rgba(249,168,37,.55), inset 0 0 2px rgba(249,168,37,.35)", "0 0 14px 3px rgba(255,214,79,.95), inset 0 0 8px rgba(255,214,79,.55)"] },
+		{ duration: 0.9, repeat: Infinity, repeatType: "reverse", ease: "easeInOut" },
+	);
+	return { stop: () => { (control.cancel ?? control.stop)?.call(control); button.style.boxShadow = ""; setTimeout(() => { button.style.boxShadow = ""; }, 50); } };
+}
+
+// Decisão da mesa: o número da Defesa não aparece no cartão de ataque (só acertou/errou).
+const SHOW_DEFENSE_ON_CARD = false;
 
 /**
  * Wrapper sobre `damageRecipients` que injeta `game.users` atual.
@@ -126,19 +161,28 @@ export default class ChatMessageOP extends ChatMessage {
 						pending = cardHitResult.attackResults.some((a) => a.revealed === false);
 						const anyRevealedHit = cardHitResult.attackResults.some((a) => a.hit === true && a.revealed !== false);
 						disableForMiss = !anyRevealedHit && !pending;
-						hasCritical = cardHitResult.attackResults.some((a) => a.isCritical === true && a.revealed !== false);
+						hasCritical = cardHitResult.attackResults.some((a) => a.isCritical === true && a.hit === true && a.revealed !== false);
 					} else {
 						pending = cardHitResult.revealed === false;
 						disableForMiss = cardHitResult.hit === false;
-						hasCritical = cardHitResult.isCritical === true;
+						hasCritical = cardHitResult.isCritical === true && cardHitResult.hit === true && cardHitResult.revealed !== false;
 					}
 					if (disableForMiss || pending) {
 						damageButton.disabled = true;
 						damageButton.classList.add("hit-miss");
 						damageButton.title = game.i18n.localize("op.rollDmgDisabled");
 					}
-					if (hasCritical) {
+					if (hasCritical && !critDamageSeen(this.id)) {
 						damageButton.classList.add("hit-critical");
+						damageButton.dataset.critLabel = game.i18n.localize("op.attackResult.critBadge");
+						const glow = startCritGlow(damageButton);
+						// Ao clicar, o botão volta ao normal (e não brilha de novo nesse cartão).
+						damageButton.addEventListener("click", () => {
+							glow?.stop();
+							damageButton.classList.remove("hit-critical");
+							delete damageButton.dataset.critLabel;
+							markCritDamageSeen(this.id);
+						}, { once: true });
 					}
 				}
 			}
@@ -194,14 +238,18 @@ export default class ChatMessageOP extends ChatMessage {
 				resultBlock.classList.add("hit-result", goodForViewer ? "success" : "failure");
 				if (hitResult.dodged) resultBlock.classList.add("dodged");
 				const suffix = isDefenderPOV ? "Defender" : "";
-				const labelKey = hitResult.hit ? (hitResult.isCritical ? "crit" : "hit") : "miss";
+				// d20 natural 1 num ataque que errou: "Erro crítico"
+				const attackDie = this.rolls?.[0]?.dice?.find?.((die) => die.faces === 20);
+				const natural = attackDie?.results?.find((r) => r.active !== false)?.result;
+				const labelKey = hitResult.hit ? (hitResult.isCritical ? "crit" : "hit") : natural === 1 ? "fumble" : "miss";
 				const label = game.i18n.localize(`op.attackResult.${labelKey}${suffix}`);
 				resultBlock.classList.add(hitResult.hit ? "is-hit" : "is-miss");
 				// O número da Defesa é dado privado: o atacante e os colegas de mesa só
 				// devem ver HIT/MISS, mas o MJ e o dono do alvo (que já conhece a
 				// própria Defesa) podem ver o valor exato. Decisão pura em
 				// helpers/visibility.mjs#shouldShowDefenseValue (unit-testada).
-				const defenseValue = shouldShowDefenseValue({ viewerIsGM: game.user.isGM })
+				// Decisão da mesa: nem o MJ vê o número no cartão (só acertou/errou).
+				const defenseValue = SHOW_DEFENSE_ON_CARD && shouldShowDefenseValue({ viewerIsGM: game.user.isGM })
 					? this._gmDefenseValue(hitResult, reactionApplied)
 					: null;
 				const defenseHtml =
@@ -241,6 +289,19 @@ export default class ChatMessageOP extends ChatMessage {
 		const box = document.createElement("div");
 		box.classList.add("damage-application");
 
+		// Etiqueta de tipo e origem (arma ou maldição): com dois danos seguidos, dá para ver qual é qual.
+		const color = damageTypeColor(damageTarget.damageType);
+		const typeKey = `op.damageTypeAbv.${damageTarget.damageType}`;
+		const typeName = game.i18n.has(typeKey) ? game.i18n.localize(typeKey) : String(damageTarget.damageType ?? "");
+		const source = this.getFlag("ordem_v2_classic", "weaponCurseDamage") ? "Maldição" : "Arma";
+		const badge = document.createElement("p");
+		badge.classList.add("damage-badge");
+		badge.style.cssText = `margin:0 0 4px;padding:3px 8px;border-left:4px solid ${color};background:${color}22;color:${color};font-weight:700;font-size:12px;text-transform:uppercase;letter-spacing:.04em`;
+		badge.textContent = `${source} · ${typeName}`;
+		box.append(badge);
+		rollContent.closest(".message-content")?.style.setProperty("border-left", `4px solid ${color}`);
+		rollContent.closest(".message-content")?.style.setProperty("padding-left", "6px");
+
 		const info = this.getFlag("ordem_v2_classic", "damageInfo");
 		if (info) {
 			const explain = document.createElement("p");
@@ -252,6 +313,11 @@ export default class ChatMessageOP extends ChatMessage {
 		}
 
 		if (damageApplied) {
+			// Só o Mestre vê quanto o alvo sofreu (e o Desfazer); jogadores não recebem esse número.
+			if (!game.user.isGM) {
+				if (box.children.length) rollContent.after(box);
+				return;
+			}
 			const done = document.createElement("p");
 			done.classList.add("damage-done");
 			const state = damageApplied.state ? game.i18n.localize(`op.dmgCard.state.${damageApplied.state}`) : "";

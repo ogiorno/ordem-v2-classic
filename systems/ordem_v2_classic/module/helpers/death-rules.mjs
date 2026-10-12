@@ -1,5 +1,5 @@
 /**
- * Regras puras de ferimentos e morte do agente (sem Foundry — testável em Node). Ver docs/spec-morte-do-jogador.md.
+ * Regras puras de ferimentos e morte do agente (sem Foundry — testável em Node). Ver docs/arquivo/spec-morte-do-jogador.md.
  * Livro v1.3, "Ferimentos & Morte": Morrendo, Dano Massivo, Dano Não Letal; Medicina, "Primeiros Socorros".
  */
 
@@ -53,4 +53,10 @@ export function tokensAdjacent(a, b, tolerance = 2) {
 	const gapX = Math.max(0, a.x - (b.x + b.width), b.x - (a.x + a.width));
 	const gapY = Math.max(0, a.y - (b.y + b.height), b.y - (a.y + a.height));
 	return gapX <= tolerance && gapY <= tolerance;
+}
+
+/** Ameaça (monstro) com 0 PV ou menos morre na hora; sem PV máximo definido não morre sozinha. */
+export function threatShouldDie({ hp, max }) {
+	if (hp === undefined || hp === null || hp === "") return false;
+	return Number(max) > 0 && Number(hp) <= 0;
 }

@@ -29,8 +29,11 @@ async function waitForCanvas(scene) {
  * Cria a arena e devolve `{ scene, agents, mkThreat, origin, close }`.
  * @param {{agents?: string[], pd?: number}} [options]
  */
-export async function openArena({ agents = ["Agente NEX 50 — Ocultista"], pd = 200 } = {}) {
+export async function openArena({ agents = ["Agente NEX 50 — Ocultista"], pd = 200, areaApply = "automatic" } = {}) {
 	if (!game.user.isGM) throw new Error("Rode como Mestre.");
+	// Os testes de área antigos esperam o dano aplicado na hora; o painel manual tem testes próprios (FC-L7). O padrão do mundo
+	// não é alterado: só este navegador, enquanto a arena existe.
+	globalThis.__opAreaApplyOverride = areaApply;
 	const previous = game.scenes.active ?? canvas.scene;
 	const knownMessages = new Set(game.messages.contents.map((message) => message.id));
 	const scene = await Scene.create({
@@ -38,6 +41,7 @@ export async function openArena({ agents = ["Agente NEX 50 — Ocultista"], pd =
 	});
 	const actorIds = [];
 	const close = async () => {
+		delete globalThis.__opAreaApplyOverride;
 		try {
 			for (const combat of game.combats.filter((entry) => entry.scene?.id === scene.id)) await combat.delete();
 		} catch { /* ignora */ }

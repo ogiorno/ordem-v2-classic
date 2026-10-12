@@ -1,4 +1,23 @@
+import { grimoireLinkHtml, parseEnricher } from "../helpers/grimoire-links.mjs";
+
+/** @Condicao[Abalado] e @Ritual[Paradoxo]{texto}: link que abre o Grimório no item (GR-44). Sem autolink: só onde o Mestre escreveu. */
+function registerGrimoireEnrichers() {
+	for (const [word, kind] of [["Condicao", "condition"], ["Condição", "condition"], ["Ritual", "ritual"], ["Poder", "power"], ["Pericia", "skill"], ["Perícia", "skill"]]) {
+		CONFIG.TextEditor.enrichers.push({
+			pattern: new RegExp("@" + word + String.raw`\[([^\]]+)\](?:\{([^}]*)\})?`, "gim"),
+			enricher: async (match) => {
+				const data = parseEnricher(kind, match[1], match[2]);
+				if (!data) return null;
+				const holder = document.createElement("span");
+				holder.innerHTML = grimoireLinkHtml(data);
+				return holder.firstElementChild;
+			},
+		});
+	}
+}
+
 export default function registerEnrichers() {
+	registerGrimoireEnrichers();
 	CONFIG.TextEditor.enrichers.push({
 		// Regex to match the @DisplayDice[...] pattern
 		pattern: /@DisplayDice\[([^\]]+)\]/gim,

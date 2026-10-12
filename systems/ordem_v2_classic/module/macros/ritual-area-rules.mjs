@@ -1,6 +1,6 @@
 // Regras dos rituais de área (e das formas de ritual que viram área), mapeadas do Livro de Regras v1.3.
 // Chave = nome do ritual; depois a forma ("basic", "student" = Discente, "true" = Verdadeiro).
-// A especificação de cada caso está em docs/spec-rituais-area.md (requisitos AR-xx).
+// A especificação de cada caso está em docs/arquivo/spec-rituais-area.md (requisitos AR-xx).
 //
 // Campos de uma forma:
 //   area      { shape: circle|cone|rect|ray, distance, width?, center?: "placed"|"caster", follow?: true }

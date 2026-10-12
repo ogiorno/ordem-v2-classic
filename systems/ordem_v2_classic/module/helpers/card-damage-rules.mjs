@@ -68,3 +68,15 @@ export function canUndoDamage({ isGM, now, appliedAt, currentPv, pvAfter, window
 	if (currentPv !== pvAfter) return { ok: false, reason: "changed" };
 	return { ok: true };
 }
+
+const DAMAGE_COLORS = {
+	cuttingDamage: "#c9ced6", impactDamage: "#a8a29e", piercingDamage: "#d6b88a", ballisticDamage: "#e0a33a",
+	bloodDamage: "#e04848", deathDamage: "#9aa0a6", knowledgeDamage: "#d9a52b", energyDamage: "#b25ce0", fearDamage: "#e8e8e8",
+	fireDamage: "#ff7a2e", eletricDamage: "#f5e642", coldDamage: "#5cc8ff", chemicalDamage: "#7ddc4a", mentalDamage: "#ff7ad9",
+};
+const DAMAGE_FALLBACK_COLOR = "#8a8f98";
+
+/** Cor da etiqueta de um tipo de dano no cartão (cinza para tipo desconhecido). */
+export function damageTypeColor(damageType) {
+	return DAMAGE_COLORS[damageType] ?? DAMAGE_FALLBACK_COLOR;
+}

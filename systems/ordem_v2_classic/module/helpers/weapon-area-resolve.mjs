@@ -1,6 +1,6 @@
 /**
  * Resolve as armas de área no mapa (Bazuca e Lança-chamas): acha os seres, rola Reflexos, aplica dano e Em Chamas e posta o relatório.
- * Geometria e contas puras em weapon-area.mjs; regras em docs/spec-armas-area-recarga.md.
+ * Geometria e contas puras em weapon-area.mjs; regras em docs/arquivo/spec-armas-area-recarga.md.
  */
 import { BAZOOKA_RADIUS_SQUARES, areaKind, flameHit, lineHits, radiusDamage, radiusHits, reflexDT } from "./weapon-area.mjs";
 import { activeConditions } from "./conditions.mjs";
@@ -41,12 +41,17 @@ async function setOnFire(actor) {
 export async function resolveWeaponArea({ item, weapon, total, damageType, hitResult, messageId = null }) {
 	const kind = weapon?.area ?? areaKind(item.name);
 	if (!kind) return null;
+	if (!game.user.isGM) {
+		ui.notifications.warn("Arma de área: o Mestre resolve os alvos extras após a rolagem.");
+		return null;
+	}
 	const point = weapon?.mode === "point";
 	const actor = item.parent;
 	const origin = attackerToken(actor);
 	const targetDoc = hitResult?.targetTokenUuid ? await fromUuid(hitResult.targetTokenUuid) : null;
-	if (!origin || !targetDoc || origin.parent !== targetDoc.parent) {
-		ui.notifications.warn("Área da arma: marque um alvo no mesmo mapa de quem ataca.");
+	const areaPoint = point ? hitResult?.areaPoint ?? null : null;
+	if (!origin || (areaPoint ? origin.parent.id !== areaPoint.sceneId : !targetDoc || origin.parent !== targetDoc.parent)) {
+		ui.notifications.warn("Área da arma: escolha a área ou marque um alvo no mesmo mapa de quem ataca.");
 		return null;
 	}
 	if (kind === "radius" && !point && hitResult?.hit !== true) return null; // errou: sem explosão
@@ -63,12 +68,18 @@ export async function resolveWeaponArea({ item, weapon, total, damageType, hitRe
 	const lines = [];
 	const speaker = ChatMessage.getSpeaker({ actor });
 	const pos = (t) => ({ id: t.id, ...squareCenter(t) });
+	const gridSize = scene.grid.size;
+	const center = areaPoint ? { x: areaPoint.x / gridSize, y: areaPoint.y / gridSize } : targetDoc ? squareCenter(targetDoc) : null;
+	const centerLabel = center ? `coluna ${Math.floor(center.x) + 1}, linha ${Math.floor(center.y) + 1}` : "";
 
 	if (kind === "radius") {
 		const dt = reflexDT(actor.system.attributes?.dex?.value);
-		const hitIds = new Set(radiusHits(squareCenter(targetDoc), candidates.map(pos), BAZOOKA_RADIUS_SQUARES));
+		const hitIds = new Set(radiusHits(center, candidates.map(pos), BAZOOKA_RADIUS_SQUARES));
 		for (const token of candidates.filter((t) => hitIds.has(t.id))) {
-			if (!point && token.actor.id === primaryActorId) continue; // o alvo atingido recebe o dano inteiro pelo cartão
+			if (!point && token.actor.id === primaryActorId) {
+				lines.push(`${token.name}: atingido pelo disparo, dano inteiro pelo cartão (centro da área).`);
+				continue; // o alvo atingido recebe o dano inteiro pelo cartão
+			}
 			const { autoRoll } = await import("../macros/ritual-area-engine.mjs");
 			const save = await autoRoll(token.actor, "reflexes", dt);
 			const passed = Boolean(save?.success);
@@ -99,9 +110,11 @@ export async function resolveWeaponArea({ item, weapon, total, damageType, hitRe
 		}
 		if (!lines.length) lines.push("Ninguém na linha de fogo.");
 	}
+	const areaAnim = kind === "radius" && center ? { from: origin.uuid, withProjectile: point, sceneId: scene.id, center: { x: center.x * gridSize, y: center.y * gridSize }, radius: BAZOOKA_RADIUS_SQUARES * gridSize } : null;
 	await ChatMessage.create({
 		speaker,
-		content: `<article class="weapon-area-report"><h4>${escapeHtml(item.name)} — ${kind === "radius" ? (point ? "disparo num ponto, raio de 3 m" : "explosão, raio de 3 m") : "linha de fogo"}</h4><ul>${lines.map((l) => `<li>${escapeHtml(l)}</li>`).join("")}</ul></article>`,
+		flags: areaAnim ? { [SYSTEM]: { areaAnim } } : undefined,
+		content: `<article class="weapon-area-report"><h4>${escapeHtml(item.name)} — ${kind === "radius" ? (point ? "disparo num ponto, raio de 3 m" : "explosão, raio de 3 m") : "linha de fogo"}</h4>${kind === "radius" ? `<p class="weapon-area-where">Área: raio de 3 m com centro na ${escapeHtml(centerLabel)}.</p>` : ""}<ul>${lines.map((l) => `<li>${escapeHtml(l)}</li>`).join("")}</ul></article>`,
 	});
 	return lines;
 }

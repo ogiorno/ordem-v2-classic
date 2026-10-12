@@ -4,7 +4,7 @@
 //   const t = await import("/systems/ordem_v2_classic/module/macros/death-live-test.mjs");
 //   await t.runDeathTests();
 //
-// Devolve uma tabela { id, caso, ok, detalhe }. Spec: docs/spec-morte-do-jogador.md.
+// Devolve uma tabela { id, caso, ok, detalhe }. Spec: docs/arquivo/spec-morte-do-jogador.md.
 
 import { withArena } from "./ritual-live-arena.mjs";
 import { activeConditions } from "../helpers/conditions.mjs";

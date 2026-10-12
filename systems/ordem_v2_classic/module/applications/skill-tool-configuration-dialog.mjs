@@ -1,5 +1,8 @@
 import D20RollConfigurationDialog from "./d20-configuration-dialog.mjs";
 import { peritoFor } from "../helpers/perito.mjs";
+import { eclecticFor } from "../helpers/eclectic.mjs";
+import { fearDieAvailable } from "../helpers/scars.mjs";
+import { AFFINITY_ELEMENTS } from "../helpers/affinity-rules.mjs";
 
 /**
  * @typedef {BasicRollConfigurationDialogOptions} SkillToolRollConfigurationDialogOptions
@@ -42,6 +45,29 @@ export default class SkillToolRollConfigurationDialog extends D20RollConfigurati
 				}),
 				name: "perito",
 				value: false,
+			});
+		const actor = this.config.subject;
+		if (actor?.type === "agent" && fearDieAvailable({ withoutSanity: actor.usingWithoutSanityRule, names: actor.items.filter((i) => i.type === "ability").map((i) => i.name), skill: this.config.skill }))
+			context.fields.push({
+				field: new foundry.data.fields.BooleanField({ label: "Contra efeito de medo (Cicatrizes Psicológicas): +1 dado" }),
+				name: "fear",
+				value: false,
+			});
+		// Afinidade: o elemento do efeito que originou o teste (vem preenchido do ritual) dá +1 dado ou -1 dado
+		if (actor?.type === "agent" && actor.system.paranormal?.affinity)
+			context.fields.push({
+				field: new foundry.data.fields.StringField({ label: "Contra efeito de…", hint: "Afinidade: +1 dado contra o seu elemento; -1 dado contra o elemento que o oprime.", blank: true }),
+				name: "effectElement",
+				value: this.config.effectElement ?? "",
+				options: [{ value: "", label: "—" }].concat(Object.entries(AFFINITY_ELEMENTS).map(([value, { label }]) => ({ value, label }))),
+			});
+		const eclectic = this.config.skill ? eclecticFor(this.config.subject, this.config.skill) : [];
+		if (eclectic.length)
+			context.fields.push({
+				field: new foundry.data.fields.StringField({ label: "Eclético: testar como…", hint: "Gasta PE e vale só para este teste; a ficha não muda.", blank: true }),
+				name: "eclectic",
+				value: "",
+				options: [{ value: "", label: "—" }].concat(eclectic.map((o) => ({ value: o.degree, label: `${o.label} (${o.pe} ${o.resource})${o.canPay ? "" : " — sem saldo"}` }))),
 			});
 		context.fields.push({
 			field: new foundry.data.fields.NumberField({

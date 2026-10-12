@@ -1,5 +1,5 @@
 /**
- * Regras puras da tela de ataque (sem Foundry — testável em Node). Ver docs/spec-tela-de-ataque.md.
+ * Regras puras da tela de ataque (sem Foundry — testável em Node). Ver docs/arquivo/spec-tela-de-ataque.md.
  *
  * Uma "opção de ataque" é um Efeito Ativo desligado com `flags.ordem_v2_classic.onUse`. Aqui ficam
  * o filtro por arma, o custo, os acúmulos e a soma dos bônus escolhidos.

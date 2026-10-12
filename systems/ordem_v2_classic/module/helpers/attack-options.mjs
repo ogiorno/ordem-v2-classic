@@ -1,11 +1,12 @@
 /**
  * Tela de ataque: reúne as opções "ao usar" e os bônus já aplicados, abre a janela e paga o custo.
- * Regras puras em attack-options-rules.mjs; especificação em docs/spec-tela-de-ataque.md.
+ * Regras puras em attack-options-rules.mjs; especificação em docs/arquivo/spec-tela-de-ataque.md.
  */
 import { combineSelection, optionCost, poolCap, poolChoices, poolState, scaleOnUse, specialAttackMax, weaponMatches, weaponTags } from "./attack-options-rules.mjs";
 import { activeConditions, attackConditionDetails, conditionDicePenalty } from "./conditions.mjs";
 import { powerEffectData, powerEffectFor } from "./attack-power-effects.mjs";
-import { areaKind } from "./weapon-area.mjs";
+import { areaKind, BAZOOKA_RADIUS_SQUARES } from "./weapon-area.mjs";
+import { pickAreaPoint } from "./weapon-area-visual.mjs";
 import { actionBlock, applyMode, canChooseAttribute, consumesReload, effectiveGrip, gripChoices, rangeCheck, squaresBetween, weaponModes, weaponRules } from "./weapon-rules.mjs";
 
 const SYSTEM = "ordem_v2_classic";
@@ -162,7 +163,14 @@ export function defaultSelection(item) {
 }
 
 const ATTR_NAMES = { str: "Força", dex: "Agilidade", vit: "Vigor", int: "Intelecto", pre: "Presença" };
-const MODE_NAMES = { normal: "Ataque normal", burst: "Rajada (−1d20, +1 dado de dano)", throw: "Arremessar a arma", blow: "Coronhada (corpo a corpo)", point: "Disparar num ponto (sem ataque, raio de 3 m)" };
+const MODE_NAMES = { normal: "Ataque normal", burst: "Rajada", throw: "Arremessar a arma", blow: "Coronhada", point: "Disparar num ponto" };
+const modeDescription = (id, melee) => ({
+	normal: melee ? "Faz um ataque corpo a corpo com a arma." : "Faz um ataque à distância com a arma.",
+	burst: "Dispara em rajada: −1d20 no ataque e +1 dado de dano.",
+	throw: "Realiza um ataque à distância arremessando a arma.",
+	blow: "Ataca corpo a corpo com a coronha da arma.",
+	point: "Dispara num ponto do mapa, sem teste de ataque, com raio de 3 m.",
+}[id] ?? "");
 const GRIP_NAMES = { light: "Leve", oneHand: "Uma mão", twoHands: "Duas mãos" };
 
 /** Token de quem ataca e o alvo marcado (um só), ou nulos se não houver mapa/alvo. */
@@ -174,11 +182,16 @@ export function attackTokens(item) {
 	return { attacker, target: targets.length === 1 ? targets[0] : null };
 }
 
-function squaresToTarget(item) {
+function squaresToTarget(item, areaPoint = null) {
 	const { attacker, target } = attackTokens(item);
-	if (!attacker || !target || attacker.scene?.id !== target.scene?.id) return { distance: null, target };
-	const size = attacker.scene.grid.size;
+	const size = attacker?.scene?.grid?.size;
 	const box = (t) => ({ x: t.document.x, y: t.document.y, w: t.document.width * size, h: t.document.height * size });
+	// Disparo num ponto com a área escolhida no mapa: a distância é até o ponto, não até um alvo
+	if (areaPoint) {
+		if (!attacker || attacker.scene?.id !== areaPoint.sceneId) return { distance: null, target: null, area: true };
+		return { distance: squaresBetween(box(attacker), { x: areaPoint.x, y: areaPoint.y, w: 0, h: 0 }, size), target: null, area: true };
+	}
+	if (!attacker || !target || attacker.scene?.id !== target.scene?.id) return { distance: null, target };
 	return { distance: squaresBetween(box(attacker), box(target), size), target };
 }
 
@@ -225,7 +238,7 @@ export function weaponContext(item, picked = {}) {
 	if (s.critical) chips.push(`Crítico ${s.critical}`);
 	return {
 		chips,
-		modes: modes.map((id) => ({ id, label: MODE_NAMES[id], checked: id === mode })),
+		modes: modes.map((id) => ({ id, label: MODE_NAMES[id], desc: modeDescription(id, s.types?.rangeType?.name === "melee"), checked: id === mode })),
 		showModes: modes.length > 1,
 		attrChoice: canChooseAttribute(s, mode) ? ["str", "dex"].map((id) => ({ id, label: `${ATTR_NAMES[id]} (${item.parent.system.attributes[id]?.value ?? 0})`, selected: id === attr })) : null,
 		grips: grip.adaptable ? grip.options.map((id) => ({ id, label: GRIP_NAMES[id], selected: id === (picked.grip || grip.base), disabled: grip.locked.includes(id) })) : null,
@@ -240,8 +253,10 @@ export function buildConfig(item, options, selection = {}) {
 	const mode = weaponModes(item.system, item.name).includes(selection.weapon?.mode) ? selection.weapon.mode : "normal";
 	const reach = applyMode(item.system, mode);
 	const attrPick = canChooseAttribute(item.system, mode) ? (selection.weapon?.attr || defaultAttribute(item, mode)) : null;
-	const { distance, target } = squaresToTarget(item);
+	const areaPoint = mode === "point" ? selection.weapon?.areaPoint ?? null : null;
+	const { distance, target } = squaresToTarget(item, areaPoint);
 	const range = rangeCheck(reach, distance);
+	if (areaPoint) range.text = range.text.replace(/^Alvo/, "Área");
 	const weaponLines = [];
 	if (mode !== "normal") weaponLines.push(reach.label);
 	if (attrPick && attrPick !== item.system.formulas.attack.attr) weaponLines.push(`ataque com ${ATTR_NAMES[attrPick]}`);
@@ -274,13 +289,14 @@ export function buildConfig(item, options, selection = {}) {
 				halve: rules.halve,
 				noRoll: Boolean(reach.noRoll),
 				area: areaKind(item.name),
+				areaPoint,
 				block: rules.block,
 				rules: { notes: rules.notes, choices: rules.choices },
 			damageType: reach.damageType ?? null,
 			damageAttr: reach.damageAttr ?? null,
 			grip: pick.grip || null,
 		},
-		range: { ...range, target: target?.name ?? null },
+		range: { ...range, target: areaPoint ? "área escolhida" : (target?.name ?? null), meters: distance === null || distance === undefined ? null : Math.round(distance * 1.5 * 10) / 10 },
 	};
 }
 
@@ -291,9 +307,9 @@ export function attackBlockReason(item, config) {
 	if (stunned) return stunned;
 	const chosen = config ?? defaultSelection(item);
 	if (chosen.weapon?.block) return chosen.weapon.block;
-	if (chosen.weapon?.noRoll && !chosen.range?.target) return "Marque o alvo que define o ponto do disparo.";
+	if (chosen.weapon?.noRoll && !chosen.range?.target) return "Escolha a área no mapa (botão) ou marque o alvo que define o ponto do disparo.";
 	const range = chosen.range;
-	if (range?.state === "blocked") return range.text;
+	if (range?.state === "blocked") return `O alvo está muito longe. ${range.text}`;
 	return null;
 }
 
@@ -316,7 +332,7 @@ export async function payCost(actor, config) {
 	return true;
 }
 
-const readSelection = (form) => {
+const readSelection = (form, areaPoint = null) => {
 	const fd = new foundry.applications.ux.FormDataExtended(form).object;
 	const counts = {};
 	for (const [name, value] of Object.entries(fd)) {
@@ -325,7 +341,7 @@ const readSelection = (form) => {
 		m = /^pool\.(.+)\.(attack|damage)$/.exec(name);
 		if (m) (counts[m[1]] ??= {})[m[2]] = Number(value) || 0;
 	}
-	return { counts, freeAttack: fd.freeAttack ?? "", freeDamage: fd.freeDamage ?? "", weapon: { mode: fd.weaponMode || "normal", attr: fd.weaponAttr || "", grip: fd.weaponGrip || "", tripod: Boolean(fd.ruleTripod), aimed: Boolean(fd.ruleAim), far: Boolean(fd.ruleFar), maneuver: Boolean(fd.ruleManeuver), reloaded: Boolean(fd.ruleReload) } };
+	return { counts, freeAttack: fd.freeAttack ?? "", freeDamage: fd.freeDamage ?? "", weapon: { mode: fd.weaponMode || "normal", attr: fd.weaponAttr || "", grip: fd.weaponGrip || "", tripod: Boolean(fd.ruleTripod), aimed: Boolean(fd.ruleAim), far: Boolean(fd.ruleFar), maneuver: Boolean(fd.ruleManeuver), reloaded: Boolean(fd.ruleReload), areaPoint } };
 };
 
 /**
@@ -355,6 +371,7 @@ export async function promptAttackOptions(item) {
 		resource,
 		balance,
 	});
+	let areaPoint = null; // centro da área escolhido no mapa (disparo num ponto)
 	const config = await new Promise((resolve) => {
 		let done = false;
 		const finish = (value) => {
@@ -364,7 +381,7 @@ export async function promptAttackOptions(item) {
 		};
 		foundry.applications.api.DialogV2.wait({
 			window: { title: game.i18n.format("op.attackDialog.title", { weapon: item.name }), icon: "fa-solid fa-crosshairs" },
-			position: { width: 520 },
+			position: { width: 860 },
 			classes: ["op-attack-dialog"],
 			content: html,
 			rejectClose: false,
@@ -375,7 +392,7 @@ export async function promptAttackOptions(item) {
 					icon: "fa-solid fa-bullseye",
 					default: true,
 					callback: (_event, button) => {
-						const chosen = buildConfig(item, options, readSelection(button.form));
+						const chosen = buildConfig(item, options, readSelection(button.form, areaPoint));
 						finish(chosen);
 						return chosen;
 					},
@@ -383,6 +400,19 @@ export async function promptAttackOptions(item) {
 			],
 			render: (_event, dialog) => {
 				const form = dialog.element.querySelector("form");
+				// Duas colunas: o botao Atacar desce para o fim da coluna da direita e o subtitulo vai para o cabecalho
+				const slot = dialog.element.querySelector("[data-attack-slot]");
+				const footer = dialog.element.querySelector(".form-footer");
+				if (slot && footer) slot.append(footer);
+				const sub = dialog.element.querySelector(".op-ad-sub");
+				const titleEl = dialog.element.querySelector(".window-title");
+				if (sub && titleEl && !titleEl.querySelector(".op-ad-title-sub")) {
+					const small = document.createElement("small");
+					small.className = "op-ad-title-sub";
+					small.textContent = sub.textContent;
+					titleEl.append(small);
+					sub.hidden = true;
+				}
 				const total = dialog.element.querySelector("[data-total]");
 				const left = dialog.element.querySelector("[data-left]");
 				const conditionBlock = dialog.element.querySelector("[data-condition-block]");
@@ -415,6 +445,26 @@ export async function promptAttackOptions(item) {
 					}
 				};
 				const attackButton = dialog.element.querySelector("button[data-action=attack]");
+				let blockReason = null;
+				const areaRow = dialog.element.querySelector("[data-area-row]");
+				const areaNote = dialog.element.querySelector("[data-area-note]");
+				const areaButton = dialog.element.querySelector("[data-action=pick-area]");
+				areaButton?.addEventListener("click", async () => {
+					dialog.element.style.visibility = "hidden";
+					try {
+						const picked = await pickAreaPoint({ radiusSquares: BAZOOKA_RADIUS_SQUARES });
+						if (picked) areaPoint = picked;
+					} finally {
+						dialog.element.style.visibility = "";
+					}
+					form.dispatchEvent(new Event("change", { bubbles: true }));
+				});
+				attackButton?.addEventListener("click", (event) => {
+					if (!blockReason) return;
+					event.preventDefault();
+					event.stopImmediatePropagation();
+					ui.notifications.warn(blockReason);
+				}, true);
 				const rangeNote = dialog.element.querySelector("[data-range-note]");
 				const attrRow = dialog.element.querySelector("[data-attr-row]");
 				const rulesList = dialog.element.querySelector("[data-rules]");
@@ -436,8 +486,13 @@ export async function promptAttackOptions(item) {
 				};
 				const refresh = () => {
 					refreshPools();
-					const picked = readSelection(form);
+					const picked = readSelection(form, areaPoint);
 					const chosen = buildConfig(item, options, picked);
+					if (areaRow) {
+						areaRow.hidden = chosen.weapon.mode !== "point";
+						if (areaNote) areaNote.textContent = areaPoint ? `Área escolhida: coluna ${Math.floor(areaPoint.x / canvas.grid.size) + 1}, linha ${Math.floor(areaPoint.y / canvas.grid.size) + 1}` : "Nenhuma área escolhida (sem ela, vale a posição do alvo marcado).";
+						if (areaButton) areaButton.lastChild.textContent = areaPoint ? " Mudar a área" : " Escolher área no mapa";
+					}
 					if (attrRow) attrRow.hidden = !canChooseAttribute(item.system, chosen.weapon.mode);
 					if (rulesList) {
 						const live = new Set(chosen.weapon.rules.choices.map((c) => c.id));
@@ -451,13 +506,48 @@ export async function promptAttackOptions(item) {
 						rulesList.hidden = chosen.weapon.rules.notes.length === 0;
 					}
 					const reason = attackBlockReason(item, chosen);
+					const rangeBlocked = chosen.range.state === "blocked";
+					const targetName = dialog.element.querySelector("[data-target-name]");
+					if (targetName) {
+						targetName.textContent = chosen.range.target ?? "Nenhum alvo marcado";
+						dialog.element.querySelector("[data-target-dist]").textContent = chosen.range.meters !== null && chosen.range.meters !== undefined ? `${String(chosen.range.meters).replace(".", ",")} m` : "";
+					}
 					if (rangeNote) {
-						rangeNote.textContent = reason ?? chosen.range.text;
+						const title = reason ? (rangeBlocked ? "Alvo fora do alcance" : "Ataque impedido") : chosen.range.state === "penalty" ? "Além do alcance" : chosen.range.state === "ok" ? "Dentro do alcance" : "";
+						const detail = reason ? reason.replace(/^O alvo está muito longe\.\s*/, "") : chosen.range.text;
+						rangeNote.querySelector("[data-alert-title]").textContent = title;
+						rangeNote.querySelector("[data-alert-text]").textContent = detail.replace(/(\d)\.(\d)/g, "$1,$2");
 						rangeNote.classList.toggle("is-blocked", Boolean(reason));
 						rangeNote.classList.toggle("is-penalty", !reason && chosen.range.state === "penalty");
-						rangeNote.hidden = !rangeNote.textContent;
+						rangeNote.classList.toggle("is-ok", !reason && chosen.range.state === "ok");
+						rangeNote.querySelector("i").className = `fa-solid ${reason ? "fa-triangle-exclamation" : chosen.range.state === "ok" ? "fa-circle-check" : "fa-circle-info"}`;
+						rangeNote.hidden = !title && !detail;
 					}
-					if (attackButton) attackButton.disabled = Boolean(reason);
+					// O botão fica ativo: clicar com o ataque barrado avisa o motivo num aviso em vez de não fazer nada.
+					blockReason = reason;
+					if (attackButton) {
+						attackButton.classList.toggle("is-blocked", Boolean(reason));
+						const label = reason ? `Atacar — ${rangeBlocked ? "alvo fora do alcance" : "ataque impedido"}` : game.i18n.localize("op.attackDialog.attack");
+						attackButton.replaceChildren(Object.assign(document.createElement("i"), { className: `fa-solid ${reason ? "fa-ban" : "fa-bullseye"}` }), ` ${label}`);
+					}
+					// Resumo do ataque: teste, dano, empunhadura
+					{
+						const attrKey = chosen.weapon.attr ?? item.system.formulas.attack.attr;
+						const skillKey = chosen.weapon.skill ?? item.system.formulas.attack.skill;
+						const skill = game.i18n.localize(CONFIG.op?.skills?.[skillKey] ?? skillKey);
+						const signed = (n) => (n >= 0 ? `+${n}` : `−${Math.abs(n)}`);
+						const extra = [chosen.attackFlat ? signed(chosen.attackFlat) : "", chosen.attackDice ? `${signed(chosen.attackDice)}d20` : ""].filter(Boolean).join(" ");
+						dialog.element.querySelector("[data-sum-test]").textContent = `${ATTR_NAMES[attrKey] ?? attrKey} ${signed(num(actor.system.attributes?.[attrKey]?.value))} · ${skill}${extra ? ` ${extra}` : ""}`;
+						const base = chosen.weapon.damageFormula ?? item.system.formulas.damage.formula ?? "—";
+						const dmg = [base, chosen.damageDice ? `+ ${chosen.damageDice} ${chosen.damageDice === 1 ? "dado" : "dados"}` : "", ...chosen.damageTerms.map((t) => `${t}`.replace(/^\+/, "+ ")), chosen.damageFlat ? `+ ${chosen.damageFlat}` : ""].filter(Boolean).join(" ");
+						dialog.element.querySelector("[data-sum-damage]").textContent = dmg;
+						const gripKey = chosen.weapon.grip || item.system.types?.gripType;
+						const gripRow = dialog.element.querySelector("[data-sum-grip-row]");
+						if (gripRow) {
+							gripRow.hidden = !gripKey;
+							dialog.element.querySelector("[data-sum-grip]").textContent = GRIP_NAMES[gripKey] ?? gripKey ?? "";
+						}
+					}
 					total.textContent = `${chosen.cost} ${resource}`;
 					left.textContent = `${balance - chosen.cost}`;
 					total.classList.toggle("is-short", chosen.cost > balance);

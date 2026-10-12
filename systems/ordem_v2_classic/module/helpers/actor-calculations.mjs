@@ -84,6 +84,19 @@ export function calculateStatusMaxima(VIG, PRE, progress, withoutSanity, classSt
 }
 
 /**
+ * Bônus de esforço dos poderes (efeitos em `PE.bonus` e `PE.perRoundBonus`) e a regra "Jogando sem Sanidade":
+ * com ela o PD substitui o PE, então o que o poder dá em PE (Potencial Aprimorado, Dedicação, Vontade Inabalável…)
+ * vai para o PD e o limite por turno sobe no PD.
+ * @returns {{ PE: number, PD: number, perRoundPE: number, perRoundPD: number }}
+ */
+export function splitEffortBonuses({ withoutSanity = false, peBonus = 0, pdBonus = 0, perRoundBonus = 0 } = {}) {
+	const pe = Number(peBonus) || 0;
+	const pd = Number(pdBonus) || 0;
+	const per = Number(perRoundBonus) || 0;
+	return withoutSanity ? { PE: 0, PD: pd + pe, perRoundPE: 0, perRoundPD: per } : { PE: pe, PD: pd, perRoundPE: per, perRoundPD: 0 };
+}
+
+/**
  * @param {boolean} isSurvivor
  * @param {number} progress
  * @param {boolean} withoutSanity

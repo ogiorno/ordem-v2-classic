@@ -4,6 +4,7 @@ export { ThreatData } from "./actors/threat-data.mjs";
 export { ArmamentData } from "./items/armament-data.mjs";
 export { GeneralEquipmentData } from "./items/general-equipment-data.mjs";
 export { ProtectionData } from "./items/protection-data.mjs";
+export { CurseData } from "./items/curse-data.mjs";
 export { AbilityData } from "./items/ability-data.mjs";
 export { RitualData } from "./items/ritual-data.mjs";
 export { OriginData } from "./items/origin-data.mjs";

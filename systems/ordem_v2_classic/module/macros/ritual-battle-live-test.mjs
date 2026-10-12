@@ -146,17 +146,23 @@ async function castRitual({ agent, ritual, form = "basic", targets = [], area = 
 	// o resto do fluxo: posicionar a área, rolar os testes e esperar a resolução
 	let placed = false;
 	for (let i = 0; i < 80 && !done; i++) {
-		if (area && !placed && canvas.templates.preview.children.length) {
+		if (area && !placed && canvas.templates.preview.children.length && (canvas.app.canvas ?? canvas.app.view).dataset.placingArea) {
 			if (area === "cancel") {
 				document.dispatchEvent(new KeyboardEvent("keydown", { key: "Escape", bubbles: true }));
 			} else {
 				domPointer("pointermove", area.x, area.y);
 				await pause(250);
+				const warningsBefore = warnings.length;
 				domPointer("pointerdown", area.x, area.y);
 				// clique fora do alcance é recusado: dá um instante para ver se a prévia continua
 				await pause(400);
 				if (!canvas.templates.preview.children.length) placed = true;
-				else if (area.retryAt) { area = area.retryAt; continue; }
+				else if (area.retryAt) {
+					// o clique "longe" tem de produzir o aviso de recusa; se o evento se perdeu (nada mudou), manda de novo antes de seguir
+					if (warnings.length === warningsBefore && (area.lost = (area.lost ?? 0) + 1) <= 3) continue;
+					area = area.retryAt;
+					continue;
+				}
 			}
 			if (area === "cancel") placed = true;
 		}
@@ -164,7 +170,9 @@ async function castRitual({ agent, ritual, form = "basic", targets = [], area = 
 		if (roll) [...roll.querySelectorAll("button")].find((button) => button.dataset.action === "normal")?.click();
 		await pause(300);
 	}
-	await macro.catch(() => {});
+	// a macro pode ficar parada num diálogo ou na mira que o teste não respondeu: sem prazo o teste esperaria para sempre
+	const macroEnded = await Promise.race([macro.catch(() => {}).then(() => true), pause(60000).then(() => false)]);
+	if (!macroEnded) warnings.push("TRAVADO: a macro não terminou em 60 s (diálogo ou mira sem resposta)");
 	await pause(2500);
 	// espera a resolução automática (Mestre) terminar
 	const settle = await waitFor(() => {
@@ -325,7 +333,7 @@ async function conditionCases(arena, add) {
 		await applyCondition(agent, { key: "deaf" }, origin);
 		const result = await castRitual({ agent: arena.agents[0], ritual: "Esfolar", targets: [nearTarget] });
 		await activeConditions(agent).forEach((effect) => effect.delete());
-		add("CD-07", "Surdo: conjurar rola Vontade de concentração", /Concentração, Vontade/.test(cardText(result.card)), cardText(result.card).slice(0, 220));
+		add("CD-07", "Surdo: conjurar rola Vontade de concentração", /Concentração[ ,(]+Vontade/.test(cardText(result.card)), cardText(result.card).slice(0, 220));
 	}
 	await threat.document.delete();
 	await nearTarget.document.delete();
@@ -503,11 +511,14 @@ async function targetingCases(arena, add) {
 		const before = hp(inside);
 		// o clique no botão abre a prévia; posicionamos como no mapa
 		const click = clickCardButton(result.card, "ritual-area-place");
-		await waitFor(() => canvas.templates.preview.children.length);
+		// a mira só recebe eventos depois de registrar os ouvintes (marca data-placing-area): espera a marca e reenvia o clique até a carta resolver
+		await waitFor(() => (canvas.app.canvas ?? canvas.app.view).dataset.placingArea === "true");
 		domPointer("pointermove", spot.x, spot.y);
 		await pause(250);
-		domPointer("pointerdown", spot.x, spot.y);
-		await click;
+		let clicked = false;
+		click.finally(() => { clicked = true; });
+		for (let i = 0; i < 8 && !clicked; i++) { domPointer("pointerdown", spot.x, spot.y); await pause(700); }
+		await Promise.race([click, pause(60000)]);
 		await pause(3500);
 		const final = game.messages.get(result.card.id);
 		add("TG-08", "Área adiada: botão 'Selecionar área' na carta posiciona e resolve", waiting && cardStatus(final) === "resolved" && hp(inside) < before, `esperando com botão=${waiting}; depois ${cardStatus(final)}; PV ${before} → ${hp(inside)}`);

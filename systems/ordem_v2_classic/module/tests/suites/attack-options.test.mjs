@@ -1,4 +1,4 @@
-// Tela de ataque (docs/spec-tela-de-ataque.md). Rodar no console como GM:
+// Tela de ataque (docs/arquivo/spec-tela-de-ataque.md). Rodar no console como GM:
 //   await import("/systems/ordem_v2_classic/module/tests/mini-quench.mjs");
 //   await miniQuench("/systems/ordem_v2_classic/module/tests/suites/attack-options.test.mjs")
 // Cria e apaga atores "[AO] ..."; mexe só neles.

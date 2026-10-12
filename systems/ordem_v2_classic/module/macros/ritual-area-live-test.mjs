@@ -282,8 +282,9 @@ async function runKill(id, ctx) {
 		await pause(400);
 		const problems = [];
 		if (hp(tokens.fail) !== 0 || !tokens.fail.actor.statuses.has("dead")) problems.push("falhou em Fortitude a 0 PV: devia morrer (cinzas)");
-		if (hp(tokens.pass) !== 0 || tokens.pass.actor.statuses.has("dead")) problems.push("passou em Fortitude a 0 PV: devia ficar a 0 PV, vivo");
-		return { id, caso: "Paradoxo [true] reduzido a 0 PV", ok: problems.length === 0, detalhe: problems.length ? problems.join("; ") + " || " + lines.join(" | ") : "falhou → cinzas; passou → vivo a 0 PV" };
+		// a ameaça a 0 PV morre pela regra do sistema (death.mjs); o que o ritual decide é só não virar cinzas
+		if (hp(tokens.pass) !== 0 || !lines.some((line) => /Teste Passa.*não vira cinzas/.test(line))) problems.push("passou em Fortitude a 0 PV: devia ficar a 0 PV e não virar cinzas");
+		return { id, caso: "Paradoxo [true] reduzido a 0 PV", ok: problems.length === 0, detalhe: problems.length ? problems.join("; ") + " || " + lines.join(" | ") : "falhou → cinzas; passou → a 0 PV, sem cinzas" };
 	} catch (error) {
 		return { id, caso: "Paradoxo [true] reduzido a 0 PV", ok: false, detalhe: "erro: " + error.message };
 	} finally {

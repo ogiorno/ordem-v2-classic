@@ -1,3 +1,4 @@
+import { curseEntryField } from "./curse-data.mjs";
 import { WEAPON_MODIFICATIONS } from "../../helpers/item-categories.mjs";
 
 export class ArmamentData extends foundry.abstract.TypeDataModel {
@@ -12,6 +13,8 @@ export class ArmamentData extends foundry.abstract.TypeDataModel {
 			favorite: new fields.BooleanField({ initial: false }),
 			// cada modificação sobe a categoria do item em I (só informa na ficha, não trava)
 			modifications: new fields.SetField(new fields.StringField({ choices: WEAPON_MODIFICATIONS })),
+			// maldições paranormais do item (curse-rules.mjs): a primeira soma II à categoria, as seguintes I
+			curses: curseEntryField(),
 			using: new fields.SchemaField({
 				state: new fields.BooleanField({ initial: true }),
 				class: new fields.StringField({ initial: "fas" }),

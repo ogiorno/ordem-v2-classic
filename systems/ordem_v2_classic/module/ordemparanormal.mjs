@@ -24,6 +24,7 @@ import registerSystemSettings from "./settings/settings.mjs";
 import registerEnrichers from "./settings/enrichers.mjs";
 import { registerSystemKeybindings } from "./settings/settings.mjs";
 
+import { registerCurseHooks } from "./helpers/curses.mjs";
 import * as dataModels from "./data/_module.mjs";
 import * as documents from "./documents/_partial_module.mjs";
 import * as dice from "./dice/_module.mjs";
@@ -39,11 +40,20 @@ import { registerLevelProgressionHooks } from "./helpers/level-progression.mjs";
 import { registerCombatChatNotice } from "./helpers/chat-notice.mjs";
 import { registerLevelUpScreen } from "./helpers/level-up-screen.mjs";
 import { registerPlayerOnboarding } from "./helpers/player-onboarding.mjs";
+import { registerRitualFlowSettings } from "./helpers/ritual-flow-settings.mjs";
 import { registerDefensePrivacy } from "./helpers/defense-privacy.mjs";
 import { registerPeritoHooks } from "./helpers/perito.mjs";
+import { registerEclecticHooks } from "./helpers/eclectic.mjs";
+import { registerHotbarMacroHooks } from "./helpers/hotbar-macros.mjs";
+import { registerHotbarRows, registerHotbarSettings } from "./helpers/hotbar-rows.mjs";
+import { registerGrimoire } from "./helpers/grimoire.mjs";
 import { registerRitualAnimations } from "./integrations/ritual-animations.mjs";
 import "./integrations/attack-animations.mjs";
+import "./integrations/damage-fx.mjs";
 import "./helpers/attack-options-config.mjs";
+import "./helpers/passive-effects.mjs";
+import "./helpers/skill-training.mjs";
+import "./helpers/affinity.mjs";
 
 // import { rescueAllPathEffects } from '../utils/__test__/effects.mjs';
 
@@ -91,6 +101,7 @@ Hooks.once("init", function () {
 		origin: dataModels.OriginData,
 		path: dataModels.PathData,
 		class: dataModels.ClassData,
+		curse: dataModels.CurseData,
 	});
 	CONFIG.ChatMessage.documentClass = documents.ChatMessageOP;
 	CONFIG.time.roundTime = 6; // Pg. 169 of the Book
@@ -133,8 +144,19 @@ Hooks.once("init", function () {
 	registerLevelUpScreen();
 	registerCombatChatNotice();
 	registerPlayerOnboarding();
+	registerRitualFlowSettings();
 	registerDefensePrivacy();
 	registerPeritoHooks();
+	registerEclecticHooks();
+	registerHotbarSettings();
+	registerCurseHooks();
+	registerHotbarMacroHooks();
+	// Grimório do jogador: um erro aqui nunca pode impedir o sistema de iniciar.
+	try {
+		registerGrimoire();
+	} catch (error) {
+		console.warn("Grimório indisponível:", error);
+	}
 
 	// Change the logo of Foundry for Ordem Paranormal logo.
 	if (navigator.onLine) document.querySelector("#logo")?.setAttribute("src", "https://i.imgur.com/TTrDGM4.png");
@@ -150,6 +172,16 @@ Hooks.on("aa.initialize", () => {
 	registerRitualAnimations().catch((error) => {
 		console.error("Ordem Paranormal | Não foi possível vincular animações aos rituais:", error);
 	});
+});
+
+// Se o Automated Animations recusar os dados salvos (ids inválidos) ele quebra antes de `aa.initialize`;
+// por isso o reparo também roda aqui, depois que ele já registrou as configurações do mundo.
+Hooks.once("ready", () => {
+	setTimeout(() => {
+		registerRitualAnimations().catch((error) => {
+			console.error("Ordem Paranormal | Não foi possível reparar as animações dos rituais:", error);
+		});
+	}, 3000);
 });
 
 Hooks.once("ready", function () {
@@ -221,21 +253,25 @@ Hooks.once("ready", function () {
 	// Zonas de ritual de área (início de turno, saída da área) precisam estar ativas no cliente do Mestre.
 	import("./macros/ritual-caster.mjs").then((module) => module.registerRitualAreaHooks()).catch((error) => console.warn("Zonas de ritual indisponíveis:", error));
 
-	game.socket.on("system.ordem_v2_classic", async (data) => {
+	// Habilidades de ameaça: marcadores de condição expiram por rodada no turno do alvo.
+	import("./macros/threat-ability-effects-runner.mjs").then((module) => module.registerAbilityEffectHooks()).catch((error) => console.warn("Efeitos de habilidade indisponíveis:", error));
+
+	import("./macros/threat-ability-triggers-runner.mjs").then((module) => module.registerTriggerHooks()).catch((error) => console.warn("Gatilhos de habilidade indisponíveis:", error));
+
+	import("./applications/threat-ability-panel.mjs").then((module) => module.ThreatAbilityPanel.registerHooks()).catch((error) => console.warn("Painel de habilidades indisponível:", error));
+
+	import("./macros/threat-ability-use.mjs").then((module) => module.registerUseSocket()).catch((error) => console.warn("Pedidos de uso de habilidade indisponíveis:", error));
+
+	// Amaldiçoar Arma: o efeito sai no fim do combate e quando o Mestre troca a cena ativa.
+	import("./helpers/weapon-curse-runtime.mjs").then((module) => module.registerWeaponCurseHooks()).catch((error) => console.warn("Amaldiçoar Arma indisponível:", error));
+
+	game.socket.on("system.ordem_v2_classic", async (data, senderId) => {
+		if (data.type === "ritualPostResult" && game.users.get(senderId)?.isGM && data.userId === game.user.id && data.reason) ui.notifications.warn(data.reason);
 		const firstGM = game.users.find((u) => u.isGM && u.active);
 		if (!firstGM || firstGM.id !== game.user.id) return;
 
-		if (data.type === "applyDamage") {
-			const sender = data.userId ? game.users.get(data.userId) : null;
-			const actor = await fromUuid(data.actorUuid);
-			if (!sender || !actor) return;
-			const senderAllowed = sender.isGM || actor.testUserPermission?.(sender, "OWNER");
-			if (!senderAllowed) return;
-			if (actor.isOwner) await actor.applyDamage(data.amount, data.options);
-		}
-
 		if (data.type === "applyCardDamage") {
-			const sender = data.userId ? game.users.get(data.userId) : null;
+			const sender = game.users.get(senderId);
 			const message = data.messageId ? game.messages.get(data.messageId) : null;
 			if (!sender || !message) return;
 			const damageTarget = message.getFlag("ordem_v2_classic", "damageTarget") ?? null;
@@ -259,8 +295,18 @@ Hooks.once("ready", function () {
 			await applyDamageFromMessage(message, { byUserId: sender.id });
 		}
 
+		if (data.type === "ritualPostAction") {
+			// ações da carta do ritual (custo extra, trocar alvo, encerrar) pedidas por um jogador: o Mestre confere a permissão e executa
+			const sender = game.users.get(senderId);
+			if (!sender) return;
+			const { runRitualPostAction } = await import("./macros/ritual-caster.mjs");
+			const result = await runRitualPostAction(data.action, data.payload ?? {}, sender);
+			if (!result?.ok) game.socket.emit("system.ordem_v2_classic", { type: "ritualPostResult", userId: sender.id, reason: result?.reason ?? "Não foi possível concluir a ação." });
+			return;
+		}
+
 		if (data.type === "ritualCastTest") {
-			const sender = data.userId ? game.users.get(data.userId) : null;
+			const sender = game.users.get(senderId);
 			const message = data.messageId ? game.messages.get(data.messageId) : null;
 			const cast = message?.getFlag("ordem_v2_classic", "ritualCast");
 			const actor = cast?.actorId ? game.actors.get(cast.actorId) : null;
@@ -271,7 +317,7 @@ Hooks.once("ready", function () {
 		}
 
 		if (data.type === "bleedTest") {
-			const sender = data.userId ? game.users.get(data.userId) : null;
+			const sender = game.users.get(senderId);
 			const message = data.messageId ? game.messages.get(data.messageId) : null;
 			const pending = message?.getFlag("ordem_v2_classic", "bleedPending");
 			const actor = pending?.actorId ? game.actors.get(pending.actorId) : null;
@@ -281,7 +327,7 @@ Hooks.once("ready", function () {
 		}
 
 		if (data.type === "stabilize") {
-			const sender = data.userId ? game.users.get(data.userId) : null;
+			const sender = game.users.get(senderId);
 			const medic = data.medicId ? game.actors.get(data.medicId) : null;
 			if (!sender || !medic || !(sender.isGM || medic.testUserPermission?.(sender, "OWNER"))) return;
 			const { resolveStabilize } = await import("./helpers/death.mjs");
@@ -289,12 +335,12 @@ Hooks.once("ready", function () {
 		}
 
 		if (data.type === "opostoResult") {
-			if (!utils.isOpostoSenderAuthorized(data)) return;
-			await handleOpostoResult(data);
+			if (!utils.isOpostoSenderAuthorized(data, game, senderId)) return;
+			await handleOpostoResult({ ...data, userId: senderId });
 		}
 
 		if (data.type === "reaction") {
-			const sender = data.userId ? game.users.get(data.userId) : null;
+			const sender = game.users.get(senderId);
 			if (!sender) return;
 			await handleReaction({ sender, payload: data.payload });
 		}
@@ -585,6 +631,15 @@ Handlebars.registerHelper("radioBoxes", function (name, choices, options) {
 /*  Ready Hooks                                  */
 /* -------------------------------------------- */
 
+// Linhas extras da barra de macros (docs/arquivo/spec-hotbar-automatica.md): um erro aqui nunca pode impedir o jogo.
+Hooks.once("ready", function () {
+	try {
+		registerHotbarRows();
+	} catch (error) {
+		console.warn("Linhas da barra indisponíveis:", error);
+	}
+});
+
 // Hook for create a macro on drop items or effects in hotbar.
 Hooks.once("ready", function () {
 	// Wait to register hotbar drop hook on ready so that modules could register earlier if they want to
@@ -621,6 +676,49 @@ async function handleChatCommandClick(event) {
 		return;
 	}
 
+	// Carta do ritual: nome e botão "Ler no Grimório" abrem o ritual (docs/arquivo/spec-carta-de-ritual-no-chat.md, CR-01 a CR-03)
+	const grimoireLink = event.target.closest?.('[data-action="ritual-open-grimoire"]');
+	if (grimoireLink) {
+		event.preventDefault();
+		const { openGrimoire } = await import("./helpers/grimoire.mjs");
+		await openGrimoire({ tab: "ritual", name: grimoireLink.dataset.ritualName, form: grimoireLink.dataset.form || "basic" });
+		return;
+	}
+	const rollDamageButton = event.target.closest?.('[data-action="ritual-roll-damage"]');
+	if (rollDamageButton) {
+		event.preventDefault();
+		const messageId = rollDamageButton.closest(".message")?.dataset.messageId;
+		const { rollRitualDamage } = await import("./macros/ritual-caster.mjs");
+		await rollRitualDamage(messageId);
+		return;
+	}
+
+	// Botões da carta do ritual: custo extra, trocar alvo e encerrar (spec do fluxo rápido, FC-74/FC-90/FC-63)
+	const postButton = event.target.closest?.('[data-action="ritual-swap-target"], [data-action="ritual-end"], [data-action="ritual-undo-hostile"]');
+	if (postButton) {
+		event.preventDefault();
+		const messageId = postButton.dataset.cardId ?? postButton.closest(".message")?.dataset.messageId;
+		const ritualModule = await import("./macros/ritual-caster.mjs");
+		const owner = game.actors.get(postButton.dataset.ownerActor);
+		if (!game.user.isGM && postButton.dataset.action === "ritual-undo-hostile") return ui.notifications.warn("Só o Mestre desfaz o efeito de um ritual.");
+		if (!game.user.isGM && postButton.dataset.ownerActor && !owner?.isOwner) return ui.notifications.warn("Só o conjurador ou o Mestre usa este botão.");
+		if (postButton.dataset.action === "ritual-swap-target") await ritualModule.promptSwapTarget(messageId);
+		else if (postButton.dataset.action === "ritual-undo-hostile") await ritualModule.requestRitualAction("undo", { messageId });
+		else await ritualModule.requestRitualAction("end", { effectUuid: postButton.dataset.effectUuid });
+		return;
+	}
+
+	// Painel de resolução da área (só o Mestre vê e usa)
+	const panelButton = event.target.closest?.("[data-action^='ritual-area-']");
+	if (panelButton && /^ritual-area-(apply|apply-all|ignore|restore|undo|add|restore-part)$/.test(panelButton.dataset.action)) {
+		event.preventDefault();
+		const messageId = panelButton.closest(".message")?.dataset.messageId;
+		if (!messageId) return;
+		const { handleAreaPanelAction } = await import("./macros/ritual-area-panel.mjs");
+		await handleAreaPanelAction(messageId, panelButton.dataset.action, { row: panelButton.dataset.row, part: panelButton.dataset.part });
+		return;
+	}
+
 	const bleedButton = event.target.closest?.('[data-action="bleed-test"]');
 	if (bleedButton) {
 		event.preventDefault();
@@ -652,13 +750,15 @@ async function handleChatCommandClick(event) {
 		return;
 	}
 
-	const areaButton = event.target.closest('[data-action="ritual-area-roll"], [data-action="ritual-area-place"]');
+	const areaButton = event.target.closest('[data-action="ritual-area-roll"], [data-action="ritual-area-place"], [data-action="ritual-curse-self"], [data-action="ritual-curse-target"]');
 	if (areaButton) {
 		event.preventDefault();
 		const messageId = areaButton.closest(".message")?.dataset.messageId;
 		if (!messageId) return ui.notifications.warn("Não encontrei a mensagem do ritual no chat.");
 		const ritualModule = await import("./macros/ritual-caster.mjs");
 		if (areaButton.dataset.action === "ritual-area-place") await ritualModule.placeRitualArea(messageId);
+		else if (areaButton.dataset.action === "ritual-curse-self") await ritualModule.applyRitualCurseSelf(messageId);
+		else if (areaButton.dataset.action === "ritual-curse-target") await ritualModule.applyRitualCurseTarget(messageId);
 		else await ritualModule.rollRitualAreaDamage(messageId);
 		return;
 	}
@@ -772,6 +872,16 @@ Hooks.on("renderActiveEffectConfig", (activeEffectConfig, html, data) => {
 
 // Single global listener — body is always present and survives re-renders.
 attachChatCommandListenerOnce(document.body);
+
+// Ajuste do dano de uma linha do painel de área (campo numérico dentro da carta do Mestre)
+document.body.addEventListener("change", async (event) => {
+	const input = event.target?.closest?.("input[data-action='ritual-area-edit']");
+	if (!input) return;
+	const messageId = input.closest(".message")?.dataset.messageId;
+	if (!messageId) return;
+	const { handleAreaPanelAction } = await import("./macros/ritual-area-panel.mjs");
+	await handleAreaPanelAction(messageId, "ritual-area-edit", { row: input.dataset.row, part: input.dataset.part, value: input.value });
+});
 
 // Load Quench integration tests only in dev environments where Quench is active
 // Must run in "init" so the files are imported before "quenchReady" fires in "ready"

@@ -53,6 +53,12 @@ export default function () {
 			return false;
 		}
 
+		// o campo de chat do Foundry 14 entrega o texto dentro de <p>…</p>
+		if (content.replace(/<[^>]*>/g, "").trim() === "/barra") {
+			_handleBarraCommand().catch((err) => console.error("ordemparanormal | /barra command failed", err));
+			return false;
+		}
+
 		const oppostoMatch = content.match(/^\/oposto\s+(.+)$/);
 		if (oppostoMatch) {
 			_handleOpostoCommand(oppostoMatch[1]).catch((err) => {
@@ -62,6 +68,14 @@ export default function () {
 			return false;
 		}
 	});
+}
+
+/** `/barra`: preenche a barra de macros com as armas, rituais e habilidades ativas do agente do usuário (docs/arquivo/spec-hotbar-automatica.md, HB-41). */
+async function _handleBarraCommand() {
+	const token = canvas?.tokens?.controlled?.[0];
+	const actor = token?.actor ?? game.user.character ?? null;
+	const { requestFillHotbar } = await import("../helpers/hotbar-macros.mjs");
+	await requestFillHotbar(actor);
 }
 
 /**

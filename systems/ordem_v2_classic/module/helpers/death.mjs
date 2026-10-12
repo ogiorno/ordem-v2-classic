@@ -1,9 +1,9 @@
 // Ferimentos e morte do agente: 0 PV vira Inconsciente + Morrendo, três turnos morrendo na mesma cena matam,
-// Dano Massivo e estabilização com Medicina. Regras puras: death-rules.mjs. Spec: docs/spec-morte-do-jogador.md.
+// Dano Massivo e estabilização com Medicina. Regras puras: death-rules.mjs. Spec: docs/arquivo/spec-morte-do-jogador.md.
 // Roda no cliente do Mestre (ele tem permissão sobre as fichas).
 
 import { activeConditions, conditionEffectData } from "./conditions.mjs";
-import { DYING_TURN_LIMIT, STABILIZED_PV, downedState, dyingTurnOutcome, stabilizeDT, tokensAdjacent } from "./death-rules.mjs";
+import { DYING_TURN_LIMIT, STABILIZED_PV, downedState, dyingTurnOutcome, stabilizeDT, threatShouldDie, tokensAdjacent } from "./death-rules.mjs";
 
 const SYSTEM = "ordem_v2_classic";
 const escapeHtml = (value) => String(value ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
@@ -143,8 +143,32 @@ async function resetScene(combat) {
 	}
 }
 
+/** Ameaça a 0 PV: marca como morta (caveira no token, derrotada no combate). Curada acima de 0, volta à vida. */
+export async function syncThreatDeath(actor) {
+	if (actor?.type !== "threat") return false;
+	const hp = actor.system.attributes?.hp;
+	const shouldDie = threatShouldDie({ hp: hp?.value, max: hp?.max });
+	if (shouldDie === isDead(actor)) return shouldDie;
+	await actor.toggleStatusEffect("dead", { active: shouldDie, overlay: shouldDie });
+	if (shouldDie) await ChatMessage.create({ speaker: ChatMessage.getSpeaker({ actor }), content: `<p><strong>${escapeHtml(actor.name)}</strong> chegou a 0 PV e <strong>morreu</strong>.</p>` });
+	return shouldDie;
+}
+
+/** Espera o final do elemento aparecer antes de marcar a ameaça como morta (só no cliente do Mestre; sem token, nada). */
+async function waitForDeathFx(actor) {
+	const hp = actor.system.attributes?.hp?.value;
+	if (!(hp <= 0)) return;
+	const { deathFxDelayMs } = await import("../integrations/damage-fx.mjs");
+	const wait = deathFxDelayMs(actor);
+	if (wait) await new Promise((resolve) => setTimeout(resolve, wait));
+}
+
 export function registerDeathHooks() {
 	Hooks.on("updateActor", async (actor, changes) => {
+		if (game.user.isActiveGM && actor.type === "threat" && foundry.utils.getProperty(changes, "system.attributes.hp.value") !== undefined) {
+			try { await waitForDeathFx(actor); await syncThreatDeath(actor); } catch (error) { console.error("Morte da ameaça: falha ao marcar", error); }
+			return;
+		}
 		if (!game.user.isActiveGM || actor.type !== "agent") return;
 		if (foundry.utils.getProperty(changes, "system.PV.value") === undefined && foundry.utils.getProperty(changes, "system.PV.nonLethal") === undefined) return;
 		try { await syncDownedState(actor); } catch (error) { console.error("Morte do agente: falha ao atualizar o estado", error); }

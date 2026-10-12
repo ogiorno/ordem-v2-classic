@@ -73,6 +73,8 @@ export async function preloadHandlebarsTemplates() {
 		// Item Sheet Partials
 		"systems/ordem_v2_classic/templates/item/item-header.hbs",
 		"systems/ordem_v2_classic/templates/item/parts/item-ability-attributes.hbs",
+		"systems/ordem_v2_classic/templates/item/parts/item-ability-execution.hbs",
+		"systems/ordem_v2_classic/templates/apps/threat-ability-panel.hbs",
 		"systems/ordem_v2_classic/templates/item/parts/item-armament-combat.hbs",
 		"systems/ordem_v2_classic/templates/item/parts/item-armament-spec.hbs",
 		"systems/ordem_v2_classic/templates/item/parts/item-description.hbs",
@@ -82,6 +84,7 @@ export async function preloadHandlebarsTemplates() {
 
 		// Threat Sheet Partials
 		"systems/ordem_v2_classic/templates/threat/parts/threat-test-chip.hbs",
+		"systems/ordem_v2_classic/templates/threat/parts/threat-test-table.hbs",
 		"systems/ordem_v2_classic/templates/threat/parts/threat-item-row.hbs",
 	];
 
@@ -134,21 +137,21 @@ export function resolveChatCommandActor() {
 
 /**
  * Authorize a socket payload that claims to be a roll on behalf of `data.actorId`
- * coming from `data.userId`. Only the GM client invokes this — but a malicious
- * (or buggy) client can craft any payload, so we re-check that the claimed
- * sender exists and either is the GM or actually owns the claimed actor.
+ * coming from the authenticated socket sender. The payload's `userId` is not
+ * proof of identity because clients can change it.
  *
  * Pure: takes its dependencies via parameter so it can be unit-tested without
  * booting Foundry. The default uses the live `game` global.
  *
- * @param {{userId?: string, actorId?: string}} data
+ * @param {{actorId?: string}} data
  * @param {{users: {get: (id: string) => any}, actors: {get: (id: string) => any}}} [deps]
+ * @param {string} senderId  ID supplied by Foundry as the socket callback's second argument
  * @returns {boolean}
  */
-export function isOpostoSenderAuthorized(data, deps) {
+export function isOpostoSenderAuthorized(data, deps, senderId) {
 	const g = deps ?? globalThis.game;
-	if (!data?.userId || !data?.actorId) return false;
-	const sender = g?.users?.get?.(data.userId);
+	if (!senderId || !data?.actorId) return false;
+	const sender = g?.users?.get?.(senderId);
 	const actor = g?.actors?.get?.(data.actorId);
 	if (!sender || !actor) return false;
 	return Boolean(sender.isGM || actor.testUserPermission?.(sender, "OWNER"));

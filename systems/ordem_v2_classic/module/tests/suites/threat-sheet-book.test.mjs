@@ -669,10 +669,75 @@ Hooks.once("quenchReady", (quench) => {
 					assert.equal(el.querySelectorAll(".sb-actions .sb-item .sb-die").length, 3);
 				});
 
-				it("render: sem abas e presença perturbadora visível para criatura", () => {
+				it("render: presença perturbadora visível para criatura", () => {
+					assert.ok(actor.sheet.element.querySelector(".sb-presence"));
+				});
+
+				it("abas: Resumo, Ações, Efeitos e Descrição separam o conteúdo", async () => {
 					const el = actor.sheet.element;
-					assert.equal(el.querySelectorAll("nav.tabs, .sheet-tabs").length, 0);
-					assert.ok(el.querySelector(".sb-presence"));
+					const settle = (ms = 200) => new Promise((r) => setTimeout(r, ms));
+					const visible = (sel) => {
+						const n = el.querySelector(sel);
+						return !!n && !n.hidden && !n.closest("[hidden], [data-sb-hidden]");
+					};
+					assert.deepEqual([...el.querySelectorAll(".sb-tab-link")].map((a) => a.dataset.tab), ["stats", "actions", "effects", "description"]);
+					// Aba inicial: Ficha
+					assert.ok(visible(".sb-presence"), "presença deveria aparecer na aba Resumo");
+					assert.equal(visible(".sb-actions"), false, "ações não aparecem na aba Resumo");
+					assert.equal(visible("[data-application-part='enigmas']"), false);
+					el.querySelector(".sb-tab-link[data-tab='actions']").click();
+					await settle();
+					assert.ok(visible(".sb-actions"));
+					assert.equal(visible(".sb-presence"), false);
+					el.querySelector(".sb-tab-link[data-tab='description']").click();
+					await settle();
+					assert.ok(visible("[data-application-part='enigmas']"));
+					assert.equal(visible(".sb-actions"), false);
+					el.querySelector(".sb-tab-link[data-tab='effects']").click();
+					await settle();
+					assert.ok(visible("[data-application-part='effects']"));
+					assert.equal(visible("[data-application-part='enigmas']"), false);
+					assert.ok(el.querySelector(".sb-tab-link[data-tab='effects']").classList.contains("active"));
+				});
+
+				it("abas: a aba escolhida sobrevive a um novo render", async () => {
+					actor.sheet.activeTab = "actions";
+					await actor.sheet.render({ force: true });
+					await new Promise((r) => setTimeout(r, 400));
+					const el = actor.sheet.element;
+					assert.equal(el.querySelector(".sb-actions").closest("[hidden]"), null);
+					assert.ok(el.querySelector(".sb-presence").closest("[hidden]"));
+					actor.sheet.activeTab = "stats";
+					await actor.sheet.render({ force: true });
+					await new Promise((r) => setTimeout(r, 400));
+				});
+
+				it("elementos: botão + acrescenta um elemento secundário; × remove", async () => {
+					const settle = (ms = 500) => new Promise((r) => setTimeout(r, ms));
+					const picker = () => actor.sheet.element.querySelector("[data-element-picker]");
+					assert.ok(picker(), "seletor + Elemento ausente");
+					assert.equal(actor.system.elements.others, "");
+					assert.equal([...picker().options].some((o) => o.value === "blood"), false, "o elemento principal não deve ser oferecido");
+					picker().value = "death";
+					picker().dispatchEvent(new Event("change", { bubbles: true }));
+					await settle();
+					assert.equal(actor.system.elements.others, "death");
+					picker().value = "energy";
+					picker().dispatchEvent(new Event("change", { bubbles: true }));
+					await settle();
+					assert.equal(actor.system.elements.others, "death,energy");
+					assert.equal([...picker().options].some((o) => o.value === "death"), false, "repetido não deve ser oferecido");
+					await actor.sheet.addElement("death");
+					await actor.sheet.addElement("blood");
+					await actor.sheet.addElement("inexistente");
+					assert.equal(actor.system.elements.others, "death,energy", "duplicado, principal e inválido são ignorados");
+					const chips = [...actor.sheet.element.querySelectorAll(".sb-tags .sb-chip[class*='element-']")];
+					assert.equal(chips.length, 3, "principal + 2 secundários");
+					actor.sheet.element.querySelector("[data-action='removeElement'][data-key='death']").click();
+					await settle();
+					assert.equal(actor.system.elements.others, "energy");
+					await actor.sheet.removeElement("energy");
+					assert.equal(actor.system.elements.others, "");
 				});
 
 				it("dado do ataque posta o card e já rola o teste de ataque (2 ataques, x2)", async () => {

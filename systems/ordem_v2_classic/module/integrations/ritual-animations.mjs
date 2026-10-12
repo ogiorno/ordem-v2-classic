@@ -6,7 +6,22 @@ const ELEMENT_COLORS = {
 	fear: "#4a4a4a",
 };
 
+const CURSE_LABELS = { knowledge: "Conhecimento", energy: "Energia", death: "Morte", blood: "Sangue" };
+
+/** Nome sob o qual o ritual está no mapa de animações: Amaldiçoar Arma tem uma entrada por elemento. */
+export function ritualAnimationName(item) {
+	const name = String(item?.name ?? "");
+	const label = CURSE_LABELS[item?.system?.element];
+	return /^Amaldi[cç]oar Arma$/i.test(name) && label ? `${name} - ${label}` : name;
+}
+
 const MANAGED_FLAG = "ordemRitualLibrary";
+const UUID_V4 = /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
+
+/** O Automated Animations recusa qualquer id que não seja UUID v4 e, ao recusar, não registra mais nenhuma configuração dele. */
+export function isAutoAnimationsId(value) {
+	return UUID_V4.test(String(value ?? ""));
+}
 
 /** Registers the JB2A casting visuals in Automated Animations without replacing other entries. */
 export async function registerRitualAnimations() {
@@ -38,7 +53,7 @@ export async function registerRitualAnimations() {
 		if (!ritual.name || !ritual.asset || existingNames.has(normalizedName)) continue;
 
 		const entry = foundry.utils.deepClone(base);
-		entry.id = foundry.utils.randomID();
+		entry.id = crypto.randomUUID();
 		entry.label = ritual.name;
 		entry.menu = "ontoken";
 		entry.metaData = { [MANAGED_FLAG]: true, element: ritual.element, source: "JB2A_DnD5e" };
@@ -68,12 +83,15 @@ export async function registerRitualAnimations() {
 	}
 
 	const migratedEletrocusao = range.length !== currentRange.length;
-	if (managed.length || migratedEletrocusao) {
+	// só regrava quando falta vínculo ou algum registro antigo tem id inválido, para não reescrever a configuração a cada carga
+	const previous = currentOnToken.filter((entry) => entry.metaData?.[MANAGED_FLAG] === true);
+	const needsWrite = previous.length !== managed.length || previous.some((entry) => !isAutoAnimationsId(entry.id));
+	if ((managed.length && needsWrite) || migratedEletrocusao) {
 		await game.settings.set("autoanimations", "aaAutorec-ontoken", [...onToken, ...managed]);
 		if (migratedEletrocusao) await game.settings.set("autoanimations", "aaAutorec-range", range);
 	}
 	console.info(`Ordem Paranormal | ${managed.length} animações de rituais vinculadas ao JB2A.`);
-	if (managed.length) ui.notifications.info(`${managed.length} animações de rituais foram vinculadas à biblioteca JB2A.`);
+	if (managed.length && needsWrite) ui.notifications.info(`${managed.length} animações de rituais foram vinculadas à biblioteca JB2A.`);
 }
 
 function normalizeName(value) {

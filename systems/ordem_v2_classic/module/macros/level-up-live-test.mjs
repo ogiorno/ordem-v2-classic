@@ -5,7 +5,7 @@
 //   const t = await import("/systems/ordem_v2_classic/module/macros/level-up-live-test.mjs");
 //   const r = await t.runLevelUpTests({ classes: ["Combatente"] });   // sem argumento: todas
 //
-// Roda como Mestre sem jogador dono conectado (é a regra que faz a tela aparecer para o Mestre). Spec: docs/spec-tela-de-nivel.md.
+// Roda como Mestre sem jogador dono conectado (é a regra que faz a tela aparecer para o Mestre). Spec: docs/arquivo/spec-tela-de-nivel.md.
 
 import { normalizeName } from "../helpers/level-progression-rules.mjs";
 import { calculateStatusMaxima } from "../helpers/actor-calculations.mjs";

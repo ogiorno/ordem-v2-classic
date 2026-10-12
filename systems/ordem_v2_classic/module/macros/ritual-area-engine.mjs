@@ -3,6 +3,8 @@
 // Roda no cliente do Mestre (ele tem permissão sobre as ameaças). Regras: ritual-area-rules.mjs.
 
 import { regionContains } from "./ritual-area.mjs";
+import { rollBreakdown } from "./ritual-card-view.mjs";
+import { createRow, markApplied, partDamage, rowEdited } from "./ritual-area-panel-logic.mjs";
 import { CONDITION_FLAG, activeConditions, conditionEffectData, conditionIdFor, hasConditionProp } from "../helpers/conditions.mjs";
 
 import { BURN_DAMAGE_FORMULA, BURN_DAMAGE_TYPE, BLEED_DT, bleedCardOpen, bleedDamageFormula, bleedMode, bleedOutcome, bleedStacks } from "../helpers/turn-effects-rules.mjs";
@@ -19,13 +21,15 @@ const hpOf = (actor) => Number(actor.type === "threat" ? actor.system.attributes
 /* -------------------------------------------- */
 
 /** Rola uma perícia sem diálogo e posta a carta normal de perícia no chat. Devolve { total, success }. */
-export async function autoRoll(actor, skill, dt) {
-	const rolls = await actor.rollSkill({ skill, rolls: [{ options: { target: dt } }] }, { configure: false }, { create: false });
+export async function autoRoll(actor, skill, dt, { whisper = actor.type === "threat", effectElement = "" } = {}) {
+	const rolls = await actor.rollSkill({ skill, effectElement, rolls: [{ options: { target: dt } }] }, { configure: false }, { create: false });
 	const roll = Array.isArray(rolls) ? rolls[0] : rolls;
 	const total = Number(roll?.total);
 	if (!Number.isFinite(total)) return null;
-	await roll.toMessage({ speaker: ChatMessage.getSpeaker({ actor }) });
-	return { total, success: dt === null ? null : total >= dt };
+	// o teste de uma criatura é do Mestre: sai como sussurro, não como carta pública
+	// rollMode "gmroll" faz o Foundry sussurrar ao Mestre (um `whisper` solto seria apagado pelo modo de rolagem público)
+	await roll.toMessage({ speaker: ChatMessage.getSpeaker({ actor }) }, whisper ? { rollMode: CONST.DICE_ROLL_MODES.PRIVATE } : {});
+	return { total, success: dt === null ? null : total >= dt, breakdown: rollBreakdown(roll) };
 }
 
 /**
@@ -45,7 +49,7 @@ async function rollDamageParts(parts, item, speaker) {
 	return rolls;
 }
 
-function damageLabel(type) {
+export function damageLabel(type) {
 	const key = CONFIG.op?.dropdownDamageType?.[type];
 	return key ? game.i18n.localize(key) : type;
 }
@@ -108,93 +112,170 @@ async function applyVulnerabilities(actor, origin) {
 }
 
 /* -------------------------------------------- */
-/*  Aplicação de um efeito a uma lista de tokens */
+/*  Resolução de um efeito de área em duas fases */
 /* -------------------------------------------- */
 
 const isEnemy = (token) => token.actor?.type === "threat" && hpOf(token.actor) > 0;
+const hpMaxOf = (actor) => Number(actor.type === "threat" ? actor.system.attributes?.hp?.max : actor.system.PV?.max);
+const tokenImage = (token) => token.texture?.src ?? token.actor?.img ?? "";
+const tokenSceneId = (token) => token.parent?.id ?? canvas.scene?.id ?? null;
+
+/** Condições que o efeito aplica a um alvo, conforme passou ou falhou na resistência. */
+function conditionsFor(spec, passed) {
+	if (spec.save) return passed === true ? (spec.onSuccess ?? []) : (spec.onFail ?? []);
+	return [...(spec.onFail ?? []), ...(spec.onSuccess ?? [])].filter((c, i, all) => all.findIndex((x) => (x.key ?? x.label) === (c.key ?? c.label)) === i);
+}
 
 /**
- * Aplica um efeito (onCast / tick / exit) a cada token. Devolve as linhas do relatório e o dano total causado.
+ * Fase 1 de um alvo: rola a resistência e calcula o dano final e as condições, sem aplicar nada.
+ * @returns {Promise<object>} linha do painel (ver ritual-area-panel-logic.mjs)
+ */
+export async function planTokenRow(spec, ctx, token, damageRolls, { disabledReason = null } = {}) {
+	const { dt, origin } = ctx;
+	const base = { tokenId: token.id, sceneId: tokenSceneId(token), name: token.name, img: tokenImage(token) };
+	if (disabledReason) return createRow({ ...base, parts: damageRolls.map((entry) => ({ type: entry.type, full: entry.amount, amount: entry.amount })), disabledReason });
+	if (spec.special === "grapple") {
+		// disputa de Ocultismo contra Luta/Reflexos só acontece quando o Mestre aplica
+		return { ...createRow({ ...base, notes: ["Disputa de Ocultismo contra Luta ou Reflexos ao aplicar."] }), special: "grapple", grappleParts: damageRolls.map((entry) => ({ type: entry.type, amount: entry.amount })) };
+	}
+	let passed = null;
+	let save = null;
+	const notes = [];
+	if (spec.save) {
+		const result = await autoRoll(token.actor, spec.save.skill, dt, { effectElement: ctx.item?.system?.element ?? "" });
+		passed = result ? result.success : false;
+		save = { skill: spec.save.skill, total: result ? result.total : null, dt, passed, breakdown: result?.breakdown ?? null };
+	}
+	if (spec.negateAfterPasses && ctx.counter) {
+		const key = `${origin.zoneId}:${token.id}`;
+		const streak = passed ? (ctx.counter.get(key) ?? 0) + 1 : 0;
+		ctx.counter.set(key, streak);
+		if (streak >= spec.negateAfterPasses) notes.push("Passou em testes seguidos: o efeito é anulado para ele.");
+	}
+	const parts = damageRolls.map((entry) => ({ type: entry.type, full: entry.amount, amount: partDamage(entry.amount, spec.save, passed, spec.damageOnFailOnly) }));
+	return { ...createRow({ ...base, save, parts, conditions: conditionsFor(spec, passed), notes }), special: spec.special ?? null, saveRule: spec.save?.success ?? null, failOnly: Boolean(spec.damageOnFailOnly) };
+}
+
+/**
+ * Fase 1 do efeito: rola o dano uma vez (carta de rolagem por tipo) e planeja cada alvo.
+ * Alvos que a regra não afeta (aliados) entram desabilitados em `extraTokens`.
+ * @param {object} spec  efeito da regra (onCast / tick / exit)
+ * @param {object} ctx   { caster, item, dt, tokens, extraTokens?, origin, counter? }
+ */
+export async function planAreaEffect(spec, ctx) {
+	const { caster, item, tokens, extraTokens = [] } = ctx;
+	const speaker = ChatMessage.getSpeaker({ actor: caster });
+	// o dano já pode ter sido rolado na carta do ritual (botão Rolar dano); ticks de zona rolam aqui
+	const damageRolls = ctx.damageRolls ?? (spec.damage?.length ? await rollDamageParts(spec.damage, item, speaker) : []);
+	const rows = [];
+	for (const token of tokens) rows.push(await planTokenRow(spec, ctx, token, damageRolls));
+	for (const token of extraTokens) rows.push(await planTokenRow(spec, ctx, token, damageRolls, { disabledReason: "Aliado: não afetado pela regra (jogador contra ameaça)" }));
+	return { rows, damageRolls };
+}
+
+const findToken = (row) => game.scenes.get(row.sceneId)?.tokens.get(row.tokenId) ?? canvas.scene?.tokens.get(row.tokenId) ?? null;
+
+/**
+ * Fase 2 de um alvo: aplica o dano e as condições planejados (e os efeitos especiais da regra).
+ * @returns {Promise<{ok:boolean, lines:string[], dealt:number, hpBefore:number, effectIds:string[], resisted:boolean|null}>}
+ */
+export async function executeAreaRow(spec, ctx, row) {
+	const { dt, origin } = ctx;
+	const token = findToken(row);
+	const actor = token?.actor;
+	if (!actor) return { ok: false, lines: [`${row.name}: o alvo não está mais na cena.`], dealt: 0, hpBefore: null, effectIds: [], resisted: null };
+	const before = hpOf(actor);
+	const effectsBefore = new Set(actor.effects.map((effect) => effect.id));
+	const effectIds = () => actor.effects.map((effect) => effect.id).filter((id) => !effectsBefore.has(id));
+	const resisted = row.save ? Boolean(row.save.passed) : null;
+
+	if (row.special === "grapple") {
+		const text = await grappleTarget(spec, ctx, token, row.grappleParts ?? []);
+		return { ok: true, lines: [`${row.name}: ${text.join(" ")}`], dealt: Math.max(0, before - hpOf(actor)), hpBefore: before, effectIds: effectIds(), resisted };
+	}
+
+	const parts = [];
+	if (row.save) parts.push(`${row.save.total ?? "—"} contra DT ${row.save.dt ?? dt}: ${row.save.passed ? "resistiu" : "falhou"}.`);
+	parts.push(...(row.notes ?? []));
+
+	let dealt = 0;
+	if (row.parts.length > 0) {
+		for (const entry of row.parts) {
+			if (entry.amount <= 0) continue;
+			const result = await actor.applyDamage(entry.amount, { damageType: entry.type, fx: { sourceUuid: ctx.caster?.getActiveTokens?.()[0]?.document?.uuid ?? null } });
+			dealt += result.finalDamage ?? 0;
+			if (result.finalDamage === 0 && result.blocked > 0) parts.push(`Imune/resistente a ${damageLabel(entry.type)} (bloqueou ${result.blocked}).`);
+		}
+		const full = row.parts.reduce((sum, entry) => sum + entry.full, 0);
+		const reduced = row.parts.every((entry) => entry.amount === 0) && resisted && ["none", "negates"].includes(row.saveRule);
+		const none = row.failOnly && resisted;
+		if (none || reduced) parts.push("Sem dano.");
+		else if (rowEdited(row)) parts.push(`Dano ajustado pelo Mestre: ${dealt} PV (rolado ${full}).`);
+		else parts.push(`Dano ${resisted && row.saveRule === "half" ? "pela metade" : "total"}: ${dealt} PV (rolado ${full}).`);
+	}
+
+	const applied = [];
+	for (const cond of row.conditions ?? []) {
+		const result = await applyCondition(actor, cond, origin);
+		if (result) applied.push(result.name);
+	}
+	if (applied.length) parts.push(`Condição: ${applied.join(", ")}.`);
+
+	if (row.special === "killAtZero" && dealt > 0 && hpOf(actor) <= 0) {
+		const kill = await autoRoll(actor, FORT_SKILL, dt);
+		if (kill && !kill.success) {
+			await actor.toggleStatusEffect?.("dead", { active: true });
+			parts.push("Reduzido a 0 PV, falhou em Fortitude: reduzido a cinzas (morre).");
+		} else parts.push("Reduzido a 0 PV, mas passou em Fortitude: não vira cinzas.");
+	}
+	if (row.special === "vulnerabilities") {
+		await applyVulnerabilities(actor, origin);
+		parts.push("Vulnerável a dano balístico, de corte, de impacto e de perfuração enquanto estiver na área.");
+	}
+	return {
+		ok: true,
+		lines: [`${row.name}: ${parts.join(" ") || "afetado."} (PV ${before} → ${hpOf(actor)})`],
+		dealt, hpBefore: before, effectIds: effectIds(), resisted,
+	};
+}
+
+/** Desfaz uma linha aplicada: apaga os efeitos que ela criou e devolve os PV perdidos (até o máximo). */
+export async function undoAreaRow(row) {
+	const actor = findToken(row)?.actor;
+	if (!actor) return { ok: false };
+	const doomed = (row.applied?.effectIds ?? []).filter((id) => actor.effects.has(id));
+	if (doomed.length) await actor.deleteEmbeddedDocuments("ActiveEffect", doomed);
+	const dealt = Number(row.applied?.dealt ?? 0);
+	if (dealt > 0) {
+		const current = hpOf(actor);
+		const max = hpMaxOf(actor);
+		const restored = Number.isFinite(max) ? Math.min(max, current + dealt) : current + dealt;
+		await actor.update({ [hpPath(actor)]: restored });
+	}
+	return { ok: true, restored: dealt };
+}
+
+/**
+ * Resolve o efeito inteiro e aplica na hora (modo automático): planeja e executa cada alvo.
  * @param {object} spec    Efeito da regra.
  * @param {object} ctx     { caster, item, dt, tokens, origin, label }
  */
 export async function applyAreaEffect(spec, ctx) {
-	const { caster, item, dt, tokens, origin } = ctx;
+	const { caster, tokens } = ctx;
 	const lines = [];
 	let totalDamage = 0;
-	const speaker = ChatMessage.getSpeaker({ actor: caster });
 	if (!tokens.length) return { lines: ["Nenhuma ameaça dentro da área."], totalDamage };
-
-	const damageRolls = spec.damage?.length ? await rollDamageParts(spec.damage, item, speaker) : [];
-
-	for (const token of tokens) {
-		const actor = token.actor;
-		const before = hpOf(actor);
-		const parts = [];
-		let passed = null;
-
-		if (spec.special === "grapple") {
-			parts.push(...await grappleTarget(spec, ctx, token, damageRolls));
-			lines.push(`${token.name}: ${parts.join(" ")}`);
-			continue;
-		}
-
-		if (spec.save) {
-			const result = await autoRoll(actor, spec.save.skill, dt);
-			passed = result ? result.success : false;
-			parts.push(`${result ? result.total : "—"} contra DT ${dt}: ${passed ? "resistiu" : "falhou"}.`);
-		}
-		if (spec.negateAfterPasses && ctx.counter) {
-			const key = `${origin.zoneId}:${token.id}`;
-			const streak = passed ? (ctx.counter.get(key) ?? 0) + 1 : 0;
-			ctx.counter.set(key, streak);
-			if (streak >= spec.negateAfterPasses) parts.push("Passou em testes seguidos: o efeito é anulado para ele.");
-		}
-
-		let dealt = 0;
-		const skipDamage = spec.damageOnFailOnly && passed;
-		if (damageRolls.length && !skipDamage) {
-			for (const entry of damageRolls) {
-				let amount = entry.amount;
-				if (passed && spec.save.success === "half") amount = Math.floor(amount / 2);
-				else if (passed && (spec.save.success === "none" || spec.save.success === "negates")) amount = 0;
-				if (amount <= 0) continue;
-				const result = await actor.applyDamage(amount, { damageType: entry.type });
-				dealt += result.finalDamage ?? 0;
-				if (result.finalDamage === 0 && result.blocked > 0) parts.push(`Imune/resistente a ${damageLabel(entry.type)} (bloqueou ${result.blocked}).`);
-			}
-			const full = damageRolls.reduce((sum, entry) => sum + entry.amount, 0);
-			const reduced = passed && ["none", "negates"].includes(spec.save.success);
-			const mode = passed && spec.save.success === "half" ? "pela metade" : "total";
-			parts.push(reduced ? "Sem dano." : `Dano ${mode}: ${dealt} PV (rolado ${full}).`);
-		} else if (skipDamage) {
-			parts.push("Sem dano.");
-		}
-		totalDamage += dealt;
-
-		const conditions = passed === true ? spec.onSuccess : spec.onFail;
-		const applied = [];
-		for (const cond of spec.save ? (conditions ?? []) : [...(spec.onFail ?? []), ...(spec.onSuccess ?? [])].filter((c, i, all) => all.findIndex((x) => (x.key ?? x.label) === (c.key ?? c.label)) === i)) {
-			const result = await applyCondition(actor, cond, origin);
-			if (result) applied.push(result.name);
-		}
-		if (applied.length) parts.push(`Condição: ${applied.join(", ")}.`);
-
-		if (spec.special === "killAtZero" && dealt > 0 && hpOf(actor) <= 0) {
-			const kill = await autoRoll(actor, FORT_SKILL, dt);
-			if (kill && !kill.success) {
-				await actor.toggleStatusEffect?.("dead", { active: true });
-				parts.push("Reduzido a 0 PV, falhou em Fortitude: reduzido a cinzas (morre).");
-			} else parts.push("Reduzido a 0 PV, mas passou em Fortitude: não vira cinzas.");
-		}
-		if (spec.special === "vulnerabilities") {
-			await applyVulnerabilities(actor, origin);
-			parts.push("Vulnerável a dano balístico, de corte, de impacto e de perfuração enquanto estiver na área.");
-		}
-		lines.push(`${token.name}: ${parts.join(" ") || "afetado."} (PV ${before} → ${hpOf(actor)})`);
+	const { rows } = await planAreaEffect(spec, { ...ctx, extraTokens: [] });
+	const applied = [];
+	for (const row of rows) {
+		const result = await executeAreaRow(spec, ctx, row);
+		lines.push(...result.lines);
+		totalDamage += result.dealt;
+		// o que foi feito fica guardado para o Mestre poder desfazer (carta do ritual em alvo escolhido)
+		if (result.ok) applied.push(markApplied(row, { dealt: result.dealt, hpBefore: result.hpBefore, effectIds: result.effectIds, lines: result.lines }));
 	}
 	if (spec.special === "tempPvFromDamage") lines.push(`${caster.name} recebe ${totalDamage} PV temporários até o fim da cena (anote na ficha).`);
-	return { lines, totalDamage };
+	return { lines, totalDamage, applied };
 }
 
 const FORT_SKILL = "resilience";
@@ -259,11 +340,11 @@ function originOf(info, item) {
  * @param {object} rule       Regra da forma
  * @returns {Promise<string[]>} linhas para a carta do chat
  */
-export async function resolveAreaCast(cast, rule) {
+export async function resolveAreaCast(cast, rule, { damageRolls = null } = {}) {
 	const caster = game.actors.get(cast.actorId);
 	const item = caster?.items.get(cast.itemId);
 	if (!caster || !item) throw new Error("Agente ou ritual não encontrado.");
-	const dt = Number(caster.system.ritual?.DT);
+	const dt = Number(caster.system.ritual?.DT) + (Number(cast.dtBonus) || 0);
 	const template = cast.templateId ? canvas.scene?.regions.get(cast.templateId) : null;
 	const lines = [];
 
@@ -287,8 +368,18 @@ export async function resolveAreaCast(cast, rule) {
 
 	if (rule.narrative) lines.push(rule.narrative);
 	if (rule.onCast) {
-		const report = await applyAreaEffect(rule.onCast, { caster, item, dt, tokens, origin, counter: counters });
+		// Manual (padrão): a área é resolvida e o Mestre aplica no painel; automático: aplica na hora (ritual-area-panel.mjs)
+		const { resolveAreaEffect } = await import("./ritual-area-panel.mjs");
+		const extraTokens = template && !rule.chosen ? tokensInside(template, { enemiesOnly: false }).filter((token) => !isEnemy(token) && token.actor?.type === "agent") : [];
+		const report = await resolveAreaEffect(rule.onCast, { caster, item, dt, tokens, extraTokens, origin, counter: counters, damageRolls }, { kind: "onCast", formId: rule.formId, choiceId: rule.choiceId, title: "resolução da área", auto: !rule.area });
 		lines.push(...report.lines);
+		// só há painel quando alguém foi afetado
+		if (report.mode === "manual" && report.messageId) {
+			lines.manual = true;
+			lines.panelMessageId = report.messageId;
+		}
+		if (report.mode === "auto" && !rule.area && report.applied?.length) lines.applied = report.applied;
+		lines.damageRows = report.mode === "manual" ? report.rows : report.applied;
 	}
 	if (rule.tick) lines.push(`Zona ativa: ${rule.tick.when === "casterTurn" ? "repete no início de cada turno de quem conjurou" : "repete no início do turno de cada criatura dentro da área"}${rule.tick.rounds ? ` por ${rule.tick.rounds} rodadas` : ""}.`);
 	if (rule.exit) lines.push("Quem tentar sair da área sofre o efeito de saída (resistência automática).");
@@ -317,11 +408,14 @@ async function tickZone(template, info, combatant, combat) {
 	}
 	if (!tokens.length) return debug("ninguém na área");
 	const origin = originOf(info, item);
-	const report = await applyAreaEffect(rule.tick, { caster, item, dt: info.dt, tokens, origin, counter: counters });
-	await postReport(caster, item, `início do turno de ${combatant.name} (rodada ${combat.round})`, report.lines);
+	const { resolveAreaEffect } = await import("./ritual-area-panel.mjs");
+	const title = `início do turno de ${combatant.name} (rodada ${combat.round})`;
+	const extraTokens = rule.tick.when === "casterTurn" ? tokensInside(template, { enemiesOnly: false }).filter((token) => !isEnemy(token) && token.actor?.type === "agent") : [];
+	const report = await resolveAreaEffect(rule.tick, { caster, item, dt: info.dt, tokens, extraTokens, origin, counter: counters }, { kind: "tick", formId: info.formId, choiceId: info.choiceId, title });
+	if (report.mode === "auto") await postReport(caster, item, title, report.lines);
 }
 
-async function removeZone(template) {
+export async function removeZone(template) {
 	const info = zoneInfo(template);
 	const scene = template.parent;
 	await template.delete();
@@ -550,13 +644,17 @@ async function checkExit(tokenDoc, options) {
 		if (!rule?.exit) continue;
 		if (!regionContains(template, from) || regionContains(template, to)) continue;
 		const origin = originOf(info, item);
-		const report = await applyAreaEffect(rule.exit, { caster, item, dt: info.dt, tokens: [token], origin, counter: counters });
-		const resisted = /resistiu/.test(report.lines.join(" "));
+		const { resolveAreaEffect } = await import("./ritual-area-panel.mjs");
+		const title = `${token.name} tenta sair da área`;
+		const report = await resolveAreaEffect(rule.exit, { caster, item, dt: info.dt, tokens: [token], extraTokens: [], origin, counter: counters }, { kind: "exit", formId: info.formId, choiceId: info.choiceId, title });
+		// o dano da saída pode esperar o Mestre (painel); a resistência decide na hora se a criatura consegue sair
+		const resisted = report.mode === "manual" ? Boolean(report.rows?.[0]?.save?.passed) : /resistiu/.test(report.lines.join(" "));
+		const lines = report.mode === "auto" ? report.lines : [`${token.name} tenta sair da área (o dano está no painel do Mestre).`];
 		if (!resisted) {
 			await tokenDoc.update({ x: tokenDoc.x - (to.x - from.x), y: tokenDoc.y - (to.y - from.y) }, { animate: false, teleport: true, ritualBounce: true });
 			await applyCondition(token.actor, { label: "Sem ação de movimento (Purgatório)", rounds: 1 }, origin);
-			report.lines.push("A dor o impede de sair: volta para dentro da área e perde a ação de movimento.");
-		} else report.lines.push("Consegue sair da área.");
-		await postReport(caster, item, `${token.name} tenta sair da área`, report.lines);
+			lines.push("A dor o impede de sair: volta para dentro da área e perde a ação de movimento.");
+		} else lines.push("Consegue sair da área.");
+		await postReport(caster, item, title, lines);
 	}
 }

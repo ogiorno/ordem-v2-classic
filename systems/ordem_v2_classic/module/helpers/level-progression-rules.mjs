@@ -84,3 +84,21 @@ export function findOriginPower(originName, originDescription, powerNames) {
 	const text = normalizeName(stripHtml(originDescription));
 	return powerNames.find((n) => text.includes(normalizeName(n))) ?? null;
 }
+
+/**
+ * Habilidades concedidas automaticamente que ficaram repetidas na ficha (mesmo nome e mesma origem da concessão).
+ * Mantém a primeira e devolve os ids das demais, para serem removidos.
+ * @param {{id: string, name: string, granted?: {source?: string}|null}[]} items
+ * @returns {string[]}
+ */
+export function duplicateGrantIds(items) {
+	const seen = new Set();
+	const extra = [];
+	for (const item of items) {
+		if (!item.granted) continue;
+		const key = `${item.granted.source ?? ""}|${normalizeName(item.name)}`;
+		if (seen.has(key)) extra.push(item.id);
+		else seen.add(key);
+	}
+	return extra;
+}

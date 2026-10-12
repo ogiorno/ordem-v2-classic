@@ -5,6 +5,7 @@
 import { featuresBetween, isLevelUp, costUnit, isPossessedPath, possessionGain, resourceGains, shouldShowLevelUp, visibleGains } from "./level-up-rules.mjs";
 import { newAbilitiesBetween } from "./level-progression.mjs";
 import { canAnimate, playLevelUpAnimation } from "./level-up-motion.mjs";
+import { chooseGradeRaises, resolvePending, trainingView } from "./skill-training.mjs";
 
 const RESOURCE_ICON = { PV: "fa-heart", PE: "fa-bolt", PD: "fa-shield-halved", SAN: "fa-brain", PP: "fa-ghost" };
 const esc = (text) => foundry.utils.escapeHTML(String(text ?? ""));
@@ -35,6 +36,38 @@ function abilityLine(ability) {
 		<img src="${esc(ability.img)}" alt="">
 		<div><b>${title}</b><p>${esc(ability.summary)}</p></div>
 	</li>`;
+}
+
+/** Botão "Escolher ritual" / "Ver poderes" (GR-07): fecha a tela e abre o Grimório no personagem, já em "Para mim". */
+function addGrimoireButton(el, actor) {
+	const grimoire = game.ordemparanormal?.grimoire;
+	if (!grimoire || !game.settings.get("ordem_v2_classic", "grimoireEnabled")) return;
+	const isCaster = actor.itemTypes.ritual.length > 0 || /ocultista/i.test(actor.itemTypes.class?.[0]?.name ?? "");
+	const button = document.createElement("button");
+	button.type = "button";
+	button.className = "op-lu-grimoire";
+	button.innerHTML = `<i class="fa-solid fa-book-skull"></i> ${esc(t(isCaster ? "op.grimoire.levelUpRituals" : "op.grimoire.levelUpPowers"))}`;
+	button.addEventListener("click", () => {
+		closeLevelUp();
+		grimoire.open({ actor, tab: isCaster ? "ritual" : "power", forMe: true });
+	});
+	el.querySelector("footer")?.prepend(button);
+}
+
+/** Botão "Escolher perícias": vagas novas (Intelecto), escolhas pendentes e Grau de Treinamento (NEX 35% e 70%). */
+function addTrainingButton(el, actor) {
+	const view = trainingView(actor);
+	if (!view || !(view.hasPending || view.freeRaise)) return;
+	const button = document.createElement("button");
+	button.type = "button";
+	button.className = "op-lu-grimoire op-lu-training";
+	button.innerHTML = `<i class="fa-solid fa-graduation-cap"></i> Escolher perícias`;
+	button.addEventListener("click", async () => {
+		closeLevelUp();
+		await resolvePending(actor);
+		await chooseGradeRaises(actor);
+	});
+	el.querySelector("footer")?.prepend(button);
 }
 
 /** Monta o HTML da tela (separado para poder ser testado). */
@@ -105,6 +138,12 @@ export async function showLevelUpScreen(actor, { from, to, before, withoutSanity
 	const el = document.createElement("div");
 	el.className = "op-levelup-overlay";
 	el.innerHTML = buildLevelUpHTML({ name: actor.name, img: actor.img, from, to, gains, perRound, ppLimit, features, abilities, className, unit: costUnit(withoutSanity) });
+	try {
+		addGrimoireButton(el, actor);
+		addTrainingButton(el, actor);
+	} catch (error) {
+		console.warn("Grimório: botão da tela de nível indisponível", error);
+	}
 	const animate = canAnimate();
 	if (animate) el.classList.add("op-lu-motion");
 	document.body.append(el);

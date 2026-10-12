@@ -56,7 +56,7 @@ export function areaTemplateData(item, rule = null) {
  * roda do mouse gira, clique direito ou Esc cancela.
  * Devolve `{ template, tokenIds }` (tokens dentro da área, sem o conjurador) ou null se cancelou.
  */
-export async function placeAreaTemplate(actor, item, rule = null, { range = null } = {}) {
+export async function placeAreaTemplate(actor, item, rule = null, { range = null, banner = null } = {}) {
 	const base = areaTemplateData(item, rule);
 	if (!base || !canvas.scene) return null;
 	const sourceToken = actor.getActiveTokens().find((token) => token.document.parent?.id === canvas.scene.id);
@@ -70,10 +70,19 @@ export async function placeAreaTemplate(actor, item, rule = null, { range = null
 	canvas.templates.preview.addChild(preview);
 	await preview.draw();
 	// Área centrada no conjurador (ex.: emanação, explosão pessoal): fica no lugar dele, sem clique.
-	const atCaster = rule?.area?.center === "caster" && sourceToken;
+	// Alcance pessoal com área (explosão, esfera ao redor de você) também nasce no conjurador, como no livro
+	const atCaster = (rule?.area?.center === "caster" || range?.kind === "personal") && sourceToken;
+	// Barra flutuante da mira (FC-41): ritual, custo e como confirmar ou cancelar; sai quando a área é colocada ou cancelada.
+	let bannerNode = null;
 	if (!atCaster) {
 		canvas.templates.activate();
-		ui.notifications.info("Clique no mapa para colocar a área. Roda do mouse gira; botão direito ou Esc cancela.");
+		if (banner) {
+			bannerNode = document.createElement("div");
+			bannerNode.className = "ritual-area-banner";
+			bannerNode.setAttribute("role", "status");
+			bannerNode.textContent = banner;
+			document.body.appendChild(bannerNode);
+		} else ui.notifications.info("Clique no mapa para colocar a área. Roda do mouse gira; botão direito ou Esc cancela.");
 	}
 
 	const canvasEl = canvas.app.canvas ?? canvas.app.view;
@@ -94,6 +103,8 @@ export async function placeAreaTemplate(actor, item, rule = null, { range = null
 			canvasEl.removeEventListener("wheel", onWheel, true);
 			canvasEl.removeEventListener("contextmenu", onContext, true);
 			document.removeEventListener("keydown", onKey, true);
+			delete canvasEl.dataset.placingArea;
+			bannerNode?.remove();
 			resolve(result);
 		};
 		const onMove = (event) => {
@@ -102,7 +113,7 @@ export async function placeAreaTemplate(actor, item, rule = null, { range = null
 			redraw();
 		};
 		const onDown = (event) => {
-			if (event.button !== 0) return;
+				if (event.button !== 0) return;
 			event.preventDefault();
 			event.stopImmediatePropagation();
 			const clicked = point(event);
@@ -118,7 +129,7 @@ export async function placeAreaTemplate(actor, item, rule = null, { range = null
 					h: Math.ceil((sourceToken.document.y + sourceToken.document.height * size - 1) / size) * size - y0,
 				};
 				const check = validateAreaPlacement({ range, caster, point: { x: doc.x, y: doc.y }, pxPerMeter: canvas.dimensions.size / canvas.dimensions.distance });
-				if (!check.ok) return ui.notifications.warn(check.reason);
+					if (!check.ok) return ui.notifications.warn(check.reason);
 			}
 			finish(true);
 		};
@@ -145,6 +156,7 @@ export async function placeAreaTemplate(actor, item, rule = null, { range = null
 		canvasEl.addEventListener("wheel", onWheel, { capture: true, passive: false });
 		canvasEl.addEventListener("contextmenu", onContext, true);
 		document.addEventListener("keydown", onKey, true);
+		canvasEl.dataset.placingArea = "true"; // a mira está pronta para receber o clique (usado pelos testes ao vivo)
 	});
 
 	const data = doc.toObject();

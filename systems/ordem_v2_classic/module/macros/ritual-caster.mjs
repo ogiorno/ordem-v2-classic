@@ -1,4 +1,5 @@
 import { gmNotice } from "../helpers/gm-notice.mjs";
+import { castRequirements } from "../helpers/affinity.mjs";
 import {
 	inspectRitualResource,
 	ritualBaseCost,
@@ -11,13 +12,25 @@ import {
 	validateRitualCast,
 } from "./ritual-caster-logic.mjs";
 import { areaTemplateData, placeAreaTemplate } from "./ritual-area.mjs";
-import { ritualRange, ritualTargets, validateTargetSelection } from "./ritual-targeting.mjs";
+import { rectGap, ritualRange, ritualTargets, validateTargetSelection } from "./ritual-targeting.mjs";
 import { hasConditionProp } from "../helpers/conditions.mjs";
 import { areaChoicesFor, areaRuleFor } from "./ritual-area-rules.mjs";
-import { registerAreaHooks, resolveAreaCast, setRuleResolver } from "./ritual-area-engine.mjs";
+import { damageLabel, registerAreaHooks, resolveAreaCast, setRuleResolver, undoAreaRow } from "./ritual-area-engine.mjs";
+import { isWeaponCurseRitual } from "../helpers/weapon-curse.mjs";
+import { ritualAnimationName } from "../integrations/ritual-animations.mjs";
+import { applyWeaponCurse } from "../helpers/weapon-curse-runtime.mjs";
+import { FLOW_SETTING, flowSetting } from "../helpers/ritual-flow-settings.mjs";
+import { catalystOptions, consumeCatalyst, empowerDamageParts, planCatalyst } from "../helpers/paranormal-items.mjs";
+import { addOneDie } from "../helpers/paranormal-item-rules.mjs";
+import { MODIFIER, classifyRitual } from "./ritual-profiles.mjs";
+import { canEndRitual, canSwapTarget, cardTone, summaryLine } from "./ritual-flow-logic.mjs";
+import {
+	activeSum, chips, damageButtonLabel, damageGate, damageView, effectSentence, extractDice, resultBanner, rollBreakdown, testBlocks, damageTypeIcon, costNote,
+} from "./ritual-card-view.mjs";
 
 /** Liga os gatilhos das zonas de ritual (início de turno, saída da área). Chamado uma vez ao carregar o mundo. */
 export function registerRitualAreaHooks() {
+	registerRitualChatHooks();
 	setRuleResolver(areaRuleFor);
 	registerAreaHooks();
 }
@@ -40,7 +53,7 @@ const LOCALIZED = (key, fallback) => {
 	return label === key ? fallback : label;
 };
 
-function escapeHtml(value) {
+export function escapeHtml(value) {
 	return String(value ?? "").replace(/[&<>"']/g, (character) => {
 		const entities = { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" };
 		return entities[character];
@@ -93,7 +106,7 @@ const RITUAL_PT_BR_CHOICES = {
 	dropdownAreaType: { radius: "Raio", diameter: "Diâmetro" },
 };
 
-function localizeChoice(group, value, fallback = "—") {
+export function localizeChoice(group, value, fallback = "—") {
 	if (!value) return fallback;
 	const portuguese = RITUAL_PT_BR_CHOICES[group]?.[value];
 	if (portuguese) return portuguese;
@@ -101,7 +114,7 @@ function localizeChoice(group, value, fallback = "—") {
 	return key ? LOCALIZED(key, value) : value;
 }
 
-function elementInfo(item) {
+export function elementInfo(item) {
 	const key = item.system.element;
 	const known = RITUAL_ELEMENTS[key];
 	return known ?? { label: key || "Sem afinidade", color: "#8b8490", iconIndex: 0 };
@@ -124,7 +137,7 @@ export function getRitualForms(item) {
 	return forms;
 }
 
-function ritualImage(item, info, size = 48) {
+export function ritualImage(item, info, size = 48) {
 	const image = item.img && item.img !== "icons/svg/mystery-man.svg" ? item.img : null;
 	if (image) return `<img class="ritual-caster-icon" alt="" src="${escapeHtml(image)}" style="--ritual-accent:${info.color};box-sizing:border-box;width:${size}px;height:${size}px;object-fit:cover;border:2px solid ${info.color};padding:2px;border-radius:12px;background:rgba(12,16,29,.9);box-shadow:0 0 14px ${info.color}66;">`;
 	const offset = 20 - info.iconIndex * 60;
@@ -173,6 +186,9 @@ function getFormSelection(form, actor, itemsById, withoutSanity) {
 	const resourceState = inspectRitualResource(actor, withoutSanity);
 	if (!resourceState.ok) return { ok: false, reason: "Ative a regra global ‘Jogando sem Sanidade’ para usar PD como recurso de conjuração nesta macro." };
 	const resource = resourceState.resource;
+	// Afinidade exigida pela forma (impede) e componentes do elemento (só avisa)
+	const requirements = castRequirements(actor, item.system.element, formId === "basic" ? null : chosenForm.requiredAffinity);
+	if (!requirements.affinity.ok) return { ok: false, reason: `Esta forma exige afinidade com ${requirements.affinity.label}.`, item, circle, cost };
 	const validation = validateRitualCast({
 		cost,
 		balance: resource.value,
@@ -195,8 +211,9 @@ function getFormSelection(form, actor, itemsById, withoutSanity) {
 	const effectText = formId === "basic"
 		? String(item.system.description ?? "").split(/\b(?:Discente|Verdadeiro)\s*\(\s*\+\s*\d+\s*PE\s*\)\s*:/i)[0]
 		: chosenForm.body;
-	const effect = ritualEffectFromText(effectText);
-	return { ok: true, item, formId, circle, cost, targetIds, effect };
+	// Amaldiçoar Arma não causa dano ao alvo: o +Nd6 vai para a arma (ver weapon-curse-runtime.mjs).
+	const effect = isWeaponCurseRitual(item) ? null : ritualEffectFromText(effectText);
+	return { ok: true, item, formId, circle, cost, targetIds, effect, componentNote: requirements.components.note };
 }
 
 function createPickerContent(actor, items, tokens) {
@@ -262,6 +279,13 @@ function createPickerContent(actor, items, tokens) {
 	</div>`;
 }
 
+/** Campo "Catalisador": só aparece quando a ficha tem catalisador empunhado do elemento do ritual. */
+function catalystSelectHtml(actor, item) {
+	const options = catalystOptions(actor, item.system.element);
+	if (!options.length) return "";
+	return `<div class="form-group ritual-catalyst" style="margin:6px 0"><label for="ritual-catalyst">Catalisador</label><select id="ritual-catalyst" name="catalystId"><option value="">Nenhum</option>${options.map((option) => `<option value="${escapeHtml(option.id)}">${escapeHtml(option.label)}</option>`).join("")}</select></div>`;
+}
+
 function renderRitualDetails(section, item, actor) {
 	const info = elementInfo(item);
 	const forms = getRitualForms(item);
@@ -302,6 +326,7 @@ function renderRitualDetails(section, item, actor) {
 		</div>
 		<section class="ritual-description-visible" aria-label="Descrição do ritual" style="margin:6px 0;padding:9px;border:1px solid #51405a;border-radius:9px;background:rgba(11,15,27,.58);"><strong style="color:#f4cf82">Descrição do ritual</strong><p style="margin:5px 0 0;line-height:1.45">${baseDescription || "Sem descrição cadastrada."}</p></section>
 		<fieldset class="ritual-form-list" style="margin:6px 0;padding:0;border:0;"><legend>Escolha o efeito</legend>${formCards}</fieldset>
+		${catalystSelectHtml(actor, item)}
 		<p class="ritual-cast-summary" style="margin-bottom:0;font-weight:600"></p>`;
 
 	const form = section.closest("form");
@@ -312,6 +337,7 @@ function renderRitualDetails(section, item, actor) {
 		const button = form.querySelector('button[data-action="conjure"]');
 		const targetCount = getSelectedTargetIds().length;
 		summary.textContent = selected.ok ? `${form.elements.ritualForm.value === "basic" ? "Básico" : form.elements.ritualForm.value === "student" ? "Discente" : "Verdadeiro"} · ${selected.circle}º círculo · ${selected.cost} PD · saldo após pagar: ${actor.system.PD.value - selected.cost} PD${targetCount ? ` · alvos marcados: ${targetCount}` : " · sem alvo marcado; resolução manual conforme a descrição"}` : selected.reason ?? "Revise as opções do ritual.";
+		if (selected.ok && selected.componentNote) summary.textContent += ` · ${selected.componentNote}`;
 		button.disabled = !selected.ok;
 	};
 	section._refresh = updateFormNote;
@@ -351,6 +377,7 @@ function renderPicker(actor, items, tokens, preferredItemId = null) {
 						targetIds: selection.targetIds,
 						concentration: form.elements.concentration?.value ?? "none",
 						damageDt: Number(form.elements.damageDt?.value) || null,
+						catalystId: form.elements.catalystId?.value || null,
 					};
 				},
 			},
@@ -414,22 +441,23 @@ function getRoll(rolls) {
 	return Array.isArray(rolls) ? rolls[0] : rolls;
 }
 
-async function rollSkill(actor, skill, target) {
+/** `configure: false` rola direto (sem a janela de rolagem); `true` abre a janela do sistema (Ajustes → Configurar a rolagem). */
+async function rollSkill(actor, skill, target, { configure = true, whisper = false, effectElement = "" } = {}) {
 	const rolls = await actor.rollSkill(
-		{ skill, rolls: [{ options: { target } }] },
-		{},
+		{ skill, effectElement, rolls: [{ options: { target } }] },
+		configure ? {} : { configure: false },
 		{ create: false },
 	);
 	const roll = getRoll(rolls);
 	// create:false devolve só o D20Roll; postamos a carta normal de perícia (com "SUCESSO/FALHA (DT)") no chat
-	if (roll && Number.isFinite(Number(roll.total))) await roll.toMessage({ speaker: ChatMessage.getSpeaker({ actor }) });
+	if (roll && Number.isFinite(Number(roll.total))) await roll.toMessage({ speaker: ChatMessage.getSpeaker({ actor }) }, whisper ? { rollMode: CONST.DICE_ROLL_MODES.PRIVATE } : {});
 	return roll;
 }
 
 function rollOutcome(roll, target) {
 	if (!roll || !Number.isFinite(Number(roll.total))) return { status: "cancelled", total: null, margin: null };
 	const total = Number(roll.total);
-	return { status: total >= target ? "success" : "failure", total, margin: total - target };
+	return { status: total >= target ? "success" : "failure", total, margin: total - target, breakdown: rollBreakdown(roll) };
 }
 
 async function spendPd(actor, amount) {
@@ -460,52 +488,211 @@ function getConcentrationDt(selection) {
 	return null;
 }
 
-function buildChatCard(actor, item, selection, outcome) {
+const SYSTEM_ID = "ordem_v2_classic";
+
+/** Botão da carta que só o conjurador (dono do Agente) e o Mestre enxergam; o clique também confere a permissão. */
+function ownerButton(action, actor, icon, label, extra = "") {
+	return `<button type="button" data-action="${action}" data-owner-actor="${escapeHtml(actor.id)}"${extra}><i class="fa-solid ${icon}"></i> ${label}</button>`;
+}
+
+const grimoireOn = () => {
+	try { return Boolean(game.settings.get(SYSTEM_ID, "grimoireEnabled")); } catch { return false; }
+};
+
+const iconTag = (icon, extra = "") => `<i class="fa-solid fa-${icon}${extra ? ` ${extra}` : ""}" aria-hidden="true"></i>`;
+
+const gmIds = () => ChatMessage.getWhisperRecipients("GM").map((user) => user.id);
+
+/** Pastilhas dos dados: uma por dado, o maior verde, o 1 vermelho, o descartado apagado. */
+const chipsHtml = (chipList) => chipList.map((chip) => `<span class="rc2-die-chip" data-state="${chip.state}">${chip.value}</span>`).join("");
+
+/** Teste do conjurador: número grande, só o ícone ✔/✖ embaixo; tocar abre cada dado e o bônus. */
+function rollBlockHtml(block) {
+	const known = block.success !== null && block.success !== undefined;
+	const state = !known ? "none" : block.success ? "ok" : "bad";
+	const verdict = "";
+	if (block.total === null || block.total === undefined) return `<div class="rc2-test" data-state="${state}">${iconTag("dice-d20", "rc2-die")}<span class="rc2-test-text">${escapeHtml(block.text || "")}</span>${verdict}</div>`;
+	const breakdown = block.breakdown;
+	const crit = breakdown?.crit === "crit" ? '<span class="rc2-crit" title="20 natural">✦ 20 natural</span>' : breakdown?.crit === "fumble" ? '<span class="rc2-crit rc2-fumble" title="1 natural">☠ 1 natural</span>' : "";
+	const bonus = breakdown?.bonus ? `<span class="rc2-bonus">${breakdown.bonus < 0 ? "−" : "+"} ${Math.abs(breakdown.bonus)}</span>` : "";
+	const body = breakdown
+		? `<div class="rc2-roll-body"><span class="rc2-faces">d20</span>${chipsHtml(breakdown.dice)}${bonus}<span class="rc2-eq">= ${block.total}</span>${crit}</div>`
+		: `<div class="rc2-roll-body">${escapeHtml(block.text || "")}</div>`;
+	return `<details class="rc2-roll" data-state="${state}" data-kind="${block.kind}"><summary>
+		<span class="rc2-sum-main">${iconTag("dice-d20", "rc2-die")}<span class="rc2-total">${block.total}</span>${iconTag("chevron-down", "rc2-chevron")}</span>${verdict}<small class="rc2-label">${escapeHtml(block.label)}</small></summary>${body}</details>`;
+}
+
+/** Dano ou cura rolados na carta: o total e, aberto, cada dado por tipo de dano. */
+function damageBlockHtml(view) {
+	const healing = view.kind === "healing";
+	const groups = view.groups.map((group) => {
+		const dice = group.dice.map((term) => `<span class="rc2-faces">d${term.faces}</span>${chipsHtml(term.chips)}`).join("");
+		const flat = group.flat ? `<span class="rc2-bonus">${group.flat < 0 ? "−" : "+"} ${Math.abs(group.flat)}</span>` : "";
+		const label = group.type ? escapeHtml(damageLabel(group.type)) : "Total";
+		return `<div class="rc2-dmg-group"><span class="rc2-dmg-type">${group.type && !healing ? `${iconTag(damageTypeIcon(group.type))} ` : ""}${label}${group.formula ? ` <small>${escapeHtml(group.formula)}</small>` : ""}</span><div class="rc2-dmg-dice">${dice}${flat}<span class="rc2-eq">= ${group.subtotal}</span></div></div>`;
+	}).join("");
+	const types = [...new Set(view.groups.map((group) => group.type).filter(Boolean))];
+	const typedLabel = types.length ? `dano ${types.map((type) => `${iconTag(damageTypeIcon(type))} ${escapeHtml(damageLabel(type))}`).join(" · ")}` : "dano rolado";
+	return `<details class="rc2-dmg" data-kind="${view.kind}"><summary>${iconTag(healing ? "heart-pulse" : damageTypeIcon(view.groups.length === 1 ? view.groups[0].type : ""), "rc2-dmg-icon")}<strong class="rc2-amount">${healing ? "+" : ""}${view.total} PV</strong>${iconTag("chevron-down", "rc2-chevron")}<small class="rc2-label">${healing ? "cura" : typedLabel}</small></summary><div class="rc2-roll-body rc2-dmg-body">${groups}</div></details>`;
+}
+
+export function buildChatCard(actor, item, selection, outcome) {
 	const info = elementInfo(item);
-	const targetNames = selection.targetIds.map((id) => canvas.tokens.get(id)?.name ?? "Alvo removido da cena");
+	const swapNames = (outcome.swap?.created ?? []).map((entry) => entry.actorName);
+	const targetNames = swapNames.length ? swapNames : (selection.targetIds ?? []).map((id) => canvas.tokens.get(id)?.name ?? "Alvo removido da cena");
 	const selectedCircle = Number(selection.circle ?? item.system.circle);
-	const tests = [];
-	if (outcome.concentration) tests.push(`<li><strong>Concentração, Vontade DT ${outcome.concentration.dt}:</strong> ${escapeHtml(outcome.concentration.text)}</li>`);
-	if (outcome.occultism) tests.push(`<li><strong>Teste de Ocultismo (Custo do Paranormal), DT ${outcome.occultism.dt}:</strong> ${escapeHtml(outcome.occultism.text)}</li>`);
-	for (const target of outcome.resistances ?? []) {
-		tests.push(`<li><strong>Resistência de ${escapeHtml(target.name)} (${escapeHtml(target.skill)}):</strong> ${escapeHtml(target.text)}</li>`);
-	}
-	const sanity = outcome.sanityNotes.map((note) => `<li>${escapeHtml(note)}</li>`).join("");
-	const effects = (outcome.effects ?? []).map((effect) => `<li>${escapeHtml(effect)}</li>`).join("");
-	const areaLines = (outcome.areaLines ?? []).map((line) => `<li>${escapeHtml(line)}</li>`).join("");
-	const statusText = outcome.awaitingArea
-		? "Testes do conjurador feitos. Falta escolher a área: clique em Selecionar área, posicione e clique no mapa."
-		: outcome.awaitingTargets
-		? "Testes do conjurador feitos, mas nenhum alvo foi marcado. Marque o(s) alvo(s) no mapa (tecla T sobre o token) e clique em Selecionar alvos e rolar dano."
-		: outcome.effectsPending
-		? "Testes do conjurador feitos. Aguardando o Mestre aplicar resistência e efeitos nos alvos."
-		: outcome.pending
-		? "Ritual preparado. Clique no botão para rolar o teste e resolver o efeito. O custo de conjuração já foi pago."
-		: outcome.interrupted
-			? "Ritual interrompido: o efeito não acontece. O custo de conjuração foi pago."
-			: outcome.areaLines?.length
-				? "Ritual conjurado. A área foi resolvida automaticamente (resistência, dano e condições abaixo)."
-			: outcome.effects?.length
-				? "Ritual conjurado e efeito aplicado."
-				: "Ritual conjurado. O mestre aplica o efeito conforme a descrição.";
-	const description = foundry.utils.cleanHTML(String(item.system.chatDescription || item.system.description || ""));
-	return `<article class="ritual-cast-card" style="border:1px solid ${info.color};border-radius:10px;padding:12px;background:rgba(0,0,0,.08);">
-		<header style="display:flex;align-items:center;gap:10px;border-bottom:1px solid ${info.color};padding-bottom:8px;margin-bottom:8px;">
-			${ritualImage(item, info)}<div><h3 style="margin:0">${escapeHtml(item.name)}</h3><small>${escapeHtml(actor.name)} · ${selectedCircle}º círculo escolhido · ${escapeHtml(info.label)}</small></div>
+	const waiting = Boolean(outcome.awaitingCurse || outcome.awaitingArea || outcome.awaitingTargets || outcome.effectsPending || outcome.pending);
+	const tone = cardTone({ pending: waiting, interrupted: outcome.interrupted, occultismFailed: outcome.occultism?.success === false });
+	const toneColor = tone === "failure" ? "#b3262d" : tone === "pending" ? "#8b8490" : info.color;
+	const banner = resultBanner(outcome);
+	const extra = outcome.extra?.applied ? Number(outcome.extra.appliedAmount) || 0 : 0;
+	const fichas = chips({ cost: selection.cost, extra, dt: outcome.occultism?.dt, concentrationDt: outcome.concentration?.dt, targetNames }).map((chip) => `<span class="rc2-chip" data-kind="${chip.kind}"${chip.title ? ` title="${escapeHtml(chip.title)}"` : ""}>${iconTag(chip.icon)} ${escapeHtml(chip.text)}${chip.extra ? ` <b class="rc2-extra">${chip.extra}</b>` : ""}</span>`).join("");
+	const tests = testBlocks(outcome).map(rollBlockHtml).join("");
+	const view = damageView(outcome.damageRoll);
+	const damageHtml = view ? damageBlockHtml(view) : "";
+	const baseText = ritualDescriptionText(item.system.description).split(/\b(?:Discente|Verdadeiro)\s*\(\s*\+\s*\d+\s*PE\s*\)\s*:/i)[0];
+	const effectLine = effectSentence({ effects: outcome.effects ?? [], baseText });
+	const summary = summaryLine({
+		casterName: actor.name, ritualName: item.name, targetNames, cost: selection.cost,
+		occultism: outcome.occultism?.total !== undefined ? { total: outcome.occultism.total, dt: outcome.occultism.dt, success: outcome.occultism.success } : null,
+		interrupted: outcome.interrupted,
+	});
+	// a frase do efeito já mostra o primeiro efeito inteiro; os Detalhes listam só o que sobra
+	const shown = (outcome.effects ?? []).find((line) => String(line).trim());
+	const hidden = shown && effectLine === shown ? shown : null;
+	const effects = [...(outcome.effects ?? []).filter((line) => line !== hidden), ...(outcome.swapLog ?? [])].map((effect) => `<li>${escapeHtml(effect)}</li>`).join("");
+	const sanity = (outcome.sanityNotes ?? []).filter((note) => !/sanidade|\bSAN\b/i.test(note)).map((note) => `<li>${escapeHtml(note)}</li>`).join("");
+	const swapButton = outcome.swap?.created?.length && !outcome.swap.closed ? `<p>${ownerButton("ritual-swap-target", actor, "fa-rotate", "Trocar alvo")}</p>` : "";
+	const endButton = outcome.active && !outcome.active.ended ? `<p>${ownerButton("ritual-end", actor, "fa-stop", "Encerrar", ` data-effect-uuid="${escapeHtml(outcome.active.effectUuid)}"`)}</p>` : "";
+	const damageButton = outcome.awaitingDamage ? `<p>${ownerButton("ritual-roll-damage", actor, "fa-burst", damageButtonLabel(outcome.awaitingDamage))}</p>` : "";
+	const panelNote = outcome.areaManual && outcome.panelMessageId ? '<p class="ritual-gm-only"><em>Painel de resolução enviado ao Mestre.</em></p>' : "";
+	const link = grimoireOn();
+	const name = link
+		? `<button type="button" class="rc2-name" data-action="ritual-open-grimoire" data-ritual-name="${escapeHtml(item.name)}" data-form="${escapeHtml(selection.formId ?? "basic")}" aria-label="Abrir ${escapeHtml(item.name)} no Grimório" title="Abrir no Grimório">${escapeHtml(item.name)} ${iconTag("arrow-up-right-from-square", "rc2-link-icon")}</button>`
+		: `<span class="rc2-name">${escapeHtml(item.name)}</span>`;
+	const grimoireButton = link ? `<button type="button" class="rc2-grimoire" data-action="ritual-open-grimoire" data-ritual-name="${escapeHtml(item.name)}" data-form="${escapeHtml(selection.formId ?? "basic")}">${iconTag("book-open")} Ler no Grimório</button>` : "<span></span>";
+	const chosenCircle = selectedCircle > Number(item.system.circle) ? ` · ${selectedCircle}º círculo escolhido` : ` · ${selectedCircle}º círculo`;
+	const costLine = costNote({ cost: selection.cost, extra });
+	const hasDetails = costLine || effects || sanity;
+	return `<article class="ritual-cast-card ritual-tone-${tone}" data-tone="${tone}" aria-label="${escapeHtml(summary)}" style="--rc2-tone:${toneColor};">
+		<header class="rc2-head">
+			${ritualImage(item, info, 44)}<div class="rc2-head-text"><h3>${name}</h3><small>${escapeHtml(actor.name)}${chosenCircle} · ${escapeHtml(info.label)}</small></div>
 		</header>
-		<p><strong>${statusText}</strong></p>
-		<p><strong>Custo:</strong> ${selection.cost} PD${outcome.sanityPd ? ` (mais ${outcome.sanityPd} PD perdidos pela falha no teste)` : ""}. <strong>Execução:</strong> ${escapeHtml(localizeChoice("dropdownExecution", item.system.execution))}. <strong>Alcance:</strong> ${escapeHtml(localizeChoice("dropdownRange", item.system.range))}.</p>
-		${selection.areaNote ? `<p><em>${escapeHtml(selection.areaNote)}</em></p>` : ""}
-		${targetNames.length ? `<p><strong>Alvo(s):</strong> ${escapeHtml(targetNames.join(", "))}</p>` : ""}
-		${outcome.awaitingArea ? '<p><button type="button" data-action="ritual-area-place"><i class="fa-solid fa-draw-polygon"></i> Selecionar área</button></p>' : ""}
-		${outcome.awaitingTargets ? '<p><button type="button" data-action="ritual-area-roll"><i class="fa-solid fa-crosshairs"></i> Selecionar alvos e rolar dano</button></p>' : ""}
-		${outcome.pending ? '<button type="button" data-action="ritual-test"><i class="fa-solid fa-dice-d20"></i> Rolar teste do ritual</button>' : ""}
-		${tests.length ? `<h4>Testes</h4><ul>${tests.join("")}</ul>` : ""}
-		${effects ? `<h4>Efeitos aplicados</h4><ul>${effects}</ul>` : ""}
-		${areaLines ? `<h4>Ritual de área</h4><ul>${areaLines}</ul>` : ""}
-		${sanity ? `<h4>Consequências</h4><ul>${sanity}</ul>` : ""}
-		<details><summary>Descrição do ritual</summary>${description}</details>
+		${banner ? `<div class="rc2-banner" data-state="${banner.state}">${iconTag(banner.icon)}<div><strong>${escapeHtml(banner.label)}</strong><span>${escapeHtml(banner.text)}</span></div></div>` : ""}
+		${fichas ? `<div class="rc2-chips">${fichas}</div>` : ""}
+		${tests ? `<div class="rc2-tests">${tests}</div>` : ""}
+		${damageHtml}
+		${effectLine ? `<p class="rc2-effect">${escapeHtml(effectLine)}</p>` : ""}
+		${selection.areaNote ? `<p class="rc2-note"><em>${escapeHtml(selection.areaNote)}</em></p>` : ""}
+		${selection.catalystNote ? `<p class="rc2-note"><em>${escapeHtml(selection.catalystNote)}</em></p>` : ""}
+		<div class="rc2-actions">
+			${outcome.awaitingCurse ? '<p><button type="button" data-action="ritual-curse-self"><i class="fa-solid fa-user"></i> Aplicar em você</button> <button type="button" data-action="ritual-curse-target"><i class="fa-solid fa-crosshairs"></i> Selecionar alvo</button></p>' : ""}
+			${outcome.awaitingArea ? '<p><button type="button" data-action="ritual-area-place"><i class="fa-solid fa-draw-polygon"></i> Selecionar área</button></p>' : ""}
+			${outcome.awaitingTargets ? '<p><button type="button" data-action="ritual-area-roll"><i class="fa-solid fa-crosshairs"></i> Selecionar alvos e rolar dano</button></p>' : ""}
+			${outcome.pending ? '<button type="button" data-action="ritual-test"><i class="fa-solid fa-dice-d20"></i> Rolar teste do ritual</button>' : ""}
+			${damageButton}${swapButton}${endButton}${panelNote}
+		</div>
+		<footer class="rc2-foot">${grimoireButton}${hasDetails ? `<details class="ritual-card-details"><summary>Detalhes</summary>
+			${costLine ? `<p class="rc2-cost-note">${iconTag("droplet")} ${escapeHtml(costLine)}</p>` : ""}
+			${effects ? `<h4>Efeitos aplicados</h4><ul>${effects}</ul>` : ""}
+			${sanity ? `<h4>Consequências</h4><ul>${sanity}</ul>` : ""}
+		</details>` : ""}</footer>
 	</article>`;
+}
+
+/* -------------------------------------------- */
+/*  Mensagem das criaturas (só o Mestre)        */
+/* -------------------------------------------- */
+
+const SKILL_NAMES = { will: "Vontade", resilience: "Fortitude", reflexes: "Reflexos", fighting: "Luta" };
+
+/** Linhas da mensagem das criaturas a partir das linhas do motor de área (cada uma com `save`, `parts` e `applied`). */
+function creatureRowsFromEngine(rows = []) {
+	return rows.filter((row) => !["disabled", "ignored"].includes(row.state)).map((row) => ({
+		name: row.name, img: row.img ?? "", save: row.save ?? null, saveRule: row.saveRule ?? null,
+		parts: (row.parts ?? []).map((part) => ({ type: part.type, full: part.full, amount: part.amount })),
+		dealt: row.applied?.dealt ?? null, hpBefore: row.applied?.hpBefore ?? null, state: row.state === "applied" ? "applied" : "pending",
+		notes: [...(row.notes ?? []), ...(row.conditions ?? []).map((cond) => cond.label ?? cond.key).filter(Boolean)],
+	}));
+}
+
+function creatureRowHtml(row) {
+	const save = row.save
+		? `<span class="rc2-c-save" data-state="${row.save.passed ? "ok" : "bad"}">${escapeHtml(SKILL_NAMES[row.save.skill] ?? row.save.skill ?? "")} <b>${row.save.total ?? "—"}</b> vs ${row.save.dt} ${iconTag(row.save.passed ? "circle-check" : "circle-xmark")}</span>${row.save.breakdown ? `<details class="rc2-c-dice"><summary>dados</summary><div class="rc2-roll-body">${chipsHtml(row.save.breakdown.dice ?? [])}${row.save.breakdown.bonus ? `<span class="rc2-bonus">${row.save.breakdown.bonus < 0 ? "−" : "+"} ${Math.abs(row.save.breakdown.bonus)}</span>` : ""}</div></details>` : ""}`
+		: '<span class="rc2-c-save">sem resistência</span>';
+	const rolled = row.parts.reduce((total, part) => total + (Number(part.full ?? part.amount) || 0), 0);
+	const final = row.parts.reduce((total, part) => total + (Number(part.amount) || 0), 0);
+	const mode = row.save ? (row.save.passed ? (final < rolled ? "metade" : final === 0 ? "anulado" : "total") : "total") : "total";
+	const dmg = row.parts.length ? `<span class="rc2-c-dmg">${rolled !== final ? `rolou ${rolled} · ${mode} → ` : ""}<b>${row.dealt ?? final} PV</b>${Number.isFinite(Number(row.hpBefore)) ? ` · PV ${row.hpBefore} → ${Number(row.hpBefore) - (Number(row.dealt) || 0)}` : ""}</span>` : "";
+	const state = row.state === "applied" ? '<span class="rc2-state" data-state="applied">aplicado</span>' : '<span class="rc2-state" data-state="pending">pendente</span>';
+	return `<li class="rc2-creature"><img src="${escapeHtml(row.img)}" alt="" width="28" height="28"><div class="rc2-c-main"><strong>${escapeHtml(row.name)}</strong>${save}${dmg}${row.notes.length ? `<small>${row.notes.map(escapeHtml).join(" · ")}</small>` : ""}</div>${state}</li>`;
+}
+
+/** Posta (só ao Mestre) a mensagem das criaturas: resistências, dano final, PV e o botão Desfazer. Devolve o id. */
+async function postCreatureMessage(actor, item, cardMessageId, rows, { undo = false } = {}) {
+	if (!rows.length) return null;
+	const content = `<article class="ritual-creatures" data-card-id="${escapeHtml(cardMessageId)}">
+		<header class="rc2-c-head">${iconTag("skull")} <strong>${escapeHtml(item.name)}</strong> <small>· criaturas</small></header>
+		<ul class="rc2-creatures">${rows.map(creatureRowHtml).join("")}</ul>
+		${undo ? `<p class="rc2-c-undo"><button type="button" data-action="ritual-undo-hostile" data-card-id="${escapeHtml(cardMessageId)}"><i class="fa-solid fa-rotate-left"></i> Desfazer</button></p>` : ""}
+	</article>`;
+	const message = await ChatMessage.create({ content, speaker: ChatMessage.getSpeaker({ actor }), whisper: gmIds(), flags: { [SYSTEM_ID]: { ritualCreatures: { cardMessageId } } } });
+	return message?.id ?? null;
+}
+
+/* -------------------------------------------- */
+/*  Rolar o dano na carta                       */
+/* -------------------------------------------- */
+
+/** Rola cada parte do dano (ou a cura) e guarda os dados como dados simples na mensagem; nada vai para o chat à parte. */
+async function rollCardDamage(parts, kind) {
+	const rolled = [];
+	let total = 0;
+	for (const part of parts) {
+		const roll = await new Roll(part.formula).evaluate();
+		try { await game.dice3d?.showForRoll(roll, game.user, true); } catch { /* sem Dice So Nice: segue */ }
+		const dice = extractDice(roll);
+		const amount = Math.max(0, Math.floor(Number(roll.total)));
+		total += amount;
+		rolled.push({ type: part.type ?? "", formula: part.formula, total: amount, dice, flat: Number(roll.total) - activeSum(dice) });
+	}
+	return { kind, total, parts: rolled };
+}
+
+/** As partes de dano de um ritual: as do motor de área, ou a fórmula do efeito simples. */
+function damagePartsOf(item, cast) {
+	const rule = areaRuleFor(item, cast.formId, cast.choiceId);
+	if (rule?.onCast?.damage?.length) return { kind: "damage", parts: cast.extraDie ? empowerDamageParts(rule.onCast.damage) : rule.onCast.damage };
+	if (cast.effect?.formula) return { kind: cast.effect.kind === "healing" ? "healing" : "damage", parts: [{ formula: cast.effect.formula, type: "" }] };
+	return null;
+}
+
+/**
+ * Botão "Rolar dano" (ou "Rolar cura") da carta: quem conjurou ou o Mestre rola os dados na própria mensagem do ritual.
+ * Depois a resolução nas criaturas roda no cliente do Mestre (por socket quando quem clicou é jogador).
+ */
+export async function rollRitualDamage(messageId) {
+	const { message, cast, actor, item } = castOfMessage(messageId);
+	if (!message || !actor || !item) return ui.notifications.warn("Não encontrei o ritual desta carta.");
+	if (cast.status !== "needsDamage") return ui.notifications.info("O dano deste ritual já foi rolado.");
+	if (!game.user.isGM && !actor.isOwner) return ui.notifications.warn("Só o conjurador ou o Mestre rola o dano.");
+	const lock = `damage:${messageId}`;
+	if (spendingActorIds.has(lock)) return;
+	spendingActorIds.add(lock);
+	try {
+		const plan = damagePartsOf(item, cast);
+		if (!plan) return ui.notifications.warn("Este ritual não tem dano para rolar.");
+		const damageRoll = await rollCardDamage(plan.parts, plan.kind);
+		const outcome = { ...cast.outcome, damageRoll };
+		delete outcome.awaitingDamage;
+		const update = { ...cast, status: "effects", damageRequested: true, outcome };
+		await message.update({ content: buildChatCard(actor, item, cast, { ...outcome, effectsPending: true }) });
+		await message.setFlag(SYSTEM_ID, "ritualCast", update);
+	} finally {
+		spendingActorIds.delete(lock);
+	}
+	if (game.user.isGM) await resolvePendingCast(game.messages.get(messageId));
+	else game.socket.emit("system.ordem_v2_classic", { type: "ritualCastTest", messageId, userId: game.user.id });
 }
 
 const tokenRect = (token) => {
@@ -518,7 +705,7 @@ const tokenRect = (token) => {
 	return { id: token.id, name: token.name, x: x0, y: y0, w: x1 - x0, h: y1 - y0 };
 };
 
-function ritualFormBodyOf(item, formId) {
+export function ritualFormBodyOf(item, formId) {
 	return formId === "basic" ? "" : (ritualFormOptions(item)[formId]?.body ?? "");
 }
 
@@ -526,10 +713,10 @@ function ritualFormBodyOf(item, formId) {
  * Confere os alvos marcados contra o que o ritual pede (quantidade e alcance).
  * Sem informação de alcance vale curto; "toque" exige o espaço ao lado; "pessoal" não usa alvos.
  */
-export function checkRitualTargets(actor, item, formId, tokenIds) {
+export function checkRitualTargets(actor, item, formId, tokenIds, rangeKey = null) {
 	const body = ritualFormBodyOf(item, formId);
 	const targets = ritualTargets(item, body);
-	const range = ritualRange(item, body);
+	const range = rangeKey ? ritualRange({ system: { range: rangeKey } }) : ritualRange(item, body);
 	const casterToken = actor.getActiveTokens().find((token) => token.document.parent?.id === canvas.scene?.id);
 	if (!casterToken) return { ok: true, valid: tokenIds, problems: [], targets, range };
 	const selected = tokenIds.map((id) => canvas.tokens.get(id)).filter(Boolean).map(tokenRect);
@@ -537,11 +724,36 @@ export function checkRitualTargets(actor, item, formId, tokenIds) {
 	return { ...result, targets, range };
 }
 
-async function resolveCast(actor, selection) {
+/** Distância em metros entre o conjurador e um token (para o chip "✔ 6 m" do cartão). null se não houver token do conjurador. */
+export function distanceToCaster(actor, tokenId) {
+	const casterToken = actor.getActiveTokens().find((token) => token.document.parent?.id === canvas.scene?.id);
+	const token = canvas.tokens.get(tokenId);
+	if (!casterToken || !token) return null;
+	const gap = rectGap(tokenRect(casterToken), tokenRect(token));
+	return gap / (canvas.dimensions.size / canvas.dimensions.distance);
+}
+
+function playCastSound() {
+	if (!flowSetting(FLOW_SETTING.sound)) return;
+	try {
+		foundry.audio.AudioHelper.play({ src: "sounds/notify.wav", volume: 0.6, autoplay: true, loop: false }, false);
+	} catch (error) {
+		console.debug("Som de conjuração indisponível", error);
+	}
+}
+
+export async function resolveCast(actor, selection) {
 	const item = actor.items.get(selection.itemId);
 	if (!item || item.type !== "ritual") {
 		ui.notifications.error("O ritual não está mais na ficha do Agente.");
 		return;
+	}
+	// Ficha aberta cobre o mapa e a área do ritual: minimiza ao conjurar
+	try {
+		const sheet = actor.sheet;
+		if (sheet?.rendered && !sheet.minimized) await sheet.minimize();
+	} catch (error) {
+		console.debug("Não consegui minimizar a ficha", error);
 	}
 	const withoutSanity = game.settings.get("ordem_v2_classic", "globalPlayingWithoutSanity");
 	const resource = inspectRitualResource(actor, withoutSanity);
@@ -549,6 +761,13 @@ async function resolveCast(actor, selection) {
 		ui.notifications.error("Esta macro cobra PD. Ative ‘Jogando sem Sanidade’ e tente novamente.");
 		return;
 	}
+	const castForm = selection.formId && selection.formId !== "basic" ? getRitualForms(item)[selection.formId] : null;
+	const requirements = castRequirements(actor, item.system.element, castForm?.requiredAffinity);
+	if (!requirements.affinity.ok) {
+		ui.notifications.warn(`${actor.name} não tem afinidade com ${requirements.affinity.label}: a forma escolhida não pode ser conjurada.`);
+		return;
+	}
+	if (requirements.components.state === "missing") ui.notifications.warn(`${requirements.components.note} Confirme com o Mestre antes de conjurar.`);
 	const latest = validateRitualCast({
 		cost: selection.cost,
 		balance: actor.system.PD.value,
@@ -571,22 +790,36 @@ async function resolveCast(actor, selection) {
 	}
 	let areaNote = null;
 	let templateId = null;
-	let choiceId = null;
+	let choiceId = selection.choiceId ?? null;
 	const choices = areaChoicesFor(item);
-	if (choices) {
+	if (choices && !choiceId) {
 		choiceId = await chooseAreaEffect(item, choices);
 		if (!choiceId) {
 			ui.notifications.info("Efeito não escolhido; o ritual não foi conjurado e nada foi gasto.");
 			return;
 		}
 	}
-	const rule = areaRuleFor(item, selection.formId, choiceId);
+	let rule = areaRuleFor(item, selection.formId, choiceId);
 	const formBody = ritualFormBodyOf(item, selection.formId);
 	const targetReq = ritualTargets(item, formBody);
-	const rangeReq = ritualRange(item, formBody);
+	let rangeReq = ritualRange(item, formBody);
+	// Catalisador ritualístico: confere as regras e muda DT, dano, alcance, área ou duração; só é gasto depois do pagamento.
+	let catalystPlan = null;
+	if (selection.catalystId) {
+		catalystPlan = await planCatalyst(actor, item, selection, {
+			hasDamage: Boolean(rule?.onCast?.damage?.length || selection.effect?.kind === "damage"), hasArea: Boolean(rule?.area), rangeKey: rangeReq.key,
+		});
+		if (!catalystPlan.ok) {
+			ui.notifications.warn(`${catalystPlan.reason} Nada foi gasto.`);
+			return;
+		}
+		if (catalystPlan.rangeKey) rangeReq = ritualRange({ system: { range: catalystPlan.rangeKey } });
+		if (catalystPlan.areaFactor && rule?.area) rule = { ...rule, area: { ...rule.area, distance: rule.area.distance * catalystPlan.areaFactor } };
+		if (catalystPlan.extraDie && !rule && selection.effect?.formula) selection = { ...selection, effect: { ...selection.effect, formula: addOneDie(selection.effect.formula) } };
+	}
 	// Alvos já marcados precisam cumprir o ritual (quantidade e alcance) antes de pagar qualquer coisa.
 	if (!rule?.area && selection.targetIds.length && ["creature", "object"].includes(targetReq.kind)) {
-		const check = checkRitualTargets(actor, item, selection.formId, selection.targetIds);
+		const check = checkRitualTargets(actor, item, selection.formId, selection.targetIds, catalystPlan?.rangeKey ?? null);
 		if (!check.ok) {
 			ui.notifications.warn(`${check.problems.join(" ")} Nada foi gasto.`);
 			return;
@@ -595,8 +828,15 @@ async function resolveCast(actor, selection) {
 	}
 	let deferArea = false;
 	if (areaTemplateData(item, rule)) {
-		const placed = await placeAreaTemplate(actor, item, rule, { range: rangeReq });
+		const pd = Number(actor.system.PD.value);
+		const banner = `✦ ${item.name} · ${selection.cost} PD (PD ${pd} → ${pd - selection.cost}) · Clique no mapa para conjurar · Roda gira · Esc cancela`;
+		const placed = await placeAreaTemplate(actor, item, rule, { range: rangeReq, banner });
 		if (!placed) {
+			if (selection.cancelIfNoArea) {
+				// fluxo rápido (FC-42): Esc ou botão direito cancela sem gastar nada
+				ui.notifications.info("Conjuração cancelada; nada foi gasto.");
+				return;
+			}
 			// sem área agora: o custo é pago e a carta do chat traz o botão para escolher a área depois
 			deferArea = true;
 			ui.notifications.info("Área não colocada agora. Use o botão Selecionar área na carta do ritual.");
@@ -610,6 +850,8 @@ async function resolveCast(actor, selection) {
 		ui.notifications.warn("Não foi possível pagar o custo em PD; o ritual não foi iniciado.");
 		return;
 	}
+	if (catalystPlan?.consumes) await consumeCatalyst(actor, catalystPlan.itemId);
+	playCastSound();
 	const cast = {
 		actorId: actor.id,
 		itemId: item.id,
@@ -623,6 +865,12 @@ async function resolveCast(actor, selection) {
 		areaNote,
 		templateId,
 		choiceId,
+		linkId: selection.linkId ?? null,
+		configureRoll: Boolean(selection.configureRoll),
+		paranormalCost: Boolean(selection.paranormalCost),
+		dtBonus: catalystPlan?.dtBonus ?? 0,
+		extraDie: Boolean(catalystPlan?.extraDie),
+		catalystNote: catalystPlan?.note ?? null,
 		casterTokenId: actor.getActiveTokens().find((token) => token.document.parent?.id === canvas.scene?.id)?.id ?? null,
 	};
 	// Os testes do conjurador saem como rolagens normais de perícia, logo após o pagamento.
@@ -649,7 +897,19 @@ async function resolveCast(actor, selection) {
 		});
 		return;
 	}
-	const needsGm = !outcome.interrupted && (rule ? true : cast.targetIds.length && (item.system.skillResis || cast.effect));
+	// Amaldiçoar Arma sem alvo marcado: a carta pergunta em quem fica a maldição (em você ou num alvo).
+	// No fluxo rápido o alvo já foi escolhido no cartão (inclusive "você"), então vai direto.
+	if (!outcome.interrupted && isWeaponCurseRitual(item) && !cast.targetIds.length && !selection.targetChosen) {
+		const waiting = { ...outcome, awaitingCurse: true };
+		await ChatMessage.create({
+			content: buildChatCard(actor, item, cast, waiting),
+			speaker: ChatMessage.getSpeaker({ actor }),
+			flags: { ordem_v2_classic: { ritualCast: { ...cast, status: "needsTargets", outcome: waiting } } },
+		});
+		return;
+	}
+	const needsGm = !outcome.interrupted && (rule || isWeaponCurseRitual(item) ? true : cast.targetIds.length && (item.system.skillResis || cast.effect));
+	if (!needsGm && !outcome.interrupted) await createActiveMarker(actor, item, cast, outcome);
 	const message = await ChatMessage.create({
 		content: buildChatCard(actor, item, cast, { ...outcome, effectsPending: !!needsGm }),
 		speaker: ChatMessage.getSpeaker({ actor }),
@@ -662,41 +922,47 @@ async function resolveCast(actor, selection) {
 	else game.socket.emit("system.ordem_v2_classic", { type: "ritualCastTest", messageId: message.id, userId: game.user.id });
 }
 
+/** Desconta o PD extra (falha no Custo do Paranormal ou Invocando o Medo), no máximo o que o agente tem. */
+async function chargeExtraCost(actor, outcome, amount, kind) {
+	const applied = await applySanityCostToPd(actor, amount);
+	outcome.sanityPd = applied;
+	outcome.extra = { amount, applied: true, appliedAmount: applied, kind };
+	if (applied < amount) outcome.sanityNotes.push(`Faltaram ${amount - applied} PD para cobrir toda a perda; o mestre resolve o restante.`);
+}
+
 /** Testes do conjurador (Vontade de concentração e Ocultismo de custo). Devolve null se a rolagem foi cancelada. */
 async function runCasterTests(actor, item, cast) {
 	const outcome = { interrupted: false, sanityPd: 0, sanityNotes: [], resistances: [] };
+	const rollOptions = { configure: Boolean(cast.configureRoll) };
 	const concentrationDt = getConcentrationDt(cast);
 	if (concentrationDt !== null) {
-		const result = await rollUntilDone(actor, "will", concentrationDt);
+		const result = await rollUntilDone(actor, "will", concentrationDt, rollOptions);
 		if (!result) return null;
-		outcome.concentration = { dt: concentrationDt, text: `${result.total} — ${result.status === "success" ? "sucesso" : "falha"}` };
+		outcome.concentration = { dt: concentrationDt, total: result.total, success: result.status === "success", breakdown: result.breakdown, text: `${result.total} — ${result.status === "success" ? "sucesso" : "falha"}` };
 		outcome.interrupted = result.status === "failure";
 	}
+	// o teste de Ocultismo (DT 20 + custo) é de todo ritual, menos Medo; só o PD extra da falha depende do Custo do Paranormal
 	if (!outcome.interrupted && item.system.element !== "fear") {
 		const dt = 20 + cast.cost;
 		ui.notifications.info(`Custo do Paranormal: teste de Ocultismo contra DT ${dt} (20 + custo do círculo). Se falhar, você perde mais ${cast.cost} PD.`);
-		const result = await rollUntilDone(actor, "occultism", dt);
+		const result = await rollUntilDone(actor, "occultism", dt, rollOptions);
 		if (!result) return null;
-		outcome.occultism = { dt, text: `${result.total} — ${result.status === "success" ? "sucesso" : "falha"}` };
+		outcome.occultism = { dt, total: result.total, success: result.status === "success", breakdown: result.breakdown, text: `${result.total} — ${result.status === "success" ? "sucesso" : "falha"}` };
 		if (result.status === "failure") {
-			outcome.sanityPd = await applySanityCostToPd(actor, cast.cost);
-			outcome.sanityNotes.push(`Você falhou no teste de Ocultismo e perde mais ${outcome.sanityPd} PD.`);
-			if (outcome.sanityPd < cast.cost) outcome.sanityNotes.push(`Faltaram ${cast.cost - outcome.sanityPd} PD para cobrir toda a perda; o mestre resolve o restante.`);
-			if (result.margin <= -5) outcome.sanityNotes.push("A falha foi grave: o mestre aplica também uma perda permanente de 1 de Sanidade.");
+			// Custo do Paranormal ligado no cartão: a falha custa +custo PD, descontado na hora (sem botão)
+			if (cast.paranormalCost) await chargeExtraCost(actor, outcome, cast.cost, "occultism");
 		}
-	} else if (!outcome.interrupted) {
-		outcome.sanityPd = await applySanityCostToPd(actor, cast.cost);
-		const permanentLoss = cast.formId === "basic" ? 1 : cast.formId === "student" ? 2 : 3;
-		outcome.sanityNotes.push(`Ritual de Medo: você perde mais ${outcome.sanityPd} PD.`);
-		outcome.sanityNotes.push(`O mestre aplica também uma perda permanente de ${permanentLoss} de Sanidade.`);
+	} else if (!outcome.interrupted && item.system.element === "fear" && cast.paranormalCost) {
+		// Medo não tem teste de Ocultismo; a perda que o livro cobra em Sanidade vira PD e é o Custo do Paranormal (ligado no cartão)
+		await chargeExtraCost(actor, outcome, cast.cost, "fear");
 	}
 	return outcome;
 }
 
 /** Rola a perícia; se o jogador fechar a janela, pergunta se quer rolar de novo. Devolve null se desistir. */
-async function rollUntilDone(actor, skill, dt) {
+async function rollUntilDone(actor, skill, dt, options = {}) {
 	for (;;) {
-		const result = rollOutcome(await rollSkill(actor, skill, dt), dt);
+		const result = rollOutcome(await rollSkill(actor, skill, dt, options), dt);
 		if (result.status !== "cancelled") return result;
 		const again = await foundry.applications.api.DialogV2.confirm({
 			window: { title: "Teste do ritual" },
@@ -717,16 +983,186 @@ function playRitualAnimation(actor, item, cast, outcome) {
 		const sourceToken = actor.getActiveTokens().find((token) => token.document?.parent?.id === canvas.scene?.id);
 		const targets = cast.targetIds.map((id) => canvas.tokens.get(id)).filter(Boolean);
 		// Mapped animations are casting visuals on the caster, so a target is optional.
-		if (sourceToken) Hooks.callAll("aa.workflow", sourceToken, item, { targets });
+		const animationName = ritualAnimationName(item);
+		const animated = animationName === item.name ? item : item.clone({ name: animationName });
+		if (sourceToken) Hooks.callAll("aa.workflow", sourceToken, animated, { targets });
 	} catch (animationError) {
 		console.warn("Animação do ritual indisponível:", animationError);
 	}
 }
 
+/* -------------------------------------------- */
+/*  Rituais ativos (sustentados e buffs)        */
+/* -------------------------------------------- */
+
+/** Ritual sustentado: um efeito marcador no conjurador, para a lista "Rituais ativos" e o botão Encerrar (FC-63). */
+async function createActiveMarker(actor, item, cast, outcome) {
+	if (outcome.active || outcome.interrupted) return null;
+	const profile = classifyRitual(item, { formId: cast.formId, choiceId: cast.choiceId });
+	if (!profile.modifiers.includes(MODIFIER.SUSTAINED)) return null;
+	const [effect] = await actor.createEmbeddedDocuments("ActiveEffect", [{
+		name: `${item.name} (sustentado)`,
+		img: item.img && item.img !== "icons/svg/mystery-man.svg" ? item.img : "icons/svg/aura.svg",
+		origin: item.uuid,
+		description: `<p>Ritual sustentado: segue ativo até ser encerrado. ${escapeHtml(localizeChoice("dropdownExecution", item.system.execution))} para manter, conforme o texto do ritual.</p>`,
+		flags: { [SYSTEM_ID]: { ritualActive: { itemId: item.id, itemName: item.name, casterId: actor.id, formId: cast.formId, templateId: cast.templateId ?? null, sustained: true } } },
+	}]);
+	outcome.active = effect ? { effectUuid: effect.uuid, ended: false } : null;
+	return effect;
+}
+
+/** Rituais ativos de um Agente: sustentados pendentes de encerrar e buffs que ele conjurou (Arma Amaldiçoada). */
+export function activeRitualsOf(actor) {
+	if (!actor) return [];
+	const list = [];
+	const actors = new Map();
+	for (const entry of game.actors ?? []) actors.set(entry.uuid, entry);
+	for (const token of canvas?.tokens?.placeables ?? []) if (token.actor) actors.set(token.actor.uuid, token.actor);
+	for (const holder of actors.values()) {
+		for (const effect of holder.effects ?? []) {
+			const marker = effect.flags?.[SYSTEM_ID]?.ritualActive;
+			if (marker && marker.casterId === actor.id) {
+				list.push({ uuid: effect.uuid, name: effect.name, img: effect.img, kind: "sustained", target: holder.id === actor.id ? "" : holder.name, duration: "Sustentado" });
+				continue;
+			}
+			const curse = effect.flags?.[SYSTEM_ID]?.weaponCurse;
+			if (curse && typeof effect.origin === "string" && effect.origin.startsWith(`${actor.uuid}.`)) {
+				list.push({ uuid: effect.uuid, name: effect.name, img: effect.img, kind: "buff", target: holder.id === actor.id ? "" : holder.name, duration: "Até o fim da cena" });
+			}
+		}
+	}
+	return list;
+}
+
+/** Encerra um ritual ativo (marcador de sustentado ou buff). Quem pode: conjurador (dono) e Mestre. */
+export async function endRitualEffect(effectUuid, { byUser = game.user } = {}) {
+	const effect = await fromUuid(effectUuid);
+	if (!effect) return { ok: false, reason: "O efeito não existe mais." };
+	const marker = effect.flags?.[SYSTEM_ID]?.ritualActive;
+	const caster = marker ? game.actors.get(marker.casterId) : (typeof effect.origin === "string" ? await fromUuid(effect.origin.replace(/\.Item\..*$/, "")) : null);
+	const isCaster = Boolean(caster?.testUserPermission?.(byUser, "OWNER"));
+	if (!canEndRitual({ isGM: byUser.isGM, isCaster, effectActive: true })) return { ok: false, reason: "Só o conjurador ou o Mestre encerra este ritual." };
+	const name = effect.name;
+	const templateId = marker?.templateId ?? null;
+	await effect.delete();
+	if (templateId) {
+		const region = canvas.scene?.regions.get(templateId);
+		if (region) {
+			const { removeZone } = await import("./ritual-area-engine.mjs");
+			await removeZone(region);
+		}
+	}
+	// a carta que criou o marcador passa a mostrar que o ritual terminou
+	for (const message of game.messages.contents.slice(-80)) {
+		const cast = message.getFlag(SYSTEM_ID, "ritualCast");
+		if (cast?.outcome?.active?.effectUuid === effectUuid && !cast.outcome.active.ended) {
+			const actor = game.actors.get(cast.actorId);
+			const item = actor?.items.get(cast.itemId);
+			const outcome = { ...cast.outcome, active: { ...cast.outcome.active, ended: true } };
+			if (actor && item) await message.update({ content: buildChatCard(actor, item, cast, outcome), [`flags.${SYSTEM_ID}.ritualCast.outcome`]: outcome });
+		}
+	}
+	await gmNotice(`${name} foi encerrado${caster ? ` (${caster.name})` : ""}.`);
+	return { ok: true };
+}
+
+/* -------------------------------------------- */
+/*  Ações depois de conjurar                    */
+/* -------------------------------------------- */
+
+function castOfMessage(messageId) {
+	const message = game.messages.get(messageId);
+	const cast = message?.getFlag(SYSTEM_ID, "ritualCast");
+	const actor = cast ? game.actors.get(cast.actorId) : null;
+	const item = actor?.items.get(cast?.itemId);
+	return { message, cast, actor, item };
+}
+
+const isOwnerOf = (actor, user) => Boolean(actor?.testUserPermission?.(user, "OWNER"));
+
+/** O Mestre desfaz o dano e as condições de um ritual em alvo escolhido (Decadência, Eletrocussão...): devolve os PV e apaga os efeitos. */
+export async function undoHostileCast(messageId, { byUser = game.user } = {}) {
+	const { message, cast, actor, item } = castOfMessage(messageId);
+	if (!message || !actor || !item) return { ok: false, reason: "Não encontrei o ritual desta carta." };
+	if (!byUser.isGM) return { ok: false, reason: "Só o Mestre desfaz o efeito de um ritual." };
+	const rows = cast.outcome?.undoRows ?? [];
+	if (!rows.length || cast.outcome.undone) return { ok: false, reason: "Não há nada para desfazer." };
+	const restored = [];
+	for (const row of rows) {
+		const result = await undoAreaRow(row);
+		if (result.ok) restored.push(`${row.name}${result.restored ? ` (+${result.restored} PV)` : ""}`);
+	}
+	const outcome = { ...cast.outcome, undone: true };
+	await message.update({ content: buildChatCard(actor, item, cast, outcome), [`flags.${SYSTEM_ID}.ritualCast.outcome`]: outcome });
+	const creatures = outcome.creatureMessageId ? game.messages.get(outcome.creatureMessageId) : null;
+	if (creatures) await creatures.update({ content: creatures.content.replace(/<p class="rc2-c-undo">[\s\S]*?<\/p>/, '<p class="rc2-c-undo"><em>Efeito desfeito.</em></p>') });
+	await gmNotice(`Desfeito: ${item.name} (${restored.join(", ") || "nada a restaurar"}).`);
+	return { ok: true, restored };
+}
+
+/** O buff do ritual já foi usado de forma relevante (a arma amaldiçoada causou dano)? */
+async function swapUsed(created) {
+	for (const entry of created ?? []) {
+		const effect = await fromUuid(`${entry.actorUuid}.ActiveEffect.${entry.effectId}`).catch(() => null);
+		if (effect?.getFlag(SYSTEM_ID, "used")) return true;
+	}
+	return false;
+}
+
+/** Estado do botão "Trocar alvo" de uma carta (FC-93): efeito ainda existe e se já foi usado. */
+export async function swapState(messageId, { user = game.user } = {}) {
+	const { cast, actor, item } = castOfMessage(messageId);
+	const swap = cast?.outcome?.swap;
+	if (!swap?.created?.length || swap.closed || !item) return { available: false, effectActive: false, used: false };
+	let effectActive = false;
+	for (const entry of swap.created) {
+		if (await fromUuid(`${entry.actorUuid}.ActiveEffect.${entry.effectId}`).catch(() => null)) effectActive = true;
+	}
+	const used = await swapUsed(swap.created);
+	const profile = classifyRitual(item, { formId: cast.formId, choiceId: cast.choiceId }).profile;
+	return { available: canSwapTarget({ profile, effectActive, used, isGM: user.isGM, isCaster: isOwnerOf(actor, user) }), effectActive, used };
+}
+
+/**
+ * Passa o buff para outro alvo, sem cobrar PD nem rolar de novo (FC-90 a FC-93). Roda no cliente do Mestre
+ * (o jogador pede por socket), porque quem conjura não é dono do novo alvo.
+ * @param {string} messageId
+ * @param {{tokenId?:string|null, byUser?:User}} options   tokenId do novo alvo; sem ele, o próprio conjurador
+ */
+export async function swapRitualTarget(messageId, { tokenId = null, byUser = game.user } = {}) {
+	const { message, cast, actor, item } = castOfMessage(messageId);
+	if (!message || !actor || !item) return { ok: false, reason: "Não encontrei o ritual desta carta." };
+	const state = await swapState(messageId, { user: byUser });
+	if (!state.available) return { ok: false, reason: state.used ? "O efeito já foi usado; só o Mestre troca o alvo." : "Este ritual não pode mais trocar de alvo." };
+	const newToken = tokenId ? canvas.tokens.get(tokenId) : null;
+	if (tokenId && !newToken?.actor) return { ok: false, reason: "O novo alvo não está na cena." };
+	if (newToken && !byUser.isGM) {
+		const check = checkRitualTargets(actor, item, cast.formId, [newToken.id]);
+		if (!check.ok) return { ok: false, reason: check.problems.join(" ") };
+	}
+	const swap = cast.outcome.swap;
+	// apaga o efeito do alvo anterior e aplica no novo
+	for (const entry of swap.created) {
+		const effect = await fromUuid(`${entry.actorUuid}.ActiveEffect.${entry.effectId}`).catch(() => null);
+		if (effect) await effect.delete();
+	}
+	const recipient = newToken?.actor ?? actor;
+	const previous = swap.created.map((entry) => entry.actorName).join(", ");
+	const lines = await applyWeaponCurse({ caster: actor, item, formId: cast.formId, targets: newToken ? [recipient] : [], linkId: swap.created[0]?.linkId ?? null, silent: true });
+	const outcome = {
+		...cast.outcome,
+		swap: { created: lines.created ?? [], closed: false },
+		swapLog: [...(cast.outcome.swapLog ?? []), `Alvo trocado de ${previous} para ${recipient.name} (por ${byUser.name}).`],
+	};
+	const nextCast = { ...cast, targetIds: newToken ? [newToken.id] : [] };
+	await message.update({ content: buildChatCard(actor, item, nextCast, outcome), [`flags.${SYSTEM_ID}.ritualCast`]: { ...nextCast, outcome } });
+	return { ok: true, from: previous, to: recipient.name };
+}
+
 /** Resolve a carta: se vier dos testes já rolados (stage "effects"), só aplica resistência e efeitos; senão rola tudo. */
 async function resolvePendingCast(message) {
 	const cast = message?.getFlag("ordem_v2_classic", "ritualCast");
-	if (!cast || !["pending", "effects"].includes(cast.status)) return;
+	if (!cast || !["pending", "effects", "needsDamage"].includes(cast.status)) return;
 	const actor = game.actors.get(cast.actorId);
 	const item = actor?.items.get(cast.itemId);
 	if (!actor || !item) return ui.notifications.error("Não encontrei o Agente ou ritual desta mensagem.");
@@ -744,10 +1180,22 @@ async function resolvePendingCast(message) {
 			}
 		}
 		outcome.resistances = [];
+		let creatureRows = [];
 		// Rituais mapeados em ritual-area-rules.mjs: o motor de área cuida de resistência, dano e condições.
 		const rule = areaRuleFor(item, selection.formId, selection.choiceId);
+		// Ritual com dano ou cura: a carta espera o botão "Rolar dano" (a rolagem acontece na própria mensagem do ritual).
+		const gate = damageGate({ ruleDamage: Boolean(rule?.onCast?.damage?.length), effect: rule ? null : selection.effect });
+		if (gate && !outcome.interrupted && !selection.damageRequested) {
+			outcome.awaitingDamage = gate;
+			delete outcome.effectsPending;
+			await message.update({ content: buildChatCard(actor, item, selection, outcome) });
+			await message.setFlag("ordem_v2_classic", "ritualCast", { ...cast, status: "needsDamage", outcome });
+			return;
+		}
+		// dano já rolado na carta: o motor e o efeito simples usam esses valores, sem rolar de novo
+		const damageRolls = outcome.damageRoll?.parts?.map((part) => ({ type: part.type, formula: part.formula, amount: Math.max(0, Math.floor(Number(part.total))) })) ?? null;
 		if (rule && !outcome.interrupted) {
-			const lines = await resolveAreaCast(selection, rule);
+			const lines = await resolveAreaCast(selection, rule, { damageRolls });
 			// Ritual que age nos alvos marcados e nenhum foi marcado: a carta ganha botões para escolher a área / rolar o dano.
 			if (previousStatus === "effects" && rule.onCast && !selection.templateId && lines.affected === 0) {
 				outcome.awaitingTargets = true;
@@ -758,33 +1206,43 @@ async function resolvePendingCast(message) {
 			}
 			delete outcome.awaitingTargets;
 			outcome.areaLines = lines;
+			if (!lines.manual) creatureRows = creatureRowsFromEngine(lines.damageRows);
+			if (lines.manual) {
+				outcome.areaManual = true;
+				outcome.panelMessageId = lines.panelMessageId ?? null;
+			}
+			if (lines.applied?.length) outcome.undoRows = lines.applied;
 		}
+		const genericSaves = new Map();
 		if (!rule && !outcome.interrupted && selection.targetIds.length && item.system.skillResis) {
 			const skill = ritualResistanceTarget(item);
-			const dt = Number(actor.system.ritual?.DT);
+			const dt = Number(actor.system.ritual?.DT) + (Number(selection.dtBonus) || 0);
 			if (!skill || !Number.isFinite(dt)) {
-				outcome.resistances.push({ name: "Alvos", skill: skill ?? item.system.skillResis, text: "perícia ou DT indisponível; resolva manualmente" });
+				ui.notifications.warn("Perícia ou DT de resistência indisponível: resolva a resistência dos alvos manualmente.");
 			} else {
 				for (const id of selection.targetIds) {
 					const token = canvas.tokens.get(id);
 					if (!token?.actor) continue;
-					const roll = await rollSkill(token.actor, skill, dt);
+					// a resistência do alvo é rolada sozinha, sem diálogo (FC-32)
+					const roll = await rollSkill(token.actor, skill, dt, { configure: false, whisper: token.actor.type === "threat", effectElement: item.system.element });
 					const result = rollOutcome(roll, dt);
-					outcome.resistances.push({
-						name: token.name,
-						skill: localizeChoice("dropdownSkillResis", skill, skill),
-						text: result.status === "cancelled" ? "rolagem cancelada" : `${result.total} — ${result.status === "success" ? "passou" : "falhou"} (DT ${dt})`,
-					});
+					if (result.status !== "cancelled") genericSaves.set(token.id, { skill, total: result.total, dt, passed: result.status === "success", breakdown: result.breakdown });
 				}
 			}
+		}
+		// Amaldiçoar Arma: cria o efeito "Arma Amaldiçoada" no alvo (ou no próprio conjurador, sem alvo).
+		if (!outcome.interrupted && isWeaponCurseRitual(item)) {
+			const targets = selection.targetIds.map((id) => canvas.tokens.get(id)?.actor).filter(Boolean);
+			const lines = await applyWeaponCurse({ caster: actor, item, formId: selection.formId, targets, linkId: selection.linkId ?? null });
+			outcome.effects = [...(outcome.effects ?? []), ...lines];
+			outcome.swap = { created: lines.created ?? [], closed: false };
 		}
 		if (!rule && !outcome.interrupted && selection.effect) {
 			for (const id of selection.targetIds) {
 				const token = canvas.tokens.get(id);
 				const target = token?.actor;
 				if (!target) continue;
-				const roll = await new Roll(selection.effect.formula).evaluate({ async: true });
-				const amount = Math.max(0, Math.floor(Number(roll.total)));
+				const amount = damageRolls?.[0]?.amount ?? Math.max(0, Math.floor(Number((await new Roll(selection.effect.formula).evaluate()).total)));
 				if (selection.effect.kind === "healing") {
 					// agentes guardam o PV em system.PV; ameaças em system.attributes.hp
 					const isThreat = target.type === "threat";
@@ -797,13 +1255,24 @@ async function resolvePendingCast(message) {
 					outcome.effects = outcome.effects ?? [];
 					outcome.effects.push(`${token.name}: cura ${amount} PV (${before} → ${after}; máximo ${maximum}).`);
 				} else {
+					const hpResource = target.type === "threat" ? target.system.attributes?.hp : target.system.PV;
+					const hpBefore = Number(hpResource?.value);
 					const result = await target.applyDamage(amount);
-					outcome.effects = outcome.effects ?? [];
-					outcome.effects.push(`${token.name}: dano rolado ${amount} PV; ${result.newPV === null ? "aplicação delegada ao Mestre" : `PV restantes ${result.newPV}`} (bloqueado: ${result.blocked}).`);
+					const dealt = Number.isFinite(hpBefore) && Number.isFinite(Number(result.newPV)) ? Math.max(0, hpBefore - Number(result.newPV)) : amount;
+					creatureRows.push({
+						name: token.name, img: token.document?.texture?.src ?? target.img, save: genericSaves.get(token.id) ?? null,
+						parts: [{ type: "", full: amount, amount }], dealt, hpBefore: Number.isFinite(hpBefore) ? hpBefore : null, state: "applied",
+						notes: result.newPV === null ? ["aplicação delegada ao Mestre"] : [],
+					});
 				}
 			}
 		}
 		delete outcome.effectsPending;
+		delete outcome.awaitingCurse;
+		delete outcome.awaitingDamage;
+		// as criaturas têm a própria mensagem, só do Mestre (resistência, dano final, PV e Desfazer)
+		if (creatureRows.length) outcome.creatureMessageId = await postCreatureMessage(actor, item, message.id, creatureRows, { undo: Boolean(outcome.undoRows?.length) });
+		await createActiveMarker(actor, item, selection, outcome);
 		await message.update({ content: buildChatCard(actor, item, selection, outcome) });
 		await message.setFlag("ordem_v2_classic", "ritualCast", { ...cast, status: "resolved", outcome });
 		playRitualAnimation(actor, item, selection, outcome);
@@ -824,7 +1293,10 @@ async function continueAreaCast(messageId, mode) {
 	if (!game.user.isGM && !actor.isOwner) return ui.notifications.warn("Somente o Agente ou o Mestre pode usar esta carta.");
 	const rule = areaRuleFor(item, cast.formId, cast.choiceId);
 	const update = { ...cast, status: "effects" };
-	if (mode === "place") {
+	if (mode === "curseSelf") {
+		// em você: sem alvos, o efeito vai para quem conjurou
+		update.targetIds = [];
+	} else if (mode === "place") {
 		const range = ritualRange(item, ritualFormBodyOf(item, cast.formId));
 		const placed = await placeAreaTemplate(actor, item, rule, { range });
 		if (!placed) return ui.notifications.info("Área não colocada.");
@@ -849,6 +1321,8 @@ async function continueAreaCast(messageId, mode) {
 
 export const rollRitualAreaDamage = (messageId) => continueAreaCast(messageId, "roll");
 export const placeRitualArea = (messageId) => continueAreaCast(messageId, "place");
+export const applyRitualCurseSelf = (messageId) => continueAreaCast(messageId, "curseSelf");
+export const applyRitualCurseTarget = (messageId) => continueAreaCast(messageId, "roll");
 
 export async function resolvePendingRitualCast(messageId) {
 	const message = game.messages.get(messageId);
@@ -877,7 +1351,8 @@ export async function runRitualCasterMacro(preferredAgent = null, preferredItemI
 		return;
 	}
 	const selection = await renderPicker(agent, items, getTokensForDialog(), preferredItemId);
-	if (!selection) return;
+	// Cancelar devolve o id do botão ("cancel"), não null: só um objeto de seleção segue adiante
+	if (!selection || typeof selection !== "object") return;
 	if (selection.invalid) {
 		ui.notifications.warn(selection.invalid);
 		return;
@@ -885,4 +1360,102 @@ export async function runRitualCasterMacro(preferredAgent = null, preferredItemI
 	await resolveCast(agent, selection);
 }
 
+/**
+ * Círculo, custo e efeito automático de um ritual numa forma (Básico, Discente, Verdadeiro), sem depender da janela.
+ * Usado pelo cartão de conjuração rápida (ritual-cast-card.mjs).
+ */
+export function buildRitualSelection(item, formId = "basic", actor = null) {
+	const options = getRitualForms(item);
+	const chosen = options[formId];
+	if (!chosen) return { ok: false, reason: "Esta versão do ritual não está disponível." };
+	const circle = Math.max(Number(item.system.circle), Number(chosen.requiredCircle) || Number(item.system.circle));
+	if (!Number.isInteger(circle) || circle < Number(item.system.circle) || circle > 4) return { ok: false, reason: "Escolha um círculo válido para este ritual.", circle };
+	if (actor && formId !== "basic") {
+		const affinity = castRequirements(actor, item.system.element, chosen.requiredAffinity).affinity;
+		if (!affinity.ok) return { ok: false, reason: `Exige afinidade com ${affinity.label}.`, circle };
+	}
+	const cost = ritualFinalCost(circle, formId, chosen);
+	if (!Number.isInteger(cost)) return { ok: false, reason: "O custo desta forma depende do texto do ritual; use a janela do grimório.", circle };
+	const effectText = formId === "basic"
+		? String(item.system.description ?? "").split(/\b(?:Discente|Verdadeiro)\s*\(\s*\+\s*\d+\s*PE\s*\)\s*:/i)[0]
+		: chosen.body;
+	// Amaldiçoar Arma não causa dano ao alvo: o +Nd6 vai para a arma (ver weapon-curse-runtime.mjs).
+	const effect = isWeaponCurseRitual(item) ? null : ritualEffectFromText(effectText);
+	return { ok: true, formId, circle, cost, effect, chosen, requiresAffinity: Boolean(formId === "true" && chosen.requiredAffinity) };
+}
+
 export const ritualCasterMacroImage = MACRO_IMG;
+
+/* -------------------------------------------- */
+/*  Pedidos do jogador ao Mestre                */
+/* -------------------------------------------- */
+
+/** Executa uma ação da carta (custo extra, trocar alvo, encerrar) em nome de `byUser`. Roda no cliente do Mestre. */
+export async function runRitualPostAction(action, payload = {}, byUser = game.user) {
+	switch (action) {
+		case "swap": return swapRitualTarget(payload.messageId, { tokenId: payload.tokenId ?? null, byUser });
+		case "end": return endRitualEffect(payload.effectUuid, { byUser });
+		case "undo": return undoHostileCast(payload.messageId, { byUser });
+		default: return { ok: false, reason: "Ação desconhecida." };
+	}
+}
+
+/** O Mestre executa na hora; o jogador pede por socket (o Mestre responde com `ritualPostResult`). */
+export async function requestRitualAction(action, payload = {}) {
+	if (game.user.isGM) {
+		const result = await runRitualPostAction(action, payload, game.user);
+		if (!result?.ok && result?.reason) ui.notifications.warn(result.reason);
+		return result;
+	}
+	game.socket.emit("system.ordem_v2_classic", { type: "ritualPostAction", action, payload, userId: game.user.id });
+	return { ok: true, requested: true };
+}
+
+/** Escolhe o novo alvo do buff (aliado da cena, "em mim" ou o token marcado) e pede a troca. */
+export async function promptSwapTarget(messageId) {
+	const { actor, item } = castOfMessage(messageId);
+	if (!actor || !item) return ui.notifications.warn("Não encontrei o ritual desta carta.");
+	const state = await swapState(messageId);
+	if (!state.available) {
+		ui.notifications.warn(state.used && !game.user.isGM ? "O efeito já foi usado; só o Mestre troca o alvo." : "Este ritual não pode mais trocar de alvo.");
+		return null;
+	}
+	const own = actor.getActiveTokens().find((token) => token.document.parent?.id === canvas.scene?.id);
+	const marked = [...(game.user.targets ?? [])][0] ?? null;
+	const people = (canvas.tokens?.placeables ?? []).filter((token) => token.actor?.type === "agent" && token.id !== own?.id);
+	const options = [`<option value="">Em mim (${escapeHtml(actor.name)})</option>`, ...people.map((token) => `<option value="${escapeHtml(token.id)}" ${marked?.id === token.id ? "selected" : ""}>${escapeHtml(token.name)}</option>`)].join("");
+	const answer = await foundry.applications.api.DialogV2.input({
+		window: { title: "Trocar alvo" },
+		content: `<div class="standard-form"><p>Quem recebe o efeito de <strong>${escapeHtml(item.name)}</strong>? Não custa PD e não rola de novo.</p><div class="form-group"><label>Novo alvo</label><select name="tokenId">${options}</select></div></div>`,
+		ok: { label: "Trocar" },
+		rejectClose: false,
+	}).catch(() => null);
+	if (!answer) return null;
+	return requestRitualAction("swap", { messageId, tokenId: answer.tokenId || null });
+}
+
+/** Esconde da carta do chat os botões que o usuário não pode usar e abre os detalhes para o Mestre. */
+export function registerRitualChatHooks() {
+	// IM-03: um texto sobe do token quando um ritual põe um efeito nele (buff ou sustentado)
+	Hooks.on("createActiveEffect", (effect) => {
+		const flags = effect.flags?.[SYSTEM_ID];
+		if (!flags?.weaponCurse && !flags?.ritualActive) return;
+		const token = effect.parent?.getActiveTokens?.()?.[0];
+		if (!token || !canvas?.interface?.createScrollingText) return;
+		try {
+			canvas.interface.createScrollingText(token.center, `✦ ${effect.name}`, { anchor: CONST.TEXT_ANCHOR_POINTS.TOP, fill: "#f4b942", stroke: "#000000", strokeThickness: 4, jitter: 0.25 });
+		} catch (error) {
+			console.debug("Texto flutuante do ritual indisponível", error);
+		}
+	});
+	Hooks.on("renderChatMessageHTML", (_message, html) => {
+		const root = html?.querySelector ? html : html?.[0];
+		if (!root?.querySelectorAll) return;
+		for (const button of root.querySelectorAll("[data-owner-actor]")) {
+			const actor = game.actors.get(button.dataset.ownerActor);
+			if (!game.user.isGM && !actor?.isOwner) button.closest("p")?.remove() ?? button.remove();
+		}
+		if (!game.user.isGM) root.querySelectorAll(".ritual-gm-only").forEach((node) => node.remove());
+		else root.querySelectorAll(".ritual-card-details").forEach((node) => { node.open = true; });
+	});
+}

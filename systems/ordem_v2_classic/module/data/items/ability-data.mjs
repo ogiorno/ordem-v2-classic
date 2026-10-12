@@ -10,6 +10,9 @@ export class AbilityData extends foundry.abstract.TypeDataModel {
 			preRequisite: new fields.StringField({ initial: "" }),
 			activation: new fields.StringField({ initial: "" }),
 			costType: new fields.StringField({ initial: "PE" }),
+			// Bloco opcional versionado (ver module/helpers/threat-ability-execution.mjs).
+			// null/ausente = legado/manual; ObjectField preserva campos desconhecidos.
+			execution: new fields.ObjectField({ required: false, nullable: true, initial: null }),
 		};
 	}
 

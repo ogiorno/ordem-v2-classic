@@ -1,3 +1,4 @@
+import { curseEntryField } from "./curse-data.mjs";
 export class GeneralEquipmentData extends foundry.abstract.TypeDataModel {
 	static defineSchema() {
 		const fields = foundry.data.fields;
@@ -8,6 +9,8 @@ export class GeneralEquipmentData extends foundry.abstract.TypeDataModel {
 			category: new fields.NumberField({ required: true, integer: true, initial: 0 }),
 			// item escolhido para as habilidades que reduzem a categoria (A Favorita, Ferramentas Favoritas)
 			favorite: new fields.BooleanField({ initial: false }),
+			// maldições paranormais do item (curse-rules.mjs): a primeira soma II à categoria, as seguintes I
+			curses: curseEntryField(),
 			using: new fields.SchemaField({
 				state: new fields.BooleanField({ initial: true }),
 				class: new fields.StringField({ initial: "fas" }),

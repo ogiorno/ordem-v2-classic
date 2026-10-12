@@ -1,15 +1,26 @@
 /* eslint-disable new-cap */
 // TABS: https://foundryvtt.wiki/en/development/guides/Tabs-and-Templates/Tabs-in-AppV2
 
+import { applyCurseDocument } from "../helpers/curses.mjs";
 import { attackBlockReason, defaultSelection, markReload, onUseOf, promptAttackOptions } from "../helpers/attack-options.mjs";
 import { powerEffectFor } from "../helpers/attack-power-effects.mjs";
 import { AgentConfigApp } from "../applications/agent-config-app.mjs";
 import { prepareActiveEffectCategories } from "../helpers/effects.mjs";
+import { promptWeaknessResist } from "../helpers/weapon-curse-runtime.mjs";
+import { hasConditionProp } from "../helpers/conditions.mjs";
+import { FLOW_SETTING, flowSetting } from "../helpers/ritual-flow-settings.mjs";
+import { ritualBaseCost } from "../macros/ritual-caster-logic.mjs";
+import { PROFILE_LABELS, classifyRitual } from "../macros/ritual-profiles.mjs";
+import { FUNCTION_LABELS, filterRitualsByFunction, ritualFunctions } from "../helpers/grimoire-functions.mjs";
 
 const { api, sheets } = foundry.applications;
 // const TextEditor = foundry.applications.ux.TextEditor.implementation;
 
 import { categoryReducer, categoryUsage, itemCategoryInfo } from "../helpers/item-categories.mjs";
+import { ledgerOf, trainingView } from "../helpers/skill-training.mjs";
+import { originGrantsView, originLoss, originSwapHtml } from "../helpers/origin-grants.mjs";
+import { loadOriginPowers } from "../helpers/origin-powers.mjs";
+import { affinityView } from "../helpers/affinity.mjs";
 
 /**
  * Extend the basic ActorSheet with some very simple modifications
@@ -42,7 +53,34 @@ export class OrdemActorSheet extends api.HandlebarsApplicationMixin(sheets.Actor
 			createDoc: this._createDoc,
 			deleteDoc: this._deleteDoc,
 			toggleEffect: this._toggleEffect,
+			fillHotbar: function () {
+				return import("../helpers/hotbar-macros.mjs").then((m) => m.requestFillHotbar(this.actor));
+			},
+			openTrainingDetail: function () {
+				return import("../helpers/skill-training.mjs").then((m) => m.showTrainingDetail(this.actor));
+			},
+			chooseTraining: function () {
+				return import("../helpers/skill-training.mjs").then(async (m) => {
+					await m.resolvePending(this.actor);
+					await m.chooseGradeRaises(this.actor);
+				});
+			},
+			chooseConnection: function () {
+				return import("../helpers/affinity.mjs").then((m) => m.promptConnection(this.actor));
+			},
+			clearConnection: function () {
+				return import("../helpers/affinity.mjs").then((m) => m.clearConnection(this.actor));
+			},
+			openGrimoire: function () {
+				return game.ordemparanormal?.grimoire?.open({ actor: this.actor });
+			},
+			addWeaknessResist: function () {
+				return promptWeaknessResist(this.actor);
+			},
 			onRoll: this.#onRoll,
+			castRitual: this.#onCastRitual,
+			endRitual: this.#onEndRitual,
+			filterRitualFunction: this.#onFilterRitualFunction,
 			onRollSkillCheck: this.#onRollSkillCheck,
 			onRollAttributeTest: this.#onRollAttributeTest,
 			toggleResources: this._onToggleResources,
@@ -146,10 +184,21 @@ export class OrdemActorSheet extends api.HandlebarsApplicationMixin(sheets.Actor
 			tabs: this._getTabs(options.parts),
 			costLabel: this.usingWithoutSanityRule ? "PD" : "PE",
 			skillTotals: this._prepareSkillTotals(this.options.document.system.skills),
+			training: trainingView(this.options.document),
+			trainingSkills: trainingView(this.options.document)?.skills ?? {},
+			affinity: affinityView(this.options.document),
 		});
 
 		// Prepara os dados do Agente e seus Items.
 		await this._prepareItems(context);
+		// Rituais ativos do conjurador (sustentados e buffs), com botão Encerrar
+		try {
+			const { activeRitualsOf } = await import("../macros/ritual-caster.mjs");
+			context.activeRituals = activeRitualsOf(this.actor);
+		} catch (error) {
+			console.warn("Rituais ativos indisponíveis:", error);
+			context.activeRituals = [];
+		}
 
 		return context;
 	}
@@ -360,6 +409,8 @@ export class OrdemActorSheet extends api.HandlebarsApplicationMixin(sheets.Actor
 			}
 			// Append to rituals.
 			else if (i.type === "ritual") {
+				this._decorateRitual(i);
+				i.ritualFunctionMissing = ritualFunctions(i.name).length === 0;
 				if (i.system.circle != 5) rituals.valid[i.system.circle].push(i);
 				else rituals.invalid.push(i);
 			}
@@ -398,6 +449,20 @@ export class OrdemActorSheet extends api.HandlebarsApplicationMixin(sheets.Actor
 		for (const s of Object.values(rituals.valid)) {
 			s.sort((a, b) => (a.sort || 0) - (b.sort || 0));
 		}
+		const allRituals = [...Object.values(rituals.valid).flat(), ...rituals.invalid];
+		const selectedFunction = this._ritualFunction ?? "";
+		for (const circle of Object.keys(rituals.valid)) {
+			rituals.valid[circle] = filterRitualsByFunction(rituals.valid[circle], selectedFunction);
+		}
+		rituals.invalid = filterRitualsByFunction(rituals.invalid, selectedFunction);
+		context.ritualFunctionFilters = [
+			{ value: "", label: "Todos", active: !selectedFunction },
+			...FUNCTION_LABELS.map((label) => ({ value: label, label, active: selectedFunction === label })),
+			{ value: "sem-funcao", label: "Sem função", active: selectedFunction === "sem-funcao" },
+		];
+		context.ritualFunctionCount = Object.values(rituals.valid).reduce((total, entries) => total + entries.length, rituals.invalid.length);
+		context.ritualFunctionTotal = allRituals.length;
+		context.ritualFunctionActive = Boolean(selectedFunction);
 
 		for (const s of Object.values(abilities.valid)) {
 			s.sort((a, b) => (a.sort || 0) - (b.sort || 0));
@@ -447,6 +512,17 @@ export class OrdemActorSheet extends api.HandlebarsApplicationMixin(sheets.Actor
 		await super._onRender(context, options);
 		this.#disableOverrides();
 
+		// IM-01 (docs/arquivo/spec-fluxo-conjuracao-rapida.md): o PD desce com um clarão quando gasta
+		const pdInput = this.element.querySelector('input[name="system.PD.value"]');
+		if (pdInput) {
+			const now = Number(pdInput.value);
+			if (Number.isFinite(this._lastPd) && now < this._lastPd) {
+				pdInput.classList.add("op-pd-drop");
+				setTimeout(() => pdInput.classList.remove("op-pd-drop"), 1000);
+			}
+			this._lastPd = now;
+		}
+
 		for (const input of this.element.querySelectorAll("input[type='number']")) {
 			input.addEventListener("change", this._onChangeInputOP.bind(this));
 		}
@@ -484,6 +560,18 @@ export class OrdemActorSheet extends api.HandlebarsApplicationMixin(sheets.Actor
 				icon: "fas fa-id-card",
 				label: game.i18n.localize("op.agentConfigTitleWindowNoName"),
 			});
+		}
+		let grimoireOn = false;
+		try {
+			grimoireOn = game.settings.get("ordem_v2_classic", "grimoireEnabled");
+		} catch {
+			// Grimório não registrado: a ficha segue sem o botão
+		}
+		if (this.actor.type === "agent" && this.actor.isOwner) {
+			controls.unshift({ action: "fillHotbar", icon: "fa-solid fa-bolt", label: game.i18n.localize("op.hotbar.fillAction") });
+		}
+		if (grimoireOn) {
+			controls.unshift({ action: "openGrimoire", icon: "fa-solid fa-book-skull", label: game.i18n.localize("op.grimoire.title") });
 		}
 
 		return controls;
@@ -843,6 +931,84 @@ export class OrdemActorSheet extends api.HandlebarsApplicationMixin(sheets.Actor
 	 * @param {Event} event   The originating click event
 	 * @private
 	 */
+	/** Selos do ritual na lista (rápido, sustentado, formas) e se a conjuração está bloqueada agora. */
+	_decorateRitual(item) {
+		try {
+			const cls = classifyRitual(item);
+			const badges = [];
+			if (cls.modifiers.includes("RAP")) badges.push({ icon: "fa-bolt", title: "Reação ou ação livre" });
+			if (cls.modifiers.includes("SUS")) badges.push({ icon: "fa-arrows-rotate", title: "Sustentado" });
+			if (cls.modifiers.includes("ADV")) badges.push({ icon: "fa-gem", title: "Tem forma Discente e Verdadeira (Shift+clique abre os Ajustes)" });
+			item.flowBadges = badges;
+			item.profileLabel = PROFILE_LABELS[cls.profile] ?? "";
+			const cost = ritualBaseCost(item.system.circle);
+			const pd = Number(this.actor.system.PD?.value);
+			const silenced = hasConditionProp(this.actor, "noRituals");
+			item.castBlocked = silenced ? "Silenciado não pode conjurar" : (Number.isFinite(pd) && cost !== null && pd < cost ? `PD insuficiente (faltam ${cost - pd})` : "");
+		} catch (error) {
+			item.flowBadges = [];
+			item.castBlocked = "";
+		}
+	}
+
+	/** Clique no nome, no ✦ ou no dado de um ritual: conjura (ou mostra a descrição, conforme a configuração). */
+	static async #onCastRitual(event, target) {
+		event.preventDefault();
+		event.stopPropagation();
+		const item = this.actor.items.get(target.closest(".item")?.dataset.itemId);
+		if (!item || item.type !== "ritual") return;
+		return this._castRitual(item, event, target);
+	}
+
+	async _castRitual(item, event, target = null) {
+		const isName = target?.classList?.contains("item-name");
+		if (isName && flowSetting(FLOW_SETTING.nameClick) === "describe") {
+			this.expanded ??= new Set();
+			if (this.expanded.has(item.id)) this.expanded.delete(item.id);
+			else this.expanded.add(item.id);
+			return this.render();
+		}
+		const blocked = target?.closest?.(".item")?.querySelector("[data-blocked]")?.dataset.blocked;
+		if (blocked) return ui.notifications.warn(blocked);
+		const { castRitualFast, quickPlan } = await import("../macros/ritual-cast-card.mjs");
+		const plan = quickPlan(this.actor, item, { advanced: event.shiftKey });
+		// Ritual pessoal ou de reação com custo: o primeiro clique arma o botão e o segundo confirma (FC-11)
+		if (plan.quick && plan.confirm && target && !event.shiftKey) {
+			if (target.dataset.armed !== "1") {
+				const original = target.getAttribute("title") ?? "";
+				target.dataset.armed = "1";
+				target.dataset.armedLabel = ` ← gastar ${plan.cost} PD? clique de novo`;
+				target.classList.add("ritual-armed");
+				target.setAttribute("title", `Gastar ${plan.cost} PD? Clique de novo para conjurar`);
+				setTimeout(() => {
+					delete target.dataset.armed;
+					delete target.dataset.armedLabel;
+					target.classList.remove("ritual-armed");
+					target.setAttribute("title", original);
+				}, 3500);
+				return null;
+			}
+			delete target.dataset.armed;
+			target.classList.remove("ritual-armed");
+			return castRitualFast(this.actor, item, { skipConfirm: true });
+		}
+		return castRitualFast(this.actor, item, { advanced: event.shiftKey });
+	}
+
+	/** Filtra somente a lista de rituais da ficha, sem alterar os itens do ator. */
+	static #onFilterRitualFunction(event, target) {
+		event.preventDefault();
+		this._ritualFunction = target.dataset.function ?? "";
+		this.render();
+	}
+
+	/** Encerra um ritual ativo (sustentado ou buff) pela lista "Rituais ativos". */
+	static async #onEndRitual(event, target) {
+		event.preventDefault();
+		const { requestRitualAction } = await import("../macros/ritual-caster.mjs");
+		return requestRitualAction("end", { effectUuid: target.dataset.effectUuid });
+	}
+
 	static async #onRoll(event, target) {
 		event.preventDefault();
 		const dataset = target.dataset;
@@ -887,11 +1053,8 @@ export class OrdemActorSheet extends api.HandlebarsApplicationMixin(sheets.Actor
 			if (dataset.rollType == "item") {
 				const itemId = target.closest(".item").dataset.itemId;
 				const item = this.actor.items.get(itemId);
-				// Rituais abrem a macro "Conjurar Ritual" (com este ritual já marcado) em vez de postar o card no chat.
-				if (item?.type === "ritual") {
-					const { runRitualCasterMacro } = await import("../macros/ritual-caster.mjs");
-					return runRitualCasterMacro(this.actor, item.id);
-				}
+				// Rituais abrem o fluxo rápido de conjuração em vez de postar o card no chat (docs/arquivo/spec-fluxo-conjuracao-rapida.md).
+				if (item?.type === "ritual") return this._castRitual(item, event, target);
 				if (item) return item.roll();
 			}
 		}
@@ -985,6 +1148,8 @@ export class OrdemActorSheet extends api.HandlebarsApplicationMixin(sheets.Actor
 
 		const actor = this.actor;
 		const item = await Item.implementation.fromDropData(data);
+		// Maldição paranormal: o agente escolhe qual item da ficha vira amaldiçoado (a maldição não entra na mochila)
+		if (item?.type === "curse") return applyCurseDocument(item, { actor });
 		const details = ["class", "origin", "path"];
 
 		if (details.includes(item.type)) {
@@ -997,12 +1162,21 @@ export class OrdemActorSheet extends api.HandlebarsApplicationMixin(sheets.Actor
 
 				// Pausa o código e abre a janela de confirmação do Foundry
 				const typeLabel = game.i18n.localize(`TYPES.Item.${item.type}`);
-				const confirmar = await Dialog.confirm({
-					title: game.i18n.format("op.dialogReplaceItemTitle", { type: typeLabel.toUpperCase() }),
-					content: game.i18n.format("op.dialogReplaceItemContent", {
+				let content = game.i18n.format("op.dialogReplaceItemContent", { existing: existingItem.name, replacement: item.name });
+				if (item.type === "origin") {
+					// a troca de origem tira o poder e as perícias que ela deu: mostra o que se perde e o que se ganha
+					const powers = await loadOriginPowers();
+					const items = actor.items.map((i) => ({ id: i.id, name: i.name, granted: i.getFlag("ordem_v2_classic", "granted") ?? null }));
+					content = originSwapHtml({
 						existing: existingItem.name,
 						replacement: item.name,
-					}),
+						loss: originLoss(existingItem.id, items, ledgerOf(actor).entries),
+						gain: originGrantsView({ name: item.name, description: item.system.description }, powers),
+					});
+				}
+				const confirmar = await Dialog.confirm({
+					title: game.i18n.format("op.dialogReplaceItemTitle", { type: typeLabel.toUpperCase() }),
+					content,
 					yes: () => true,
 					no: () => false,
 					defaultYes: false,

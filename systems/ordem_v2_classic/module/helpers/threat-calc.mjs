@@ -87,17 +87,19 @@ export function movementLabel(meters) {
  * @param {{value?:number, except?:string[]}} [defs.genericRd]  "RD N/tipo": vale para todo tipo fora de `except`.
  * @param {number} [defs.extraRd=0]
  * @param {boolean} [defs.ignoreRd=false]
- * @returns {{finalDamage:number, blocked:number, rd:number, multiplier:number, immune:boolean}}
+ * @param {boolean} [defs.ignoreVulnerable=false]  Resistência à Fraqueza: a vulnerabilidade não dobra o dano.
+ * @returns {{finalDamage:number, blocked:number, rd:number, multiplier:number, immune:boolean, vulnerabilityIgnored:boolean}}
  */
-export function resolveDamage(amount, damageType, { resistances = {}, genericRd = null, extraRd = 0, ignoreRd = false } = {}) {
+export function resolveDamage(amount, damageType, { resistances = {}, genericRd = null, extraRd = 0, ignoreRd = false, ignoreVulnerable = false } = {}) {
 	const raw = Math.max(0, int(amount));
 	const entry = (damageType && resistances?.[damageType]) || {};
 
 	if (entry.immune === true) {
-		return { finalDamage: 0, blocked: raw, rd: 0, multiplier: 0, immune: true };
+		return { finalDamage: 0, blocked: raw, rd: 0, multiplier: 0, immune: true, vulnerabilityIgnored: false };
 	}
 
-	const multiplier = entry.vulnerable === true ? 2 : 1;
+	const vulnerabilityIgnored = entry.vulnerable === true && ignoreVulnerable === true;
+	const multiplier = entry.vulnerable === true && !vulnerabilityIgnored ? 2 : 1;
 	const scaled = raw * multiplier;
 
 	let rd = 0;
@@ -110,7 +112,7 @@ export function resolveDamage(amount, damageType, { resistances = {}, genericRd 
 	rd += Math.max(0, int(extraRd));
 
 	const finalDamage = Math.max(0, scaled - rd);
-	return { finalDamage, blocked: scaled - finalDamage, rd, multiplier, immune: false };
+	return { finalDamage, blocked: scaled - finalDamage, rd, multiplier, immune: false, vulnerabilityIgnored };
 }
 
 /**
@@ -142,6 +144,19 @@ export function groupPresenceFormula(baseFormula, extraCreatures = 0) {
 	const extra = Math.max(0, int(extraCreatures));
 	if (!base) return extra > 0 ? `${extra}d6` : "";
 	return extra > 0 ? `${base} + ${extra}d6` : base;
+}
+
+/**
+ * Resultado da Presença Perturbadora para um alvo: NEX igual ou acima do limite é imune; quem passa na
+ * Vontade (total ≥ DT) leva metade (arredondada para baixo); quem falha, ou não rolou, leva tudo.
+ * @param {{nex?:number, immuneNex?:number, total?:number|null, dt?:number, damage?:number}} p
+ * @returns {{mode:"immune"|"half"|"full", amount:number}}
+ */
+export function presenceTargetResult({ nex = 0, immuneNex = 0, total = null, dt = 0, damage = 0 } = {}) {
+	const full = Math.max(0, Math.floor(Number(damage) || 0));
+	if (int(immuneNex) > 0 && int(nex) >= int(immuneNex)) return { mode: "immune", amount: 0 };
+	if (total !== null && total !== undefined && Number(total) >= Number(dt)) return { mode: "half", amount: Math.floor(full / 2) };
+	return { mode: "full", amount: full };
 }
 
 /**

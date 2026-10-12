@@ -672,7 +672,7 @@ Hooks.once("quenchReady", (quench) => {
 					await target?.delete();
 				});
 
-				it("GM attacker sees the defense number on the chat card", async () => {
+				it("the defense number is not shown on the chat card, not even to the GM", async () => {
 					assert.isTrue(game.user.isGM);
 					const snap = setTargets([target]);
 					try {
@@ -688,8 +688,7 @@ Hooks.once("quenchReady", (quench) => {
 					// Renderizar e inspecionar
 					const html = await msg.getHTML();
 					const vsDefense = html.querySelector(".vs-defense");
-					assert.exists(vsDefense, "GM must see the .vs-defense span");
-					assert.include(vsDefense.textContent, "12", "defense value (12) appears");
+					assert.notExists(vsDefense, "the .vs-defense span must not be rendered");
 				});
 			});
 
