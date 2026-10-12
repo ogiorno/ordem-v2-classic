@@ -1,0 +1,25 @@
+<section class="tab paranormal {{tab.cssClass}} scrollable" data-group="primary" data-tab="paranormal">
+	<div class="content-item op-paranormal">
+		<div class="general-attributes-section op-shadow">
+			<div class="section-title">{{paranormal.kindLabel}}{{#if paranormal.element}} de {{paranormal.element}}{{/if}}</div>
+			<p class="op-curse-hint">
+				{{#if paranormal.consumable}}Consumido ao ser usado. {{/if}}Automação: <strong>{{paranormal.automation}}</strong>{{#if paranormal.reason}} — {{paranormal.reason}}{{/if}}
+			</p>
+			{{#each paranormal.uses}}
+				<div class="op-curse-row">
+					<div class="op-curse-head">
+						<strong class="op-curse-name">{{label}}</strong>
+						<span class="op-curse-cost">{{cost}}</span>
+						<span class="op-curse-mode">{{action}}</span>
+					</div>
+					<p class="op-curse-text">{{note}}</p>
+					{{#if ../owner}}
+						<div class="op-curse-foot">
+							<button type="button" data-action="useParanormalItem" data-use="{{id}}"><i class="fas fa-hand-sparkles"></i> Usar</button>
+						</div>
+					{{/if}}
+				</div>
+			{{/each}}
+		</div>
+	</div>
+</section>

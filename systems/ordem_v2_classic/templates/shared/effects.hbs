@@ -9,6 +9,14 @@
 					<div class="effect-source">{{localize "op.sourceEffect"}}</div>
 					<div class="effect-duration">{{localize "EFFECT.TabDuration"}}</div>
 					<div class="effect-controls">
+						{{#if (eq section.type "passive")}}
+							{{#if @root.editable}}
+								<a class="effect-control" data-action="addWeaknessResist" title="{{localize 'op.weaknessResistTitle'}}">
+									<i class="fas fa-shield-halved"></i>
+									{{localize "op.weaknessResist"}}
+								</a>
+							{{/if}}
+						{{/if}}
 						<a
 							class="effect-control"
 							data-action="createDoc"

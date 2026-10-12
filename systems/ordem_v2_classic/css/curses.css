@@ -1,0 +1,20 @@
+/* Maldições paranormais de itens (spec-modificacoes-paranormais.md) */
+.op-curses .op-curse-hint, .op-curses .op-curse-empty { font-size: 0.85em; opacity: 0.8; margin: 0 0 0.6em; }
+.op-curses .op-curse-warning { color: #b45309; font-size: 0.85em; margin: 0 0 0.4em; }
+.op-curses .op-curse-row { --curse-color: #888; border: 1px solid color-mix(in srgb, var(--curse-color) 55%, transparent); border-left: 4px solid var(--curse-color); border-radius: 4px; padding: 0.4em 0.6em; margin-bottom: 0.5em; background: color-mix(in srgb, var(--curse-color) 8%, transparent); }
+.op-curses .op-curse-row.inactive { opacity: 0.6; }
+.op-curses .op-curse-head { display: flex; align-items: center; gap: 0.5em; flex-wrap: wrap; }
+.op-curses .op-curse-name { flex: 1; }
+.op-curses .op-curse-element { font-size: 0.75em; text-transform: uppercase; letter-spacing: 0.05em; color: var(--curse-color); font-weight: 700; }
+.op-curses .op-curse-cost { font-weight: 700; }
+.op-curses .op-curse-mode { font-size: 0.7em; opacity: 0.7; border: 1px solid currentColor; border-radius: 3px; padding: 0 0.3em; }
+.op-curses .op-curse-text { margin: 0.3em 0; font-size: 0.85em; }
+.op-curses .op-curse-effect { margin: 0.2em 0; font-size: 0.8em; opacity: 0.85; }
+.op-curses .op-curse-foot { display: flex; align-items: center; justify-content: space-between; gap: 0.5em; }
+.op-curses .op-curse-status { font-size: 0.75em; opacity: 0.7; }
+.op-curses .op-curse-add { display: flex; gap: 0.5em; margin-top: 0.5em; }
+.op-curses .op-curse-add select { flex: 1; }
+.op-curses .op-curse-remove { cursor: pointer; opacity: 0.6; }
+.op-curses .op-curse-remove:hover { opacity: 1; color: #b91c1c; }
+.op-curse-card h3 { margin: 0 0 0.2em; }
+.op-curse-chip { display: inline-block; font-size: 0.65em; font-weight: 700; padding: 0 0.35em; border-radius: 3px; color: #fff; background: var(--curse-color, #666); margin-left: 0.3em; vertical-align: middle; }

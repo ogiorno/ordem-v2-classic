@@ -1,65 +1,121 @@
-{{! Effects Tab }}
-<section class="tab effects {{tab.cssClass}}" data-group="sheet" data-tab="effects">
-	<div class="content scrollable">
-		<ol class="effects-list">
-			{{#each effects as |section sid|}}
-				<li class="effects-header flexrow" data-effect-type="{{section.type}}" data-drag="true">
-					<div class="effect-name flexrow">
-						{{localize section.label}}
-					</div>
-					<div class="effect-source">
-						{{localize "op.sourceEffect"}}
-					</div>
-					<div class="effect-source">{{localize "EFFECT.TabDuration"}}</div>
-					<div class="effect-controls flexrow">
-						<a
-							class="effect-control"
-							data-action="createDoc"
-							data-document-class="ActiveEffect"
-							data-origin="{{@root.actor.uuid}}"
-							data-img="icons/svg/aura.svg"
-							{{opActiveEffectCreateAttrs section}}
-							title="{{localize 'op.effectCreate'}}"
-						>
-							<i class="fas fa-plus"></i>
-							{{localize "op.effectCreate"}}
-						</a>
-					</div>
-				</li>
-
-				<ol class="effect-list">
+{{! Aba Efeitos da ficha de ameaça }}
+<section class="tab effects threat-fx {{tab.cssClass}}" data-group="primary" data-tab="effects">
+	<div class="fx-grid">
+		<div class="fx-col">
+			{{#with effects.passive as |section|}}
+			<div class="fx-card">
+				<div class="fx-head">
+					<span class="fx-title"><i class="fa-solid fa-shield-halved"></i> {{localize "op.threat.fx.passive"}}</span>
+					<span class="fx-head-ctl">{{#if @root.editable}}<a class="fx-btn" data-action="addWeaknessResist" title="{{localize 'op.weaknessResistTitle'}}"><i class="fas fa-shield-halved"></i> {{localize "op.weaknessResist"}}</a>{{/if}}{{#if @root.editable}}<a class="fx-btn" data-action="createDoc" data-document-class="ActiveEffect" data-origin="{{@root.actor.uuid}}" data-img="icons/svg/aura.svg" {{opActiveEffectCreateAttrs section}} title="{{localize 'op.effectCreate'}}"><i class="fas fa-plus"></i> {{localize "op.effectCreate"}}</a>{{/if}}</span>
+				</div>
+				<p class="fx-sub">{{localize "op.threat.fx.passiveHint"}}</p>
+				<ol class="fx-list">
 					{{#each section.effects as |effect|}}
-						<li
-							class="effect effect flexrow draggable"
-							data-effect-id="{{effect.id}}"
-							data-parent-id="{{effect.parent.id}}"
-							data-document-class="ActiveEffect"
-						>
-							<div class="effect-name flexrow">
-								<img class="effect-image" src="{{effect.img}}" height="24" width="24" />
-								<div>{{effect.name}}</div>
+					<li class="fx-effect fx-passive" data-effect-id="{{effect.id}}" data-parent-id="{{effect.parent.id}}" data-document-class="ActiveEffect">
+						<div class="fx-effect-head">
+							<img class="fx-effect-img" src="{{effect.img}}" />
+							<div class="fx-effect-text">
+								<span class="fx-effect-name">{{effect.name}}</span>
+								{{#if effect.description}}<span class="fx-effect-desc">{{{effect.description}}}</span>{{/if}}
 							</div>
-							<div class="effect-source">{{effect.sourceName}}</div>
-							<div class="effect-duration">{{effect.duration.label}}</div>
-							<div class="effect-controls flexrow">
-								{{#if @root.editable}}
-									<a class="effect-control" data-action="toggleEffect" title="{{localize 'BOILERPLATE.Effect.Toggle'}}">
-										<i class="fas {{ternary effect.disabled 'fa-check' 'fa-times'}}"></i>
-									</a>
-								{{/if}}
-								<a class="effect-control" data-action="viewDoc" title="{{localize 'DOCUMENT.Update' type="Effect"}}">
-									<i class="fas fa-edit"></i>
-								</a>
-								{{#if @root.editable}}
-									<a class="effect-control" data-action="deleteDoc" title="{{localize 'DOCUMENT.Delete' type="Effect"}}">
-										<i class="fas fa-trash"></i>
-									</a>
-								{{/if}}
-							</div>
-						</li>
+							<span class="fx-badge fx-badge-passive">{{localize "op.threat.fx.status.passive"}}</span>
+						</div>
+						<div class="fx-effect-meta">
+							<span><b>{{localize "op.sourceEffect"}}</b> {{effect.sourceName}}</span>
+							<span><b>{{localize "EFFECT.TabDuration"}}</b> {{effect.duration.label}}</span>
+						</div>
+						<div class="fx-effect-ctl">
+							<a class="fx-btn" data-action="viewDoc"><i class="fas fa-edit"></i> {{localize "op.threat.edit"}}</a>
+							{{#if @root.editable}}
+								<a class="fx-btn" data-action="toggleEffect"><i class="fas {{#if effect.disabled}}fa-check{{else}}fa-ban{{/if}}"></i> {{localize "op.threat.fx.disable"}}</a>
+								<a class="fx-btn fx-btn-danger" data-action="deleteDoc" title="{{localize 'op.threat.remove'}}"><i class="fas fa-trash"></i></a>
+							{{/if}}
+						</div>
+					</li>
+					{{else}}
+					<li class="fx-empty"><i class="fa-solid fa-shield-halved"></i> {{localize "op.threat.fx.passiveNone"}}</li>
 					{{/each}}
 				</ol>
-			{{/each}}
-		</ol>
+			</div>
+			{{/with}}
+		</div>
+		<div class="fx-col">
+			{{#with effects.temporary as |section|}}
+			<div class="fx-card">
+				<div class="fx-head">
+					<span class="fx-title"><i class="fa-solid fa-hourglass-half"></i> {{localize "op.threat.fx.temporary"}}</span>
+					<span class="fx-head-ctl">{{#if @root.editable}}<a class="fx-btn" data-action="createDoc" data-document-class="ActiveEffect" data-origin="{{@root.actor.uuid}}" data-img="icons/svg/aura.svg" {{opActiveEffectCreateAttrs section}} title="{{localize 'op.effectCreate'}}"><i class="fas fa-plus"></i> {{localize "op.effectCreate"}}</a>{{/if}}</span>
+				</div>
+				<p class="fx-sub">{{localize "op.threat.fx.temporaryHint"}}</p>
+				<ol class="fx-list">
+					{{#each section.effects as |effect|}}
+					<li class="fx-effect fx-temporary" data-effect-id="{{effect.id}}" data-parent-id="{{effect.parent.id}}" data-document-class="ActiveEffect">
+						<div class="fx-effect-head">
+							<img class="fx-effect-img" src="{{effect.img}}" />
+							<div class="fx-effect-text">
+								<span class="fx-effect-name">{{effect.name}}</span>
+								{{#if effect.description}}<span class="fx-effect-desc">{{{effect.description}}}</span>{{/if}}
+							</div>
+							<span class="fx-badge fx-badge-temporary">{{localize "op.threat.fx.status.temporary"}}</span>
+						</div>
+						<div class="fx-effect-meta">
+							<span><b>{{localize "op.sourceEffect"}}</b> {{effect.sourceName}}</span>
+							<span><b>{{localize "EFFECT.TabDuration"}}</b> {{effect.duration.label}}</span>
+						</div>
+						<div class="fx-effect-ctl">
+							<a class="fx-btn" data-action="viewDoc"><i class="fas fa-edit"></i> {{localize "op.threat.edit"}}</a>
+							{{#if @root.editable}}
+								<a class="fx-btn" data-action="toggleEffect"><i class="fas {{#if effect.disabled}}fa-check{{else}}fa-ban{{/if}}"></i> {{localize "op.threat.fx.disable"}}</a>
+								<a class="fx-btn fx-btn-danger" data-action="deleteDoc" title="{{localize 'op.threat.remove'}}"><i class="fas fa-trash"></i></a>
+							{{/if}}
+						</div>
+					</li>
+					{{else}}
+					<li class="fx-empty"><i class="fa-solid fa-hourglass-half"></i> {{localize "op.threat.fx.temporaryNone"}}</li>
+					{{/each}}
+				</ol>
+			</div>
+			{{/with}}
+			{{#with effects.inactive as |section|}}
+			<div class="fx-card">
+				<div class="fx-head">
+					<span class="fx-title"><i class="fa-solid fa-eye-slash"></i> {{localize "op.threat.fx.inactive"}}</span>
+					<span class="fx-head-ctl">{{#if @root.editable}}<a class="fx-btn" data-action="createDoc" data-document-class="ActiveEffect" data-origin="{{@root.actor.uuid}}" data-img="icons/svg/aura.svg" {{opActiveEffectCreateAttrs section}} title="{{localize 'op.effectCreate'}}"><i class="fas fa-plus"></i> {{localize "op.effectCreate"}}</a>{{/if}}</span>
+				</div>
+				<p class="fx-sub">{{localize "op.threat.fx.inactiveHint"}}</p>
+				<ol class="fx-list">
+					{{#each section.effects as |effect|}}
+					<li class="fx-effect fx-inactive" data-effect-id="{{effect.id}}" data-parent-id="{{effect.parent.id}}" data-document-class="ActiveEffect">
+						<div class="fx-effect-head">
+							<img class="fx-effect-img" src="{{effect.img}}" />
+							<div class="fx-effect-text">
+								<span class="fx-effect-name">{{effect.name}}</span>
+								{{#if effect.description}}<span class="fx-effect-desc">{{{effect.description}}}</span>{{/if}}
+							</div>
+							<span class="fx-badge fx-badge-inactive">{{localize "op.threat.fx.status.inactive"}}</span>
+						</div>
+						<div class="fx-effect-meta">
+							<span><b>{{localize "op.sourceEffect"}}</b> {{effect.sourceName}}</span>
+							<span><b>{{localize "EFFECT.TabDuration"}}</b> {{effect.duration.label}}</span>
+						</div>
+						<div class="fx-effect-ctl">
+							<a class="fx-btn" data-action="viewDoc"><i class="fas fa-edit"></i> {{localize "op.threat.edit"}}</a>
+							{{#if @root.editable}}
+								<a class="fx-btn" data-action="toggleEffect"><i class="fas {{#if effect.disabled}}fa-check{{else}}fa-ban{{/if}}"></i> {{localize "op.threat.fx.enable"}}</a>
+								<a class="fx-btn fx-btn-danger" data-action="deleteDoc" title="{{localize 'op.threat.remove'}}"><i class="fas fa-trash"></i></a>
+							{{/if}}
+						</div>
+					</li>
+					{{else}}
+					<li class="fx-empty"><i class="fa-solid fa-eye-slash"></i> {{localize "op.threat.fx.inactiveNone"}}</li>
+					{{/each}}
+				</ol>
+			</div>
+			{{/with}}
+		</div>
+	</div>
+	<div class="fx-about">
+		<i class="fa-solid fa-circle-question"></i>
+		<div><b>{{localize "op.threat.fx.aboutTitle"}}</b><span>{{localize "op.threat.fx.aboutText"}}</span></div>
 	</div>
 </section>

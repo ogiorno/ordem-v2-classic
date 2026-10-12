@@ -1,4 +1,15 @@
 <section class="tab flexcol {{tab.cssClass}}" data-tab="skills" data-group="primary">
+	{{#if training}}
+		<div class="op-train-counter {{training.cls}}">
+			<a class="op-train-main" data-action="openTrainingDetail" title="Quantas perícias posso ter?">
+				<span><b>Perícias treinadas</b> {{training.train.used}} / {{training.train.allowed}}</span>
+				{{#if training.showRaise}}<span><b>Aumentos de grau</b> {{training.raise.used}} / {{training.raise.allowed}}</span>{{/if}}
+				<span><b>Pontos</b> {{training.points.used}} / {{training.points.allowed}}</span>
+				{{#if training.over}}<span class="op-train-over">acima do limite</span>{{/if}}
+			</a>
+			{{#if training.hasPending}}<button type="button" class="op-train-choose" data-action="chooseTraining">Escolher ({{training.pending}})</button>{{else if training.freeRaise}}<button type="button" class="op-train-choose" data-action="chooseTraining">Subir de grau ({{training.freeRaise}})</button>{{/if}}
+		</div>
+	{{/if}}
 	<p class="skills-legend">{{localize "op.skillCols.legend"}}</p>
 	<div class="skills-details">
 		<div class="skills-content">
@@ -42,6 +53,7 @@
 					<select name="system.skills.{{key}}.degree.label" data-dtype="String">
 						{{selectOptions @root.optionDegree selected=skill.degree.label localize=true}}
 					</select>
+					{{#with (lookup @root.trainingSkills key) as |ti|}}<i class="fas {{ti.icon}} op-train-badge" title="{{ti.title}}"></i>{{/with}}
 
 					{{! NOVO: VALOR TOTAL (Calculado no actor-sheet.mjs) }}
 					<div class="flex0" style="margin: 0 5px; display: flex; justify-content: center;">

@@ -1,0 +1,37 @@
+<section class="tap" data-pending="{{view.pending}}">
+	<header class="tap-header">
+		<strong>{{view.itemName}}</strong> <small>{{localize "op.threatPanel.source"}}: {{view.sourceName}} · {{localize "op.threatPanel.gmOnlyNote"}}</small>
+	</header>
+	<ul class="tap-rows">
+		{{#each view.rows}}
+		<li class="tap-row" data-state="{{state}}" data-row="{{index}}">
+			<img src="{{img}}" alt="" width="28" height="28" />
+			<div class="tap-main">
+				<div class="tap-line"><span class="tap-name">{{name}}</span> <span class="tap-state" data-state="{{state}}">{{stateLabel}}</span></div>
+				{{#if save}}<div class="tap-line tap-save">{{save.text}}: <strong>{{save.resultLabel}}</strong> · {{save.mode}}</div>{{/if}}
+				{{#each changes}}
+				<div class="tap-line tap-change" data-change="{{index}}">
+					<span>{{label}}</span>
+					{{#if supported}}
+						{{#if editable}}<input type="number" min="0" step="1" value="{{amount}}" data-tap-edit data-row="{{../index}}" data-change="{{index}}" aria-label="{{label}} — {{../name}}" />
+						{{else}}<strong>{{amount}}</strong>{{/if}}
+						{{#if edited}}<s title="{{localize "op.threatPanel.original"}}">{{original}}</s>{{#if editable}} <button type="button" class="tap-link" data-action="restorePart" data-row="{{../index}}" data-change="{{index}}" title="{{localize "op.threatPanel.restoreOriginal"}}">↺</button>{{/if}}{{/if}}
+					{{/if}}
+				</div>
+				{{/each}}
+				{{#each effects}}<div class="tap-line tap-effect">{{label}} {{#if duration}}<small>({{duration}})</small>{{/if}} {{#if manual}}<em class="tap-manual">{{manualText}}</em>{{/if}}</div>{{/each}}
+				{{#each notes}}<small class="tap-note">{{this}}</small>{{/each}}
+				{{#if applied}}<small class="tap-note">{{#each applied.records}}{{resource}} {{before}} → {{after}}; {{/each}}</small>{{/if}}
+			</div>
+			<div class="tap-buttons">
+				{{#if canApply}}<button type="button" data-action="apply" data-row="{{index}}">{{localize "op.threatPanel.apply"}}</button> <button type="button" data-action="ignore" data-row="{{index}}">{{localize "op.threatPanel.ignore"}}</button>{{/if}}
+				{{#if canUndo}}<button type="button" data-action="undo" data-row="{{index}}">{{localize "op.threatPanel.undo"}}</button>{{/if}}
+				{{#if canRestore}}<button type="button" data-action="restore" data-row="{{index}}">{{localize "op.threatPanel.reactivate"}}</button>{{/if}}
+			</div>
+		</li>
+		{{else}}<li class="tap-empty">{{localize "op.threatPanel.noTargets"}}</li>{{/each}}
+	</ul>
+	<footer class="tap-footer">
+		<button type="button" data-action="applyAll" {{#if view.applyAllDisabled}}disabled{{/if}}>{{localize "op.threatPanel.applyAll"}} ({{view.pending}})</button>
+	</footer>
+</section>

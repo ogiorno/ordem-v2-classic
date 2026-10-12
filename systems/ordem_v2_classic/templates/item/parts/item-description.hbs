@@ -1,6 +1,23 @@
 <section class="tab description {{tab.cssClass}}" data-group="primary" data-tab="description">
 	<div class="content-item description-container {{ternary isAnyDescriptionEditing '' 'scrollable'}}">
 
+		{{#if originGrants}}
+			<section class="op-origin-grants op-shadow" aria-label="O que esta origem concede">
+				<h3 class="op-origin-grants-title"><i class="fa-solid fa-gift" aria-hidden="true"></i> O que esta origem concede</h3>
+				<ul>
+					{{#each originGrants.rows}}
+						<li class="op-origin-grant is-{{key}}">
+							<span class="op-origin-grant-head"><i class="fa-solid {{icon}}" aria-hidden="true"></i> {{title}}</span>
+							{{#if items.length}}
+								<span class="op-origin-grant-items">{{#each items}}<span class="op-origin-grant-item {{#if choice}}is-choice{{/if}}">{{{html}}}</span>{{/each}}</span>
+							{{/if}}
+							{{#if note}}<span class="op-origin-grant-note">{{note}}</span>{{/if}}
+						</li>
+					{{/each}}
+				</ul>
+			</section>
+		{{/if}}
+
 		<details
 			class="description-box op-shadow {{ternary editingDescription 'fullscreen-editor' ''}}"
 			{{ternary editingDescription "open" ""}}

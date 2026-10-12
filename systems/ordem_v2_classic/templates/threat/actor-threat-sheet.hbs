@@ -5,6 +5,17 @@
 		<img class="sb-portrait" src="{{actor.img}}" data-edit="img" data-action="onEditImage" title="{{actor.name}}" />
 		<div class="sb-title">
 			<input class="sb-name" name="name" type="text" value="{{actor.name}}" placeholder="{{localize 'op.threatName'}}" />
+			<div class="sb-tags">
+				{{#if elementLabel}}<span class="sb-chip element-{{system.elements.main}}">{{elementLabel}}</span>{{/if}}
+				{{#each otherElements as |el|}}<span class="sb-chip element-{{el.key}}">{{el.label}}</span>{{/each}}
+				{{#if typeLabel}}<span class="sb-chip">{{typeLabel}}</span>{{/if}}
+				<span class="sb-chip">{{sizeLabel}}</span>
+			</div>
+			<div class="sb-stealth">
+				{{localize "op.threat.sizeStealth"}} {{numberFormat system.sizeData.stealth sign=true}} ·
+				{{localize "op.threat.sizeManeuvers"}} {{numberFormat system.sizeData.maneuvers sign=true}} ·
+				{{localize "op.threat.sizeSpace"}} {{system.sizeData.space}}m
+			</div>
 		</div>
 		<div class="sb-vd">
 			<span class="sb-vd-label">{{localize "op.threat.vd"}}</span>
@@ -17,33 +28,48 @@
 		{{/if}}
 	</header>
 
-	{{!-- 2. DESCRITORES E TAMANHO --}}
-	<div class="sb-tags">
-		{{#if elementLabel}}<span class="sb-chip element-{{system.elements.main}}">{{elementLabel}}</span>{{/if}}
-		{{#if typeLabel}}<span class="sb-chip">{{typeLabel}}</span>{{/if}}
-		<span class="sb-chip">{{sizeLabel}}</span>
-		<span class="sb-chip sb-chip-dim">
-			{{localize "op.threat.sizeStealth"}} {{numberFormat system.sizeData.stealth sign=true}} ·
-			{{localize "op.threat.sizeManeuvers"}} {{numberFormat system.sizeData.maneuvers sign=true}} ·
-			{{localize "op.threat.sizeSpace"}} {{system.sizeData.space}}m
-		</span>
-	</div>
-	<div class="sb-edit sb-row sb-edit-selects">
-		<label>{{localize "op.type"}}
+	<div class="sb-edit sb-edit-selects">
+		<label class="sb-field">
+			<span>{{localize "op.type"}}</span>
 			<select name="system.details.creatureType">{{selectOptions threatTypes selected=system.details.creatureType localize=true}}</select>
 		</label>
-		<label>{{localize "op.element"}}
-			<select name="system.elements.main">{{selectOptions elements selected=system.elements.main localize=true blank=""}}</select>
-		</label>
-		<label>{{localize "op.size"}}
+		<div class="sb-field sb-field-elements">
+			<span>{{localize "op.element"}}</span>
+			<div class="sb-elements-row">
+				<select name="system.elements.main">{{selectOptions elements selected=system.elements.main localize=true blank=""}}</select>
+				{{#each otherElements as |el|}}
+					<span class="sb-chip sb-el-chip element-{{el.key}}">{{el.label}}
+						<a class="sb-chip-x" data-action="removeElement" data-key="{{el.key}}" data-tooltip="{{localize 'op.threat.removeElement'}}"><i class="fas fa-xmark"></i></a>
+					</span>
+				{{/each}}
+				{{#if elementPicker.length}}
+					<label class="sb-add-btn" data-tooltip="{{localize 'op.threat.addElementPick'}}">
+						<i class="fas fa-plus"></i> {{localize "op.threat.addElement"}}
+						<select data-element-picker aria-label="{{localize 'op.threat.addElementPick'}}">
+							<option value="">{{localize "op.threat.addElementPick"}}</option>
+							{{#each elementPicker as |e|}}<option value="{{e.key}}">{{e.label}}</option>{{/each}}
+						</select>
+					</label>
+				{{/if}}
+			</div>
+		</div>
+		<label class="sb-field">
+			<span>{{localize "op.size"}}</span>
 			<select name="system.size">{{selectOptions threatSizes selected=system.size localize=true}}</select>
 		</label>
 	</div>
 
-	{{!-- 3. PRESENÇA PERTURBADORA (só criaturas) --}}
+	<nav class="sb-tabs" role="tablist">
+		{{#each tabs as |t|}}
+			<a class="sb-tab-link {{#if t.active}}active{{/if}}" role="tab" data-action="sbTab" data-tab="{{t.id}}"><i class="{{t.icon}}"></i> {{t.label}}</a>
+		{{/each}}
+	</nav>
+
+	<div class="sb-tab sb-cols" data-sb-tab="stats">
+		<div class="sb-col">
 	{{#if isCreature}}
 		<div class="sb-block sb-presence">
-			<span class="sb-label"><i class="fa-solid fa-eye"></i> {{localize "op.threat.presence"}}</span>
+			<span class="sb-label"><i class="fa-solid fa-skull"></i> {{localize "op.threat.presence"}}</span>
 			<div class="sb-row">
 				<span class="sb-view-inline">DT {{system.disturbingPresence.dt}} · {{system.disturbingPresence.mentalDamage}} mental · NEX {{system.disturbingPresence.immuneNex}}%+</span>
 				<a class="sb-die" data-action="onRollMentalDamage" data-tooltip="{{localize 'op.threat.presenceRoll'}}"><i class="fa-solid fa-dice-d20"></i></a>
@@ -55,80 +81,55 @@
 			</div>
 		</div>
 	{{/if}}
-
-	{{!-- 4. SENTIDOS --}}
 	<div class="sb-block">
-		<span class="sb-label">{{localize "op.threat.senses"}}</span>
-		<div class="sb-row">
-			{{#each senseTests as |t|}}
-				{{> "systems/ordem_v2_classic/templates/threat/parts/threat-test-chip.hbs" t=t}}
-			{{/each}}
-			{{#each senseTraits as |trait|}}<span class="sb-chip">{{trait.label}}</span>{{/each}}
-			{{#if editable}}
-				<a class="sb-config sb-edit" data-action="openTraitsConfig" data-tooltip="{{localize 'op.traitsTitle'}}"><i class="fas fa-cog"></i></a>
-			{{/if}}
-		</div>
-	</div>
-
-	{{!-- 5. DEFESA --}}
-	<div class="sb-block">
-		<span class="sb-label">{{localize "op.threat.defense"}}</span>
-		<div class="sb-row">
-			<span class="sb-stat"><b>{{localize "op.defense"}}</b>
-				<input type="text" name="system.defense.value" value="{{system.defense.value}}" data-dtype="Number" />
-			</span>
-			{{#each defenseTests as |t|}}
-				{{> "systems/ordem_v2_classic/templates/threat/parts/threat-test-chip.hbs" t=t}}
-			{{/each}}
-		</div>
-	</div>
-
-	{{!-- 6. PV, RESISTÊNCIAS, VULNERABILIDADES, IMUNIDADES --}}
-	<div class="sb-block">
-		<span class="sb-label">{{localize "op.threat.hp"}}</span>
+		<span class="sb-label"><i class="fa-solid fa-heart"></i> {{localize "op.threat.hp"}}</span>
 		<div class="sb-row sb-hp">
 			<input type="text" class="sb-hp-input" name="system.attributes.hp.value" value="{{system.attributes.hp.value}}" data-dtype="Number" />
 			<span>/</span>
 			<input type="text" class="sb-hp-input" name="system.attributes.hp.max" value="{{system.attributes.hp.max}}" data-dtype="Number" />
 			<span class="sb-bruised {{#if system.attributes.hp.isBruised}}is-bruised{{/if}}">{{system.attributes.hp.bruised}} {{localize "op.threat.bruised"}}</span>
 		</div>
-		<div class="sb-row sb-defmods">
+		<div class="sb-hpbar" role="progressbar" aria-valuemin="0" aria-valuemax="{{system.attributes.hp.max}}" aria-valuenow="{{system.attributes.hp.value}}">
+			<span class="sb-hpbar-fill {{#if system.attributes.hp.isBruised}}is-bruised{{/if}}" style="width: {{hpPercent}}%"></span>
+		</div>
+		<div class="sb-row sb-defmods sb-view">
 			{{#each rdTags as |tag|}}<span class="sb-chip sb-rd" title="{{tag.title}}">{{tag.text}}</span>{{/each}}
 			{{#each vulnerableTags as |tag|}}<span class="sb-chip sb-vuln">{{localize "op.threat.vulnerabilities"}}: {{tag}}</span>{{/each}}
 			{{#each immuneTags as |tag|}}<span class="sb-chip sb-immune">{{localize "op.threat.immunities"}}: {{tag}}</span>{{/each}}
 			{{#if healingText}}<span class="sb-chip sb-heal">{{healingText}}</span>{{/if}}
 			{{#if editable}}
-				<a class="sb-config sb-edit" data-action="openResistanceConfig" data-tooltip="{{localize 'op.resistancesTitle'}}"><i class="fas fa-shield-alt"></i></a>
+				<a class="sb-config sb-edit sb-view-keep" data-action="openResistanceConfig" data-tooltip="{{localize 'op.resistancesTitle'}}"><i class="fas fa-shield-alt"></i></a>
 			{{/if}}
+		</div>
+		<span class="sb-sublabel sb-edit">{{localize "op.threat.resistancesTitle"}}</span>
+		<div class="sb-edit sb-res-scroll">
+			<table class="sb-ttable sb-restable">
+				<thead><tr><th>{{localize "op.threat.testName"}}</th><th>{{localize "op.threat.value"}}</th><th>{{localize "op.threat.vulnShort"}}</th><th>{{localize "op.threat.immuneShort"}}</th></tr></thead>
+				<tbody>
+					{{#each resistanceRows as |r|}}
+						<tr>
+							<td>{{r.label}}</td>
+							<td><input type="text" name="system.resistances.{{r.key}}.value" value="{{r.value}}" data-dtype="Number" /></td>
+							<td><input type="checkbox" name="system.resistances.{{r.key}}.vulnerable" {{checked r.vulnerable}} /></td>
+							<td><input type="checkbox" name="system.resistances.{{r.key}}.immune" {{checked r.immune}} /></td>
+						</tr>
+					{{/each}}
+				</tbody>
+			</table>
 		</div>
 		<div class="sb-edit sb-row sb-edit-rd">
 			<label>{{localize "op.threat.genericRd"}} <input type="text" name="system.genericRd.value" value="{{system.genericRd.value}}" data-dtype="Number" /></label>
-			<label>{{localize "op.threat.genericRdExcept"}}
-				<select multiple name="system.genericRd.except">{{selectOptions damageTypes selected=system.genericRd.except localize=true}}</select>
-			</label>
+			{{#if system.genericRd.value}}<label>{{localize "op.threat.genericRdExcept"}}
+				<multi-select name="system.genericRd.except">{{selectOptions damageTypes selected=system.genericRd.except localize=true}}</multi-select>
+			</label>{{/if}}
 			<label>{{localize "op.threat.fastHealing"}} <input type="text" name="system.fastHealing.value" value="{{system.fastHealing.value}}" data-dtype="Number" /></label>
-			<label>{{localize "op.threat.genericRdExcept"}}
-				<select multiple name="system.fastHealing.except">{{selectOptions damageTypes selected=system.fastHealing.except localize=true}}</select>
-			</label>
+			{{#if system.fastHealing.value}}<label>{{localize "op.threat.genericRdExcept"}}
+				<multi-select name="system.fastHealing.except">{{selectOptions damageTypes selected=system.fastHealing.except localize=true}}</multi-select>
+			</label>{{/if}}
 		</div>
 	</div>
-
-	{{!-- 7. ATRIBUTOS --}}
-	<div class="sb-block">
-		<span class="sb-label">{{localize "op.threat.attributes"}}</span>
-		<div class="sb-attrs">
-			{{#each attrRows as |a|}}
-				<div class="sb-attr">
-					<a class="sb-attr-name" data-action="onRollAttributeTest" data-key="{{a.key}}" data-tooltip="{{a.label}}">{{a.abbr}}</a>
-					<input type="text" name="system.attributes.{{a.key}}.value" value="{{a.value}}" data-dtype="Number" />
-				</div>
-			{{/each}}
-		</div>
-	</div>
-
-	{{!-- 8. PERÍCIAS (adicionar rápido; buff separado do bônus base) --}}
 	<div class="sb-block sb-skills">
-		<span class="sb-label">{{localize "op.threat.skills"}}
+		<span class="sb-label"><i class="fa-solid fa-dice-d20"></i> {{localize "op.threat.skills"}}
 			{{#if editable}}
 				<select class="sb-picker" data-skill-picker aria-label="{{localize 'op.threat.addSkill'}}">
 					<option value="">{{localize "op.threat.addSkillPick"}}</option>
@@ -170,19 +171,63 @@
 			{{/each}}
 		</div>
 	</div>
-
-	{{!-- 9. DESLOCAMENTO --}}
+		</div>
+		<div class="sb-col">
 	<div class="sb-block">
-		<span class="sb-label">{{localize "op.threat.movement"}}</span>
+		<span class="sb-label"><i class="fa-solid fa-eye"></i> {{localize "op.threat.senses"}}</span>
+		<div class="sb-row sb-view">
+			{{#each senseTests as |t|}}
+				{{> "systems/ordem_v2_classic/templates/threat/parts/threat-test-chip.hbs" t=t}}
+			{{/each}}
+		</div>
+		{{> "systems/ordem_v2_classic/templates/threat/parts/threat-test-table.hbs" tests=senseTests}}
+		<div class="sb-row">
+			{{#each senseTraits as |trait|}}<span class="sb-chip">{{trait.label}}</span>{{/each}}
+			{{#if editable}}
+				<a class="sb-config sb-edit" data-action="openTraitsConfig" data-tooltip="{{localize 'op.traitsTitle'}}"><i class="fas fa-cog"></i></a>
+			{{/if}}
+		</div>
+	</div>
+	<div class="sb-block">
+		<span class="sb-label"><i class="fa-solid fa-shield-halved"></i> {{localize "op.threat.defense"}}</span>
+		<div class="sb-row sb-defense-main">
+			<span class="sb-stat"><b>{{localize "op.defense"}}</b>
+				<input type="text" name="system.defense.value" value="{{system.defense.value}}" data-dtype="Number" />
+			</span>
+		</div>
+		<div class="sb-row sb-view">
+			{{#each defenseTests as |t|}}
+				{{> "systems/ordem_v2_classic/templates/threat/parts/threat-test-chip.hbs" t=t}}
+			{{/each}}
+		</div>
+		{{> "systems/ordem_v2_classic/templates/threat/parts/threat-test-table.hbs" tests=defenseTests}}
+	</div>
+	<div class="sb-block">
+		<span class="sb-label"><i class="fa-solid fa-shoe-prints"></i> {{localize "op.threat.movement"}}</span>
 		<div class="sb-row">
 			<input type="text" class="sb-move-input" name="system.attributes.movement.walk" value="{{system.attributes.movement.walk}}" data-dtype="Number" />
 			<span class="sb-view-inline">{{system.attributes.movement.label}}</span>
+			<span class="sb-edit sb-squares">{{localize "op.threat.squares"}} <b>{{system.attributes.movement.squaresCalc}}</b></span>
+		</div>
+	</div>
+	<div class="sb-block">
+		<span class="sb-label"><i class="fa-solid fa-brain"></i> {{localize "op.threat.attributes"}}</span>
+		<div class="sb-attrs">
+			{{#each attrRows as |a|}}
+				<div class="sb-attr">
+					<a class="sb-attr-name" data-action="onRollAttributeTest" data-key="{{a.key}}" data-tooltip="{{a.label}}">{{a.abbr}}</a>
+					<input type="text" name="system.attributes.{{a.key}}.value" value="{{a.value}}" data-dtype="Number" />
+				</div>
+			{{/each}}
+		</div>
+	</div>
 		</div>
 	</div>
 
-	{{!-- 10. HABILIDADES PASSIVAS --}}
+	<div class="sb-tab sb-cols" data-sb-tab="actions">
+		<div class="sb-col sb-col-main">
 	<div class="sb-block">
-		<span class="sb-label">{{localize "op.threat.passives"}}
+		<span class="sb-label"><i class="fa-solid fa-gear"></i> {{localize "op.threat.passives"}}
 			{{#if editable}}<a class="sb-add-inline" data-action="createDoc" data-document-class="Item" data-type="ability" data-tooltip="{{localize 'op.addAbility'}}"><i class="fas fa-plus"></i></a>{{/if}}
 		</span>
 		<ol class="sb-list">
@@ -193,10 +238,8 @@
 			{{/each}}
 		</ol>
 	</div>
-
-	{{!-- 11. AÇÕES --}}
 	<div class="sb-block sb-actions">
-		<span class="sb-label">{{localize "op.threat.actions"}}
+		<span class="sb-label"><i class="fa-solid fa-hand-fist"></i> {{localize "op.threat.actions"}}
 			{{#if editable}}
 				<a class="sb-add-inline" data-action="createThreatAttack" data-tooltip="{{localize 'op.addThreatAttack'}}"><i class="fas fa-crosshairs"></i><i class="fas fa-plus"></i></a>
 				<a class="sb-add-inline" data-action="createDoc" data-document-class="Item" data-type="ability" data-tooltip="{{localize 'op.addAbility'}}"><i class="fas fa-bolt"></i><i class="fas fa-plus"></i></a>
@@ -214,5 +257,16 @@
 		{{else}}
 			<p class="sb-empty">{{localize "op.threat.noActions"}}</p>
 		{{/each}}
+		</div>
+		</div>
+		<div class="sb-col sb-col-side">
+		<div class="sb-block sb-summary">
+			<span class="sb-label"><i class="fa-solid fa-book-skull"></i> {{localize "op.threat.summary"}}</span>
+			<div class="sb-sum-row"><i class="fa-solid fa-heart"></i><span>{{localize "op.threat.hp"}}</span><b>{{system.attributes.hp.value}} / {{system.attributes.hp.max}}</b></div>
+			<div class="sb-sum-row"><i class="fa-solid fa-shield-halved"></i><span>{{localize "op.defense"}}</span><b>{{system.defense.value}}</b></div>
+			<div class="sb-sum-row"><i class="fa-solid fa-shoe-prints"></i><span>{{localize "op.threat.movement"}}</span><b>{{system.attributes.movement.label}}</b></div>
+			<div class="sb-sum-row"><i class="fa-solid fa-wand-sparkles"></i><span>{{localize "op.threat.tab.effects"}}</span><b>{{activeEffectsCount}}</b></div>
+		</div>
+		</div>
 	</div>
 </section>

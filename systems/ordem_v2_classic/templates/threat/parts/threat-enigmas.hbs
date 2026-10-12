@@ -1,24 +1,44 @@
-<section class="threat-notes sb sb-notes flexcol">
-	{{#if isCreature}}
-		<div class="sb-block">
-			<span class="sb-label"><i class="fa-solid fa-puzzle-piece"></i> {{localize "op.threat.enigma"}}</span>
-			{{#if editable}}
-				<prose-mirror name="system.details.fearRiddle" data-document-uuid="{{actor.uuid}}" value="{{system.details.fearRiddle}}" collaborate="true" toggled="true">
-					{{{enrichedFearRiddle}}}
-				</prose-mirror>
-			{{else}}
-				<div class="locked-content">{{{enrichedFearRiddle}}}</div>
-			{{/if}}
-		</div>
-	{{/if}}
-	<div class="sb-block">
-		<span class="sb-label"><i class="fa-solid fa-book-open"></i> {{localize "op.threat.description"}}</span>
-		{{#if editable}}
-			<prose-mirror name="system.details.description" data-document-uuid="{{actor.uuid}}" value="{{system.details.description}}" collaborate="true" toggled="true">
-				{{{enrichedDescription}}}
-			</prose-mirror>
-		{{else}}
-			<div class="locked-content">{{{enrichedDescription}}}</div>
+<section class="threat-notes threat-fx" data-tab="description">
+	<div class="fx-stack">
+		{{#if isCreature}}
+			<div class="fx-card" data-text-card="fearRiddle">
+				<div class="fx-head">
+					<span class="fx-title"><i class="fa-solid fa-puzzle-piece"></i> {{localize "op.threat.enigma"}}</span>
+					{{#if editable}}{{#if system.details.fearRiddle}}<a class="fx-btn fx-btn-line" data-action="sbEditText" data-field="fearRiddle"><i class="fas fa-pencil"></i> {{localize "op.threat.editText"}}</a>{{/if}}{{/if}}
+				</div>
+				{{#unless system.details.fearRiddle}}
+					<div class="fx-emptystate">
+						<span class="fx-emptyicon"><i class="fa-solid fa-puzzle-piece"></i></span>
+						<b>{{localize "op.threat.enigmaNone"}}</b>
+						<span>{{localize "op.threat.enigmaHint"}}</span>
+						{{#if editable}}<a class="fx-btn fx-btn-line" data-action="sbEditText" data-field="fearRiddle"><i class="fas fa-plus"></i> {{localize "op.threat.enigmaAdd"}}</a>{{/if}}
+					</div>
+				{{/unless}}
+				<div class="fx-text {{#unless system.details.fearRiddle}}is-empty{{/unless}}">
+					{{#if editable}}
+						<prose-mirror name="system.details.fearRiddle" data-document-uuid="{{actor.uuid}}" value="{{system.details.fearRiddle}}" collaborate="true" toggled="true">
+							{{{enrichedFearRiddle}}}
+						</prose-mirror>
+					{{else}}
+						<div class="locked-content">{{{enrichedFearRiddle}}}</div>
+					{{/if}}
+				</div>
+			</div>
 		{{/if}}
+		<div class="fx-card" data-text-card="description">
+			<div class="fx-head">
+				<span class="fx-title"><i class="fa-solid fa-book-open"></i> {{localize "op.threat.description"}}</span>
+				{{#if editable}}<a class="fx-btn fx-btn-line" data-action="sbEditText" data-field="description"><i class="fas fa-pencil"></i> {{localize "op.threat.editDescription"}}</a>{{/if}}
+			</div>
+			<div class="fx-text">
+				{{#if editable}}
+					<prose-mirror name="system.details.description" data-document-uuid="{{actor.uuid}}" value="{{system.details.description}}" collaborate="true" toggled="true">
+						{{{enrichedDescription}}}
+					</prose-mirror>
+				{{else}}
+					<div class="locked-content">{{{enrichedDescription}}}</div>
+				{{/if}}
+			</div>
+		</div>
 	</div>
 </section>

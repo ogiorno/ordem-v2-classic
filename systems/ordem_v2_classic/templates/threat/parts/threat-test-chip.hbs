@@ -3,9 +3,4 @@
 		{{t.label}} <b>{{{t.testHtml}}}</b>
 	</a>
 	{{#if t.hasBuff}}<span class="sb-buff {{t.buffClass}}" data-tooltip="{{localize 'op.threat.buff'}}">{{t.buffText}}</span>{{/if}}
-	<span class="sb-edit sb-testedit">
-		<select name="system.skills.{{t.key}}.degree.label">{{selectOptions @root.optionDegreeThreat selected=t.degreeLabel localize=true}}</select>
-		<label title="{{localize 'op.skillDegreeOverrideTitle'}}">{{localize "op.threat.base"}} <input type="text" name="system.skills.{{t.key}}.degree.override" value="{{t.override}}" placeholder="{{t.derived}}" data-dtype="Number" /></label>
-		<label title="{{localize 'op.threat.buffHint'}}">{{localize "op.threat.buff"}} <input type="text" name="system.skills.{{t.key}}.value" value="{{t.buff}}" data-dtype="Number" /></label>
-	</span>
 </span>

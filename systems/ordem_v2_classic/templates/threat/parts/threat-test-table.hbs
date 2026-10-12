@@ -1,0 +1,22 @@
+<table class="sb-edit sb-ttable">
+	<thead>
+		<tr>
+			<th>{{localize "op.threat.testName"}}</th>
+			<th>{{localize "op.threat.total"}}</th>
+			<th>{{localize "op.threat.trained"}}</th>
+			<th>{{localize "op.threat.base"}}</th>
+			<th>{{localize "op.threat.buff"}}</th>
+		</tr>
+	</thead>
+	<tbody>
+		{{#each tests as |t|}}
+			<tr>
+				<td><a class="sb-tt-name" data-action="rollThreatTest" data-key="{{t.key}}" data-tooltip="{{t.tooltip}}">{{t.label}} <i class="fa-solid fa-dice-d20"></i></a></td>
+				<td class="sb-tt-total">{{{t.testHtml}}}</td>
+				<td><select name="system.skills.{{t.key}}.degree.label">{{selectOptions @root.optionDegreeThreat selected=t.degreeLabel localize=true}}</select></td>
+				<td><input type="text" name="system.skills.{{t.key}}.degree.override" value="{{t.override}}" placeholder="{{t.derived}}" data-dtype="Number" title="{{localize 'op.skillDegreeOverrideTitle'}}" /></td>
+				<td><input type="text" name="system.skills.{{t.key}}.value" value="{{t.buff}}" data-dtype="Number" title="{{localize 'op.threat.buffHint'}}" /></td>
+			</tr>
+		{{/each}}
+	</tbody>
+</table>

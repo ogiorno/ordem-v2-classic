@@ -1,0 +1,86 @@
+<div class="op-gr-read" style="{{accentStyle}}">
+	<button type="button" class="op-gr-back" data-action="back"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i> {{localize "op.grimoire.back"}}</button>
+	{{#if reading}}
+	<div class="op-gr-read-body">
+		{{#if reading.isRitual}}
+		<header class="op-gr-hero {{reading.elementClass}}">
+			{{#if reading.img}}<img src="{{reading.img}}" alt="" class="op-gr-hero-img">{{else}}<span class="op-gr-elicon is-big" style="background-position: {{reading.spriteX}}% 50%;"></span>{{/if}}
+			<div class="op-gr-hero-text">
+				<h2>{{reading.name}}</h2>
+				<p>{{reading.subtitle}}{{#if reading.hidden}} · <em>{{localize "op.grimoire.hiddenToPlayers"}}</em>{{/if}}</p>
+			</div>
+		</header>
+		{{else}}
+		<header class="op-gr-plainhead">
+			<span class="op-gr-icon">{{#if reading.img}}<img src="{{reading.img}}" alt="">{{else}}<i class="fa-solid {{#if reading.isCondition}}fa-skull{{else if reading.isSkill}}fa-dice-d20{{else if reading.isCurse}}fa-link-slash{{else}}fa-hand-sparkles{{/if}}" aria-hidden="true"></i>{{/if}}</span>
+			<div><h2>{{reading.name}}</h2><p>{{reading.subtitle}}{{#if reading.sourceLabel}} · {{reading.sourceLabel}}{{/if}}{{#if reading.hidden}} · <em>{{localize "op.grimoire.hiddenToPlayers"}}</em>{{/if}}</p></div>
+		</header>
+		{{/if}}
+
+		{{#if reading.availText}}<p class="op-gr-avail is-{{reading.availTone}}">{{reading.availText}}</p>{{/if}}
+		{{#if reading.hasWishers}}<p class="op-gr-wishers"><i class="fa-solid fa-star" aria-hidden="true"></i> {{localize "op.grimoire.markedBy"}} {{#each reading.wishers}}{{name}}{{#unless @last}}, {{/unless}}{{/each}}</p>{{/if}}
+		{{#if reading.cells.length}}
+		<ul class="op-gr-cells">
+			{{#each reading.cells}}<li class="op-gr-cell" title="{{label}}" aria-label="{{label}}: {{value}}">{{#if icon}}<i class="fa-solid fa-{{icon}}" aria-hidden="true"></i>{{/if}}<span>{{value}}</span></li>{{/each}}
+		</ul>
+		{{/if}}
+
+		{{#if reading.isRitual}}
+		{{#if reading.functions.length}}<p class="op-gr-functions"><span class="op-gr-chiplabel">{{localize "op.grimoire.f.function"}}</span>{{#each reading.functions}}<span class="op-gr-tag">{{name}}</span>{{/each}}</p>{{/if}}
+		<div class="op-gr-forms" role="tablist" aria-label="{{localize 'op.grimoire.f.form'}}">
+			{{#each reading.formTabs}}<button type="button" role="tab" class="op-gr-formtab{{#if active}} is-active{{/if}}" data-action="selectForm" data-form="{{id}}" aria-selected="{{active}}">{{label}}</button>{{/each}}
+		</div>
+		{{#if reading.formCost}}<p class="op-gr-formcost">{{localize "op.grimoire.cost"}}: <strong>{{reading.formCost}}</strong>{{#if reading.formExtra}} · {{reading.formExtra}}{{/if}}</p>{{/if}}
+		{{/if}}
+
+		{{#if reading.isPower}}
+		{{#if reading.prerequisite}}<p class="op-gr-prereq"><strong>{{localize "op.grimoire.prerequisite"}}:</strong> {{reading.prerequisite}}</p>{{/if}}
+		{{/if}}
+
+		{{#if reading.isCondition}}
+		<p class="op-gr-rule">{{reading.rule}}</p>
+		{{#each reading.blocks}}<section class="op-gr-block">{{#if title}}<h3>{{title}}</h3>{{/if}}<div class="op-gr-text">{{{body}}}</div></section>{{/each}}
+		{{else}}
+		<div class="op-gr-text">{{{reading.body}}}</div>
+		{{/if}}
+
+		{{#if reading.training}}
+		<section class="op-gr-block op-gr-training">
+			<h3>{{reading.training.title}}</h3>
+			{{#if reading.training.chip}}<p><span class="op-gr-tag op-gr-degree is-{{reading.training.chip.tone}}">{{reading.training.chip.label}}</span></p>{{/if}}
+			<ul>{{#each reading.training.lines}}<li>{{this}}</li>{{/each}}</ul>
+			{{#if reading.training.card}}
+			<div class="op-gr-budget{{#if reading.training.card.over}} is-over{{/if}}">
+				<h4>{{reading.training.card.title}}</h4>
+				<p>{{#each reading.training.card.numbers}}<strong>{{this}}</strong>{{#unless @last}} · {{/unless}}{{/each}}</p>
+				<ul>{{#each reading.training.card.rules}}<li>{{this}}</li>{{/each}}</ul>
+			</div>
+			{{/if}}
+		</section>
+		{{/if}}
+
+		{{#if reading.related.length}}
+		<section class="op-gr-block op-gr-related">
+			<h3>{{localize "op.grimoire.seeAlso"}}</h3>
+			<p>{{#each reading.related}}<button type="button" class="op-gr-chip" data-action="pickRelated" data-uuid="{{uuid}}" title="{{kindLabel}}">{{name}}</button>{{/each}}</p>
+		</section>
+		{{/if}}
+	</div>
+
+	<footer class="op-gr-actions">
+		{{#if reading.canCast}}<button type="button" class="op-gr-btn is-primary" data-action="castRitual"><i class="fa-solid fa-wand-sparkles" aria-hidden="true"></i> {{localize "op.grimoire.cast"}}</button>{{/if}}
+		{{#if reading.isCurse}}<button type="button" class="op-gr-btn is-primary" data-action="curseItem"><i class="fa-solid fa-link" aria-hidden="true"></i> {{localize "op.grimoire.curseItem"}}</button>{{/if}}
+		{{#if reading.canWish}}
+		<button type="button" class="op-gr-btn{{#unless reading.canCast}} is-primary{{/unless}}{{#if reading.wished}} is-on{{/if}}" data-action="toggleWish" aria-pressed="{{reading.wished}}"><i class="fa-{{#if reading.wished}}solid{{else}}regular{{/if}} fa-star" aria-hidden="true"></i> {{#if reading.wished}}{{localize "op.grimoire.wishedBtn"}}{{else}}{{localize "op.grimoire.wishBtn"}}{{/if}}</button>
+		{{/if}}
+		<span class="op-gr-split">
+			<button type="button" class="op-gr-btn{{#unless reading.canWish}}{{#unless reading.canCast}}{{#unless reading.isCurse}} is-primary{{/unless}}{{/unless}}{{/unless}}" data-action="sendChat" data-whisper="all"><i class="fa-solid fa-comment" aria-hidden="true"></i> {{localize "op.grimoire.sendChat"}}</button>
+			<button type="button" class="op-gr-btn op-gr-caret" data-action="toggleSendMenu" aria-haspopup="true" aria-label="{{localize 'op.grimoire.sendOptions'}}"><i class="fa-solid fa-caret-down" aria-hidden="true"></i></button>
+			<span class="op-gr-menu" hidden><button type="button" class="op-gr-btn" data-action="sendChat" data-whisper="gm">{{localize "op.grimoire.sendToGM"}}</button></span>
+		</span>
+		<button type="button" class="op-gr-btn" data-action="copyLink"><i class="fa-solid fa-link" aria-hidden="true"></i> {{localize "op.grimoire.copyLink"}}</button>
+	</footer>
+	{{else}}
+	<div class="op-gr-read-empty"><i class="fa-solid fa-book-skull" aria-hidden="true"></i><p>{{localize "op.grimoire.pickOne"}}</p></div>
+	{{/if}}
+</div>

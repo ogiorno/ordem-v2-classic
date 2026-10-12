@@ -3099,7 +3099,28 @@ dialog.ordemparanormal.application {
 	margin-left: 4px;
 }
 .system-ordemparanormal .card-buttons button.hit-critical {
-	border-color: #f9a825;
+	position: relative;
+	margin-top: 8px;
+	border: 2px solid #f9a825;
+	color: #ffe082;
+	font-weight: 700;
+	box-shadow: 0 0 8px 1px rgba(249, 168, 37, 0.75);
+}
+.system-ordemparanormal .card-buttons button.hit-critical::before {
+	content: attr(data-crit-label);
+	position: absolute;
+	top: -9px;
+	left: 50%;
+	transform: translateX(-50%);
+	padding: 0 6px;
+	font-size: 9px;
+	line-height: 14px;
+	letter-spacing: 1.5px;
+	font-weight: 800;
+	color: #2b1a00;
+	background: linear-gradient(90deg, #f9a825, #ffe082, #f9a825);
+	border-radius: 7px;
+	pointer-events: none;
 }
 .system-ordemparanormal .reaction-panel {
 	border: 1px solid var(--color-border-light, #b8b8b8);
@@ -4285,6 +4306,16 @@ dialog.ordemparanormal.application {
 	text-overflow: ellipsis;
 }
 
+/* Retrato do token (character-chat-selector) ao lado do nome, não acima */
+#chat .chat-message .message-header .message-sender {
+	display: flex;
+	align-items: center;
+	min-width: 0;
+}
+#chat .chat-message .message-header .message-sender > .chat-portrait-container {
+	margin-right: 8px;
+}
+
 /* P16: chat compacto (opção de cliente) */
 body.op-compact-chat #chat .chat-message {
 	padding-block: 4px;
@@ -4399,8 +4430,88 @@ body.theme-dark,
 .op-attack-dialog .op-ad-weapon-tag { padding: 1px 8px; border-radius: 10px; border: 1px solid var(--color-border-light-tertiary, #8884); font-size: 0.8em; }
 .op-attack-dialog .op-ad-modes { display: flex; flex-direction: column; gap: 2px; margin: 4px 0; }
 .op-attack-dialog .op-ad-field { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin: 4px 0; }
+/* Tela de ataque: alvo, ação, resumo e dobras (layout de referência, versão compacta) */
+.op-attack-dialog .op-attack-form { gap: 8px; min-width: 420px; font-size: 12px; }
+.op-attack-dialog .op-ad-sub { font-size: 11px; }
+.op-attack-dialog .op-ad-block > h4 { margin: 0 0 3px; font-size: 12px; font-weight: 700; opacity: 1; }
+.op-attack-dialog .op-ad-weapon-tag { font-size: 11px; padding: 0 7px; }
+.op-attack-dialog .op-ad-field { margin: 2px 0; font-size: 12px; }
+.op-attack-dialog .op-ad-target-card { border: 1px solid rgba(160, 160, 160, 0.28); border-radius: 8px; padding: 6px 8px; background: rgba(0, 0, 0, 0.18); display: flex; flex-direction: column; gap: 6px; }
+.op-attack-dialog .op-ad-target-head { display: flex; align-items: center; gap: 8px; }
+.op-attack-dialog .op-ad-target-icon { display: grid; place-items: center; width: 28px; height: 28px; border-radius: 6px; background: rgba(255, 255, 255, 0.06); font-size: 14px; }
+.op-attack-dialog .op-ad-target-text { display: flex; flex-direction: row; align-items: baseline; gap: 8px; }
+.op-attack-dialog .op-ad-target-text strong { font-size: 13px; }
+.op-attack-dialog .op-ad-target-text small { font-size: 11px; opacity: 0.8; }
+.op-attack-dialog .op-ad-alert { display: flex; align-items: center; gap: 8px; padding: 4px 8px; border-radius: 6px; border: 1px solid #2e7d32; background: rgba(46, 125, 50, 0.18); color: #9ad6a0; }
+.op-attack-dialog .op-ad-alert > i { font-size: 14px; }
+.op-attack-dialog .op-ad-alert > span { display: flex; flex-direction: column; line-height: 1.25; }
+.op-attack-dialog .op-ad-alert strong { font-size: 12px; }
+.op-attack-dialog .op-ad-alert small { font-size: 11px; opacity: 0.9; }
+.op-attack-dialog .op-ad-alert.is-penalty { border-color: #f9a825; background: rgba(249, 168, 37, 0.15); color: #ffd180; }
+.op-attack-dialog .op-ad-alert.is-blocked { border-color: #c62828; background: rgba(198, 40, 40, 0.28); color: #ff8a80; }
+.op-attack-dialog .op-ad-alert[hidden] { display: none; }
+.op-attack-dialog .op-ad-actions .op-ad-modes { border: 1px solid rgba(160, 160, 160, 0.28); border-radius: 8px; padding: 4px 8px; gap: 0; margin: 0; background: rgba(0, 0, 0, 0.12); }
+.op-attack-dialog .op-ad-mode { display: flex; align-items: flex-start; gap: 8px; padding: 3px 0; cursor: pointer; }
+.op-attack-dialog .op-ad-mode input { margin: 2px 0 0; width: 14px; height: 14px; flex: 0 0 auto; accent-color: #2aa7d6; }
+.op-attack-dialog .op-ad-mode-text { display: flex; flex-direction: column; line-height: 1.25; }
+.op-attack-dialog .op-ad-mode-text strong { font-size: 12px; }
+.op-attack-dialog .op-ad-mode-text small { font-size: 10px; opacity: 0.7; }
+.op-attack-dialog .op-ad-sum { border: 1px solid rgba(160, 160, 160, 0.28); border-radius: 8px; padding: 0 8px; background: rgba(0, 0, 0, 0.12); }
+.op-attack-dialog .op-ad-sum-row { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 4px 0; border-bottom: 1px solid rgba(160, 160, 160, 0.2); }
+.op-attack-dialog .op-ad-sum-row:last-child { border-bottom: 0; }
+.op-attack-dialog .op-ad-sum-row[hidden] { display: none; }
+.op-attack-dialog .op-ad-sum-label { display: flex; align-items: center; gap: 8px; font-size: 12px; }
+.op-attack-dialog .op-ad-sum-label i { width: 16px; text-align: center; font-size: 12px; opacity: 0.85; }
+.op-attack-dialog .op-ad-sum-value { font-size: 12px; font-weight: 600; text-align: right; }
+.op-attack-dialog .op-ad-sum-value small { font-weight: 400; opacity: 0.7; font-size: 10px; }
+.op-attack-dialog .op-ad-sum-value [data-total].is-short { color: #ff8a80; }
+.op-attack-dialog .op-ad-fold { border: 1px solid rgba(160, 160, 160, 0.28); border-radius: 8px; background: rgba(0, 0, 0, 0.12); }
+.op-attack-dialog .op-ad-fold > summary { display: flex; align-items: center; gap: 8px; padding: 6px 10px; cursor: pointer; list-style: none; font-size: 12px; }
+.op-attack-dialog .op-ad-fold > summary::-webkit-details-marker { display: none; }
+.op-attack-dialog .op-ad-fold > summary > span { flex: 1; }
+.op-attack-dialog .op-ad-chevron { transition: transform 0.15s; font-size: 10px; }
+.op-attack-dialog .op-ad-fold[open] .op-ad-chevron { transform: rotate(180deg); }
+.op-attack-dialog .op-ad-fold > .op-ad-list, .op-attack-dialog .op-ad-fold > .op-ad-free { margin: 0 8px 8px; }
+.op-attack-dialog .op-ad-foot { border-top: 0; align-items: center; padding-top: 0; }
+.op-attack-dialog .op-ad-hint { font-size: 10px; }
+.op-attack-dialog button[data-action=attack] { min-height: 34px; font-size: 13px; }
+/* Duas colunas */
+.op-attack-dialog .op-attack-form { min-width: 800px; font-size: 13px; gap: 0; }
+.op-attack-dialog .op-ad-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 0 18px; align-items: start; }
+.op-attack-dialog .op-ad-col { display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+.op-attack-dialog .op-ad-col-right { border-left: 1px solid rgba(160, 160, 160, 0.22); padding-left: 18px; }
+.op-attack-dialog .op-ad-block > h4 { font-size: 15px; margin-bottom: 6px; }
+.op-attack-dialog .op-ad-selects { display: flex; gap: 12px; flex-wrap: wrap; }
+.op-attack-dialog .op-ad-selects .op-ad-field { flex: 1; justify-content: flex-start; gap: 8px; margin: 4px 0; }
+.op-attack-dialog .op-ad-selects select { flex: 1; min-width: 0; }
+.op-attack-dialog .op-ad-weapon-tag { font-size: 12px; padding: 1px 9px; }
+.op-attack-dialog .op-ad-target-icon { width: 32px; height: 32px; font-size: 16px; }
+.op-attack-dialog .op-ad-target-text strong { font-size: 15px; }
+.op-attack-dialog .op-ad-target-text small { font-size: 13px; }
+.op-attack-dialog .op-ad-alert { padding: 6px 10px; }
+.op-attack-dialog .op-ad-alert strong { font-size: 14px; }
+.op-attack-dialog .op-ad-alert small { font-size: 12.5px; }
+.op-attack-dialog .op-ad-actions .op-ad-modes { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 8px; border: 0; padding: 0; background: none; }
+.op-attack-dialog .op-ad-mode { border: 1px solid rgba(160, 160, 160, 0.28); border-radius: 8px; padding: 8px 10px; background: rgba(0, 0, 0, 0.12); }
+.op-attack-dialog .op-ad-mode:has(input:checked) { border-color: #2aa7d6; background: rgba(42, 167, 214, 0.1); }
+.op-attack-dialog .op-ad-mode input { width: 18px; height: 18px; margin-top: 3px; }
+.op-attack-dialog .op-ad-mode-text strong { font-size: 14px; }
+.op-attack-dialog .op-ad-mode-text small { font-size: 12px; }
+.op-attack-dialog .op-ad-sum-row { padding: 7px 0; }
+.op-attack-dialog .op-ad-sum-label, .op-attack-dialog .op-ad-sum-value { font-size: 14px; }
+.op-attack-dialog .op-ad-sum-label i { width: 20px; font-size: 15px; }
+.op-attack-dialog .op-ad-fold > summary { padding: 9px 12px; font-size: 14px; }
+.op-attack-dialog .op-ad-title-sub { display: block; font-size: 12px; font-weight: 400; opacity: 0.7; }
+.op-attack-dialog [data-attack-slot] .form-footer { padding: 0; margin: 0; }
+.op-attack-dialog [data-attack-slot] button[data-action=attack] { width: 100%; min-height: 40px; font-size: 15px; background: linear-gradient(#1f8ed0, #176fa6); border-color: #176fa6; color: #fff; }
+.op-attack-dialog [data-attack-slot] button[data-action=attack].is-blocked { background: rgba(120, 120, 120, 0.35); border-color: rgba(160, 160, 160, 0.4); }
+.op-attack-dialog button[data-action=attack].is-blocked { opacity: 0.6; cursor: not-allowed; }
 .op-attack-dialog .op-ad-range { margin: 6px 0 0; padding: 4px 8px; border-radius: 4px; font-size: 0.85em; background: #2e7d3222; }
 .op-attack-dialog .op-ad-range.is-penalty { background: #f9a82522; }
+.op-attack-dialog .op-ad-area { display: flex; align-items: center; gap: 8px; margin-top: 6px; flex-wrap: wrap; }
+.op-attack-dialog .op-ad-area button { width: auto; padding: 4px 10px; border: 1px solid #ff9800; }
+.op-attack-dialog .op-ad-area span { font-size: 11px; opacity: 0.85; }
+.op-attack-dialog button[data-action=attack].is-blocked { opacity: .55; }
 .op-attack-dialog .op-ad-range.is-blocked { background: #c6282822; font-weight: 600; }
 
 /* Poder com opção na tela de ataque */
@@ -4459,3 +4570,1181 @@ input.badge-cat-input.is-over {
 	color: #d32f2f !important;
 	font-weight: 900;
 }
+
+/* ==========================================================================
+   Fluxo de conjuração rápida (docs/spec-fluxo-conjuracao-rapida.md)
+   ========================================================================== */
+
+/* --- Ficha: lista de rituais --- */
+.ritual-cast-name:hover {
+	text-decoration: underline;
+}
+.ritual-cast-name.ritual-armed::after,
+.item-cast.ritual-armed::after {
+	content: attr(data-armed-label);
+	margin-left: 6px;
+	font-size: 11px;
+	font-weight: 800;
+	color: #d4880a;
+}
+.item-cast.ritual-armed {
+	animation: ritual-armed-pulse 0.9s ease-in-out infinite;
+}
+@keyframes ritual-armed-pulse {
+	0%, 100% { opacity: 1; }
+	50% { opacity: 0.45; }
+}
+.item-cast.is-blocked {
+	opacity: 0.4;
+	cursor: not-allowed;
+}
+.ritual-flow-badge {
+	margin-left: 4px;
+	font-size: 10px;
+	opacity: 0.65;
+}
+.ritual-active-list {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 6px 12px;
+	margin: 6px 10px 0;
+	padding: 6px 10px;
+	border: 1px solid rgba(125, 63, 196, 0.45);
+	border-radius: 8px;
+	background: rgba(125, 63, 196, 0.08);
+	font-size: 12px;
+}
+.ritual-active-item {
+	display: inline-flex;
+	align-items: center;
+	gap: 5px;
+}
+.ritual-active-item small {
+	opacity: 0.7;
+}
+
+/* --- Barra flutuante da mira (área e escolha no mapa) --- */
+.ritual-area-banner {
+	position: fixed;
+	z-index: 1000;
+	top: 12px;
+	left: 50%;
+	transform: translateX(-50%);
+	max-width: min(92vw, 760px);
+	padding: 8px 16px;
+	border: 1px solid #f4b942;
+	border-radius: 10px;
+	background: rgba(12, 16, 29, 0.94);
+	color: #f6f1e8;
+	font-weight: 700;
+	font-size: 13px;
+	text-align: center;
+	box-shadow: 0 6px 24px rgba(0, 0, 0, 0.5);
+	pointer-events: none;
+}
+
+/* --- Cartão de conjuração (duas colunas: alvo e ajustes à esquerda, efeito e formas à direita) --- */
+.ritual-cast-dialog {
+	max-width: 96vw;
+}
+.ritual-cast-card-root {
+	--rc-gold: #f4b942;
+	--rc-gold-dim: #8a6a2c;
+	--rc-ink: #f6f1e8;
+	--rc-muted: #b9add5;
+	--rc-bad: #e0564f;
+	--rc-ok: #5fbf7a;
+	--rc-teal: #3fd6d0;
+	--rc-panel: rgba(13, 19, 36, 0.92);
+	--rc-line: #2c3552;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	padding: 2px 2px 6px;
+	color: var(--rc-ink);
+	max-height: 68vh;
+	overflow-y: auto;
+}
+.ritual-cast-card-root button,
+.ritual-cast-card-root select,
+.ritual-cast-card-root input[type="number"] {
+	min-height: 30px;
+}
+.ritual-cast-card-root .rc-head {
+	display: flex;
+	align-items: center;
+	gap: 16px;
+	padding: 14px 18px;
+	border: 1px solid var(--rc-gold-dim);
+	border-radius: 10px;
+	background: radial-gradient(circle at 88% 50%, rgba(244, 185, 66, 0.1), transparent 45%), linear-gradient(105deg, rgba(25, 30, 52, 0.98), rgba(10, 14, 28, 0.92));
+}
+.ritual-cast-card-root .rc-head .ritual-caster-icon {
+	border: 0 !important;
+	padding: 0 !important;
+	border-radius: 8px !important;
+	background: none !important;
+	box-shadow: none !important;
+}
+.ritual-cast-card-root .rc-head-text {
+	min-width: 0;
+}
+.ritual-cast-card-root .rc-head h3 {
+	margin: 0 0 6px;
+	border: 0;
+	color: #fff5e8;
+	font-family: var(--font-serif, Georgia, serif);
+	font-size: 1.9rem;
+	line-height: 1.1;
+}
+.ritual-cast-card-root .rc-facts {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 4px 22px;
+	margin-top: 4px;
+	color: var(--rc-muted);
+}
+.ritual-cast-card-root .rc-fact {
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+}
+.ritual-cast-card-root .rc-fact i {
+	color: var(--rc-gold);
+}
+.ritual-cast-card-root .rc-profile {
+	color: var(--rc-muted);
+}
+.ritual-cast-card-root .rc-cols {
+	display: grid;
+	grid-template-columns: minmax(280px, 1fr) minmax(300px, 1.1fr);
+	gap: 10px;
+	align-items: start;
+}
+.ritual-cast-card-root .rc-main {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	min-width: 0;
+}
+.ritual-cast-card-root .rc-panel,
+.ritual-cast-card-root .rc-block {
+	min-width: 0;
+	padding: 12px;
+	border: 1px solid var(--rc-line);
+	border-radius: 8px;
+	background: var(--rc-panel);
+}
+.ritual-cast-card-root .rc-panel-head {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	margin-bottom: 10px;
+}
+.ritual-cast-card-root .rc-panel-head > i {
+	width: 26px;
+	color: var(--rc-gold);
+	font-size: 1.5rem;
+	text-align: center;
+}
+.ritual-cast-card-root .rc-panel-title {
+	display: block;
+	color: var(--rc-ink);
+	font-size: 1rem;
+	font-weight: 800;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+}
+.ritual-cast-card-root .rc-panel-head small {
+	color: var(--rc-muted);
+}
+.ritual-cast-card-root .rc-label {
+	display: block;
+	margin-bottom: 4px;
+	color: var(--rc-muted);
+	font-size: 0.74rem;
+	font-weight: 700;
+	letter-spacing: 0.06em;
+	text-transform: uppercase;
+}
+.ritual-cast-card-root .rc-people {
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+	margin-bottom: 6px;
+}
+.ritual-cast-card-root .rc-person {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	width: 100%;
+	min-height: 44px;
+	padding: 4px 12px 4px 6px;
+	border: 1px solid var(--rc-line);
+	border-radius: 8px;
+	background: rgba(20, 26, 46, 0.9);
+	color: var(--rc-ink);
+	text-align: left;
+}
+.ritual-cast-card-root .rc-person img {
+	flex: none;
+	border: 1px solid #454660;
+	border-radius: 50%;
+	object-fit: cover;
+}
+.ritual-cast-card-root .rc-person-text {
+	display: flex;
+	flex: 1;
+	flex-direction: column;
+	min-width: 0;
+}
+.ritual-cast-card-root .rc-person-text strong {
+	overflow: hidden;
+	font-size: 1rem;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+.ritual-cast-card-root .rc-person-text small {
+	color: var(--rc-muted);
+}
+.ritual-cast-card-root .rc-person {
+	border-color: var(--rc-teal);
+	background: linear-gradient(90deg, rgba(63, 214, 208, 0.16), rgba(20, 26, 46, 0.9));
+}
+.ritual-cast-card-root .rc-person[data-state="bad"] {
+	border-color: var(--rc-bad);
+	box-shadow: 0 0 0 1px var(--rc-bad);
+}
+.ritual-cast-card-root .rc-hint {
+	display: block;
+	margin-bottom: 6px;
+	color: var(--rc-muted);
+}
+.ritual-cast-card-root .rc-hint[data-state="bad"] {
+	color: var(--rc-bad);
+}
+.ritual-cast-card-root .rc-hint[data-state="ok"] {
+	color: var(--rc-ok);
+}
+.ritual-cast-card-root .rc-actions {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 8px;
+}
+.ritual-cast-card-root .rc-actions button {
+	min-height: 40px;
+	border: 1px solid var(--rc-line);
+	border-radius: 6px;
+	background: rgba(24, 31, 54, 0.95);
+	color: var(--rc-ink);
+	font-weight: 700;
+}
+.ritual-cast-card-root .rc-actions button:hover {
+	border-color: var(--rc-gold);
+}
+.ritual-cast-card-root .rc-variant,
+.ritual-cast-card-root .rc-check {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	margin: 2px 0;
+	cursor: pointer;
+}
+.ritual-cast-card-root kbd {
+	padding: 0 5px;
+	border: 1px solid #5a5f80;
+	border-radius: 4px;
+	font-size: 0.75rem;
+}
+.ritual-cast-card-root .rc-conc {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	padding-bottom: 10px;
+	border-bottom: 1px solid var(--rc-line);
+}
+.ritual-cast-card-root .rc-conc .rc-label {
+	flex: none;
+	margin: 0;
+	font-size: 0.8rem;
+}
+.ritual-cast-card-root .rc-conc select {
+	flex: 1;
+	min-width: 0;
+}
+.ritual-cast-card-root .rc-conc input[type="number"] {
+	width: 64px;
+}
+.ritual-cast-card-root .rc-roll {
+	align-items: flex-start;
+	margin-top: 10px;
+}
+.ritual-cast-card-root .rc-roll span {
+	display: flex;
+	flex-direction: column;
+}
+.ritual-cast-card-root .rc-roll small {
+	color: var(--rc-muted);
+}
+.ritual-cast-card-root .rc-test,
+.ritual-cast-card-root .rc-resist {
+	margin: 2px 0 0;
+	color: var(--rc-muted);
+	font-size: 0.86rem;
+}
+.ritual-cast-card-root .rc-manual {
+	border-color: #ec8f37;
+	background: rgba(236, 143, 55, 0.1);
+}
+.ritual-cast-card-root .rc-lore {
+	display: flex;
+	flex-direction: column;
+	line-height: 1.4;
+}
+.ritual-cast-card-root .rc-lore hr {
+	width: 100%;
+	margin: 12px 0;
+	border: 0;
+	border-top: 1px solid var(--rc-line);
+}
+.ritual-cast-card-root .rc-lore-text p {
+	margin: 0 0 6px;
+}
+.ritual-cast-card-root .rc-lore-summary {
+	color: var(--rc-ink);
+}
+.ritual-cast-card-root .rc-forms {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+}
+.ritual-cast-card-root .rc-lore-form {
+	display: flex;
+	align-items: center;
+	gap: 14px;
+	margin: 0;
+	padding: 12px 14px;
+	border: 1px solid var(--rc-line);
+	border-radius: 8px;
+	background: rgba(20, 26, 46, 0.9);
+	cursor: pointer;
+}
+.ritual-cast-card-root .rc-lore-form.is-selected {
+	border-color: var(--rc-gold);
+	background: linear-gradient(90deg, rgba(244, 185, 66, 0.16), rgba(20, 26, 46, 0.9));
+	box-shadow: 0 0 0 1px var(--rc-gold);
+}
+.ritual-cast-card-root .rc-lore-form.is-disabled {
+	opacity: 0.5;
+	cursor: not-allowed;
+}
+.ritual-cast-card-root .rc-lore-form input[type="radio"] {
+	flex: none;
+	width: 22px;
+	height: 22px;
+	margin: 0;
+	accent-color: var(--rc-gold);
+}
+.ritual-cast-card-root .rc-form-text {
+	min-width: 0;
+}
+.ritual-cast-card-root .rc-lore-form h4 {
+	margin: 0 0 4px;
+	border: 0;
+	font-size: 1.1rem;
+}
+.ritual-cast-card-root .rc-lore-form h4 small {
+	margin-left: 8px;
+	color: var(--rc-muted);
+	font-size: 0.8rem;
+	font-weight: 400;
+}
+.ritual-cast-card-root .rc-lore-form .rc-lore-text {
+	color: var(--rc-muted);
+}
+.ritual-cast-card-root .rc-lore-form .rc-lore-text p:last-child {
+	margin-bottom: 0;
+}
+
+/* rodapé: Cancelar | custo do ritual | Conjurar */
+.ritual-cast-dialog .form-footer {
+	display: flex;
+	align-items: center;
+	gap: 14px;
+}
+.ritual-cast-dialog .form-footer button {
+	flex: none;
+	min-height: 52px;
+	padding: 0 22px;
+	font-size: 1.1rem;
+	font-weight: 700;
+}
+.ritual-cast-dialog .rc-footer-cost {
+	display: flex;
+	flex: 1;
+	align-items: center;
+	gap: 14px;
+	min-width: 0;
+	padding: 0 14px;
+	border-inline: 1px solid #2c3552;
+	color: #f6f1e8;
+}
+.ritual-cast-dialog .rc-cost-icon {
+	color: #f4b942;
+	font-size: 1.9rem;
+}
+.ritual-cast-dialog .rc-footer-cost .rc-label {
+	margin: 0;
+	color: #b9add5;
+	font-size: 0.72rem;
+	font-weight: 700;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+}
+.ritual-cast-dialog .rc-cost-line {
+	margin: 0;
+}
+.ritual-cast-dialog .rc-cost-line strong {
+	color: #f4b942;
+	font-family: var(--font-serif, Georgia, serif);
+	font-size: 1.6rem;
+}
+.ritual-cast-dialog .rc-pd {
+	margin-left: 10px;
+	color: #b9add5;
+}
+.ritual-cast-dialog .rc-footer-cost .rc-test {
+	margin: 0;
+	color: #b9add5;
+	font-size: 0.86rem;
+}
+.ritual-cast-dialog button[data-action="conjure"] {
+	min-width: 230px;
+	border: 1px solid #3fd6d0;
+	background: linear-gradient(180deg, #146d73, #0c4a55);
+	color: #fff;
+}
+.ritual-cast-dialog button[data-action="conjure"][data-state="ready"] {
+	box-shadow: 0 0 12px rgba(63, 214, 208, 0.45);
+}
+.ritual-cast-dialog button[data-action="conjure"]:disabled {
+	opacity: 0.6;
+}
+@media (max-width: 760px) {
+	.ritual-cast-card-root .rc-cols {
+		grid-template-columns: 1fr;
+	}
+	.ritual-cast-dialog .form-footer {
+		flex-wrap: wrap;
+	}
+	.ritual-cast-dialog .rc-footer-cost {
+		order: -1;
+		flex-basis: 100%;
+		border: 0;
+		padding: 0;
+	}
+}
+
+/* --- Carta de chat do ritual --- */
+.ritual-cast-card .ritual-cast-summary-line {
+	margin: 0 0 6px;
+}
+.ritual-cast-card.ritual-tone-failure {
+	animation: ritual-failure-pulse 1.1s ease-out 1;
+}
+@keyframes ritual-failure-pulse {
+	0% { box-shadow: 0 0 0 0 rgba(179, 38, 45, 0.85); }
+	100% { box-shadow: 0 0 0 14px rgba(179, 38, 45, 0); }
+}
+.ritual-cast-card .ritual-extra-done {
+	color: #5fbf7a;
+}
+@media (prefers-reduced-motion: reduce) {
+	.ritual-cast-card.ritual-tone-failure,
+	.item-cast.ritual-armed {
+		animation: none;
+	}
+}
+
+/* --- Painel de resolução da área (só Mestre) --- */
+.ritual-area-panel {
+	padding: 8px;
+	border: 1px solid #7d3fc4;
+	border-radius: 10px;
+	background: rgba(125, 63, 196, 0.08);
+}
+.ritual-area-panel header small {
+	opacity: 0.75;
+}
+.ritual-area-panel .rap-rule {
+	margin: 4px 0 6px;
+	font-size: 0.86rem;
+}
+.ritual-area-panel .rap-rows {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+.ritual-area-panel .rap-row {
+	display: flex;
+	align-items: flex-start;
+	gap: 8px;
+	padding: 6px 4px;
+	border-top: 1px solid rgba(128, 128, 128, 0.3);
+}
+.ritual-area-panel .rap-row img {
+	flex: none;
+	border: 0;
+	border-radius: 50%;
+	object-fit: cover;
+}
+.ritual-area-panel .rap-main {
+	flex: 1;
+	min-width: 0;
+}
+.ritual-area-panel .rap-line {
+	margin: 1px 0;
+}
+.ritual-area-panel .rap-name {
+	font-weight: 800;
+}
+.ritual-area-panel .rap-state {
+	margin-left: 6px;
+	padding: 0 6px;
+	border-radius: 8px;
+	background: rgba(128, 128, 128, 0.25);
+	font-size: 0.72rem;
+	font-weight: 800;
+}
+.ritual-area-panel .rap-state[data-state="applied"] {
+	background: #2e7d4a;
+	color: #fff;
+}
+.ritual-area-panel .rap-state[data-state="ignored"],
+.ritual-area-panel .rap-state[data-state="disabled"] {
+	opacity: 0.7;
+}
+.ritual-area-panel .rap-row[data-state="disabled"],
+.ritual-area-panel .rap-row[data-state="ignored"] {
+	opacity: 0.6;
+}
+.ritual-area-panel .rap-part input {
+	width: 56px;
+}
+.ritual-area-panel .rap-note {
+	display: block;
+	opacity: 0.8;
+}
+.ritual-area-panel .rap-buttons {
+	display: flex;
+	flex-direction: column;
+	gap: 3px;
+}
+.ritual-area-panel footer {
+	display: flex;
+	justify-content: space-between;
+	gap: 6px;
+	margin-top: 6px;
+	padding-top: 6px;
+	border-top: 1px solid rgba(128, 128, 128, 0.3);
+}
+
+/* IM-01: o PD desce com um clarão */
+input.op-pd-drop {
+	animation: op-pd-drop 0.9s ease-out 1;
+}
+@keyframes op-pd-drop {
+	0% { color: #e0564f; transform: scale(1.25); text-shadow: 0 0 8px rgba(224, 86, 79, 0.9); }
+	100% { transform: scale(1); text-shadow: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+	input.op-pd-drop {
+		animation: none;
+	}
+}
+.rituals-tab .ritual-function-filters {
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	gap: 5px;
+	padding: 7px 10px;
+}
+
+.rituals-tab .ritual-function-title { font-weight: 700; margin-right: 4px; }
+.rituals-tab .ritual-function-filter { width: auto; min-height: 28px; padding: 3px 7px; }
+.rituals-tab .ritual-function-filter.is-active { background: #61252d; color: #fff; }
+.rituals-tab .ritual-function-count { margin-left: auto; white-space: nowrap; }
+.rituals-tab .ritual-function-empty { padding: 0 12px; }
+.rituals-tab.function-filter-active .inventory-category.is-empty { display: none; }
+.rituals-tab .ritual-no-function { font-size: 0.7em; opacity: 0.75; white-space: nowrap; }
+
+/* Editor de execução das habilidades de ameaça */
+.threat-exec { display: flex; flex-direction: column; gap: 8px; }
+.threat-exec fieldset { border: 1px solid var(--color-border-light-tertiary, #8884); border-radius: 4px; padding: 6px 8px; display: flex; flex-wrap: wrap; gap: 6px 10px; align-items: end; }
+.threat-exec fieldset label { display: flex; flex-direction: column; gap: 2px; font-size: 12px; min-width: 110px; flex: 1 1 110px; }
+.threat-exec fieldset label.threat-exec-check { flex-direction: row; align-items: center; min-width: 0; flex: 0 0 auto; }
+.threat-exec-row { display: flex; flex-wrap: wrap; gap: 4px; width: 100%; }
+.threat-exec-row > input, .threat-exec-row > select { flex: 1 1 90px; min-width: 0; }
+.threat-exec-state { padding: 4px 8px; border-radius: 4px; border: 1px solid #8886; }
+.threat-exec-state--automatic { border-color: #2e7d32; }
+.threat-exec-state--assisted { border-color: #b8860b; }
+.threat-exec-errors { margin: 0; padding-left: 18px; color: #b3261e; font-size: 12px; }
+.threat-exec-preview li.is-missing { color: #b8860b; font-style: italic; }
+.threat-exec button { cursor: pointer; }
+
+/* Painel de resolução de habilidades de ameaça */
+.threat-ability-panel-app .tap-rows { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
+.threat-ability-panel-app .tap-row { display: flex; gap: 8px; align-items: flex-start; padding: 6px; border: 1px solid var(--color-border-light-tertiary, #8884); border-radius: 4px; }
+.threat-ability-panel-app .tap-row[data-state="applied"] { border-color: #2e7d32; }
+.threat-ability-panel-app .tap-row[data-state="ignored"], .threat-ability-panel-app .tap-row[data-state="disabled"] { opacity: .65; }
+.threat-ability-panel-app .tap-main { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+.threat-ability-panel-app .tap-buttons { display: flex; flex-direction: column; gap: 4px; }
+.threat-ability-panel-app .tap-change input { width: 64px; }
+.threat-ability-panel-app .tap-manual { color: #b8860b; }
+.threat-ability-panel-app .tap-footer { margin-top: 8px; display: flex; justify-content: flex-end; }
+.threat-ability-panel-card { padding: 4px 0; }
+
+
+/* --- Carta de ritual no chat (docs/spec-carta-de-ritual-no-chat.md) --- */
+.ritual-cast-card {
+	--rc2-ok: #5fbf7a;
+	--rc2-bad: #e0564f;
+	--rc2-warn: #ec8f37;
+	--rc2-muted: #b9add5;
+	--rc2-gold: #f4b942;
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+	padding: 10px;
+	border: 1px solid var(--rc2-tone, #8b8490);
+	border-radius: 10px;
+	background: rgba(0, 0, 0, 0.12);
+}
+.ritual-cast-card .rc2-head {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
+.ritual-cast-card .rc2-head .ritual-caster-icon {
+	flex: none;
+}
+.ritual-cast-card .rc2-head h3 {
+	margin: 0;
+	border: 0;
+	font-size: 1.15rem;
+	line-height: 1.15;
+}
+.ritual-cast-card .rc2-head small {
+	display: block;
+	color: var(--rc2-muted);
+}
+.ritual-cast-card button.rc2-name {
+	all: unset;
+	cursor: pointer;
+	color: inherit;
+	font: inherit;
+	border-bottom: 1px dotted var(--rc2-gold);
+}
+.ritual-cast-card button.rc2-name:hover,
+.ritual-cast-card button.rc2-name:focus-visible {
+	color: var(--rc2-gold);
+}
+.ritual-cast-card .rc2-link-icon {
+	margin-left: 2px;
+	color: var(--rc2-gold);
+	font-size: 0.7em;
+}
+.ritual-cast-card .rc2-banner {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	padding: 8px 10px;
+	border: 1px solid var(--rc2-tone, #8b8490);
+	border-radius: 8px;
+	background: rgba(139, 132, 144, 0.14);
+}
+.ritual-cast-card .rc2-banner > i {
+	font-size: 1.7rem;
+}
+.ritual-cast-card .rc2-banner strong {
+	display: block;
+	font-size: 1.05rem;
+	letter-spacing: 0.04em;
+	text-transform: uppercase;
+}
+.ritual-cast-card .rc2-banner span {
+	color: var(--rc2-muted);
+	font-size: 0.9rem;
+}
+.ritual-cast-card .rc2-banner[data-state="success"] { border-color: var(--rc2-ok); background: rgba(95, 191, 122, 0.14); }
+.ritual-cast-card .rc2-banner[data-state="success"] > i { color: var(--rc2-ok); }
+.ritual-cast-card .rc2-banner[data-state="failure"] { border-color: var(--rc2-bad); background: rgba(224, 86, 79, 0.16); }
+.ritual-cast-card .rc2-banner[data-state="failure"] > i { color: var(--rc2-bad); }
+.ritual-cast-card .rc2-banner[data-state="gm"] { border-color: var(--rc2-warn); background: rgba(236, 143, 55, 0.14); }
+.ritual-cast-card .rc2-banner[data-state="gm"] > i { color: var(--rc2-warn); }
+.ritual-cast-card .rc2-chips {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 6px;
+}
+.ritual-cast-card .rc2-chip {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	padding: 3px 10px;
+	border: 1px solid #454660;
+	border-radius: 16px;
+	background: rgba(20, 26, 46, 0.55);
+	font-weight: 700;
+}
+.ritual-cast-card .rc2-chip i {
+	color: var(--rc2-gold);
+}
+.ritual-cast-card .rc2-extra {
+	color: var(--rc2-bad);
+}
+.ritual-cast-card .rc2-tests,
+.ritual-cast-card .rc2-damages {
+	display: flex;
+	flex-direction: column;
+	gap: 6px;
+}
+.ritual-cast-card .rc2-test {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: baseline;
+	gap: 4px 10px;
+	padding: 8px 10px;
+	border: 1px solid #343952;
+	border-radius: 8px;
+	background: rgba(12, 16, 29, 0.55);
+}
+.ritual-cast-card .rc2-die {
+	align-self: center;
+	color: var(--rc2-muted);
+	font-size: 1.5rem;
+}
+.ritual-cast-card .rc2-total {
+	font-family: var(--font-serif, Georgia, serif);
+	font-size: 2rem;
+	font-weight: 700;
+	line-height: 1;
+}
+.ritual-cast-card .rc2-vs {
+	color: var(--rc2-muted);
+}
+.ritual-cast-card .rc2-dt {
+	color: var(--rc2-muted);
+	font-family: var(--font-serif, Georgia, serif);
+	font-size: 1.6rem;
+	line-height: 1;
+}
+.ritual-cast-card .rc2-verdict {
+	align-self: center;
+	font-size: 1.5rem;
+}
+.ritual-cast-card .rc2-test[data-state="ok"] .rc2-verdict { color: var(--rc2-ok); }
+.ritual-cast-card .rc2-test[data-state="bad"] .rc2-verdict,
+.ritual-cast-card .rc2-test[data-state="bad"] .rc2-total { color: var(--rc2-bad); }
+.ritual-cast-card .rc2-crit {
+	align-self: center;
+	padding: 0 6px;
+	border: 1px solid var(--rc2-gold);
+	border-radius: 8px;
+	color: var(--rc2-gold);
+	font-size: 0.75rem;
+	font-weight: 700;
+}
+.ritual-cast-card .rc2-fumble {
+	border-color: var(--rc2-bad);
+	color: var(--rc2-bad);
+}
+.ritual-cast-card .rc2-sub {
+	flex-basis: 100%;
+	color: var(--rc2-muted);
+}
+.ritual-cast-card .rc2-damage {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: baseline;
+	gap: 2px 10px;
+	padding: 8px 10px;
+	border: 1px solid #343952;
+	border-radius: 8px;
+	background: rgba(12, 16, 29, 0.55);
+}
+.ritual-cast-card .rc2-dmg-icon {
+	align-self: center;
+	color: var(--rc2-bad);
+	font-size: 1.3rem;
+}
+.ritual-cast-card .rc2-damage[data-kind="healing"] .rc2-dmg-icon,
+.ritual-cast-card .rc2-damage[data-kind="healing"] .rc2-amount {
+	color: var(--rc2-ok);
+}
+.ritual-cast-card .rc2-amount {
+	color: var(--rc2-bad);
+	font-family: var(--font-serif, Georgia, serif);
+	font-size: 1.6rem;
+}
+.ritual-cast-card .rc2-hp,
+.ritual-cast-card .rc2-types {
+	color: var(--rc2-muted);
+}
+.ritual-cast-card .rc2-types {
+	flex-basis: 100%;
+}
+.ritual-cast-card .rc2-state {
+	margin-left: auto;
+	padding: 0 8px;
+	border-radius: 8px;
+	background: rgba(128, 128, 128, 0.25);
+	font-size: 0.75rem;
+	font-weight: 700;
+}
+.ritual-cast-card .rc2-state[data-state="applied"] {
+	background: #2e7d4a;
+	color: #fff;
+}
+.ritual-cast-card .rc2-total-line {
+	color: var(--rc2-muted);
+	font-weight: 700;
+	text-align: right;
+}
+.ritual-cast-card .rc2-effect,
+.ritual-cast-card .rc2-note {
+	margin: 0;
+}
+.ritual-cast-card .rc2-actions p {
+	margin: 4px 0;
+}
+.ritual-cast-card .rc2-actions button {
+	min-height: 32px;
+}
+.ritual-cast-card .rc2-foot {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: space-between;
+	gap: 6px;
+	padding-top: 6px;
+	border-top: 1px solid #343952;
+}
+.ritual-cast-card button.rc2-grimoire {
+	width: auto;
+	min-height: 28px;
+	padding: 2px 10px;
+	border: 0;
+	background: none;
+	color: var(--rc2-gold);
+	font-weight: 700;
+	cursor: pointer;
+}
+.ritual-cast-card button.rc2-grimoire:hover {
+	text-decoration: underline;
+}
+.ritual-cast-card .ritual-card-details {
+	flex-basis: 100%;
+}
+.ritual-cast-card .ritual-card-details summary {
+	color: var(--rc2-muted);
+	cursor: pointer;
+}
+
+/* --- Revisão 2 da carta: dados que se abrem, dano rolado na carta e mensagem das criaturas --- */
+.ritual-cast-card details.rc2-roll,
+.ritual-cast-card details.rc2-dmg {
+	border: 1px solid #343952;
+	border-radius: 8px;
+	background: rgba(12, 16, 29, 0.55);
+}
+.ritual-cast-card details.rc2-roll > summary,
+.ritual-cast-card details.rc2-dmg > summary {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 2px 10px;
+	padding: 8px 10px;
+	list-style: none;
+	cursor: pointer;
+}
+.ritual-cast-card details.rc2-roll > summary::-webkit-details-marker,
+.ritual-cast-card details.rc2-dmg > summary::-webkit-details-marker {
+	display: none;
+}
+.ritual-cast-card .rc2-sum-main {
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+}
+.ritual-cast-card .rc2-roll .rc2-verdict {
+	flex-basis: 100%;
+	order: 3;
+	margin-left: 34px;
+	font-size: 1.4rem;
+	line-height: 1;
+}
+.ritual-cast-card .rc2-roll .rc2-label,
+.ritual-cast-card .rc2-dmg .rc2-label {
+	margin-left: auto;
+	color: var(--rc2-muted);
+}
+.ritual-cast-card .rc2-chevron {
+	color: var(--rc2-muted);
+	font-size: 0.8rem;
+	transition: transform 0.15s;
+}
+.ritual-cast-card details[open] .rc2-chevron {
+	transform: rotate(180deg);
+}
+.ritual-cast-card .rc2-roll-body {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 6px;
+	padding: 0 10px 10px;
+}
+.ritual-cast-card .rc2-faces {
+	color: var(--rc2-muted);
+	font-size: 0.8rem;
+	font-weight: 700;
+}
+.ritual-cast-card .rc2-die-chip {
+	min-width: 26px;
+	padding: 2px 6px;
+	border: 1px solid #5a5f80;
+	border-radius: 6px;
+	background: rgba(120, 124, 150, 0.25);
+	font-weight: 700;
+	text-align: center;
+}
+.ritual-cast-card .rc2-die-chip[data-state="max"] {
+	border-color: var(--rc2-ok);
+	background: rgba(95, 191, 122, 0.25);
+}
+.ritual-cast-card .rc2-die-chip[data-state="min"] {
+	border-color: var(--rc2-bad);
+	background: rgba(224, 86, 79, 0.25);
+}
+.ritual-cast-card .rc2-die-chip[data-state="off"] {
+	opacity: 0.45;
+	text-decoration: line-through;
+}
+.ritual-cast-card .rc2-bonus,
+.ritual-cast-card .rc2-eq {
+	color: var(--rc2-muted);
+	font-weight: 700;
+}
+.ritual-cast-card .rc2-dmg-body {
+	flex-direction: column;
+	align-items: stretch;
+}
+.ritual-cast-card .rc2-dmg-group {
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+}
+.ritual-cast-card .rc2-dmg-dice {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 6px;
+}
+.ritual-cast-card .rc2-dmg-type {
+	color: var(--rc2-muted);
+	font-weight: 700;
+}
+.ritual-cast-card details.rc2-dmg[data-kind="damage"] .rc2-dmg-icon,
+.ritual-cast-card details.rc2-dmg[data-kind="damage"] .rc2-amount {
+	color: var(--rc2-warn);
+}
+.ritual-cast-card details.rc2-dmg[data-kind="healing"] .rc2-amount,
+.ritual-cast-card details.rc2-dmg[data-kind="healing"] .rc2-dmg-icon {
+	color: var(--rc2-ok);
+}
+
+/* bloco destacado do Custo do Paranormal no cartão de conjuração */
+.ritual-cast-card-root .rc-paranormal {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	margin-bottom: 10px;
+	padding: 10px 12px;
+	border: 1px solid var(--rc-gold-dim);
+	border-radius: 8px;
+	background: rgba(244, 185, 66, 0.08);
+	cursor: pointer;
+}
+.ritual-cast-card-root .rc-paranormal.is-on {
+	border-color: var(--rc-gold);
+	background: rgba(244, 185, 66, 0.18);
+	box-shadow: 0 0 0 1px var(--rc-gold);
+}
+.ritual-cast-card-root .rc-paranormal > i {
+	color: var(--rc-gold);
+	font-size: 1.5rem;
+}
+.ritual-cast-card-root .rc-paranormal span {
+	display: flex;
+	flex: 1;
+	flex-direction: column;
+}
+.ritual-cast-card-root .rc-paranormal small {
+	color: var(--rc-muted);
+}
+
+/* mensagem das criaturas (só o Mestre) */
+.ritual-creatures {
+	display: flex;
+	flex-direction: column;
+	gap: 6px;
+	padding: 8px;
+	border: 1px solid #7d3fc4;
+	border-radius: 8px;
+	background: rgba(125, 63, 196, 0.08);
+}
+.ritual-creatures .rc2-creatures {
+	display: flex;
+	flex-direction: column;
+	gap: 6px;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+.ritual-creatures .rc2-creature {
+	display: flex;
+	align-items: flex-start;
+	gap: 8px;
+	padding-top: 6px;
+	border-top: 1px solid rgba(128, 128, 128, 0.3);
+}
+.ritual-creatures .rc2-creature img {
+	flex: none;
+	border: 0;
+	border-radius: 50%;
+	object-fit: cover;
+}
+.ritual-creatures .rc2-c-main {
+	display: flex;
+	flex: 1;
+	flex-direction: column;
+	gap: 2px;
+	min-width: 0;
+}
+.ritual-creatures .rc2-c-save[data-state="ok"] { color: #5fbf7a; }
+.ritual-creatures .rc2-c-save[data-state="bad"] { color: #e0564f; }
+.ritual-creatures .rc2-state {
+	padding: 0 8px;
+	border-radius: 8px;
+	background: rgba(128, 128, 128, 0.25);
+	font-size: 0.72rem;
+	font-weight: 700;
+}
+.ritual-creatures .rc2-state[data-state="applied"] {
+	background: #2e7d4a;
+	color: #fff;
+}
+.ritual-creatures .rc2-die-chip {
+	display: inline-block;
+	min-width: 22px;
+	padding: 0 5px;
+	border: 1px solid #5a5f80;
+	border-radius: 6px;
+	text-align: center;
+	font-weight: 700;
+}
+.ritual-creatures .rc2-die-chip[data-state="max"] { border-color: #5fbf7a; }
+.ritual-creatures .rc2-die-chip[data-state="min"] { border-color: #e0564f; }
+.ritual-creatures .rc2-die-chip[data-state="off"] { opacity: 0.45; text-decoration: line-through; }
+.ritual-creatures .rc2-c-undo {
+	margin: 0;
+	text-align: right;
+}
+
+/* Teste do ritual: a barra inteira fica verde no sucesso e vermelha na falha (sem ícone de veredito) */
+.ritual-cast-card details.rc2-roll[data-state="ok"],
+.ritual-cast-card .rc2-test[data-state="ok"] {
+	border-color: var(--rc2-ok);
+	background: rgba(95, 191, 122, 0.16);
+}
+.ritual-cast-card details.rc2-roll[data-state="bad"],
+.ritual-cast-card .rc2-test[data-state="bad"] {
+	border-color: var(--rc2-bad);
+	background: rgba(224, 86, 79, 0.18);
+}
+.ritual-cast-card details.rc2-roll[data-state="ok"] .rc2-total { color: var(--rc2-ok); }
+.ritual-cast-card details.rc2-roll[data-state="bad"] .rc2-total { color: var(--rc2-bad); }
+.ritual-cast-card .rc2-cost-note { margin: 4px 0; color: var(--rc2-muted); }
+.ritual-cast-card .rc2-dmg-type i { margin-right: 2px; }
+
+/* mensagem das criaturas: linhas compactas e lista com rolagem quando há muitos alvos */
+.ritual-creatures .rc2-creatures {
+	max-height: 360px;
+	overflow-y: auto;
+}
+.ritual-creatures .rc2-creature {
+	align-items: center;
+	padding-top: 4px;
+}
+.ritual-creatures .rc2-c-main {
+	flex-direction: row;
+	flex-wrap: wrap;
+	align-items: baseline;
+	gap: 0 10px;
+}
+.ritual-creatures .rc2-c-main > strong {
+	flex-basis: 100%;
+}
+.ritual-creatures .rc2-c-main > small {
+	flex-basis: 100%;
+}
+.ritual-creatures .rc2-c-dice {
+	display: inline-block;
+}
+.ritual-creatures .rc2-c-dice > summary {
+	display: inline;
+	cursor: pointer;
+}
+.ritual-creatures .rc2-c-dice[open] {
+	flex-basis: 100%;
+}
+
+/* Perícias treinadas: contador e cadeado */
+.op-train-counter { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin: 4px 0 8px; padding: 6px 10px; border: 1px solid rgba(0,0,0,.25); border-radius: 4px; background: rgba(0,0,0,.06); font-size: 0.85rem; }
+.op-train-counter .op-train-main { display: flex; flex-wrap: wrap; gap: 4px 14px; color: inherit; cursor: pointer; }
+.op-train-counter.is-full { border-color: #3a7d44; background: rgba(58,125,68,.12); }
+.op-train-counter.is-over { border-color: #a32020; background: rgba(163,32,32,.12); }
+.op-train-counter .op-train-over { color: #a32020; font-weight: bold; }
+.op-train-counter .op-train-choose { flex: 0 0 auto; width: auto; padding: 2px 10px; }
+.op-train-badge { flex: 0 0 auto; margin: 0 4px; font-size: 0.75rem; opacity: .7; cursor: help; }
+.op-skill-choice select { width: 100%; }
+.op-skill-choice .op-skill-prompt { font-weight: 600; margin: 0 0 6px; }
+.op-skill-choice .op-skill-fixed { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 6px; margin: 0 0 10px; font-size: 0.85rem; }
+.op-skill-choice .op-skill-fixed > span { opacity: .75; }
+.op-skill-choice .op-skill-chip { padding: 1px 8px; border: 1px solid currentColor; border-radius: 10px; font-weight: 600; opacity: .85; }
+.op-skill-choice .op-skill-chip i { font-size: 0.7rem; margin-right: 2px; }
+
+/* Conexão e afinidade com um elemento (aba Habilidades) */
+.op-affinity-card { --op-affinity: #7a7a7a; margin: 0 0 8px; padding: 8px 10px; border: 1px solid var(--op-affinity); border-left-width: 4px; border-radius: 6px; background: rgba(0,0,0,.08); }
+.op-affinity-card.is-pending { border-style: dashed; }
+.op-affinity-head { display: flex; align-items: center; gap: 8px; }
+.op-affinity-title { flex: 1 1 auto; color: var(--op-affinity); }
+.op-affinity-btn { flex: 0 0 auto; width: auto; padding: 2px 10px; line-height: 1.4; }
+.op-affinity-btn.is-quiet { opacity: .6; }
+.op-affinity-text { margin-top: 3px; font-size: .85rem; opacity: .85; }
+.op-affinity-counts { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 5px; }
+.op-affinity-chip { padding: 0 8px; border: 1px solid var(--op-affinity); border-radius: 10px; font-size: .75rem; }
+.op-affinity-choice .dialog-buttons { flex-wrap: wrap; }
+/* Ficha da origem: o que ela concede */
+.op-origin-grants { margin: 0 0 8px; padding: 8px 12px; border: 1px solid rgba(0,0,0,.25); border-left: 4px solid #3a7d44; border-radius: 6px; background: rgba(58,125,68,.08); }
+.op-origin-grants .op-origin-grants-title { margin: 0 0 6px; font-size: 0.9rem; text-transform: uppercase; letter-spacing: .03em; border: 0; }
+.op-origin-grants ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+.op-origin-grant { display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 10px; }
+.op-origin-grant-head { flex: 0 0 150px; font-weight: 700; opacity: .85; }
+.op-origin-grant-head i { width: 1.2em; text-align: center; }
+.op-origin-grant-items { display: flex; flex-wrap: wrap; gap: 4px 6px; }
+.op-origin-grant-item { padding: 0 8px; border: 1px solid currentColor; border-radius: 10px; font-weight: 600; }
+.op-origin-grant-item.is-choice { border-style: dashed; font-weight: 400; }
+.op-origin-grant-note { flex: 1 1 100%; margin-left: 160px; font-size: 0.85rem; opacity: .8; }
+.op-origin-grant.is-manual .op-origin-grant-note, .op-origin-grant.is-nopower .op-origin-grant-note { margin-left: 0; flex: 1 1 0; min-width: 0; }

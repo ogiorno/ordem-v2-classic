@@ -1,0 +1,71 @@
+<section class="tab curses {{tab.cssClass}} scrollable" data-group="primary" data-tab="curses">
+	<div class="content-item op-curses">
+		<div class="general-attributes-section op-shadow">
+			<div class="section-title">Maldições paranormais</div>
+
+			{{#if curses}}
+				<p class="op-curse-hint">
+					{{curses.kindLabel}} amaldiçoada: a primeira maldição soma +II à categoria do item e cada seguinte +I.
+					{{#if curses.has}}<strong>{{curses.category}}.</strong>{{/if}}
+					Arraste uma maldição do compêndio "Maldições Paranormais" para cá para acrescentá-la a este item.
+				</p>
+
+				{{#each curses.warnings}}
+					<p class="op-curse-warning"><i class="fas fa-triangle-exclamation"></i> {{this}}</p>
+				{{/each}}
+
+				{{#each curses.list}}
+					<div class="op-curse-row {{#if inactive}}inactive{{/if}}" style="--curse-color: {{color}};">
+						<div class="op-curse-head">
+							<span class="op-curse-element" title="{{elementLabel}}">{{elementLabel}}</span>
+							<strong class="op-curse-name">{{label}}{{#if chosen}} <small>({{chosen}})</small>{{/if}}</strong>
+							<span class="op-curse-cost" title="Aumento de categoria">{{cost}}</span>
+							<span class="op-curse-mode" title="O quanto o sistema faz sozinho">{{mode}}</span>
+							{{#if ../owner}}
+								<a class="op-curse-remove" data-action="removeCurse" data-curse="{{key}}" title="Tirar a maldição"><i class="fas fa-trash"></i></a>
+							{{/if}}
+						</div>
+						<p class="op-curse-text">{{text}}</p>
+						{{#if effect.length}}
+							<p class="op-curse-effect"><i class="fas fa-bolt"></i> Na ficha: {{#each effect}}{{this}}{{#unless @last}}; {{/unless}}{{/each}}</p>
+						{{/if}}
+						<div class="op-curse-foot">
+							<span class="op-curse-status">{{status}}</span>
+							{{#if use}}
+								<button type="button" data-action="useCurse" data-curse="{{key}}">
+									<i class="fas fa-hand-sparkles"></i> {{use.label}}
+								</button>
+							{{/if}}
+						</div>
+					</div>
+				{{/each}}
+
+				{{#unless curses.has}}
+					<p class="op-curse-empty">Este item não tem maldições.</p>
+				{{/unless}}
+
+				{{#if curses.canAdd}}
+					{{#if owner}}
+						<div class="op-curse-add form-group">
+							<select name="curseKey">
+								<option value="">— acrescentar maldição —</option>
+								{{#each curses.groups}}
+									<optgroup label="{{label}}">
+										{{#each options}}<option value="{{key}}">{{label}}</option>{{/each}}
+									</optgroup>
+								{{/each}}
+							</select>
+							<button type="button" data-action="addCurse"><i class="fas fa-plus"></i> Amaldiçoar</button>
+						</div>
+					{{/if}}
+				{{/if}}
+
+				{{#unless curses.notAgent}}
+					<div class="op-curse-add">
+						<button type="button" data-action="cursePrice"><i class="fas fa-skull"></i> Preço da maldição</button>
+					</div>
+				{{/unless}}
+			{{/if}}
+		</div>
+	</div>
+</section>

@@ -1,0 +1,36 @@
+<div class="op-gr-listwrap">
+	<div class="op-gr-listhead">
+		<span class="op-gr-summary">{{summary}}</span>
+		{{#if showAll}}<button type="button" class="op-gr-linkbtn" data-action="showAll">{{localize "op.grimoire.showAll"}}</button>{{else if activeFilters}}<button type="button" class="op-gr-linkbtn" data-action="clearFilters">{{localize "op.grimoire.clearFilters"}}</button>{{/if}}
+	</div>
+	<div class="op-gr-sr" role="status" aria-live="polite">{{announce}}</div>
+	{{#if onlyApproximate}}<p class="op-gr-note" role="note">{{localize "op.grimoire.nothingExact"}} <strong>{{bestGuess}}</strong></p>{{/if}}
+	{{#if packsNote}}<p class="op-gr-note is-soft">{{packsNote}}</p>{{/if}}
+	{{#if empty}}
+	<div class="op-gr-empty">
+		{{#if forMeEmpty}}
+		<p>{{forMeEmptyText}}</p>
+		<button type="button" class="op-gr-btn" data-action="showAll">{{localize "op.grimoire.showAll"}}</button>
+		{{else}}
+		<p>{{emptyText}}</p>
+		{{#if suggestions.length}}<p>{{localize "op.grimoire.didYouMean"}} {{#each suggestions}}<em>{{name}}</em>{{#unless @last}}, {{/unless}}{{/each}}?</p>{{/if}}
+		<button type="button" class="op-gr-btn" data-action="clearFilters">{{localize "op.grimoire.clearFilters"}}</button>
+		{{#if quickInsert}}<button type="button" class="op-gr-btn" data-action="quickInsert"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i> {{localize "op.grimoire.searchEverywhere"}}</button>{{/if}}
+		{{/if}}
+	</div>
+	{{else}}
+	<ul class="op-gr-list{{#if compact}} is-compact{{/if}}" role="listbox" aria-label="{{localize 'op.grimoire.results'}}">
+		{{#each rows}}
+		<li role="option" class="op-gr-row{{#if selected}} is-selected{{/if}}{{#if approx}} is-approx{{/if}}" id="gr-{{uuid}}" aria-selected="{{selected}}" data-action="selectItem" data-uuid="{{uuid}}" style="{{rowStyle}}" tabindex="-1">
+			{{#unless ../compact}}
+			<span class="op-gr-thumb{{#if fallbackClass}} {{fallbackClass}}{{/if}}">
+				{{#if img}}<img src="{{img}}" alt="" loading="lazy">{{else}}{{#if isRitual}}<span class="op-gr-elicon" style="background-position: {{spriteX}}% 50%;"></span>{{else}}<i class="fa-solid {{#if isCondition}}fa-skull{{else if isSkill}}fa-dice-d20{{else if isCurse}}fa-link-slash{{else}}fa-hand-sparkles{{/if}}" aria-hidden="true"></i>{{/if}}{{/if}}
+			</span>
+			{{/unless}}
+			<span class="op-gr-rowtext"><span class="op-gr-rowname">{{name}}</span><span class="op-gr-rowsub">{{sub}}{{#if approx}} · {{localize "op.grimoire.approx"}}{{/if}}</span>{{#if seal.reason}}<span class="op-gr-rowreason">{{seal.reason}}</span>{{/if}}</span>
+			{{#if seal}}<span class="op-gr-seal is-{{seal.id}}"><i class="fa-solid {{seal.icon}}" aria-hidden="true"></i> {{seal.label}}</span>{{else if meta}}<span class="op-gr-rowmeta">{{meta}}</span>{{/if}}
+		</li>
+		{{/each}}
+	</ul>
+	{{/if}}
+</div>

@@ -1,0 +1,110 @@
+/* Linhas extras da barra inferior e componente de linhas (docs/arquivo/spec-hotbar-automatica.md, §7a). */
+#hotbar {
+	position: relative;
+}
+
+#hotbar .op-extra-rows {
+	position: absolute;
+	bottom: calc(100% + 8px);
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+	pointer-events: all;
+}
+
+#hotbar .op-extra-row {
+	flex: none;
+	gap: 8px;
+	justify-content: center;
+	flex-wrap: wrap;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+#hotbar .op-extra-row .slot {
+	position: relative;
+	flex: none;
+	width: var(--hotbar-size);
+	height: var(--hotbar-size);
+	border: 2px solid transparent;
+	border-radius: 10px;
+	background: var(--slot-color, var(--color-cool-5-90));
+	cursor: var(--cursor-pointer);
+}
+
+#hotbar .op-extra-row .slot:hover {
+	border: 2px solid var(--color-warm-1);
+}
+
+#hotbar .op-extra-row .slot.drop-target {
+	background: var(--color-cool-4);
+	border: 2px solid var(--color-warm-2);
+}
+
+#hotbar .op-extra-row .slot .slot-icon {
+	width: 100%;
+	height: 100%;
+	border: none;
+	border-radius: 10px;
+	pointer-events: none;
+}
+
+/* componente discreto de linhas, ao lado do controle de páginas */
+#hotbar .op-rows-stepper {
+	position: relative;
+	justify-content: space-between;
+	align-items: center;
+	opacity: 0.55;
+	transition: opacity 0.2s;
+}
+
+#hotbar .op-rows-stepper:hover {
+	opacity: 1;
+}
+
+#hotbar .op-rows-stepper .op-rows-button {
+	--button-text-color: var(--page-control-color, var(--color-cool-5));
+	--fa-display: inline-grid;
+	font-size: var(--font-size-12, 12px);
+}
+
+#hotbar .op-rows-stepper .op-rows-button:disabled {
+	opacity: 0.3;
+	cursor: default;
+}
+
+#hotbar .op-rows-stepper .op-rows-number {
+	color: var(--color-light-2);
+	font-size: var(--font-size-12, 12px);
+	line-height: 1;
+	text-align: center;
+}
+
+/* Carolingian UI (crlngn-ui) deixa os espaços quadrados e sem folga: as linhas extras acompanham */
+#hotbar.crlngn-macro .op-extra-rows,
+#hotbar.crlngn-macro .op-extra-row {
+	gap: 0;
+	align-items: flex-start;
+}
+
+#hotbar.crlngn-macro .op-extra-row .slot {
+	border: 1px solid var(--color-secondary-b);
+	border-radius: 0;
+	margin: 0 -1px -1px 0;
+	overflow: hidden;
+	z-index: 0;
+}
+
+#hotbar.crlngn-macro .op-extra-row .slot:hover {
+	border: 1px solid var(--color-highlights);
+	z-index: 10;
+}
+
+#hotbar.crlngn-macro .op-extra-row .slot .slot-icon {
+	border-radius: 0;
+}
+
+#hotbar.crlngn-macro .op-extra-rows {
+	bottom: 100%;
+}

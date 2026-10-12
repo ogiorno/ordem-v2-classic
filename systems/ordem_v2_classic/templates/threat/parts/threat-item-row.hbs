@@ -11,6 +11,7 @@
 				<a class="sb-icon" data-action="{{item.editAction}}" data-tooltip="{{localize 'op.threat.edit'}}"><i class="fas fa-edit"></i></a>
 				<a class="sb-icon" data-action="deleteDoc" data-tooltip="{{localize 'op.threat.remove'}}"><i class="fas fa-trash"></i></a>
 			{{/if}}
+			{{#if item.canUse}}<a class="sb-use{{#if item.useIncomplete}} is-incomplete{{/if}}" data-action="useThreatAbility" data-tooltip="{{item.useLabel}}"><i class="fa-solid fa-play"></i> {{item.useLabel}}</a>{{/if}}
 			<a class="sb-die" data-action="rollThreatItem" data-tooltip="{{item.dieTooltip}}">
 				<i class="fa-solid fa-dice-d20"></i>
 			</a>

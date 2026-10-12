@@ -1,0 +1,28 @@
+<section class="tab curse {{tab.cssClass}} scrollable" data-group="primary" data-tab="curseAttr">
+	<div class="content-item op-curses">
+		<div class="general-attributes-section op-shadow">
+			<div class="section-title">Maldição paranormal</div>
+			{{#if curseInfo}}
+				<div class="op-curse-row" style="--curse-color: inherit;">
+					<div class="op-curse-head">
+						<strong class="op-curse-name">{{curseInfo.label}}</strong>
+						<span class="op-curse-element">{{curseInfo.element}}</span>
+						<span class="op-curse-mode">{{curseInfo.mode}}</span>
+					</div>
+					<p class="op-curse-text">{{curseInfo.text}}</p>
+					<p class="op-curse-hint">Maldição de <strong>{{curseInfo.kind}}</strong>. Solte-a numa ficha de agente (ou clique no botão) e escolha o item que vira amaldiçoado: a categoria dele sobe e os efeitos passam a valer sozinhos enquanto estiver equipado.{{#if curseInfo.use}} Uso: {{curseInfo.use}}.{{/if}}</p>
+				</div>
+				{{#if owner}}
+					<div class="op-curse-add">
+						<button type="button" data-action="applyCurse"><i class="fas fa-link"></i> Amaldiçoar um item{{#if curseInfo.actorName}} de {{curseInfo.actorName}}{{/if}}</button>
+					</div>
+				{{/if}}
+			{{else}}
+				<p class="op-curse-empty">Maldição sem chave: apague e arraste de novo do compêndio.</p>
+			{{/if}}
+			<label class="op-curse-price">Preço (Medo, definido pelo Mestre)
+				<input type="text" name="system.price" value="{{system.price}}" />
+			</label>
+		</div>
+	</div>
+</section>

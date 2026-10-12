@@ -1,0 +1,145 @@
+{{!-- Editor de execução da habilidade (T03). Campos sem `name`: a ficha grava via data-exec. --}}
+<div class="class-attributes-section op-shadow threat-exec" data-exec-editor>
+	<div class="section-title">{{localize "op.threatExec.title"}}</div>
+
+	{{#unless exec.hasExecution}}
+	<p class="threat-exec-note">{{localize "op.threatExec.legacy"}}</p>
+	<button type="button" data-action="execEnable">{{localize "op.threatExec.enable"}}</button>
+	{{else}}
+	<div class="threat-exec-state threat-exec-state--{{exec.state}}" role="status">
+		{{localize "op.threatExec.stateLabel"}}: <strong>{{localize (concat "op.threatExec.automation." exec.state)}}</strong>
+		{{#if exec.downgraded}}<span>({{localize "op.threatExec.downgraded"}})</span>{{/if}}
+	</div>
+
+	{{#if exec.errorList.length}}
+	<ul class="threat-exec-errors" role="alert">
+		{{#each exec.errorList}}<li data-error-path="{{path}}"><code>{{path}}</code> — {{localize messageKey}}</li>{{/each}}
+	</ul>
+	{{/if}}
+
+	<fieldset class="threat-exec-group">
+		<legend>{{localize "op.threatExec.general"}}</legend>
+		<label>{{localize "op.threatExec.modeLabel"}}
+			<select data-exec="mode">{{selectOptions exec.options.mode selected=exec.execution.mode localize=true}}</select></label>
+		<label>{{localize "op.threatExec.automationLabel"}}
+			<select data-exec="automation">{{selectOptions exec.options.automation selected=exec.execution.automation localize=true}}</select></label>
+		<label>{{localize "op.threatExec.sourceRef"}}
+			<input type="text" data-exec="source.reference" value="{{exec.execution.source.reference}}" /></label>
+		<label class="threat-exec-check"><input type="checkbox" data-exec="source.reviewed" {{checked exec.execution.source.reviewed}} /> {{localize "op.threatExec.reviewed"}}</label>
+	</fieldset>
+
+	<fieldset class="threat-exec-group">
+		<legend>{{localize "op.threatExec.cost"}}</legend>
+		{{#if exec.execution.cost}}
+		<label>{{localize "op.threatExec.costType"}} <input type="text" data-exec="cost.type" value="{{exec.execution.cost.type}}" /></label>
+		<label>{{localize "op.threatExec.costAmount"}} <input type="number" min="0" step="1" data-exec="cost.amount" value="{{exec.execution.cost.amount}}" /></label>
+		<label>{{localize "op.threatExec.costTimingLabel"}} <select data-exec="cost.timing">{{selectOptions exec.options.costTiming selected=exec.execution.cost.timing localize=true}}</select></label>
+		<label>{{localize "op.threatExec.costInsufficientLabel"}} <select data-exec="cost.insufficient">{{selectOptions exec.options.costInsufficient selected=exec.execution.cost.insufficient localize=true}}</select></label>
+		<button type="button" data-action="execToggleBlock" data-block="cost" data-enabled="false">{{localize "op.threatExec.remove"}}</button>
+		{{else}}<button type="button" data-action="execToggleBlock" data-block="cost" data-enabled="true">{{localize "op.threatExec.addCost"}}</button>{{/if}}
+	</fieldset>
+
+	<fieldset class="threat-exec-group">
+		<legend>{{localize "op.threatExec.targetArea"}}</legend>
+		{{#if exec.execution.targeting}}
+		<label>{{localize "op.threatExec.targetKindLabel"}} <select data-exec="targeting.kind">{{selectOptions exec.options.targetKind selected=exec.execution.targeting.kind localize=true blank="—"}}</select></label>
+		<label>{{localize "op.threatExec.range"}} <input type="number" min="0" step="1.5" data-exec="targeting.range" value="{{exec.execution.targeting.range}}" /></label>
+		<label class="threat-exec-check"><input type="checkbox" data-exec="targeting.rangeUnspecified" {{checked exec.execution.targeting.rangeUnspecified}} /> {{localize "op.threatExec.rangeUnspecified"}}</label>
+		<label>{{localize "op.threatExec.count"}} <input type="number" min="1" step="1" data-exec="targeting.count" value="{{exec.execution.targeting.count}}" /></label>
+		<label>{{localize "op.threatExec.relationLabel"}} <select data-exec="targeting.relation">{{selectOptions exec.options.relation selected=exec.execution.targeting.relation localize=true}}</select></label>
+		<label class="threat-exec-check"><input type="checkbox" data-exec="targeting.voluntary" {{checked exec.execution.targeting.voluntary}} /> {{localize "op.threatExec.voluntary"}}</label>
+		<label class="threat-exec-check"><input type="checkbox" data-exec="targeting.requiresSight" {{checked exec.execution.targeting.requiresSight}} /> {{localize "op.threatExec.requiresSight"}}</label>
+		<button type="button" data-action="execToggleBlock" data-block="targeting" data-enabled="false">{{localize "op.threatExec.remove"}}</button>
+		{{else}}<button type="button" data-action="execToggleBlock" data-block="targeting" data-enabled="true">{{localize "op.threatExec.addTarget"}}</button>{{/if}}
+
+		{{#if exec.execution.area}}
+		<label>{{localize "op.threatExec.shapeLabel"}} <select data-exec="area.shape">{{selectOptions exec.options.shape selected=exec.execution.area.shape localize=true blank="—"}}</select></label>
+		<label>{{localize "op.threatExec.length"}} <input type="number" min="0" step="1.5" data-exec="area.length" value="{{exec.execution.area.length}}" /></label>
+		<label>{{localize "op.threatExec.width"}} <input type="number" min="0" step="1.5" data-exec="area.width" value="{{exec.execution.area.width}}" /></label>
+		<label>{{localize "op.threatExec.radius"}} <input type="number" min="0" step="1.5" data-exec="area.radius" value="{{exec.execution.area.radius}}" /></label>
+		<label>{{localize "op.threatExec.originLabel"}} <select data-exec="area.origin">{{selectOptions exec.options.origin selected=exec.execution.area.origin localize=true}}</select></label>
+		<label>{{localize "op.threatExec.persistenceLabel"}} <select data-exec="area.persistence">{{selectOptions exec.options.persistence selected=exec.execution.area.persistence localize=true}}</select></label>
+		<label>{{localize "op.threatExec.areaTriggers"}} <input type="text" data-exec="area.triggers" value="{{exec.areaTriggersText}}" placeholder="enter, turn, leave" /></label>
+		<button type="button" data-action="execToggleBlock" data-block="area" data-enabled="false">{{localize "op.threatExec.remove"}}</button>
+		{{else}}<button type="button" data-action="execToggleBlock" data-block="area" data-enabled="true">{{localize "op.threatExec.addArea"}}</button>{{/if}}
+	</fieldset>
+
+	<fieldset class="threat-exec-group">
+		<legend>{{localize "op.threatExec.save"}}</legend>
+		{{#if exec.execution.save}}
+		<label>{{localize "op.threatExec.saveSkill"}} <input type="text" data-exec="save.skill" value="{{exec.execution.save.skill}}" placeholder="reflexes" /></label>
+		<label>{{localize "op.threatExec.saveDc"}} <input type="number" min="1" step="1" data-exec="save.dc" value="{{exec.execution.save.dc}}" /></label>
+		<label>{{localize "op.threatExec.saveOutcomeLabel"}} <select data-exec="save.onSuccess">{{selectOptions exec.options.saveOutcome selected=exec.execution.save.onSuccess localize=true}}</select></label>
+		<label class="threat-exec-check"><input type="checkbox" data-exec="save.retry" {{checked exec.execution.save.retry}} /> {{localize "op.threatExec.retry"}}</label>
+		<button type="button" data-action="execToggleBlock" data-block="save" data-enabled="false">{{localize "op.threatExec.remove"}}</button>
+		{{else}}<button type="button" data-action="execToggleBlock" data-block="save" data-enabled="true">{{localize "op.threatExec.addSave"}}</button>{{/if}}
+	</fieldset>
+
+	<fieldset class="threat-exec-group">
+		<legend>{{localize "op.threatExec.damage"}}</legend>
+		{{#each exec.execution.damage as |d i|}}
+		<div class="threat-exec-row">
+			<select data-exec="damage.{{i}}.kind" aria-label="{{localize "op.threatExec.damageKindLabel"}}">{{selectOptions ../exec.options.damageKind selected=d.kind localize=true}}</select>
+			<input type="text" data-exec="damage.{{i}}.formula" value="{{d.formula}}" placeholder="2d8+2" aria-label="{{localize "op.threatExec.formula"}}" />
+			<input type="text" data-exec="damage.{{i}}.type" value="{{d.type}}" placeholder="energia" aria-label="{{localize "op.threatExec.damageType"}}" />
+			<select data-exec="damage.{{i}}.resource" aria-label="{{localize "op.threatExec.resourceLabel"}}">{{selectOptions ../exec.options.resource selected=d.resource localize=true}}</select>
+			<select data-exec="damage.{{i}}.roll" aria-label="{{localize "op.threatExec.rollPolicyLabel"}}">{{selectOptions ../exec.options.rollPolicy selected=d.roll localize=true}}</select>
+			<button type="button" data-action="execRemoveEntry" data-list="damage" data-index="{{i}}" aria-label="{{localize "op.threatExec.remove"}}">×</button>
+		</div>
+		{{/each}}
+		<button type="button" data-action="execAddEntry" data-list="damage">{{localize "op.threatExec.addDamage"}}</button>
+	</fieldset>
+
+	<fieldset class="threat-exec-group">
+		<legend>{{localize "op.threatExec.effects"}}</legend>
+		{{#each exec.execution.effects as |f i|}}
+		<div class="threat-exec-row">
+			<input type="text" data-exec="effects.{{i}}.condition" value="{{f.condition}}" placeholder="surdo" aria-label="{{localize "op.threatExec.condition"}}" />
+			<input type="text" data-exec="effects.{{i}}.duration.value" value="{{f.duration.value}}" placeholder="1d4" aria-label="{{localize "op.threatExec.durationValue"}}" />
+			<select data-exec="effects.{{i}}.duration.unit" aria-label="{{localize "op.threatExec.durationUnitLabel"}}">{{selectOptions ../exec.options.durationUnit selected=f.duration.unit localize=true blank="—"}}</select>
+			<select data-exec="effects.{{i}}.onSave" aria-label="{{localize "op.threatExec.effectOnSaveLabel"}}">{{selectOptions ../exec.options.effectOnSave selected=f.onSave localize=true}}</select>
+			<select data-exec="effects.{{i}}.support" aria-label="{{localize "op.threatExec.effectSupportLabel"}}">{{selectOptions ../exec.options.effectSupport selected=f.support localize=true}}</select>
+			<button type="button" data-action="execRemoveEntry" data-list="effects" data-index="{{i}}" aria-label="{{localize "op.threatExec.remove"}}">×</button>
+		</div>
+		{{/each}}
+		<button type="button" data-action="execAddEntry" data-list="effects">{{localize "op.threatExec.addEffect"}}</button>
+	</fieldset>
+
+	<fieldset class="threat-exec-group">
+		<legend>{{localize "op.threatExec.requirements"}}</legend>
+		{{#if exec.execution.trigger}}
+		<label>{{localize "op.threatExec.triggerEventLabel"}} <select data-exec="trigger.event">{{selectOptions exec.options.triggerEvent selected=exec.execution.trigger.event localize=true blank="—"}}</select></label>
+		<label>{{localize "op.threatExec.triggerOwnerLabel"}} <select data-exec="trigger.owner">{{selectOptions exec.options.triggerOwner selected=exec.execution.trigger.owner localize=true}}</select></label>
+		<button type="button" data-action="execToggleBlock" data-block="trigger" data-enabled="false">{{localize "op.threatExec.remove"}}</button>
+		{{else}}<button type="button" data-action="execToggleBlock" data-block="trigger" data-enabled="true">{{localize "op.threatExec.addTrigger"}}</button>{{/if}}
+		{{#each exec.execution.requirements as |r i|}}
+		<div class="threat-exec-row">
+			<select data-exec="requirements.{{i}}.kind" aria-label="{{localize "op.threatExec.requirementKindLabel"}}">{{selectOptions ../exec.options.requirementKind selected=r.kind localize=true}}</select>
+			<input type="number" min="1" step="1" data-exec="requirements.{{i}}.count" value="{{r.count}}" aria-label="{{localize "op.threatExec.requirementCount"}}" />
+			<input type="text" data-exec="requirements.{{i}}.ref" value="{{r.ref}}" aria-label="{{localize "op.threatExec.requirementRef"}}" />
+			<input type="text" data-exec="requirements.{{i}}.text" value="{{r.text}}" aria-label="{{localize "op.threatExec.requirementText"}}" />
+			<button type="button" data-action="execRemoveEntry" data-list="requirements" data-index="{{i}}" aria-label="{{localize "op.threatExec.remove"}}">×</button>
+		</div>
+		{{/each}}
+		<button type="button" data-action="execAddEntry" data-list="requirements">{{localize "op.threatExec.addRequirement"}}</button>
+	</fieldset>
+
+	<fieldset class="threat-exec-group">
+		<legend>{{localize "op.threatExec.visibilityTitle"}}</legend>
+		<label>{{localize "op.threatExec.visibilityDc"}} <select data-exec="visibility.dc">{{selectOptions exec.options.visibility selected=exec.execution.visibility.dc localize=true}}</select></label>
+		<label>{{localize "op.threatExec.visibilityDefense"}} <select data-exec="visibility.defense">{{selectOptions exec.options.visibility selected=exec.execution.visibility.defense localize=true}}</select></label>
+		<label>{{localize "op.threatExec.visibilityResult"}} <select data-exec="visibility.result">{{selectOptions exec.options.visibility selected=exec.execution.visibility.result localize=true}}</select></label>
+	</fieldset>
+
+	<div class="threat-exec-preview">
+		<strong>{{localize "op.threatExec.previewTitle"}}</strong>
+		<ul>
+			{{#each exec.preview}}
+			<li class="{{#if missing}}is-missing{{/if}}">{{localize key}}: {{#if missing}}{{localize text}}{{else}}{{text}}{{/if}}</li>
+			{{/each}}
+		</ul>
+	</div>
+
+	<button type="button" data-action="execDisable">{{localize "op.threatExec.disable"}}</button>
+	{{/unless}}
+</div>

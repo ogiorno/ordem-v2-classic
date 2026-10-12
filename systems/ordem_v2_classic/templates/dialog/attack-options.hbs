@@ -1,14 +1,13 @@
 <form class="op-attack-form">
 	<p class="op-ad-sub">{{skillLine}}</p>
 
+	<div class="op-ad-cols">
+	<div class="op-ad-col op-ad-col-left">
+
 	<section class="op-ad-block op-ad-weapon" data-weapon-block>
 		<h4>{{localize "op.attackDialog.weapon"}}</h4>
 		{{#if weapon.chips.length}}<div class="op-ad-chips">{{#each weapon.chips}}<span class="op-ad-weapon-tag">{{this}}</span>{{/each}}</div>{{/if}}
-		{{#if weapon.showModes}}
-		<div class="op-ad-modes">
-			{{#each weapon.modes}}<label class="op-ad-mode"><input type="radio" name="weaponMode" value="{{id}}" {{#if checked}}checked{{/if}}> {{label}}</label>{{/each}}
-		</div>
-		{{/if}}
+		<div class="op-ad-selects">
 		{{#if weapon.attrChoice}}
 		<label class="op-ad-field" data-attr-row>{{localize "op.attackDialog.attackWith"}}
 			<select name="weaponAttr">{{#each weapon.attrChoice}}<option value="{{id}}" {{#if selected}}selected{{/if}}>{{label}}</option>{{/each}}</select>
@@ -19,13 +18,58 @@
 			<select name="weaponGrip">{{#each weapon.grips}}<option value="{{id}}" {{#if selected}}selected{{/if}} {{#if disabled}}disabled{{/if}}>{{label}}</option>{{/each}}</select>
 		</label>
 		{{/if}}
+		</div>
 		{{#each weapon.ruleChoices}}
 		<label class="op-ad-rule-choice" data-rule-choice="{{id}}"><input type="checkbox" name="{{id}}" {{#if checked}}checked{{/if}}> {{label}}</label>
 		{{/each}}
 		<div class="op-ad-applied" data-rules {{#unless weapon.rules.length}}hidden{{/unless}}>
 			{{#each weapon.rules}}<div class="op-ad-applied-row is-{{state}}">{{text}}</div>{{/each}}
 		</div>
-		<p class="op-ad-range" data-range-note hidden></p>
+	</section>
+
+	<section class="op-ad-block op-ad-target">
+		<h4>Alvo</h4>
+		<div class="op-ad-target-card">
+			<div class="op-ad-target-head">
+				<span class="op-ad-target-icon"><i class="fa-solid fa-crosshairs"></i></span>
+				<span class="op-ad-target-text"><strong data-target-name>Nenhum alvo marcado</strong><small data-target-dist></small></span>
+			</div>
+			<div class="op-ad-alert" data-range-note hidden>
+				<i class="fa-solid fa-triangle-exclamation"></i>
+				<span><strong data-alert-title></strong><small data-alert-text></small></span>
+			</div>
+		</div>
+		<div class="op-ad-area" data-area-row hidden>
+			<button type="button" data-action="pick-area"><i class="fa-solid fa-location-crosshairs"></i> Escolher área no mapa</button>
+			<span data-area-note></span>
+		</div>
+	</section>
+
+	{{#if weapon.showModes}}
+	<section class="op-ad-block op-ad-actions">
+		<h4>Ação</h4>
+		<div class="op-ad-modes">
+			{{#each weapon.modes}}
+			<label class="op-ad-mode">
+				<input type="radio" name="weaponMode" value="{{id}}" {{#if checked}}checked{{/if}}>
+				<span class="op-ad-mode-text"><strong>{{label}}</strong>{{#if desc}}<small>{{desc}}</small>{{/if}}</span>
+			</label>
+			{{/each}}
+		</div>
+	</section>
+	{{/if}}
+
+	</div>
+	<div class="op-ad-col op-ad-col-right">
+
+	<section class="op-ad-block op-ad-summary">
+		<h4>Resumo do ataque</h4>
+		<div class="op-ad-sum">
+			<div class="op-ad-sum-row"><span class="op-ad-sum-label"><i class="fa-solid fa-hand-fist"></i> Teste</span><span class="op-ad-sum-value" data-sum-test></span></div>
+			<div class="op-ad-sum-row"><span class="op-ad-sum-label"><i class="fa-solid fa-dice-d6"></i> Dano</span><span class="op-ad-sum-value" data-sum-damage></span></div>
+			<div class="op-ad-sum-row" data-sum-grip-row hidden><span class="op-ad-sum-label"><i class="fa-solid fa-hand"></i> Empunhadura</span><span class="op-ad-sum-value" data-sum-grip></span></div>
+			<div class="op-ad-sum-row"><span class="op-ad-sum-label"><i class="fa-solid fa-coins"></i> Custo</span><span class="op-ad-sum-value"><strong data-total>0 {{resource}}</strong> <small>· {{localize "op.attackDialog.left"}} <span data-left>{{balance}}</span> {{resource}}</small></span></div>
+		</div>
 	</section>
 
 	{{#if passive.length}}
@@ -58,8 +102,8 @@
 	</section>
 
 	{{#if hasChoices}}
-	<section class="op-ad-block">
-		<h4>{{localize "op.attackDialog.options"}}</h4>
+	<details class="op-ad-fold">
+		<summary><i class="fa-solid fa-burst"></i> <span>{{#if pools.length}}{{pools.0.label}}{{else}}{{localize "op.attackDialog.options"}}{{/if}}</span><i class="fa-solid fa-chevron-down op-ad-chevron"></i></summary>
 		<div class="op-ad-list">
 			{{#each pools}}
 			<div class="op-ad-row op-ad-pool" data-pool="{{id}}" data-max="{{max}}" data-ability-max="{{abilityMax}}" data-limit="{{limit}}" data-per-turn="{{perTurn}}">
@@ -85,16 +129,21 @@
 			</label>
 			{{/each}}
 		</div>
-	</section>
+	</details>
 	{{/if}}
 
-	<section class="op-ad-free">
-		<label>{{localize "op.attackDialog.freeAttack"}}<input type="text" name="freeAttack" placeholder="+2 · −1d"></label>
-		<label>{{localize "op.attackDialog.freeDamage"}}<input type="text" name="freeDamage" placeholder="+1d6"></label>
-	</section>
+	<details class="op-ad-fold">
+		<summary><i class="fa-solid fa-gear"></i> <span>Modificadores opcionais</span><i class="fa-solid fa-chevron-down op-ad-chevron"></i></summary>
+		<div class="op-ad-free">
+			<label>{{localize "op.attackDialog.freeAttack"}}<input type="text" name="freeAttack" placeholder="+2 · −1d"></label>
+			<label>{{localize "op.attackDialog.freeDamage"}}<input type="text" name="freeDamage" placeholder="+1d6"></label>
+		</div>
+	</details>
 
 	<footer class="op-ad-foot">
-		<span>{{localize "op.attackDialog.total"}} <strong data-total>0 {{resource}}</strong> · {{localize "op.attackDialog.left"}} <span data-left>{{balance}}</span> {{resource}}</span>
 		<span class="op-ad-hint">{{localize "op.attackDialog.shiftHint"}}</span>
 	</footer>
+	<div data-attack-slot></div>
+	</div>
+	</div>
 </form>

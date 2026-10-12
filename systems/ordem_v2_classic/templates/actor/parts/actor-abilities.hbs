@@ -1,4 +1,19 @@
 <section class="tab flexcol abilities-tab inventory-tab {{tab.cssClass}}" data-tab="abilities" data-group="primary">
+	{{#if affinity}}{{#unless affinity.isLocked}}
+	<div class="op-affinity-card is-{{affinity.state}}" {{#if affinity.color}}style="--op-affinity: {{affinity.color}}"{{/if}}>
+		<div class="op-affinity-head">
+			<strong class="op-affinity-title">{{affinity.label}}</strong>
+			{{#if affinity.canChoose}}<button type="button" class="op-affinity-btn" data-action="chooseConnection"><i class="fa-solid fa-link"></i> Escolher elemento</button>{{/if}}
+			{{#if affinity.canClear}}<button type="button" class="op-affinity-btn is-quiet" data-action="clearConnection" title="Só o Mestre: apagar conexão e afinidade"><i class="fa-solid fa-eraser"></i></button>{{/if}}
+		</div>
+		<div class="op-affinity-text">{{affinity.summary}}</div>
+		{{#if affinity.hasPowers}}
+		<div class="op-affinity-counts">
+			{{#each affinity.counts}}<span class="op-affinity-chip" style="--op-affinity: {{color}}" title="Poderes paranormais de {{label}}">{{label}} {{count}}</span>{{/each}}
+		</div>
+		{{/if}}
+	</div>
+	{{/unless}}{{/if}}
 	<div class="tactical-control-bar">
 		<a
 			data-action="toggleResources"

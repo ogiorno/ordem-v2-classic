@@ -1,0 +1,21 @@
+<div class="op-gr-tabbar">
+	<nav class="op-gr-tabs" role="tablist" aria-label="{{localize 'op.grimoire.title'}}">
+		{{#each tabs}}
+		<button type="button" role="tab" class="op-gr-tab{{#if active}} is-active{{/if}}" data-action="selectTab" data-tab="{{id}}" aria-selected="{{active}}" tabindex="{{#if active}}0{{else}}-1{{/if}}">
+			<i class="fa-solid {{icon}}" aria-hidden="true"></i>
+			<span class="op-gr-tab-label">{{label}}</span>
+			<span class="op-gr-count" aria-label="{{count}}">{{count}}</span>
+		</button>
+		{{/each}}
+	</nav>
+	{{#if actors.length}}
+	<label class="op-gr-actor">
+		<i class="fa-solid fa-user" aria-hidden="true"></i>
+		<span class="op-gr-sr">{{localize "op.grimoire.character"}}</span>
+		<select data-change="actor" aria-label="{{localize 'op.grimoire.character'}}">
+			{{#unless hasActor}}<option value="" selected>{{localize "op.grimoire.noCharacter"}}</option>{{/unless}}
+			{{#each actors}}<option value="{{id}}"{{#if selected}} selected{{/if}}>{{name}}</option>{{/each}}
+		</select>
+	</label>
+	{{/if}}
+</div>

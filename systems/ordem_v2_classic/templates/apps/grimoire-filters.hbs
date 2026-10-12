@@ -1,0 +1,61 @@
+<div class="op-gr-filters">
+	{{#if queryChips.length}}
+	<div class="op-gr-chiprow" role="group" aria-label="{{localize 'op.grimoire.queryChips'}}">
+		{{#each queryChips}}<button type="button" class="op-gr-chip is-active" data-action="dismissChip" data-id="{{id}}" title="{{localize 'op.grimoire.removeChip'}}">{{label}} <i class="fa-solid fa-xmark" aria-hidden="true"></i><span class="op-gr-sr">{{localize "op.grimoire.removeChip"}}</span></button>{{/each}}
+	</div>
+	{{/if}}
+	{{#if wishTotal}}
+	<button type="button" class="op-gr-chip{{#if onlyWished}} is-active{{/if}}" data-action="toggleOnlyWished" aria-pressed="{{onlyWished}}" title="{{localize 'op.grimoire.wishedByPlayers'}}"><i class="fa-solid fa-star" aria-hidden="true"></i> {{localize "op.grimoire.wishedByPlayers"}} ({{wishTotal}})</button>
+	{{/if}}
+	{{#if hasYouAre}}
+	<div class="op-gr-youare">
+		<span class="op-gr-youare-label">{{localize "op.grimoire.youAre"}}</span>
+		{{#each youAre}}<button type="button" class="op-gr-chip is-condition" data-action="pickCondition" data-name="{{name}}">{{name}}</button>{{/each}}
+		{{#if noYouAre}}<span class="op-gr-muted">{{localize "op.grimoire.noConditions"}}</span>{{/if}}
+	</div>
+	{{/if}}
+
+	{{#each filterRows}}
+	<div class="op-gr-chiprow" role="group" aria-label="{{label}}">
+		<span class="op-gr-chiplabel">{{label}}</span>
+		{{#each chips}}
+		<button type="button" class="op-gr-chip{{#if active}} is-active{{/if}}{{#if elementClass}} {{elementClass}}{{/if}}" data-action="toggleFilter" data-key="{{../key}}" data-value="{{value}}"{{#if ../numeric}} data-numeric="true"{{/if}} aria-pressed="{{active}}" title="{{label}} ({{count}})">
+			{{#if elementClass}}<span class="op-gr-elicon" style="background-position: {{spriteX}}% 50%;" aria-hidden="true"></span>{{/if}}
+			<span class="op-gr-chiptext">{{label}}</span>
+		</button>
+		{{/each}}
+	</div>
+	{{/each}}
+
+	{{#if conditionBar}}
+	<div class="op-gr-condbar">
+		<button type="button" class="op-gr-chip{{#if conditionBar.onlyActive}} is-active{{/if}}" data-action="toggleOnlyActive" aria-pressed="{{conditionBar.onlyActive}}"{{#unless conditionBar.hasActor}} disabled title="{{localize 'op.grimoire.pickActor'}}"{{/unless}}><i class="fa-solid fa-user" aria-hidden="true"></i> {{localize "op.grimoire.activeOnMe"}}</button>
+		<select data-change="category" aria-label="{{localize 'op.grimoire.f.category'}}">
+			{{#each conditionBar.categories}}<option value="{{value}}"{{#if selected}} selected{{/if}}>{{label}}</option>{{/each}}
+		</select>
+		<select data-change="sort" aria-label="{{localize 'op.grimoire.sortBy'}}">
+			{{#each sortOptions}}<option value="{{value}}"{{#if selected}} selected{{/if}}>{{label}}</option>{{/each}}
+		</select>
+	</div>
+	{{else}}
+	<div class="op-gr-morebar">
+		{{#if moreRows.length}}
+		<button type="button" class="op-gr-more{{#if moreOpen}} is-open{{/if}}" data-action="toggleMore" aria-expanded="{{moreOpen}}"><i class="fa-solid fa-sliders" aria-hidden="true"></i> {{localize "op.grimoire.moreFilters"}}{{#if moreCount}} ({{moreCount}}){{/if}}</button>
+		{{/if}}
+		<label class="op-gr-sort"><span class="op-gr-sr">{{localize "op.grimoire.sortBy"}}</span>
+			<select data-change="sort" aria-label="{{localize 'op.grimoire.sortBy'}}">{{#each sortOptions}}<option value="{{value}}"{{#if selected}} selected{{/if}}>{{label}}</option>{{/each}}</select>
+		</label>
+		{{#if activeFilters}}<button type="button" class="op-gr-linkbtn" data-action="clearFilters">{{localize "op.grimoire.clearFilters"}}</button>{{/if}}
+	</div>
+	{{#if moreOpen}}
+	<div class="op-gr-morepanel">
+		{{#each moreRows}}
+		<div class="op-gr-chiprow" role="group" aria-label="{{label}}">
+			<span class="op-gr-chiplabel">{{label}}</span>
+			{{#each chips}}<button type="button" class="op-gr-chip{{#if active}} is-active{{/if}}" data-action="toggleFilter" data-key="{{../key}}" data-value="{{value}}" aria-pressed="{{active}}" title="{{label}} ({{count}})"><span class="op-gr-chiptext">{{label}}</span></button>{{/each}}
+		</div>
+		{{/each}}
+	</div>
+	{{/if}}
+	{{/if}}
+</div>

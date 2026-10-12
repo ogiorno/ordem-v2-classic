@@ -1,0 +1,18 @@
+<div class="op-gr-search">
+	<label class="op-gr-search-box">
+		<i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+		<span class="op-gr-sr">{{localize "op.grimoire.searchLabel"}}</span>
+		<input type="search" value="{{query}}" placeholder="{{localize 'op.grimoire.searchPlaceholder'}}" autocomplete="off" spellcheck="false" autocapitalize="off">
+		<button type="button" class="op-gr-clear" data-action="clearSearch" aria-label="{{localize 'op.grimoire.clearSearch'}}" title="{{localize 'op.grimoire.clearSearch'}}"{{#unless query}} hidden{{/unless}}><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+	</label>
+	{{#if canForMe}}
+	<span class="op-gr-forme">
+		<button type="button" role="switch" class="op-gr-switch{{#if forMe}} is-on{{/if}}" data-action="toggleForMe" aria-checked="{{forMe}}" aria-label="{{localize 'op.grimoire.forMe'}}"><span class="op-gr-knob"></span></button>
+		<span class="op-gr-forme-label">{{localize "op.grimoire.forMe"}}</span>
+		<button type="button" class="op-gr-helpbtn" data-action="toggleHelp" aria-expanded="{{helpOpen}}" aria-label="{{localize 'op.grimoire.forMeHelpLabel'}}" title="{{localize 'op.grimoire.forMeHelpLabel'}}">?</button>
+	</span>
+	{{/if}}
+	<span class="op-gr-hint"><kbd>/</kbd> {{localize "op.grimoire.toSearch"}}</span>
+	<div class="op-gr-sr" role="status" aria-live="polite" id="op-gr-live"></div>
+</div>
+{{#if helpOpen}}<p class="op-gr-help" role="note">{{localize "op.grimoire.forMeHelp"}}</p>{{/if}}
