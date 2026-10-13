@@ -1,0 +1,34 @@
+{
+  "name": "Cinética",
+  "type": "curse",
+  "_id": "F5PMR2IMEdFzK9T9",
+  "img": "systems/ordem_v2_classic/assets/curse-icons/cinetica.webp",
+  "system": {
+    "description": "<p><strong>Energia</strong> · maldição de proteção · Automática: o sistema aplica sozinho.</p>\n<p>Barreira invisível: +2 em Defesa e resistência a dano 2 (proteção leve ou escudo) ou 5 (proteção pesada).</p>\n<h4>No sistema</h4>\n<ul><li>Na ficha: +2 em Defesa e resistência a dano 2 (proteção leve ou escudo) ou 5 (proteção pesada).</li></ul>\n<p><em>Arraste para a ficha de um agente (ou para um item) e escolha o item que vira amaldiçoado. A primeira maldição soma +II à categoria do item e as seguintes +I.</em></p>\n<p><small>Fonte: Ordem Paranormal RPG — Livro de Regras v1.3, Itens amaldiçoados (livro p. 144–147).</small></p>",
+    "chatDescription": "",
+    "curseKey": "cinetica",
+    "element": "energy",
+    "applies": "protection",
+    "mode": "auto",
+    "price": ""
+  },
+  "effects": [],
+  "folder": "xzAQhdQc3DDUWuDY",
+  "sort": 1600000,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.369",
+    "systemId": "ordem_v2_classic",
+    "systemVersion": "8.0.2",
+    "createdTime": 1792207618168,
+    "modifiedTime": 1792207618168,
+    "lastModifiedBy": null,
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!F5PMR2IMEdFzK9T9"
+}

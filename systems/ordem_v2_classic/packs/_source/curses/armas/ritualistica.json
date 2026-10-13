@@ -1,0 +1,34 @@
+{
+  "name": "Ritualística",
+  "type": "curse",
+  "_id": "g5JsggO75aqZWNrc",
+  "img": "systems/ordem_v2_classic/assets/curse-icons/ritualistica.webp",
+  "system": {
+    "description": "<p><strong>Conhecimento</strong> · maldição de arma · Semi: o sistema monta, a mesa confirma.</p>\n<p>Armazene na arma um ritual de alvo ou de área, pagando os PE como se o conjurasse. Ao acertar um ataque, descarregue-o como ação livre; o alvo (ou centro da área) é o ser atingido. Descarregado, outro pode ser armazenado.</p>\n<h4>No sistema</h4>\n<ul><li>Botão de uso na ficha do item: Descarregar ritual.</li><li>Ao anexar ao item, o sistema pergunta qual ritual fica guardado.</li></ul>\n<p><em>Arraste para a ficha de um agente (ou para um item) e escolha o item que vira amaldiçoado. A primeira maldição soma +II à categoria do item e as seguintes +I.</em></p>\n<p><small>Fonte: Ordem Paranormal RPG — Livro de Regras v1.3, Itens amaldiçoados (livro p. 144–147).</small></p>",
+    "chatDescription": "",
+    "curseKey": "ritualistica",
+    "element": "knowledge",
+    "applies": "weapon",
+    "mode": "semi",
+    "price": ""
+  },
+  "effects": [],
+  "folder": "LrypGJeJfNmaSB3L",
+  "sort": 200000,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.369",
+    "systemId": "ordem_v2_classic",
+    "systemVersion": "8.0.2",
+    "createdTime": 1792207618168,
+    "modifiedTime": 1792207618168,
+    "lastModifiedBy": null,
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!g5JsggO75aqZWNrc"
+}

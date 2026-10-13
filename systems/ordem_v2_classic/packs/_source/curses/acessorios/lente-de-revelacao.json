@@ -1,0 +1,34 @@
+{
+  "name": "Lente de Revelação",
+  "type": "curse",
+  "_id": "KeFKqsdWhvSO03NE",
+  "img": "systems/ordem_v2_classic/assets/curse-icons/lenteDeRevelacao.webp",
+  "system": {
+    "description": "<p><strong>Conhecimento</strong> · maldição de acessório · Manual: cartão de uso com custo; o resto é da mesa.</p>\n<p>Modificação paranormal de câmera de aura: vê seres invisíveis e incorpóreos e ignora a camuflagem deles. Com ação padrão e 1 PE, fotografa uma criatura em alcance curto, que perde a camuflagem até o fim da cena.</p>\n<h4>No sistema</h4>\n<ul><li>Botão de uso na ficha do item: Fotografar (1 PE) (1 PE/PD).</li></ul>\n<p><em>Arraste para a ficha de um agente (ou para um item) e escolha o item que vira amaldiçoado. A primeira maldição soma +II à categoria do item e as seguintes +I.</em></p>\n<p><small>Fonte: Ordem Paranormal RPG — Livro de Regras v1.3, Itens amaldiçoados (livro p. 144–147).</small></p>",
+    "chatDescription": "",
+    "curseKey": "lenteDeRevelacao",
+    "element": "knowledge",
+    "applies": "accessory",
+    "mode": "manual",
+    "price": ""
+  },
+  "effects": [],
+  "folder": "BjuLLjzFqQnmtDbe",
+  "sort": 3600000,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.369",
+    "systemId": "ordem_v2_classic",
+    "systemVersion": "8.0.2",
+    "createdTime": 1792207618168,
+    "modifiedTime": 1792207618168,
+    "lastModifiedBy": null,
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!KeFKqsdWhvSO03NE"
+}

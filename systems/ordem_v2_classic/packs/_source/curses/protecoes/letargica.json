@@ -1,0 +1,34 @@
+{
+  "name": "Letárgica",
+  "type": "curse",
+  "_id": "Ig5JQKMwgIfK1AZA",
+  "img": "systems/ordem_v2_classic/assets/curse-icons/letargica.webp",
+  "system": {
+    "description": "<p><strong>Morte</strong> · maldição de proteção · Semi: o sistema monta, a mesa confirma.</p>\n<p>+2 em Defesa. Chance de ignorar o dano extra de acertos críticos e ataques furtivos: 25% (leve ou escudo) ou 50% (pesada).</p>\n<h4>No sistema</h4>\n<ul><li>Na ficha enquanto o item está equipado: +2 em Defesa.</li><li>Botão de uso na ficha do item: Rolar a chance.</li></ul>\n<p><em>Arraste para a ficha de um agente (ou para um item) e escolha o item que vira amaldiçoado. A primeira maldição soma +II à categoria do item e as seguintes +I.</em></p>\n<p><small>Fonte: Ordem Paranormal RPG — Livro de Regras v1.3, Itens amaldiçoados (livro p. 144–147).</small></p>",
+    "chatDescription": "",
+    "curseKey": "letargica",
+    "element": "death",
+    "applies": "protection",
+    "mode": "semi",
+    "price": ""
+  },
+  "effects": [],
+  "folder": "xzAQhdQc3DDUWuDY",
+  "sort": 1900000,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.369",
+    "systemId": "ordem_v2_classic",
+    "systemVersion": "8.0.2",
+    "createdTime": 1792207618168,
+    "modifiedTime": 1792207618168,
+    "lastModifiedBy": null,
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!Ig5JQKMwgIfK1AZA"
+}

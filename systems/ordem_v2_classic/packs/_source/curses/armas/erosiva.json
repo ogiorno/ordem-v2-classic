@@ -1,0 +1,34 @@
+{
+  "name": "Erosiva",
+  "type": "curse",
+  "_id": "OjNvP30f4XL0fTFm",
+  "img": "systems/ordem_v2_classic/assets/curse-icons/erosiva.webp",
+  "system": {
+    "description": "<p><strong>Morte</strong> · maldição de arma · Automática: o sistema aplica sozinho.</p>\n<p>A arma causa +1d8 de dano de Morte. Ao atacar, gaste 2 PE: se acertar, a vítima sofre 2d4 de dano de Morte no início de seus turnos nas próximas duas rodadas.</p>\n<h4>No sistema</h4>\n<ul><li>Tela de ataque: opção \"Erosiva (2d4 por 2 rodadas)\" (2 PE) — 2d4 de Morte no início dos turnos do alvo por 2 rodadas.</li><li>Dano extra: 1d8 em carta própria.</li><li>Ao acertar: avisa o Mestre do dano contínuo.</li></ul>\n<p><em>Arraste para a ficha de um agente (ou para um item) e escolha o item que vira amaldiçoado. A primeira maldição soma +II à categoria do item e as seguintes +I.</em></p>\n<p><small>Fonte: Ordem Paranormal RPG — Livro de Regras v1.3, Itens amaldiçoados (livro p. 144–147).</small></p>",
+    "chatDescription": "",
+    "curseKey": "erosiva",
+    "element": "death",
+    "applies": "weapon",
+    "mode": "auto",
+    "price": ""
+  },
+  "effects": [],
+  "folder": "LrypGJeJfNmaSB3L",
+  "sort": 800000,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.369",
+    "systemId": "ordem_v2_classic",
+    "systemVersion": "8.0.2",
+    "createdTime": 1792207618168,
+    "modifiedTime": 1792207618168,
+    "lastModifiedBy": null,
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!OjNvP30f4XL0fTFm"
+}

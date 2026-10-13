@@ -1,0 +1,34 @@
+{
+  "name": "Energética",
+  "type": "curse",
+  "_id": "qRz3FaJ370RuBvsr",
+  "img": "systems/ordem_v2_classic/assets/curse-icons/energetica.webp",
+  "system": {
+    "description": "<p><strong>Energia</strong> · maldição de arma · Automática: o sistema aplica sozinho.</p>\n<p>Gaste 2 PE por ataque para transformar a arma (ou a munição) em Energia pura: +5 em testes de ataque, ignora resistência a dano e converte todo o dano em Energia.</p>\n<h4>No sistema</h4>\n<ul><li>Tela de ataque: opção \"Energética\" (2 PE) — +5 no ataque, ignora RD, dano de Energia.</li></ul>\n<p><em>Arraste para a ficha de um agente (ou para um item) e escolha o item que vira amaldiçoado. A primeira maldição soma +II à categoria do item e as seguintes +I.</em></p>\n<p><small>Fonte: Ordem Paranormal RPG — Livro de Regras v1.3, Itens amaldiçoados (livro p. 144–147).</small></p>",
+    "chatDescription": "",
+    "curseKey": "energetica",
+    "element": "energy",
+    "applies": "weapon",
+    "mode": "auto",
+    "price": ""
+  },
+  "effects": [],
+  "folder": "LrypGJeJfNmaSB3L",
+  "sort": 500000,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.369",
+    "systemId": "ordem_v2_classic",
+    "systemVersion": "8.0.2",
+    "createdTime": 1792207618168,
+    "modifiedTime": 1792207618168,
+    "lastModifiedBy": null,
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!qRz3FaJ370RuBvsr"
+}

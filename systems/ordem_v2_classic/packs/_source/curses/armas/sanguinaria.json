@@ -1,0 +1,34 @@
+{
+  "name": "Sanguinária",
+  "type": "curse",
+  "_id": "YGtMmEqTYj2fcdLp",
+  "img": "systems/ordem_v2_classic/assets/curse-icons/sanguinaria.webp",
+  "system": {
+    "description": "<p><strong>Sangue</strong> · maldição de arma · Semi: o sistema monta, a mesa confirma.</p>\n<p>Quem for atingido fica sangrando. O sangramento da arma é cumulativo (atingido duas vezes, perde 2d6 por rodada). Em acerto crítico, a arma drena o sangue e dá a você 2d10 PV temporários.</p>\n<h4>No sistema</h4>\n<ul><li>Botão de uso na ficha do item: Crítico: drenar sangue.</li></ul>\n<p><em>Arraste para a ficha de um agente (ou para um item) e escolha o item que vira amaldiçoado. A primeira maldição soma +II à categoria do item e as seguintes +I.</em></p>\n<p><small>Fonte: Ordem Paranormal RPG — Livro de Regras v1.3, Itens amaldiçoados (livro p. 144–147).</small></p>",
+    "chatDescription": "",
+    "curseKey": "sanguinaria",
+    "element": "blood",
+    "applies": "weapon",
+    "mode": "semi",
+    "price": ""
+  },
+  "effects": [],
+  "folder": "LrypGJeJfNmaSB3L",
+  "sort": 1200000,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.369",
+    "systemId": "ordem_v2_classic",
+    "systemVersion": "8.0.2",
+    "createdTime": 1792207618168,
+    "modifiedTime": 1792207618168,
+    "lastModifiedBy": null,
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!YGtMmEqTYj2fcdLp"
+}
