@@ -59,7 +59,11 @@
       "_key": "!items.effects!GymMqUwIJI2M9DtM.9M9k52ixIPW9eK9b"
     }
   ],
-  "flags": {},
+  "flags": {
+    "ordem_v2_classic": {
+      "source": "sah"
+    }
+  },
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
