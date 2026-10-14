@@ -4,7 +4,7 @@
   "type": "generalEquipment",
   "img": "systems/ordemparanormal/media/icons/equipments/paranormal/camera-de-aura-paranormal.svg",
   "system": {
-    "description": "A descrição do seu item aqui.",
+    "description": "<p>Esta câmera amaldiçoada com Energia possui sigilos de Conhecimento para capturar auras paranormais. Tirar uma foto gasta uma ação padrão e 1 PE. As fotos são instantâneas e revelam a presença de auras paranormais em pessoas e objetos. As auras são da cor associada ao elemento.</p>",
     "weight": 1,
     "category": "2",
     "using": {

@@ -4,7 +4,7 @@
   "type": "generalEquipment",
   "img": "systems/ordemparanormal/media/icons/equipments/paranormal/escuta-de-pulsos-paranormais.svg",
   "system": {
-    "description": "A descrição do seu item aqui.",
+    "description": "<p>Este microfone funciona como um aparato espião, com a diferença que consegue captar ruídos paranormais. Ativar a escuta gasta uma ação completa e 2 PE e faz com que ela grave ruídos por até 24 horas. Ouvir a escuta fornece +5 em testes de Ocultismo para identificar criatura.</p>",
     "chatDescription": "",
     "weight": 1,
     "category": 2,

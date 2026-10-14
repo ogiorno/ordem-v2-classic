@@ -4,7 +4,7 @@
   "type": "generalEquipment",
   "img": "systems/ordemparanormal/media/icons/equipments/paranormal/amarras-de-energia.svg",
   "system": {
-    "description": "A descrição do seu item aqui.",
+    "description": "<p>Cordas ou correntes feitas de um elemento paranormal específico (Energia). As amarras são preparadas para imobilizar criaturas do Outro Lado que sejam vulneráveis ao elemento que as compõem e podem ser usadas de duas formas.</p><p><strong>Armadilha.</strong> Você gasta as amarras, uma ação completa e 2 PE para preparar uma armadilha de 3×3 m. Uma criatura que atravesse o espaço pela primeira vez em seu turno precisa fazer um teste de Reflexos (DT Int); se falhar, fica imóvel até o final da cena. Mesmo se passar, considera o espaço ocupado pela armadilha como terreno difícil.</p><p><strong>Laçar.</strong> Você gasta uma ação padrão e 1 PE e escolhe uma criatura em alcance curto. Se falhar num teste de Vontade (DT Agi), a criatura fica paralisada até o início de seu próximo turno, quando pode repetir o teste. Manter a criatura enlaçada requer o gasto de 1 PE por rodada.</p>",
     "weight": 1,
     "category": "2",
     "using": {

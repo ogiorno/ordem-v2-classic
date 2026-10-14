@@ -16,7 +16,11 @@
   },
   "effects": [],
   "folder": "Is7Kq529H3kvsDWb",
-  "flags": {},
+  "flags": {
+    "ordem_v2_classic": {
+      "source": "sah"
+    }
+  },
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
