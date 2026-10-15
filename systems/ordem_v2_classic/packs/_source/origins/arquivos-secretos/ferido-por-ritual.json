@@ -6,7 +6,7 @@
   "img": "systems/ordemparanormal/media/icons/origins/ferido-por-ritual.webp",
   "system": {
     "id": 0,
-    "description": "<p>Você pode encontrar esse conteúdo na <strong>página 43 do Arquivos Secretos 1</strong>.</p>",
+    "description": "<p>Você tinha uma vida ordinária, até sofrer os efeitos paranormais de um ritual (escolha entre Sangue, Morte, Conhecimento ou Energia). A partir de então, sua existência mundana foi deturpada pelo Outro Lado.</p><p><strong><em>Perícias Treinadas.</em></strong> Ocultismo e 1 perícia definida pelo elemento do ritual (Fortitude para Sangue, Vontade para Morte e Conhecimento ou Reflexos para Energia).</p><p><strong><em>Mácula Ritualística.</em></strong> A entidade marcou você com um ritual de 1º círculo a sua escolha do elemento correspondente. Você aprende a conjurar o ritual. Além disso, uma vez por cena, pode conjurá-lo sem gastar PE (mas ainda precisa gastar PE para qualquer efeito adicional, como formas avançadas). Esse ritual não conta no seu limite de rituais conhecidos. Em contrapartida, sofre –O em testes de resistência contra efeitos (como rituais ou poderes paranormais) desse elemento.</p><p><em>Fonte: AS #01, p. 43.</em></p>",
     "chatDescription": ""
   },
   "effects": [],

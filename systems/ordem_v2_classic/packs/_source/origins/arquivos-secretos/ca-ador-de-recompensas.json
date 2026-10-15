@@ -6,7 +6,7 @@
   "img": "systems/ordemparanormal/media/icons/origins/cacador-de-recompensa.webp",
   "system": {
     "id": 0,
-    "description": "<p>Você pode encontrar esse conteúdo na <strong>página 64 do Arquivos Secretos 4</strong>.</p>",
+    "description": "<p>Sua sede pelo dinheiro fácil sempre te guiou na exploração dos locais mais obscuros. Você sabe muito bem que as situações mais insalubres guardam as melhores recompensas.</p><p><strong><em>Perícias Treinadas.</em></strong> Crime e Investigação.</p><p><strong><em>Quem Não Arrisca, Não Petisca.</em></strong> Você recebe +2 em testes para resistir à condições mentais e de medo. Além disso, caso falhe em algum desses testes, você recebe +1d20 no próximo teste que realizar até o fim da cena (não cumulativo com ele mesmo).</p><p><em>Fonte: AS #04, p. 64.</em></p>",
     "chatDescription": ""
   },
   "effects": [],

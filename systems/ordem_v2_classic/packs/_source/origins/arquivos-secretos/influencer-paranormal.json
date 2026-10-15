@@ -6,7 +6,7 @@
   "img": "systems/ordemparanormal/media/icons/origins/influencer-paranormal.webp",
   "system": {
     "id": 0,
-    "description": "<p>Você pode encontrar esse conteúdo na <strong>página 64 do Arquivos Secretos 4</strong>.</p>",
+    "description": "<p>De início, você nunca acreditou nas lendas urbanas e vídeos de fantasmas, então resolveu se aproveitar daqueles que acreditam. Foi produzindo conteúdos falsos e duvidosos para a internet que você descobriu a dura verdade por trás da Membrana.</p><p><strong><em>Perícias Treinadas.</em></strong> Enganação e Tecnologia.</p><p><strong><em>Registrar o Paranormal.</em></strong> Uma vez por cena, você pode gastar uma ação padrão e 2 PE para criar um registro de uma criatura paranormal ou ritual que tenha sido conjurado na mesma cena. A ação padrão deve ser gasta para tirar uma foto, fazer um vídeo ou algum tipo de registro desse tipo. Uma vez por cena, você pode gastar uma ação de interlúdio e um dos registros de criatura para receber +5 em testes de identificar criatura e presença perturbadora envolvendo a criatura fotografada até o início da próxima cena de interlúdio. Alternativamente, uma vez por cena, você pode gastar uma ação de interlúdio e um dos registros de ritual para memorizar o ritual presente no registro, podendo conjurá-lo como se o conhecesse até o início de sua próxima cena de interlúdio, desde que tenha o NEX necessário (1º círculo a partir do NEX 5%, 2º círculo a partir do NEX 45% e 3º círculo a partir do NEX 75%); você também recebe +5 em testes para identificar o ritual. Esse ritual não conta no seu limite de rituais conhecidos.</p><p><em>Fonte: AS #04, p. 64.</em></p>",
     "chatDescription": ""
   },
   "effects": [],

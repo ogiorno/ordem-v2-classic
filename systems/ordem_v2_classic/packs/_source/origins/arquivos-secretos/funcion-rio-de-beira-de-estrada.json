@@ -6,7 +6,7 @@
   "img": "systems/ordemparanormal/media/icons/origins/funcionario-de-beira-de-estrada.webp",
   "system": {
     "id": 0,
-    "description": "Your text here.",
+    "description": "<p>Longe das grandes concentrações urbanas, você dava o seu melhor para atender os viajantes cansados. Entre madrugadas adentro e caminhões barulhentos, as lendas urbanas e relatos horripilantes eventualmente chegaram aos seus ouvidos e atiçaram a sua curiosidade.</p><p><strong><em>Perícias Treinadas.</em></strong> Fortitude e Intuição.</p><p><strong><em>Turno Invertido.</em></strong> Uma vez por missão, durante uma cena de interlúdio, você pode receber os benefícios da ação dormir sem precisar realizá-la. Além disso, recebe +2 em testes contra qualquer efeito que tente te deixar inconsciente.</p><p><em>Fonte: AS #05, p. 54.</em></p>",
     "chatDescription": ""
   },
   "effects": [],

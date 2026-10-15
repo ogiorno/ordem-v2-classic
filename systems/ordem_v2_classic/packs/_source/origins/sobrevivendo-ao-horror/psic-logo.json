@@ -15,7 +15,11 @@
     "default": 0,
     "WeXQ2WY27ruZ5VmA": 3
   },
-  "flags": {},
+  "flags": {
+    "ordem_v2_classic": {
+      "source": "sah"
+    }
+  },
   "_stats": {
     "coreVersion": "14.365",
     "systemId": "ordemparanormal",
