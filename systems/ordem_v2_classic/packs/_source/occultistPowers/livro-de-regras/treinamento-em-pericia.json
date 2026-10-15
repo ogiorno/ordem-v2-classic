@@ -1,0 +1,24 @@
+{
+  "name": "Treinamento em Perícia",
+  "type": "ability",
+  "img": "icons/svg/book.svg",
+  "system": {
+    "id": 0,
+    "abilityType": "class",
+    "preRequisite": "",
+    "description": "<p>Escolha duas perícias. Você se torna treinado nessas perícias. A partir de NEX 35%, você pode escolher perícias nas quais já é treinado para se tornar veterano. A partir de NEX 70%, pode escolher perícias nas quais já é veterano para se tornar expert. Você pode escolher este poder várias vezes.</p>",
+    "chatDescription": "",
+    "activation": "passive",
+    "cost": "",
+    "costType": "PE"
+  },
+  "effects": [],
+  "flags": {},
+  "ownership": {
+    "default": 0
+  },
+  "_id": "trPeriOccu000001",
+  "sort": 999000,
+  "folder": "jXFvAUBBZ4LafY8X",
+  "_key": "!items!trPeriOccu000001"
+}
