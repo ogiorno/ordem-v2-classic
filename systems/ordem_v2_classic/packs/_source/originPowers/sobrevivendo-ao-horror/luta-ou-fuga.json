@@ -65,7 +65,11 @@
   "ownership": {
     "default": 0
   },
-  "flags": {},
+  "flags": {
+    "ordem_v2_classic": {
+      "source": "sah"
+    }
+  },
   "_stats": {
     "coreVersion": "14.365",
     "systemId": "ordem_v2_classic",
