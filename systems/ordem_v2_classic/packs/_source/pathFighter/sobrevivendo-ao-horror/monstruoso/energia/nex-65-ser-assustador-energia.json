@@ -60,7 +60,11 @@
     }
   ],
   "folder": "dO7VaSBS6asgV6AC",
-  "flags": {},
+  "flags": {
+    "ordem_v2_classic": {
+      "source": "sah"
+    }
+  },
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
