@@ -14,7 +14,11 @@
     "costType": "PE"
   },
   "effects": [],
-  "flags": {},
+  "flags": {
+    "ordem_v2_classic": {
+      "source": "sah"
+    }
+  },
   "_stats": {
     "coreVersion": "14.365",
     "systemId": "ordemparanormal",

@@ -14,7 +14,11 @@
   },
   "effects": [],
   "folder": "ymf6Q233UXczSQe7",
-  "flags": {},
+  "flags": {
+    "ordem_v2_classic": {
+      "source": "sah"
+    }
+  },
   "_stats": {
     "coreVersion": "14.365",
     "systemId": "ordemparanormal",
