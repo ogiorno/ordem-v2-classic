@@ -1,0 +1,45 @@
+{
+  "name": "Perturbação",
+  "type": "ritual",
+  "img": "systems/ordem_v2_classic/assets/rituais/perturbacao.png",
+  "system": {
+    "circle": 1,
+    "element": "knowledge",
+    "description": "<p>Você dá uma ordem que o alvo deve ser capaz de ouvir (mas não precisa entender). Se falhar na resistência, ele deve obedecer à ordem em seu próprio turno da melhor maneira possível. Escolha um dos efeitos.</p><p><strong>Fuja:</strong></p><p>O alvo gasta seu turno tentando se afastar de você (usando todas as suas ações).</p> <p><strong>Largue:</strong></p><p>O alvo solta quaisquer itens que esteja segurando e não pode pegá-los de volta até o início de seu próximo turno. Como esta é uma ação livre, ele ainda pode executar outras ações (exceto pegar aquilo que largou).</p> <p><strong>Pare:</strong></p><p>O alvo fica pasmo (não pode realizar ações, só reações).</p> <p><strong>Sente-se:</strong></p><p>Com uma ação livre, o alvo se senta no chão (se estava pendurado ou voando, desce até o chão). Ele pode fazer outras ações, mas não se levantar até o início de seu próximo turno.</p> <p><strong>Venha:</strong></p><p>O alvo gasta seu turno se aproximando de você (usando todas as suas ações). Discente (+2 PE): muda o alvo para “1 ser” e adiciona o seguinte comando: “Sofra. O alvo é acometido de dor aguda. Ele sofre 3d8 pontos de dano de Conhecimento e fica abalado por uma rodada”. Verdadeiro (+5 PE): muda o alvo para “até 5 seres” ou adiciona o seguinte comando: “Ataque. O alvo deve fazer a ação agredir contra um outro alvo a sua escolha em alcance médio, com todas as suas capacidades”. Requer 3º círculo e afinidade.</p>",
+    "chatDescription": "<p><strong>Fonte:</strong> Livro de Regras v1.3 · <strong>Execução:</strong> padrão · <strong>Alcance:</strong> curto · <strong>Alvo:</strong> 1 pessoa · <strong>Duração:</strong> 1 rodada · <strong>Resistência:</strong> Vontade anula</p>",
+    "execution": "default",
+    "range": "short",
+    "target": "1 pessoa",
+    "duration": "setDuration",
+    "resistance": "nullifies",
+    "skillResis": "will",
+    "targetQtd": "",
+    "area": {
+      "name": "",
+      "size": "",
+      "type": ""
+    },
+    "studentForm": true,
+    "trueForm": true
+  },
+  "effects": [],
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.369",
+    "systemId": "ordem_v2_classic",
+    "systemVersion": "8.0.2",
+    "createdTime": 1792207618168,
+    "modifiedTime": 1792207618168,
+    "lastModifiedBy": null,
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "ownership": {
+    "default": 0
+  },
+  "folder": "RituaisCirculo01",
+  "sort": 26000,
+  "_id": "MIZ6XmkROMKo5Jbt",
+  "_key": "!items!MIZ6XmkROMKo5Jbt"
+}

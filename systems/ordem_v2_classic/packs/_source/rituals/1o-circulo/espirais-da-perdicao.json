@@ -1,0 +1,45 @@
+{
+  "name": "Espirais da Perdição",
+  "type": "ritual",
+  "img": "systems/ordem_v2_classic/assets/rituais/espirais-da-perdicao.png",
+  "system": {
+    "circle": 1,
+    "element": "death",
+    "description": "<p>Espirais surgem no corpo do alvo, tornando seus movimentos lentos. O alvo sofre –d20 em testes de ataque. Discente (+2 PE): muda a penalidade para –d20d20. Requer 2º círculo. Verdadeiro (+8 PE): muda a penalidade para –d20d20. e o alvo para “seres escolhidos”. Requer 3º círculo.</p>",
+    "chatDescription": "<p><strong>Fonte:</strong> Livro de Regras v1.3 · <strong>Execução:</strong> padrão · <strong>Alcance:</strong> curto · <strong>Alvo:</strong> 1 ser · <strong>Duração:</strong> cena · <strong>Resistência:</strong> —</p>",
+    "execution": "default",
+    "range": "short",
+    "target": "1 ser",
+    "duration": "scene",
+    "resistance": "",
+    "skillResis": "",
+    "targetQtd": "",
+    "area": {
+      "name": "",
+      "size": "",
+      "type": ""
+    },
+    "studentForm": true,
+    "trueForm": true
+  },
+  "effects": [],
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.369",
+    "systemId": "ordem_v2_classic",
+    "systemVersion": "8.0.2",
+    "createdTime": 1792207618168,
+    "modifiedTime": 1792207618168,
+    "lastModifiedBy": null,
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "ownership": {
+    "default": 0
+  },
+  "folder": "RituaisCirculo01",
+  "sort": 20000,
+  "_id": "gbsxCcWMzAm0KV9B",
+  "_key": "!items!gbsxCcWMzAm0KV9B"
+}

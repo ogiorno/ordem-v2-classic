@@ -1,0 +1,45 @@
+{
+  "name": "Transfigurar Terra",
+  "type": "ritual",
+  "img": "systems/ordem_v2_classic/assets/rituais/transfigurar-terra.png",
+  "system": {
+    "circle": 3,
+    "element": "energy",
+    "description": "<p>Você imbui terra, pedra, lama, argila ou areia na área com Energia, gerando efeitos sobrenaturais e caóticos. Ao conjurar o ritual, escolha um dos seguintes efeitos.</p><p><strong>Amolecer:</strong></p><p>se afetar o teto, uma coluna ou suporte, provoca um desabamento que causa 10d6 pontos de dano de impacto aos seres na área (Reflexos reduz à metade). Se afetar um piso de terra ou pedra, cria terreno difícil de areia ou argila, respectivamente.</p> <p><strong>Modelar:</strong></p><p>pode usar pedra ou argila para criar um ou mais objetos simples de tamanho Enorme ou menor (sem mecanismos ou partes móveis). Por exemplo, pode transformar um tijolo em um martelo, criar uma passagem onde antes havia apenas uma parede ou levantar uma ou mais paredes que oferecem cobertura total (RD 8 e 50 PV para cada 3m).</p> <p><strong>Solidificar:</strong></p><p>transforma lama ou areia em terra ou pedra. Seres com os pés na superfície ficam agarrados. Eles podem se soltar com uma ação padrão e um teste de Atletismo (DT igual a do ritual). Discente (+3 PE): muda a área para 15 cubos com 1,5m de lado. Verdadeiro (+7 PE): também afeta todos os tipos de minerais e metais. Requer 4º círculo.</p>",
+    "chatDescription": "<p><strong>Fonte:</strong> Livro de Regras v1.3 · <strong>Execução:</strong> padrão · <strong>Alcance:</strong> longo · <strong>Alvo:</strong> Veja descrição da área · <strong>Duração:</strong> instantânea · <strong>Resistência:</strong> veja texto</p>",
+    "execution": "default",
+    "range": "long",
+    "target": "Veja descrição da área",
+    "duration": "instantaneous",
+    "resistance": "",
+    "skillResis": "",
+    "targetQtd": "",
+    "area": {
+      "name": "9 cubos com 1,5m de lado",
+      "size": "",
+      "type": ""
+    },
+    "studentForm": true,
+    "trueForm": true
+  },
+  "effects": [],
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.369",
+    "systemId": "ordem_v2_classic",
+    "systemVersion": "8.0.2",
+    "createdTime": 1792207618168,
+    "modifiedTime": 1792207618168,
+    "lastModifiedBy": null,
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "ownership": {
+    "default": 0
+  },
+  "folder": "RituaisCirculo03",
+  "sort": 73000,
+  "_id": "yLW30URxzyXwzV1b",
+  "_key": "!items!yLW30URxzyXwzV1b"
+}

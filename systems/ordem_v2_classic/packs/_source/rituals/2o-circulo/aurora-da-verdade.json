@@ -1,0 +1,45 @@
+{
+  "name": "Aurora da Verdade",
+  "type": "ritual",
+  "img": "systems/ordem_v2_classic/assets/rituais/aurora-da-verdade.png",
+  "system": {
+    "circle": 2,
+    "element": "knowledge",
+    "description": "<p>Seres na área, inclusive o conjurador, só conseguem dizer a verdade, a menos que passem na resistência. A luz também revela quem tentar se esconder, obter camuflagem ou ficar invisível dentro dela. - <strong>Discente (+3 PE):</strong> alcance médio, raio de 9 m; o conjurador não é afetado. - <strong>Verdadeiro (+7 PE):</strong> como Discente, mas alcance longo e duração cena; o conjurador ouve tudo que é dito na área a qualquer distância. Requer 4º círculo e afinidade.</p>",
+    "chatDescription": "<p><strong>Fonte:</strong> Sobrevivendo ao Horror v1.3 · <strong>Execução:</strong> padrão · <strong>Alcance:</strong> curto · <strong>Alvo:</strong> Veja descrição da área · <strong>Duração:</strong> sustentada · <strong>Resistência:</strong> Vontade parcial</p>",
+    "execution": "default",
+    "range": "short",
+    "target": "Veja descrição da área",
+    "duration": "sustained",
+    "resistance": "partial",
+    "skillResis": "will",
+    "targetQtd": "",
+    "area": {
+      "name": "esfera de 3 m de raio",
+      "size": "",
+      "type": ""
+    },
+    "studentForm": true,
+    "trueForm": true
+  },
+  "effects": [],
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.369",
+    "systemId": "ordem_v2_classic",
+    "systemVersion": "8.0.2",
+    "createdTime": 1792207618168,
+    "modifiedTime": 1792207618168,
+    "lastModifiedBy": null,
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "ownership": {
+    "default": 0
+  },
+  "folder": "RituaisCirculo02",
+  "sort": 33000,
+  "_id": "w6eN76TpXoQ0C7Cp",
+  "_key": "!items!w6eN76TpXoQ0C7Cp"
+}

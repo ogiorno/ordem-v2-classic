@@ -1,0 +1,45 @@
+{
+  "name": "Amaldiçoar Tecnologia",
+  "type": "ritual",
+  "img": "systems/ordem_v2_classic/assets/rituais/amaldicoar-tecnologia.png",
+  "system": {
+    "circle": 1,
+    "element": "energy",
+    "description": "<p>Você imbui o alvo com Energia, fazendo-o funcionar acima de sua capacidade. O item recebe uma modificação a sua escolha. Discente (+2 PE): muda para duas modificações. Requer 2º círculo. Verdadeiro (+5 PE): muda para três modificações. Requer 3º círculo e afinidade.</p>",
+    "chatDescription": "<p><strong>Fonte:</strong> Livro de Regras v1.3 · <strong>Execução:</strong> padrão · <strong>Alcance:</strong> toque · <strong>Alvo:</strong> 1 acessório ou arma de fogo · <strong>Duração:</strong> cena · <strong>Resistência:</strong> —</p>",
+    "execution": "default",
+    "range": "touch",
+    "target": "1 acessório ou arma de fogo",
+    "duration": "scene",
+    "resistance": "",
+    "skillResis": "",
+    "targetQtd": "",
+    "area": {
+      "name": "",
+      "size": "",
+      "type": ""
+    },
+    "studentForm": true,
+    "trueForm": true
+  },
+  "effects": [],
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.369",
+    "systemId": "ordem_v2_classic",
+    "systemVersion": "8.0.2",
+    "createdTime": 1792207618168,
+    "modifiedTime": 1792207618168,
+    "lastModifiedBy": null,
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "ownership": {
+    "default": 0
+  },
+  "folder": "RituaisCirculo01",
+  "sort": 2000,
+  "_id": "TfnlmU9xDOMcYlDa",
+  "_key": "!items!TfnlmU9xDOMcYlDa"
+}

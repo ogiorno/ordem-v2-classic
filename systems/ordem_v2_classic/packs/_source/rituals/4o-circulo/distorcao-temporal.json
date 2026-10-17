@@ -1,0 +1,45 @@
+{
+  "name": "Distorção Temporal",
+  "type": "ritual",
+  "img": "systems/ordem_v2_classic/assets/rituais/distorcao-temporal.png",
+  "system": {
+    "circle": 4,
+    "element": "death",
+    "description": "<p>Este ritual distorce o fluxo de tempo em relação a você, criando um pequeno bolsão temporal que dura 3 rodadas. Durante este tempo, você pode agir, mas não pode se deslocar do lugar nem interagir com seres e objetos. Da mesma forma, efeitos contínuos não o afetam, e quaisquer efeitos que você iniciar não afetarão a área ao seu redor. Efeitos de área com duração maior que este efeito vão agir normalmente quando o bolsão temporal acabar.</p>",
+    "chatDescription": "<p><strong>Fonte:</strong> Livro de Regras v1.3 · <strong>Execução:</strong> padrão · <strong>Alcance:</strong> pessoal · <strong>Alvo:</strong> veja texto · <strong>Duração:</strong> veja texto · <strong>Resistência:</strong> —</p>",
+    "execution": "default",
+    "range": "personal",
+    "target": "veja texto",
+    "duration": "setDuration",
+    "resistance": "",
+    "skillResis": "",
+    "targetQtd": "",
+    "area": {
+      "name": "",
+      "size": "",
+      "type": ""
+    },
+    "studentForm": false,
+    "trueForm": false
+  },
+  "effects": [],
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.369",
+    "systemId": "ordem_v2_classic",
+    "systemVersion": "8.0.2",
+    "createdTime": 1792207618168,
+    "modifiedTime": 1792207618168,
+    "lastModifiedBy": null,
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "ownership": {
+    "default": 0
+  },
+  "folder": "RituaisCirculo04",
+  "sort": 86000,
+  "_id": "5Bzp2INhGSmp9D8Z",
+  "_key": "!items!5Bzp2INhGSmp9D8Z"
+}

@@ -1,0 +1,45 @@
+{
+  "name": "Eco Espiral",
+  "type": "ritual",
+  "img": "systems/ordem_v2_classic/assets/rituais/eco-espiral.png",
+  "system": {
+    "circle": 2,
+    "element": "death",
+    "description": "<p>Você manifesta em suas mãos uma pequena cópia do alvo feita de cinzas. No início do próximo turno após conjurar este ritual, você precisa gastar uma ação padrão para se concentrar nele; caso contrário, ele se dissipa sem efeito. No início do segundo turno, você precisa gastar uma ação padrão para descarregá-lo. Se fizer isso, a cópia explode e o alvo sofre dano de Morte igual a quantidade de dano que sofreu na rodada em que você se concentrou (Fortitude reduz à metade). Se não fizer, o ritual se dissipa sem efeito. Discente (+3 PE): muda o alvo para “até 5 seres”. Verdadeiro (+7 PE): muda a duração para “até 3 rodadas”, permitindo que você se concentre nas duas primeiras e descarregue na terceira. Requer 4º círculo e afinidade.</p>",
+    "chatDescription": "<p><strong>Fonte:</strong> Livro de Regras v1.3 · <strong>Execução:</strong> padrão · <strong>Alcance:</strong> curto · <strong>Alvo:</strong> 1 ser · <strong>Duração:</strong> 2 rodadas · <strong>Resistência:</strong> Fortitude reduz à metade</p>",
+    "execution": "default",
+    "range": "short",
+    "target": "1 ser",
+    "duration": "setDuration",
+    "resistance": "reducesByHalf",
+    "skillResis": "resilience",
+    "targetQtd": "",
+    "area": {
+      "name": "",
+      "size": "",
+      "type": ""
+    },
+    "studentForm": true,
+    "trueForm": true
+  },
+  "effects": [],
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.369",
+    "systemId": "ordem_v2_classic",
+    "systemVersion": "8.0.2",
+    "createdTime": 1792207618168,
+    "modifiedTime": 1792207618168,
+    "lastModifiedBy": null,
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "ownership": {
+    "default": 0
+  },
+  "folder": "RituaisCirculo02",
+  "sort": 40000,
+  "_id": "CFdxfBSafoj9Xd7L",
+  "_key": "!items!CFdxfBSafoj9Xd7L"
+}

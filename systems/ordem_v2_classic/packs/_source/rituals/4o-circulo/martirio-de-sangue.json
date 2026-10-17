@@ -1,0 +1,45 @@
+{
+  "name": "Martírio de Sangue",
+  "type": "ritual",
+  "img": "systems/ordem_v2_classic/assets/rituais/martirio-de-sangue.png",
+  "system": {
+    "circle": 4,
+    "element": "blood",
+    "description": "<p>Concede faro, visão no escuro, cura acelerada 10, +10 em ataques e danos corpo a corpo e na Defesa, 30 PV temporários e um dado adicional de dano letal em ataques desarmados (corte, impacto ou perfuração, escolhido em cada ataque). Você deixa de poder realizar ações que exijam foco ou concentração, inclusive conjurar rituais, e sofre penalidade de três dados em testes sociais. Ao fim da cena em que foi conjurado, o personagem se transforma permanentemente em criatura de Sangue e deixa de ser controlado pelo jogador. - <strong>Discente (+5 PE):</strong> os bônus de +10 passam a +20 e os PV temporários a 50. Requer afinidade. - <strong>Verdadeiro:</strong> não há versão Verdadeiro no suplemento.</p>",
+    "chatDescription": "<p><strong>Fonte:</strong> Sobrevivendo ao Horror v1.3 · <strong>Execução:</strong> padrão · <strong>Alcance:</strong> pessoal · <strong>Alvo:</strong> você · <strong>Duração:</strong> veja abaixo · <strong>Resistência:</strong> —</p>",
+    "execution": "default",
+    "range": "personal",
+    "target": "você",
+    "duration": "setDuration",
+    "resistance": "",
+    "skillResis": "",
+    "targetQtd": "",
+    "area": {
+      "name": "",
+      "size": "",
+      "type": ""
+    },
+    "studentForm": true,
+    "trueForm": false
+  },
+  "effects": [],
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.369",
+    "systemId": "ordem_v2_classic",
+    "systemVersion": "8.0.2",
+    "createdTime": 1792207618168,
+    "modifiedTime": 1792207618168,
+    "lastModifiedBy": null,
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "ownership": {
+    "default": 0
+  },
+  "folder": "RituaisCirculo04",
+  "sort": 91000,
+  "_id": "244IMHMND5MSjRrS",
+  "_key": "!items!244IMHMND5MSjRrS"
+}

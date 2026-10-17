@@ -1,0 +1,45 @@
+{
+  "name": "Rejeitar Névoa",
+  "type": "ritual",
+  "img": "systems/ordem_v2_classic/assets/rituais/rejeitar-nevoa.png",
+  "system": {
+    "circle": 2,
+    "element": "fear",
+    "description": "<p>Você manifesta um leve redemoinho de névoa que se movimenta suavemente dentro da área. Rituais conjurados dentro da área têm seu custo aumentado em +2 PE por círculo e sua execução aumentada em um passo (de livre para movimento, de movimento para padrão, de padrão para completa, de completa para duas rodadas). Rejeitar a Névoa anula os efeitos de Cinerária, a menos que o conjurador de Cinerária use uma ação completa por rodada para manter o ritual ativo, neutralizando o efeito dos dois rituais. Discente (+2 PE): além do normal, a DT de testes de resistência contra rituais realizados na área diminui em –5. Verdadeiro (+ 5 PE): como discente, e o dano causado dentro da névoa por rituais é sempre mínimo.</p>",
+    "chatDescription": "<p><strong>Fonte:</strong> Livro de Regras v1.3 · <strong>Execução:</strong> padrão · <strong>Alcance:</strong> curto · <strong>Alvo:</strong> Veja descrição da área · <strong>Duração:</strong> cena · <strong>Resistência:</strong> —</p>",
+    "execution": "default",
+    "range": "short",
+    "target": "Veja descrição da área",
+    "duration": "scene",
+    "resistance": "",
+    "skillResis": "",
+    "targetQtd": "",
+    "area": {
+      "name": "nuvem de 6m de raio",
+      "size": "",
+      "type": ""
+    },
+    "studentForm": true,
+    "trueForm": false
+  },
+  "effects": [],
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.369",
+    "systemId": "ordem_v2_classic",
+    "systemVersion": "8.0.2",
+    "createdTime": 1792207618168,
+    "modifiedTime": 1792207618168,
+    "lastModifiedBy": null,
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "ownership": {
+    "default": 0
+  },
+  "folder": "RituaisCirculo02",
+  "sort": 50000,
+  "_id": "JBXgb4gffdQLKv5t",
+  "_key": "!items!JBXgb4gffdQLKv5t"
+}

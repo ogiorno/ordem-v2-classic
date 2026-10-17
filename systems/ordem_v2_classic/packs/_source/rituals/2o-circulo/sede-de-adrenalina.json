@@ -1,0 +1,45 @@
+{
+  "name": "Sede de Adrenalina",
+  "type": "ritual",
+  "img": "systems/ordem_v2_classic/assets/rituais/sede-de-adrenalina.png",
+  "system": {
+    "circle": 2,
+    "element": "blood",
+    "description": "<p>Após falhar em Acrobacia ou Atletismo, permite repetir o teste com Presença como atributo base. Alternativamente, ao sofrer dano de impacto, reduz esse dano em 20. Só pode ser usado uma vez por rodada. Se usado para reduzir dano, você fica atordoado por 1 rodada após o impacto, mesmo que o dano seja reduzido a zero. - <strong>Discente (+3 PE):</strong> redução de dano de impacto passa a 40. - <strong>Verdadeiro (+7 PE):</strong> redução passa a 70. Requer 4º círculo e afinidade.</p>",
+    "chatDescription": "<p><strong>Fonte:</strong> Sobrevivendo ao Horror v1.3 · <strong>Execução:</strong> reação · <strong>Alcance:</strong> pessoal · <strong>Alvo:</strong> você · <strong>Duração:</strong> instantânea · <strong>Resistência:</strong> —</p>",
+    "execution": "reaction",
+    "range": "personal",
+    "target": "você",
+    "duration": "instantaneous",
+    "resistance": "",
+    "skillResis": "",
+    "targetQtd": "",
+    "area": {
+      "name": "",
+      "size": "",
+      "type": ""
+    },
+    "studentForm": true,
+    "trueForm": true
+  },
+  "effects": [],
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.369",
+    "systemId": "ordem_v2_classic",
+    "systemVersion": "8.0.2",
+    "createdTime": 1792207618168,
+    "modifiedTime": 1792207618168,
+    "lastModifiedBy": null,
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "ownership": {
+    "default": 0
+  },
+  "folder": "RituaisCirculo02",
+  "sort": 51000,
+  "_id": "sCqTILWCuG7WxMSD",
+  "_key": "!items!sCqTILWCuG7WxMSD"
+}

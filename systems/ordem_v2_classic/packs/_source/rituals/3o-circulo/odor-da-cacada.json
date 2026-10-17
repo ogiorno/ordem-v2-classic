@@ -1,0 +1,45 @@
+{
+  "name": "Odor da Caçada",
+  "type": "ritual",
+  "img": "systems/ordem_v2_classic/assets/rituais/odor-da-cacada.png",
+  "system": {
+    "circle": 3,
+    "element": "blood",
+    "description": "<p>Concede faro. Em perseguições, dá +5 em Atletismo e impede a perda de PV por esforço extra, desde que a presa ou o caçador emita odores. Na cena seguinte, você sofre fome e sede como se tivesse falhado no teste de Fortitude do primeiro dia, até suprir essas necessidades. - <strong>Discente (+4 PE):</strong> alcance toque; alvo 1 ser. - <strong>Verdadeiro (+9 PE):</strong> alcance curto; até 5 seres. Requer afinidade.</p>",
+    "chatDescription": "<p><strong>Fonte:</strong> Sobrevivendo ao Horror v1.3 · <strong>Execução:</strong> padrão · <strong>Alcance:</strong> pessoal · <strong>Alvo:</strong> você · <strong>Duração:</strong> cena · <strong>Resistência:</strong> —</p>",
+    "execution": "default",
+    "range": "personal",
+    "target": "você",
+    "duration": "scene",
+    "resistance": "",
+    "skillResis": "",
+    "targetQtd": "",
+    "area": {
+      "name": "",
+      "size": "",
+      "type": ""
+    },
+    "studentForm": true,
+    "trueForm": true
+  },
+  "effects": [],
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.369",
+    "systemId": "ordem_v2_classic",
+    "systemVersion": "8.0.2",
+    "createdTime": 1792207618168,
+    "modifiedTime": 1792207618168,
+    "lastModifiedBy": null,
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "ownership": {
+    "default": 0
+  },
+  "folder": "RituaisCirculo03",
+  "sort": 67000,
+  "_id": "4rvcTZi9uhqwjXrB",
+  "_key": "!items!4rvcTZi9uhqwjXrB"
+}

@@ -1,0 +1,45 @@
+{
+  "name": "Alterar Destino",
+  "type": "ritual",
+  "img": "systems/ordem_v2_classic/assets/rituais/alterar-destino.png",
+  "system": {
+    "circle": 4,
+    "element": "energy",
+    "description": "<p>Você vislumbra seu futuro próximo, analisando milhões de possibilidades e escolhendo a melhor. Você recebe +15 em um teste de resistência ou na Defesa contra um ataque. Verdadeiro (+5 PE): muda o alcance para “curto” e o alvo para “um aliado à sua escolha”.</p>",
+    "chatDescription": "<p><strong>Fonte:</strong> Livro de Regras v1.3 · <strong>Execução:</strong> reação · <strong>Alcance:</strong> pessoal · <strong>Alvo:</strong> você · <strong>Duração:</strong> instantânea · <strong>Resistência:</strong> —</p>",
+    "execution": "reaction",
+    "range": "personal",
+    "target": "você",
+    "duration": "instantaneous",
+    "resistance": "",
+    "skillResis": "",
+    "targetQtd": "",
+    "area": {
+      "name": "",
+      "size": "",
+      "type": ""
+    },
+    "studentForm": false,
+    "trueForm": true
+  },
+  "effects": [],
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.369",
+    "systemId": "ordem_v2_classic",
+    "systemVersion": "8.0.2",
+    "createdTime": 1792207618168,
+    "modifiedTime": 1792207618168,
+    "lastModifiedBy": null,
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "ownership": {
+    "default": 0
+  },
+  "folder": "RituaisCirculo04",
+  "sort": 79000,
+  "_id": "7Alfrq64t7VYKAyA",
+  "_key": "!items!7Alfrq64t7VYKAyA"
+}

@@ -1,0 +1,45 @@
+{
+  "name": "Flagelo de Sangue",
+  "type": "ritual",
+  "img": "systems/ordem_v2_classic/assets/rituais/flagelo-de-sangue.png",
+  "system": {
+    "circle": 2,
+    "element": "blood",
+    "description": "<p>Você toca uma pessoa, gravando uma marca escarificada no corpo dela enquanto profere uma ordem, como “não ataque a mim ou meus aliados”, “siga-me” ou “não saia desta sala”. A cada rodada que o alvo desobedecer a ordem, a marca inflige uma dor excruciante, que causa 10d6 pontos de dano de Sangue e deixa o alvo enjoado pela rodada (Fortitude reduz o dano à metade e evita a condição). Se o alvo passar nesse teste dois turnos seguidos a marca desaparece. Discente (+3 PE): muda o alvo para “1 ser (exceto criaturas de Sangue)”. Requer 3º círculo. Verdadeiro (+7 PE): como Discente, e muda a duração para “1 dia”. Requer 4º círculo e afinidade.</p>",
+    "chatDescription": "<p><strong>Fonte:</strong> Livro de Regras v1.3 · <strong>Execução:</strong> padrão · <strong>Alcance:</strong> toque · <strong>Alvo:</strong> 1 pessoa · <strong>Duração:</strong> cena · <strong>Resistência:</strong> Fortitude parcial</p>",
+    "execution": "default",
+    "range": "touch",
+    "target": "1 pessoa",
+    "duration": "scene",
+    "resistance": "partial",
+    "skillResis": "resilience",
+    "targetQtd": "",
+    "area": {
+      "name": "",
+      "size": "",
+      "type": ""
+    },
+    "studentForm": true,
+    "trueForm": true
+  },
+  "effects": [],
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.369",
+    "systemId": "ordem_v2_classic",
+    "systemVersion": "8.0.2",
+    "createdTime": 1792207618168,
+    "modifiedTime": 1792207618168,
+    "lastModifiedBy": null,
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "ownership": {
+    "default": 0
+  },
+  "folder": "RituaisCirculo02",
+  "sort": 42000,
+  "_id": "mBjezi6VTyGm7ePk",
+  "_key": "!items!mBjezi6VTyGm7ePk"
+}

@@ -1,0 +1,45 @@
+{
+  "name": "Overclock",
+  "type": "ritual",
+  "img": "systems/ordem_v2_classic/assets/rituais/overclock.png",
+  "system": {
+    "circle": 1,
+    "element": "energy",
+    "description": "<p>Após saber o resultado de um teste de Tecnologia com objeto eletrônico, permite buscar a informação por um desafio de jogo de estátua conduzido pelo mestre, ou outro jogo analógico escolhido pela mesa. Se concluir o desafio sem errar, obtém a informação. Depois, o objeto fica inutilizável por interferência paranormal, com sucesso ou falha. - <strong>Discente (+2 PE):</strong> falha no desafio apenas após dois erros. Requer 2º círculo. - <strong>Verdadeiro (+5 PE):</strong> falha apenas após três erros. Requer 3º círculo.</p>",
+    "chatDescription": "<p><strong>Fonte:</strong> Sobrevivendo ao Horror v1.3 · <strong>Execução:</strong> reação · <strong>Alcance:</strong> pessoal · <strong>Alvo:</strong> você · <strong>Duração:</strong> instantânea · <strong>Resistência:</strong> —</p>",
+    "execution": "reaction",
+    "range": "personal",
+    "target": "você",
+    "duration": "instantaneous",
+    "resistance": "",
+    "skillResis": "",
+    "targetQtd": "",
+    "area": {
+      "name": "",
+      "size": "",
+      "type": ""
+    },
+    "studentForm": true,
+    "trueForm": true
+  },
+  "effects": [],
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.369",
+    "systemId": "ordem_v2_classic",
+    "systemVersion": "8.0.2",
+    "createdTime": 1792207618168,
+    "modifiedTime": 1792207618168,
+    "lastModifiedBy": null,
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "ownership": {
+    "default": 0
+  },
+  "folder": "RituaisCirculo01",
+  "sort": 25000,
+  "_id": "t6ZUwqcWoUXEp7J4",
+  "_key": "!items!t6ZUwqcWoUXEp7J4"
+}

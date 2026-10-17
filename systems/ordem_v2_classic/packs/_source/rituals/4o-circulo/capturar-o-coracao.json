@@ -1,0 +1,45 @@
+{
+  "name": "Capturar o Coração",
+  "type": "ritual",
+  "img": "systems/ordem_v2_classic/assets/rituais/capturar-o-coracao.png",
+  "system": {
+    "circle": 4,
+    "element": "blood",
+    "description": "<p>Você desperta uma paixão doentia e obcecada por você no alvo, que passa a querar agradá-lo a todo custo, mesmo que para isso precise ficar contra seus amigos. No início de cada turno do alvo ele deve fazer um teste de Vontade. Se falhar, age de forma a ajudá-lo na melhor de suas capacidades naquele turno. Se o alvo passar nesse teste dois turnos seguidos o efeito termina.</p>",
+    "chatDescription": "<p><strong>Fonte:</strong> Livro de Regras v1.3 · <strong>Execução:</strong> padrão · <strong>Alcance:</strong> curto · <strong>Alvo:</strong> 1 pessoa · <strong>Duração:</strong> cena · <strong>Resistência:</strong> Vontade parcial</p>",
+    "execution": "default",
+    "range": "short",
+    "target": "1 pessoa",
+    "duration": "scene",
+    "resistance": "partial",
+    "skillResis": "will",
+    "targetQtd": "",
+    "area": {
+      "name": "",
+      "size": "",
+      "type": ""
+    },
+    "studentForm": false,
+    "trueForm": false
+  },
+  "effects": [],
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.369",
+    "systemId": "ordem_v2_classic",
+    "systemVersion": "8.0.2",
+    "createdTime": 1792207618168,
+    "modifiedTime": 1792207618168,
+    "lastModifiedBy": null,
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "ownership": {
+    "default": 0
+  },
+  "folder": "RituaisCirculo04",
+  "sort": 81000,
+  "_id": "XH7TVtspnCeJMde9",
+  "_key": "!items!XH7TVtspnCeJMde9"
+}

@@ -1,0 +1,45 @@
+{
+  "name": "Controle Mental",
+  "type": "ritual",
+  "img": "systems/ordem_v2_classic/assets/rituais/controle-mental.png",
+  "system": {
+    "circle": 4,
+    "element": "knowledge",
+    "description": "<p>Você domina a mente do alvo, que obedece todos os seus comandos, exceto ordens suicidas. Um alvo tem direito a um teste de Vontade no final de cada um de seus turnos para se livrar do efeito. Alvos que passarem no teste ficam pasmos por 1 rodada (apenas uma vez por cena). Discente (+5 PE): muda o alvo para até cinco pessoas ou animais. Verdadeiro (+10 PE): muda o alvo para até dez pessoas ou animais. Requer afinidade com Conhecimento.</p>",
+    "chatDescription": "<p><strong>Fonte:</strong> Livro de Regras v1.3 · <strong>Execução:</strong> padrão · <strong>Alcance:</strong> médio · <strong>Alvo:</strong> 1 pessoa ou animal · <strong>Duração:</strong> sustentada · <strong>Resistência:</strong> Vontade parcial</p>",
+    "execution": "default",
+    "range": "medium",
+    "target": "1 pessoa ou animal",
+    "duration": "sustained",
+    "resistance": "partial",
+    "skillResis": "will",
+    "targetQtd": "",
+    "area": {
+      "name": "",
+      "size": "",
+      "type": ""
+    },
+    "studentForm": true,
+    "trueForm": true
+  },
+  "effects": [],
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.369",
+    "systemId": "ordem_v2_classic",
+    "systemVersion": "8.0.2",
+    "createdTime": 1792207618168,
+    "modifiedTime": 1792207618168,
+    "lastModifiedBy": null,
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "ownership": {
+    "default": 0
+  },
+  "folder": "RituaisCirculo04",
+  "sort": 83000,
+  "_id": "lLTfUlymM1LXmLaM",
+  "_key": "!items!lLTfUlymM1LXmLaM"
+}

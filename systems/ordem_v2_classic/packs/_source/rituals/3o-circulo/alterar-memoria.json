@@ -1,0 +1,45 @@
+{
+  "name": "Alterar Memória",
+  "type": "ritual",
+  "img": "systems/ordem_v2_classic/assets/rituais/alterar-memoria.png",
+  "system": {
+    "circle": 3,
+    "element": "knowledge",
+    "description": "<p>Você invade a mente do alvo e altera ou apaga suas memórias de até uma hora atrás. Se escolher alterar as memórias, você pode mudar detalhes de eventos recentes, como a identidade de alguém encontrado ou o endereço de um lugar visitado, mas não reescrever completamente esses eventos. O alvo recupera suas memórias após 1d4 dias. Verdadeiro (+4 PE): você pode alterar ou apagar memórias de até 24 horas atrás. Requer 4º círculo.</p>",
+    "chatDescription": "<p><strong>Fonte:</strong> Livro de Regras v1.3 · <strong>Execução:</strong> padrão · <strong>Alcance:</strong> toque · <strong>Alvo:</strong> 1 pessoa · <strong>Duração:</strong> instantânea · <strong>Resistência:</strong> Vontade anula</p>",
+    "execution": "default",
+    "range": "touch",
+    "target": "1 pessoa",
+    "duration": "instantaneous",
+    "resistance": "nullifies",
+    "skillResis": "will",
+    "targetQtd": "",
+    "area": {
+      "name": "",
+      "size": "",
+      "type": ""
+    },
+    "studentForm": false,
+    "trueForm": true
+  },
+  "effects": [],
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.369",
+    "systemId": "ordem_v2_classic",
+    "systemVersion": "8.0.2",
+    "createdTime": 1792207618168,
+    "modifiedTime": 1792207618168,
+    "lastModifiedBy": null,
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "ownership": {
+    "default": 0
+  },
+  "folder": "RituaisCirculo03",
+  "sort": 57000,
+  "_id": "QDkcX8r7rq8IUKpL",
+  "_key": "!items!QDkcX8r7rq8IUKpL"
+}
