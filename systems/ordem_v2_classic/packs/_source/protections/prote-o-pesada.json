@@ -23,7 +23,11 @@
     "default": 0,
     "D087Zkcpssj33iAO": 3
   },
-  "flags": {},
+  "flags": {
+    "ordem_v2_classic": {
+      "source": "sah"
+    }
+  },
   "_stats": {
     "systemId": "ordemparanormal",
     "systemVersion": "7.3.3",
