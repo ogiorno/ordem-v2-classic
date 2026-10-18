@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { DYING_TURN_LIMIT, downedState, dyingTurnOutcome, massiveDamageDT, stabilizeDT, triggersMassiveDamage } from "../../module/helpers/death-rules.mjs";
+import { DYING_TURN_LIMIT, downedState, dyingTurnOutcome, massiveDamageDT, stabilizeDT, threatShouldDie, triggersMassiveDamage } from "../../module/helpers/death-rules.mjs";
 
 test("Dano Massivo: DT 15 +2 para cada 10 pontos de dano", () => {
 	assert.equal(massiveDamageDT(9), 15);
@@ -52,4 +52,18 @@ test("adjacência: quadrados encostando valem (inclusive diagonal); um quadrado 
 	assert.equal(tokensAdjacent(at(0, 0), at(200, 0)), false);
 	assert.equal(tokensAdjacent(at(0, 0), at(100, 200)), false);
 	assert.equal(tokensAdjacent(at(0, 0), { x: 0, y: 0, width: 200, height: 200 }), true, "token grande sobreposto");
+});
+
+test("ameaça morre ao chegar a 0 PV ou menos; com PV ou sem máximo definido, não", () => {
+	assert.equal(threatShouldDie({ hp: 0, max: 20 }), true);
+	assert.equal(threatShouldDie({ hp: -3, max: 20 }), true);
+	assert.equal(threatShouldDie({ hp: 1, max: 20 }), false);
+	assert.equal(threatShouldDie({ hp: 0, max: 0 }), false);
+	assert.equal(threatShouldDie({ hp: undefined, max: 20 }), false);
+});
+
+test("cartão de dano: cada tipo tem cor própria e tipo desconhecido cai no cinza", async () => {
+	const { damageTypeColor } = await import("../../module/helpers/card-damage-rules.mjs");
+	assert.notEqual(damageTypeColor("impactDamage"), damageTypeColor("knowledgeDamage"));
+	assert.equal(damageTypeColor("naoExiste"), damageTypeColor(undefined));
 });

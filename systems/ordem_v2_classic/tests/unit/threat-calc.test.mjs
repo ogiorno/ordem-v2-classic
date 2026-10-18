@@ -13,6 +13,7 @@ import {
 	resolveDamage,
 	fastHealingAmount,
 	groupPresenceFormula,
+	presenceTargetResult,
 	summarizeResistances,
 	fixLegacySkillAttrs,
 	formatTestHtml,
@@ -177,6 +178,23 @@ describe("groupPresenceFormula", () => {
 		assert.equal(groupPresenceFormula("", 0), "");
 		assert.equal(groupPresenceFormula("", 3), "3d6");
 		assert.equal(groupPresenceFormula("4d6", -1), "4d6");
+	});
+});
+
+describe("presenceTargetResult", () => {
+	it("NEX no limite ou acima é imune", () => {
+		assert.deepEqual(presenceTargetResult({ nex: 50, immuneNex: 50, total: 1, dt: 20, damage: 10 }), { mode: "immune", amount: 0 });
+		assert.deepEqual(presenceTargetResult({ nex: 99, immuneNex: 50, damage: 10 }), { mode: "immune", amount: 0 });
+	});
+	it("sem limite de NEX ninguém é imune", () => {
+		assert.equal(presenceTargetResult({ nex: 99, immuneNex: 0, damage: 10 }).mode, "full");
+	});
+	it("passar na Vontade (total ≥ DT) reduz à metade, arredondando para baixo", () => {
+		assert.deepEqual(presenceTargetResult({ nex: 5, immuneNex: 50, total: 20, dt: 20, damage: 11 }), { mode: "half", amount: 5 });
+	});
+	it("falhar ou não rolar leva o dano inteiro", () => {
+		assert.deepEqual(presenceTargetResult({ nex: 5, immuneNex: 50, total: 19, dt: 20, damage: 11 }), { mode: "full", amount: 11 });
+		assert.deepEqual(presenceTargetResult({ nex: 5, immuneNex: 50, total: null, dt: 20, damage: 11 }), { mode: "full", amount: 11 });
 	});
 });
 

@@ -1,4 +1,4 @@
-// Rodar: npm test. Poderes que mexem em ataque/dano e entram na tela de ataque (docs/spec-tela-de-ataque.md).
+// Rodar: npm test. Poderes que mexem em ataque/dano e entram na tela de ataque (docs/arquivo/spec-tela-de-ataque.md).
 import { describe, it } from "node:test";
 import assert from "node:assert/strict";
 import { combineSelection, scaleOnUse, specialAttackMax, weaponMatches } from "../../module/helpers/attack-options-rules.mjs";

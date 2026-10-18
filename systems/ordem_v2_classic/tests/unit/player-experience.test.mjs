@@ -1,4 +1,4 @@
-// Rodar: npm test. Regras puras da spec de experiência do jogador (docs/spec-experiencia-jogador.md).
+// Rodar: npm test. Regras puras da spec de experiência do jogador (docs/arquivo/spec-experiencia-jogador.md).
 import { describe, it } from "node:test";
 import assert from "node:assert/strict";
 import { describeD20Pool } from "../../module/helpers/dice-labels.mjs";

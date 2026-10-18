@@ -1,4 +1,4 @@
-// Rodar: npm test. Regras puras da tela de ataque (docs/spec-tela-de-ataque.md).
+// Rodar: npm test. Regras puras da tela de ataque (docs/arquivo/spec-tela-de-ataque.md).
 import { describe, it } from "node:test";
 import assert from "node:assert/strict";
 import { appliesTo, combineSelection, damageFormulaParts, optionCost, parseBonus, poolCap, poolChoices, poolState, specialAttackMax, weaponTags } from "../../module/helpers/attack-options-rules.mjs";

@@ -1,4 +1,4 @@
-// Rodar: npm test. Área das armas, Em Chamas (docs/spec-armas-area-recarga.md, seções 4 a 6).
+// Rodar: npm test. Área das armas, Em Chamas (docs/arquivo/spec-armas-area-recarga.md, seções 4 a 6).
 import { describe, it } from "node:test";
 import assert from "node:assert/strict";
 import { areaKind, flameHit, lineHits, radiusDamage, radiusHits, reflexDT, BAZOOKA_RADIUS_SQUARES, FLAME_LENGTH_SQUARES } from "../../module/helpers/weapon-area.mjs";

@@ -1,4 +1,4 @@
-// Rodar: npm test. Perito (Tabela 1.4) e a mesma progressão do Ataque Especial (Tabela 1.3). Ver docs/spec-perito.md.
+// Rodar: npm test. Perito (Tabela 1.4) e a mesma progressão do Ataque Especial (Tabela 1.3). Ver docs/arquivo/spec-perito.md.
 import { describe, it } from "node:test";
 import assert from "node:assert/strict";
 import { peritoOption, peritoPlan, peritoSkillAllowed, peritoTier } from "../../module/helpers/perito-rules.mjs";

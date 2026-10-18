@@ -1,4 +1,4 @@
-// Rodar: npm test. Peculiaridades da arma na tela de ataque (docs/spec-tela-de-ataque.md, seção "A arma").
+// Rodar: npm test. Peculiaridades da arma na tela de ataque (docs/arquivo/spec-tela-de-ataque.md, seção "A arma").
 import { describe, it } from "node:test";
 import assert from "node:assert/strict";
 import { actionBlock, applyMode, canChooseAttribute, consumesReload, effectiveGrip, gripChoices, gripDamage, isVeteran, rangeCheck, rangeSquares, squaresBetween, weaponModes, weaponRules } from "../../module/helpers/weapon-rules.mjs";
@@ -109,7 +109,7 @@ describe("poderes integrados ao ataque", () => {
 	});
 });
 
-// Regras próprias de cada arma (docs/spec-tela-de-ataque.md, "Regras próprias de cada arma").
+// Regras próprias de cada arma (docs/arquivo/spec-tela-de-ataque.md, "Regras próprias de cada arma").
 const bastao = { types: { rangeType: { name: "melee" }, gripType: "oneHand" }, conditions: { adaptableGrip: true } };
 const espada = bastao;
 const motoserra = { types: { rangeType: { name: "melee" }, gripType: "twoHands" }, conditions: {} };
@@ -213,7 +213,7 @@ describe("Fuzil de Precisão", () => {
 	});
 });
 
-// Corrente, recarga e Cajado (docs/spec-armas-area-recarga.md, seções 1 a 3)
+// Corrente, recarga e Cajado (docs/arquivo/spec-armas-area-recarga.md, seções 1 a 3)
 const corrente = { types: { rangeType: { name: "melee" }, gripType: "oneHand" }, conditions: {} };
 const besta = { range: "Médio", types: { rangeType: { name: "ranged", subRangeType: "shoot" }, gripType: "twoHands" }, conditions: {} };
 const bazuca = { range: "Médio", types: { rangeType: { name: "ranged", subRangeType: "fire" }, gripType: "twoHands" }, conditions: { pistolBlow: true } };

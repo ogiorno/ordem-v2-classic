@@ -36,7 +36,7 @@ Grupos:
 
 Os testes ao vivo rodam numa **cena temporária** com **cópias** dos agentes: nada do mundo é alterado, e a cena, as cópias e as mensagens de chat do teste são apagadas no fim.
 
-Requisitos e tabelas completas: `docs/spec-rituais-area.md`.
+Requisitos e tabelas completas: `docs/arquivo/spec-rituais-area.md`.
 
 ## Pela interface de verdade (Playwright + carrossel de combate)
 
@@ -61,4 +61,4 @@ Detalhes que já derrubaram o teste: o `eval` do Playwright aceita uma expressã
 
 ## Morte do agente
 
-Morrendo, Dano Massivo e estabilização: `docs/spec-morte-do-jogador.md`. Ao vivo: `(await import("/systems/ordem_v2_classic/module/macros/death-live-test.mjs")).runDeathTests()`.
+Morrendo, Dano Massivo e estabilização: `docs/arquivo/spec-morte-do-jogador.md`. Ao vivo: `(await import("/systems/ordem_v2_classic/module/macros/death-live-test.mjs")).runDeathTests()`.

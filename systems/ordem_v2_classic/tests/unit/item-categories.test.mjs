@@ -1,4 +1,4 @@
-// Rodar: npm test. Categoria dos itens, modificações e limite da patente (docs/spec-categoria-de-itens.md).
+// Rodar: npm test. Categoria dos itens, modificações e limite da patente (docs/arquivo/spec-categoria-de-itens.md).
 import { describe, it } from "node:test";
 import assert from "node:assert/strict";
 import { PROTECTION_MODIFICATIONS, WEAPON_MODIFICATIONS, categoryLabel, categoryReducer, categoryUsage, effectiveCategory, itemCategoryInfo, modificationCount } from "../../module/helpers/item-categories.mjs";
