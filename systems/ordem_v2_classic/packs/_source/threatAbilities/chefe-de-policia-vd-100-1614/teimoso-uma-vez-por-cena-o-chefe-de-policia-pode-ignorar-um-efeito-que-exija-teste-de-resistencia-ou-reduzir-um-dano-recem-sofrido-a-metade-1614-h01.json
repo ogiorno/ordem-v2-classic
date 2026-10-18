@@ -1,0 +1,40 @@
+{
+	"name": "Teimoso Uma Vez Por Cena, O Chefe De Polícia Pode Ignorar Um Efeito Que Exija Teste De Resistência Ou Reduzir Um Dano Recém Sofrido A Metade.",
+	"type": "ability",
+	"img": "systems/ordem_v2_classic/assets/ability-icons/1614-ficha-1-teimoso-uma-vez-por-cena-o-chefe-de-policia-pode-ignorar-um-efeito-que-exija-teste-de-resistencia-ou-reduzir-um-dano-recem-sofrido-a-metade.webp",
+	"system": {
+		"id": 0,
+		"abilityType": "ability",
+		"preRequisite": "",
+		"description": "<p>[Voltar ao índice](../INDICE.md)</p>",
+		"chatDescription": "",
+		"activation": "reaction",
+		"cost": 0,
+		"costType": "PE",
+		"execution": null
+	},
+	"effects": [],
+	"flags": {
+		"ordem_v2_classic": {
+			"threatAbilityId": "1614-H01"
+		}
+	},
+	"_stats": {
+		"coreVersion": "14.369",
+		"systemId": "ordem_v2_classic",
+		"systemVersion": "8.0.2",
+		"createdTime": 1792207618168,
+		"modifiedTime": 1792207618168,
+		"lastModifiedBy": null,
+		"compendiumSource": null,
+		"duplicateSource": null,
+		"exportSource": null
+	},
+	"ownership": {
+		"default": 0
+	},
+	"folder": "dZgB78QXnBAwrRvS",
+	"sort": 1000,
+	"_id": "mUfGtgmK8mfw27O9",
+	"_key": "!items!mUfGtgmK8mfw27O9"
+}

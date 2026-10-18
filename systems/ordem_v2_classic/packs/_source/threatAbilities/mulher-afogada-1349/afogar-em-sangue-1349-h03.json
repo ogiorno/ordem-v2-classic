@@ -1,0 +1,82 @@
+{
+	"name": "•  Afogar Em Sangue",
+	"type": "ability",
+	"img": "systems/ordem_v2_classic/assets/ability-icons/1349-1353-padrao-afogar-em-sangue.webp",
+	"system": {
+		"id": 0,
+		"abilityType": "ability",
+		"preRequisite": "",
+		"description": "<p>PADRÃO • AFOGAR EM SANGUE A mulher afogada invade os orifícios do nariz e da boca de um personagem em alcance curto, afogando-o com Sangue. O personagem fica asfixiado. No início de cada um de seus turnos, pode fazer um teste de Fortitude (DT 24). Se passar, encerra a condição e faz a mulher afogada ser expelida na forma líquida para um espaço adjacente.</p>",
+		"chatDescription": "",
+		"activation": "default",
+		"cost": 0,
+		"costType": "PE",
+		"execution": {
+			"mode": "active",
+			"automation": "assisted",
+			"damage": [],
+			"effects": [
+				{
+					"condition": "asfixiado",
+					"duration": {
+						"unit": "untilSaved",
+						"value": null
+					},
+					"onSave": "always",
+					"target": "target",
+					"trigger": "",
+					"support": "marker"
+				}
+			],
+			"requirements": [],
+			"grants": [],
+			"targeting": {
+				"kind": "token",
+				"range": 9,
+				"count": 1,
+				"relation": "any",
+				"voluntary": false,
+				"rangeUnspecified": false,
+				"requiresSight": false
+			},
+			"version": 1,
+			"source": {
+				"reference": "Livro v1.3, p. 209, Mulher Afogada",
+				"reviewed": false
+			},
+			"cost": null,
+			"area": null,
+			"save": null,
+			"trigger": null,
+			"visibility": {
+				"dc": "gm",
+				"defense": "gm",
+				"result": "public"
+			}
+		}
+	},
+	"effects": [],
+	"flags": {
+		"ordem_v2_classic": {
+			"threatAbilityId": "1349-H03"
+		}
+	},
+	"_stats": {
+		"coreVersion": "14.369",
+		"systemId": "ordem_v2_classic",
+		"systemVersion": "8.0.2",
+		"createdTime": 1792207618168,
+		"modifiedTime": 1792207618168,
+		"lastModifiedBy": null,
+		"compendiumSource": null,
+		"duplicateSource": null,
+		"exportSource": null
+	},
+	"ownership": {
+		"default": 0
+	},
+	"folder": "kRbijC1UGcVglAOM",
+	"sort": 3000,
+	"_id": "1Y1CsVXHrDIjtFyO",
+	"_key": "!items!1Y1CsVXHrDIjtFyO"
+}

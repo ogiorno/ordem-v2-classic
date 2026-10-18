@@ -1,0 +1,99 @@
+{
+	"name": "Lança-Granadas",
+	"type": "ability",
+	"img": "systems/ordem_v2_classic/assets/ability-icons/1613-ficha-2-lanca-granadas.webp",
+	"system": {
+		"id": 0,
+		"abilityType": "ability",
+		"preRequisite": "",
+		"description": "<p>Uma vez por cena, o policial de elite dispara uma granada explosiva em alcance médio. Cada ser a 6m do ponto de impacto sofre 8d6 pontos de dano de impacto (Reflexos DT 19 reduz à metade).</p>",
+		"chatDescription": "",
+		"activation": "default",
+		"cost": 0,
+		"costType": "PE",
+		"execution": {
+			"mode": "active",
+			"automation": "automatic",
+			"damage": [
+				{
+					"kind": "damage",
+					"formula": "8d6",
+					"type": "impacto",
+					"resource": "pv",
+					"roll": "once",
+					"frequency": ""
+				}
+			],
+			"effects": [],
+			"requirements": [
+				{
+					"kind": "perScene",
+					"count": 1,
+					"ref": "",
+					"text": ""
+				}
+			],
+			"grants": [],
+			"targeting": {
+				"kind": "area",
+				"range": 18,
+				"relation": "any",
+				"count": null,
+				"voluntary": false,
+				"rangeUnspecified": false,
+				"requiresSight": false
+			},
+			"area": {
+				"shape": "sphere",
+				"radius": 6,
+				"origin": "point",
+				"persistence": "instant",
+				"triggers": [],
+				"length": null,
+				"width": null
+			},
+			"save": {
+				"skill": "reflexos",
+				"dc": 19,
+				"onSuccess": "half",
+				"retry": false
+			},
+			"version": 1,
+			"source": {
+				"reference": "Livro v1.3, p. 297, Policial de Elite VD 60",
+				"reviewed": false
+			},
+			"cost": null,
+			"trigger": null,
+			"visibility": {
+				"dc": "gm",
+				"defense": "gm",
+				"result": "public"
+			}
+		}
+	},
+	"effects": [],
+	"flags": {
+		"ordem_v2_classic": {
+			"threatAbilityId": "1613-H02"
+		}
+	},
+	"_stats": {
+		"coreVersion": "14.369",
+		"systemId": "ordem_v2_classic",
+		"systemVersion": "8.0.2",
+		"createdTime": 1792207618168,
+		"modifiedTime": 1792207618168,
+		"lastModifiedBy": null,
+		"compendiumSource": null,
+		"duplicateSource": null,
+		"exportSource": null
+	},
+	"ownership": {
+		"default": 0
+	},
+	"folder": "elO2vBYOmIGL4PsV",
+	"sort": 2000,
+	"_id": "MAwYgypEuQBWl9v9",
+	"_key": "!items!MAwYgypEuQBWl9v9"
+}

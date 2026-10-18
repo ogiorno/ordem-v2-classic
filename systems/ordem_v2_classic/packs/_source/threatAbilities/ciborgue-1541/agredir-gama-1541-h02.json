@@ -1,0 +1,40 @@
+{
+	"name": "Agredir (Gama)",
+	"type": "ability",
+	"img": "systems/ordem_v2_classic/assets/ability-icons/1541-1546-standard-agredir-gama.webp",
+	"system": {
+		"id": 0,
+		"abilityType": "ability",
+		"preRequisite": "",
+		"description": "<p>PADRÃO - AGREDIR (GAMA) CANHÃO Distância alcance LONGO TESTE 3d20+10 | DANO 4d12+5 Energia Estado DELTA</p>",
+		"chatDescription": "",
+		"activation": "default",
+		"cost": 0,
+		"costType": "PE",
+		"execution": null
+	},
+	"effects": [],
+	"flags": {
+		"ordem_v2_classic": {
+			"threatAbilityId": "1541-H02"
+		}
+	},
+	"_stats": {
+		"coreVersion": "14.369",
+		"systemId": "ordem_v2_classic",
+		"systemVersion": "8.0.2",
+		"createdTime": 1792207618168,
+		"modifiedTime": 1792207618168,
+		"lastModifiedBy": null,
+		"compendiumSource": null,
+		"duplicateSource": null,
+		"exportSource": null
+	},
+	"ownership": {
+		"default": 0
+	},
+	"folder": "iCpbGIaHKW7hj8P7",
+	"sort": 2000,
+	"_id": "qRGEjVFr6ZYej3fa",
+	"_key": "!items!qRGEjVFr6ZYej3fa"
+}

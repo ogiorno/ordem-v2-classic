@@ -1,0 +1,40 @@
+{
+	"name": "Fortificação",
+	"type": "ability",
+	"img": "systems/ordem_v2_classic/assets/ability-icons/1613-ficha-1-fortificacao.webp",
+	"system": {
+		"id": 0,
+		"abilityType": "ability",
+		"preRequisite": "",
+		"description": "<p>Graças ao seu equipamento, o policial de elite tem 50% de chance de ignorar o dano adicional de um acerto crítico ou ataque furtivo.</p>",
+		"chatDescription": "",
+		"activation": "passive",
+		"cost": 0,
+		"costType": "PE",
+		"execution": null
+	},
+	"effects": [],
+	"flags": {
+		"ordem_v2_classic": {
+			"threatAbilityId": "1613-H01"
+		}
+	},
+	"_stats": {
+		"coreVersion": "14.369",
+		"systemId": "ordem_v2_classic",
+		"systemVersion": "8.0.2",
+		"createdTime": 1792207618168,
+		"modifiedTime": 1792207618168,
+		"lastModifiedBy": null,
+		"compendiumSource": null,
+		"duplicateSource": null,
+		"exportSource": null
+	},
+	"ownership": {
+		"default": 0
+	},
+	"folder": "elO2vBYOmIGL4PsV",
+	"sort": 1000,
+	"_id": "nHc0xbLdB8OqCJ7K",
+	"_key": "!items!nHc0xbLdB8OqCJ7K"
+}

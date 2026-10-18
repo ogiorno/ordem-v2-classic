@@ -1,0 +1,40 @@
+{
+	"name": "Bote",
+	"type": "ability",
+	"img": "icons/svg/item-bag.svg",
+	"system": {
+		"id": 0,
+		"abilityType": "ability",
+		"preRequisite": "",
+		"description": "<p>A onça faz uma investida e ataca com sua mordida e suas garras. Os três ataques recebem o bônus de +d20 da investida, mas devem ser feitos contra o mesmo alvo.</p>",
+		"chatDescription": "",
+		"activation": "complete",
+		"cost": 0,
+		"costType": "PE",
+		"execution": null
+	},
+	"effects": [],
+	"flags": {
+		"ordem_v2_classic": {
+			"threatAbilityId": "1621-H02"
+		}
+	},
+	"_stats": {
+		"coreVersion": "14.369",
+		"systemId": "ordem_v2_classic",
+		"systemVersion": "8.0.2",
+		"createdTime": 1792207618168,
+		"modifiedTime": 1792207618168,
+		"lastModifiedBy": null,
+		"compendiumSource": null,
+		"duplicateSource": null,
+		"exportSource": null
+	},
+	"ownership": {
+		"default": 0
+	},
+	"folder": "9DH1wi04JX7GE1H9",
+	"sort": 2000,
+	"_id": "2dQBtVoY7FoBIzcv",
+	"_key": "!items!2dQBtVoY7FoBIzcv"
+}

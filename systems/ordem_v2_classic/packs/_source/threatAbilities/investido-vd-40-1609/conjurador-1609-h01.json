@@ -1,0 +1,40 @@
+{
+	"name": "Conjurador",
+	"type": "ability",
+	"img": "systems/ordem_v2_classic/assets/ability-icons/1609-ficha-1-conjurador.webp",
+	"system": {
+		"id": 0,
+		"abilityType": "ability",
+		"preRequisite": "",
+		"description": "<p>Escolha dois rituais de 1º círculo e dois rituais de 2º círculo de até dois elementos. O cultista pode conjurar esses rituais sem pagar seu custo de PE, até um limite de 5 PE por conjuração, usando a ação apropriada para cada ritual. A DT para resistir aos seus rituais é 17.</p>",
+		"chatDescription": "",
+		"activation": "passive",
+		"cost": 0,
+		"costType": "PE",
+		"execution": null
+	},
+	"effects": [],
+	"flags": {
+		"ordem_v2_classic": {
+			"threatAbilityId": "1609-H01"
+		}
+	},
+	"_stats": {
+		"coreVersion": "14.369",
+		"systemId": "ordem_v2_classic",
+		"systemVersion": "8.0.2",
+		"createdTime": 1792207618168,
+		"modifiedTime": 1792207618168,
+		"lastModifiedBy": null,
+		"compendiumSource": null,
+		"duplicateSource": null,
+		"exportSource": null
+	},
+	"ownership": {
+		"default": 0
+	},
+	"folder": "noiQhXhJ702Fit9b",
+	"sort": 1000,
+	"_id": "6HBsfVGpJRxLZptt",
+	"_key": "!items!6HBsfVGpJRxLZptt"
+}

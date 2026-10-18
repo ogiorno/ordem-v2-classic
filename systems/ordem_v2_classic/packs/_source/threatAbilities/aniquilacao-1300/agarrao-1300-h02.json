@@ -1,0 +1,40 @@
+{
+	"name": "Agarrão",
+	"type": "ability",
+	"img": "systems/ordem_v2_classic/assets/ability-icons/1300-1304-reacao-agarrao.webp",
+	"system": {
+		"id": 0,
+		"abilityType": "ability",
+		"preRequisite": "",
+		"description": "<p>REAÇÃO - AGARRÃO Se a Aniquilação acertar um ataque de tentáculos espinhentos, ela pode tentar agarrar o alvo (teste 5d20+50). Ela pode manter até quatro personagens agarrados por vez.</p>",
+		"chatDescription": "",
+		"activation": "reaction",
+		"cost": 0,
+		"costType": "PE",
+		"execution": null
+	},
+	"effects": [],
+	"flags": {
+		"ordem_v2_classic": {
+			"threatAbilityId": "1300-H02"
+		}
+	},
+	"_stats": {
+		"coreVersion": "14.369",
+		"systemId": "ordem_v2_classic",
+		"systemVersion": "8.0.2",
+		"createdTime": 1792207618168,
+		"modifiedTime": 1792207618168,
+		"lastModifiedBy": null,
+		"compendiumSource": null,
+		"duplicateSource": null,
+		"exportSource": null
+	},
+	"ownership": {
+		"default": 0
+	},
+	"folder": "4h8dpjwisJjGpOON",
+	"sort": 2000,
+	"_id": "wKzqlV4gtbmP1qYR",
+	"_key": "!items!wKzqlV4gtbmP1qYR"
+}

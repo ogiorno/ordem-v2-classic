@@ -1,0 +1,40 @@
+{
+	"name": "Ironia Do Destino",
+	"type": "ability",
+	"img": "systems/ordem_v2_classic/assets/ability-icons/1418-1421-completa-ironia-do-destino.webp",
+	"system": {
+		"id": 0,
+		"abilityType": "ability",
+		"preRequisite": "",
+		"description": "<p>COMPLETA - IRONIA DO DESTINO A marionete executa dois ataques com sua foice óssea em um ser adjacente. Se acertar o segundo ataque, ela agarra a vítima com a arma e pode se deslocar 6m carregando-a consigo. Enquanto estiver agarrando um ser, a marionete pode transferir parte de sua dor para ele — sempre que a criatura sofrer dano, se estiver agarrando um ser, o dano é dividido entre ela e o ser que ela estiver agarrando.</p>",
+		"chatDescription": "",
+		"activation": "complete",
+		"cost": 0,
+		"costType": "PE",
+		"execution": null
+	},
+	"effects": [],
+	"flags": {
+		"ordem_v2_classic": {
+			"threatAbilityId": "1418-H02"
+		}
+	},
+	"_stats": {
+		"coreVersion": "14.369",
+		"systemId": "ordem_v2_classic",
+		"systemVersion": "8.0.2",
+		"createdTime": 1792207618168,
+		"modifiedTime": 1792207618168,
+		"lastModifiedBy": null,
+		"compendiumSource": null,
+		"duplicateSource": null,
+		"exportSource": null
+	},
+	"ownership": {
+		"default": 0
+	},
+	"folder": "RFVsTn1k7gqRm5oU",
+	"sort": 2000,
+	"_id": "pVPYy0qbymYuhFDR",
+	"_key": "!items!pVPYy0qbymYuhFDR"
+}

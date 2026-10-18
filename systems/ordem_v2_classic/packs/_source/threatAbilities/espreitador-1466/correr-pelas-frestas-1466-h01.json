@@ -1,0 +1,40 @@
+{
+	"name": "Correr Pelas Frestas",
+	"type": "ability",
+	"img": "systems/ordem_v2_classic/assets/ability-icons/1466-1469-movement-correr-pelas-frestas.webp",
+	"system": {
+		"id": 0,
+		"abilityType": "ability",
+		"preRequisite": "",
+		"description": "<p>MOVIMENTO - CORRER PELAS FRESTAS O espreitador pode se teletransportar para qualquer espaço em alcance longo, desde que exista uma pequena fresta em seu caminho (uma fresta é um espaço Pequeno ou menor, completamente delimitado por outro objeto ou superfície, como a fresta de porta entreaberta ou um pequeno buraco que atravessa uma parede).</p>",
+		"chatDescription": "",
+		"activation": "movement",
+		"cost": 0,
+		"costType": "PE",
+		"execution": null
+	},
+	"effects": [],
+	"flags": {
+		"ordem_v2_classic": {
+			"threatAbilityId": "1466-H01"
+		}
+	},
+	"_stats": {
+		"coreVersion": "14.369",
+		"systemId": "ordem_v2_classic",
+		"systemVersion": "8.0.2",
+		"createdTime": 1792207618168,
+		"modifiedTime": 1792207618168,
+		"lastModifiedBy": null,
+		"compendiumSource": null,
+		"duplicateSource": null,
+		"exportSource": null
+	},
+	"ownership": {
+		"default": 0
+	},
+	"folder": "75CqURRYKQgBmppq",
+	"sort": 1000,
+	"_id": "IZMyyYQU7JLrjwcx",
+	"_key": "!items!IZMyyYQU7JLrjwcx"
+}

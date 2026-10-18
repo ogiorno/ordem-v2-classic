@@ -1,0 +1,104 @@
+{
+	"name": "Reescrever Realidade",
+	"type": "ability",
+	"img": "systems/ordem_v2_classic/assets/ability-icons/1515-1518-standard-reescrever-realidade.webp",
+	"system": {
+		"id": 0,
+		"abilityType": "ability",
+		"preRequisite": "",
+		"description": "<p>PADRÃO - REESCREVER REALIDADE A Máscara do Desespero tem o poder único de reescrever a Realidade por completo, alterando as propriedades de seres e objetos em alcance médio. Contra objetos, ela pode mudar a composição, posição e estado da matéria de um objeto de até 1 tonelada. Objetos vestidos ou empunhados têm direito a um teste de Reflexos do portador (DT 45) para evitar este efeito. Contra seres, ela pode causar 10d6 pontos de dano de Conhecimento, 10d6 pontos de dano mental e uma condição qualquer (exceto morrendo e enlouquecendo) em um ser (Vontade DT 45 reduz cada dano à metade e evita a condição).</p>",
+		"chatDescription": "",
+		"activation": "default",
+		"cost": 0,
+		"costType": "PE",
+		"execution": {
+			"mode": "active",
+			"automation": "assisted",
+			"damage": [
+				{
+					"kind": "damage",
+					"formula": "10d6",
+					"type": "conhecimento",
+					"resource": "pv",
+					"roll": "once",
+					"frequency": ""
+				},
+				{
+					"kind": "damage",
+					"formula": "10d6",
+					"type": "mental",
+					"resource": "san",
+					"roll": "once",
+					"frequency": ""
+				}
+			],
+			"effects": [
+				{
+					"condition": "condição à escolha do Mestre",
+					"duration": {
+						"unit": "unspecified",
+						"value": null
+					},
+					"onSave": "fail",
+					"target": "target",
+					"trigger": "",
+					"support": "marker"
+				}
+			],
+			"requirements": [],
+			"grants": [],
+			"targeting": {
+				"kind": "token",
+				"range": 18,
+				"count": 1,
+				"relation": "any",
+				"voluntary": false,
+				"rangeUnspecified": false,
+				"requiresSight": false
+			},
+			"save": {
+				"skill": "vontade",
+				"dc": 45,
+				"onSuccess": "half",
+				"retry": false
+			},
+			"version": 1,
+			"source": {
+				"reference": "Livro v1.3, p. 264, Máscara do Desespero",
+				"reviewed": false
+			},
+			"cost": null,
+			"area": null,
+			"trigger": null,
+			"visibility": {
+				"dc": "gm",
+				"defense": "gm",
+				"result": "public"
+			}
+		}
+	},
+	"effects": [],
+	"flags": {
+		"ordem_v2_classic": {
+			"threatAbilityId": "1515-H03"
+		}
+	},
+	"_stats": {
+		"coreVersion": "14.369",
+		"systemId": "ordem_v2_classic",
+		"systemVersion": "8.0.2",
+		"createdTime": 1792207618168,
+		"modifiedTime": 1792207618168,
+		"lastModifiedBy": null,
+		"compendiumSource": null,
+		"duplicateSource": null,
+		"exportSource": null
+	},
+	"ownership": {
+		"default": 0
+	},
+	"folder": "MeV8HpXNHbSTLZOD",
+	"sort": 3000,
+	"_id": "sp15xEqE1e67NKS6",
+	"_key": "!items!sp15xEqE1e67NKS6"
+}

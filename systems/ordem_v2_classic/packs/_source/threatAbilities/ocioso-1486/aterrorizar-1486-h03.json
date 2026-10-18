@@ -1,0 +1,79 @@
+{
+	"name": "Aterrorizar",
+	"type": "ability",
+	"img": "systems/ordem_v2_classic/assets/ability-icons/1486-1489-full-aterrorizar.webp",
+	"system": {
+		"id": 0,
+		"abilityType": "ability",
+		"preRequisite": "",
+		"description": "<p>COMPLETA - ATERRORIZAR O ocioso fica lá. Parado. Seu corpo distorcido e olhar profundo parecem entrar na alma do alvo, que sofre 4d10+10 pontos de dano mental se estiver adjacente.</p>",
+		"chatDescription": "",
+		"activation": "complete",
+		"cost": 0,
+		"costType": "PE",
+		"execution": {
+			"mode": "active",
+			"automation": "automatic",
+			"damage": [
+				{
+					"kind": "damage",
+					"formula": "4d10+10",
+					"type": "mental",
+					"resource": "san",
+					"roll": "once",
+					"frequency": ""
+				}
+			],
+			"effects": [],
+			"requirements": [],
+			"grants": [],
+			"targeting": {
+				"kind": "token",
+				"range": 1.5,
+				"count": 1,
+				"relation": "any",
+				"voluntary": false,
+				"rangeUnspecified": false,
+				"requiresSight": false
+			},
+			"version": 1,
+			"source": {
+				"reference": "Livro v1.3, p. 254, Ocioso",
+				"reviewed": false
+			},
+			"cost": null,
+			"area": null,
+			"save": null,
+			"trigger": null,
+			"visibility": {
+				"dc": "gm",
+				"defense": "gm",
+				"result": "public"
+			}
+		}
+	},
+	"effects": [],
+	"flags": {
+		"ordem_v2_classic": {
+			"threatAbilityId": "1486-H03"
+		}
+	},
+	"_stats": {
+		"coreVersion": "14.369",
+		"systemId": "ordem_v2_classic",
+		"systemVersion": "8.0.2",
+		"createdTime": 1792207618168,
+		"modifiedTime": 1792207618168,
+		"lastModifiedBy": null,
+		"compendiumSource": null,
+		"duplicateSource": null,
+		"exportSource": null
+	},
+	"ownership": {
+		"default": 0
+	},
+	"folder": "hlkj2SdZG4iDU3Cg",
+	"sort": 3000,
+	"_id": "30fcxpuQoZ6khKJe",
+	"_key": "!items!30fcxpuQoZ6khKJe"
+}

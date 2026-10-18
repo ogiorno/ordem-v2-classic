@@ -1,0 +1,40 @@
+{
+	"name": "Senhor Do Sangue",
+	"type": "ability",
+	"img": "systems/ordem_v2_classic/assets/ability-icons/1369-1375-padrao-senhor-do-sangue.webp",
+	"system": {
+		"id": 0,
+		"abilityType": "ability",
+		"preRequisite": "",
+		"description": "<p>PADRÃO - SENHOR DO SANGUE Uma vez por cena, o Diabo pode invocar e controlar uma ou mais criaturas de Sangue cujo VD total somado seja até 400. As criaturas aparecem em alcance médio do Diabo e agem a partir da próxima rodada, no turno do Diabo, seguindo a vontade dele.</p>",
+		"chatDescription": "",
+		"activation": "default",
+		"cost": 0,
+		"costType": "PE",
+		"execution": null
+	},
+	"effects": [],
+	"flags": {
+		"ordem_v2_classic": {
+			"threatAbilityId": "1369-H05"
+		}
+	},
+	"_stats": {
+		"coreVersion": "14.369",
+		"systemId": "ordem_v2_classic",
+		"systemVersion": "8.0.2",
+		"createdTime": 1792207618168,
+		"modifiedTime": 1792207618168,
+		"lastModifiedBy": null,
+		"compendiumSource": null,
+		"duplicateSource": null,
+		"exportSource": null
+	},
+	"ownership": {
+		"default": 0
+	},
+	"folder": "E4u1wzpkmtY2M2Ud",
+	"sort": 5000,
+	"_id": "ip8GDDQDjs5hODgO",
+	"_key": "!items!ip8GDDQDjs5hODgO"
+}

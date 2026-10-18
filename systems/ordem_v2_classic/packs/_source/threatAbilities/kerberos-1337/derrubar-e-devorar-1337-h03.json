@@ -1,0 +1,40 @@
+{
+	"name": "Derrubar E Devorar",
+	"type": "ability",
+	"img": "systems/ordem_v2_classic/assets/ability-icons/1337-1341-completa-derrubar-e-devorar.webp",
+	"system": {
+		"id": 0,
+		"abilityType": "ability",
+		"preRequisite": "",
+		"description": "<p>COMPLETA - DERRUBAR E DEVORAR O kerberos usa a manobra derrubar em um personagem a até 3m (teste 5d20+45). Se vencer o teste de manobra, o kerberos desfere três ataques de mordida contra o personagem. O dano destes ataques aumenta para 4d12+40. Kerberos Minotauro</p>",
+		"chatDescription": "",
+		"activation": "complete",
+		"cost": 0,
+		"costType": "PE",
+		"execution": null
+	},
+	"effects": [],
+	"flags": {
+		"ordem_v2_classic": {
+			"threatAbilityId": "1337-H03"
+		}
+	},
+	"_stats": {
+		"coreVersion": "14.369",
+		"systemId": "ordem_v2_classic",
+		"systemVersion": "8.0.2",
+		"createdTime": 1792207618168,
+		"modifiedTime": 1792207618168,
+		"lastModifiedBy": null,
+		"compendiumSource": null,
+		"duplicateSource": null,
+		"exportSource": null
+	},
+	"ownership": {
+		"default": 0
+	},
+	"folder": "OPf53fz7EUVz7oET",
+	"sort": 3000,
+	"_id": "hEeA3VQVBM5DabmT",
+	"_key": "!items!hEeA3VQVBM5DabmT"
+}

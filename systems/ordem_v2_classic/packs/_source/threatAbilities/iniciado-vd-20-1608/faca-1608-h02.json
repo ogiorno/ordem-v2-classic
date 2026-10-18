@@ -1,0 +1,40 @@
+{
+	"name": "Faca",
+	"type": "ability",
+	"img": "systems/ordem_v2_classic/assets/ability-icons/1608-ficha-2-faca.webp",
+	"system": {
+		"id": 0,
+		"abilityType": "ability",
+		"preRequisite": "",
+		"description": "<p>Corpo a corpo Teste d20, crítico 19 | Dano 1d4+1 corte</p>",
+		"chatDescription": "",
+		"activation": "passive",
+		"cost": 0,
+		"costType": "PE",
+		"execution": null
+	},
+	"effects": [],
+	"flags": {
+		"ordem_v2_classic": {
+			"threatAbilityId": "1608-H02"
+		}
+	},
+	"_stats": {
+		"coreVersion": "14.369",
+		"systemId": "ordem_v2_classic",
+		"systemVersion": "8.0.2",
+		"createdTime": 1792207618168,
+		"modifiedTime": 1792207618168,
+		"lastModifiedBy": null,
+		"compendiumSource": null,
+		"duplicateSource": null,
+		"exportSource": null
+	},
+	"ownership": {
+		"default": 0
+	},
+	"folder": "nvd2QYk7FBi0ztAq",
+	"sort": 2000,
+	"_id": "M8dQidCgWrvTtQKY",
+	"_key": "!items!M8dQidCgWrvTtQKY"
+}

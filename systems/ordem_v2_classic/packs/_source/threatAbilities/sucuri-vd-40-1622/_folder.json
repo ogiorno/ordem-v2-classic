@@ -1,0 +1,23 @@
+{
+	"type": "Item",
+	"folder": null,
+	"name": "Sucuri",
+	"color": null,
+	"sorting": "a",
+	"_id": "7dcz2LSLY9OJ4HBn",
+	"description": "",
+	"sort": 6000000,
+	"flags": {},
+	"_stats": {
+		"coreVersion": "14.369",
+		"systemId": "ordem_v2_classic",
+		"systemVersion": "8.0.2",
+		"createdTime": 1792207618168,
+		"modifiedTime": 1792207618168,
+		"lastModifiedBy": null,
+		"compendiumSource": null,
+		"duplicateSource": null,
+		"exportSource": null
+	},
+	"_key": "!folders!7dcz2LSLY9OJ4HBn"
+}

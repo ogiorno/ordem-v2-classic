@@ -1,0 +1,98 @@
+{
+	"name": "Infecção",
+	"type": "ability",
+	"img": "systems/ordem_v2_classic/assets/ability-icons/1552-1554-free-infeccao.webp",
+	"system": {
+		"id": 0,
+		"abilityType": "ability",
+		"preRequisite": "",
+		"description": "<p>LIVRE - INFECÇÃO Um ser que sofra dano das pancadas é infectado pelo vírus do infecticídio (Fortitude DT 30 evita; veja página 292). Um ser que passe no teste de resistência fica imune a essa doença até final da cena.</p>",
+		"chatDescription": "",
+		"activation": "free",
+		"cost": 0,
+		"costType": "PE",
+		"execution": {
+			"mode": "active",
+			"automation": "assisted",
+			"damage": [],
+			"effects": [
+				{
+					"condition": "infectado",
+					"duration": {
+						"unit": "unspecified",
+						"value": null
+					},
+					"onSave": "fail",
+					"target": "target",
+					"trigger": "",
+					"support": "marker"
+				}
+			],
+			"requirements": [
+				{
+					"kind": "narrative",
+					"text": "o ser sofreu dano das pancadas infectadas",
+					"ref": ""
+				}
+			],
+			"grants": [
+				{
+					"ref": "infeccao-imune",
+					"onSave": "success"
+				}
+			],
+			"targeting": {
+				"kind": "token",
+				"range": null,
+				"count": 1,
+				"relation": "any",
+				"rangeUnspecified": true,
+				"voluntary": false,
+				"requiresSight": false
+			},
+			"save": {
+				"skill": "fortitude",
+				"dc": 30,
+				"onSuccess": "none",
+				"retry": false
+			},
+			"version": 1,
+			"source": {
+				"reference": "Livro v1.3, p. 277, Infecticídio",
+				"reviewed": false
+			},
+			"cost": null,
+			"area": null,
+			"trigger": null,
+			"visibility": {
+				"dc": "gm",
+				"defense": "gm",
+				"result": "public"
+			}
+		}
+	},
+	"effects": [],
+	"flags": {
+		"ordem_v2_classic": {
+			"threatAbilityId": "1552-H01"
+		}
+	},
+	"_stats": {
+		"coreVersion": "14.369",
+		"systemId": "ordem_v2_classic",
+		"systemVersion": "8.0.2",
+		"createdTime": 1792207618168,
+		"modifiedTime": 1792207618168,
+		"lastModifiedBy": null,
+		"compendiumSource": null,
+		"duplicateSource": null,
+		"exportSource": null
+	},
+	"ownership": {
+		"default": 0
+	},
+	"folder": "pTIlEKMODTZzfpDI",
+	"sort": 1000,
+	"_id": "TdzR4uT62tX0bwvi",
+	"_key": "!items!TdzR4uT62tX0bwvi"
+}

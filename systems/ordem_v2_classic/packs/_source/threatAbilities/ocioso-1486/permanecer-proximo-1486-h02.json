@@ -1,0 +1,40 @@
+{
+	"name": "Permanecer Próximo",
+	"type": "ability",
+	"img": "systems/ordem_v2_classic/assets/ability-icons/1486-1488-free-permanecer-proximo.webp",
+	"system": {
+		"id": 0,
+		"abilityType": "ability",
+		"preRequisite": "",
+		"description": "<p>LIVRE - PERMANECER PRÓXIMO Uma vez por rodada, o ocioso pode se teletransportar para qualquer ponto dentro do campo de visão do alvo.</p>",
+		"chatDescription": "",
+		"activation": "free",
+		"cost": 0,
+		"costType": "PE",
+		"execution": null
+	},
+	"effects": [],
+	"flags": {
+		"ordem_v2_classic": {
+			"threatAbilityId": "1486-H02"
+		}
+	},
+	"_stats": {
+		"coreVersion": "14.369",
+		"systemId": "ordem_v2_classic",
+		"systemVersion": "8.0.2",
+		"createdTime": 1792207618168,
+		"modifiedTime": 1792207618168,
+		"lastModifiedBy": null,
+		"compendiumSource": null,
+		"duplicateSource": null,
+		"exportSource": null
+	},
+	"ownership": {
+		"default": 0
+	},
+	"folder": "hlkj2SdZG4iDU3Cg",
+	"sort": 2000,
+	"_id": "NX3rtIEPvNfp63aw",
+	"_key": "!items!NX3rtIEPvNfp63aw"
+}

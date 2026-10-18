@@ -1,0 +1,40 @@
+{
+	"name": "Sangrar",
+	"type": "ability",
+	"img": "systems/ordem_v2_classic/assets/ability-icons/1369-1373-livre-sangrar.webp",
+	"system": {
+		"id": 0,
+		"abilityType": "ability",
+		"preRequisite": "",
+		"description": "<p>LIVRE - SANGRAR Se o Diabo acertar um ataque com seu chifre, pode escolher soltar o apêndice e deixá-lo preso no personagem. Um personagem com um chifre preso em si sofre vulnerabilidade a Sangue até removê-lo. Fazer isso requer uma ação padrão e causa 8d8 pontos de dano de Sangue. O chifre do Diabo sempre cresce de volta no começo do seu turno.</p>",
+		"chatDescription": "",
+		"activation": "free",
+		"cost": 0,
+		"costType": "PE",
+		"execution": null
+	},
+	"effects": [],
+	"flags": {
+		"ordem_v2_classic": {
+			"threatAbilityId": "1369-H03"
+		}
+	},
+	"_stats": {
+		"coreVersion": "14.369",
+		"systemId": "ordem_v2_classic",
+		"systemVersion": "8.0.2",
+		"createdTime": 1792207618168,
+		"modifiedTime": 1792207618168,
+		"lastModifiedBy": null,
+		"compendiumSource": null,
+		"duplicateSource": null,
+		"exportSource": null
+	},
+	"ownership": {
+		"default": 0
+	},
+	"folder": "E4u1wzpkmtY2M2Ud",
+	"sort": 3000,
+	"_id": "nndRR2IFnqPXARGL",
+	"_key": "!items!nndRR2IFnqPXARGL"
+}

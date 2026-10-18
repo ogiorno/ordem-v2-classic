@@ -1,0 +1,96 @@
+{
+	"name": "Doença",
+	"type": "ability",
+	"img": "icons/svg/item-bag.svg",
+	"system": {
+		"id": 0,
+		"abilityType": "ability",
+		"preRequisite": "",
+		"description": "<p>Um ser que sofra dano do enxame de ratos contrai a doença febre hemorrágica (Fortitude DT 15 evita).</p>",
+		"chatDescription": "",
+		"activation": "passive",
+		"cost": 0,
+		"costType": "PE",
+		"execution": {
+			"mode": "triggered",
+			"automation": "assisted",
+			"damage": [],
+			"effects": [
+				{
+					"condition": "febre hemorrágica",
+					"duration": {
+						"unit": "unspecified",
+						"value": null
+					},
+					"onSave": "fail",
+					"target": "target",
+					"trigger": "",
+					"support": "marker"
+				}
+			],
+			"requirements": [
+				{
+					"kind": "narrative",
+					"text": "o ser sofreu dano do enxame de ratos",
+					"ref": ""
+				}
+			],
+			"grants": [],
+			"targeting": {
+				"kind": "token",
+				"range": 1.5,
+				"count": 1,
+				"relation": "any",
+				"voluntary": false,
+				"rangeUnspecified": false,
+				"requiresSight": false
+			},
+			"save": {
+				"skill": "fortitude",
+				"dc": 15,
+				"onSuccess": "none",
+				"retry": false
+			},
+			"trigger": {
+				"event": "manual",
+				"owner": "any"
+			},
+			"version": 1,
+			"source": {
+				"reference": "Livro v1.3, p. 298, Enxame de Ratos VD 10",
+				"reviewed": false
+			},
+			"cost": null,
+			"area": null,
+			"visibility": {
+				"dc": "gm",
+				"defense": "gm",
+				"result": "public"
+			}
+		}
+	},
+	"effects": [],
+	"flags": {
+		"ordem_v2_classic": {
+			"threatAbilityId": "1618-H02"
+		}
+	},
+	"_stats": {
+		"coreVersion": "14.369",
+		"systemId": "ordem_v2_classic",
+		"systemVersion": "8.0.2",
+		"createdTime": 1792207618168,
+		"modifiedTime": 1792207618168,
+		"lastModifiedBy": null,
+		"compendiumSource": null,
+		"duplicateSource": null,
+		"exportSource": null
+	},
+	"ownership": {
+		"default": 0
+	},
+	"folder": "bBZCRRXRbmcckdKN",
+	"sort": 2000,
+	"_id": "yLy0l2NghDMVohir",
+	"_key": "!items!yLy0l2NghDMVohir"
+}

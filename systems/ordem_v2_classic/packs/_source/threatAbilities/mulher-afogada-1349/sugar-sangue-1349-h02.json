@@ -1,0 +1,85 @@
+{
+	"name": "Sugar Sangue",
+	"type": "ability",
+	"img": "systems/ordem_v2_classic/assets/ability-icons/1349-1352-movimento-sugar-sangue.webp",
+	"system": {
+		"id": 0,
+		"abilityType": "ability",
+		"preRequisite": "",
+		"description": "<p>MOVIMENTO - SUGAR SANGUE A mulher afogada devora o corpo de um personagem adjacente que tenha morrido nesta cena, recuperando 40 PV no processo. Ações da Forma de Sangue</p>",
+		"chatDescription": "",
+		"activation": "movement",
+		"cost": 0,
+		"costType": "PE",
+		"execution": {
+			"mode": "active",
+			"automation": "assisted",
+			"damage": [
+				{
+					"kind": "heal",
+					"formula": "40",
+					"type": "",
+					"resource": "pv",
+					"roll": "once",
+					"frequency": ""
+				}
+			],
+			"effects": [],
+			"requirements": [
+				{
+					"kind": "narrative",
+					"text": "um personagem adjacente morreu nesta cena e o corpo está ao alcance",
+					"ref": ""
+				}
+			],
+			"grants": [],
+			"targeting": {
+				"kind": "self",
+				"relation": "any",
+				"range": null,
+				"count": null,
+				"voluntary": false,
+				"rangeUnspecified": false,
+				"requiresSight": false
+			},
+			"version": 1,
+			"source": {
+				"reference": "Livro v1.3, p. 209, Mulher Afogada",
+				"reviewed": false
+			},
+			"cost": null,
+			"area": null,
+			"save": null,
+			"trigger": null,
+			"visibility": {
+				"dc": "gm",
+				"defense": "gm",
+				"result": "public"
+			}
+		}
+	},
+	"effects": [],
+	"flags": {
+		"ordem_v2_classic": {
+			"threatAbilityId": "1349-H02"
+		}
+	},
+	"_stats": {
+		"coreVersion": "14.369",
+		"systemId": "ordem_v2_classic",
+		"systemVersion": "8.0.2",
+		"createdTime": 1792207618168,
+		"modifiedTime": 1792207618168,
+		"lastModifiedBy": null,
+		"compendiumSource": null,
+		"duplicateSource": null,
+		"exportSource": null
+	},
+	"ownership": {
+		"default": 0
+	},
+	"folder": "kRbijC1UGcVglAOM",
+	"sort": 2000,
+	"_id": "RBlP3BOBFXoPNXXl",
+	"_key": "!items!RBlP3BOBFXoPNXXl"
+}

@@ -1,0 +1,84 @@
+{
+	"name": "Espinhos (Flor Amarela)",
+	"type": "ability",
+	"img": "systems/ordem_v2_classic/assets/ability-icons/1318-1322-movimento-espinhos-flor-amarela.webp",
+	"system": {
+		"id": 0,
+		"abilityType": "ability",
+		"preRequisite": "",
+		"description": "<p>MOVIMENTO - ESPINHOS (Flor Amarela) A dama dispara espinhos em até três alvos em alcance médio. Cada alvo sofre 2d8 pontos de dano de perfuração (Reflexos DT 15 reduz à metade). A flor amarela murcha se a dama de Sangue sofrer 10 pontos de dano de fogo de um único efeito. Isso faz a dama perder esta habilidade e sofrer –d20 em testes de Reflexos.</p>",
+		"chatDescription": "",
+		"activation": "movement",
+		"cost": 0,
+		"costType": "PE",
+		"execution": {
+			"mode": "active",
+			"automation": "automatic",
+			"damage": [
+				{
+					"kind": "damage",
+					"formula": "2d8",
+					"type": "perfuração",
+					"resource": "pv",
+					"roll": "once",
+					"frequency": ""
+				}
+			],
+			"effects": [],
+			"requirements": [],
+			"grants": [],
+			"targeting": {
+				"kind": "tokens",
+				"range": 18,
+				"count": 3,
+				"relation": "any",
+				"voluntary": false,
+				"rangeUnspecified": false,
+				"requiresSight": false
+			},
+			"save": {
+				"skill": "reflexos",
+				"dc": 15,
+				"onSuccess": "half",
+				"retry": false
+			},
+			"version": 1,
+			"source": {
+				"reference": "Livro v1.3, p. 200, Dama de Sangue",
+				"reviewed": false
+			},
+			"cost": null,
+			"area": null,
+			"trigger": null,
+			"visibility": {
+				"dc": "gm",
+				"defense": "gm",
+				"result": "public"
+			}
+		}
+	},
+	"effects": [],
+	"flags": {
+		"ordem_v2_classic": {
+			"threatAbilityId": "1318-H03"
+		}
+	},
+	"_stats": {
+		"coreVersion": "14.369",
+		"systemId": "ordem_v2_classic",
+		"systemVersion": "8.0.2",
+		"createdTime": 1792207618168,
+		"modifiedTime": 1792207618168,
+		"lastModifiedBy": null,
+		"compendiumSource": null,
+		"duplicateSource": null,
+		"exportSource": null
+	},
+	"ownership": {
+		"default": 0
+	},
+	"folder": "k0cmHc9pwtyfYPq6",
+	"sort": 3000,
+	"_id": "8zgLgizJhdXYgT3O",
+	"_key": "!items!8zgLgizJhdXYgT3O"
+}

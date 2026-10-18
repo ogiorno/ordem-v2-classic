@@ -1,0 +1,40 @@
+{
+	"name": "Eu Sou O Caos (Plautus)",
+	"type": "ability",
+	"img": "systems/ordem_v2_classic/assets/ability-icons/1585-1592-free-eu-sou-o-caos-plautus.webp",
+	"system": {
+		"id": 0,
+		"abilityType": "ability",
+		"preRequisite": "",
+		"description": "<p>LIVRE - EU SOU O CAOS (Plautus) Se acertar um ataque de lança e adaga em um ser desprevenido ou flanqueado, o Anfitrião causa +4d12 pontos de dano de Energia.</p>",
+		"chatDescription": "",
+		"activation": "free",
+		"cost": 0,
+		"costType": "PE",
+		"execution": null
+	},
+	"effects": [],
+	"flags": {
+		"ordem_v2_classic": {
+			"threatAbilityId": "1585-H04"
+		}
+	},
+	"_stats": {
+		"coreVersion": "14.369",
+		"systemId": "ordem_v2_classic",
+		"systemVersion": "8.0.2",
+		"createdTime": 1792207618168,
+		"modifiedTime": 1792207618168,
+		"lastModifiedBy": null,
+		"compendiumSource": null,
+		"duplicateSource": null,
+		"exportSource": null
+	},
+	"ownership": {
+		"default": 0
+	},
+	"folder": "RSpGxOJ88THAuyTp",
+	"sort": 4000,
+	"_id": "Tn95oatimetpwWjg",
+	"_key": "!items!Tn95oatimetpwWjg"
+}

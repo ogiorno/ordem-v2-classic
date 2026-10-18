@@ -1,0 +1,40 @@
+{
+	"name": "Transporte Pelo Pó",
+	"type": "ability",
+	"img": "systems/ordem_v2_classic/assets/ability-icons/1398-1400-movimento-transporte-pelo-po.webp",
+	"system": {
+		"id": 0,
+		"abilityType": "ability",
+		"preRequisite": "",
+		"description": "<p>MOVIMENTO - TRANSPORTE PELO PÓ Enquanto estiver dentro da área criada por sua habilidade Cinzas das Terras Desoladas, o Ceifador poderá usar uma ação de movimento para se transportar para outro espaço dentro dessa área. Quando terminar esse movimento, ele pode fazer um ataque com sua Foice da Morte como ação livre.</p>",
+		"chatDescription": "",
+		"activation": "movement",
+		"cost": 0,
+		"costType": "PE",
+		"execution": null
+	},
+	"effects": [],
+	"flags": {
+		"ordem_v2_classic": {
+			"threatAbilityId": "1398-H01"
+		}
+	},
+	"_stats": {
+		"coreVersion": "14.369",
+		"systemId": "ordem_v2_classic",
+		"systemVersion": "8.0.2",
+		"createdTime": 1792207618168,
+		"modifiedTime": 1792207618168,
+		"lastModifiedBy": null,
+		"compendiumSource": null,
+		"duplicateSource": null,
+		"exportSource": null
+	},
+	"ownership": {
+		"default": 0
+	},
+	"folder": "r9jwq9TZAjtEelaD",
+	"sort": 1000,
+	"_id": "mW4nL24tA3vTZDOd",
+	"_key": "!items!mW4nL24tA3vTZDOd"
+}

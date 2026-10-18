@@ -1,0 +1,90 @@
+{
+	"name": "Abocanhar",
+	"type": "ability",
+	"img": "systems/ordem_v2_classic/assets/ability-icons/1295-1298-movimento-abocanhar.webp",
+	"system": {
+		"id": 0,
+		"abilityType": "ability",
+		"preRequisite": "",
+		"description": "<p>MOVIMENTO - ABOCANHAR A aberração de carne leva até dois personagens agarrados para dentro de sua boca central, que são abocanhados e continuam agarrados. Quando é abocanhado, e no início de cada turno da aberração em que continuar agarrado desta forma, o personagem sofre 3d6 pontos de dano de perfuração (Fortitude DT 15 reduz à metade). Qualquer personagem adjacente a aberração de carne pode gastar uma ação padrão para fazer um teste de Atletismo (DT 20) para tentar tirar outro personagem de dentro da boca. Os corpos tomaram uma aparência deformada, inchada e irreconhecível, com a pele completamente vermelha, seus olhos comidos, suas quatro pernas e quatro braços se movimentando com agressividade buscando agarrar tudo ao seu redor e uma enorme abertura se assemelhando a uma boca circular com incontáveis dentes se abrindo no ponto onde seus estômagos estavam costurados. Aberração de carne A aberração de carne pode chegar a até dois metros e vinte de altura e é extremamente pesada. Dificilmente um alvo que for agarrado por seus braços enormes e abocanhado pela ruptura sairá inteiro para contar a história.</p>",
+		"chatDescription": "",
+		"activation": "movement",
+		"cost": 0,
+		"costType": "PE",
+		"execution": {
+			"mode": "active",
+			"automation": "assisted",
+			"damage": [
+				{
+					"kind": "damage",
+					"formula": "3d6",
+					"type": "perfuração",
+					"resource": "pv",
+					"roll": "once",
+					"frequency": ""
+				}
+			],
+			"effects": [],
+			"requirements": [
+				{
+					"kind": "narrative",
+					"text": "os personagens estão agarrados pela aberração",
+					"ref": ""
+				}
+			],
+			"grants": [],
+			"targeting": {
+				"kind": "tokens",
+				"range": 1.5,
+				"count": 2,
+				"relation": "any",
+				"voluntary": false,
+				"rangeUnspecified": false,
+				"requiresSight": false
+			},
+			"save": {
+				"skill": "fortitude",
+				"dc": 15,
+				"onSuccess": "half",
+				"retry": false
+			},
+			"version": 1,
+			"source": {
+				"reference": "Livro v1.3, p. 192, Aberração de Carne",
+				"reviewed": false
+			},
+			"cost": null,
+			"area": null,
+			"trigger": null,
+			"visibility": {
+				"dc": "gm",
+				"defense": "gm",
+				"result": "public"
+			}
+		}
+	},
+	"effects": [],
+	"flags": {
+		"ordem_v2_classic": {
+			"threatAbilityId": "1295-H02"
+		}
+	},
+	"_stats": {
+		"coreVersion": "14.369",
+		"systemId": "ordem_v2_classic",
+		"systemVersion": "8.0.2",
+		"createdTime": 1792207618168,
+		"modifiedTime": 1792207618168,
+		"lastModifiedBy": null,
+		"compendiumSource": null,
+		"duplicateSource": null,
+		"exportSource": null
+	},
+	"ownership": {
+		"default": 0
+	},
+	"folder": "kMYjaSfCkiJciUQf",
+	"sort": 2000,
+	"_id": "TrMbAEVp1ECCaRPj",
+	"_key": "!items!TrMbAEVp1ECCaRPj"
+}

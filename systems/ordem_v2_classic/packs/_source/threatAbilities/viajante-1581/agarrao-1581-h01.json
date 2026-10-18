@@ -1,0 +1,40 @@
+{
+	"name": "Agarrão",
+	"type": "ability",
+	"img": "systems/ordem_v2_classic/assets/ability-icons/1581-1583-free-agarrao.webp",
+	"system": {
+		"id": 0,
+		"abilityType": "ability",
+		"preRequisite": "",
+		"description": "<p>LIVRE - AGARRÃO Se o viajante acerta um ataque com sua pancada em um ser Médio ou menor, pode tentar agarrar o alvo (teste 2d20+15).</p>",
+		"chatDescription": "",
+		"activation": "free",
+		"cost": 0,
+		"costType": "PE",
+		"execution": null
+	},
+	"effects": [],
+	"flags": {
+		"ordem_v2_classic": {
+			"threatAbilityId": "1581-H01"
+		}
+	},
+	"_stats": {
+		"coreVersion": "14.369",
+		"systemId": "ordem_v2_classic",
+		"systemVersion": "8.0.2",
+		"createdTime": 1792207618168,
+		"modifiedTime": 1792207618168,
+		"lastModifiedBy": null,
+		"compendiumSource": null,
+		"duplicateSource": null,
+		"exportSource": null
+	},
+	"ownership": {
+		"default": 0
+	},
+	"folder": "en2uajNPEglWra8w",
+	"sort": 1000,
+	"_id": "PeA8Au9fv5yniDHA",
+	"_key": "!items!PeA8Au9fv5yniDHA"
+}

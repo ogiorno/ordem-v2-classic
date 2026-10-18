@@ -1,0 +1,40 @@
+{
+	"name": "Reanimar Corpos",
+	"type": "ability",
+	"img": "systems/ordem_v2_classic/assets/ability-icons/1389-1394-completa-reanimar-corpos.webp",
+	"system": {
+		"id": 0,
+		"abilityType": "ability",
+		"preRequisite": "",
+		"description": "<p>COMPLETA - REANIMAR CORPOS Uma vez por cena, o carniçal usa a Morte para fazer com que até 2d4+2 corpos em alcance médio sejam reanimados. Os reanimados agem de maneira violenta e bestial, atacando o ser mais próximo até serem destruídos. Use a ficha do esqueleto de Lodo para esses corpos reanimados.</p>",
+		"chatDescription": "",
+		"activation": "complete",
+		"cost": 0,
+		"costType": "PE",
+		"execution": null
+	},
+	"effects": [],
+	"flags": {
+		"ordem_v2_classic": {
+			"threatAbilityId": "1389-H04"
+		}
+	},
+	"_stats": {
+		"coreVersion": "14.369",
+		"systemId": "ordem_v2_classic",
+		"systemVersion": "8.0.2",
+		"createdTime": 1792207618168,
+		"modifiedTime": 1792207618168,
+		"lastModifiedBy": null,
+		"compendiumSource": null,
+		"duplicateSource": null,
+		"exportSource": null
+	},
+	"ownership": {
+		"default": 0
+	},
+	"folder": "lMhrisEPUR7MG1zJ",
+	"sort": 4000,
+	"_id": "VvdMxYcLW73iYo5V",
+	"_key": "!items!VvdMxYcLW73iYo5V"
+}

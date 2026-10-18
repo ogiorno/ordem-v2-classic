@@ -1,0 +1,40 @@
+{
+	"name": "Agredir",
+	"type": "ability",
+	"img": "systems/ordem_v2_classic/assets/ability-icons/1329-1331-padrao-agredir.webp",
+	"system": {
+		"id": 0,
+		"abilityType": "ability",
+		"preRequisite": "",
+		"description": "<p>PADRÃO - AGREDIR CORRENTES Distância x3 alcance CURTO TESTE 2d20+15 | DANO 2d8+10 impacto</p>",
+		"chatDescription": "",
+		"activation": "default",
+		"cost": 0,
+		"costType": "PE",
+		"execution": null
+	},
+	"effects": [],
+	"flags": {
+		"ordem_v2_classic": {
+			"threatAbilityId": "1329-H01"
+		}
+	},
+	"_stats": {
+		"coreVersion": "14.369",
+		"systemId": "ordem_v2_classic",
+		"systemVersion": "8.0.2",
+		"createdTime": 1792207618168,
+		"modifiedTime": 1792207618168,
+		"lastModifiedBy": null,
+		"compendiumSource": null,
+		"duplicateSource": null,
+		"exportSource": null
+	},
+	"ownership": {
+		"default": 0
+	},
+	"folder": "duvT79HtFuT8m6xq",
+	"sort": 1000,
+	"_id": "hwj1KoaPn3l4kWig",
+	"_key": "!items!hwj1KoaPn3l4kWig"
+}

@@ -1,0 +1,85 @@
+{
+	"name": "Amalgamar",
+	"type": "ability",
+	"img": "systems/ordem_v2_classic/assets/ability-icons/1424-1428-padrao-amalgamar.webp",
+	"system": {
+		"id": 0,
+		"abilityType": "ability",
+		"preRequisite": "",
+		"description": "<p>PADRÃO - AMALGAMAR Enquanto está com 0 PV, a múmia pode amalgamar um ser morto ou uma criatura de Morte adjacente. Se o fizer, ela se entrelaça com o alvo, tornando-se uma versão mais poderosa de si mesma; ela recupera 200 PV, passa a atacar três vezes com suas garras enfaixadas e seus ataques causam +5 pontos de dano cada. Uma múmia que já esteja amalgamada com outro ser pode se amalgamar mais uma vez, combinando-se com um total de dois seres. Ao se amalgamar pela segunda vez, ela recupera mais 200 PV, passa a atacar quatro vezes com suas garras enfaixadas e aumenta o bônus de dano em +5 (para um total de +10 por ataque).</p>",
+		"chatDescription": "",
+		"activation": "default",
+		"cost": 0,
+		"costType": "PE",
+		"execution": {
+			"mode": "active",
+			"automation": "assisted",
+			"damage": [
+				{
+					"kind": "heal",
+					"formula": "200",
+					"type": "",
+					"resource": "pv",
+					"roll": "once",
+					"frequency": ""
+				}
+			],
+			"effects": [],
+			"requirements": [
+				{
+					"kind": "narrative",
+					"text": "a múmia está com 0 PV e há um ser morto ou criatura de Morte adjacente para amalgamar",
+					"ref": ""
+				}
+			],
+			"grants": [],
+			"targeting": {
+				"kind": "self",
+				"relation": "any",
+				"range": null,
+				"count": null,
+				"voluntary": false,
+				"rangeUnspecified": false,
+				"requiresSight": false
+			},
+			"version": 1,
+			"source": {
+				"reference": "Livro v1.3, p. 231, Múmia Xipófaga",
+				"reviewed": false
+			},
+			"cost": null,
+			"area": null,
+			"save": null,
+			"trigger": null,
+			"visibility": {
+				"dc": "gm",
+				"defense": "gm",
+				"result": "public"
+			}
+		}
+	},
+	"effects": [],
+	"flags": {
+		"ordem_v2_classic": {
+			"threatAbilityId": "1424-H03"
+		}
+	},
+	"_stats": {
+		"coreVersion": "14.369",
+		"systemId": "ordem_v2_classic",
+		"systemVersion": "8.0.2",
+		"createdTime": 1792207618168,
+		"modifiedTime": 1792207618168,
+		"lastModifiedBy": null,
+		"compendiumSource": null,
+		"duplicateSource": null,
+		"exportSource": null
+	},
+	"ownership": {
+		"default": 0
+	},
+	"folder": "vO7DxB3i6CrNE9eN",
+	"sort": 3000,
+	"_id": "hI60grvYcApCuk0w",
+	"_key": "!items!hI60grvYcApCuk0w"
+}

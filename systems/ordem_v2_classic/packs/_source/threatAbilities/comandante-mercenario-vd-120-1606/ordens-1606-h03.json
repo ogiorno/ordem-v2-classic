@@ -1,0 +1,90 @@
+{
+	"name": "Ordens",
+	"type": "ability",
+	"img": "systems/ordem_v2_classic/assets/ability-icons/1606-ficha-3-ordens.webp",
+	"system": {
+		"id": 0,
+		"abilityType": "ability",
+		"preRequisite": "",
+		"description": "<p>O chefe mercenário grita ordens para seus aliados em alcance médio. Eles recebem +d20 em testes de perícia e causam mais um dado de dano do mesmo tipo até o fim da cena.</p>",
+		"chatDescription": "",
+		"activation": "movement",
+		"cost": 0,
+		"costType": "PE",
+		"execution": {
+			"mode": "active",
+			"automation": "assisted",
+			"damage": [],
+			"effects": [
+				{
+					"condition": "ordens",
+					"duration": {
+						"unit": "scene",
+						"value": null
+					},
+					"onSave": "always",
+					"target": "target",
+					"trigger": "",
+					"support": "marker"
+				}
+			],
+			"requirements": [],
+			"grants": [],
+			"targeting": {
+				"kind": "area",
+				"relation": "threat",
+				"range": null,
+				"count": null,
+				"voluntary": false,
+				"rangeUnspecified": false,
+				"requiresSight": false
+			},
+			"area": {
+				"shape": "sphere",
+				"radius": 18,
+				"origin": "caster",
+				"persistence": "instant",
+				"triggers": [],
+				"length": null,
+				"width": null
+			},
+			"version": 1,
+			"source": {
+				"reference": "Livro v1.3, p. 295, Comandante Mercenário VD 120",
+				"reviewed": false
+			},
+			"cost": null,
+			"save": null,
+			"trigger": null,
+			"visibility": {
+				"dc": "gm",
+				"defense": "gm",
+				"result": "public"
+			}
+		}
+	},
+	"effects": [],
+	"flags": {
+		"ordem_v2_classic": {
+			"threatAbilityId": "1606-H03"
+		}
+	},
+	"_stats": {
+		"coreVersion": "14.369",
+		"systemId": "ordem_v2_classic",
+		"systemVersion": "8.0.2",
+		"createdTime": 1792207618168,
+		"modifiedTime": 1792207618168,
+		"lastModifiedBy": null,
+		"compendiumSource": null,
+		"duplicateSource": null,
+		"exportSource": null
+	},
+	"ownership": {
+		"default": 0
+	},
+	"folder": "eVvO9VmEgAjJtLhg",
+	"sort": 3000,
+	"_id": "IUjIQ3HttMqzzjoh",
+	"_key": "!items!IUjIQ3HttMqzzjoh"
+}

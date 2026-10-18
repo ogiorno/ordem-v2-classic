@@ -1,0 +1,93 @@
+{
+	"name": "Romper Consciência",
+	"type": "ability",
+	"img": "systems/ordem_v2_classic/assets/ability-icons/1531-1532-free-romper-consciencia.webp",
+	"system": {
+		"id": 0,
+		"abilityType": "ability",
+		"preRequisite": "",
+		"description": "<p>LIVRE - ROMPER CONSCIÊNCIA No início do turno da anomalia, ela sorteia um ser que esteja em sua linha de visão e tenta romper sua razão transformando suas ondas cerebrais. A vítima sofre 10d6 pontos de dano mental (Vontade DT 41 reduz à metade) e, se ficar insana devido a este dano, é absorvida pela anomalia.</p>",
+		"chatDescription": "",
+		"activation": "free",
+		"cost": 0,
+		"costType": "PE",
+		"execution": {
+			"mode": "triggered",
+			"automation": "assisted",
+			"damage": [
+				{
+					"kind": "damage",
+					"formula": "10d6",
+					"type": "mental",
+					"resource": "san",
+					"roll": "once",
+					"frequency": ""
+				}
+			],
+			"effects": [],
+			"requirements": [
+				{
+					"kind": "narrative",
+					"text": "o ser sorteado está na linha de visão da anomalia",
+					"ref": ""
+				}
+			],
+			"grants": [],
+			"targeting": {
+				"kind": "token",
+				"range": null,
+				"count": 1,
+				"relation": "any",
+				"rangeUnspecified": true,
+				"voluntary": false,
+				"requiresSight": false
+			},
+			"save": {
+				"skill": "vontade",
+				"dc": 41,
+				"onSuccess": "half",
+				"retry": false
+			},
+			"trigger": {
+				"event": "turnStart",
+				"owner": "self"
+			},
+			"version": 1,
+			"source": {
+				"reference": "Livro v1.3, p. 271, Anomalia",
+				"reviewed": false
+			},
+			"cost": null,
+			"area": null,
+			"visibility": {
+				"dc": "gm",
+				"defense": "gm",
+				"result": "public"
+			}
+		}
+	},
+	"effects": [],
+	"flags": {
+		"ordem_v2_classic": {
+			"threatAbilityId": "1531-H01"
+		}
+	},
+	"_stats": {
+		"coreVersion": "14.369",
+		"systemId": "ordem_v2_classic",
+		"systemVersion": "8.0.2",
+		"createdTime": 1792207618168,
+		"modifiedTime": 1792207618168,
+		"lastModifiedBy": null,
+		"compendiumSource": null,
+		"duplicateSource": null,
+		"exportSource": null
+	},
+	"ownership": {
+		"default": 0
+	},
+	"folder": "0qiHJU1EoU14Qoet",
+	"sort": 1000,
+	"_id": "A7gMAI3RXd1YF4xE",
+	"_key": "!items!A7gMAI3RXd1YF4xE"
+}

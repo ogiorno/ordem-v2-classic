@@ -1,0 +1,40 @@
+{
+	"name": "Viajar Pela Tela",
+	"type": "ability",
+	"img": "systems/ordem_v2_classic/assets/ability-icons/1569-1571-movement-viajar-pela-tela.webp",
+	"system": {
+		"id": 0,
+		"abilityType": "ability",
+		"preRequisite": "",
+		"description": "<p>MOVIMENTO - VIAJAR PELA TELA O telopsia pode se desmaterializar e se materializar em outra tela ou visor em alcance longo. Em seguida, ele se desloca 9m.</p>",
+		"chatDescription": "",
+		"activation": "movement",
+		"cost": 0,
+		"costType": "PE",
+		"execution": null
+	},
+	"effects": [],
+	"flags": {
+		"ordem_v2_classic": {
+			"threatAbilityId": "1569-H01"
+		}
+	},
+	"_stats": {
+		"coreVersion": "14.369",
+		"systemId": "ordem_v2_classic",
+		"systemVersion": "8.0.2",
+		"createdTime": 1792207618168,
+		"modifiedTime": 1792207618168,
+		"lastModifiedBy": null,
+		"compendiumSource": null,
+		"duplicateSource": null,
+		"exportSource": null
+	},
+	"ownership": {
+		"default": 0
+	},
+	"folder": "riGRUnuYI6wZtbBv",
+	"sort": 1000,
+	"_id": "iesUuIcmFXlKz9UY",
+	"_key": "!items!iesUuIcmFXlKz9UY"
+}

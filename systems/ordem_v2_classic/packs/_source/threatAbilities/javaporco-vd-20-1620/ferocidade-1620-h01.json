@@ -1,0 +1,40 @@
+{
+	"name": "Ferocidade",
+	"type": "ability",
+	"img": "icons/svg/item-bag.svg",
+	"system": {
+		"id": 0,
+		"abilityType": "ability",
+		"preRequisite": "",
+		"description": "<p>Se o javaporco sofrer dano, recebe +d20 em testes de ataque e causa um dado de dano adicional em todas as rolagens de dano até o final da cena.</p>",
+		"chatDescription": "",
+		"activation": "passive",
+		"cost": 0,
+		"costType": "PE",
+		"execution": null
+	},
+	"effects": [],
+	"flags": {
+		"ordem_v2_classic": {
+			"threatAbilityId": "1620-H01"
+		}
+	},
+	"_stats": {
+		"coreVersion": "14.369",
+		"systemId": "ordem_v2_classic",
+		"systemVersion": "8.0.2",
+		"createdTime": 1792207618168,
+		"modifiedTime": 1792207618168,
+		"lastModifiedBy": null,
+		"compendiumSource": null,
+		"duplicateSource": null,
+		"exportSource": null
+	},
+	"ownership": {
+		"default": 0
+	},
+	"folder": "JwamQKgpV7q2oDZ3",
+	"sort": 1000,
+	"_id": "mhYfPu7FgdRas6yK",
+	"_key": "!items!mhYfPu7FgdRas6yK"
+}

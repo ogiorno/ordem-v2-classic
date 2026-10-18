@@ -1,0 +1,40 @@
+{
+	"name": "Enxame",
+	"type": "ability",
+	"img": "systems/ordem_v2_classic/assets/ability-icons/1618-ficha-1-enxame.webp",
+	"system": {
+		"id": 0,
+		"abilityType": "ability",
+		"preRequisite": "",
+		"description": "<p>Um enxame é uma aglomeração de seres que agem em conjunto. Em termos de regras, pode entrar no espaço ocupado por um ser. No fim do seu turno, o enxame causa 2d6 pontos de dano de perfuração a qualquer ser em seu espaço, automaticamente. Um enxame é imune a manobras de combate e efeitos que afetam apenas um ser e não causam dano, e sofre apenas metade do dano de ataques com armas. Porém, sofre 50% a mais de dano por efeitos de área.</p>",
+		"chatDescription": "",
+		"activation": "passive",
+		"cost": 0,
+		"costType": "PE",
+		"execution": null
+	},
+	"effects": [],
+	"flags": {
+		"ordem_v2_classic": {
+			"threatAbilityId": "1618-H01"
+		}
+	},
+	"_stats": {
+		"coreVersion": "14.369",
+		"systemId": "ordem_v2_classic",
+		"systemVersion": "8.0.2",
+		"createdTime": 1792207618168,
+		"modifiedTime": 1792207618168,
+		"lastModifiedBy": null,
+		"compendiumSource": null,
+		"duplicateSource": null,
+		"exportSource": null
+	},
+	"ownership": {
+		"default": 0
+	},
+	"folder": "bBZCRRXRbmcckdKN",
+	"sort": 1000,
+	"_id": "eikkuC2Kya1e4SAp",
+	"_key": "!items!eikkuC2Kya1e4SAp"
+}

@@ -1,0 +1,40 @@
+{
+	"name": "Cópia Observada",
+	"type": "ability",
+	"img": "systems/ordem_v2_classic/assets/ability-icons/1466-1471-standard-copia-observada.webp",
+	"system": {
+		"id": 0,
+		"abilityType": "ability",
+		"preRequisite": "",
+		"description": "<p>PADRÃO - CÓPIA OBSERVADA O espreitador manifesta uma cópia de um ser que tenha deixado enlouquecendo com sua habilidade Espreitar. A cópia utiliza a mesma ficha do ser, mas causa dano de Conhecimento em vez de seu dano normal, não pode conjurar rituais ou usar habilidades paranormais e dura até o fim da cena. “Você verificou se fechou a porta?” É possível ouvir um som engasgado do fundo da garganta dele, abafado pelo grande olho na boca enquanto respira. O espreitador é uma criatura obcecada que, quando se manifesta, escolhe um alvo para assombrar. Então, persegue todos aqueles que se envolverem com o ser ou objeto assombrado, enquanto devora a sanidade da vítima ao impedir suas horas de sono. Aqueles que têm o azar de serem observados pelo espreitador sofrem de insônia severa e têm constantes vislumbres de olhos amarelos os espreitando através de frestas, com suas pupilas se multiplicando se encaradas, e gotas de saliva que são confundidas com lágrimas escorrendo e pingando no chão. O espreitador busca observar suas vítimas de perto durante a noite, perturbando seu sono e devorando a sua sanidade aos poucos, sem nunca ser percebido. Espreitador ESTRANGEIRO Mensagens misteriosas em horários específicos. Sinais incompreensíveis captados por receptores. Fenômenos bizarros em ambientes isolados, sem vítimas aparentes. O que acontece quando uma entidade paranormal decide se comunicar ativamente com a Realidade? Junto com a rápida expansão de tecnologias de comunicação, sinais misteriosos e incompreensíveis começaram a ser captados vindo das direções mais longínquas do Universo. Isso levou os governos a rapidamente prepararem equipes dispostas a estabelecer uma comunicação com criaturas alienígenas, mas a resposta recebida do Outro Lado não foi exatamente a esperada. O ser nomeado Estrangeiro é uma manifestação paranormal muitíssimo inteligente, com motivações complexas e misteriosas. Ao contrário de muitas criaturas, o Estrangeiro parece ter desenvolvido algum tipo de linguagem própria e também parece ser capaz de aprender novas linguagens. Aqueles que descreveram um encontro presencial com um Estrangeiro relataram uma abdução, sempre em um mesmo horário da madrugada. Uma forma bizarra parecia os observar de fora de sua janela, mesmo aqueles que moram em andares altos de prédios, e conseguiam escutar um som específico e assustador. Todos os dispositivos digitais parecem reagir à presença do Estrangeiro, com sigilos misteriosos surgindo e se alterando em suas telas, como se for- massem mensagens incompreensíveis em uma tentativa de comunicação da criatura. Porém, os relatos param de fazer sentido após essa descrição. Todos parecem experienciar o contato com o Estrangeiro de manei- ras diferentes, eventualmente retornando às suas vidas normais, mas sentindo que algo não está igual. Um desconforto constante, mas inidentificável. Como se algo estivesse faltando, ou melhor, como se algo estivesse… crescendo. O Estrangeiro parece ter a capacidade de estar em vários lugares ao mesmo tempo, e age como se viesse de algum tipo de civilização superior com uma estrutura hierárquica própria, por isso todos os seus encontros sempre estão associados a possibilidades de alienígenas extraterrestres. Seria o Estrangeiro apenas uma manifestação pa- ranormal originada do Medo inerte de uma sociedade alie- nígena superior, capaz de destruir a humanidade, ou existem segredos que nós mesmos ainda não podemos compreender sobre a nossa própria Realidade? Estrangeiro VD 340 ESTRANGEIRO CONHECIMENTO ENERGIA / / CRIATURA / GRANDE PRESENÇA PERTURBADORA DT 40 / 10d6 mental / NEX 99%+ é imune SENTIDOS PERCEPÇÃO 5d20+25 Percepção às cegas INICIATIVA 3d20+20 50 DEFESA FORTITUDE 3d20+15 REFLEXOS 3d20+20 VONTADE 5d20+25 750 | 375 machucado PONTOS DE VIDA IMUNIDADES Dano VULNERABILIDADES Sangue ATRIBUTOS AGI 3 FOR 5 INT 5 PRE 5 VIG 3 PERÍCIAS CIÊNCIA 5d20+20 OCULTISMO 5d20+20 FURTIVIDADE 3d20+20 DESLOCAMENTO Voo 15m | 10 quadrados AÇÕES</p>",
+		"chatDescription": "",
+		"activation": "default",
+		"cost": 0,
+		"costType": "PE",
+		"execution": null
+	},
+	"effects": [],
+	"flags": {
+		"ordem_v2_classic": {
+			"threatAbilityId": "1466-H03"
+		}
+	},
+	"_stats": {
+		"coreVersion": "14.369",
+		"systemId": "ordem_v2_classic",
+		"systemVersion": "8.0.2",
+		"createdTime": 1792207618168,
+		"modifiedTime": 1792207618168,
+		"lastModifiedBy": null,
+		"compendiumSource": null,
+		"duplicateSource": null,
+		"exportSource": null
+	},
+	"ownership": {
+		"default": 0
+	},
+	"folder": "75CqURRYKQgBmppq",
+	"sort": 3000,
+	"_id": "JAIUxfMTjXRLKHPO",
+	"_key": "!items!JAIUxfMTjXRLKHPO"
+}

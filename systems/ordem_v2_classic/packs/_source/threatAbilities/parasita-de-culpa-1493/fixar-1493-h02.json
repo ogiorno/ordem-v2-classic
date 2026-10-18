@@ -1,0 +1,40 @@
+{
+	"name": "Fixar",
+	"type": "ability",
+	"img": "systems/ordem_v2_classic/assets/ability-icons/1493-1496-full-fixar.webp",
+	"system": {
+		"id": 0,
+		"abilityType": "ability",
+		"preRequisite": "",
+		"description": "<p>COMPLETA - FIXAR O parasita se aproxima de um personagem dormindo. O ser tem direito a um teste de Percepção (com penalidade de –d20d20, por estar dormindo), oposto ao teste de Furtividade do parasita (2d20+15). Se passar, desperta antes que o parasita se fixe nele, fazendo com que a criatura fuja. Se falhar, torna-se hospedeiro do parasita (veja Devorar Culpa).</p>",
+		"chatDescription": "",
+		"activation": "complete",
+		"cost": 0,
+		"costType": "PE",
+		"execution": null
+	},
+	"effects": [],
+	"flags": {
+		"ordem_v2_classic": {
+			"threatAbilityId": "1493-H02"
+		}
+	},
+	"_stats": {
+		"coreVersion": "14.369",
+		"systemId": "ordem_v2_classic",
+		"systemVersion": "8.0.2",
+		"createdTime": 1792207618168,
+		"modifiedTime": 1792207618168,
+		"lastModifiedBy": null,
+		"compendiumSource": null,
+		"duplicateSource": null,
+		"exportSource": null
+	},
+	"ownership": {
+		"default": 0
+	},
+	"folder": "1XyyoCB0vKfjYmmn",
+	"sort": 2000,
+	"_id": "L3zXufbB4xiib9Ah",
+	"_key": "!items!L3zXufbB4xiib9Ah"
+}

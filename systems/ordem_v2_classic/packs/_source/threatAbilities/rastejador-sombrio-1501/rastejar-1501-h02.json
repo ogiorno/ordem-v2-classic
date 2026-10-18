@@ -1,0 +1,40 @@
+{
+	"name": "Rastejar",
+	"type": "ability",
+	"img": "systems/ordem_v2_classic/assets/ability-icons/1501-1504-free-rastejar.webp",
+	"system": {
+		"id": 0,
+		"abilityType": "ability",
+		"preRequisite": "",
+		"description": "<p>LIVRE - RASTEJAR O rastejador usa as sombras para se aproximar de seus alvos. Até o início do seu próximo turno, se estiver sob cobertura ou camuflagem, o rastejador recebe +10 em Furtividade e não terá o deslocamento reduzido por se mover furtivamente.</p>",
+		"chatDescription": "",
+		"activation": "free",
+		"cost": 0,
+		"costType": "PE",
+		"execution": null
+	},
+	"effects": [],
+	"flags": {
+		"ordem_v2_classic": {
+			"threatAbilityId": "1501-H02"
+		}
+	},
+	"_stats": {
+		"coreVersion": "14.369",
+		"systemId": "ordem_v2_classic",
+		"systemVersion": "8.0.2",
+		"createdTime": 1792207618168,
+		"modifiedTime": 1792207618168,
+		"lastModifiedBy": null,
+		"compendiumSource": null,
+		"duplicateSource": null,
+		"exportSource": null
+	},
+	"ownership": {
+		"default": 0
+	},
+	"folder": "XduotWlYCQFfuhfR",
+	"sort": 2000,
+	"_id": "AiLgeSN0eYQ3FXa0",
+	"_key": "!items!AiLgeSN0eYQ3FXa0"
+}

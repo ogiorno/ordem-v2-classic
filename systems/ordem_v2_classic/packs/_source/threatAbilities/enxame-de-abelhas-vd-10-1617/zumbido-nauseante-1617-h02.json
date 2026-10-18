@@ -1,0 +1,96 @@
+{
+	"name": "Zumbido Nauseante",
+	"type": "ability",
+	"img": "systems/ordem_v2_classic/assets/ability-icons/1617-ficha-2-zumbido-nauseante.webp",
+	"system": {
+		"id": 0,
+		"abilityType": "ability",
+		"preRequisite": "",
+		"description": "<p>Um ser que sofra dano do enxame de abelhas fica enjoado por 1 rodada (Fortitude DT 15 evita).</p>",
+		"chatDescription": "",
+		"activation": "passive",
+		"cost": 0,
+		"costType": "PE",
+		"execution": {
+			"mode": "triggered",
+			"automation": "assisted",
+			"damage": [],
+			"effects": [
+				{
+					"condition": "enjoado",
+					"duration": {
+						"unit": "rounds",
+						"value": 1
+					},
+					"onSave": "fail",
+					"target": "target",
+					"trigger": "",
+					"support": "mechanical"
+				}
+			],
+			"requirements": [
+				{
+					"kind": "narrative",
+					"text": "o ser sofreu dano do enxame de abelhas",
+					"ref": ""
+				}
+			],
+			"grants": [],
+			"targeting": {
+				"kind": "token",
+				"range": 1.5,
+				"count": 1,
+				"relation": "any",
+				"voluntary": false,
+				"rangeUnspecified": false,
+				"requiresSight": false
+			},
+			"save": {
+				"skill": "fortitude",
+				"dc": 15,
+				"onSuccess": "none",
+				"retry": false
+			},
+			"trigger": {
+				"event": "manual",
+				"owner": "any"
+			},
+			"version": 1,
+			"source": {
+				"reference": "Livro v1.3, p. 298, Enxame de Abelhas VD 10",
+				"reviewed": false
+			},
+			"cost": null,
+			"area": null,
+			"visibility": {
+				"dc": "gm",
+				"defense": "gm",
+				"result": "public"
+			}
+		}
+	},
+	"effects": [],
+	"flags": {
+		"ordem_v2_classic": {
+			"threatAbilityId": "1617-H02"
+		}
+	},
+	"_stats": {
+		"coreVersion": "14.369",
+		"systemId": "ordem_v2_classic",
+		"systemVersion": "8.0.2",
+		"createdTime": 1792207618168,
+		"modifiedTime": 1792207618168,
+		"lastModifiedBy": null,
+		"compendiumSource": null,
+		"duplicateSource": null,
+		"exportSource": null
+	},
+	"ownership": {
+		"default": 0
+	},
+	"folder": "Mv9rFoBk6K3meGHh",
+	"sort": 2000,
+	"_id": "TAk6dodu9iyu5O9K",
+	"_key": "!items!TAk6dodu9iyu5O9K"
+}

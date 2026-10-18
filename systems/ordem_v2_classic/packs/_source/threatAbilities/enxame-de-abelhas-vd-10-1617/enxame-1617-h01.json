@@ -1,0 +1,40 @@
+{
+	"name": "Enxame",
+	"type": "ability",
+	"img": "systems/ordem_v2_classic/assets/ability-icons/1617-ficha-1-enxame.webp",
+	"system": {
+		"id": 0,
+		"abilityType": "ability",
+		"preRequisite": "",
+		"description": "<p>Um enxame é uma aglomeração de seres que agem em conjunto. Em termos de regras, pode entrar no espaço ocupado por um ser. No fim do seu turno, o enxame causa 2d6 pontos de dano de perfuração a qualquer ser em seu espaço,</p>",
+		"chatDescription": "",
+		"activation": "passive",
+		"cost": 0,
+		"costType": "PE",
+		"execution": null
+	},
+	"effects": [],
+	"flags": {
+		"ordem_v2_classic": {
+			"threatAbilityId": "1617-H01"
+		}
+	},
+	"_stats": {
+		"coreVersion": "14.369",
+		"systemId": "ordem_v2_classic",
+		"systemVersion": "8.0.2",
+		"createdTime": 1792207618168,
+		"modifiedTime": 1792207618168,
+		"lastModifiedBy": null,
+		"compendiumSource": null,
+		"duplicateSource": null,
+		"exportSource": null
+	},
+	"ownership": {
+		"default": 0
+	},
+	"folder": "Mv9rFoBk6K3meGHh",
+	"sort": 1000,
+	"_id": "BZN5y0pp8Ozw2Mbd",
+	"_key": "!items!BZN5y0pp8Ozw2Mbd"
+}

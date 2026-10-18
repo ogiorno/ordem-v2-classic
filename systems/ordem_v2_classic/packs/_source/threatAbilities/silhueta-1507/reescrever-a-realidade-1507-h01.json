@@ -1,0 +1,40 @@
+{
+	"name": "Reescrever A Realidade",
+	"type": "ability",
+	"img": "systems/ordem_v2_classic/assets/ability-icons/1507-1508-free-reescrever-a-realidade.webp",
+	"system": {
+		"id": 0,
+		"abilityType": "ability",
+		"preRequisite": "",
+		"description": "<p>LIVRE - REESCREVER A REALIDADE Enquanto estiver se deslocando, a silhueta pode reescrever e mudar a Realidade com seus sigilos de Conhecimento. Todos os objetos em alcance curto podem ser transformados em outros, desde que conservem o mesmo tamanho. Seres vivos e o equipamento que estiverem vestindo ou portando não são afetados por essa habilidade.</p>",
+		"chatDescription": "",
+		"activation": "free",
+		"cost": 0,
+		"costType": "PE",
+		"execution": null
+	},
+	"effects": [],
+	"flags": {
+		"ordem_v2_classic": {
+			"threatAbilityId": "1507-H01"
+		}
+	},
+	"_stats": {
+		"coreVersion": "14.369",
+		"systemId": "ordem_v2_classic",
+		"systemVersion": "8.0.2",
+		"createdTime": 1792207618168,
+		"modifiedTime": 1792207618168,
+		"lastModifiedBy": null,
+		"compendiumSource": null,
+		"duplicateSource": null,
+		"exportSource": null
+	},
+	"ownership": {
+		"default": 0
+	},
+	"folder": "cXqXChrCpjhqViBG",
+	"sort": 1000,
+	"_id": "aAw6r1vr4z7yi5gw",
+	"_key": "!items!aAw6r1vr4z7yi5gw"
+}

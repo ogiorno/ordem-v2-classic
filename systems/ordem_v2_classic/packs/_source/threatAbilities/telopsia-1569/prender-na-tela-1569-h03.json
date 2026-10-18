@@ -1,0 +1,87 @@
+{
+	"name": "Prender Na Tela",
+	"type": "ability",
+	"img": "systems/ordem_v2_classic/assets/ability-icons/1569-1573-full-prender-na-tela.webp",
+	"system": {
+		"id": 0,
+		"abilityType": "ability",
+		"preRequisite": "",
+		"description": "<p>COMPLETA - PRENDER NA TELA O telopsia usa ondas de Energia para desintegrar um ser em alcance curto e materializá-lo dentro de sua tela (Fortitude DT 30 evita). Um ser dentro da tela fica paralisado e sofre 2d12 pontos de dano mental no início de cada um de seus turnos. Cada vez que o telopsia sofre 50 ou mais pontos de dano em um turno, o ser preso pode repetir o teste de Fortitude; se passar, escapa da tela e se materializa em um ponto a sua escolha adjacente ao telopsia.</p>",
+		"chatDescription": "",
+		"activation": "complete",
+		"cost": 0,
+		"costType": "PE",
+		"execution": {
+			"mode": "active",
+			"automation": "assisted",
+			"damage": [],
+			"effects": [
+				{
+					"condition": "paralisado",
+					"duration": {
+						"unit": "untilSaved",
+						"value": null
+					},
+					"onSave": "fail",
+					"target": "target",
+					"trigger": "",
+					"support": "marker"
+				}
+			],
+			"requirements": [],
+			"grants": [],
+			"targeting": {
+				"kind": "token",
+				"range": 9,
+				"count": 1,
+				"relation": "any",
+				"voluntary": false,
+				"rangeUnspecified": false,
+				"requiresSight": false
+			},
+			"save": {
+				"skill": "fortitude",
+				"dc": 30,
+				"onSuccess": "none",
+				"retry": false
+			},
+			"version": 1,
+			"source": {
+				"reference": "Livro v1.3, p. 281, Telopsia",
+				"reviewed": false
+			},
+			"cost": null,
+			"area": null,
+			"trigger": null,
+			"visibility": {
+				"dc": "gm",
+				"defense": "gm",
+				"result": "public"
+			}
+		}
+	},
+	"effects": [],
+	"flags": {
+		"ordem_v2_classic": {
+			"threatAbilityId": "1569-H03"
+		}
+	},
+	"_stats": {
+		"coreVersion": "14.369",
+		"systemId": "ordem_v2_classic",
+		"systemVersion": "8.0.2",
+		"createdTime": 1792207618168,
+		"modifiedTime": 1792207618168,
+		"lastModifiedBy": null,
+		"compendiumSource": null,
+		"duplicateSource": null,
+		"exportSource": null
+	},
+	"ownership": {
+		"default": 0
+	},
+	"folder": "riGRUnuYI6wZtbBv",
+	"sort": 3000,
+	"_id": "ZU7GGjLQkFwVIMU0",
+	"_key": "!items!ZU7GGjLQkFwVIMU0"
+}

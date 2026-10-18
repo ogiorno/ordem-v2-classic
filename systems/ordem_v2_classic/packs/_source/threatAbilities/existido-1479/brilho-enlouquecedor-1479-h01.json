@@ -1,0 +1,99 @@
+{
+	"name": "Brilho Enlouquecedor",
+	"type": "ability",
+	"img": "systems/ordem_v2_classic/assets/ability-icons/1479-1481-free-brilho-enlouquecedor.webp",
+	"system": {
+		"id": 0,
+		"abilityType": "ability",
+		"preRequisite": "",
+		"description": "<p>LIVRE - BRILHO ENLOUQUECEDOR Uma vez por rodada, o existido faz suas marcas douradas brilharem. Todos os seres em alcance médio capazes de vê-lo sofrem 1d6 pontos de dano mental (Vontade DT 14 reduz à metade). MOVIMENTO - FORTALECIMENTO PARANORMAL Até o fim da cena, o existido recebe +d20 em todos os testes baseados em Agilidade, Força e Vigor e suas pancadas causam +2d4 pontos de dano de Conhecimento. O existido só pode usar esta habilidade se tiver causado dano mental a algum personagem com seu Brilho Enlouquecedor nesta cena. Existe um ditado sussurrado no submundo ocultista. Em todas as línguas, todos os lugares e todos os tempos, uma ideia nunca pode ser esquecida quando se trata do Outro Lado: “Saber tudo é perder tudo.” Uma vez humano, hoje apenas uma casca buscando desesperadamente existir, o existido faz o que for possível para continuar sendo observado por alguém consciente. Um existido é alguém que foi longe demais, ultrapassou a barreira do Conhecimento e entendeu o Outro Lado por completo. Aquele que lembrou da verdade impossível e que não consegue esquecê-la, não importa o quanto tente. Tudo que um existido pode fazer é continuar repetindo seu próprio nome, na tentativa de ser reconhecido, lembrado. Os textos ao redor de seu corpo trazem frases que ao longo da história foram origem de Medo. Quando o existido sente sua vida ameaçada, essas palavras tatuadas começam a brilhar em um tom dourado, e ele se defen- de com violência daqueles que buscam destruir a casca que um dia re- presentou a mentira de sua existência. Existido</p>",
+		"chatDescription": "",
+		"activation": "free",
+		"cost": 0,
+		"costType": "PE",
+		"execution": {
+			"mode": "active",
+			"automation": "assisted",
+			"damage": [
+				{
+					"kind": "damage",
+					"formula": "1d6",
+					"type": "mental",
+					"resource": "san",
+					"roll": "once",
+					"frequency": ""
+				}
+			],
+			"effects": [],
+			"requirements": [
+				{
+					"kind": "perRound",
+					"count": 1,
+					"ref": "",
+					"text": ""
+				}
+			],
+			"grants": [],
+			"targeting": {
+				"kind": "area",
+				"relation": "any",
+				"range": null,
+				"count": null,
+				"voluntary": false,
+				"rangeUnspecified": false,
+				"requiresSight": false
+			},
+			"area": {
+				"shape": "sphere",
+				"radius": 18,
+				"origin": "caster",
+				"persistence": "instant",
+				"triggers": [],
+				"length": null,
+				"width": null
+			},
+			"save": {
+				"skill": "vontade",
+				"dc": 14,
+				"onSuccess": "half",
+				"retry": false
+			},
+			"version": 1,
+			"source": {
+				"reference": "Livro v1.3, p. 252, Existido",
+				"reviewed": false
+			},
+			"cost": null,
+			"trigger": null,
+			"visibility": {
+				"dc": "gm",
+				"defense": "gm",
+				"result": "public"
+			}
+		}
+	},
+	"effects": [],
+	"flags": {
+		"ordem_v2_classic": {
+			"threatAbilityId": "1479-H01"
+		}
+	},
+	"_stats": {
+		"coreVersion": "14.369",
+		"systemId": "ordem_v2_classic",
+		"systemVersion": "8.0.2",
+		"createdTime": 1792207618168,
+		"modifiedTime": 1792207618168,
+		"lastModifiedBy": null,
+		"compendiumSource": null,
+		"duplicateSource": null,
+		"exportSource": null
+	},
+	"ownership": {
+		"default": 0
+	},
+	"folder": "sPkGqBt0Q02trT2a",
+	"sort": 1000,
+	"_id": "LAZNa6HiuJ08LDFu",
+	"_key": "!items!LAZNa6HiuJ08LDFu"
+}

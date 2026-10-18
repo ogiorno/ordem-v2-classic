@@ -1,0 +1,88 @@
+{
+	"name": "Constrição",
+	"type": "ability",
+	"img": "icons/svg/item-bag.svg",
+	"system": {
+		"id": 0,
+		"abilityType": "ability",
+		"preRequisite": "",
+		"description": "<p>No início de cada um dos seus turnos, a sucuri causa 2d6+8 pontos de dano de impacto em qualquer ser que esteja agarrando.</p>",
+		"chatDescription": "",
+		"activation": "free",
+		"cost": 0,
+		"costType": "PE",
+		"execution": {
+			"mode": "triggered",
+			"automation": "assisted",
+			"damage": [
+				{
+					"kind": "damage",
+					"formula": "2d6+8",
+					"type": "impacto",
+					"resource": "pv",
+					"roll": "once",
+					"frequency": ""
+				}
+			],
+			"effects": [],
+			"requirements": [
+				{
+					"kind": "narrative",
+					"text": "os seres estão agarrados pela sucuri",
+					"ref": ""
+				}
+			],
+			"grants": [],
+			"targeting": {
+				"kind": "tokens",
+				"range": 1.5,
+				"count": 20,
+				"relation": "any",
+				"voluntary": false,
+				"rangeUnspecified": false,
+				"requiresSight": false
+			},
+			"trigger": {
+				"event": "turnStart",
+				"owner": "self"
+			},
+			"version": 1,
+			"source": {
+				"reference": "Livro v1.3, p. 299, Sucuri VD 40",
+				"reviewed": false
+			},
+			"cost": null,
+			"area": null,
+			"save": null,
+			"visibility": {
+				"dc": "gm",
+				"defense": "gm",
+				"result": "public"
+			}
+		}
+	},
+	"effects": [],
+	"flags": {
+		"ordem_v2_classic": {
+			"threatAbilityId": "1622-H02"
+		}
+	},
+	"_stats": {
+		"coreVersion": "14.369",
+		"systemId": "ordem_v2_classic",
+		"systemVersion": "8.0.2",
+		"createdTime": 1792207618168,
+		"modifiedTime": 1792207618168,
+		"lastModifiedBy": null,
+		"compendiumSource": null,
+		"duplicateSource": null,
+		"exportSource": null
+	},
+	"ownership": {
+		"default": 0
+	},
+	"folder": "7dcz2LSLY9OJ4HBn",
+	"sort": 2000,
+	"_id": "fZgDk3c12qPl9WOk",
+	"_key": "!items!fZgDk3c12qPl9WOk"
+}
