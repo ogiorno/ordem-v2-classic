@@ -1,0 +1,54 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      - name: Testes
+        run: |
+          npm test
+          npm run lang-check
+          npm run render-check
+
+      - name: Ajustar versão e links no system.json
+        run: |
+          VERSION="${GITHUB_REF_NAME#v}"
+          REPO="https://github.com/${GITHUB_REPOSITORY}"
+          jq --arg v "$VERSION" \
+             --arg m "$REPO/releases/latest/download/system.json" \
+             --arg d "$REPO/releases/download/${GITHUB_REF_NAME}/system.zip" \
+             '.version=$v | .manifest=$m | .download=$d' \
+             systems/ordem_v2_classic/system.json > /tmp/system.json
+          cp /tmp/system.json systems/ordem_v2_classic/system.json
+
+      - name: Compilar compêndios
+        run: npm run packs:pack
+
+      - name: Montar system.zip
+        run: |
+          cd systems/ordem_v2_classic
+          zip -r ../../system.zip . -x "tests/*" "tools/*" "packs/_source/*"
+          cp system.json ../../system.json
+
+      - uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            system.json
+            system.zip

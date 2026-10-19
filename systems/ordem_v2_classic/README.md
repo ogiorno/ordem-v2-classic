@@ -1,21 +1,8 @@
-<div align="center">
+> **Fork não oficial.** Este sistema é baseado em [ordemparanormal_fvtt](https://github.com/SouOWendel/ordemparanormal_fvtt), de Wendel Henrique (Mark57449), e foi modificado por [ogiorno](https://github.com/ogiorno). Distribuído gratuitamente, sem fins comerciais, sob CC BY-NC-SA 4.0.
 
-<!-- <img src="https://github.com/SouOWendel/ordemparanormal-fvtt/blob/main/media/op-logo.png?raw=true" alt="logo do Ordem Paranormal"> -->
-<p dir="auto" style="text-align: center;">Acesse o <a href="https://discord.gg/G8AwJwJXa5">Servidor do Discord</a> para atualiza&ccedil;&otilde;es e feedbacks, para postagens em geral, siga-me no <a href="https://twitter.com/EuSouOWendel">Twitter</a>, se realmente curtir o conte&uacute;do, n&atilde;o deixe de apoiar com qualquer valor na chave PIX: souowendel@gmail.com ou utilizando a plataforma do <a href="https://ko-fi.com/souowendel">Ko-fi</a>.&nbsp;</p>
+**Instalação no Foundry:** Sistemas → Instalar Sistema → cole em *URL do Manifesto*:
 
-![Supported Foundry Versions](https://img.shields.io/endpoint?url=https%3A%2F%2Ffoundryshields.com%2Fversion%3Fstyle%3Dflat%26url%3Dhttps%3A%2F%2Fgithub.com%2FSouOWendel%2Fordemparanormal-fvtt%2Freleases%2Flatest%2Fdownload%2Fsystem.json)
-![Meu usuário do Discord: souowendel](https://dcbadge.vercel.app/api/shield/294989840104161280?style=flat&compact=true)
-[![Meu Twitter: EuSouOWendel](https://img.shields.io/badge/Twitter-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white&style=flat&compact=true)](https://twitter.com/EuSouOWendel)
-<br>
-[![Meu gmail: souowendel@gmail.com](https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white&style=flat&compact=true)](https://mail.google.com/mail/u/0/?fs=1&to=souowendel@gmail.com&su=Enquiry&tf=cm)
-[![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
-[![Conventional Changelog](https://img.shields.io/badge/changelog-conventional-brightgreen.svg)](http://conventional-changelog.github.io)
-![GitHub Downloads (all assets, latest release)](https://img.shields.io/github/downloads/SouOWendel/ordemparanormal_fvtt/latest/total)
-![CI](https://github.com/SouOWendel/ordemparanormal_fvtt/actions/workflows/ci.yml/badge.svg)
-
-</div>
-
-[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/Y8Y8PRQ6Z)
+`https://github.com/ogiorno/ordem-v2-classic/releases/latest/download/system.json`
 
 # Sobre o Ordem Paranormal.
 
@@ -26,7 +13,7 @@ Ordem Paranormal é um sistema e/ou universo de investigação paranormal criado
 
 ## Começando o Desenvolvimento.
 
-1. Clone o repositório com `git clone https://github.com/SouOWendel/ordemparanormal_fvtt.git ordemparanormal`
+1. Clone o repositório com `git clone https://github.com/ogiorno/ordem-v2-classic.git ordem-v2-classic`
 2. Instale as dependências de desenvolvimento com `npm install`
 3. Compile os compêndios com `npm run packs:pack` (converte os JSONs de `packs/_source/` para LevelDB)
 4. Use `npm run link` para ligar os módulos ao diretório de dados do Foundry, quando necessário
@@ -100,7 +87,7 @@ https://github.com/user-attachments/assets/ae649c77-42df-4e1d-ae8f-e8989f570f05
 ## Licenças e Observações.
 
 <sub>
-Este repositório utiliza <a href="https://semver.org/lang/pt-BR/">Versionamento Semântico 2.0</a>, <a href="https://www.conventionalcommits.org/en/v1.0.0/">Conventional Commits</a> e o guia de estilo para <a href="https://google.github.io/styleguide/jsguide.html">ESLint do Google</a>, além disso, desenvolvido com muita dedicação e código. Se precisar, contate-me através do e-mail ou redes sociais: <a href="https://mail.google.com/mail/u/0/?fs=1&to=souowendel@gmail.com&su=Enquiry&tf=cm">souowendel@gmail.com</a>, discord: souowendel, twitter: <a href="https://twitter.com/EuSouOWendel">eusouowendel</a><br><br>
+Este repositório utiliza <a href="https://semver.org/lang/pt-BR/">Versionamento Semântico 2.0</a>, <a href="https://www.conventionalcommits.org/en/v1.0.0/">Conventional Commits</a> e o guia de estilo para <a href="https://google.github.io/styleguide/jsguide.html">ESLint do Google</a>, além disso, desenvolvido com muita dedicação e código. Para dúvidas e bugs deste fork, abra uma <a href="https://github.com/ogiorno/ordem-v2-classic/issues">issue</a>. O sistema original é de Wendel Henrique (<a href="https://github.com/SouOWendel/ordemparanormal_fvtt">SouOWendel/ordemparanormal_fvtt</a>)<br><br>
 </sub>
 <sub>
 This work is permitted under the <a href="https://github.com/SouOWendel/ordemparanormal_fvtt/blob/main/media/OGLlicense.txt">Open Gaming License</a>, the software component of this module/system is distributed under the <a href="https://github.com/SouOWendel/ordemparanormal_fvtt/blob/main/LICENSE.txt">CC BY-NC-SA 4.0 license</a>. Sistema Ordem Paranormal para FoundryVTT © 2026 by Wendel Henrique is licensed under <a href="https://github.com/SouOWendel/ordemparanormal_fvtt/blob/main/LICENSE.txt">CC BY-NC-SA 4.0</a><br><br>
