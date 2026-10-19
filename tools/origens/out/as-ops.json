@@ -1,0 +1,774 @@
+{
+  "powers": [
+    {
+      "name": "Existe uma Explicação",
+      "type": "ability",
+      "_id": "9WWQg357cgCGdEVr",
+      "img": "icons/svg/book.svg",
+      "system": {
+        "id": 0,
+        "chatDescription": "",
+        "abilityType": "origin",
+        "preRequisite": "",
+        "description": "<p>Acostumado a ver o paranormal como um assunto científico, você prefere lidar com o sobrenatural através de teorias, cálculos e testes experimentais. Quando faz um teste de Ocultismo, você pode gastar 2 PE para usar Ciências no lugar dessa perícia.</p>",
+        "activation": "passive",
+        "cost": 0,
+        "costType": "PE"
+      },
+      "effects": [],
+      "folder": "AsOrigPowers0001",
+      "sort": 1000,
+      "ownership": {
+        "default": 0
+      },
+      "flags": {},
+      "_stats": {
+        "coreVersion": "14.365",
+        "systemId": "ordem_v2_classic",
+        "systemVersion": "7.3.3",
+        "createdTime": 1784950000000,
+        "modifiedTime": 1784950000000,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!items!9WWQg357cgCGdEVr"
+    },
+    {
+      "name": "Forças para Enfrentar",
+      "type": "ability",
+      "_id": "QGVogHqlRQIm6yO1",
+      "img": "icons/svg/book.svg",
+      "system": {
+        "id": 0,
+        "chatDescription": "",
+        "abilityType": "origin",
+        "preRequisite": "",
+        "description": "<p>Ser uma cobaia por anos marcou você com experiências horríveis, mas que, às vezes, podem ser usadas como força para continuar sobrevivendo. Descreva para o mestre a parte mais traumática da sua história como cobaia. Quando estiver em uma cena em que há algo relacionado a esse trauma, à critério do mestre, você fica abalado. Entretanto, quando isso acontecer, você pode gastar 2 PE para, até o fim da cena, receber imunidade a efeitos de medo (se aplica também ao abalado desta habilidade).</p>",
+        "activation": "passive",
+        "cost": 0,
+        "costType": "PE"
+      },
+      "effects": [],
+      "folder": "AsOrigPowers0001",
+      "sort": 2000,
+      "ownership": {
+        "default": 0
+      },
+      "flags": {},
+      "_stats": {
+        "coreVersion": "14.365",
+        "systemId": "ordem_v2_classic",
+        "systemVersion": "7.3.3",
+        "createdTime": 1784950000000,
+        "modifiedTime": 1784950000000,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!items!QGVogHqlRQIm6yO1"
+    },
+    {
+      "name": "Técnicas de Contenção",
+      "type": "ability",
+      "_id": "RWfmxWEOxIe5OtgQ",
+      "img": "icons/svg/book.svg",
+      "system": {
+        "id": 0,
+        "chatDescription": "",
+        "abilityType": "origin",
+        "preRequisite": "",
+        "description": "<p>Você domina técnicas de luta para conter pessoas que podem causar problemas. Quando faz uma manobra de combate, você pode gastar 2 PE para receber +5 no teste de manobra.</p>",
+        "activation": "passive",
+        "cost": 0,
+        "costType": "PE"
+      },
+      "effects": [],
+      "folder": "AsOrigPowers0001",
+      "sort": 3000,
+      "ownership": {
+        "default": 0
+      },
+      "flags": {},
+      "_stats": {
+        "coreVersion": "14.365",
+        "systemId": "ordem_v2_classic",
+        "systemVersion": "7.3.3",
+        "createdTime": 1784950000000,
+        "modifiedTime": 1784950000000,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!items!RWfmxWEOxIe5OtgQ"
+    },
+    {
+      "name": "Quem Não Arrisca, Não Petisca",
+      "type": "ability",
+      "_id": "2o6CWXETQM3Bkh38",
+      "img": "icons/svg/book.svg",
+      "system": {
+        "id": 0,
+        "chatDescription": "",
+        "abilityType": "origin",
+        "preRequisite": "",
+        "description": "<p>Você recebe +2 em testes para resistir à condições mentais e de medo. Além disso, caso falhe em algum desses testes, você recebe +1d20 no próximo teste que realizar até o fim da cena (não cumulativo com ele mesmo).</p>",
+        "activation": "passive",
+        "cost": 0,
+        "costType": "PE"
+      },
+      "effects": [],
+      "folder": "AsOrigPowers0001",
+      "sort": 4000,
+      "ownership": {
+        "default": 0
+      },
+      "flags": {},
+      "_stats": {
+        "coreVersion": "14.365",
+        "systemId": "ordem_v2_classic",
+        "systemVersion": "7.3.3",
+        "createdTime": 1784950000000,
+        "modifiedTime": 1784950000000,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!items!2o6CWXETQM3Bkh38"
+    },
+    {
+      "name": "Registrar o Paranormal",
+      "type": "ability",
+      "_id": "KupA0oNFKEOdBgME",
+      "img": "icons/svg/book.svg",
+      "system": {
+        "id": 0,
+        "chatDescription": "",
+        "abilityType": "origin",
+        "preRequisite": "",
+        "description": "<p>Uma vez por cena, você pode gastar uma ação padrão e 2 PE para criar um registro de uma criatura paranormal ou ritual que tenha sido conjurado na mesma cena. A ação padrão deve ser gasta para tirar uma foto, fazer um vídeo ou algum tipo de registro desse tipo. Uma vez por cena, você pode gastar uma ação de interlúdio e um dos registros de criatura para receber +5 em testes de identificar criatura e presença perturbadora envolvendo a criatura fotografada até o início da próxima cena de interlúdio. Alternativamente, uma vez por cena, você pode gastar uma ação de interlúdio e um dos registros de ritual para memorizar o ritual presente no registro, podendo conjurá-lo como se o conhecesse até o início de sua próxima cena de interlúdio, desde que tenha o NEX necessário (1º círculo a partir do NEX 5%, 2º círculo a partir do NEX 45% e 3º círculo a partir do NEX 75%); você também recebe +5 em testes para identificar o ritual. Esse ritual não conta no seu limite de rituais conhecidos.</p>",
+        "activation": "passive",
+        "cost": 0,
+        "costType": "PE"
+      },
+      "effects": [],
+      "folder": "AsOrigPowers0001",
+      "sort": 5000,
+      "ownership": {
+        "default": 0
+      },
+      "flags": {},
+      "_stats": {
+        "coreVersion": "14.365",
+        "systemId": "ordem_v2_classic",
+        "systemVersion": "7.3.3",
+        "createdTime": 1784950000000,
+        "modifiedTime": 1784950000000,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!items!KupA0oNFKEOdBgME"
+    },
+    {
+      "name": "Minha Teoria Absurda",
+      "type": "ability",
+      "_id": "abXMNXhvLtXyWAdz",
+      "img": "icons/svg/book.svg",
+      "system": {
+        "id": 0,
+        "chatDescription": "",
+        "abilityType": "origin",
+        "preRequisite": "",
+        "description": "<p>Uma vez por cena de interlúdio, você pode gastar uma ação para apresentar ao seu grupo sua tese sobre as prováveis respostas para a investigação com a qual estão lidando. Obviamente, isso deve ser feito antes de terem todas as respostas. A critério do mestre, se suas teorias forem boas (não necessariamente corretas), você recebe 1d4+1 PE temporários que duram até serem gastos. Se, quando a missão acabar, uma de suas teorias se provar correta, você recebe +1 PE máximo e atual.</p>",
+        "activation": "passive",
+        "cost": 0,
+        "costType": "PE"
+      },
+      "effects": [],
+      "folder": "AsOrigPowers0001",
+      "sort": 6000,
+      "ownership": {
+        "default": 0
+      },
+      "flags": {},
+      "_stats": {
+        "coreVersion": "14.365",
+        "systemId": "ordem_v2_classic",
+        "systemVersion": "7.3.3",
+        "createdTime": 1784950000000,
+        "modifiedTime": 1784950000000,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!items!abXMNXhvLtXyWAdz"
+    },
+    {
+      "name": "Turno Invertido",
+      "type": "ability",
+      "_id": "PyRDlfPfqgWbmvOy",
+      "img": "icons/svg/book.svg",
+      "system": {
+        "id": 0,
+        "chatDescription": "",
+        "abilityType": "origin",
+        "preRequisite": "",
+        "description": "<p>Uma vez por missão, durante uma cena de interlúdio, você pode receber os benefícios da ação dormir sem precisar realizá-la. Além disso, recebe +2 em testes contra qualquer efeito que tente te deixar inconsciente.</p>",
+        "activation": "passive",
+        "cost": 0,
+        "costType": "PE"
+      },
+      "effects": [],
+      "folder": "AsOrigPowers0001",
+      "sort": 7000,
+      "ownership": {
+        "default": 0
+      },
+      "flags": {},
+      "_stats": {
+        "coreVersion": "14.365",
+        "systemId": "ordem_v2_classic",
+        "systemVersion": "7.3.3",
+        "createdTime": 1784950000000,
+        "modifiedTime": 1784950000000,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!items!PyRDlfPfqgWbmvOy"
+    },
+    {
+      "name": "Sofrimento de Sangue",
+      "type": "ability",
+      "_id": "XZiEkgNsdk7XMMbo",
+      "img": "icons/svg/book.svg",
+      "system": {
+        "id": 0,
+        "chatDescription": "",
+        "abilityType": "origin",
+        "preRequisite": "",
+        "description": "<p>Eles podem tentar… mas já não dói mais. Você recebe RD 2/mental. Para cada dois rituais de Sangue ou poderes paranormais de Sangue que possua, a RD aumenta em +1. Contudo, a lembrança das desgraças que você viveu causa pesadelos horríveis, que o impedem de repousar tranquilamente. Sua condição de descanso é sempre uma categoria pior (luxuosa se torna confortável, confortável se torna normal e normal se torna precária).</p>",
+        "activation": "passive",
+        "cost": 0,
+        "costType": "PE"
+      },
+      "effects": [],
+      "folder": "AsOrigPowers0001",
+      "sort": 8000,
+      "ownership": {
+        "default": 0
+      },
+      "flags": {},
+      "_stats": {
+        "coreVersion": "14.365",
+        "systemId": "ordem_v2_classic",
+        "systemVersion": "7.3.3",
+        "createdTime": 1784950000000,
+        "modifiedTime": 1784950000000,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!items!XZiEkgNsdk7XMMbo"
+    },
+    {
+      "name": "Mácula Ritualística",
+      "type": "ability",
+      "_id": "AsfhsilCwzrHUXOf",
+      "img": "icons/svg/book.svg",
+      "system": {
+        "id": 0,
+        "chatDescription": "",
+        "abilityType": "origin",
+        "preRequisite": "",
+        "description": "<p>A entidade marcou você com um ritual de 1º círculo a sua escolha do elemento correspondente. Você aprende a conjurar o ritual. Além disso, uma vez por cena, pode conjurá-lo sem gastar PE (mas ainda precisa gastar PE para qualquer efeito adicional, como formas avançadas). Esse ritual não conta no seu limite de rituais conhecidos. Em contrapartida, sofre –O em testes de resistência contra efeitos (como rituais ou poderes paranormais) desse elemento.</p>",
+        "activation": "passive",
+        "cost": 0,
+        "costType": "PE"
+      },
+      "effects": [],
+      "folder": "AsOrigPowers0001",
+      "sort": 9000,
+      "ownership": {
+        "default": 0
+      },
+      "flags": {},
+      "_stats": {
+        "coreVersion": "14.365",
+        "systemId": "ordem_v2_classic",
+        "systemVersion": "7.3.3",
+        "createdTime": 1784950000000,
+        "modifiedTime": 1784950000000,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!items!AsfhsilCwzrHUXOf"
+    },
+    {
+      "name": "O Que Restou",
+      "type": "ability",
+      "_id": "0KxQDRoSXMMwkwlJ",
+      "img": "icons/svg/book.svg",
+      "system": {
+        "id": 0,
+        "chatDescription": "",
+        "abilityType": "origin",
+        "preRequisite": "",
+        "description": "<p>Uma parte da criatura paranormal que o possuiu continua dentro de você. Escolha um elemento (exceto Medo). Você recebe RD 10 contra o tipo do elemento escolhido. Entretanto, sempre que entrar em contato com esse elemento pela primeira vez em uma cena (seja ao presenciar rituais, itens amaldiçoados, criaturas ou poderes paranormais), você perde 3 SAN.</p>",
+        "activation": "passive",
+        "cost": 0,
+        "costType": "PE"
+      },
+      "effects": [],
+      "folder": "AsOrigPowers0001",
+      "sort": 10000,
+      "ownership": {
+        "default": 0
+      },
+      "flags": {},
+      "_stats": {
+        "coreVersion": "14.365",
+        "systemId": "ordem_v2_classic",
+        "systemVersion": "7.3.3",
+        "createdTime": 1784950000000,
+        "modifiedTime": 1784950000000,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!items!0KxQDRoSXMMwkwlJ"
+    },
+    {
+      "name": "Sussurros e Vultos",
+      "type": "ability",
+      "_id": "TlFFXZ0UHroWlrxr",
+      "img": "icons/svg/book.svg",
+      "system": {
+        "id": 0,
+        "chatDescription": "",
+        "abilityType": "origin",
+        "preRequisite": "",
+        "description": "<p>Ao lidar com outras pessoas, inesperadamente surgem vozes e vultos na sua cabeça que, por mais assustadoras que sejam, ajudam a compreendê-las. Quando faz um teste de Diplomacia, Enganação, Intimidação ou Intuição, você pode escolher perder 2 SAN para receber +5 nesse teste.</p>",
+        "activation": "passive",
+        "cost": 0,
+        "costType": "PE"
+      },
+      "effects": [],
+      "folder": "AsOrigPowers0001",
+      "sort": 11000,
+      "ownership": {
+        "default": 0
+      },
+      "flags": {},
+      "_stats": {
+        "coreVersion": "14.365",
+        "systemId": "ordem_v2_classic",
+        "systemVersion": "7.3.3",
+        "createdTime": 1784950000000,
+        "modifiedTime": 1784950000000,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!items!TlFFXZ0UHroWlrxr"
+    }
+  ],
+  "origins": [
+    {
+      "name": "Cientista Ex-Panacea",
+      "isNew": false,
+      "doc": {
+        "folder": "tzknJ6T3P1rXJYwo",
+        "name": "Cientista Ex-Panacea",
+        "type": "origin",
+        "_id": "sLcxyxW9zznwP1hu",
+        "img": "systems/ordemparanormal/media/icons/origins/cientista-ex-panacea.svg",
+        "system": {
+          "id": 0,
+          "description": "<p>Ingênuo, você passou anos trabalhando para a Panacea Industries até descobrir que prestava serviços para uma grande organização responsável por aprisionar e utilizar criaturas paranormais que pesquisam para enfrentarem umas às outras. Quando soube do uso de cobaias humanas nesses experimentos, decidiu parar de apoiar as pesquisas e se voltou contra a multinacional.</p><p><strong><em>Perícias Treinadas.</em></strong> Atualidades e Ciências.</p><p><strong><em>Existe uma Explicação.</em></strong> Acostumado a ver o paranormal como um assunto científico, você prefere lidar com o sobrenatural através de teorias, cálculos e testes experimentais. Quando faz um teste de Ocultismo, você pode gastar 2 PE para usar Ciências no lugar dessa perícia.</p><p><em>Fonte: AS #06, p. 66.</em></p>",
+          "chatDescription": ""
+        },
+        "effects": [],
+        "sort": 0,
+        "ownership": {
+          "default": 0,
+          "mCARmiewelPiv8Ze": 3
+        },
+        "flags": {},
+        "_stats": {
+          "coreVersion": "14.365",
+          "systemId": "ordemparanormal",
+          "systemVersion": "7.3.3",
+          "createdTime": 1784597546077,
+          "modifiedTime": 1784690642102,
+          "lastModifiedBy": "mCARmiewelPiv8Ze",
+          "compendiumSource": null,
+          "duplicateSource": null,
+          "exportSource": null
+        },
+        "_key": "!items!sLcxyxW9zznwP1hu"
+      }
+    },
+    {
+      "name": "Cobaia Sobrevivente",
+      "isNew": false,
+      "doc": {
+        "folder": "tzknJ6T3P1rXJYwo",
+        "name": "Cobaia Sobrevivente",
+        "type": "origin",
+        "_id": "Vm1MmciQps4ns3LH",
+        "img": "systems/ordemparanormal/media/icons/origins/cobaia-sobrevivente.svg",
+        "system": {
+          "id": 0,
+          "description": "<p>Você foi pego pelas Indústrias Panacea (ou outra organização semelhante) ainda pequeno, mas, após anos como cobaia, conseguiu sobreviver aos experimentos com o mínimo de sequelas mentais e/ou físicas. Após escapar das garras da multinacional, passou a dedicar a sua vida a encontrar meios de salvar outras pessoas do destino trágico que você evitou.</p><p><strong><em>Perícias Treinadas.</em></strong> Fortitude e Vontade.</p><p><strong><em>Forças para Enfrentar.</em></strong> Ser uma cobaia por anos marcou você com experiências horríveis, mas que, às vezes, podem ser usadas como força para continuar sobrevivendo. Descreva para o mestre a parte mais traumática da sua história como cobaia. Quando estiver em uma cena em que há algo relacionado a esse trauma, à critério do mestre, você fica abalado. Entretanto, quando isso acontecer, você pode gastar 2 PE para, até o fim da cena, receber imunidade a efeitos de medo (se aplica também ao abalado desta habilidade).</p><p><em>Fonte: AS #06, p. 66.</em></p>",
+          "chatDescription": ""
+        },
+        "effects": [],
+        "sort": 0,
+        "ownership": {
+          "default": 0,
+          "mCARmiewelPiv8Ze": 3
+        },
+        "flags": {},
+        "_stats": {
+          "coreVersion": "14.365",
+          "systemId": "ordemparanormal",
+          "systemVersion": "7.3.3",
+          "createdTime": 1784597866332,
+          "modifiedTime": 1784690650645,
+          "lastModifiedBy": "mCARmiewelPiv8Ze",
+          "compendiumSource": null,
+          "duplicateSource": null,
+          "exportSource": null
+        },
+        "_key": "!items!Vm1MmciQps4ns3LH"
+      }
+    },
+    {
+      "name": "Segurança Ex-Panacea",
+      "isNew": false,
+      "doc": {
+        "folder": "tzknJ6T3P1rXJYwo",
+        "name": "Segurança Ex-Panacea",
+        "type": "origin",
+        "_id": "1AXHuPxJEQXFvQCq",
+        "img": "systems/ordemparanormal/media/icons/origins/seguranca-ex-panacea.webp",
+        "system": {
+          "id": 0,
+          "description": "<p>Acreditando que trabalhava em uma multinacional dedicada à saúde e bem-estar da população, você quase enlouqueceu quando descobriu que fazia a segurança para cientistas dispostos a usar cobaias humanas em seus experimentos com o paranormal. Assim que soube a verdade, abandonou as Indústrias Panacea para acabar com a existência dela.</p><p><strong><em>Perícias Treinadas.</em></strong> Luta e Pontaria.</p><p><strong><em>Técnicas de Contenção.</em></strong> Você domina técnicas de luta para conter pessoas que podem causar problemas. Quando faz uma manobra de combate, você pode gastar 2 PE para receber +5 no teste de manobra.</p><p><em>Fonte: AS #06, p. 66.</em></p>",
+          "chatDescription": ""
+        },
+        "effects": [],
+        "sort": 0,
+        "ownership": {
+          "default": 0,
+          "mCARmiewelPiv8Ze": 3
+        },
+        "flags": {},
+        "_stats": {
+          "coreVersion": "14.365",
+          "systemId": "ordemparanormal",
+          "systemVersion": "7.3.3",
+          "createdTime": 1784597964164,
+          "modifiedTime": 1784690686196,
+          "lastModifiedBy": "mCARmiewelPiv8Ze",
+          "compendiumSource": null,
+          "duplicateSource": null,
+          "exportSource": null
+        },
+        "_key": "!items!1AXHuPxJEQXFvQCq"
+      }
+    },
+    {
+      "name": "Caçador de Recompensas",
+      "isNew": false,
+      "doc": {
+        "folder": "tzknJ6T3P1rXJYwo",
+        "name": "Caçador de Recompensas",
+        "type": "origin",
+        "_id": "viUeZIqD5wOu7wi4",
+        "img": "systems/ordemparanormal/media/icons/origins/cacador-de-recompensa.webp",
+        "system": {
+          "id": 0,
+          "description": "<p>Sua sede pelo dinheiro fácil sempre te guiou na exploração dos locais mais obscuros. Você sabe muito bem que as situações mais insalubres guardam as melhores recompensas.</p><p><strong><em>Perícias Treinadas.</em></strong> Crime e Investigação.</p><p><strong><em>Quem Não Arrisca, Não Petisca.</em></strong> Você recebe +2 em testes para resistir à condições mentais e de medo. Além disso, caso falhe em algum desses testes, você recebe +1d20 no próximo teste que realizar até o fim da cena (não cumulativo com ele mesmo).</p><p><em>Fonte: AS #04, p. 64.</em></p>",
+          "chatDescription": ""
+        },
+        "effects": [],
+        "sort": 0,
+        "ownership": {
+          "default": 0,
+          "WeXQ2WY27ruZ5VmA": 3
+        },
+        "flags": {},
+        "_stats": {
+          "coreVersion": "14.365",
+          "systemId": "ordemparanormal",
+          "systemVersion": "7.3.3",
+          "createdTime": 1784492526185,
+          "modifiedTime": 1784690599679,
+          "lastModifiedBy": "mCARmiewelPiv8Ze",
+          "compendiumSource": null,
+          "duplicateSource": null,
+          "exportSource": null
+        },
+        "_key": "!items!viUeZIqD5wOu7wi4"
+      }
+    },
+    {
+      "name": "Influencer Paranormal",
+      "isNew": false,
+      "doc": {
+        "folder": "tzknJ6T3P1rXJYwo",
+        "name": "Influencer Paranormal",
+        "type": "origin",
+        "_id": "iPCO4VcEVjh40sIy",
+        "img": "systems/ordemparanormal/media/icons/origins/influencer-paranormal.webp",
+        "system": {
+          "id": 0,
+          "description": "<p>De início, você nunca acreditou nas lendas urbanas e vídeos de fantasmas, então resolveu se aproveitar daqueles que acreditam. Foi produzindo conteúdos falsos e duvidosos para a internet que você descobriu a dura verdade por trás da Membrana.</p><p><strong><em>Perícias Treinadas.</em></strong> Enganação e Tecnologia.</p><p><strong><em>Registrar o Paranormal.</em></strong> Uma vez por cena, você pode gastar uma ação padrão e 2 PE para criar um registro de uma criatura paranormal ou ritual que tenha sido conjurado na mesma cena. A ação padrão deve ser gasta para tirar uma foto, fazer um vídeo ou algum tipo de registro desse tipo. Uma vez por cena, você pode gastar uma ação de interlúdio e um dos registros de criatura para receber +5 em testes de identificar criatura e presença perturbadora envolvendo a criatura fotografada até o início da próxima cena de interlúdio. Alternativamente, uma vez por cena, você pode gastar uma ação de interlúdio e um dos registros de ritual para memorizar o ritual presente no registro, podendo conjurá-lo como se o conhecesse até o início de sua próxima cena de interlúdio, desde que tenha o NEX necessário (1º círculo a partir do NEX 5%, 2º círculo a partir do NEX 45% e 3º círculo a partir do NEX 75%); você também recebe +5 em testes para identificar o ritual. Esse ritual não conta no seu limite de rituais conhecidos.</p><p><em>Fonte: AS #04, p. 64.</em></p>",
+          "chatDescription": ""
+        },
+        "effects": [],
+        "sort": 0,
+        "ownership": {
+          "default": 0,
+          "WeXQ2WY27ruZ5VmA": 3
+        },
+        "flags": {},
+        "_stats": {
+          "coreVersion": "14.365",
+          "systemId": "ordemparanormal",
+          "systemVersion": "7.3.3",
+          "createdTime": 1784492505945,
+          "modifiedTime": 1784690673829,
+          "lastModifiedBy": "mCARmiewelPiv8Ze",
+          "compendiumSource": null,
+          "duplicateSource": null,
+          "exportSource": null
+        },
+        "_key": "!items!iPCO4VcEVjh40sIy"
+      }
+    },
+    {
+      "name": "Ufólogo",
+      "isNew": false,
+      "doc": {
+        "folder": "tzknJ6T3P1rXJYwo",
+        "name": "Ufólogo",
+        "type": "origin",
+        "_id": "BaeuHvOuCQyXtNVu",
+        "img": "systems/ordemparanormal/media/icons/origins/ufologo.svg",
+        "system": {
+          "id": 0,
+          "description": "<p>Você sempre soube que não estávamos sozinhos no universo. Muitos já te consideraram um lunático, mas algo dizia que suas teorias sempre estavam no caminho certo. As intermináveis pesquisas sobre o espaço, sinais no céu e seres de outros planetas eventualmente te fizeram perceber que o oculto não mede distâncias. Onde há medo, há algo incompreensível para espreitar.</p><p><strong><em>Perícias Treinadas.</em></strong> Ciências e Ocultismo.</p><p><strong><em>Minha Teoria Absurda.</em></strong> Uma vez por cena de interlúdio, você pode gastar uma ação para apresentar ao seu grupo sua tese sobre as prováveis respostas para a investigação com a qual estão lidando. Obviamente, isso deve ser feito antes de terem todas as respostas. A critério do mestre, se suas teorias forem boas (não necessariamente corretas), você recebe 1d4+1 PE temporários que duram até serem gastos. Se, quando a missão acabar, uma de suas teorias se provar correta, você recebe +1 PE máximo e atual.</p><p><em>Fonte: AS #05, p. 54.</em></p>",
+          "chatDescription": ""
+        },
+        "effects": [],
+        "sort": 0,
+        "ownership": {
+          "default": 0,
+          "mCARmiewelPiv8Ze": 3
+        },
+        "flags": {},
+        "_stats": {
+          "coreVersion": "14.365",
+          "systemId": "ordemparanormal",
+          "systemVersion": "7.3.3",
+          "createdTime": 1784758795830,
+          "modifiedTime": 1784759009508,
+          "lastModifiedBy": "mCARmiewelPiv8Ze",
+          "compendiumSource": null,
+          "duplicateSource": null,
+          "exportSource": null
+        },
+        "_key": "!items!BaeuHvOuCQyXtNVu"
+      }
+    },
+    {
+      "name": "Funcionário de Beira de Estrada",
+      "isNew": false,
+      "doc": {
+        "folder": "tzknJ6T3P1rXJYwo",
+        "name": "Funcionário de Beira de Estrada",
+        "type": "origin",
+        "_id": "juKc3d7X6l0RqYy5",
+        "img": "systems/ordemparanormal/media/icons/origins/funcionario-de-beira-de-estrada.webp",
+        "system": {
+          "id": 0,
+          "description": "<p>Longe das grandes concentrações urbanas, você dava o seu melhor para atender os viajantes cansados. Entre madrugadas adentro e caminhões barulhentos, as lendas urbanas e relatos horripilantes eventualmente chegaram aos seus ouvidos e atiçaram a sua curiosidade.</p><p><strong><em>Perícias Treinadas.</em></strong> Fortitude e Intuição.</p><p><strong><em>Turno Invertido.</em></strong> Uma vez por missão, durante uma cena de interlúdio, você pode receber os benefícios da ação dormir sem precisar realizá-la. Além disso, recebe +2 em testes contra qualquer efeito que tente te deixar inconsciente.</p><p><em>Fonte: AS #05, p. 54.</em></p>",
+          "chatDescription": ""
+        },
+        "effects": [],
+        "sort": 0,
+        "ownership": {
+          "default": 0,
+          "WeXQ2WY27ruZ5VmA": 3
+        },
+        "flags": {},
+        "_stats": {
+          "coreVersion": "14.365",
+          "systemId": "ordemparanormal",
+          "systemVersion": "7.3.3",
+          "createdTime": 1784492601762,
+          "modifiedTime": 1784690666778,
+          "lastModifiedBy": "mCARmiewelPiv8Ze",
+          "compendiumSource": null,
+          "duplicateSource": null,
+          "exportSource": null
+        },
+        "_key": "!items!juKc3d7X6l0RqYy5"
+      }
+    },
+    {
+      "name": "Transtornado Arrependido",
+      "isNew": false,
+      "doc": {
+        "folder": "tzknJ6T3P1rXJYwo",
+        "name": "Transtornado Arrependido",
+        "type": "origin",
+        "_id": "XBv0fs5KnGl6bq7M",
+        "img": "systems/ordemparanormal/media/icons/origins/transtornado-arrependido.webp",
+        "system": {
+          "id": 0,
+          "description": "<p>Você já caminhou entre os Transtornados. Talvez tenha sido um seguidor cego, seduzido pelas promessas de transcendência por meio da carne e da dor. Talvez tenha conhecido a natureza visceral do culto desde o início e ainda assim escolheu mergulhar no delírio. Seja como for, em algum momento algo rompeu o ciclo. Você se libertou, mas ainda sente o eco dos rituais e a presença do Sangue sussurrando na própria carne.</p><p><strong><em>Perícias Treinadas.</em></strong> Luta e Ocultismo.</p><p><strong><em>Sofrimento de Sangue.</em></strong> Eles podem tentar… mas já não dói mais. Você recebe RD 2/mental. Para cada dois rituais de Sangue ou poderes paranormais de Sangue que possua, a RD aumenta em +1. Contudo, a lembrança das desgraças que você viveu causa pesadelos horríveis, que o impedem de repousar tranquilamente. Sua condição de descanso é sempre uma categoria pior (luxuosa se torna confortável, confortável se torna normal e normal se torna precária).</p><p><em>Fonte: AS #01, p. 43.</em></p>",
+          "chatDescription": ""
+        },
+        "effects": [],
+        "sort": 0,
+        "ownership": {
+          "default": 0,
+          "WeXQ2WY27ruZ5VmA": 3
+        },
+        "flags": {},
+        "_stats": {
+          "coreVersion": "14.365",
+          "systemId": "ordemparanormal",
+          "systemVersion": "7.3.3",
+          "createdTime": 1784492445140,
+          "modifiedTime": 1784690694046,
+          "lastModifiedBy": "mCARmiewelPiv8Ze",
+          "compendiumSource": null,
+          "duplicateSource": null,
+          "exportSource": null
+        },
+        "_key": "!items!XBv0fs5KnGl6bq7M"
+      }
+    },
+    {
+      "name": "Ferido por Ritual",
+      "isNew": false,
+      "doc": {
+        "folder": "tzknJ6T3P1rXJYwo",
+        "name": "Ferido por Ritual",
+        "type": "origin",
+        "_id": "XMbot5CnbWy4z5on",
+        "img": "systems/ordemparanormal/media/icons/origins/ferido-por-ritual.webp",
+        "system": {
+          "id": 0,
+          "description": "<p>Você tinha uma vida ordinária, até sofrer os efeitos paranormais de um ritual (escolha entre Sangue, Morte, Conhecimento ou Energia). A partir de então, sua existência mundana foi deturpada pelo Outro Lado.</p><p><strong><em>Perícias Treinadas.</em></strong> Ocultismo e 1 perícia definida pelo elemento do ritual (Fortitude para Sangue, Vontade para Morte e Conhecimento ou Reflexos para Energia).</p><p><strong><em>Mácula Ritualística.</em></strong> A entidade marcou você com um ritual de 1º círculo a sua escolha do elemento correspondente. Você aprende a conjurar o ritual. Além disso, uma vez por cena, pode conjurá-lo sem gastar PE (mas ainda precisa gastar PE para qualquer efeito adicional, como formas avançadas). Esse ritual não conta no seu limite de rituais conhecidos. Em contrapartida, sofre –O em testes de resistência contra efeitos (como rituais ou poderes paranormais) desse elemento.</p><p><em>Fonte: AS #01, p. 43.</em></p>",
+          "chatDescription": ""
+        },
+        "effects": [],
+        "sort": 0,
+        "ownership": {
+          "default": 0,
+          "WeXQ2WY27ruZ5VmA": 3
+        },
+        "flags": {},
+        "_stats": {
+          "coreVersion": "14.365",
+          "systemId": "ordemparanormal",
+          "systemVersion": "7.3.3",
+          "createdTime": 1784492411731,
+          "modifiedTime": 1784690658978,
+          "lastModifiedBy": "mCARmiewelPiv8Ze",
+          "compendiumSource": null,
+          "duplicateSource": null,
+          "exportSource": null
+        },
+        "_key": "!items!XMbot5CnbWy4z5on"
+      }
+    },
+    {
+      "name": "Exorcizado",
+      "isNew": true,
+      "doc": {
+        "folder": "tzknJ6T3P1rXJYwo",
+        "name": "Exorcizado",
+        "type": "origin",
+        "_id": "zrUNJK77BazhEV7Z",
+        "img": "systems/ordem_v2_classic/assets/origens/origem-as07-exorcizado.svg",
+        "system": {
+          "id": 0,
+          "description": "<p>Você já esteve sob influência de uma grande força sobrenatural opressora, que dominou seu corpo para realizar façanhas incompreensíveis.</p><p><strong><em>Perícias Treinadas.</em></strong> Fortitude e Ocultismo.</p><p><strong><em>O Que Restou.</em></strong> Uma parte da criatura paranormal que o possuiu continua dentro de você. Escolha um elemento (exceto Medo). Você recebe RD 10 contra o tipo do elemento escolhido. Entretanto, sempre que entrar em contato com esse elemento pela primeira vez em uma cena (seja ao presenciar rituais, itens amaldiçoados, criaturas ou poderes paranormais), você perde 3 SAN.</p><p><em>Fonte: AS #07, p. 80.</em></p>",
+          "chatDescription": ""
+        },
+        "effects": [],
+        "sort": 0,
+        "ownership": {
+          "default": 0
+        },
+        "flags": {},
+        "_stats": {
+          "coreVersion": "14.365",
+          "systemId": "ordem_v2_classic",
+          "systemVersion": "7.3.3",
+          "createdTime": 1784950000000,
+          "modifiedTime": 1784950000000,
+          "lastModifiedBy": null,
+          "compendiumSource": null,
+          "duplicateSource": null,
+          "exportSource": null
+        },
+        "_key": "!items!zrUNJK77BazhEV7Z"
+      }
+    },
+    {
+      "name": "Sensitivo Rebelde",
+      "isNew": true,
+      "doc": {
+        "folder": "tzknJ6T3P1rXJYwo",
+        "name": "Sensitivo Rebelde",
+        "type": "origin",
+        "_id": "lRtzxTX2Lw50xXav",
+        "img": "systems/ordem_v2_classic/assets/origens/origem-as07-sensitivo-rebelde.svg",
+        "system": {
+          "id": 0,
+          "description": "<p>Apesar de lutar contra sua sensitividade paranormal, ela nunca te abandonou. Não importa o quanto você tentou negar, as visões continuavam voltando. Para você, nunca foi uma questão de fé. O sobrenatural sempre foi sua realidade.</p><p><strong><em>Perícias Treinadas.</em></strong> Intuição e Vontade.</p><p><strong><em>Sussurros e Vultos.</em></strong> Ao lidar com outras pessoas, inesperadamente surgem vozes e vultos na sua cabeça que, por mais assustadoras que sejam, ajudam a compreendê-las. Quando faz um teste de Diplomacia, Enganação, Intimidação ou Intuição, você pode escolher perder 2 SAN para receber +5 nesse teste.</p><p><em>Fonte: AS #07, p. 80.</em></p>",
+          "chatDescription": ""
+        },
+        "effects": [],
+        "sort": 0,
+        "ownership": {
+          "default": 0
+        },
+        "flags": {},
+        "_stats": {
+          "coreVersion": "14.365",
+          "systemId": "ordem_v2_classic",
+          "systemVersion": "7.3.3",
+          "createdTime": 1784950000000,
+          "modifiedTime": 1784950000000,
+          "lastModifiedBy": null,
+          "compendiumSource": null,
+          "duplicateSource": null,
+          "exportSource": null
+        },
+        "_key": "!items!lRtzxTX2Lw50xXav"
+      }
+    }
+  ]
+}

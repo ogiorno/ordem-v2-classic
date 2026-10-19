@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "node scripts/dev.mjs",
     "sync": "node scripts/sync-systems.mjs",
-    "render-check": "node scripts/render-check.mjs",
+    "render-check": "node scripts/render-check.mjs && node scripts/render-check-grimoire.mjs",
     "lang-check": "node scripts/lang-check.mjs",
     "link": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/link.ps1",
     "packs:pack": "node scripts/packs.mjs pack",

@@ -20,7 +20,7 @@ import {
 } from "./content-paths.mjs";
 import { buildItems } from "./build-items.mjs";
 import { ONUSE } from "./content-onuse.mjs";
-import { PackSource, STATS, buildEffect, buildFolder, iconSlug, normalize, slug, stableId, toHtml } from "./lib.mjs";
+import { PackSource, SOURCE_DIR, STATS, buildEffect, buildFolder, iconSlug, normalize, slug, stableId, toHtml } from "./lib.mjs";
 
 const ops = []; // montado no fim: { pack, kind: "item"|"folder", id, data } (o script do mundo faz upsert)
 const deleted = []; // documentos que saem dos compêndios: { pack, id }
@@ -399,6 +399,28 @@ if (fs.existsSync(carry)) {
 		if (!m || !fs.existsSync(file)) continue;
 		const json = JSON.parse(fs.readFileSync(file, "utf8"));
 		if (json._key?.startsWith("!items!")) touch(m[1], json._id);
+	}
+}
+
+// ------------------------------------------------------------------ marca discreta de origem
+// flags.ordem_v2_classic.source = "sah" em todo item do suplemento. Fica de fora o que é do Livro de Regras (pasta livro-de-regras),
+// mesmo quando o build mexe nele (Calejado, Casca Grossa, Medidor de Estabilidade).
+const SAH_EXTRA = {
+	classes: ["Sobrevivente"],
+	protections: ["Proteção Pesada"],
+	paranormalPowers: PARANORMAL_POWERS.flatMap((d) => [d.name, d.oldName]).filter(Boolean),
+};
+for (const packName of fs.readdirSync(SOURCE_DIR)) {
+	const src = pack(packName);
+	for (const doc of src.items) {
+		const segments = path.relative(src.dir, doc.file).split(path.sep);
+		const isSah = segments.includes("sobrevivendo-ao-horror") || packName === "survivalPowers" || (SAH_EXTRA[packName] ?? []).includes(doc.json.name);
+		if (!isSah) continue;
+		if (doc.json.flags?.ordem_v2_classic?.source !== "sah") {
+			doc.json.flags = { ...doc.json.flags, ordem_v2_classic: { ...doc.json.flags?.ordem_v2_classic, source: "sah" } };
+			src.save(doc);
+		}
+		touch(packName, doc.json._id);
 	}
 }
 

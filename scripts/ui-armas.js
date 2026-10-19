@@ -567,7 +567,7 @@ async (page) => {
 		add("AR-58", "Fuzil de Precisão sem ser veterano em Pontaria: não oferece mirar e explica a regra", !hasAim5 && /ainda não é veterano/.test(note), `${hasAim5} ${note}`);
 		await closeAll();
 
-		// ---------- F. Corrente, recarga, Cajado, Bazuca, Lança-chamas e Em Chamas (docs/spec-armas-area-recarga.md)
+		// ---------- F. Corrente, recarga, Cajado, Bazuca, Lança-chamas e Em Chamas (docs/arquivo/spec-armas-area-recarga.md)
 		await ev(async ([id]) => {
 			const a = game.actors.get(id);
 			for (const it of a.items.filter((i) => i.type === "armament")) await it.delete();

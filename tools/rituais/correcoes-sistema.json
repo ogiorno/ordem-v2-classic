@@ -1,0 +1,822 @@
+{
+ "Controle Mental": {
+  "circle": 4,
+  "element": "knowledge",
+  "description": "<p>Você domina a mente do alvo, que obedece todos os seus comandos, exceto ordens suicidas. Um alvo tem direito a um teste de Vontade no final de cada um de seus turnos para se livrar do efeito. Alvos que passarem no teste ficam pasmos por 1 rodada (apenas uma vez por cena). Discente (+5 PE): muda o alvo para até cinco pessoas ou animais. Verdadeiro (+10 PE): muda o alvo para até dez pessoas ou animais. Requer afinidade com Conhecimento.</p>",
+  "chatDescription": "<p><strong>Fonte:</strong> Livro de Regras v1.3 · <strong>Execução:</strong> padrão · <strong>Alcance:</strong> médio · <strong>Alvo:</strong> 1 pessoa ou animal · <strong>Duração:</strong> sustentada · <strong>Resistência:</strong> Vontade parcial</p>",
+  "execution": "default",
+  "range": "medium",
+  "target": "1 pessoa ou animal",
+  "duration": "sustained",
+  "resistance": "partial",
+  "skillResis": "will",
+  "targetQtd": "",
+  "area": {
+   "name": "",
+   "size": "",
+   "type": ""
+  },
+  "studentForm": true,
+  "trueForm": true
+ },
+ "Vidência": {
+  "circle": 3,
+  "element": "knowledge",
+  "description": "<p>Através de uma superfície reflexiva, como um espelho, uma bacia de água ou mesmo uma TV desligada, você pode ver e ouvir um ser escolhido e seus arredores (cerca de 6m em qualquer direção). O alvo pode estar a qualquer distância, mas tem direito a um teste de resistência no início de cada um de seus turnos para impedir a Vidência naquele turno. Se o alvo passar em dois testes seguidos, o ritual é encerrado e o alvo fica imune a ele por uma semana. Para esse ritual funcionar, você precisa ter alguma informação sobre o alvo, como seu nome ou uma foto. Dependendo do conhecimento que você tiver dele, o alvo recebe bônus ou penalidades em seu teste de resistência.</p><ul><li>Você sabe o mínimo sobre o alvo: +10.</li><li>Você possui algumas informações sobre o alvo (idade, profissão…) ou já o viu pessoalmente: +5.</li><li>Você conhece bem o alvo: –0.</li><li>Você tem um pertence pessoal ou roupa do alvo: –5.</li><li>Você tem uma parte do corpo do alvo (unhas, cabelos…): –10.</li></ul>",
+  "chatDescription": "<p><strong>Fonte:</strong> Livro de Regras v1.3 · <strong>Execução:</strong> completa · <strong>Alcance:</strong> ilimitado · <strong>Alvo:</strong> 1 ser · <strong>Duração:</strong> 5 rodadas · <strong>Resistência:</strong> Vontade anula</p>",
+  "execution": "complete",
+  "range": "unlimited",
+  "target": "1 ser",
+  "duration": "setDuration",
+  "resistance": "nullifies",
+  "skillResis": "will",
+  "targetQtd": "",
+  "area": {
+   "name": "",
+   "size": "",
+   "type": ""
+  },
+  "studentForm": false,
+  "trueForm": false
+ },
+ "Vínculo de Sangue": {
+  "circle": 4,
+  "element": "blood",
+  "description": "<p>Você manifesta um símbolo de Sangue no seu corpo e no corpo do alvo. Sempre que você sofrer dano, o alvo deve fazer um teste de Fortitude. Se ele falhar, você sofre apenas metade do dano e ele sofre a metade restante. Você pode conjurar o ritual com efeito inverso, fazendo com que você receba metade de todo o dano que o alvo receberia. Alvos voluntários não precisam fazer testes de resistência.</p>",
+  "chatDescription": "<p><strong>Fonte:</strong> Livro de Regras v1.3 · <strong>Execução:</strong> padrão · <strong>Alcance:</strong> curto · <strong>Alvo:</strong> 1 ser · <strong>Duração:</strong> cena · <strong>Resistência:</strong> Fortitude anula</p>",
+  "execution": "default",
+  "range": "short",
+  "target": "1 ser",
+  "duration": "scene",
+  "resistance": "nullifies",
+  "skillResis": "resilience",
+  "targetQtd": "",
+  "area": {
+   "name": "",
+   "size": "",
+   "type": ""
+  },
+  "studentForm": false,
+  "trueForm": false
+ },
+ "Zerar Entropia": {
+  "circle": 3,
+  "element": "death",
+  "description": "<p>Você zera completamente a entropia do alvo em relação ao ambiente, deixando-o paralisado. Se passar na resistência, em vez disso fica lento. No início de cada um de seus turnos, o alvo pode gastar uma ação completa para fazer um novo teste de Vontade. Se passar, encerra o efeito. Discente (+4 PE): muda o alvo para “1 ser”. Requer 4º círculo. Verdadeiro (+11 PE): muda o alvo para “seres escolhidos”. Requer 4º círculo e afinidade.</p>",
+  "chatDescription": "<p><strong>Fonte:</strong> Livro de Regras v1.3 · <strong>Execução:</strong> padrão · <strong>Alcance:</strong> curto · <strong>Alvo:</strong> 1 pessoa · <strong>Duração:</strong> cena · <strong>Resistência:</strong> Vontade parcial</p>",
+  "execution": "default",
+  "range": "short",
+  "target": "1 pessoa",
+  "duration": "scene",
+  "resistance": "partial",
+  "skillResis": "will",
+  "targetQtd": "",
+  "area": {
+   "name": "",
+   "size": "",
+   "type": ""
+  },
+  "studentForm": true,
+  "trueForm": true
+ },
+ "Amaldiçoar Tecnologia": {
+  "circle": 1,
+  "element": "energy",
+  "description": "<p>Você imbui o alvo com Energia, fazendo-o funcionar acima de sua capacidade. O item recebe uma modificação a sua escolha. Discente (+2 PE): muda para duas modificações. Requer 2º círculo. Verdadeiro (+5 PE): muda para três modificações. Requer 3º círculo e afinidade.</p>",
+  "chatDescription": "<p><strong>Fonte:</strong> Livro de Regras v1.3 · <strong>Execução:</strong> padrão · <strong>Alcance:</strong> toque · <strong>Alvo:</strong> 1 acessório ou arma de fogo · <strong>Duração:</strong> cena · <strong>Resistência:</strong> —</p>",
+  "execution": "default",
+  "range": "touch",
+  "target": "1 acessório ou arma de fogo",
+  "duration": "scene",
+  "resistance": "",
+  "skillResis": "",
+  "targetQtd": "",
+  "area": {
+   "name": "",
+   "size": "",
+   "type": ""
+  },
+  "studentForm": true,
+  "trueForm": true
+ },
+ "Canalizar o Medo": {
+  "circle": 4,
+  "element": "fear",
+  "description": "<p>Você transfere parte de seu poder para outra pessoa. Escolha um ritual de até 3º círculo que você conheça; o alvo pode conjurar este ritual em sua forma básica uma vez, sem pagar seu custo em PE (mas pode usar formas avançadas gastando seus próprios PE para isso). Até o ritual transferido ser conjurado, seus PE máximos diminuem em um valor igual ao custo dele.</p>",
+  "chatDescription": "<p><strong>Fonte:</strong> Livro de Regras v1.3 · <strong>Execução:</strong> padrão · <strong>Alcance:</strong> toque · <strong>Alvo:</strong> 1 pessoa · <strong>Duração:</strong> permanente até ser descarregada · <strong>Resistência:</strong> —</p>",
+  "execution": "default",
+  "range": "touch",
+  "target": "1 pessoa",
+  "duration": "setDuration",
+  "resistance": "",
+  "skillResis": "",
+  "targetQtd": "",
+  "area": {
+   "name": "",
+   "size": "",
+   "type": ""
+  },
+  "studentForm": false,
+  "trueForm": false
+ },
+ "Compreensão Paranormal": {
+  "circle": 1,
+  "element": "knowledge",
+  "description": "<p>O ritual confere a você compreensão sobrenatural da linguagem. Se tocar um objeto contendo informação (ou livro, um dispositivo com uma gravação…), você entende as palavras mesmo que não conheça seu idioma, contanto que se trate de um idioma humano (não funciona com símbolos ou sigilos paranormais). Se tocar uma pessoa, pode se comunicar com ela como se falassem um idioma em comum. Se tocar um ser não inteligente, como um animal, pode perceber seus sentimentos básicos, como medo ou felicidade. Um alvo involuntário tem direito a um teste de Vontade. Discente (+2 PE): muda o alcance para “curto” e o alvo para “alvos escolhidos”. Você pode entender todos os alvos afetados. Requer 2º círculo. Verdadeiro (+5 PE): muda o alcance para “pessoal” e o alvo para “você”. Em vez do normal, você pode falar, entender e escrever qualquer idioma humano. Requer 3º círculo.</p>",
+  "chatDescription": "<p><strong>Fonte:</strong> Livro de Regras v1.3 · <strong>Execução:</strong> padrão · <strong>Alcance:</strong> toque · <strong>Alvo:</strong> 1 ser ou objeto · <strong>Duração:</strong> cena · <strong>Resistência:</strong> Vontade anula (veja texto)</p>",
+  "execution": "default",
+  "range": "touch",
+  "target": "1 ser ou objeto",
+  "duration": "scene",
+  "resistance": "nullifies",
+  "skillResis": "will",
+  "targetQtd": "",
+  "area": {
+   "name": "",
+   "size": "",
+   "type": ""
+  },
+  "studentForm": true,
+  "trueForm": true
+ },
+ "Luz": {
+  "circle": 1,
+  "element": "energy",
+  "description": "<p>O alvo emite luz de cores alternadas e brilhantes (mas não produz calor) em uma área com 9m de raio. O objeto pode ser guardado (em um bolso, por exemplo) para interromper a luz, que voltará a funcionar caso o objeto seja revelado. Se o alvo for um objeto em posse de uma pessoa involuntária, ela tem direito a um teste de Vontade para anular o efeito. Discente (+2 PE): muda o alcance para longo e o efeito para 4 esferas brilhantes. Cria esferas flutuantes de pura luz com 10cm de diâmetro, que você pode posicionar onde quiser dentro do alcance. Você pode enviar uma esfera à frente, outra para trás, outra para cima e manter uma perto de você, por exemplo. Uma vez por rodada, você pode mover as esferas com uma ação livre. Cada esfera ilumina uma área de 6m de raio, mas não produz calor. Se uma esfera ocupar o espaço de um ser, ele fica ofuscada e sua silhueta pode ser vista claramente (ela não recebe camuflagem por escuridão ou invisibilidade). Requer 2º círculo. Verdadeiro (+5 PE): a luz é cálida como a do sol. Dentro da área seus aliados recebem +d20 em testes de Vontade, e seus inimigos ficam ofuscados. Requer 3º círculo.</p>",
+  "chatDescription": "<p><strong>Fonte:</strong> Livro de Regras v1.3 · <strong>Execução:</strong> padrão · <strong>Alcance:</strong> curto · <strong>Alvo:</strong> 1 objeto · <strong>Duração:</strong> cena · <strong>Resistência:</strong> Vontade anula (veja texto)</p>",
+  "execution": "default",
+  "range": "short",
+  "target": "1 objeto",
+  "duration": "scene",
+  "resistance": "nullifies",
+  "skillResis": "will",
+  "targetQtd": "",
+  "area": {
+   "name": "",
+   "size": "",
+   "type": ""
+  },
+  "studentForm": true,
+  "trueForm": true
+ },
+ "Mergulho Mental": {
+  "circle": 3,
+  "element": "knowledge",
+  "description": "<p>Você mergulha nos pensamentos do alvo para descobrir informações sobre ele. Durante o mergulho, você fica desprevenido. No início de cada turno seu que estiver sustentando o efeito e tocando o alvo, ele deve fazer um teste de Vontade. Se falhar, deve responder uma pergunta sua que possa ser respondida com “sim” ou “não”, sendo incapaz de mentir. O que você descobre depende das suas perguntas e do mestre: talvez você não descubra tudo que há para saber, mas pode ganhar pistas para continuar a investigação. Verdadeiro (+4 PE): muda a execução para 1 dia, o alcance para ilimitado e adiciona como componente ritualístico uma cuba de ouro cheia d’água e uma máscara (acessório de categoria II). Você pode realizar o mergulho mental à distância, submergindo seu rosto mascarado na água enquanto mentaliza o alvo. Para que esse ritual funcione, você precisa ter alguma informação sobre o alvo, como nome completo, e um objeto pessoal ou fotografia. Requer 4º círculo.</p>",
+  "chatDescription": "<p><strong>Fonte:</strong> Livro de Regras v1.3 · <strong>Execução:</strong> padrão · <strong>Alcance:</strong> toque · <strong>Alvo:</strong> 1 pessoa · <strong>Duração:</strong> sustentada · <strong>Resistência:</strong> Vontade parcial (veja texto)</p>",
+  "execution": "default",
+  "range": "touch",
+  "target": "1 pessoa",
+  "duration": "sustained",
+  "resistance": "partial",
+  "skillResis": "will",
+  "targetQtd": "",
+  "area": {
+   "name": "",
+   "size": "",
+   "type": ""
+  },
+  "studentForm": false,
+  "trueForm": true
+ },
+ "Miasma Entrópico": {
+  "circle": 2,
+  "element": "death",
+  "description": "<p>Cria uma explosão de emanações tóxicas. Seres na área sofrem 4d8 pontos de dano químico e ficam enjoados por 1 rodada. Se passarem na resistência, sofrem metade do dano e não ficam enjoados. Discente (+3 PE): muda o dano para 6d8 de Morte. Verdadeiro (+7 PE): como a versão discente, mas muda a duração para 3 rodadas. Um ser que inicie seu turno dentro da área sofre o dano novamente. Requer 3º círculo.</p>",
+  "chatDescription": "<p><strong>Fonte:</strong> Livro de Regras v1.3 · <strong>Execução:</strong> padrão · <strong>Alcance:</strong> médio · <strong>Alvo:</strong> Veja descrição da área · <strong>Duração:</strong> instantânea · <strong>Resistência:</strong> Fortitude parcial (veja texto)</p>",
+  "execution": "default",
+  "range": "medium",
+  "target": "Veja descrição da área",
+  "duration": "instantaneous",
+  "resistance": "partial",
+  "skillResis": "resilience",
+  "targetQtd": "",
+  "area": {
+   "name": "nuvem com 6m de raio",
+   "size": "",
+   "type": ""
+  },
+  "studentForm": true,
+  "trueForm": true
+ },
+ "Decadência": {
+  "circle": 1,
+  "element": "death",
+  "description": "<p>Espirais de trevas envolvem sua mão e definham o alvo, que sofre 2d8+2 pontos de dano de Morte. Discente (+2 PE): muda a resistência para “nenhuma” e o dano para 3d8+3. Como parte da execução do ritual, você transfere as espirais para uma arma e faz um ataque corpo a corpo contra o alvo com esta arma. Se acertar, causa o dano da arma e do ritual, somados. Verdadeiro (+5 PE): muda o alcance para “pessoal” o alvo para “área: explosão com 6m de raio” e o dano para 8d8+8. As espirais afetam todos os seres na área. Requer 3º círculo.</p>",
+  "chatDescription": "<p><strong>Fonte:</strong> Livro de Regras v1.3 · <strong>Execução:</strong> padrão · <strong>Alcance:</strong> toque · <strong>Alvo:</strong> 1 ser · <strong>Duração:</strong> instantânea · <strong>Resistência:</strong> Fortitude reduz à metade</p>",
+  "execution": "default",
+  "range": "touch",
+  "target": "1 ser",
+  "duration": "instantaneous",
+  "resistance": "reducesByHalf",
+  "skillResis": "resilience",
+  "targetQtd": "",
+  "area": {
+   "name": "",
+   "size": "",
+   "type": ""
+  },
+  "studentForm": true,
+  "trueForm": true
+ },
+ "Eco Espiral": {
+  "circle": 2,
+  "element": "death",
+  "description": "<p>Você manifesta em suas mãos uma pequena cópia do alvo feita de cinzas. No início do próximo turno após conjurar este ritual, você precisa gastar uma ação padrão para se concentrar nele; caso contrário, ele se dissipa sem efeito. No início do segundo turno, você precisa gastar uma ação padrão para descarregá-lo. Se fizer isso, a cópia explode e o alvo sofre dano de Morte igual a quantidade de dano que sofreu na rodada em que você se concentrou (Fortitude reduz à metade). Se não fizer, o ritual se dissipa sem efeito. Discente (+3 PE): muda o alvo para “até 5 seres”. Verdadeiro (+7 PE): muda a duração para “até 3 rodadas”, permitindo que você se concentre nas duas primeiras e descarregue na terceira. Requer 4º círculo e afinidade.</p>",
+  "chatDescription": "<p><strong>Fonte:</strong> Livro de Regras v1.3 · <strong>Execução:</strong> padrão · <strong>Alcance:</strong> curto · <strong>Alvo:</strong> 1 ser · <strong>Duração:</strong> 2 rodadas · <strong>Resistência:</strong> Fortitude reduz à metade</p>",
+  "execution": "default",
+  "range": "short",
+  "target": "1 ser",
+  "duration": "setDuration",
+  "resistance": "reducesByHalf",
+  "skillResis": "resilience",
+  "targetQtd": "",
+  "area": {
+   "name": "",
+   "size": "",
+   "type": ""
+  },
+  "studentForm": true,
+  "trueForm": true
+ },
+ "Hemofagia": {
+  "circle": 2,
+  "element": "blood",
+  "description": "<p>Você arranca o sangue do corpo do alvo através da pele dele, causando 6d6 pontos de dano de Sangue. Você então absorve esse sangue, recuperando pontos de vida iguais à metade do dano causado. Discente (+3 PE): muda a resistência para “nenhuma”. Como parte da execução do ritual, você faz um ataque corpo a corpo contra o alvo. Se acertar, causa o dano do ataque e do ritual, recuperando PV em quantidade igual à metade do dano total causado. Verdadeiro (+7 PE): muda o alcance para “pessoal”, o alvo para “você” e a duração para “cena”. Em vez do normal, a cada rodada você pode gastar uma ação padrão para tocar 1 ser e causar 4d6 pontos de dano de Sangue. Você recupera PV iguais à metade do dano causado. Requer 4º círculo.</p>",
+  "chatDescription": "<p><strong>Fonte:</strong> Livro de Regras v1.3 · <strong>Execução:</strong> padrão · <strong>Alcance:</strong> toque · <strong>Alvo:</strong> 1 ser · <strong>Duração:</strong> instantânea · <strong>Resistência:</strong> Fortitude reduz à metade</p>",
+  "execution": "default",
+  "range": "touch",
+  "target": "1 ser",
+  "duration": "instantaneous",
+  "resistance": "reducesByHalf",
+  "skillResis": "resilience",
+  "targetQtd": "",
+  "area": {
+   "name": "",
+   "size": "",
+   "type": ""
+  },
+  "studentForm": true,
+  "trueForm": true
+ },
+ "Paradoxo": {
+  "circle": 2,
+  "element": "death",
+  "description": "<p>O ritual cria uma poderosa implosão de distorção temporal contraditória, causando 6d6 pontos de dano de Morte em todos os seres na área. Discente (+3 PE): muda a área para efeito: esfera de 1,5 m de diâmetro e a duração para cena. Em vez do normal, cria uma esfera de emanações espirais sibilantes com 1,5m de diâmetro que causa 4d6 pontos de dano de Morte a qualquer ser no mesmo espaço. Você pode gastar uma ação de movimento para fazer a esfera voar 9m em qualquer direção. Um ser só pode sofrer dano da esfera uma vez por rodada. Verdadeiro (+7 PE): muda o dano para 13d6. Seres reduzidos a 0 PV pelo dano do Paradoxo devem fazer um teste de Fortitude. Se falharem, são reduzidos a cinzas (morrem imediatamente). Requer 4º círculo.</p>",
+  "chatDescription": "<p><strong>Fonte:</strong> Livro de Regras v1.3 · <strong>Execução:</strong> padrão · <strong>Alcance:</strong> médio · <strong>Alvo:</strong> Veja descrição da área · <strong>Duração:</strong> instantânea · <strong>Resistência:</strong> Fortitude reduz à metade</p>",
+  "execution": "default",
+  "range": "medium",
+  "target": "Veja descrição da área",
+  "duration": "instantaneous",
+  "resistance": "reducesByHalf",
+  "skillResis": "resilience",
+  "targetQtd": "",
+  "area": {
+   "name": "esfera com 6m de raio",
+   "size": "",
+   "type": ""
+  },
+  "studentForm": true,
+  "trueForm": true
+ },
+ "Vomitar Pestes": {
+  "circle": 3,
+  "element": "blood",
+  "description": "<p>Você vomita um enxame de pequenas criaturas de Sangue, que surge em um ponto adjacente a sua escolha. O enxame pode passar pelo espaço de outros seres e não impede que outros seres entrem no espaço dele. No final de cada um de seus turnos, o enxame causa 5d12 pontos de dano de sangue a qualquer ser no espaço dele (Reflexos reduz à metade). Você pode gastar uma ação de movimento para mover o enxame com deslocamento de 12m. Discente (+2 PE): além do normal, um alvo que falhe no teste de Reflexos fica agarrado (o enxame escala e cobre o corpo dele). O alvo pode gastar uma ação padrão e fazer um teste de Acrobacia ou Atletismo para escapar. Se você mover o enxame, o alvo fica livre. Verdadeiro (+5 PE): o enxame vira Enorme (cubo de 6m de lado) e ganha deslocamento de voo 18m.</p>",
+  "chatDescription": "<p><strong>Fonte:</strong> Livro de Regras v1.3 · <strong>Execução:</strong> padrão · <strong>Alcance:</strong> médio · <strong>Alvo:</strong> Veja texto · <strong>Duração:</strong> sustentada · <strong>Resistência:</strong> Reflexos reduz à metade</p>",
+  "execution": "default",
+  "range": "medium",
+  "target": "Veja texto",
+  "duration": "sustained",
+  "resistance": "reducesByHalf",
+  "skillResis": "reflexes",
+  "targetQtd": "",
+  "area": {
+   "name": "1 enxame Grande (quadrado de 3m)",
+   "size": "",
+   "type": ""
+  },
+  "studentForm": true,
+  "trueForm": true
+ },
+ "Fim Inevitável": {
+  "circle": 4,
+  "element": "death",
+  "description": "<p>Você cria um vácuo em um espaço desocupado a sua escolha. No início de cada um de seus quatro turnos seguintes, todos os seres a até 90m do vácuo, incluindo você, devem fazer um teste de Fortitude. Em caso de falha, ficam caídas e são puxadas 30m na direção do vácuo. Objetos soltos também são puxados. Seres podem gastar uma ação de movimento para se segurar em algum objeto fixo, recebendo +5 em seus testes de resistência. Seres e objetos que iniciem seu turno tocando o vácuo temporal sofrem 100 pontos de dano de Morte por rodada. Discente (+5 PE): muda a duração para “5 rodadas” e o efeito para que você não seja afetado. Requer afinidade. Verdadeiro (+10 PE): muda a duração para “6 rodadas” e o efeito para que seres escolhidos dentro do alcance não sejam afetados. Requer afinidade.</p>",
+  "chatDescription": "<p><strong>Fonte:</strong> Livro de Regras v1.3 · <strong>Execução:</strong> completa · <strong>Alcance:</strong> extremo · <strong>Alvo:</strong> Veja texto · <strong>Duração:</strong> 4 rodadas · <strong>Resistência:</strong> Fortitude parcial</p>",
+  "execution": "complete",
+  "range": "extreme",
+  "target": "Veja texto",
+  "duration": "setDuration",
+  "resistance": "partial",
+  "skillResis": "resilience",
+  "targetQtd": "",
+  "area": {
+   "name": "buraco negro com 1,5m de diâmetro",
+   "size": "",
+   "type": ""
+  },
+  "studentForm": true,
+  "trueForm": true
+ },
+ "Invólucro de Carne": {
+  "circle": 4,
+  "element": "blood",
+  "description": "<p>Você manifesta uma poça de sangue no chão, de onde emerge uma cópia sua. Ela é idêntica em aparência e capacidades (em termos de jogo, tem as mesmas estatísticas) e surge com uma cópia de todo equipamento mundano que você estiver carregando. A cópia não tem consciência (valor de Intelecto e Presença nulos) e não age sem que você dê uma ordem. Você pode gastar uma ação de movimento para dar uma ordem à cópia, como “lute contra aquele ser”. No final de cada um de seus turnos, a cópia segue a ordem da melhor maneira possível, mas ainda é incapaz de tomar decisões sozinha e acatará qualquer ordem perigosa sem hesitar, mesmo que leve à sua destruição. Alternativamente, no início de seu turno, você pode controlar ativamente a cópia. Se fizer isso, você entra num transe temporário e assume o controle da cópia como se fosse seu corpo, usando os sentidos dela. Qualquer ser que interagir com a cópia tem direito a um teste de Percepção (DT do ritual) para perceber que é uma cópia. A cópia se desfaz em uma poça de sangue coagulado se chegar a 0 PV ou sair do alcance.</p>",
+  "chatDescription": "<p><strong>Fonte:</strong> Livro de Regras v1.3 · <strong>Execução:</strong> padrão · <strong>Alcance:</strong> curto · <strong>Alvo:</strong> Veja texto · <strong>Duração:</strong> cena · <strong>Resistência:</strong> —</p>",
+  "execution": "default",
+  "range": "short",
+  "target": "Veja texto",
+  "duration": "scene",
+  "resistance": "",
+  "skillResis": "",
+  "targetQtd": "",
+  "area": {
+   "name": "1 clone seu",
+   "size": "",
+   "type": ""
+  },
+  "studentForm": false,
+  "trueForm": false
+ },
+ "Nuvem de Cinzas": {
+  "circle": 1,
+  "element": "death",
+  "description": "<p>Uma nuvem de fuligem espessa eleva-se de um ponto a sua escolha, obscurecendo toda a visão — seres a até 1,5m têm camuflagem leve e seres a partir de 3m têm camuflagem total. Um vento forte dispersa a nuvem em 4 rodadas e um vendaval a dispersa em 1 rodada. A nuvem não funciona sob a água. Discente (+2 PE): você pode escolher seres no alcance ao conjurar o ritual; eles enxergam através do efeito. Requer 2º círculo. Verdadeiro (+5 PE): além do normal, a nuvem fica espessa, quase sólida. Qualquer ser dentro dela tem seu deslocamento reduzido para 3m (independente de seu deslocamento normal) e sofre –2 em testes de ataque. Requer 3º círculo.</p>",
+  "chatDescription": "<p><strong>Fonte:</strong> Livro de Regras v1.3 · <strong>Execução:</strong> padrão · <strong>Alcance:</strong> curto · <strong>Alvo:</strong> Veja texto · <strong>Duração:</strong> cena · <strong>Resistência:</strong> —</p>",
+  "execution": "default",
+  "range": "short",
+  "target": "Veja texto",
+  "duration": "scene",
+  "resistance": "",
+  "skillResis": "",
+  "targetQtd": "",
+  "area": {
+   "name": "nuvem com 6m de raio e 6m de altura",
+   "size": "",
+   "type": ""
+  },
+  "studentForm": true,
+  "trueForm": true
+ },
+ "Tecer Ilusão": {
+  "circle": 1,
+  "element": "knowledge",
+  "description": "<p>Este ritual cria uma ilusão visual (uma pessoa, uma parede…) ou sonora (um grito de socorro, um uivo assustador…). O ritual cria apenas imagens ou sons simples, com volume equivalente à voz de uma pessoa para cada cubo de 1,5m no efeito. Não é possível criar cheiros, texturas ou temperaturas, nem sons complexos, como uma música ou diálogo. Seres e objetos atravessam uma ilusão sem sofrer dano, mas o ritual pode, por exemplo, esconder uma armadilha ou emboscada. A ilusão é dissipada se você sair do alcance. Discente (+2 PE): muda o efeito para até 8 cubos de 1,5m e a duração para sustentada. Você pode criar ilusões de imagem e som combinados, e pode criar sons complexos, odores e sensações térmicas. Também pode criar sensações táteis, como texturas; objetos ainda atravessam a ilusão, mas seres não conseguem atravessá-la sem passar em um teste de Vontade. A cada rodada, você pode usar uma ação livre para mover a imagem ou alterar o som, como aumentar o volume ou fazer com que pareça se afastar ou se aproximar, ainda dentro dos limites do efeito. Você pode, por exemplo, criar a ilusão de um fantasma que anda pela sala, controlando seus movimentos. A ilusão ainda é incapaz de causar ou sofrer dano. Quando você para de sustentar o ritual, a imagem ou som persiste por mais uma rodada antes do ritual se dissipar. Requer 2º círculo. Verdadeiro (+ 5 PE): você cria a ilusão de um perigo mortal. Quando o ritual é conjurado, e no início de cada um de seus turnos, um alvo interagindo com a ilusão deve fazer um teste de Vontade; se falhar, acredita que a ilusão é real e sofre 6d6 pontos de dano de Conhecimento. O alvo racionaliza o efeito sempre que falha no teste (por exemplo, acredita que o mesmo teto pode cair sobre ele várias vezes). Se um alvo passar em dois testes de Vontade seguidos, o efeito é anulado para ele. Requer 3º círculo.</p>",
+  "chatDescription": "<p><strong>Fonte:</strong> Livro de Regras v1.3 · <strong>Execução:</strong> padrão · <strong>Alcance:</strong> médio · <strong>Alvo:</strong> Veja texto · <strong>Duração:</strong> cena · <strong>Resistência:</strong> Vontade desacredita</p>",
+  "execution": "default",
+  "range": "medium",
+  "target": "Veja texto",
+  "duration": "scene",
+  "resistance": "discredits",
+  "skillResis": "will",
+  "targetQtd": "",
+  "area": {
+   "name": "ilusão que se estende a até 4 cubos de 1,5m",
+   "size": "",
+   "type": ""
+  },
+  "studentForm": true,
+  "trueForm": false
+ },
+ "Invadir Mente": {
+  "circle": 2,
+  "element": "knowledge",
+  "description": "<p>Quando conjura este ritual, você gera um dos efeitos a seguir, a sua escolha: rajada mental (usa os primeiros parâmetros do cabeçalho acima) ou ligação telepática (usa os segundos parâmetros). Rajada Mental: você infecta a mente do alvo com o Conhecimento proibido do Outro Lado, dilacerando o cérebro dele. O alvo sofre 6d6 pontos de dano de Conhecimento e fica atordoado por uma rodada. Se passar no teste de Vontade, sofre metade do dano e não fica atordoado. Um mesmo alvo só pode ficar atordoado por este ritual uma vez por cena. Ligação Telepática: você cria um elo mental entre duas pessoas (você pode ser uma delas), que podem se comunicar independente da distância pela duração do ritual (1 dia). Discente (+3 PE): se escolhar rajada mental, aumenta o dano para 10d6. Se escolher ligação telepática, em vez do normal, você cria um elo mental que permite que você gaste uma ação de movimento para ver e ouvir pelos sentidos do alvo. Um alvo involuntário pode fazer um teste de Vontade para suprimir o ritual por uma hora. Requer 3º círculo. Verdadeiro (+7 PE): se escolher rajada mental, aumenta o dano para 10d6 e muda o alvo para “seres escolhidos”. Se escolher ligação telepática, você pode criar um vínculo mental entre até 5 pessoas. Requer 4º círculo.</p>",
+  "chatDescription": "<p><strong>Fonte:</strong> Livro de Regras v1.3 · <strong>Execução:</strong> padrão · <strong>Alcance:</strong> médio ou toque · <strong>Alvo:</strong> 1 ser ou 2 pessoas voluntárias · <strong>Duração:</strong> instantânea ou 1 dia · <strong>Resistência:</strong> Vontade parcial ou nenhuma</p>",
+  "execution": "default",
+  "range": "medium",
+  "target": "1 ser ou 2 pessoas voluntárias",
+  "duration": "instantaneous",
+  "resistance": "partial",
+  "skillResis": "will",
+  "targetQtd": "",
+  "area": {
+   "name": "",
+   "size": "",
+   "type": ""
+  },
+  "studentForm": true,
+  "trueForm": true
+ },
+ "Localização": {
+  "circle": 2,
+  "element": "knowledge",
+  "description": "<p>Este ritual pode encontrar uma pessoa ou objeto a sua escolha. Você pode pensar em termos gerais (“um policial”, “algo de metal”) ou específicos (“A delegada Joana”, “uma pistola”). O ritual indica a direção e distância da pessoa ou objeto mais próximo desse tipo, caso esteja ao alcance. Você pode movimentar-se para continuar procurando. Procurar algo muito específico (“a chave do armazém 4 no porto”) exige que você tenha em mente uma imagem precisa do objeto; caso a imagem não seja parecida com a verdade, o ritual falha, mas você gasta os PE mesmo assim. Este ritual pode ser bloqueado por uma fina camada de chumbo. Discente (+3 PE): muda o alcance para “toque”, o alvo para “1 pessoa” e a duração para “1 hora”. Em vez do normal, a pessoa tocada descobre o caminho mais direto para entrar ou sair de um lugar. Assim, o ritual pode ser usado para descobrir a rota até o relicário de uma catedral ou a saída mais próxima de uma caverna (mas não para encontrar a localização de uma pessoa ou objeto; funciona apenas em relação a lugares). Caso a pessoa demore mais de uma hora para percorrer o caminho, o conhecimento se perde. Verdadeiro (+7 PE): aumenta a área para círculo de 1km de raio. Requer 4º círculo.</p>",
+  "chatDescription": "<p><strong>Fonte:</strong> Livro de Regras v1.3 · <strong>Execução:</strong> padrão · <strong>Alcance:</strong> pessoal · <strong>Alvo:</strong> Veja descrição da área · <strong>Duração:</strong> cena · <strong>Resistência:</strong> —</p>",
+  "execution": "default",
+  "range": "personal",
+  "target": "Veja descrição da área",
+  "duration": "scene",
+  "resistance": "",
+  "skillResis": "",
+  "targetQtd": "",
+  "area": {
+   "name": "círculo com 90m de raio",
+   "size": "",
+   "type": ""
+  },
+  "studentForm": true,
+  "trueForm": true
+ },
+ "Desacelerar Impacto": {
+  "circle": 2,
+  "element": "death",
+  "description": "<p>O alvo cai lentamente. A velocidade da queda é reduzida para 18m por rodada — o suficiente para não causar dano. Como conjurar este ritual é uma reação, você pode conjurá-lo rápido o bastante para salvar a si ou um aliado de quedas inesperadas. Se o alvo for um projétil — como um disparo de arma ou um objeto largado do alto de um prédio —, o ritual faz com que ele cause metade do dano normal, devido à lentidão. Este ritual só funciona em alvos em queda livre ou similar; não pode frear um golpe de faca ou o mergulho rasante de um atacante voador. Verdadeiro (+3 PE): aumenta o total de alvos para seres ou objetos somando até 100 espaços.</p>",
+  "chatDescription": "<p><strong>Fonte:</strong> Livro de Regras v1.3 · <strong>Execução:</strong> reação · <strong>Alcance:</strong> curto · <strong>Alvo:</strong> 1 ser ou objetos somando até 10 espaços · <strong>Duração:</strong> até chegar ao solo ou cena, o que vier primeiro · <strong>Resistência:</strong> —</p>",
+  "execution": "reaction",
+  "range": "short",
+  "target": "1 ser ou objetos somando até 10 espaços",
+  "duration": "setDuration",
+  "resistance": "",
+  "skillResis": "",
+  "targetQtd": "",
+  "area": {
+   "name": "",
+   "size": "",
+   "type": ""
+  },
+  "studentForm": false,
+  "trueForm": true
+ },
+ "Descarnar": {
+  "circle": 2,
+  "element": "blood",
+  "description": "<p>Este ritual cruel faz com que lacerações se manifestem na pele e órgãos do alvo, que sofre 6d8 pontos de dano (metade corte, metade Sangue) e fica com uma hemorragia severa. No início de cada turno dele, o alvo deve fazer um teste de Fortitude. Se falhar, sofre 2d8 pontos de dano de Sangue. Se passar nesse teste dois turnos seguidos, a hemorragia é estancada. Alvos que passem no teste de resistência inicial sofrem metade do dano e não ficam com hemorragia. Discente (+3 PE): muda o dano direto para 10d8 e o dano da hemorragia para 4d8. Requer 3º círculo. Verdadeiro (+7 PE): muda o alvo para você e a duração para sustentada. Enquanto o ritual durar, seus ataques corpo a corpo causam 4d8 pontos de dano de Sangue adicional e deixam o alvo com hemorragia automaticamente (como no efeito básico do ritual). O alvo ainda tem direito a um teste de Fortitude no início de seus turnos. Requer 3º círculo e afinidade.</p>",
+  "chatDescription": "<p><strong>Fonte:</strong> Livro de Regras v1.3 · <strong>Execução:</strong> padrão · <strong>Alcance:</strong> toque · <strong>Alvo:</strong> 1 ser · <strong>Duração:</strong> instantânea · <strong>Resistência:</strong> Fortitude parcial</p>",
+  "execution": "default",
+  "range": "touch",
+  "target": "1 ser",
+  "duration": "instantaneous",
+  "resistance": "partial",
+  "skillResis": "resilience",
+  "targetQtd": "",
+  "area": {
+   "name": "",
+   "size": "",
+   "type": ""
+  },
+  "studentForm": true,
+  "trueForm": true
+ },
+ "Coincidência Forçada": {
+  "circle": 1,
+  "element": "energy",
+  "description": "<p>Você manipula os caminhos do caos para que o alvo tenha mais sorte. O alvo recebe +2 em testes de perícias. Discente (+2 PE): muda o alvo para aliados à sua escolha. Requer 2º círculo. Verdadeiro (+5 PE): muda o alvo para aliados à sua escolha e o bônus para +5. Requer 3º círculo e afinidade.</p>",
+  "chatDescription": "<p><strong>Fonte:</strong> Livro de Regras v1.3 · <strong>Execução:</strong> padrão · <strong>Alcance:</strong> curto · <strong>Alvo:</strong> 1 ser · <strong>Duração:</strong> cena · <strong>Resistência:</strong> —</p>",
+  "execution": "default",
+  "range": "short",
+  "target": "1 ser",
+  "duration": "scene",
+  "resistance": "",
+  "skillResis": "",
+  "targetQtd": "",
+  "area": {
+   "name": "",
+   "size": "",
+   "type": ""
+  },
+  "studentForm": true,
+  "trueForm": true
+ },
+ "Chamas do Caos": {
+  "circle": 2,
+  "element": "energy",
+  "description": "<p>Você manipula o calor e o fogo. Ao conjurar o ritual, escolha um dos seguintes efeitos.</p><p><strong>Chamejar:</strong></p><p>o alvo é uma arma corpo a corpo. Ela causa +1d6 pontos de dano de fogo.</p> <p><strong>Esquentar:</strong></p><p>o alvo é um objeto, que começa a esquentar. Ele sofre 1d6 pontos de dano de fogo por rodada e causa o mesmo dano a qualquer ser que o esteja empunhando ou vestindo. A critério do mestre, o objeto ou o ser pode pegar fogo. Um ser pode gastar uma ação completa para resfriar o objeto (jogando areia ou jogando-o numa fonte de água próxima, por exemplo) e cancelar o efeito do ritual.</p> <p><strong>Extinguir:</strong></p><p>o alvo é uma chama de tamanho Grande ou menor, que é apagada. Isso cria uma nuvem de fumaça que ocupa uma esfera de 3m de raio centrada onde estava a chama. Dentro da fumaça, seres têm camuflagem leve.</p> <p><strong>Modelar:</strong></p><p>o alvo é uma chama de tamanho Grande ou menor. A cada rodada, você pode gastar uma ação livre para movimentá-la 9m em qualquer direção. Se atravessar o espaço ocupado por um ser, ela causa 3d6 pontos de dano de fogo nele. Um ser só pode sofrer dano dessa maneira uma vez por rodada. Discente (+3 PE): muda a duração para sustentada e adiciona “Resistência: Reflexos reduz à metade”. Em vez do normal, uma vez por rodada você pode gastar uma ação de movimento para projetar uma labareda, num alvo em alcance curto. O alvo sofre 4d6 pontos de dano de Energia (Reflexos reduz à metade). Verdadeiro (+ 7 PE): como discente, mas muda o dano para 8d6. Requer 3º círculo.</p>",
+  "chatDescription": "<p><strong>Fonte:</strong> Livro de Regras v1.3 · <strong>Execução:</strong> padrão · <strong>Alcance:</strong> curto · <strong>Alvo:</strong> veja texto · <strong>Duração:</strong> cena · <strong>Resistência:</strong> —</p>",
+  "execution": "default",
+  "range": "short",
+  "target": "veja texto",
+  "duration": "scene",
+  "resistance": "",
+  "skillResis": "",
+  "targetQtd": "",
+  "area": {
+   "name": "",
+   "size": "",
+   "type": ""
+  },
+  "studentForm": true,
+  "trueForm": false
+ },
+ "Perturbação": {
+  "circle": 1,
+  "element": "knowledge",
+  "description": "<p>Você dá uma ordem que o alvo deve ser capaz de ouvir (mas não precisa entender). Se falhar na resistência, ele deve obedecer à ordem em seu próprio turno da melhor maneira possível. Escolha um dos efeitos.</p><p><strong>Fuja:</strong></p><p>O alvo gasta seu turno tentando se afastar de você (usando todas as suas ações).</p> <p><strong>Largue:</strong></p><p>O alvo solta quaisquer itens que esteja segurando e não pode pegá-los de volta até o início de seu próximo turno. Como esta é uma ação livre, ele ainda pode executar outras ações (exceto pegar aquilo que largou).</p> <p><strong>Pare:</strong></p><p>O alvo fica pasmo (não pode realizar ações, só reações).</p> <p><strong>Sente-se:</strong></p><p>Com uma ação livre, o alvo se senta no chão (se estava pendurado ou voando, desce até o chão). Ele pode fazer outras ações, mas não se levantar até o início de seu próximo turno.</p> <p><strong>Venha:</strong></p><p>O alvo gasta seu turno se aproximando de você (usando todas as suas ações). Discente (+2 PE): muda o alvo para “1 ser” e adiciona o seguinte comando: “Sofra. O alvo é acometido de dor aguda. Ele sofre 3d8 pontos de dano de Conhecimento e fica abalado por uma rodada”. Verdadeiro (+5 PE): muda o alvo para “até 5 seres” ou adiciona o seguinte comando: “Ataque. O alvo deve fazer a ação agredir contra um outro alvo a sua escolha em alcance médio, com todas as suas capacidades”. Requer 3º círculo e afinidade.</p>",
+  "chatDescription": "<p><strong>Fonte:</strong> Livro de Regras v1.3 · <strong>Execução:</strong> padrão · <strong>Alcance:</strong> curto · <strong>Alvo:</strong> 1 pessoa · <strong>Duração:</strong> 1 rodada · <strong>Resistência:</strong> Vontade anula</p>",
+  "execution": "default",
+  "range": "short",
+  "target": "1 pessoa",
+  "duration": "setDuration",
+  "resistance": "nullifies",
+  "skillResis": "will",
+  "targetQtd": "",
+  "area": {
+   "name": "",
+   "size": "",
+   "type": ""
+  },
+  "studentForm": true,
+  "trueForm": true
+ },
+ "Polarização Caótica": {
+  "circle": 1,
+  "element": "energy",
+  "description": "<p>Você gera uma aura magnética sobrenatural. Escolha um dos efeitos a seguir.</p><p><strong>Atrair:</strong></p><p>você pode usar uma ação de movimento para puxar um objeto metálico de espaço 2 ou menor dentro do alcance. Se o objeto estiver livre, voa para suas mãos (caso tenha mãos livres para apanhá-lo) ou para seus pés.</p> <p><strong>Repelir:</strong></p><p>você repele objetos de espaço 2 ou menor (o que envolve quase todos os projéteis e armas de arremesso), recebendo resistência a balístico, corte, impacto e perfuração 5. Discente (+2 PE): muda a duração para instantânea. nesta versão a energia magnética é expelida de uma única vez e arremessa até 10 objetos, ou um total de 10 espaços, o que for menor. Os objetos devem estar a até 3m uns dos outros. Objetos arremessados podem atingir seres em seu caminho, causando de 1 ponto de dano de impacto por espaço (objetos macios, sem pontas ou sem fio) até 1d6 pontos de dano por espaço (objetos duros, pontudos ou afiados). Seres atingidos têm direito a um teste de Reflexos para reduzir o dano à metade. Seres dentro da capacidade de carga do efeito podem ser arremessados, mas têm direito a um teste de Vontade para evitar o efeito (em si mesmos ou em objetos que estejam segurando). Um ser arremessado contra uma superfície sólida sofre 1d6 pontos de dano de impacto para cada 3m que “voou” no deslocamento (incluindo outros seres; nesse caso, ambos sofrem o dano). Verdadeiro (+5 PE): muda o alcance para médio e a duração para instantânea. Você pode usar uma ação de movimento para fazer com que a força magnética levite e mova um ser ou objeto de espaço 10 ou menor por até 9m em qualquer direção dentro do alcance. Um ser pode anular o efeito sobre ele, ou sobre um objeto que possua, passando num teste de Vontade. O alvo cai no chão se sair do alcance ou o efeito terminar.</p>",
+  "chatDescription": "<p><strong>Fonte:</strong> Livro de Regras v1.3 · <strong>Execução:</strong> padrão · <strong>Alcance:</strong> curto · <strong>Alvo:</strong> você · <strong>Duração:</strong> sustentada · <strong>Resistência:</strong> Vontade anula</p>",
+  "execution": "default",
+  "range": "short",
+  "target": "você",
+  "duration": "sustained",
+  "resistance": "nullifies",
+  "skillResis": "will",
+  "targetQtd": "",
+  "area": {
+   "name": "",
+   "size": "",
+   "type": ""
+  },
+  "studentForm": true,
+  "trueForm": true
+ },
+ "Sopro do Caos": {
+  "circle": 2,
+  "element": "energy",
+  "description": "<p>Você altera os movimentos de massas de ar de forma caótica. Ao conjurar o ritual, escolha um dos efeitos abaixo.</p><p><strong>Ascender:</strong></p><p>cria uma corrente de ar ascendente capaz de erguer do chão um ser ou objeto Médio, fazendo o alvo ﬂutuar para cima e para baixo conforme sua vontade. Você pode gastar uma ação de movimento para subir ou descer o alvo até 6m por rodada, até um máximo de 30m de altura. Você não pode mover o alvo horizontalmente — mas o alvo pode, por exemplo, escalar uma colina ou se apoiar no teto para mover-se para os lados (com metade de seu deslocamento normal). Um ser levitando fica vulnerável. Alvos involuntários têm direito a um teste de Fortitude no início de cada um de seus turnos para encerrar o efeito. Derrubar um alvo flutuando (simplesmente parando a corrente de ar) causa o dano normal de queda, mas um alvo que passe no teste pode “nadar” para o chão contra a corrente. Você pode usar essa opção para fazer uma manobra derrubar contra um alvo voador dentro do alcance, usando Ocultismo em vez de Luta.</p> <p><strong>Sopro:</strong></p><p>cria uma lufada de vento a partir de suas mãos, que empurra qualquer alvo Médio ou menor, em um cone de 4,5m — faça uma manobra empurrar usando Ocultismo em vez de Luta, usando uma mesma rolagem sua para todos os alvos. A lufada de vento também faz qualquer coisa que um vento forte e súbito faria, como levantar pó, dispersar vapores, apagar chamas, espalhar papéis ou mover uma embarcação. Manter o sopro ativo exige uma ação padrão no seu turno.</p> <p><strong>Vento:</strong></p><p>cria uma área de vento forte (página 291) dentro do alcance. Se conjurada numa área que já esteja com algum efeito de vento, aumenta esse efeito em um passo. Manter o vento ativo requer uma ação de movimento. Você também pode usar essa opção para reduzir os efeitos de vento em uma área. Discente (+3 PE): passa a afetar alvos Grandes. Verdadeiro (+9 PE): passa a afetar alvos Enormes.</p>",
+  "chatDescription": "<p><strong>Fonte:</strong> Livro de Regras v1.3 · <strong>Execução:</strong> padrão · <strong>Alcance:</strong> médio · <strong>Alvo:</strong> Veja descrição da área · <strong>Duração:</strong> sustentada · <strong>Resistência:</strong> veja texto</p>",
+  "execution": "default",
+  "range": "medium",
+  "target": "Veja descrição da área",
+  "duration": "sustained",
+  "resistance": "",
+  "skillResis": "",
+  "targetQtd": "",
+  "area": {
+   "name": "varia",
+   "size": "",
+   "type": ""
+  },
+  "studentForm": true,
+  "trueForm": true
+ },
+ "Transfigurar Terra": {
+  "circle": 3,
+  "element": "energy",
+  "description": "<p>Você imbui terra, pedra, lama, argila ou areia na área com Energia, gerando efeitos sobrenaturais e caóticos. Ao conjurar o ritual, escolha um dos seguintes efeitos.</p><p><strong>Amolecer:</strong></p><p>se afetar o teto, uma coluna ou suporte, provoca um desabamento que causa 10d6 pontos de dano de impacto aos seres na área (Reflexos reduz à metade). Se afetar um piso de terra ou pedra, cria terreno difícil de areia ou argila, respectivamente.</p> <p><strong>Modelar:</strong></p><p>pode usar pedra ou argila para criar um ou mais objetos simples de tamanho Enorme ou menor (sem mecanismos ou partes móveis). Por exemplo, pode transformar um tijolo em um martelo, criar uma passagem onde antes havia apenas uma parede ou levantar uma ou mais paredes que oferecem cobertura total (RD 8 e 50 PV para cada 3m).</p> <p><strong>Solidificar:</strong></p><p>transforma lama ou areia em terra ou pedra. Seres com os pés na superfície ficam agarrados. Eles podem se soltar com uma ação padrão e um teste de Atletismo (DT igual a do ritual). Discente (+3 PE): muda a área para 15 cubos com 1,5m de lado. Verdadeiro (+7 PE): também afeta todos os tipos de minerais e metais. Requer 4º círculo.</p>",
+  "chatDescription": "<p><strong>Fonte:</strong> Livro de Regras v1.3 · <strong>Execução:</strong> padrão · <strong>Alcance:</strong> longo · <strong>Alvo:</strong> Veja descrição da área · <strong>Duração:</strong> instantânea · <strong>Resistência:</strong> veja texto</p>",
+  "execution": "default",
+  "range": "long",
+  "target": "Veja descrição da área",
+  "duration": "instantaneous",
+  "resistance": "",
+  "skillResis": "",
+  "targetQtd": "",
+  "area": {
+   "name": "9 cubos com 1,5m de lado",
+   "size": "",
+   "type": ""
+  },
+  "studentForm": true,
+  "trueForm": true
+ },
+ "Transfigurar Água": {
+  "circle": 3,
+  "element": "energy",
+  "description": "<p>Você canaliza Energia sobre um corpo de água, para que ele adquira movimentos e comportamentos paranormais e caóticos. Ao conjurar o ritual, escolha um dos seguintes efeitos.</p><p><strong>Congelar:</strong></p><p>toda a água mundana na área é congelada. Seres nadando na área ficam imóveis; escapar exige gastar uma ação padrão e passar num teste de Atletismo (DT igual a do ritual).</p> <p><strong>Derreter:</strong></p><p>gelo mundano na área vira água e o ritual termina. A critério do mestre, isso pode criar terreno difícil.</p> <p><strong>Enchente:</strong></p><p>eleva o nível da água mundana na área em até 4,5m. A sua escolha, muda área para “alvo: uma embarcação”. O alvo recebe +6m em seu deslocamento pela duração do efeito.</p> <p><strong>Evaporar:</strong></p><p>toda a água e gelo mundano na área evaporam instantaneamente e o ritual termina. Qualquer ser vivo na área sofre 5d8 de dano de Energia (Fortitude reduz à metade).</p> <p><strong>Partir:</strong></p><p>diminui o nível de toda água mundana na área em até 4,5m. Em um corpo d’água raso, isso abre um caminho seco, que pode ser atravessado a pé. Em um corpo d’água profundo, cria um redemoinho que pode prender barcos (um teste de Pilotagem com DT igual à do ritual permite ao piloto livrar a embarcação). Verdadeiro (+5 PE): aumenta o deslocamento de enchente para +12m e o dano de evaporar para 10d8.</p>",
+  "chatDescription": "<p><strong>Fonte:</strong> Livro de Regras v1.3 · <strong>Execução:</strong> padrão · <strong>Alcance:</strong> longo · <strong>Alvo:</strong> Veja descrição da área · <strong>Duração:</strong> cena · <strong>Resistência:</strong> veja texto</p>",
+  "execution": "default",
+  "range": "long",
+  "target": "Veja descrição da área",
+  "duration": "scene",
+  "resistance": "",
+  "skillResis": "",
+  "targetQtd": "",
+  "area": {
+   "name": "esfera com 30m de raio",
+   "size": "",
+   "type": ""
+  },
+  "studentForm": false,
+  "trueForm": true
+ },
+ "Consumir Manancial": {
+  "circle": 1,
+  "element": "death",
+  "description": "<p>Você suga uma pequena porção do tempo de vida de plantas, insetos e até mesmo do solo ao redor, gerando Lodo e recebendo 3d6 pontos de vida temporários. Os PV temporários desaparecem ao final da cena. Discente (+2 PE): muda os PV temporários recebidos para 6d6. Requer 2º círculo. Verdadeiro (+5 PE): muda o alvo para “área: esfera com 6m de raio centrada em você” e a resistência para “Fortitude reduz à metade”. Em vez do normal, você suga energia de todos os seres vivos na área, causando 3d6 pontos de dano de Morte em cada um e recebendo PV temporários iguais ao dano total causado até o final da cena. Requer 3º círculo e afinidade.</p>",
+  "chatDescription": "<p><strong>Fonte:</strong> Livro de Regras v1.3 · <strong>Execução:</strong> padrão · <strong>Alcance:</strong> pessoal · <strong>Alvo:</strong> você · <strong>Duração:</strong> instantânea · <strong>Resistência:</strong> —</p>",
+  "execution": "default",
+  "range": "personal",
+  "target": "você",
+  "duration": "instantaneous",
+  "resistance": "",
+  "skillResis": "",
+  "targetQtd": "",
+  "area": {
+   "name": "",
+   "size": "",
+   "type": ""
+  },
+  "studentForm": true,
+  "trueForm": true
+ },
+ "Eletrocussão": {
+  "circle": 1,
+  "element": "energy",
+  "description": "<p>Você manifesta e dispara uma corrente elétrica contra o alvo, que sofre 3d6 pontos de dano de eletricidade e fica vulnerável por uma rodada. Se passar no teste de resistência, sofre apenas metade do dano e evita a condição. Se usado contra objetos eletrônicos, este ritual causa o dobro de dano e ignora resistência. Discente (+2 PE): muda o alvo para “área: linha de 30m”. Você dispara um poderoso raio que causa 6d6 pontos de dano de Energia em todos os seres e objetos livres na área. Requer 2º círculo. Verdadeiro (+5 PE): muda o alvo para “alvos escolhidos”. Em vez do normal, você dispara vários relâmpagos, um para cada alvo escolhido, causando 8d6 pontos de dano de Energia em cada. Requer 3º círculo.</p>",
+  "chatDescription": "<p><strong>Fonte:</strong> Livro de Regras v1.3 · <strong>Execução:</strong> padrão · <strong>Alcance:</strong> curto · <strong>Alvo:</strong> 1 ser ou objeto · <strong>Duração:</strong> instantânea · <strong>Resistência:</strong> Fortitude parcial</p>",
+  "execution": "default",
+  "range": "short",
+  "target": "1 ser ou objeto",
+  "duration": "instantaneous",
+  "resistance": "partial",
+  "skillResis": "resilience",
+  "targetQtd": "",
+  "area": {
+   "name": "",
+   "size": "",
+   "type": ""
+  },
+  "studentForm": true,
+  "trueForm": true
+ },
+ "Dissonância Acústica": {
+  "circle": 2,
+  "element": "energy",
+  "description": "<p>Você manipula a vibração do ar, criando uma área de dissonância sonora. Enquanto estiverem na área, todos os seres ficam surdos. Essa dissonância impede que seres dentro da área conjurem rituais. Discente (+1 PE): muda a área para “alvo: 1 objeto”. Em vez do normal, o alvo emana uma área de silêncio com 3m de raio. Se conjurar o ritual num objeto de um ser involuntário, ele tem direito a um teste de Vontade para anulá-lo. Verdadeiro (+3 PE): muda a duração para cena. Em vez do normal, nenhum som pode deixar a área, mas seres dentro da área podem falar, ouvir e conjurar rituais normalmente. Requer 3º círculo.</p>",
+  "chatDescription": "<p><strong>Fonte:</strong> Livro de Regras v1.3 · <strong>Execução:</strong> padrão · <strong>Alcance:</strong> médio · <strong>Alvo:</strong> Veja descrição da área · <strong>Duração:</strong> sustentada · <strong>Resistência:</strong> —</p>",
+  "execution": "default",
+  "range": "medium",
+  "target": "Veja descrição da área",
+  "duration": "sustained",
+  "resistance": "",
+  "skillResis": "",
+  "targetQtd": "",
+  "area": {
+   "name": "esfera com 6m de raio",
+   "size": "",
+   "type": ""
+  },
+  "studentForm": true,
+  "trueForm": true
+ },
+ "Alterar Destino": {
+  "circle": 4,
+  "element": "energy",
+  "description": "<p>Você vislumbra seu futuro próximo, analisando milhões de possibilidades e escolhendo a melhor. Você recebe +15 em um teste de resistência ou na Defesa contra um ataque. Verdadeiro (+5 PE): muda o alcance para “curto” e o alvo para “um aliado à sua escolha”.</p>",
+  "chatDescription": "<p><strong>Fonte:</strong> Livro de Regras v1.3 · <strong>Execução:</strong> reação · <strong>Alcance:</strong> pessoal · <strong>Alvo:</strong> você · <strong>Duração:</strong> instantânea · <strong>Resistência:</strong> —</p>",
+  "execution": "reaction",
+  "range": "personal",
+  "target": "você",
+  "duration": "instantaneous",
+  "resistance": "",
+  "skillResis": "",
+  "targetQtd": "",
+  "area": {
+   "name": "",
+   "size": "",
+   "type": ""
+  },
+  "studentForm": false,
+  "trueForm": true
+ },
+ "Forma Monstruosa": {
+  "circle": 3,
+  "element": "blood",
+  "description": "<p>Seu corpo se transforma, assumindo uma forma que combina suas características com as de uma criatura de Sangue; suas roupas e proteção se mesclam à sua carne, transformando-se em uma couraça, e quaisquer objetos em suas mãos se fundem aos seus braços, transformando-se em garras pontiagudas. Seu equipamento fica inacessível, mas seus bônus se mantém. Seu tamanho muda para Grande e você recebe +5 em testes de ataque e rolagens de dano corpo a corpo e 30 PV temporários. Enquanto estiver transformado, sua mente é tomada por fúria selvagem; você não pode falar nem conjurar rituais e a cada rodada deve atacar o ser mais próximo possível. Se não houver um ser que possa atacar, deve se deslocar em direção ao ser mais próximo da melhor forma possível. Se o ser mais próximo for um aliado, você pode fazer um teste de Vontade (DT do ritual). Se passar, neste turno você pode escolher qual ser atacar. Discente (+3 PE): além do normal, você recebe imunidade a atordoamento, fadiga, sangramento, sono e veneno. Verdadeiro (+9 PE): muda os bônus em testes de ataque e rolagens de dano para +10 e os PV temporários para 50. Requer 4º círculo e afinidade.</p>",
+  "chatDescription": "<p><strong>Fonte:</strong> Livro de Regras v1.3 · <strong>Execução:</strong> padrão · <strong>Alcance:</strong> pessoal · <strong>Alvo:</strong> você · <strong>Duração:</strong> cena · <strong>Resistência:</strong> —</p>",
+  "execution": "default",
+  "range": "personal",
+  "target": "você",
+  "duration": "scene",
+  "resistance": "",
+  "skillResis": "",
+  "targetQtd": "",
+  "area": {
+   "name": "",
+   "size": "",
+   "type": ""
+  },
+  "studentForm": true,
+  "trueForm": true
+ },
+ "Overclock": {
+  "circle": 1,
+  "element": "energy",
+  "description": "<p>Após saber o resultado de um teste de Tecnologia com objeto eletrônico, permite buscar a informação por um desafio de jogo de estátua conduzido pelo mestre, ou outro jogo analógico escolhido pela mesa. Se concluir o desafio sem errar, obtém a informação. Depois, o objeto fica inutilizável por interferência paranormal, com sucesso ou falha. - <strong>Discente (+2 PE):</strong> falha no desafio apenas após dois erros. Requer 2º círculo. - <strong>Verdadeiro (+5 PE):</strong> falha apenas após três erros. Requer 3º círculo.</p>",
+  "chatDescription": "<p><strong>Fonte:</strong> Sobrevivendo ao Horror v1.3 · <strong>Execução:</strong> reação · <strong>Alcance:</strong> pessoal · <strong>Alvo:</strong> você · <strong>Duração:</strong> instantânea · <strong>Resistência:</strong> —</p>",
+  "execution": "reaction",
+  "range": "personal",
+  "target": "você",
+  "duration": "instantaneous",
+  "resistance": "",
+  "skillResis": "",
+  "targetQtd": "",
+  "area": {
+   "name": "",
+   "size": "",
+   "type": ""
+  },
+  "studentForm": true,
+  "trueForm": true
+ },
+ "Terceiro Olho": {
+  "circle": 1,
+  "element": "knowledge",
+  "description": "<p>Seus olhos se enchem de sigilos e você passa a enxergar auras paranormais em alcance longo. Rituais, itens amaldiçoados e criaturas emitem auras. Você sabe o elemento da aura e seu poder aproximado — rituais de 1º círculo e criaturas de VD até 80 emitem uma aura fraca; rituais de 2º e 3º círculos e criaturas de VD entre 81 e 280 emitem uma aura moderada, e rituais de 4º círculo e criaturas de VD 281 ou maior emitem uma aura poderosa. Além disso, você pode gastar uma ação de movimento para descobrir se um ser que possa ver em alcance médio tem poderes paranormais ou se é capaz de conjurar rituais e de quais elementos. Discente (+2 PE): muda a duração para 1 dia. Verdadeiro (+5 PE): também pode enxergar objetos e seres invisíveis, que aparecem como formas translúcidas.</p>",
+  "chatDescription": "<p><strong>Fonte:</strong> Livro de Regras v1.3 · <strong>Execução:</strong> padrão · <strong>Alcance:</strong> pessoal · <strong>Alvo:</strong> você · <strong>Duração:</strong> cena · <strong>Resistência:</strong> —</p>",
+  "execution": "default",
+  "range": "personal",
+  "target": "você",
+  "duration": "scene",
+  "resistance": "",
+  "skillResis": "",
+  "targetQtd": "",
+  "area": {
+   "name": "",
+   "size": "",
+   "type": ""
+  },
+  "studentForm": true,
+  "trueForm": true
+ },
+ "Âncora Temporal": {
+  "circle": 3,
+  "element": "death",
+  "description": "<p>Uma aura espiralada surge sobre o alvo. No início de cada turno dele, ele deve fazer um teste de Vontade. Se falhar, não poderá se deslocar naquele turno (ele ainda pode agir, só não pode se deslocar). Se o alvo passar nesse teste dois turnos seguidos o efeito termina. Verdadeiro (+4 PE): muda o alvo para “seres a sua escolha”. Requer 4º círculo.</p>",
+  "chatDescription": "<p><strong>Fonte:</strong> Livro de Regras v1.3 · <strong>Execução:</strong> padrão · <strong>Alcance:</strong> curto · <strong>Alvo:</strong> 1 ser · <strong>Duração:</strong> cena · <strong>Resistência:</strong> Vontade parcial</p>",
+  "execution": "default",
+  "range": "short",
+  "target": "1 ser",
+  "duration": "scene",
+  "resistance": "partial",
+  "skillResis": "will",
+  "targetQtd": "",
+  "area": {
+   "name": "",
+   "size": "",
+   "type": ""
+  },
+  "studentForm": false,
+  "trueForm": true
+ },
+ "Lâmina do Medo": {
+  "circle": 4,
+  "element": "fear",
+  "description": "<p>Você manifesta uma lâmina impossível, que pode ser descrita apenas como uma “fenda na Realidade”, com a qual golpeia um alvo adjacente. Se o alvo falhar no teste de Fortitude, seus PV são reduzidos a 0 e ele fica morrendo; se passar, sofre 10d8 pontos de dano de Medo (ignora todas as resistências) e fica apavorado por uma rodada. Se uma pessoa ficar morrendo pela Lâmina do Medo e sobreviver, o ferimento causado pelo ritual passa a se transformar constantemente, jamais cicatrizando e fazendo com que a pessoa passe a viver em dor constante. Aprender este ritual requer um poder de trilha específico.</p>",
+  "chatDescription": "<p><strong>Fonte:</strong> Livro de Regras v1.3 · <strong>Execução:</strong> padrão · <strong>Alcance:</strong> toque · <strong>Alvo:</strong> 1 ser · <strong>Duração:</strong> instantânea · <strong>Resistência:</strong> Fortitude parcial</p>",
+  "execution": "default",
+  "range": "touch",
+  "target": "1 ser",
+  "duration": "instantaneous",
+  "resistance": "partial",
+  "skillResis": "resilience",
+  "targetQtd": "",
+  "area": {
+   "name": "",
+   "size": "",
+   "type": ""
+  },
+  "studentForm": false,
+  "trueForm": false
+ },
+ "Amaldiçoar Arma": {
+  "circle": 1,
+  "element": "knowledge",
+  "description": "<p>Quando aprender este ritual, escolha um elemento entre Conhecimento, Energia, Morte e Sangue. Este ritual passa a ser do elemento escolhido. Você imbui a arma ou munições com o elemento, fazendo com que causem +1d6 de dano do tipo do elemento. Discente (+2 PE): muda o bônus de dano para +2d6. Requer 2º círculo. Verdadeiro (+5 PE): muda o bônus de dano para +4d6. Requer 3º círculo e afinidade.</p>",
+  "chatDescription": "<p><strong>Fonte:</strong> Livro de Regras v1.3 · <strong>Execução:</strong> padrão · <strong>Alcance:</strong> toque · <strong>Alvo:</strong> 1 arma corpo a corpo ou pacote de munição · <strong>Duração:</strong> cena · <strong>Resistência:</strong> —</p>",
+  "execution": "default",
+  "range": "touch",
+  "target": "1 arma corpo a corpo ou pacote de munição",
+  "duration": "scene",
+  "resistance": "",
+  "skillResis": "",
+  "targetQtd": "",
+  "area": {
+   "name": "",
+   "size": "",
+   "type": ""
+  },
+  "studentForm": true,
+  "trueForm": true
+ },
+ "Convocar o Algoz": {
+  "circle": 4,
+  "element": "death",
+  "description": "<p>Fortitude parcial Usando os medos subconscientes do alvo, você manipula a espiral da Morte para criar uma imagem daquilo que ele mais teme. Apenas a própria vítima vê o algoz com nitidez; outros seres presentes (incluindo você) enxergam apenas um vulto sombrio. O algoz surge adjacente a você. No fim de cada turno seu, ele flutua 12m em direção à vítima. Se o algoz terminar o turno em alcance curto da vítima, ela deve fazer um teste de Vontade; se falhar, ficará abalada. Se o algoz terminar o turno adjacente à vítima, ela deve fazer um teste de Fortitude. Se falhar, sofre um colapso e fica com 0 PV. Se passar, sofre 6d6 pontos de dano de Morte (este dano não pode reduzir o alvo a menos de 1 PV). O algoz persegue o alvo implacavelmente, mesmo além do alcance do ritual. Ele é incorpóreo e imune a dano e só desaparece se deixar o alvo morrendo ou se for dissipado.</p>",
+  "chatDescription": "<p><strong>Fonte:</strong> Livro de Regras v1.3 · <strong>Execução:</strong> padrão · <strong>Alcance:</strong> 1,5m · <strong>Alvo:</strong> 1 pessoa · <strong>Duração:</strong> sustentada · <strong>Resistência:</strong> Vontade parcial, Fortitude parcial</p>",
+  "execution": "default",
+  "range": "touch",
+  "target": "1 pessoa",
+  "duration": "sustained",
+  "resistance": "partial",
+  "skillResis": "will",
+  "targetQtd": "",
+  "area": {
+   "name": "",
+   "size": "",
+   "type": ""
+  },
+  "studentForm": false,
+  "trueForm": false
+ }
+}

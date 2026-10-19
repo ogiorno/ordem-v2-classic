@@ -1,5 +1,5 @@
 // Playwright (run-code): combate de agentes contra ameaças conduzido pelo carrossel de combate (Carolingian UI),
-// com a tela de ataque (docs/spec-tela-de-ataque.md) usada pela interface em cada turno de agente.
+// com a tela de ataque (docs/arquivo/spec-tela-de-ataque.md) usada pela interface em cada turno de agente.
 //   playwright-cli -s=cb run-code --filename=scripts/ui-combate-ataque.js
 // Antes: entrar como Mestre e rodar na página: window.__rt = await import(".../ritual-ui-live-test.mjs"); await __rt.open().
 // Rodada 1: abre a tela e confirma sem escolher; rodada 2: Ataque Especial (1 ataque + 1 dano) + dano livre; rodada 3: Shift+clique.

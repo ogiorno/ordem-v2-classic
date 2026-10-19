@@ -68,12 +68,13 @@ async function apply() {
 			};
 			const sameSystem = Object.keys(patch).every(same);
 			const sameEff = sameEffects([...doc.effects], data.effects ?? []);
-			const sameMeta = doc.name === data.name && (doc.folder?.id ?? null) === (data.folder ?? null);
+			const wantedSource = data.flags?.[SYSTEM]?.source ?? null;
+				const sameMeta = doc.name === data.name && (doc.folder?.id ?? null) === (data.folder ?? null) && (doc.getFlag(SYSTEM, "source") ?? null) === wantedSource;
 			if (sameSystem && sameEff && sameMeta) {
 				summary.unchanged++;
 				continue;
 			}
-			await doc.update({ name: data.name, img: data.img, system: patch, folder: data.folder ?? null, sort: data.sort });
+			await doc.update({ name: data.name, img: data.img, system: patch, folder: data.folder ?? null, sort: data.sort, [`flags.${SYSTEM}.source`]: wantedSource });
 			if (!sameEff) {
 				const old = [...doc.effects].map((e) => e.id);
 				if (old.length) await doc.deleteEmbeddedDocuments("ActiveEffect", old);

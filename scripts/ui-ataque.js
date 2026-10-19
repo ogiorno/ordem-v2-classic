@@ -1,4 +1,4 @@
-// Playwright (run-code): tela de ataque pela interface de verdade (docs/spec-tela-de-ataque.md).
+// Playwright (run-code): tela de ataque pela interface de verdade (docs/arquivo/spec-tela-de-ataque.md).
 //   playwright-cli -s=ao run-code --filename=scripts/ui-ataque.js
 // A página precisa estar no jogo como Mestre. Cria e apaga só atores/mensagens "[AO] ui ...". Resultado: window.__aoUi.
 async (page) => {
