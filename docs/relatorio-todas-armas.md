@@ -70,7 +70,7 @@ Todos com classe, nível, os cinco atributos, PV, PE/PD e treino nas perícias d
 | Submetralhadora | fogo | aim/dex | 2d6 | 19/x3 | Curto | automática, coronhada |
 
 ## O que o teste NÃO pega: regras próprias de cada arma
-**Atualização:** os itens 6 e 7 (área, Corrente, recarga, Cajado) foram tratados em `docs/spec-armas-area-recarga.md`; os itens 1 a 5 e o item 8 (exceto Bastão Policial e Punhal) foram implementados/corrigidos; ver "Regras próprias de cada arma" em `docs/spec-tela-de-ataque.md`. Abaixo, o texto original da auditoria.
+**Atualização:** os itens 6 e 7 (área, Corrente, recarga, Cajado) foram tratados em `docs/arquivo/spec-armas-area-recarga.md`; os itens 1 a 5 e o item 8 (exceto Bastão Policial e Punhal) foram implementados/corrigidos; ver "Regras próprias de cada arma" em `docs/arquivo/spec-tela-de-ataque.md`. Abaixo, o texto original da auditoria.
 O teste confere o que está implementado. Lendo o texto de cada arma no livro, ficam sem efeito:
 1. **Empunhadura muda o dano** (o ponto que você citou): Bastão é 1d6 com uma mão e 1d8 com duas; Espada 1d8 com uma e 1d10 com duas. A tela deixa escolher a empunhadura da Espada/Bastão (marcados como adaptáveis) e da Katana, mas só registra no cartão: **o dano não muda**. Katana não está marcada como adaptável nos dados (só pelo nome no código) e a exigência de veterano em Luta não é verificada.
 2. **Motosserra**: −1d20 em todos os ataques e um dado extra a cada 6 no dano. Nada disso é aplicado.

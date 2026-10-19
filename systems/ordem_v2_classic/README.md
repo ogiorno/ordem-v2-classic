@@ -28,36 +28,42 @@ Ordem Paranormal é um sistema e/ou universo de investigação paranormal criado
 
 1. Clone o repositório com `git clone https://github.com/SouOWendel/ordemparanormal_fvtt.git ordemparanormal`
 2. Instale as dependências de desenvolvimento com `npm install`
-3. Compile os compêndios com `npm run build:db` (converte os JSONs de `packs/_source/` para LevelDB)
-4. Crie um `.env` baseado no `.env.example` com suas credenciais do Foundry
-5. Suba o ambiente de desenvolvimento com `npm run dev` (Docker na porta 30000)
+3. Compile os compêndios com `npm run packs:pack` (converte os JSONs de `packs/_source/` para LevelDB)
+4. Use `npm run link` para ligar os módulos ao diretório de dados do Foundry, quando necessário
+5. Inicie `npm run dev` para abrir o Foundry local na porta 30000; o script sincroniza o sistema e recarrega arquivos alterados
 
 ## Testes
 
-### Tier 1 — Testes Unitários (Vitest)
+### Tier 1 — Testes unitários (Node.js)
 
-Rodam fora do Foundry, via Node.js. Cobrem schemas de TypeDataModel, cálculos derivados, migrações e lógica de itens.
-
-```bash
-npm test            # roda os testes uma vez
-npm run test:watch  # modo watch (reexecuta ao salvar)
-npm run test:coverage  # gera relatório de cobertura
-```
-
-Os testes rodam automaticamente no GitHub Actions a cada push e pull request.
-
-### Tier 2 — Testes de Integração (Quench)
-
-Rodam dentro do Foundry com o módulo [Quench](https://github.com/Ethaks/FVTT-Quench). Cobrem Active Effects, criação de actores/itens, sheets e configurações do sistema.
+Rodam fora do Foundry, via `node --test`. Cobrem regras puras, cálculos e validações que não exigem a aplicação aberta.
 
 ```bash
-npm run dev         # sobe o Foundry via Docker na porta 30000
-npm run dev:down    # para o container
+npm test
+npm run lang-check
+npm run render-check
+npm run lint
 ```
 
-1. Acesse `http://localhost:30000`, crie um mundo com o sistema Ordem Paranormal
-2. Ative os módulos **Quench** e **Bar Brawl** no mundo
-3. Abra o painel do Quench na sidebar e clique **Run All**
+Os testes de Node não substituem a validação de documentos, permissões e cliques no Foundry.
+
+### Tier 2 — Testes dentro do Foundry
+
+As suítes em `module/tests/suites/` exercitam documentos, efeitos, fichas e hooks no mundo. Use o módulo Quench quando estiver ativo, ou o executor local `mini-quench.mjs` pelo console do navegador.
+
+```bash
+npm run dev         # inicia o servidor local do Foundry na porta 30000
+```
+
+1. Acesse `http://localhost:30000` e abra um mundo de teste com `ordem_v2_classic` como Mestre.
+2. Com Quench ativo, rode as suítes pela interface do módulo. Sem Quench, execute no console:
+
+```js
+await import("/systems/ordem_v2_classic/module/tests/mini-quench.mjs");
+await miniQuench("/systems/ordem_v2_classic/module/tests/suites/threat-sheet-book.test.mjs");
+```
+
+3. Para mudanças em permissões, socket ou UI, valide também com um segundo cliente de jogador.
 
 As suites disponíveis:
 

@@ -1,6 +1,6 @@
 # Relatório: combate com armas (18/10/2026) — segunda rodada, com correções
 
-Testes: `scripts/ui-armas.js` (43 casos), `scripts/combate-multi.mjs` (combate real com 4 jogadores QA1..QA4, mestre de teste QA GM e o Gamemaster; relatório bruto em `work/combate-multi.json`), `scripts/ui-ataque.js` (13) e `npm test` (266). Spec atualizada em `docs/spec-tela-de-ataque.md`.
+Testes: `scripts/ui-armas.js` (43 casos), `scripts/combate-multi.mjs` (combate real com 4 jogadores QA1..QA4, mestre de teste QA GM e o Gamemaster; relatório bruto em `work/combate-multi.json`), `scripts/ui-ataque.js` (13) e `npm test` (266). Spec atualizada em `docs/arquivo/spec-tela-de-ataque.md`.
 
 ## Resultado
 - Armas sob condições, modificações, poderes de classe, peculiaridades, alcance: **43 de 43**, em 6 execuções seguidas.

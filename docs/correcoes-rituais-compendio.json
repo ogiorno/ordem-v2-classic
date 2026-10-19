@@ -1,0 +1,883 @@
+[
+ {
+  "name": "Alterar Destino",
+  "_id": "7Alfrq64t7VYKAyA",
+  "element": "energy",
+  "circle": 4,
+  "changes": [
+   {
+    "campo": "system.target",
+    "antes": "",
+    "depois": "você",
+    "tipo": "fluxo",
+    "motivo": "estava em branco; o livro diz \"você\" (o ator Biblioteca de Rituais já tem)"
+   }
+  ]
+ },
+ {
+  "name": "Amaldiçoar Arma",
+  "_id": "l5qIkpVw6KqWMaV9",
+  "element": "knowledge",
+  "circle": 1,
+  "changes": [
+   {
+    "campo": "system.target",
+    "antes": "",
+    "depois": "1 arma corpo a corpo ou pacote de munição",
+    "tipo": "fluxo",
+    "motivo": "estava em branco; o livro diz \"1 arma corpo a corpo ou pacote de munição\""
+   }
+  ]
+ },
+ {
+  "name": "Amaldiçoar Tecnologia",
+  "_id": "TfnlmU9xDOMcYlDa",
+  "element": "energy",
+  "circle": 1,
+  "changes": [
+   {
+    "campo": "system.description",
+    "antes": "<p>fogo Você imbui o alvo com Energia, fazendo-o funcionar acima de sua capacidade. O item recebe uma modificação a sua escolha. Discente (+…",
+    "depois": "<p>Você imbui o alvo com Energia, fazendo-o funcionar acima de sua capacidade. O item recebe uma modificação a sua escolha. Discente (+2 PE)…",
+    "tipo": "texto",
+    "motivo": "cabeçalho do livro que a extração do PDF deixou no começo da descrição (removido do começo: \"fogo\")"
+   },
+   {
+    "campo": "system.target",
+    "antes": "1 acessório ou arma de",
+    "depois": "1 acessório ou arma de fogo",
+    "tipo": "texto",
+    "motivo": "o alvo estava cortado na quebra de linha"
+   },
+   {
+    "campo": "system.chatDescription (Alvo)",
+    "antes": "1 acessório ou arma de",
+    "depois": "1 acessório ou arma de fogo",
+    "tipo": "texto",
+    "motivo": "idem"
+   }
+  ]
+ },
+ {
+  "name": "Canalizar o Medo",
+  "_id": "gIJLi0Tgs3bJ7Pw4",
+  "element": "fear",
+  "circle": 4,
+  "changes": [
+   {
+    "campo": "system.description",
+    "antes": "<p>descarregada Você transfere parte de seu poder para outra pessoa. Escolha um ritual de até 3º círculo que você conheça; o alvo pode conju…",
+    "depois": "<p>Você transfere parte de seu poder para outra pessoa. Escolha um ritual de até 3º círculo que você conheça; o alvo pode conjurar este ritu…",
+    "tipo": "texto",
+    "motivo": "cabeçalho do livro que a extração do PDF deixou no começo da descrição (removido do começo: \"descarregada\")"
+   },
+   {
+    "campo": "system.chatDescription (Duração)",
+    "antes": "permanente até ser",
+    "depois": "permanente até ser descarregada",
+    "tipo": "texto",
+    "motivo": "a duração estava cortada na quebra de linha"
+   }
+  ]
+ },
+ {
+  "name": "Chamas do Caos",
+  "_id": "grofm7E9DuLvsL7m",
+  "element": "energy",
+  "circle": 2,
+  "changes": [
+   {
+    "campo": "system.description",
+    "antes": "<p>Você manipula o calor e o fogo. Ao conjurar o ritual, escolha um dos seguintes efeitos.</p><p>&lt;p&gt;&lt;strong&gt;Chamejar:&lt;/strong&gt;&lt;/p&gt;&lt;p&…",
+    "depois": "<p>Você manipula o calor e o fogo. Ao conjurar o ritual, escolha um dos seguintes efeitos.</p><p><strong>Chamejar:</strong></p><p>o alvo é uma arma corpo a corp…",
+    "tipo": "texto",
+    "motivo": "as tags da lista de efeitos estavam escapadas e apareciam como texto (&lt;p&gt;…)"
+   }
+  ]
+ },
+ {
+  "name": "Coincidência Forçada",
+  "_id": "pSy5jvgqMawPDXRD",
+  "element": "energy",
+  "circle": 1,
+  "changes": [
+   {
+    "campo": "system.description",
+    "antes": "<p>Alvos: 1 ser Você manipula os caminhos do caos para que o alvo tenha mais sorte. O alvo recebe +2 em testes de perícias. Discente (+2 PE)…",
+    "depois": "<p>Você manipula os caminhos do caos para que o alvo tenha mais sorte. O alvo recebe +2 em testes de perícias. Discente (+2 PE): muda o alvo…",
+    "tipo": "texto",
+    "motivo": "cabeçalho do livro que a extração do PDF deixou no começo da descrição (removido do começo: \"Alvos: 1 ser\")"
+   },
+   {
+    "campo": "system.target",
+    "antes": "Veja texto",
+    "depois": "1 ser",
+    "tipo": "fluxo",
+    "motivo": "estava \"Veja texto\"; o livro diz \"Alvos: 1 ser\""
+   },
+   {
+    "campo": "system.chatDescription (Alvo)",
+    "antes": "Veja texto",
+    "depois": "1 ser",
+    "tipo": "texto",
+    "motivo": "idem"
+   }
+  ]
+ },
+ {
+  "name": "Compreensão Paranormal",
+  "_id": "2FCLC5yn7UaiiOkD",
+  "element": "knowledge",
+  "circle": 1,
+  "changes": [
+   {
+    "campo": "system.description",
+    "antes": "<p>(veja texto) O ritual confere a você compreensão sobrenatural da linguagem. Se tocar um objeto contendo informação (ou livro, um disposit…",
+    "depois": "<p>O ritual confere a você compreensão sobrenatural da linguagem. Se tocar um objeto contendo informação (ou livro, um dispositivo com uma g…",
+    "tipo": "texto",
+    "motivo": "cabeçalho do livro que a extração do PDF deixou no começo da descrição (removido do começo: \"(veja texto)\")"
+   },
+   {
+    "campo": "system.chatDescription (Resistência)",
+    "antes": "Vontade anula",
+    "depois": "Vontade anula (veja texto)",
+    "tipo": "texto",
+    "motivo": "o livro traz \"(veja texto)\" na resistência"
+   }
+  ]
+ },
+ {
+  "name": "Consumir Manancial",
+  "_id": "ogFmtytWuY0ugdor",
+  "element": "death",
+  "circle": 1,
+  "changes": [
+   {
+    "campo": "system.area.name",
+    "antes": "esfera com 6m de raio centrada em você” e a resistência para “Fortitude reduz à metade”",
+    "depois": "",
+    "tipo": "exibicao",
+    "motivo": "era o texto da forma Verdadeiro (\"…centrada em você” e a resistência para…\"); a forma básica não tem área"
+   }
+  ]
+ },
+ {
+  "name": "Controle Mental",
+  "_id": "lLTfUlymM1LXmLaM",
+  "element": "knowledge",
+  "circle": 4,
+  "changes": [
+   {
+    "campo": "system.description",
+    "antes": "<p>Discente (+5 PE): muda o alvo para até cinco pessoas ou animais. Verdadeiro (+10 PE): muda o alvo para até dez pessoas ou animais. Requer afinidade com Conhecimento.</p>",
+    "depois": "<p>Você domina a mente do alvo, que obedece todos os seus comandos, exceto ordens suicidas. Um alvo tem direito a um teste de Vontade no final de cada um de seus turnos para se livrar do efeito. Alvos que passarem no teste ficam pasmos por 1 rodada (apenas uma vez por cena). Discente (+5 PE): muda o alvo para até cinco pessoas ou animais. Verdadeiro (+10 PE): muda o alvo para até dez pessoas ou animais. Requer afinidade com Conhecimento.</p>",
+    "tipo": "texto",
+    "motivo": "faltava o parágrafo da forma básica (livro p. 128, com a errata de 00-atualizacoes/0040)"
+   },
+   {
+    "campo": "system.chatDescription (Resistência)",
+    "antes": "Vontade parcial Você domina a mente do alvo, que obedece todos os seus comandos, exceto ordens suicidas",
+    "depois": "Vontade parcial",
+    "tipo": "texto",
+    "motivo": "o começo da descrição tinha ido parar no cabeçalho do chat"
+   }
+  ]
+ },
+ {
+  "name": "Convocar o Algoz",
+  "_id": "oja6iJpLorCixB4N",
+  "element": "death",
+  "circle": 4,
+  "changes": [
+   {
+    "campo": "system.chatDescription (Resistência)",
+    "antes": "Vontade parcial,",
+    "depois": "Vontade parcial, Fortitude parcial",
+    "tipo": "texto",
+    "motivo": "o livro pede dois testes; o campo skillResis guarda só um (decisão pendente)"
+   }
+  ]
+ },
+ {
+  "name": "Decadência",
+  "_id": "jyOCvHfnGZLFnedb",
+  "element": "death",
+  "circle": 1,
+  "changes": [
+   {
+    "campo": "system.description",
+    "antes": "<p>à metade Espirais de trevas envolvem sua mão e definham o alvo, que sofre 2d8+2 pontos de dano de Morte. Discente (+2 PE): muda a resistê…",
+    "depois": "<p>Espirais de trevas envolvem sua mão e definham o alvo, que sofre 2d8+2 pontos de dano de Morte. Discente (+2 PE): muda a resistência para…",
+    "tipo": "texto",
+    "motivo": "cabeçalho do livro que a extração do PDF deixou no começo da descrição (é o fim de \"reduz à metade\") (removido do começo: \"à metade\")"
+   },
+   {
+    "campo": "system.chatDescription (Resistência)",
+    "antes": "Fortitude reduz",
+    "depois": "Fortitude reduz à metade",
+    "tipo": "texto",
+    "motivo": "a resistência estava cortada"
+   },
+   {
+    "campo": "system.area.name",
+    "antes": "explosão com 6m de raio” e o dano para 8d8+8",
+    "depois": "",
+    "tipo": "exibicao",
+    "motivo": "era o texto da forma Verdadeiro (\"explosão com 6m de raio” e o dano para 8d8+8\"); a forma básica não tem área"
+   }
+  ]
+ },
+ {
+  "name": "Desacelerar Impacto",
+  "_id": "sFIDOfUgHWvE0lu0",
+  "element": "death",
+  "circle": 2,
+  "changes": [
+   {
+    "campo": "system.description",
+    "antes": "<p>Alvos: 1 ser ou objetos somando até 10 espaços cena, o que vier primeiro O alvo cai lentamente. A velocidade da queda é reduzida para 18m…",
+    "depois": "<p>O alvo cai lentamente. A velocidade da queda é reduzida para 18m por rodada — o suficiente para não causar dano. Como conjurar este ritua…",
+    "tipo": "texto",
+    "motivo": "cabeçalho do livro que a extração do PDF deixou no começo da descrição (removido do começo: \"Alvos: 1 ser ou objetos somando até 10 espaços cena, o que vier primeiro\")"
+   },
+   {
+    "campo": "system.chatDescription (Duração)",
+    "antes": "até chegar ao solo ou",
+    "depois": "até chegar ao solo ou cena, o que vier primeiro",
+    "tipo": "texto",
+    "motivo": "a duração estava cortada"
+   },
+   {
+    "campo": "system.target",
+    "antes": "Veja texto",
+    "depois": "1 ser ou objetos somando até 10 espaços",
+    "tipo": "fluxo",
+    "motivo": "estava \"Veja texto\"; o livro diz \"Alvos: 1 ser ou objetos somando até 10 espaços\""
+   },
+   {
+    "campo": "system.chatDescription (Alvo)",
+    "antes": "Veja texto",
+    "depois": "1 ser ou objetos somando até 10 espaços",
+    "tipo": "texto",
+    "motivo": "idem"
+   }
+  ]
+ },
+ {
+  "name": "Descarnar",
+  "_id": "Toi1LrJBn8pFfUlu",
+  "element": "blood",
+  "circle": 2,
+  "changes": [
+   {
+    "campo": "system.description",
+    "antes": "<p>Alvos: 1 ser Este ritual cruel faz com que lacerações se manifestem na pele e órgãos do alvo, que sofre 6d8 pontos de dano (metade corte,…",
+    "depois": "<p>Este ritual cruel faz com que lacerações se manifestem na pele e órgãos do alvo, que sofre 6d8 pontos de dano (metade corte, metade Sangu…",
+    "tipo": "texto",
+    "motivo": "cabeçalho do livro que a extração do PDF deixou no começo da descrição (removido do começo: \"Alvos: 1 ser\")"
+   },
+   {
+    "campo": "system.target",
+    "antes": "Veja texto",
+    "depois": "1 ser",
+    "tipo": "fluxo",
+    "motivo": "estava \"Veja texto\"; o livro diz \"Alvos: 1 ser\""
+   },
+   {
+    "campo": "system.chatDescription (Alvo)",
+    "antes": "Veja texto",
+    "depois": "1 ser",
+    "tipo": "texto",
+    "motivo": "idem"
+   }
+  ]
+ },
+ {
+  "name": "Dissonância Acústica",
+  "_id": "krAmMGcX8TU0HjYN",
+  "element": "energy",
+  "circle": 2,
+  "changes": [
+   {
+    "campo": "system.target",
+    "antes": "1 objeto”",
+    "depois": "Veja descrição da área",
+    "tipo": "fluxo",
+    "motivo": "o alvo era o texto da forma Discente (\"1 objeto”\"); a forma básica é área (esfera com 6m de raio), como no Paradoxo"
+   },
+   {
+    "campo": "system.chatDescription (Alvo)",
+    "antes": "1 objeto”",
+    "depois": "Veja descrição da área",
+    "tipo": "texto",
+    "motivo": "idem"
+   }
+  ]
+ },
+ {
+  "name": "Eco Espiral",
+  "_id": "CFdxfBSafoj9Xd7L",
+  "element": "death",
+  "circle": 2,
+  "changes": [
+   {
+    "campo": "system.description",
+    "antes": "<p>à metade Você manifesta em suas mãos uma pequena cópia do alvo feita de cinzas. No início do próximo turno após conjurar este ritual, voc…",
+    "depois": "<p>Você manifesta em suas mãos uma pequena cópia do alvo feita de cinzas. No início do próximo turno após conjurar este ritual, você precisa…",
+    "tipo": "texto",
+    "motivo": "cabeçalho do livro que a extração do PDF deixou no começo da descrição (é o fim de \"reduz à metade\") (removido do começo: \"à metade\")"
+   },
+   {
+    "campo": "system.chatDescription (Resistência)",
+    "antes": "Fortitude reduz",
+    "depois": "Fortitude reduz à metade",
+    "tipo": "texto",
+    "motivo": "a resistência estava cortada"
+   }
+  ]
+ },
+ {
+  "name": "Eletrocussão",
+  "_id": "uhZpZgXtQztfk1Dx",
+  "element": "energy",
+  "circle": 1,
+  "changes": [
+   {
+    "campo": "system.area.name",
+    "antes": "linha de 30m”",
+    "depois": "",
+    "tipo": "exibicao",
+    "motivo": "era o texto da forma Discente (\"linha de 30m”\"); a forma básica não tem área"
+   }
+  ]
+ },
+ {
+  "name": "Fim Inevitável",
+  "_id": "mYja1EC4dCU91kd6",
+  "element": "death",
+  "circle": 4,
+  "changes": [
+   {
+    "campo": "system.description",
+    "antes": "<p>Efeito: buraco negro com 1,5m de diâmetro Você cria um vácuo em um espaço desocupado a sua escolha. No início de cada um de seus quatro t…",
+    "depois": "<p>Você cria um vácuo em um espaço desocupado a sua escolha. No início de cada um de seus quatro turnos seguintes, todos os seres a até 90m …",
+    "tipo": "texto",
+    "motivo": "cabeçalho do livro que a extração do PDF deixou no começo da descrição (removido do começo: \"Efeito: buraco negro com 1,5m de diâmetro\")"
+   },
+   {
+    "campo": "system.area.name",
+    "antes": "",
+    "depois": "buraco negro com 1,5m de diâmetro",
+    "tipo": "exibicao",
+    "motivo": "valor do \"Efeito\" do livro, para o Alvo/Área não ficar em \"Veja texto\" (o campo target não é mexido)"
+   }
+  ]
+ },
+ {
+  "name": "Forma Monstruosa",
+  "_id": "toHh5MQ8lloiDMkW",
+  "element": "blood",
+  "circle": 3,
+  "changes": [
+   {
+    "campo": "system.target",
+    "antes": "",
+    "depois": "você",
+    "tipo": "fluxo",
+    "motivo": "estava em branco; o livro diz \"você\" (o ator Biblioteca de Rituais já tem)"
+   }
+  ]
+ },
+ {
+  "name": "Hemofagia",
+  "_id": "7Fw2FoGg1NKwhP8M",
+  "element": "blood",
+  "circle": 2,
+  "changes": [
+   {
+    "campo": "system.description",
+    "antes": "<p>à metade Você arranca o sangue do corpo do alvo através da pele dele, causando 6d6 pontos de dano de Sangue. Você então absorve esse sang…",
+    "depois": "<p>Você arranca o sangue do corpo do alvo através da pele dele, causando 6d6 pontos de dano de Sangue. Você então absorve esse sangue, recup…",
+    "tipo": "texto",
+    "motivo": "cabeçalho do livro que a extração do PDF deixou no começo da descrição (é o fim de \"reduz à metade\") (removido do começo: \"à metade\")"
+   },
+   {
+    "campo": "system.chatDescription (Resistência)",
+    "antes": "Fortitude reduz",
+    "depois": "Fortitude reduz à metade",
+    "tipo": "texto",
+    "motivo": "a resistência estava cortada"
+   }
+  ]
+ },
+ {
+  "name": "Invadir Mente",
+  "_id": "TAFUbbIcyYEsa5SZ",
+  "element": "knowledge",
+  "circle": 2,
+  "changes": [
+   {
+    "campo": "system.description",
+    "antes": "<p>voluntárias ou 1 dia nenhuma Quando conjura este ritual, você gera um dos efeitos a seguir, a sua escolha: rajada mental (usa os primeiro…",
+    "depois": "<p>Quando conjura este ritual, você gera um dos efeitos a seguir, a sua escolha: rajada mental (usa os primeiros parâmetros do cabeçalho aci…",
+    "tipo": "texto",
+    "motivo": "cabeçalho do livro que a extração do PDF deixou no começo da descrição (removido do começo: \"voluntárias ou 1 dia nenhuma\")"
+   },
+   {
+    "campo": "system.target",
+    "antes": "1 ser ou 2 pessoas",
+    "depois": "1 ser ou 2 pessoas voluntárias",
+    "tipo": "fluxo",
+    "motivo": "o alvo estava cortado na quebra de linha"
+   },
+   {
+    "campo": "system.chatDescription (Alvo)",
+    "antes": "1 ser ou 2 pessoas",
+    "depois": "1 ser ou 2 pessoas voluntárias",
+    "tipo": "texto",
+    "motivo": "idem"
+   },
+   {
+    "campo": "system.chatDescription (Duração)",
+    "antes": "instantânea",
+    "depois": "instantânea ou 1 dia",
+    "tipo": "texto",
+    "motivo": "a duração estava cortada"
+   },
+   {
+    "campo": "system.chatDescription (Resistência)",
+    "antes": "Vontade parcial ou",
+    "depois": "Vontade parcial ou nenhuma",
+    "tipo": "texto",
+    "motivo": "a resistência estava cortada"
+   }
+  ]
+ },
+ {
+  "name": "Invólucro de Carne",
+  "_id": "t2Ovs9egTeKUl3wb",
+  "element": "blood",
+  "circle": 4,
+  "changes": [
+   {
+    "campo": "system.description",
+    "antes": "<p>Efeito: 1 clone seu Você manifesta uma poça de sangue no chão, de onde emerge uma cópia sua. Ela é idêntica em aparência e capacidades (e…",
+    "depois": "<p>Você manifesta uma poça de sangue no chão, de onde emerge uma cópia sua. Ela é idêntica em aparência e capacidades (em termos de jogo, te…",
+    "tipo": "texto",
+    "motivo": "cabeçalho do livro que a extração do PDF deixou no começo da descrição (removido do começo: \"Efeito: 1 clone seu\")"
+   },
+   {
+    "campo": "system.area.name",
+    "antes": "",
+    "depois": "1 clone seu",
+    "tipo": "exibicao",
+    "motivo": "valor do \"Efeito\" do livro, para o Alvo/Área não ficar em \"Veja texto\" (o campo target não é mexido)"
+   }
+  ]
+ },
+ {
+  "name": "Localização",
+  "_id": "j7JTwxMKJkaVUxDA",
+  "element": "knowledge",
+  "circle": 2,
+  "changes": [
+   {
+    "campo": "system.description",
+    "antes": "<p>de raio Este ritual pode encontrar uma pessoa ou objeto a sua escolha. Você pode pensar em termos gerais (“um policial”, “algo de metal”)…",
+    "depois": "<p>Este ritual pode encontrar uma pessoa ou objeto a sua escolha. Você pode pensar em termos gerais (“um policial”, “algo de metal”) ou espe…",
+    "tipo": "texto",
+    "motivo": "cabeçalho do livro que a extração do PDF deixou no começo da descrição (removido do começo: \"de raio\")"
+   },
+   {
+    "campo": "system.area.name",
+    "antes": "círculo com 90m",
+    "depois": "círculo com 90m de raio",
+    "tipo": "exibicao",
+    "motivo": "a área estava cortada na quebra de linha"
+   }
+  ]
+ },
+ {
+  "name": "Luz",
+  "_id": "WqVafjwgFZ86XzxI",
+  "element": "energy",
+  "circle": 1,
+  "changes": [
+   {
+    "campo": "system.description",
+    "antes": "<p>(veja texto) O alvo emite luz de cores alternadas e brilhantes (mas não produz calor) em uma área com 9m de raio. O objeto pode ser guard…",
+    "depois": "<p>O alvo emite luz de cores alternadas e brilhantes (mas não produz calor) em uma área com 9m de raio. O objeto pode ser guardado (em um bo…",
+    "tipo": "texto",
+    "motivo": "cabeçalho do livro que a extração do PDF deixou no começo da descrição (removido do começo: \"(veja texto)\")"
+   },
+   {
+    "campo": "system.chatDescription (Resistência)",
+    "antes": "Vontade anula",
+    "depois": "Vontade anula (veja texto)",
+    "tipo": "texto",
+    "motivo": "o livro traz \"(veja texto)\" na resistência"
+   }
+  ]
+ },
+ {
+  "name": "Lâmina do Medo",
+  "_id": "iCDIfEJ6iDEgov7w",
+  "element": "fear",
+  "circle": 4,
+  "changes": [
+   {
+    "campo": "system.target",
+    "antes": "",
+    "depois": "1 ser",
+    "tipo": "fluxo",
+    "motivo": "estava em branco; o livro diz \"1 ser\""
+   }
+  ]
+ },
+ {
+  "name": "Mergulho Mental",
+  "_id": "LIzOURH8fps6QL9v",
+  "element": "knowledge",
+  "circle": 3,
+  "changes": [
+   {
+    "campo": "system.description",
+    "antes": "<p>(veja texto) Você mergulha nos pensamentos do alvo para descobrir informações sobre ele. Durante o mergulho, você fica desprevenido. No i…",
+    "depois": "<p>Você mergulha nos pensamentos do alvo para descobrir informações sobre ele. Durante o mergulho, você fica desprevenido. No início de cada…",
+    "tipo": "texto",
+    "motivo": "cabeçalho do livro que a extração do PDF deixou no começo da descrição (removido do começo: \"(veja texto)\")"
+   },
+   {
+    "campo": "system.chatDescription (Resistência)",
+    "antes": "Vontade parcial",
+    "depois": "Vontade parcial (veja texto)",
+    "tipo": "texto",
+    "motivo": "o livro traz \"(veja texto)\" na resistência"
+   }
+  ]
+ },
+ {
+  "name": "Miasma Entrópico",
+  "_id": "qXfVC2Op2M9RCKEI",
+  "element": "death",
+  "circle": 2,
+  "changes": [
+   {
+    "campo": "system.description",
+    "antes": "<p>(veja texto) Cria uma explosão de emanações tóxicas. Seres na área sofrem 4d8 pontos de dano químico e ficam enjoados por 1 rodada. Se pa…",
+    "depois": "<p>Cria uma explosão de emanações tóxicas. Seres na área sofrem 4d8 pontos de dano químico e ficam enjoados por 1 rodada. Se passarem na res…",
+    "tipo": "texto",
+    "motivo": "cabeçalho do livro que a extração do PDF deixou no começo da descrição (removido do começo: \"(veja texto)\")"
+   },
+   {
+    "campo": "system.chatDescription (Resistência)",
+    "antes": "Fortitude parcial",
+    "depois": "Fortitude parcial (veja texto)",
+    "tipo": "texto",
+    "motivo": "o livro traz \"(veja texto)\" na resistência"
+   }
+  ]
+ },
+ {
+  "name": "Nuvem de Cinzas",
+  "_id": "gnsZd28sdzB7saNB",
+  "element": "death",
+  "circle": 1,
+  "changes": [
+   {
+    "campo": "system.description",
+    "antes": "<p>Efeito: nuvem com 6m de raio e 6m de altura Uma nuvem de fuligem espessa eleva-se de um ponto a sua escolha, obscurecendo toda a visão — …",
+    "depois": "<p>Uma nuvem de fuligem espessa eleva-se de um ponto a sua escolha, obscurecendo toda a visão — seres a até 1,5m têm camuflagem leve e seres…",
+    "tipo": "texto",
+    "motivo": "cabeçalho do livro que a extração do PDF deixou no começo da descrição (removido do começo: \"Efeito: nuvem com 6m de raio e 6m de altura\")"
+   },
+   {
+    "campo": "system.area.name",
+    "antes": "",
+    "depois": "nuvem com 6m de raio e 6m de altura",
+    "tipo": "exibicao",
+    "motivo": "valor do \"Efeito\" do livro, para o Alvo/Área não ficar em \"Veja texto\" (o campo target não é mexido)"
+   }
+  ]
+ },
+ {
+  "name": "Overclock",
+  "_id": "t6ZUwqcWoUXEp7J4",
+  "element": "energy",
+  "circle": 1,
+  "changes": [
+   {
+    "campo": "system.target",
+    "antes": "",
+    "depois": "você",
+    "tipo": "fluxo",
+    "motivo": "estava em branco; o livro diz \"você\" (o ator Biblioteca de Rituais já tem)"
+   }
+  ]
+ },
+ {
+  "name": "Paradoxo",
+  "_id": "3C7Xedn9ycHkpIzx",
+  "element": "death",
+  "circle": 2,
+  "changes": [
+   {
+    "campo": "system.description",
+    "antes": "<p>à metade O ritual cria uma poderosa implosão de distorção temporal contraditória, causando 6d6 pontos de dano de Morte em todos os seres …",
+    "depois": "<p>O ritual cria uma poderosa implosão de distorção temporal contraditória, causando 6d6 pontos de dano de Morte em todos os seres na área. …",
+    "tipo": "texto",
+    "motivo": "cabeçalho do livro que a extração do PDF deixou no começo da descrição (é o fim de \"reduz à metade\") (removido do começo: \"à metade\")"
+   },
+   {
+    "campo": "system.chatDescription (Resistência)",
+    "antes": "Fortitude reduz",
+    "depois": "Fortitude reduz à metade",
+    "tipo": "texto",
+    "motivo": "a resistência estava cortada"
+   }
+  ]
+ },
+ {
+  "name": "Perturbação",
+  "_id": "MIZ6XmkROMKo5Jbt",
+  "element": "knowledge",
+  "circle": 1,
+  "changes": [
+   {
+    "campo": "system.description",
+    "antes": "<p>Você dá uma ordem que o alvo deve ser capaz de ouvir (mas não precisa entender). Se falhar na resistência, ele deve obedecer à ordem em seu próprio turno da …",
+    "depois": "<p>Você dá uma ordem que o alvo deve ser capaz de ouvir (mas não precisa entender). Se falhar na resistência, ele deve obedecer à ordem em seu próprio turno da …",
+    "tipo": "texto",
+    "motivo": "as tags da lista de efeitos estavam escapadas e apareciam como texto (&lt;p&gt;…)"
+   }
+  ]
+ },
+ {
+  "name": "Polarização Caótica",
+  "_id": "RdROicmTjOCakTRY",
+  "element": "energy",
+  "circle": 1,
+  "changes": [
+   {
+    "campo": "system.description",
+    "antes": "<p>Você gera uma aura magnética sobrenatural. Escolha um dos efeitos a seguir.</p><p>&lt;p&gt;&lt;strong&gt;Atrair:&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;você pode u…",
+    "depois": "<p>Você gera uma aura magnética sobrenatural. Escolha um dos efeitos a seguir.</p><p><strong>Atrair:</strong></p><p>você pode usar uma ação de movimento para pu…",
+    "tipo": "texto",
+    "motivo": "as tags da lista de efeitos estavam escapadas e apareciam como texto (&lt;p&gt;…)"
+   }
+  ]
+ },
+ {
+  "name": "Sopro do Caos",
+  "_id": "zYw6xBSuFoZu22LZ",
+  "element": "energy",
+  "circle": 2,
+  "changes": [
+   {
+    "campo": "system.description",
+    "antes": "<p>Você altera os movimentos de massas de ar de forma caótica. Ao conjurar o ritual, escolha um dos efeitos abaixo.</p><p>&lt;p&gt;&lt;strong&gt;Ascender:&lt;/s…",
+    "depois": "<p>Você altera os movimentos de massas de ar de forma caótica. Ao conjurar o ritual, escolha um dos efeitos abaixo.</p><p><strong>Ascender:</strong></p><p>cria …",
+    "tipo": "texto",
+    "motivo": "as tags da lista de efeitos estavam escapadas e apareciam como texto (&lt;p&gt;…)"
+   }
+  ]
+ },
+ {
+  "name": "Tecer Ilusão",
+  "_id": "QhB29ANeboZRR9vb",
+  "element": "knowledge",
+  "circle": 1,
+  "changes": [
+   {
+    "campo": "system.description",
+    "antes": "<p>Efeito: ilusão que se estende a até 4 cubos de 1,5m Este ritual cria uma ilusão visual (uma pessoa, uma parede…) ou sonora (um grito de s…",
+    "depois": "<p>Este ritual cria uma ilusão visual (uma pessoa, uma parede…) ou sonora (um grito de socorro, um uivo assustador…). O ritual cria apenas i…",
+    "tipo": "texto",
+    "motivo": "cabeçalho do livro que a extração do PDF deixou no começo da descrição (removido do começo: \"Efeito: ilusão que se estende a até 4 cubos de 1,5m\")"
+   },
+   {
+    "campo": "system.area.name",
+    "antes": "",
+    "depois": "ilusão que se estende a até 4 cubos de 1,5m",
+    "tipo": "exibicao",
+    "motivo": "valor do \"Efeito\" do livro, para o Alvo/Área não ficar em \"Veja texto\" (o campo target não é mexido)"
+   }
+  ]
+ },
+ {
+  "name": "Terceiro Olho",
+  "_id": "Je9OjsezrvvgbnAY",
+  "element": "knowledge",
+  "circle": 1,
+  "changes": [
+   {
+    "campo": "system.target",
+    "antes": "",
+    "depois": "você",
+    "tipo": "fluxo",
+    "motivo": "estava em branco; o livro diz \"você\" (o ator Biblioteca de Rituais já tem)"
+   }
+  ]
+ },
+ {
+  "name": "Transfigurar Terra",
+  "_id": "yLW30URxzyXwzV1b",
+  "element": "energy",
+  "circle": 3,
+  "changes": [
+   {
+    "campo": "system.description",
+    "antes": "<p>Você imbui terra, pedra, lama, argila ou areia na área com Energia, gerando efeitos sobrenaturais e caóticos. Ao conjurar o ritual, escolha um dos seguintes …",
+    "depois": "<p>Você imbui terra, pedra, lama, argila ou areia na área com Energia, gerando efeitos sobrenaturais e caóticos. Ao conjurar o ritual, escolha um dos seguintes …",
+    "tipo": "texto",
+    "motivo": "as tags da lista de efeitos estavam escapadas e apareciam como texto (&lt;p&gt;…)"
+   }
+  ]
+ },
+ {
+  "name": "Transfigurar Água",
+  "_id": "UuMxSJkSjbb0HKPi",
+  "element": "energy",
+  "circle": 3,
+  "changes": [
+   {
+    "campo": "system.description",
+    "antes": "<p>Você canaliza Energia sobre um corpo de água, para que ele adquira movimentos e comportamentos paranormais e caóticos. Ao conjurar o ritual, escolha um dos s…",
+    "depois": "<p>Você canaliza Energia sobre um corpo de água, para que ele adquira movimentos e comportamentos paranormais e caóticos. Ao conjurar o ritual, escolha um dos s…",
+    "tipo": "texto",
+    "motivo": "as tags da lista de efeitos estavam escapadas e apareciam como texto (&lt;p&gt;…)"
+   }
+  ]
+ },
+ {
+  "name": "Vidência",
+  "_id": "B3r7JMmGnaA8YQJt",
+  "element": "knowledge",
+  "circle": 3,
+  "changes": [
+   {
+    "campo": "system.description",
+    "antes": "<p>Através de uma superfície reflexiva, como um espelho, uma bacia de água ou mesmo uma TV desligada, você pode ver e ouvir um ser escolhido e seus arredores (cerca de 6m em qualquer direção). O alvo …tual com efeito inverso, fazendo com que você receba metade de todo o dano que o alvo receberia. Alvos voluntários não precisam fazer testes de resistência.</p>",
+    "depois": "<p>Através de uma superfície reflexiva, como um espelho, uma bacia de água ou mesmo uma TV desligada, você pode ver e ouvir um ser escolhido e seus arredores (cerca de 6m em qualquer direção). O alvo …conhece bem o alvo: –0.</li><li>Você tem um pertence pessoal ou roupa do alvo: –5.</li><li>Você tem uma parte do corpo do alvo (unhas, cabelos…): –10.</li></ul>",
+    "tipo": "texto",
+    "motivo": "o texto do Vínculo de Sangue estava colado no fim; acrescentado o quadro de bônus e penalidades da p. 143"
+   }
+  ]
+ },
+ {
+  "name": "Vomitar Pestes",
+  "_id": "NGkheQ9CJP1FO3f2",
+  "element": "blood",
+  "circle": 3,
+  "changes": [
+   {
+    "campo": "system.description",
+    "antes": "<p>Efeito: 1 enxame Grande (quadrado de 3m) à metade Você vomita um enxame de pequenas criaturas de Sangue, que surge em um ponto adjacente …",
+    "depois": "<p>Você vomita um enxame de pequenas criaturas de Sangue, que surge em um ponto adjacente a sua escolha. O enxame pode passar pelo espaço de…",
+    "tipo": "texto",
+    "motivo": "cabeçalho do livro que a extração do PDF deixou no começo da descrição (removido do começo: \"Efeito: 1 enxame Grande (quadrado de 3m) à metade\")"
+   },
+   {
+    "campo": "system.chatDescription (Resistência)",
+    "antes": "Reflexos reduz",
+    "depois": "Reflexos reduz à metade",
+    "tipo": "texto",
+    "motivo": "a resistência estava cortada"
+   },
+   {
+    "campo": "system.area.name",
+    "antes": "",
+    "depois": "1 enxame Grande (quadrado de 3m)",
+    "tipo": "exibicao",
+    "motivo": "valor do \"Efeito\" do livro, para o Alvo/Área não ficar em \"Veja texto\" (o campo target não é mexido)"
+   }
+  ]
+ },
+ {
+  "name": "Vínculo de Sangue",
+  "_id": "5t8OMMeCHmZ4pbCW",
+  "element": "blood",
+  "circle": 4,
+  "changes": [
+   {
+    "campo": "system.description",
+    "antes": "<p>Alvo sofre todo dano que você sofrer.</p>",
+    "depois": "<p>Você manifesta um símbolo de Sangue no seu corpo e no corpo do alvo. Sempre que você sofrer dano, o alvo deve fazer um teste de Fortitude. Se ele falhar, você sofre apenas metade do dano e ele sofre a metade restante. Você pode conjurar o ritual com efeito inverso, fazendo com que você receba metade de todo o dano que o alvo receberia. Alvos voluntários não precisam fazer testes de resistência.</p>",
+    "tipo": "texto",
+    "motivo": "estava abreviada (livro p. 143)"
+   },
+   {
+    "campo": "system.target",
+    "antes": "1 pessoa",
+    "depois": "1 ser",
+    "tipo": "fluxo",
+    "motivo": "o livro diz 1 ser; \"1 pessoa\" é do Zerar Entropia, ao lado na mesma página"
+   },
+   {
+    "campo": "system.skillResis",
+    "antes": "will",
+    "depois": "resilience",
+    "tipo": "dado",
+    "motivo": "o livro diz Fortitude; \"Vontade\" é do Zerar Entropia"
+   },
+   {
+    "campo": "system.resistance",
+    "antes": "partial",
+    "depois": "nullifies",
+    "tipo": "dado",
+    "motivo": "o livro diz anula; \"parcial\" é do Zerar Entropia"
+   },
+   {
+    "campo": "system.chatDescription (Alvo)",
+    "antes": "1 pessoa",
+    "depois": "1 ser",
+    "tipo": "texto",
+    "motivo": "idem"
+   },
+   {
+    "campo": "system.chatDescription (Resistência)",
+    "antes": "Vontade parcial",
+    "depois": "Fortitude anula",
+    "tipo": "texto",
+    "motivo": "idem"
+   }
+  ]
+ },
+ {
+  "name": "Zerar Entropia",
+  "_id": "l0mw0ea1TZrQwTb9",
+  "element": "death",
+  "circle": 3,
+  "changes": [
+   {
+    "campo": "system.target",
+    "antes": "1 ser",
+    "depois": "1 pessoa",
+    "tipo": "fluxo",
+    "motivo": "o livro diz 1 pessoa; \"1 ser\" é do Vínculo de Sangue (e da forma Discente do próprio ritual)"
+   },
+   {
+    "campo": "system.chatDescription (Alvo)",
+    "antes": "1 ser",
+    "depois": "1 pessoa",
+    "tipo": "texto",
+    "motivo": "idem"
+   }
+  ]
+ },
+ {
+  "name": "Âncora Temporal",
+  "_id": "vd429SN6T4udnVOx",
+  "element": "death",
+  "circle": 3,
+  "changes": [
+   {
+    "campo": "system.target",
+    "antes": "",
+    "depois": "1 ser",
+    "tipo": "fluxo",
+    "motivo": "estava em branco; o livro diz \"1 ser\" (o ator Biblioteca de Rituais já tem)"
+   }
+  ]
+ }
+]
