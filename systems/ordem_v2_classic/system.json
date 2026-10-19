@@ -2,7 +2,7 @@
   "id": "ordem_v2_classic",
   "title": "Ordem Paranormal (v2 Classic)",
   "description": "Ordem Paranormal é um sistema e universo de investigação paranormal criado por Cellbit. Com base nisso, este é um sistema não-oficial para o FoundryVTT.",
-  "version": "8.1.0",
+  "version": "1.0.0",
   "compatibility": {
     "minimum": "13",
     "verified": "14.365"
@@ -439,5 +439,5 @@
   "bugs": "https://github.com/ogiorno/ordem-v2-classic/issues",
   "license": "https://github.com/ogiorno/ordem-v2-classic/blob/main/LICENSE.txt",
   "manifest": "https://github.com/ogiorno/ordem-v2-classic/releases/latest/download/system.json",
-  "download": "https://github.com/ogiorno/ordem-v2-classic/releases/download/v8.1.0/system.zip"
+  "download": "https://github.com/ogiorno/ordem-v2-classic/releases/download/v1.0.0/system.zip"
 }
