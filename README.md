@@ -33,5 +33,5 @@ npm run render-check
 ## Publicar uma versão
 
 1. Atualize `version` em `systems/ordem_v2_classic/system.json` e o `CHANGELOG.md`.
-2. Crie e envie a tag: `git tag v8.1.0 && git push origin v8.1.0`.
+2. Crie e envie a tag: `git tag v1.0.0 && git push origin v1.0.0`.
 3. O workflow *Release* roda os testes, compila os compêndios e publica `system.json` e `system.zip` na release.
