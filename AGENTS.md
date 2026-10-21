@@ -56,3 +56,22 @@ As regras de Ordem Paranormal RPG v1.3 estão extraídas em `regras/`. Consulte 
 - A extração é automática e não foi revisada à mão: em dúvida sobre tabela, coluna ou texto sobre ilustração, confira no PDF (`_referencia-por-pagina/`, `VERIFICACAO.md`, `MANIFESTO.json`).
 - PDFs originais: `D:\[LIVROS]\[RPG]\[ORDEM-PARANORMAL]\` (Livro de Regras v1-3 e Sobrevivendo ao Horror v1-3). São grandes demais para leitura direta; use PyMuPDF (`tools/sah/pdf_extract.py` lê na ordem certa das colunas e marca o dado como `[d]`).
 - Não edite `regras/` para "corrigir" regra por conveniência do código; o código segue o livro, não o contrário.
+
+## Publicação no GitHub (push e tags de versão)
+
+Repositório: `https://github.com/ogiorno/ordem-v2-classic` (remoto `origin`, branch `master`). O workflow `.github/workflows/release.yml` publica uma release (`system.json` + `system.zip`) quando uma tag `v*` é enviada; é essa release que o Foundry usa para instalar e atualizar o sistema. A numeração é semântica e começa na `v1.0.0`.
+
+Só dê push quando o usuário pedir. Sempre que for dar push, antes disso:
+
+1. Rode `npm test`, `npm run lang-check` e `npm run render-check`; não envie com falha.
+2. Veja a última tag (`git describe --tags --abbrev=0`; se não houver, a primeira é `v1.0.0`) e analise o que mudou desde ela (`git log <tag>..HEAD` e `git diff --stat <tag>..HEAD`), olhando só o que vai no zip do sistema (`systems/ordem_v2_classic`, exceto `tests/`, `tools/` e `packs/_source/`).
+3. Escolha a tag pelo impacto:
+   - **major** (`v2.0.0`): quebra de compatibilidade, mudança de `id` do sistema, migração obrigatória de dados de mundos ou remoção de funcionalidade;
+   - **minor** (`v1.1.0`): funcionalidade ou conteúdo novo (regras, fichas, compêndios, telas) que não quebra o que existia;
+   - **patch** (`v1.0.1`): correção de bug ou ajuste pequeno, sem funcionalidade nova;
+   - **sem tag**: só mudou documentação, specs, testes, `tools/`, `scripts/` ou `docs/`; faça o push da `master` e não crie release.
+4. Se for criar tag: atualize `version` em `systems/ordem_v2_classic/system.json` (e o `download` com a nova tag) e acrescente a entrada no `CHANGELOG.md`; faça o commit; confirme que a versão do `system.json` é igual à tag sem o `v`; crie a tag anotada (`git tag -a vX.Y.Z -m "..."`).
+5. Diga ao usuário qual tag escolheu e por quê (uma frase), e envie `master` e a tag juntas (`git push origin master vX.Y.Z`). Nunca reutilize, mova ou apague uma tag já publicada: corrija com uma nova versão patch.
+6. Depois do push, confira se o workflow *Release* terminou com sucesso e se a release tem `system.json` e `system.zip`.
+
+Antes do primeiro push público, conferir `regras/` e `docs/arquivo` (texto dos livros, com direitos de terceiros) e o e-mail dos commits.
