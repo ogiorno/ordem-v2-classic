@@ -13,6 +13,11 @@ import { calculatePerRound, calculateSpaces, splitEffortBonuses } from "../../mo
 
 const ROOT = path.join(path.dirname(fileURLToPath(import.meta.url)), "../..");
 const BOOK = path.join(ROOT, "../../regras");
+// O texto dos livros (regras/) fica fora do git; sem ele (CI, clone novo) esta validação não tem contra o que conferir.
+if (!fs.existsSync(BOOK)) {
+	console.log("validacao-regras: pasta regras/ ausente, validação contra o livro ignorada");
+	process.exit(0);
+}
 const book = (...p) => fs.readFileSync(path.join(BOOK, ...p), "utf8");
 const MARKS = { acute: "́", grave: "̀", circ: "̂", tilde: "̃", cedil: "̧", uml: "̈" };
 const strip = (t) => String(t ?? "")
