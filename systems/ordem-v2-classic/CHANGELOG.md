@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.0.1](https://github.com/ogiorno/ordem-v2-classic/releases/tag/v2.0.1) (2026-10-22)
+
+### Novidades
+
+* **publicação:** o workflow de release passa a registrar cada versão também no foundryvtt.com, depois de criar a release no GitHub
+
 ## [2.0.0](https://github.com/ogiorno/ordem-v2-classic/releases/tag/v2.0.0) (2026-10-22)
 
 ### ⚠ Mudança que quebra compatibilidade
