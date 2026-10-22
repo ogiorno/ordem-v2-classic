@@ -47,7 +47,7 @@ jobs:
           zip -r ../../system.zip . -x "tests/*" "tools/*" "packs/_source/*"
           cp system.json ../../system.json
 
-      - uses: softprops/action-gh-release@v2
+      - uses: softprops/action-gh-release@v3
         with:
           files: |
             system.json
