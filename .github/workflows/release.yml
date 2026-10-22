@@ -41,6 +41,9 @@ jobs:
       - name: Compilar compêndios
         run: npm run packs:pack
 
+      - name: Conferir compêndios (compilado x fontes)
+        run: npm run packs:check
+
       - name: Montar system.zip
         run: |
           cd systems/ordem-v2-classic

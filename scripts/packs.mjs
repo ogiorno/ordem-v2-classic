@@ -19,8 +19,9 @@ for (const kind of ["modules", "systems"]) {
       const src = path.join(srcRoot, pack.name);
       const dest = path.join(base, pack.name);
       console.log(`${action}: ${dest}`);
-      if (action === "pack") await compilePack(src, dest);
-      else await extractPack(dest, src);
+      // recursive/folders: as fontes são organizadas em subpastas (uma por pasta do compêndio); sem isso só os arquivos da raiz entram.
+      if (action === "pack") await compilePack(src, dest, { recursive: true });
+      else await extractPack(dest, src, { folders: true });
     }
   }
 }

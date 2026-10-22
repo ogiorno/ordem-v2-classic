@@ -10,6 +10,11 @@
 
 * **migração:** script `scripts/migrar-mundo-id.mjs` que troca o id nos bancos do mundo e nos compêndios dele, com simulação e conferência
 * **qualidade:** o id é sempre lido como string (`flags["ordem-v2-classic"]`), já que o hífen não é válido como nome em JavaScript
+* **compêndios:** `npm run packs:check` compara cada compêndio compilado com as fontes, e o workflow de release roda essa conferência antes de montar o zip
+
+### Correções
+
+* **compêndios:** o script de compilação não lia as subpastas das fontes, então 17 dos 25 compêndios (rituais, maldições, origens, armamentos, poderes, trilhas e habilidades de ameaça, entre outros) saíam vazios ou incompletos. O workflow de release usava esse mesmo script, então o `system.zip` da 1.0.x tem compêndios incompletos. Agora todos os 25 conferem com as fontes. **Quem instalou a 1.0.x deve reinstalar.**
 
 ## [1.0.2](https://github.com/ogiorno/ordem-v2-classic/releases/tag/v1.0.2) (2026-10-22)
 

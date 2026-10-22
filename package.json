@@ -9,6 +9,7 @@
     "lang-check": "node scripts/lang-check.mjs",
     "link": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/link.ps1",
     "packs:pack": "node scripts/packs.mjs pack",
+    "packs:check": "node scripts/check-packs.mjs",
     "packs:unpack": "node scripts/packs.mjs unpack",
     "test": "node --test \"systems/ordem-v2-classic/tests/unit/**/*.test.mjs\"",
     "test:livro": "node --test \"systems/ordem-v2-classic/tests/livro/**/*.livro.mjs\"",
