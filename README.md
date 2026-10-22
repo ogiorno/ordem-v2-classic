@@ -9,7 +9,7 @@
 **Português** · [English](README.en.md)
 
 [![Versão](https://img.shields.io/github/v/release/ogiorno/ordem-v2-classic?label=vers%C3%A3o&color=7b1e2b)](https://github.com/ogiorno/ordem-v2-classic/releases/latest)
-[![Foundry](https://img.shields.io/badge/Foundry%20VTT-v13%2B%20%C2%B7%20testado%20na%20v14-orange)](https://foundryvtt.com)
+[![Foundry](https://img.shields.io/badge/Foundry%20VTT-v14-orange)](https://foundryvtt.com)
 [![Licença](https://img.shields.io/badge/licen%C3%A7a-CC%20BY--NC--SA%204.0-blue)](LICENSE.txt)
 [![Downloads](https://img.shields.io/github/downloads/ogiorno/ordem-v2-classic/total?label=downloads)](https://github.com/ogiorno/ordem-v2-classic/releases)
 [![Issues](https://img.shields.io/github/issues/ogiorno/ordem-v2-classic)](https://github.com/ogiorno/ordem-v2-classic/issues)
@@ -43,7 +43,7 @@ A ideia central é **a ficha faz a conta e o Mestre decide**. O sistema aplica b
 
 | Requisito | Detalhe |
 | --- | --- |
-| Foundry VTT | v13 ou mais novo. Verificado na v14. |
+| Foundry VTT | v14 ou mais novo. Testado na 14.369. |
 | Módulo obrigatório | **Brawl Bar** (`barbrawl`), para a terceira barra do token (PV, SAN e PE). |
 | Opcional | **Automated Animations** + **JB2A_DnD5e** (animações dos rituais). |
 

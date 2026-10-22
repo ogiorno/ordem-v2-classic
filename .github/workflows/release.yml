@@ -65,7 +65,7 @@ jobs:
             echo "$REPO/releases/latest/download/system.json"
             echo '```'
             echo
-            echo "Requer o módulo **Brawl Bar** e Foundry VTT v13 ou mais novo (verificado na v14). O \`id\` do sistema é o mesmo do original (\`ordem_v2_classic\`): instalar este fork substitui o sistema do Wendel; faça backup do mundo antes."
+            echo "Requer o módulo **Brawl Bar** e Foundry VTT v14 ou mais novo (testado na 14.369). O \`id\` do sistema é o mesmo do original (\`ordem_v2_classic\`): instalar este fork substitui o sistema do Wendel; faça backup do mundo antes."
             echo
             echo "Baseado em [ordemparanormal_fvtt](https://github.com/SouOWendel/ordemparanormal_fvtt), de Wendel Henrique (Mark57449). Licença CC BY-NC-SA 4.0, sem fins comerciais. Ordem Paranormal pertence a Rafael Lange (Cellbit) e à Jambô Editora; projeto de fã, não oficial."
           } >> release-notes.md

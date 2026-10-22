@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.0.2](https://github.com/ogiorno/ordem-v2-classic/releases/tag/v1.0.2) (2026-10-22)
+
+### Correções
+
+* **compatibilidade:** a versão mínima do Foundry passa a ser a 14 (o sistema foi construído sobre a v14) e a versão testada é a 14.369
+
 ## [1.0.1](https://github.com/ogiorno/ordem-v2-classic/releases/tag/v1.0.1) (2026-10-22)
 
 Primeira versão do fork [ogiorno/ordem-v2-classic](https://github.com/ogiorno/ordem-v2-classic), baseado no sistema `ordemparanormal_fvtt` 8.0.2 de Wendel Henrique (Mark57449). A numeração recomeça em 1.0.x (a 1.0.0 não chegou a ser publicada); o histórico abaixo é do projeto original.

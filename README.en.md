@@ -9,7 +9,7 @@
 [Português](README.md) · **English**
 
 [![Version](https://img.shields.io/github/v/release/ogiorno/ordem-v2-classic?label=version&color=7b1e2b)](https://github.com/ogiorno/ordem-v2-classic/releases/latest)
-[![Foundry](https://img.shields.io/badge/Foundry%20VTT-v13%2B%20%C2%B7%20tested%20on%20v14-orange)](https://foundryvtt.com)
+[![Foundry](https://img.shields.io/badge/Foundry%20VTT-v14-orange)](https://foundryvtt.com)
 [![License](https://img.shields.io/badge/license-CC%20BY--NC--SA%204.0-blue)](LICENSE.txt)
 [![Downloads](https://img.shields.io/github/downloads/ogiorno/ordem-v2-classic/total?label=downloads)](https://github.com/ogiorno/ordem-v2-classic/releases)
 [![Issues](https://img.shields.io/github/issues/ogiorno/ordem-v2-classic)](https://github.com/ogiorno/ordem-v2-classic/issues)
@@ -45,7 +45,7 @@ The core idea is **the sheet does the math and the GM decides**. The system appl
 
 | Requirement | Details |
 | --- | --- |
-| Foundry VTT | v13 or newer. Verified on v14. |
+| Foundry VTT | v14 or newer. Tested on 14.369. |
 | Required module | **Brawl Bar** (`barbrawl`), for the third token bar (HP, SAN and PE). |
 | Optional | **Automated Animations** + **JB2A_DnD5e** (ritual animations). |
 
