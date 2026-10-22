@@ -1,8 +1,8 @@
 # Changelog
 
-## [1.0.0](https://github.com/ogiorno/ordem-v2-classic/releases/tag/v1.0.0) (2026-10-22)
+## [1.0.1](https://github.com/ogiorno/ordem-v2-classic/releases/tag/v1.0.1) (2026-10-22)
 
-Primeira versão do fork [ogiorno/ordem-v2-classic](https://github.com/ogiorno/ordem-v2-classic), baseado no sistema `ordemparanormal_fvtt` 8.0.2 de Wendel Henrique (Mark57449). A numeração recomeça em 1.0.0; o histórico abaixo é do projeto original.
+Primeira versão do fork [ogiorno/ordem-v2-classic](https://github.com/ogiorno/ordem-v2-classic), baseado no sistema `ordemparanormal_fvtt` 8.0.2 de Wendel Henrique (Mark57449). A numeração recomeça em 1.0.x (a 1.0.0 não chegou a ser publicada); o histórico abaixo é do projeto original.
 
 ### Novidades
 
@@ -20,6 +20,7 @@ Primeira versão do fork [ogiorno/ordem-v2-classic](https://github.com/ogiorno/o
 
 * **css:** adiciona a classe `system-ordemparanormal` ao `body` (fichas de item e outras ficavam sem estilo)
 * **desenvolvimento:** `dev.mjs` limpa a trava antiga ao reiniciar o servidor
+* **testes:** `npm test` e o CI não dependem mais da pasta `regras/` (a conferência contra o texto dos livros virou `npm run test:livro`); `.gitattributes` fixa LF nas fontes dos compêndios e nos fixtures
 
 ### Publicação
 
