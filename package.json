@@ -11,6 +11,7 @@
     "packs:pack": "node scripts/packs.mjs pack",
     "packs:unpack": "node scripts/packs.mjs unpack",
     "test": "node --test \"systems/ordem_v2_classic/tests/unit/**/*.test.mjs\"",
+    "test:livro": "node --test \"systems/ordem_v2_classic/tests/livro/**/*.livro.mjs\"",
     "lint": "eslint modules systems"
   },
   "devDependencies": {

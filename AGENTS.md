@@ -56,6 +56,7 @@ As regras de Ordem Paranormal RPG v1.3 estão extraídas em `regras/`. Consulte 
 - A extração é automática e não foi revisada à mão: em dúvida sobre tabela, coluna ou texto sobre ilustração, confira no PDF (`_referencia-por-pagina/`, `VERIFICACAO.md`, `MANIFESTO.json`).
 - PDFs originais: `D:\[LIVROS]\[RPG]\[ORDEM-PARANORMAL]\` (Livro de Regras v1-3 e Sobrevivendo ao Horror v1-3). São grandes demais para leitura direta; use PyMuPDF (`tools/sah/pdf_extract.py` lê na ordem certa das colunas e marca o dado como `[d]`).
 - Não edite `regras/` para "corrigir" regra por conveniência do código; o código segue o livro, não o contrário.
+- `regras/` não vai para o GitHub (direitos de terceiros): `npm test` e o CI não podem depender dela. Testes que conferem o código contra o texto do livro ficam em `systems/ordem_v2_classic/tests/livro/` (`*.livro.mjs`) e rodam com `npm run test:livro`; rode-os antes de mudar regras.
 
 ## Publicação no GitHub (push e tags de versão)
 

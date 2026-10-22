@@ -117,7 +117,8 @@ The repository is the development workspace; the system lives in `systems/ordem_
 ```bash
 npm install
 npm run packs:pack    # compile the compendiums (packs/_source -> LevelDB)
-npm test              # unit tests
+npm test              # unit tests (no book files needed)
+npm run test:livro    # checks rules against the books' text (needs the regras/ folder, which is kept out of git)
 npm run lang-check    # check translation keys
 npm run render-check  # check templates
 npm run dev           # local Foundry server on port 30000

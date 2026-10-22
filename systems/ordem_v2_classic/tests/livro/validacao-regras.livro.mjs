@@ -1,4 +1,4 @@
-// Rodar: npm test. Valida o que foi implementado (efeitos de poderes passivos e perícias treinadas) contra o texto do livro em regras/,
+// Rodar: npm run test:livro (precisa de regras/, o texto dos livros, que fica fora do git). Valida o que foi implementado (efeitos de poderes passivos e perícias treinadas) contra o texto do livro em regras/,
 // e não contra as expectativas escritas junto com o código.
 import { describe, it } from "node:test";
 import assert from "node:assert/strict";
@@ -13,7 +13,7 @@ import { calculatePerRound, calculateSpaces, splitEffortBonuses } from "../../mo
 
 const ROOT = path.join(path.dirname(fileURLToPath(import.meta.url)), "../..");
 const BOOK = path.join(ROOT, "../../regras");
-// O texto dos livros (regras/) fica fora do git; sem ele (CI, clone novo) esta validação não tem contra o que conferir.
+// Sem regras/ (fora do git) não há contra o que conferir.
 if (!fs.existsSync(BOOK)) {
 	console.log("validacao-regras: pasta regras/ ausente, validação contra o livro ignorada");
 	process.exit(0);

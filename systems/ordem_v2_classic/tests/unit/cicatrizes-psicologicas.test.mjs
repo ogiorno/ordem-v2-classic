@@ -11,15 +11,7 @@ const ROOT = path.join(path.dirname(fileURLToPath(import.meta.url)), "../..");
 const read = (...p) => fs.readFileSync(path.join(ROOT, ...p), "utf8");
 const names = ["Cicatrizes Psicológicas", "Patrulha"];
 
-describe("o livro", () => {
-	const FICHA = path.join(ROOT, "../../regras/02-criacao-de-personagem/FICHA-DE-AGENTE-ATUALIZADA.md");
-	// regras/ (texto dos livros) fica fora do git: sem ela o teste é ignorado.
-	it("Jogando sem Sanidade: Cicatrizes Psicológicas dá um dado adicional em Vontade contra efeitos de medo", { skip: !fs.existsSync(FICHA) && "pasta regras/ ausente" }, () => {
-		const ficha = fs.readFileSync(path.join(ROOT, "../../regras/02-criacao-de-personagem/FICHA-DE-AGENTE-ATUALIZADA.md"), "utf8").replace(/\s+/g, " ");
-		assert.match(ficha, /Cicatrizes Psicológicas\*\* também muda: concede um dado adicional em Vontade contra efeitos de medo, incluindo Presença Perturbadora e dano mental de criaturas de Medo/);
-		assert.match(ficha, /PD substitui PE e Sanidade/);
-		assert.match(ficha, /Os demais efeitos ligados a PE passam a valer para PD/);
-	});
+describe("regras básicas", () => {
 	it("regras básicas: +1 de Sanidade para cada 5% de NEX (o efeito de ficha continua)", () => {
 		assert.equal(passiveRuleFor("Cicatrizes Psicológicas").changes[0].key, "system.SAN.bonus");
 		assert.equal(passiveRuleFor("Cicatrizes Psicológicas").changes[0].value, "@nivel.value");

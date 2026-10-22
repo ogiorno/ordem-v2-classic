@@ -115,7 +115,8 @@ O repositório é o workspace de desenvolvimento; o sistema fica em `systems/ord
 ```bash
 npm install
 npm run packs:pack    # compila os compêndios (packs/_source -> LevelDB)
-npm test              # testes unitários
+npm test              # testes unitários (não dependem de arquivos dos livros)
+npm run test:livro    # confere regras contra o texto dos livros (precisa da pasta regras/, que fica fora do git)
 npm run lang-check    # confere as chaves de tradução
 npm run render-check  # confere os templates
 npm run dev           # servidor local do Foundry na porta 30000
