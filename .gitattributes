@@ -1,0 +1,3 @@
+# Fontes dos compêndios e fixtures são gerados em LF; os testes comparam byte a byte.
+systems/*/packs/_source/** text eol=lf
+systems/*/fixtures/** text eol=lf
