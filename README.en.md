@@ -14,7 +14,7 @@
 [![Downloads](https://img.shields.io/github/downloads/ogiorno/ordem-v2-classic/total?label=downloads)](https://github.com/ogiorno/ordem-v2-classic/releases)
 [![Issues](https://img.shields.io/github/issues/ogiorno/ordem-v2-classic)](https://github.com/ogiorno/ordem-v2-classic/issues)
 
-[Installation](#installation) · [What's new](#what-this-fork-adds) · [Screenshots](#screenshots) · [Development](#development) · [Credits](#credits-and-license)
+[Installation](#installation) · [What's new](#what-this-fork-adds) · [Development](#development) · [Credits](#credits-and-license)
 
 </div>
 
@@ -97,23 +97,6 @@ The core idea is **the sheet does the math and the GM decides**. The system appl
 - Support for the **Playing without Sanity** variant, which merges PE and SAN into Determination Points.
 - **Portuguese and English** texts, with key checking.
 - **1,536 unit tests**, plus interface tests that run inside Foundry.
-
-## Screenshots
-
-<table>
-  <tr>
-    <td><img src="docs/img/tela-ataque.png" alt="Attack dialog" width="100%"><br><sub><b>Attack dialog</b>: active options and summed cost.</sub></td>
-    <td><img src="docs/img/grimorio.png" alt="Player grimoire" width="100%"><br><sub><b>Grimoire</b>: rituals, conditions and curses.</sub></td>
-  </tr>
-  <tr>
-    <td><img src="docs/img/tela-nivel.png" alt="Level-up screen" width="100%"><br><sub><b>Level-up</b>: what changed, before → after.</sub></td>
-    <td><img src="docs/img/ficha-ameaca.png" alt="Threat sheet" width="100%"><br><sub><b>Threat sheet</b> in the book's format.</sub></td>
-  </tr>
-  <tr>
-    <td><img src="docs/img/ritual-area.png" alt="Area ritual on the map" width="100%"><br><sub><b>Area ritual</b>: place it before paying.</sub></td>
-    <td><img src="docs/img/maldicao-item.png" alt="Cursed item" width="100%"><br><sub><b>Curse</b> attached to a weapon.</sub></td>
-  </tr>
-</table>
 
 ## For the GM: first steps
 

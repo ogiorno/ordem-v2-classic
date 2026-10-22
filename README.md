@@ -14,7 +14,7 @@
 [![Downloads](https://img.shields.io/github/downloads/ogiorno/ordem-v2-classic/total?label=downloads)](https://github.com/ogiorno/ordem-v2-classic/releases)
 [![Issues](https://img.shields.io/github/issues/ogiorno/ordem-v2-classic)](https://github.com/ogiorno/ordem-v2-classic/issues)
 
-[Instalação](#instalação) · [Novidades](#o-que-este-fork-acrescenta) · [Capturas de tela](#capturas-de-tela) · [Desenvolvimento](#desenvolvimento) · [Créditos](#créditos-e-licença)
+[Instalação](#instalação) · [Novidades](#o-que-este-fork-acrescenta) · [Desenvolvimento](#desenvolvimento) · [Créditos](#créditos-e-licença)
 
 </div>
 
@@ -95,23 +95,6 @@ A ideia central é **a ficha faz a conta e o Mestre decide**. O sistema aplica b
 - Suporte à variante **Jogando sem Sanidade**, que funde PE e SAN em Pontos de Determinação.
 - Textos em **português e inglês**, com verificação de chaves.
 - **1.536 testes unitários**, mais testes de interface rodando dentro do Foundry.
-
-## Capturas de tela
-
-<table>
-  <tr>
-    <td><img src="docs/img/tela-ataque.png" alt="Tela de ataque" width="100%"><br><sub><b>Tela de ataque</b>: opções ativas e custo somado.</sub></td>
-    <td><img src="docs/img/grimorio.png" alt="Grimório do jogador" width="100%"><br><sub><b>Grimório</b>: rituais, condições e maldições.</sub></td>
-  </tr>
-  <tr>
-    <td><img src="docs/img/tela-nivel.png" alt="Tela de subida de nível" width="100%"><br><sub><b>Subida de nível</b>: o que mudou, antes → depois.</sub></td>
-    <td><img src="docs/img/ficha-ameaca.png" alt="Ficha de ameaça" width="100%"><br><sub><b>Ficha de ameaça</b> no formato do livro.</sub></td>
-  </tr>
-  <tr>
-    <td><img src="docs/img/ritual-area.png" alt="Ritual de área no mapa" width="100%"><br><sub><b>Ritual de área</b>: posicione antes de pagar.</sub></td>
-    <td><img src="docs/img/maldicao-item.png" alt="Item amaldiçoado" width="100%"><br><sub><b>Maldição</b> anexada a uma arma.</sub></td>
-  </tr>
-</table>
 
 ## Para o Mestre: primeiros passos
 
