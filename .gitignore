@@ -4,3 +4,7 @@ systems/*/packs/*
 !systems/*/packs/_source
 .playwright-cli/
 work/
+
+# Texto dos livros (direitos de terceiros): fica só no disco
+regras/
+docs/arquivo/
