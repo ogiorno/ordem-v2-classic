@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="docs/img/banner.png" alt="Ordem Paranormal (v2 Classic) for Foundry VTT" width="100%">
+<img src="docs/img/banner.webp" alt="Ordem Paranormal (v2 Classic) for Foundry VTT" width="100%">
 
 # Ordem Paranormal (v2 Classic)
 
