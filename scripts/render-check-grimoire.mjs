@@ -2,12 +2,13 @@
 // ritual com forma, vazio com sugestões, condições com "Você está", poder). Pega erro de sintaxe e chave de tradução faltando.
 // Uso: npm run render-check  (roda junto com o da ficha de ameaça). Variáveis: GRIMORIO_ROOT (pasta do sistema), GRIMORIO_LANG (pasta lang).
 import { createRequire } from "node:module";
-import { readFileSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import path from "node:path";
 import assert from "node:assert/strict";
 
-const install = "C:\\Users\\Geh\\VTT\\Foundry Virtual Tabletop\\resources\\app";
-const require = createRequire(path.join(install, "package.json"));
+// Usa o Handlebars do Foundry instalado (FOUNDRY_APP) quando existe; sem ele (CI, clone novo) usa o do projeto (devDependency).
+const install = process.env.FOUNDRY_APP ?? "C:\\Users\\Geh\\VTT\\Foundry Virtual Tabletop\\resources\\app";
+const require = createRequire(existsSync(path.join(install, "package.json")) ? path.join(install, "package.json") : import.meta.url);
 const Handlebars = require("handlebars");
 const root = path.resolve(process.env.GRIMORIO_ROOT ?? "systems/ordem_v2_classic");
 const langDir = path.resolve(process.env.GRIMORIO_LANG ?? path.join(root, "lang"));

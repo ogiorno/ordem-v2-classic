@@ -1,7 +1,7 @@
 // Compila e renderiza os templates da ficha de ameaça com o Handlebars do Foundry e dados de exemplo.
 // Pega erro de sintaxe/partial/helper sem precisar abrir o Foundry. Uso: npm run render-check
 import { createRequire } from "node:module";
-import { readFileSync, readdirSync } from "node:fs";
+import { existsSync, readFileSync, readdirSync } from "node:fs";
 import path from "node:path";
 import assert from "node:assert/strict";
 import { buildEditorViewModel } from "../systems/ordem_v2_classic/module/helpers/threat-ability-editor.mjs";
@@ -17,8 +17,9 @@ const html20 = (label) => {
 	return formatTestHtml(m[1] ? Number(m[1]) : 1, m[2] ? Number(m[2]) : 0);
 };
 
-const install = "C:\\Users\\Geh\\VTT\\Foundry Virtual Tabletop\\resources\\app";
-const require = createRequire(path.join(install, "package.json"));
+// Usa o Handlebars do Foundry instalado (FOUNDRY_APP) quando existe; sem ele (CI, clone novo) usa o do projeto (devDependency).
+const install = process.env.FOUNDRY_APP ?? "C:\\Users\\Geh\\VTT\\Foundry Virtual Tabletop\\resources\\app";
+const require = createRequire(existsSync(path.join(install, "package.json")) ? path.join(install, "package.json") : import.meta.url);
 const Handlebars = require("handlebars");
 const sys = path.resolve("systems/ordem_v2_classic");
 const read = (rel) => readFileSync(path.join(sys, rel), "utf8");
