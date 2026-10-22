@@ -1,5 +1,30 @@
 # Changelog
 
+## [1.0.0](https://github.com/ogiorno/ordem-v2-classic/releases/tag/v1.0.0) (2026-10-22)
+
+Primeira versão do fork [ogiorno/ordem-v2-classic](https://github.com/ogiorno/ordem-v2-classic), baseado no sistema `ordemparanormal_fvtt` 8.0.2 de Wendel Henrique (Mark57449). A numeração recomeça em 1.0.0; o histórico abaixo é do projeto original.
+
+### Novidades
+
+* **combate:** tela de ataque com opções "ao usar"; resultado Acertou/Errou com Defesa oculta aos jogadores; aviso compacto do Mestre; regras de Corrente, recarga (Balestra, Besta, Bazuca), área de Bazuca e Lança-chamas, Cajado e Em Chamas; animação de dano nos tokens das criaturas por elemento primário
+* **morte:** Inconsciente e Morrendo a 0 PV, contagem de três turnos, Dano Massivo e botão Estabilizar
+* **turnos:** Sangrando pede o teste de Vigor ao jogador; opção do mundo "Teste de efeitos no início do turno" (Perguntar ao jogador ou Automático)
+* **barra de macros:** barra automática com armas, rituais e habilidades ativas, linhas extras, comando `/barra` e macro criada por arma nova
+* **progressão:** tela de subida de nível; perícias treinadas com livro-caixa e contador; seção "O que concede" nas origens (57 origens, escolha pelo jogador); poderes passivos que aplicam o bônus sozinhos (52 automáticos); Perito com custo por NEX; categoria dos itens, modificações e limites por patente
+* **paranormal:** Grimório do jogador (rituais, condições e maldições); conjuração rápida; rituais de área com Região do Foundry; carta de ritual curta; animações dos 98 rituais (Automated Animations + JB2A); conexão e afinidade, com +1d20/–1d20 nos testes contra o elemento e linha Afinidade em 29 poderes; maldições de itens (36), com efeito, dano extra e preço
+* **ameaças:** ficha de ameaça no formato do livro, com buff por teste; mais de 160 habilidades de ameaça jogáveis e painel do Mestre
+* **conteúdo:** compêndios do suplemento Sobrevivendo ao Horror (origens, poderes, trilhas, Sobrevivente e itens)
+* **qualidade:** 1.536 testes unitários, testes de interface no Foundry, verificação de chaves de tradução
+
+### Correções
+
+* **css:** adiciona a classe `system-ordemparanormal` ao `body` (fichas de item e outras ficavam sem estilo)
+* **desenvolvimento:** `dev.mjs` limpa a trava antiga ao reiniciar o servidor
+
+### Publicação
+
+* manifesto, `download`, README (português e inglês), licença e workflow de release apontam para o novo repositório
+
 ## [8.0.2](https://github.com/SouOWendel/ordemparanormal_fvtt/compare/v8.0.1...v8.0.2) (2026-08-05)
 
 

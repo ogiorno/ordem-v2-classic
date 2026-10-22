@@ -6,6 +6,8 @@
 
 **Sistema não oficial de Ordem Paranormal para o Foundry VTT, com combate, progressão, rituais e ameaças automatizados.**
 
+**Português** · [English](README.en.md)
+
 [![Versão](https://img.shields.io/github/v/release/ogiorno/ordem-v2-classic?label=vers%C3%A3o&color=7b1e2b)](https://github.com/ogiorno/ordem-v2-classic/releases/latest)
 [![Foundry](https://img.shields.io/badge/Foundry%20VTT-v13%2B%20%C2%B7%20testado%20na%20v14-orange)](https://foundryvtt.com)
 [![Licença](https://img.shields.io/badge/licen%C3%A7a-CC%20BY--NC--SA%204.0-blue)](LICENSE.txt)
