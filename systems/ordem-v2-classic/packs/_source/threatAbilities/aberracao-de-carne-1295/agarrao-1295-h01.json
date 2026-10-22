@@ -1,0 +1,40 @@
+{
+	"name": "Agarrão",
+	"type": "ability",
+	"img": "systems/ordem-v2-classic/assets/ability-icons/1295-1297-reacao-agarrao.webp",
+	"system": {
+		"id": 0,
+		"abilityType": "ability",
+		"preRequisite": "",
+		"description": "<p>REAÇÃO - AGARRÃO Se a aberração de carne acertar um ataque de pancada, ela pode tentar agarrar o alvo (teste 3d20+12). Ela pode manter até dois personagens agarrados por vez.</p>",
+		"chatDescription": "",
+		"activation": "reaction",
+		"cost": 0,
+		"costType": "PE",
+		"execution": null
+	},
+	"effects": [],
+	"flags": {
+		"ordem-v2-classic": {
+			"threatAbilityId": "1295-H01"
+		}
+	},
+	"_stats": {
+		"coreVersion": "14.369",
+		"systemId": "ordem-v2-classic",
+		"systemVersion": "8.0.2",
+		"createdTime": 1792207618168,
+		"modifiedTime": 1792207618168,
+		"lastModifiedBy": null,
+		"compendiumSource": null,
+		"duplicateSource": null,
+		"exportSource": null
+	},
+	"ownership": {
+		"default": 0
+	},
+	"folder": "kMYjaSfCkiJciUQf",
+	"sort": 1000,
+	"_id": "CCrNOfEto2PYhMgl",
+	"_key": "!items!CCrNOfEto2PYhMgl"
+}

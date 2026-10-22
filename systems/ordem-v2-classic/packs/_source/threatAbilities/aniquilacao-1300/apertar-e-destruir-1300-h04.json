@@ -1,0 +1,88 @@
+{
+	"name": "Apertar E Destruir",
+	"type": "ability",
+	"img": "systems/ordem-v2-classic/assets/ability-icons/1300-1306-livre-apertar-e-destruir.webp",
+	"system": {
+		"id": 0,
+		"abilityType": "ability",
+		"preRequisite": "",
+		"description": "<p>LIVRE - APERTAR E DESTRUIR No início do seu turno, a Aniquilação aperta os personagens agarrados com seus tentáculos, causando 40 pontos de dano de Sangue.</p>",
+		"chatDescription": "",
+		"activation": "free",
+		"cost": 0,
+		"costType": "PE",
+		"execution": {
+			"mode": "triggered",
+			"automation": "assisted",
+			"damage": [
+				{
+					"kind": "damage",
+					"formula": "40",
+					"type": "sangue",
+					"resource": "pv",
+					"roll": "once",
+					"frequency": ""
+				}
+			],
+			"effects": [],
+			"requirements": [
+				{
+					"kind": "narrative",
+					"text": "os personagens estão agarrados pelos tentáculos",
+					"ref": ""
+				}
+			],
+			"grants": [],
+			"targeting": {
+				"kind": "tokens",
+				"range": 1.5,
+				"count": 4,
+				"relation": "any",
+				"voluntary": false,
+				"rangeUnspecified": false,
+				"requiresSight": false
+			},
+			"trigger": {
+				"event": "turnStart",
+				"owner": "self"
+			},
+			"version": 1,
+			"source": {
+				"reference": "Livro v1.3, p. 196, Aniquilação",
+				"reviewed": false
+			},
+			"cost": null,
+			"area": null,
+			"save": null,
+			"visibility": {
+				"dc": "gm",
+				"defense": "gm",
+				"result": "public"
+			}
+		}
+	},
+	"effects": [],
+	"flags": {
+		"ordem-v2-classic": {
+			"threatAbilityId": "1300-H04"
+		}
+	},
+	"_stats": {
+		"coreVersion": "14.369",
+		"systemId": "ordem-v2-classic",
+		"systemVersion": "8.0.2",
+		"createdTime": 1792207618168,
+		"modifiedTime": 1792207618168,
+		"lastModifiedBy": null,
+		"compendiumSource": null,
+		"duplicateSource": null,
+		"exportSource": null
+	},
+	"ownership": {
+		"default": 0
+	},
+	"folder": "4h8dpjwisJjGpOON",
+	"sort": 4000,
+	"_id": "52YLr3xhsH9OyafK",
+	"_key": "!items!52YLr3xhsH9OyafK"
+}

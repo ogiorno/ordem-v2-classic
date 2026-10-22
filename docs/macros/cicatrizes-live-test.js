@@ -1,7 +1,7 @@
 // Cicatrizes Psicológicas ao vivo (Jogando sem Sanidade): +1 dado em Vontade contra efeito de medo.
 // Rodar com Mestre logado: playwright-cli -s=<nome> --raw eval "$(cat docs/macros/cicatrizes-live-test.js)"
 (async () => {
-	const SYS = "ordem_v2_classic";
+	const SYS = "ordem-v2-classic";
 	const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 	const out = { falhas: [], total: 0 };
 	const check = (id, ok, info) => { out.total++; if (!ok) out.falhas.push(`${id} ${JSON.stringify(info ?? "")}`); };

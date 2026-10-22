@@ -1,0 +1,104 @@
+{
+	"name": "MAL SINTONIZADO",
+	"type": "ability",
+	"img": "icons/svg/item-bag.svg",
+	"system": {
+		"id": 0,
+		"abilityType": "ability",
+		"preRequisite": "",
+		"description": "<p>Carrega uma grande carga de sons de estática e instrumentos desafinados e dispara em uma linha reta de 9m de distância com 3m de largura. Alvos atingidos ficam Surdos por 1d4 rodadas e recebem 2d8 + 2 dano de Energia. Reflexos DT 18 anula condição e reduz o dano pela metade.</p>",
+		"chatDescription": "",
+		"activation": "",
+		"cost": 0,
+		"costType": "PE",
+		"execution": {
+			"mode": "active",
+			"automation": "automatic",
+			"damage": [
+				{
+					"kind": "damage",
+					"formula": "2d8+2",
+					"type": "energia",
+					"resource": "pv",
+					"roll": "once",
+					"frequency": ""
+				}
+			],
+			"effects": [
+				{
+					"condition": "surdo",
+					"duration": {
+						"unit": "rounds",
+						"value": "1d4"
+					},
+					"onSave": "fail",
+					"target": "target",
+					"trigger": "",
+					"support": "mechanical"
+				}
+			],
+			"requirements": [],
+			"grants": [],
+			"targeting": {
+				"kind": "area",
+				"relation": "any",
+				"range": null,
+				"count": null,
+				"voluntary": false,
+				"rangeUnspecified": false,
+				"requiresSight": false
+			},
+			"area": {
+				"shape": "line",
+				"length": 9,
+				"width": 3,
+				"origin": "caster",
+				"persistence": "instant",
+				"triggers": [],
+				"radius": null
+			},
+			"save": {
+				"skill": "reflexos",
+				"dc": 18,
+				"onSuccess": "half",
+				"retry": false
+			},
+			"version": 1,
+			"source": {
+				"reference": "Compêndio local, Desalento",
+				"reviewed": false
+			},
+			"cost": null,
+			"trigger": null,
+			"visibility": {
+				"dc": "gm",
+				"defense": "gm",
+				"result": "public"
+			}
+		}
+	},
+	"effects": [],
+	"flags": {
+		"ordem-v2-classic": {
+			"threatAbilityId": "X-desalento-H04"
+		}
+	},
+	"_stats": {
+		"coreVersion": "14.369",
+		"systemId": "ordem-v2-classic",
+		"systemVersion": "8.0.2",
+		"createdTime": 1792207618168,
+		"modifiedTime": 1792207618168,
+		"lastModifiedBy": null,
+		"compendiumSource": null,
+		"duplicateSource": null,
+		"exportSource": null
+	},
+	"ownership": {
+		"default": 0
+	},
+	"folder": "5YMT9ZYghkaRy8YS",
+	"sort": 4000,
+	"_id": "95201O3OZkQoK0Hf",
+	"_key": "!items!95201O3OZkQoK0Hf"
+}

@@ -1,0 +1,45 @@
+{
+  "name": "Chamas do Caos",
+  "type": "ritual",
+  "img": "systems/ordem-v2-classic/assets/rituais/chamas-do-caos.png",
+  "system": {
+    "circle": 2,
+    "element": "energy",
+    "description": "<p>Você manipula o calor e o fogo. Ao conjurar o ritual, escolha um dos seguintes efeitos.</p><p><strong>Chamejar:</strong></p><p>o alvo é uma arma corpo a corpo. Ela causa +1d6 pontos de dano de fogo.</p> <p><strong>Esquentar:</strong></p><p>o alvo é um objeto, que começa a esquentar. Ele sofre 1d6 pontos de dano de fogo por rodada e causa o mesmo dano a qualquer ser que o esteja empunhando ou vestindo. A critério do mestre, o objeto ou o ser pode pegar fogo. Um ser pode gastar uma ação completa para resfriar o objeto (jogando areia ou jogando-o numa fonte de água próxima, por exemplo) e cancelar o efeito do ritual.</p> <p><strong>Extinguir:</strong></p><p>o alvo é uma chama de tamanho Grande ou menor, que é apagada. Isso cria uma nuvem de fumaça que ocupa uma esfera de 3m de raio centrada onde estava a chama. Dentro da fumaça, seres têm camuflagem leve.</p> <p><strong>Modelar:</strong></p><p>o alvo é uma chama de tamanho Grande ou menor. A cada rodada, você pode gastar uma ação livre para movimentá-la 9m em qualquer direção. Se atravessar o espaço ocupado por um ser, ela causa 3d6 pontos de dano de fogo nele. Um ser só pode sofrer dano dessa maneira uma vez por rodada. Discente (+3 PE): muda a duração para sustentada e adiciona “Resistência: Reflexos reduz à metade”. Em vez do normal, uma vez por rodada você pode gastar uma ação de movimento para projetar uma labareda, num alvo em alcance curto. O alvo sofre 4d6 pontos de dano de Energia (Reflexos reduz à metade). Verdadeiro (+ 7 PE): como discente, mas muda o dano para 8d6. Requer 3º círculo.</p>",
+    "chatDescription": "<p><strong>Fonte:</strong> Livro de Regras v1.3 · <strong>Execução:</strong> padrão · <strong>Alcance:</strong> curto · <strong>Alvo:</strong> veja texto · <strong>Duração:</strong> cena · <strong>Resistência:</strong> —</p>",
+    "execution": "default",
+    "range": "short",
+    "target": "veja texto",
+    "duration": "scene",
+    "resistance": "",
+    "skillResis": "",
+    "targetQtd": "",
+    "area": {
+      "name": "",
+      "size": "",
+      "type": ""
+    },
+    "studentForm": true,
+    "trueForm": false
+  },
+  "effects": [],
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.369",
+    "systemId": "ordem-v2-classic",
+    "systemVersion": "8.0.2",
+    "createdTime": 1792207618168,
+    "modifiedTime": 1792207618168,
+    "lastModifiedBy": null,
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "ownership": {
+    "default": 0
+  },
+  "folder": "RituaisCirculo02",
+  "sort": 34000,
+  "_id": "grofm7E9DuLvsL7m",
+  "_key": "!items!grofm7E9DuLvsL7m"
+}

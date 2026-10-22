@@ -1,0 +1,23 @@
+{
+	"type": "Item",
+	"folder": null,
+	"name": "Ciborgue",
+	"color": null,
+	"sorting": "a",
+	"_id": "iCpbGIaHKW7hj8P7",
+	"description": "",
+	"sort": 3600000,
+	"flags": {},
+	"_stats": {
+		"coreVersion": "14.369",
+		"systemId": "ordem-v2-classic",
+		"systemVersion": "8.0.2",
+		"createdTime": 1792207618168,
+		"modifiedTime": 1792207618168,
+		"lastModifiedBy": null,
+		"compendiumSource": null,
+		"duplicateSource": null,
+		"exportSource": null
+	},
+	"_key": "!folders!iCpbGIaHKW7hj8P7"
+}

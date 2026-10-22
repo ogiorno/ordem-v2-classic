@@ -1,0 +1,84 @@
+{
+	"name": "Atormentar",
+	"type": "ability",
+	"img": "systems/ordem-v2-classic/assets/ability-icons/1461-1463-movement-atormentar.webp",
+	"system": {
+		"id": 0,
+		"abilityType": "ability",
+		"preRequisite": "",
+		"description": "<p>MOVIMENTO - ATORMENTAR O bicho-papão envia sussurros e perturbações para um ser em alcance curto. O alvo sofre 3d8 pontos de dano mental (Vontade DT 30 reduz à metade). Caso o bicho-papão esteja escondido do alvo, este dano aumenta em +3d8.</p>",
+		"chatDescription": "",
+		"activation": "movement",
+		"cost": 0,
+		"costType": "PE",
+		"execution": {
+			"mode": "active",
+			"automation": "assisted",
+			"damage": [
+				{
+					"kind": "damage",
+					"formula": "3d8",
+					"type": "mental",
+					"resource": "san",
+					"roll": "once",
+					"frequency": ""
+				}
+			],
+			"effects": [],
+			"requirements": [],
+			"grants": [],
+			"targeting": {
+				"kind": "token",
+				"range": 9,
+				"count": 1,
+				"relation": "any",
+				"voluntary": false,
+				"rangeUnspecified": false,
+				"requiresSight": false
+			},
+			"save": {
+				"skill": "vontade",
+				"dc": 30,
+				"onSuccess": "half",
+				"retry": false
+			},
+			"version": 1,
+			"source": {
+				"reference": "Livro v1.3, p. 247, Bicho-Papão",
+				"reviewed": false
+			},
+			"cost": null,
+			"area": null,
+			"trigger": null,
+			"visibility": {
+				"dc": "gm",
+				"defense": "gm",
+				"result": "public"
+			}
+		}
+	},
+	"effects": [],
+	"flags": {
+		"ordem-v2-classic": {
+			"threatAbilityId": "1461-H01"
+		}
+	},
+	"_stats": {
+		"coreVersion": "14.369",
+		"systemId": "ordem-v2-classic",
+		"systemVersion": "8.0.2",
+		"createdTime": 1792207618168,
+		"modifiedTime": 1792207618168,
+		"lastModifiedBy": null,
+		"compendiumSource": null,
+		"duplicateSource": null,
+		"exportSource": null
+	},
+	"ownership": {
+		"default": 0
+	},
+	"folder": "P3o4du2zfNi0d97J",
+	"sort": 1000,
+	"_id": "Cg65yzzCUcLrnd5G",
+	"_key": "!items!Cg65yzzCUcLrnd5G"
+}

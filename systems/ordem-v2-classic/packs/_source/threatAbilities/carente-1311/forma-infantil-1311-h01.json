@@ -1,0 +1,40 @@
+{
+	"name": "Forma Infantil",
+	"type": "ability",
+	"img": "systems/ordem-v2-classic/assets/ability-icons/1311-1313-movimento-forma-infantil.webp",
+	"system": {
+		"id": 0,
+		"abilityType": "ability",
+		"preRequisite": "",
+		"description": "<p>MOVIMENTO - FORMA INFANTIL O carente se contorce de volta para o corpo da pequena criança para passar em espaços pequenos, se retraindo e expandindo quando achar necessário. Além disso, o carente não consegue abrir a primeira porta para entrar em um lugar. Uma vez que essa porta é aberta e ele deixa de estar na forma infantil, pode ignorar essa restrição.</p>",
+		"chatDescription": "",
+		"activation": "movement",
+		"cost": 0,
+		"costType": "PE",
+		"execution": null
+	},
+	"effects": [],
+	"flags": {
+		"ordem-v2-classic": {
+			"threatAbilityId": "1311-H01"
+		}
+	},
+	"_stats": {
+		"coreVersion": "14.369",
+		"systemId": "ordem-v2-classic",
+		"systemVersion": "8.0.2",
+		"createdTime": 1792207618168,
+		"modifiedTime": 1792207618168,
+		"lastModifiedBy": null,
+		"compendiumSource": null,
+		"duplicateSource": null,
+		"exportSource": null
+	},
+	"ownership": {
+		"default": 0
+	},
+	"folder": "ymiGJ2C0C9ag0hcC",
+	"sort": 1000,
+	"_id": "jbjZiKtPgHqhhwVg",
+	"_key": "!items!jbjZiKtPgHqhhwVg"
+}

@@ -1,0 +1,34 @@
+{
+  "name": "Antielemento",
+  "type": "curse",
+  "_id": "e9DF3KJnhCTsDQdE",
+  "img": "systems/ordem-v2-classic/assets/curse-icons/antielemento.webp",
+  "system": {
+    "description": "<p><strong>Conhecimento</strong> · maldição de arma · Automática: o sistema aplica sozinho.</p>\n<p>A arma é letal contra criaturas de um elemento. Ao atacar uma criatura desse elemento, gaste 2 PE; se acertar, causa +4d8 de dano. Para sortear o elemento: 1d4 (1 Conhecimento, 2 Energia, 3 Morte, 4 Sangue).</p>\n<h4>No sistema</h4>\n<ul><li>Tela de ataque: opção \"Antielemento\" (2 PE) — +4d8 contra criatura do elemento.</li><li>Dano extra: 4d8 em carta própria, quando a opção é escolhida.</li><li>Ao anexar ao item, o sistema pergunta o elemento.</li></ul>\n<p><em>Arraste para a ficha de um agente (ou para um item) e escolha o item que vira amaldiçoado. A primeira maldição soma +II à categoria do item e as seguintes +I.</em></p>\n<p><small>Fonte: Ordem Paranormal RPG — Livro de Regras v1.3, Itens amaldiçoados (livro p. 144–147).</small></p>",
+    "chatDescription": "",
+    "curseKey": "antielemento",
+    "element": "knowledge",
+    "applies": "weapon",
+    "mode": "auto",
+    "price": ""
+  },
+  "effects": [],
+  "folder": "LrypGJeJfNmaSB3L",
+  "sort": 100000,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.369",
+    "systemId": "ordem-v2-classic",
+    "systemVersion": "8.0.2",
+    "createdTime": 1792207618168,
+    "modifiedTime": 1792207618168,
+    "lastModifiedBy": null,
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!e9DF3KJnhCTsDQdE"
+}

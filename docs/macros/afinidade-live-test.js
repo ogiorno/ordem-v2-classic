@@ -2,7 +2,7 @@
 // Rodar com o Mestre logado: playwright-cli -s=<nome> --raw eval "$(cat docs/macros/afinidade-live-test.js)"
 // Usa agentes temporários "ZZ afinidade ..." e os diálogos de verdade; apaga tudo no fim.
 (async () => {
-	const SYS = "ordem_v2_classic";
+	const SYS = "ordem-v2-classic";
 	const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 	const until = async (fn, ms = 8000) => { const t = Date.now(); while (Date.now() - t < ms) { const v = await fn(); if (v) return v; await sleep(100); } return null; };
 	const A = await import(`/systems/${SYS}/module/helpers/affinity.mjs`);

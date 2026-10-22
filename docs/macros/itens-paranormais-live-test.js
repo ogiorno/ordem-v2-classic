@@ -3,9 +3,9 @@
 // e apaga tudo no fim. Não mexe em nenhuma outra ficha nem cena. Precisa da regra "Jogando sem Sanidade" ligada.
 // Resultado: texto com uma linha por conferência.
 async () => {
-	const P = await import("/systems/ordem_v2_classic/module/helpers/paranormal-items.mjs");
-	const HR = await import("/systems/ordem_v2_classic/module/helpers/hotbar-rules.mjs");
-	const RC = await import("/systems/ordem_v2_classic/module/macros/ritual-caster.mjs");
+	const P = await import("/systems/ordem-v2-classic/module/helpers/paranormal-items.mjs");
+	const HR = await import("/systems/ordem-v2-classic/module/helpers/hotbar-rules.mjs");
+	const RC = await import("/systems/ordem-v2-classic/module/macros/ritual-caster.mjs");
 	const out = [];
 	const check = (nome, ok, detalhe = "") => out.push({ ok: Boolean(ok), nome, detalhe: String(detalhe) });
 	const wait = (ms) => new Promise((r) => setTimeout(r, ms));
@@ -22,9 +22,9 @@ async () => {
 	};
 	let actor;
 	try {
-		check("regra Jogando sem Sanidade ligada", game.settings.get("ordem_v2_classic", "globalPlayingWithoutSanity"));
+		check("regra Jogando sem Sanidade ligada", game.settings.get("ordem-v2-classic", "globalPlayingWithoutSanity"));
 		actor = await Actor.create({ name: NAME, type: "agent", system: { NEX: { value: 30 } } });
-		const rituals = await game.packs.get("ordem_v2_classic.rituals").getDocuments();
+		const rituals = await game.packs.get("ordem-v2-classic.rituals").getDocuments();
 		const ritual = (name) => rituals.find((r) => r.name === name);
 		const given = await actor.createEmbeddedDocuments("Item", [
 			{ name: "Amarras de Sangue", type: "generalEquipment", system: { category: 2, quantity: 2 } },
@@ -58,7 +58,7 @@ async () => {
 		before = pd();
 		await P.useParanormalItem(amarras, "trap");
 		check("Armadilha gasta 2 PD e consome 1 unidade", before - pd() === 2 && actor.items.get(amarras.id)?.system.quantity === 1, `${before}→${pd()} qtd ${actor.items.get(amarras.id)?.system.quantity}`);
-		const card = game.messages.contents.reverse().find((m) => m.flags?.ordem_v2_classic?.paranormalItemUse?.use === "trap" && m.speaker?.actor === actor.id);
+		const card = game.messages.contents.reverse().find((m) => m.flags?.["ordem-v2-classic"]?.paranormalItemUse?.use === "trap" && m.speaker?.actor === actor.id);
 		check("cartão da Armadilha traz Reflexos e a DT", /Reflexos/.test(card?.content ?? "") && /DT \d+/.test(card?.content ?? ""), card?.content?.slice(0, 160));
 
 		// 3. Escuta: +5 em Ocultismo como efeito na ficha
@@ -66,7 +66,7 @@ async () => {
 		before = pd();
 		await P.useParanormalItem(escuta, "record");
 		await wait(400);
-		const bonus = actor.effects.find((e) => e.getFlag("ordem_v2_classic", "paranormalItemBonus"));
+		const bonus = actor.effects.find((e) => e.getFlag("ordem-v2-classic", "paranormalItemBonus"));
 		check("Escuta gasta 2 PD e dá +5 em Ocultismo", before - pd() === 2 && Boolean(bonus) && bonus.system.changes[0].value === 5, `${before}→${pd()}`);
 
 		// 4. Scanner pergunta o elemento e cobra 1 PD
@@ -86,7 +86,7 @@ async () => {
 		});
 		const esfolar = by("Esfolar");
 		const corpo = by("Corpo Adaptado");
-		const castOf = (item) => game.messages.contents.reverse().find((m) => m.flags?.ordem_v2_classic?.ritualCast?.itemId === item.id && m.speaker?.actor === actor.id)?.flags?.ordem_v2_classic?.ritualCast;
+		const castOf = (item) => game.messages.contents.reverse().find((m) => m.flags?.["ordem-v2-classic"]?.ritualCast?.itemId === item.id && m.speaker?.actor === actor.id)?.flags?.["ordem-v2-classic"]?.ritualCast;
 		const clearCasts = async () => { for (const m of game.messages.filter((x) => x.speaker?.actor === actor.id)) await m.delete().catch(() => null); };
 		const opts = RC.buildRitualSelection;
 		check("conjurador oferece só catalisadores do elemento", P.catalystOptions(actor, "blood").length === 4 && P.catalystOptions(actor, "death").length === 1, P.catalystOptions(actor, "blood").map((c) => c.label).join(", "));

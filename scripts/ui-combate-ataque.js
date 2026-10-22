@@ -15,7 +15,7 @@ async (page) => {
 	// ---- preparação: armas e poderes nos agentes, PE cheio, ameaças duráveis
 	const arenaCheck = await ev(() => ({
 		name: canvas.scene?.name,
-		agents: canvas.tokens.placeables.filter((t) => t.actor?.getFlag("ordem_v2_classic", "liveTestCopy") && t.actor.type === "agent").length,
+		agents: canvas.tokens.placeables.filter((t) => t.actor?.getFlag("ordem-v2-classic", "liveTestCopy") && t.actor.type === "agent").length,
 		threats: canvas.tokens.placeables.filter((t) => t.name.startsWith("ZZ ameaça") && t.actor?.type === "threat").length,
 	}));
 	if (arenaCheck.name !== "ZZ arena (teste automático)" || arenaCheck.agents !== 5 || arenaCheck.threats !== 6) {
@@ -23,7 +23,7 @@ async (page) => {
 	}
 	await ev(() => window.__rt.cleanup());
 	const prep = await ev(async () => {
-		const SYS = "ordem_v2_classic";
+		const SYS = "ordem-v2-classic";
 		const norm = (t) => String(t).normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase().replace(/[^a-z0-9]/g, "");
 		const fp = async (p, n) => { const pack = game.packs.get(`${SYS}.${p}`); const e = (await pack.getIndex()).find((x) => norm(x.name) === norm(n)); const d = (await pack.getDocument(e._id)).toObject(); delete d._id; return d; };
 		const { conditionEffectData } = await import(`/systems/${SYS}/module/helpers/conditions.mjs`);
@@ -133,13 +133,13 @@ async (page) => {
 						if (cur.round === 1) {
 							await dialog.locator(".op-ad-condition").filter({ hasText: "Vulnerável" }).locator('[data-action="remove-condition"]').click();
 							await sleep(250);
-							const state = await ev((id) => game.actors.get(id).effects.map((e) => e.getFlag("ordem_v2_classic", "condition")?.id).filter(Boolean), row.id);
+							const state = await ev((id) => game.actors.get(id).effects.map((e) => e.getFlag("ordem-v2-classic", "condition")?.id).filter(Boolean), row.id);
 							check("CB-COND-REMOVE-1", "Remover uma condição da tela remove o efeito real da ficha", !state.includes("vulnerable") && state.includes("grabbed"), JSON.stringify(state));
 							entry.conditionsLeft = state;
 						} else if (cur.round === 2) {
 							await dialog.locator(".op-ad-condition").filter({ hasText: "Agarrado" }).locator('[data-action="remove-condition"]').click();
 							await sleep(250);
-							const state = await ev((id) => game.actors.get(id).effects.map((e) => e.getFlag("ordem_v2_classic", "condition")?.id).filter(Boolean), row.id);
+							const state = await ev((id) => game.actors.get(id).effects.map((e) => e.getFlag("ordem-v2-classic", "condition")?.id).filter(Boolean), row.id);
 							check("CB-COND-REMOVE-2", "Remover a penalidade de ataque também limpa Agarrado do agente", !state.includes("grabbed"), JSON.stringify(state));
 							entry.conditionsLeft = state;
 						}
@@ -160,8 +160,8 @@ async (page) => {
 					await sleep(3200);
 				}
 			entry.rolagem = await ev((id) => {
-				const message = [...game.messages].reverse().find((m) => m.speaker?.actor === id && m.getFlag("ordem_v2_classic", "messageRoll")?.type === "attack");
-				return message ? { flavor: message.flavor, formula: message.rolls?.[0]?.formula ?? null, options: message.getFlag("ordem_v2_classic", "attackOptions") ?? null } : null;
+				const message = [...game.messages].reverse().find((m) => m.speaker?.actor === id && m.getFlag("ordem-v2-classic", "messageRoll")?.type === "attack");
+				return message ? { flavor: message.flavor, formula: message.rolls?.[0]?.formula ?? null, options: message.getFlag("ordem-v2-classic", "attackOptions") ?? null } : null;
 			}, cur.actorId);
 			if (row.conditionQa && cur.round === 1) {
 				const names = entry.rolagem?.options?.conditions?.map((condition) => condition.name) ?? [];

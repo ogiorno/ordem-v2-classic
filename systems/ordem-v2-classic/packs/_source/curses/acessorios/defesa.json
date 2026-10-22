@@ -1,0 +1,34 @@
+{
+  "name": "Defesa",
+  "type": "curse",
+  "_id": "4M17O1UEHOzTfLvB",
+  "img": "systems/ordem-v2-classic/assets/curse-icons/defesa.webp",
+  "system": {
+    "description": "<p><strong>Energia</strong> · maldição de acessório · Automática: o sistema aplica sozinho.</p>\n<p>Barreira de energia invisível: +5 de Defesa.</p>\n<h4>No sistema</h4>\n<ul><li>Na ficha enquanto o item está equipado: +5 em Defesa.</li></ul>\n<p><em>Arraste para a ficha de um agente (ou para um item) e escolha o item que vira amaldiçoado. A primeira maldição soma +II à categoria do item e as seguintes +I.</em></p>\n<p><small>Fonte: Ordem Paranormal RPG — Livro de Regras v1.3, Itens amaldiçoados (livro p. 144–147).</small></p>",
+    "chatDescription": "",
+    "curseKey": "defesa",
+    "element": "energy",
+    "applies": "accessory",
+    "mode": "auto",
+    "price": ""
+  },
+  "effects": [],
+  "folder": "BjuLLjzFqQnmtDbe",
+  "sort": 2800000,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.369",
+    "systemId": "ordem-v2-classic",
+    "systemVersion": "8.0.2",
+    "createdTime": 1792207618168,
+    "modifiedTime": 1792207618168,
+    "lastModifiedBy": null,
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!4M17O1UEHOzTfLvB"
+}

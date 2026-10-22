@@ -1,12 +1,12 @@
 # Arquitetura do projeto — referência viva
 
-Estado observado em 21/10/2026 no checkout local, incluindo arquivos ainda não commitados. Alvo: Foundry VTT 14.369, sistema `ordem_v2_classic`, mundo de desenvolvimento `nova-ordem`. Este documento descreve o que existe; a organização desejada está na [spec](spec-melhorias-arquitetura-e-testes.md).
+Estado observado em 21/10/2026 no checkout local, incluindo arquivos ainda não commitados. Alvo: Foundry VTT 14.369, sistema `ordem-v2-classic`, mundo de desenvolvimento `nova-ordem`. Este documento descreve o que existe; a organização desejada está na [spec](spec-melhorias-arquitetura-e-testes.md).
 
 ## Mapa
 
 | Parte | Responsabilidade atual | Entrada e saída |
 | --- | --- | --- |
-| `systems/ordem_v2_classic/system.json` | Manifesto do sistema, estilos e compêndios | Foundry carrega `module/ordemparanormal.mjs` |
+| `systems/ordem-v2-classic/system.json` | Manifesto do sistema, estilos e compêndios | Foundry carrega `module/ordemparanormal.mjs` |
 | `module/ordemparanormal.mjs` | Bootstrap `init`, `setup`, `ready`, sockets, migrações e registros | `CONFIG`, hooks, documentos e serviços do Foundry |
 | `module/data/` | `TypeDataModel` de agentes, ameaças e itens | Dados persistidos em `system` |
 | `module/documents/` | Classes `Actor`, `Item`, `Combat`, `ChatMessage` | Ciclo de vida Foundry, rolagens, PV e mensagens |

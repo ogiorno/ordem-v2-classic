@@ -2,7 +2,7 @@
 
 ## Escopo
 
-O mapa `systems/ordem_v2_classic/module/macros/ritual-animation-map.json` relaciona cada ritual da biblioteca do mundo a um vídeo da biblioteca JB2A Free. A versão atual contém 98 vínculos e usa 95 arquivos distintos. Os arquivos ficam no módulo `JB2A_DnD5e`, em `Library/Generic/`.
+O mapa `systems/ordem-v2-classic/module/macros/ritual-animation-map.json` relaciona cada ritual da biblioteca do mundo a um vídeo da biblioteca JB2A Free. A versão atual contém 98 vínculos e usa 95 arquivos distintos. Os arquivos ficam no módulo `JB2A_DnD5e`, em `Library/Generic/`.
 
 ## Comportamento no jogo
 

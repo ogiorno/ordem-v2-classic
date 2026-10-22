@@ -1,0 +1,34 @@
+{
+  "name": "Esperto",
+  "type": "path",
+  "_id": "82pTuwxHOjESbcrP",
+  "img": "systems/ordemparanormal/media/icons/abilities/class/survivor/esperto.svg",
+  "system": {
+    "id": 0,
+    "description": "<p>Você é um estudante, técnico, engenheiro ou outra pessoa equipada com conhecimento, inteligência e persuasão.</p>",
+    "chatDescription": ""
+  },
+  "effects": [],
+  "folder": "4Hf6p412nR3F0Ha4",
+  "sort": 200000,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "ordem-v2-classic": {
+      "source": "sah"
+    }
+  },
+  "_stats": {
+    "coreVersion": "14.365",
+    "systemId": "ordem-v2-classic",
+    "systemVersion": "7.3.3",
+    "createdTime": 1784900000000,
+    "modifiedTime": 1784900000000,
+    "lastModifiedBy": null,
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!82pTuwxHOjESbcrP"
+}

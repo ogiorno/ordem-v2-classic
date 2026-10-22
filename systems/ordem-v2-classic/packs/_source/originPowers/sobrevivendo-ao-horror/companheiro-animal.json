@@ -1,0 +1,39 @@
+{
+  "name": "Companheiro Animal",
+  "type": "ability",
+  "_id": "LByL21BMlF42UeQo",
+  "img": "systems/ordemparanormal/media/icons/abilities/origin/companheiro-animal.svg",
+  "system": {
+    "id": 0,
+    "chatDescription": "",
+    "abilityType": "origin",
+    "preRequisite": "",
+    "description": "<p>Você consegue entender as intenções e sentimentos de animais, e pode usar Adestramento para mudar a atitude deles. Além disso, você possui um melhor amigo, um animal que cresceu com você e pelo qual tem profundo apego. Ele conta como um aliado que fornece +2 em uma perícia a sua escolha (aprovada pelo mestre). Quando você alcança NEX 35%, ele também passa a fornecer o bônus de um aliado de um tipo a sua escolha (aprovado pelo mestre). Por fim, quando você alcança NEX 70%, ele fornece a habilidade do tipo de aliado escolhido. Perder seu parceiro é muito doloroso. Se ele morrer, você perde 10 pontos de Sanidade permanentemente, além de ficar perturbado até o fim da cena. Como encontrar um novo companheiro fica a critério do mestre, mas geralmente será uma ação entre missões.</p>",
+    "activation": "passive",
+    "cost": 0,
+    "costType": "PE"
+  },
+  "effects": [],
+  "folder": "5cSChcCq63dzK05t",
+  "sort": 1000,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "ordem-v2-classic": {
+      "source": "sah"
+    }
+  },
+  "_stats": {
+    "coreVersion": "14.365",
+    "systemId": "ordem-v2-classic",
+    "systemVersion": "7.3.3",
+    "createdTime": 1784900000000,
+    "modifiedTime": 1784900000000,
+    "lastModifiedBy": null,
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!LByL21BMlF42UeQo"
+}

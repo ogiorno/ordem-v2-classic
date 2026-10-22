@@ -1,0 +1,35 @@
+{
+  "folder": "lV1ucTTTAhQMYjTg",
+  "name": "Caçador",
+  "type": "path",
+  "_id": "83i2kSghbMEpzBns",
+  "img": "systems/ordemparanormal/media/icons/paths/cacador.svg",
+  "system": {
+    "id": 0,
+    "description": "<p>Em um mundo cheio de predadores sobrenaturais, você decidiu não ser mais uma presa. Valendo-se de relatos de segunda mão, notícias de jornais e relatórios de incidentes inexplicáveis, você reúne informações sobre como caçar as coisas que espreitam na escuridão.</p>",
+    "chatDescription": ""
+  },
+  "effects": [],
+  "sort": 200000,
+  "ownership": {
+    "default": 0,
+    "WeXQ2WY27ruZ5VmA": 3
+  },
+  "flags": {
+    "ordem-v2-classic": {
+      "source": "sah"
+    }
+  },
+  "_stats": {
+    "coreVersion": "14.365",
+    "systemId": "ordemparanormal",
+    "systemVersion": "7.3.3",
+    "createdTime": 1784685507201,
+    "modifiedTime": 1784758441082,
+    "lastModifiedBy": "mCARmiewelPiv8Ze",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!83i2kSghbMEpzBns"
+}

@@ -4,12 +4,12 @@ import { createRequire } from "node:module";
 import { existsSync, readFileSync, readdirSync } from "node:fs";
 import path from "node:path";
 import assert from "node:assert/strict";
-import { buildEditorViewModel } from "../systems/ordem_v2_classic/module/helpers/threat-ability-editor.mjs";
-import { buildPanelView } from "../systems/ordem_v2_classic/module/helpers/threat-ability-panel-view.mjs";
-import { createRow, beginApply, markApplied, editChange } from "../systems/ordem_v2_classic/module/helpers/threat-ability-panel.mjs";
-import { previewChange } from "../systems/ordem_v2_classic/module/helpers/threat-ability-damage.mjs";
-import { paranormalItemView } from "../systems/ordem_v2_classic/module/helpers/paranormal-items.mjs";
-import { formatTestHtml } from "../systems/ordem_v2_classic/module/helpers/threat-calc.mjs";
+import { buildEditorViewModel } from "../systems/ordem-v2-classic/module/helpers/threat-ability-editor.mjs";
+import { buildPanelView } from "../systems/ordem-v2-classic/module/helpers/threat-ability-panel-view.mjs";
+import { createRow, beginApply, markApplied, editChange } from "../systems/ordem-v2-classic/module/helpers/threat-ability-panel.mjs";
+import { previewChange } from "../systems/ordem-v2-classic/module/helpers/threat-ability-damage.mjs";
+import { paranormalItemView } from "../systems/ordem-v2-classic/module/helpers/paranormal-items.mjs";
+import { formatTestHtml } from "../systems/ordem-v2-classic/module/helpers/threat-calc.mjs";
 
 // "3O+10" → 3 d20 + 10, com o ícone de d20 no lugar do "O" (igual ao que a ficha mostra)
 const html20 = (label) => {
@@ -21,7 +21,7 @@ const html20 = (label) => {
 const install = process.env.FOUNDRY_APP ?? "C:\\Users\\Geh\\VTT\\Foundry Virtual Tabletop\\resources\\app";
 const require = createRequire(existsSync(path.join(install, "package.json")) ? path.join(install, "package.json") : import.meta.url);
 const Handlebars = require("handlebars");
-const sys = path.resolve("systems/ordem_v2_classic");
+const sys = path.resolve("systems/ordem-v2-classic");
 const read = (rel) => readFileSync(path.join(sys, rel), "utf8");
 
 const hb = Handlebars.create();
@@ -33,7 +33,7 @@ hb.registerHelper("selectOptions", (choices, o) => {
 });
 hb.registerHelper("eq", (a, b) => a === b);
 
-const prefix = "systems/ordem_v2_classic/templates/threat/parts/";
+const prefix = "systems/ordem-v2-classic/templates/threat/parts/";
 // registra todos os parciais da pasta: um parcial novo na ficha não pode derrubar a verificação
 for (const file of readdirSync(path.join(sys, "templates/threat/parts")).filter((f) => f.endsWith(".hbs"))) hb.registerPartial(`${prefix}${file}`, read(`templates/threat/parts/${file}`));
 

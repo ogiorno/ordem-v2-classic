@@ -35,15 +35,15 @@ jobs:
              --arg m "$REPO/releases/latest/download/system.json" \
              --arg d "$REPO/releases/download/${GITHUB_REF_NAME}/system.zip" \
              '.version=$v | .manifest=$m | .download=$d' \
-             systems/ordem_v2_classic/system.json > /tmp/system.json
-          cp /tmp/system.json systems/ordem_v2_classic/system.json
+             systems/ordem-v2-classic/system.json > /tmp/system.json
+          cp /tmp/system.json systems/ordem-v2-classic/system.json
 
       - name: Compilar compêndios
         run: npm run packs:pack
 
       - name: Montar system.zip
         run: |
-          cd systems/ordem_v2_classic
+          cd systems/ordem-v2-classic
           zip -r ../../system.zip . -x "tests/*" "tools/*" "packs/_source/*"
           cp system.json ../../system.json
 
@@ -51,7 +51,7 @@ jobs:
         run: |
           VERSION="${GITHUB_REF_NAME#v}"
           REPO="https://github.com/${GITHUB_REPOSITORY}"
-          awk -v v="$VERSION" '/^## \[/{p=(index($0,"["v"]")>0); next} p' systems/ordem_v2_classic/CHANGELOG.md > release-notes.md
+          awk -v v="$VERSION" '/^## \[/{p=(index($0,"["v"]")>0); next} p' systems/ordem-v2-classic/CHANGELOG.md > release-notes.md
           test -s release-notes.md || echo "Versão ${VERSION}." > release-notes.md
           {
             echo
@@ -65,7 +65,7 @@ jobs:
             echo "$REPO/releases/latest/download/system.json"
             echo '```'
             echo
-            echo "Requer o módulo **Brawl Bar** e Foundry VTT v14 ou mais novo (testado na 14.369). O \`id\` do sistema é o mesmo do original (\`ordem_v2_classic\`): instalar este fork substitui o sistema do Wendel; faça backup do mundo antes."
+            echo "Requer o módulo **Brawl Bar** e Foundry VTT v14 ou mais novo (testado na 14.369). O \`id\` do sistema é \`ordem-v2-classic\`, diferente do original, e os dois podem ficar instalados juntos. Mundos criados na versão 1.0.x precisam ser migrados: veja o README."
             echo
             echo "Baseado em [ordemparanormal_fvtt](https://github.com/SouOWendel/ordemparanormal_fvtt), de Wendel Henrique (Mark57449). Licença CC BY-NC-SA 4.0, sem fins comerciais. Ordem Paranormal pertence a Rafael Lange (Cellbit) e à Jambô Editora; projeto de fã, não oficial."
           } >> release-notes.md

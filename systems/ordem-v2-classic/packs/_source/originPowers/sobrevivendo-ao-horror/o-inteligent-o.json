@@ -1,0 +1,39 @@
+{
+  "name": "O Inteligentão",
+  "type": "ability",
+  "_id": "6KTI88oGc6SEQotU",
+  "img": "systems/ordemparanormal/media/icons/abilities/origin/o-inteligentao.svg",
+  "system": {
+    "id": 0,
+    "chatDescription": "",
+    "abilityType": "origin",
+    "preRequisite": "",
+    "description": "<p>O bônus que você recebe ao utilizar a ação de interlúdio ler aumenta em +1 dado (de +1d6 para +2d6).</p>",
+    "activation": "passive",
+    "cost": 0,
+    "costType": "PE"
+  },
+  "effects": [],
+  "folder": "5cSChcCq63dzK05t",
+  "sort": 17000,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "ordem-v2-classic": {
+      "source": "sah"
+    }
+  },
+  "_stats": {
+    "coreVersion": "14.365",
+    "systemId": "ordem-v2-classic",
+    "systemVersion": "7.3.3",
+    "createdTime": 1784900000000,
+    "modifiedTime": 1784900000000,
+    "lastModifiedBy": null,
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!6KTI88oGc6SEQotU"
+}

@@ -1,0 +1,34 @@
+{
+  "name": "Sagacidade",
+  "type": "curse",
+  "_id": "EP7Wex5FmDVQzwv0",
+  "img": "systems/ordem-v2-classic/assets/curse-icons/sagacidade.webp",
+  "system": {
+    "description": "<p><strong>Conhecimento</strong> · maldição de acessório · Automática: o sistema aplica sozinho.</p>\n<p>+1 em Intelecto. Este aumento não fornece perícias nem graus de treinamento.</p>\n<h4>No sistema</h4>\n<ul><li>Na ficha enquanto o item está equipado: +1 em Intelecto (sem perícias).</li></ul>\n<p><em>Arraste para a ficha de um agente (ou para um item) e escolha o item que vira amaldiçoado. A primeira maldição soma +II à categoria do item e as seguintes +I.</em></p>\n<p><small>Fonte: Ordem Paranormal RPG — Livro de Regras v1.3, Itens amaldiçoados (livro p. 144–147).</small></p>",
+    "chatDescription": "",
+    "curseKey": "sagacidade",
+    "element": "knowledge",
+    "applies": "accessory",
+    "mode": "auto",
+    "price": ""
+  },
+  "effects": [],
+  "folder": "BjuLLjzFqQnmtDbe",
+  "sort": 2700000,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.369",
+    "systemId": "ordem-v2-classic",
+    "systemVersion": "8.0.2",
+    "createdTime": 1792207618168,
+    "modifiedTime": 1792207618168,
+    "lastModifiedBy": null,
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!EP7Wex5FmDVQzwv0"
+}

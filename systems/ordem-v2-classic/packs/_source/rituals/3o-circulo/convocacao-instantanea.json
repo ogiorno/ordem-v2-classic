@@ -1,0 +1,45 @@
+{
+  "name": "Convocação Instantânea",
+  "type": "ritual",
+  "img": "systems/ordem-v2-classic/assets/rituais/convocacao-instantanea.png",
+  "system": {
+    "circle": 3,
+    "element": "energy",
+    "description": "<p>Você invoca um objeto de qualquer lugar para sua mão. O item deve ter sido previamente preparado com o símbolo do ritual e pode ocupar no máximo 2 espaços. Se o objeto estiver sendo empunhado por outra pessoa, ela pode fazer um teste de Vontade para negar o efeito, mas você saberá onde o objeto está e quem o está carregando (ou sua aparência, caso não conheça a pessoa). Por até 1h depois da convocação, você pode gastar uma ação de movimento para enviar o objeto de volta para o local em que ele estava antes. Discente (+4 PE): muda o alvo para um objeto de até 10 espaços. Verdadeiro (+9 PE): muda o alvo para “1 recipiente Médio (como uma mala ou caixote), com itens que somem até 10 espaços” e a duração para “permanente”. Em vez do normal, você encanta o recipiente para mantê-lo escondido no Outro Lado. Você pode convocar o recipiente para um espaço livre adjacente, ou de volta para o esconderijo paranormal, com uma ação padrão. Para isso, você deve ter em mãos uma miniatura do objeto, que funciona como um utensílio de categoria II. Quando conjura esta versão do ritual, você perde 1 PE permanentemente.</p>",
+    "chatDescription": "<p><strong>Fonte:</strong> Livro de Regras v1.3 · <strong>Execução:</strong> padrão · <strong>Alcance:</strong> ilimitado · <strong>Alvo:</strong> 1 objeto de até 2 espaços · <strong>Duração:</strong> instantânea · <strong>Resistência:</strong> Vontade anula</p>",
+    "execution": "default",
+    "range": "unlimited",
+    "target": "1 objeto de até 2 espaços",
+    "duration": "instantaneous",
+    "resistance": "nullifies",
+    "skillResis": "will",
+    "targetQtd": "",
+    "area": {
+      "name": "",
+      "size": "",
+      "type": ""
+    },
+    "studentForm": true,
+    "trueForm": true
+  },
+  "effects": [],
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.369",
+    "systemId": "ordem-v2-classic",
+    "systemVersion": "8.0.2",
+    "createdTime": 1792207618168,
+    "modifiedTime": 1792207618168,
+    "lastModifiedBy": null,
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "ownership": {
+    "default": 0
+  },
+  "folder": "RituaisCirculo03",
+  "sort": 59000,
+  "_id": "na3aGsh8v7qK6CcL",
+  "_key": "!items!na3aGsh8v7qK6CcL"
+}

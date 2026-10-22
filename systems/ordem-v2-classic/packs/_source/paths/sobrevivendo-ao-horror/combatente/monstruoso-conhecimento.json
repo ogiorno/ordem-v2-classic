@@ -1,0 +1,35 @@
+{
+  "folder": "lV1ucTTTAhQMYjTg",
+  "name": "Monstruoso - Conhecimento",
+  "type": "path",
+  "_id": "MDNNf58yN6QBfO8m",
+  "img": "systems/ordemparanormal/media/icons/paths/monstruoso-de-conhecimento.webp",
+  "system": {
+    "id": 0,
+    "description": "<p>Muito se fala sobre os ocultistas escolherem o caminho de tornarem sua mente uma porta para o paranormal, na tentativa de usá-lo contra ele mesmo, mas de vez em quando, um combatente é corajoso ou insano o bastante para fazer o mesmo com seu corpo. Você propositalmente desfigura e altera seu corpo para que as Entidades o invadam com maior intensidade; contudo, para sua infelicidade, os métodos para isso costumam ser brutais. Combatentes dessa trilha que chegam aos níveis mais altos de exposição inevitavelmente perdem o controle e se tornam inimigos da Ordem.</p><p>Especial: esta trilha usa a “Progressão de NEX” apresentada na regra opcional Nível de Experiência e Nível de Exposição (p. 98), mesmo que esta regra em si não esteja sendo usada. O personagem recebe todas as alterações apropriadas ao seu NEX descritas na progressão e, se a regra de Nível de Experiência estiver em uso, recebe o dobro de NEX sempre que se expõe ao paranormal.</p><p>Monstruosa transformação. Apesar dos alertas e resultados anteriores desastrosos, a tentação de usar o paranormal contra si mesmo é muito grande. Alguns agentes, movidos por orgulho, ingenuidade ou desespero, acabam seguindo esse caminho, acreditando que com eles “será diferente”, e que eles serão aqueles que conseguirão fitar as Entidades e usar seu poder para o bem. Eles sempre estão errados.</p><p>A trilha monstruoso representa uma busca por poder contra o Outro Lado que fatalmente se volta contra o personagem, e cobra o maior dos preços: a perda gradual da humanidade. Quando o personagem atinge NEX 75%, se torna permanentemente perturbado. Suas ações já não são mais aceitas pela Ordem, que vai banir e potencialmente caçar o ex-agente. Um personagem nessa situação ainda pode auxiliar seus antigos colegas, mas perde todo o suporte da Ordem, incluindo acesso a equipamentos (considere que ele começa cada missão com equipamento equivalente a uma patente um nível inferior à sua, conseguido por conta própria).</p><p>Quando o personagem atinge NEX 99%, entretanto, sua situação se torna ainda mais severa: sua mente e seu corpo estão no limiar de serem completamente consumidos pelo Outro Lado. Nesse ponto, sua Sanidade é reduzida a 1. Por fim, sempre que ficar enlouquecendo, em vez de sofrer um efeito de insanidade (veja OPRPG, p. 111), o personagem fica confuso (a condição se encerra normalmente ou quando o personagem não está mais enlouquecendo). Se um personagem Monstruoso enlouquecer com 99% de NEX, se torna permanentemente uma criatura do Outro Lado.</p><p>Se estiver usando a regra opcional Jogando sem Sanidade (p. 104), em vez disso considere que o personagem está sempre perturbado e fica enlouquecendo (e confuso) sempre que perde 1 ponto de determinação por qualquer efeito (exceto por pagar custos de habilidades e itens).</p><p>Elemento desta trilha: Conhecimento. As habilidades de NEX 10%, 40%, 65% e 99% descrevem os efeitos deste elemento.</p>",
+    "chatDescription": ""
+  },
+  "effects": [],
+  "sort": 600000,
+  "ownership": {
+    "default": 0,
+    "WeXQ2WY27ruZ5VmA": 3
+  },
+  "flags": {
+    "ordem-v2-classic": {
+      "source": "sah"
+    }
+  },
+  "_stats": {
+    "coreVersion": "14.365",
+    "systemId": "ordemparanormal",
+    "systemVersion": "7.3.3",
+    "createdTime": 1784685616971,
+    "modifiedTime": 1784758413839,
+    "lastModifiedBy": "mCARmiewelPiv8Ze",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!MDNNf58yN6QBfO8m"
+}

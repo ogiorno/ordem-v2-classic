@@ -1,0 +1,40 @@
+{
+	"name": "Sadismo",
+	"type": "ability",
+	"img": "systems/ordem-v2-classic/assets/ability-icons/1606-ficha-1-sadismo.webp",
+	"system": {
+		"id": 0,
+		"abilityType": "ability",
+		"preRequisite": "",
+		"description": "<p>Se o comandante mercenário causar dano em um inimigo, o próximo ataque dele recebe +d20 no teste de ataque e, se acertar, causa mais um dado de dano do mesmo tipo.</p>",
+		"chatDescription": "",
+		"activation": "passive",
+		"cost": 0,
+		"costType": "PE",
+		"execution": null
+	},
+	"effects": [],
+	"flags": {
+		"ordem-v2-classic": {
+			"threatAbilityId": "1606-H01"
+		}
+	},
+	"_stats": {
+		"coreVersion": "14.369",
+		"systemId": "ordem-v2-classic",
+		"systemVersion": "8.0.2",
+		"createdTime": 1792207618168,
+		"modifiedTime": 1792207618168,
+		"lastModifiedBy": null,
+		"compendiumSource": null,
+		"duplicateSource": null,
+		"exportSource": null
+	},
+	"ownership": {
+		"default": 0
+	},
+	"folder": "eVvO9VmEgAjJtLhg",
+	"sort": 1000,
+	"_id": "BbMduOtxhc1qw77S",
+	"_key": "!items!BbMduOtxhc1qw77S"
+}

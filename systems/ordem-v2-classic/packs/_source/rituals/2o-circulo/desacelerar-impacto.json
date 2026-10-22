@@ -1,0 +1,45 @@
+{
+  "name": "Desacelerar Impacto",
+  "type": "ritual",
+  "img": "systems/ordem-v2-classic/assets/rituais/desacelerar-impacto.png",
+  "system": {
+    "circle": 2,
+    "element": "death",
+    "description": "<p>O alvo cai lentamente. A velocidade da queda é reduzida para 18m por rodada — o suficiente para não causar dano. Como conjurar este ritual é uma reação, você pode conjurá-lo rápido o bastante para salvar a si ou um aliado de quedas inesperadas. Se o alvo for um projétil — como um disparo de arma ou um objeto largado do alto de um prédio —, o ritual faz com que ele cause metade do dano normal, devido à lentidão. Este ritual só funciona em alvos em queda livre ou similar; não pode frear um golpe de faca ou o mergulho rasante de um atacante voador. Verdadeiro (+3 PE): aumenta o total de alvos para seres ou objetos somando até 100 espaços.</p>",
+    "chatDescription": "<p><strong>Fonte:</strong> Livro de Regras v1.3 · <strong>Execução:</strong> reação · <strong>Alcance:</strong> curto · <strong>Alvo:</strong> 1 ser ou objetos somando até 10 espaços · <strong>Duração:</strong> até chegar ao solo ou cena, o que vier primeiro · <strong>Resistência:</strong> —</p>",
+    "execution": "reaction",
+    "range": "short",
+    "target": "1 ser ou objetos somando até 10 espaços",
+    "duration": "setDuration",
+    "resistance": "",
+    "skillResis": "",
+    "targetQtd": "",
+    "area": {
+      "name": "",
+      "size": "",
+      "type": ""
+    },
+    "studentForm": false,
+    "trueForm": true
+  },
+  "effects": [],
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.369",
+    "systemId": "ordem-v2-classic",
+    "systemVersion": "8.0.2",
+    "createdTime": 1792207618168,
+    "modifiedTime": 1792207618168,
+    "lastModifiedBy": null,
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "ownership": {
+    "default": 0
+  },
+  "folder": "RituaisCirculo02",
+  "sort": 36000,
+  "_id": "sFIDOfUgHWvE0lu0",
+  "_key": "!items!sFIDOfUgHWvE0lu0"
+}

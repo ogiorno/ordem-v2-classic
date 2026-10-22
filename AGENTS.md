@@ -1,6 +1,6 @@
 # Orientações para agentes — Ordem Paranormal no Foundry
 
-Este projeto usa Foundry VTT 14.369, o sistema `ordem_v2_classic` e o mundo `nova-ordem`. Leia também `CLAUDE.md` e as specs em `docs/` antes de alterar o sistema. Preserve alterações locais do usuário.
+Este projeto usa Foundry VTT 14.369, o sistema `ordem-v2-classic` e o mundo `nova-ordem`. Leia também `CLAUDE.md` e as specs em `docs/` antes de alterar o sistema. Preserve alterações locais do usuário.
 
 ## Preferência por módulos instalados
 
@@ -42,7 +42,7 @@ Instalação e ativação conferidas em 17/10/2026. Os módulos sem ajuste espec
 
 ## Configuração de animação dos rituais
 
-O sistema mantém um mapa específico para os 98 rituais da biblioteca em `systems/ordem_v2_classic/module/macros/ritual-animation-map.json`. Cada ritual tem um arquivo JB2A Free em `modules/JB2A_DnD5e/Library/Generic/`, com matiz definida pela afinidade. Em `aa.initialize`, `module/integrations/ritual-animations.mjs` mescla esses registros no reconhecimento **On Token** do Automated Animations, preserva outras animações e migra o registro legado de Eletrocussão.
+O sistema mantém um mapa específico para os 98 rituais da biblioteca em `systems/ordem-v2-classic/module/macros/ritual-animation-map.json`. Cada ritual tem um arquivo JB2A Free em `modules/JB2A_DnD5e/Library/Generic/`, com matiz definida pela afinidade. Em `aa.initialize`, `module/integrations/ritual-animations.mjs` mescla esses registros no reconhecimento **On Token** do Automated Animations, preserva outras animações e migra o registro legado de Eletrocussão.
 
 A macro `module/macros/ritual-caster.mjs` dispara `aa.workflow` depois de resolver uma conjuração não interrompida. A animação é uma representação visual da conjuração sobre o token do conjurador; não cobra PD, não rola dados e não aplica dano/condições novamente. O token do conjurador precisa estar na cena; escolher um alvo é opcional. Ao atualizar o mapa, confirme que todos os caminhos JB2A existem e mantenha cada animação coerente com o elemento e o texto do ritual.
 
@@ -56,7 +56,11 @@ As regras de Ordem Paranormal RPG v1.3 estão extraídas em `regras/`. Consulte 
 - A extração é automática e não foi revisada à mão: em dúvida sobre tabela, coluna ou texto sobre ilustração, confira no PDF (`_referencia-por-pagina/`, `VERIFICACAO.md`, `MANIFESTO.json`).
 - PDFs originais: `D:\[LIVROS]\[RPG]\[ORDEM-PARANORMAL]\` (Livro de Regras v1-3 e Sobrevivendo ao Horror v1-3). São grandes demais para leitura direta; use PyMuPDF (`tools/sah/pdf_extract.py` lê na ordem certa das colunas e marca o dado como `[d]`).
 - Não edite `regras/` para "corrigir" regra por conveniência do código; o código segue o livro, não o contrário.
-- `regras/` não vai para o GitHub (direitos de terceiros): `npm test` e o CI não podem depender dela. Testes que conferem o código contra o texto do livro ficam em `systems/ordem_v2_classic/tests/livro/` (`*.livro.mjs`) e rodam com `npm run test:livro`; rode-os antes de mudar regras.
+- `regras/` não vai para o GitHub (direitos de terceiros): `npm test` e o CI não podem depender dela. Testes que conferem o código contra o texto do livro ficam em `systems/ordem-v2-classic/tests/livro/` (`*.livro.mjs`) e rodam com `npm run test:livro`; rode-os antes de mudar regras.
+
+## Id do sistema
+
+O id é `ordem-v2-classic` (com hífens; o Foundry não aceita sublinhado), e a pasta é `systems/ordem-v2-classic`. Hífen não é válido como nome em JavaScript: nunca escreva `flags.ordem-v2-classic` (vira uma subtração); use `flags["ordem-v2-classic"]`, `getFlag("ordem-v2-classic", chave)` ou a constante do sistema. Chaves de objeto levam aspas (`{ "ordem-v2-classic": {...} }`). Em templates Handlebars, `flags.[ordem-v2-classic].chave`. `npm run lint` pega esse erro (nome indefinido).
 
 ## Publicação no GitHub (push e tags de versão)
 
@@ -65,13 +69,13 @@ Repositório: `https://github.com/ogiorno/ordem-v2-classic` (remoto `origin`, br
 Só dê push quando o usuário pedir. Sempre que for dar push, antes disso:
 
 1. Rode `npm test`, `npm run lang-check` e `npm run render-check`; não envie com falha.
-2. Veja a última tag (`git describe --tags --abbrev=0`; se não houver, a primeira é `v1.0.0`) e analise o que mudou desde ela (`git log <tag>..HEAD` e `git diff --stat <tag>..HEAD`), olhando só o que vai no zip do sistema (`systems/ordem_v2_classic`, exceto `tests/`, `tools/` e `packs/_source/`).
+2. Veja a última tag (`git describe --tags --abbrev=0`; se não houver, a primeira é `v1.0.0`) e analise o que mudou desde ela (`git log <tag>..HEAD` e `git diff --stat <tag>..HEAD`), olhando só o que vai no zip do sistema (`systems/ordem-v2-classic`, exceto `tests/`, `tools/` e `packs/_source/`).
 3. Escolha a tag pelo impacto:
    - **major** (`v2.0.0`): quebra de compatibilidade, mudança de `id` do sistema, migração obrigatória de dados de mundos ou remoção de funcionalidade;
    - **minor** (`v1.1.0`): funcionalidade ou conteúdo novo (regras, fichas, compêndios, telas) que não quebra o que existia;
    - **patch** (`v1.0.1`): correção de bug ou ajuste pequeno, sem funcionalidade nova;
    - **sem tag**: só mudou documentação, specs, testes, `tools/`, `scripts/` ou `docs/`; faça o push da `master` e não crie release.
-4. Se for criar tag: atualize `version` em `systems/ordem_v2_classic/system.json` (e o `download` com a nova tag) e acrescente a entrada no `CHANGELOG.md`; faça o commit; confirme que a versão do `system.json` é igual à tag sem o `v`; crie a tag anotada (`git tag -a vX.Y.Z -m "..."`).
+4. Se for criar tag: atualize `version` em `systems/ordem-v2-classic/system.json` (e o `download` com a nova tag) e acrescente a entrada no `CHANGELOG.md`; faça o commit; confirme que a versão do `system.json` é igual à tag sem o `v`; crie a tag anotada (`git tag -a vX.Y.Z -m "..."`).
 5. Diga ao usuário qual tag escolheu e por quê (uma frase), e envie `master` e a tag juntas (`git push origin master vX.Y.Z`). Nunca reutilize, mova ou apague uma tag já publicada: corrija com uma nova versão patch.
 6. Depois do push, confira se o workflow *Release* terminou com sucesso e se a release tem `system.json` e `system.zip`.
 

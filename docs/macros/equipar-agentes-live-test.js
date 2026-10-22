@@ -3,7 +3,7 @@
 // Rodar com Mestre logado: playwright-cli -s=<nome> eval "window.__eq = { from: 0, to: 3 }" e depois --raw eval "$(cat docs/macros/equipar-agentes-live-test.js)"
 // As fichas reais não são tocadas: tudo acontece em cópias "ZZ eq …", apagadas no fim (e as macros que elas criarem).
 (async () => {
-	const SYS = "ordem_v2_classic";
+	const SYS = "ordem-v2-classic";
 	const range = window.__eq ?? { from: 0, to: 99 };
 	const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 	const until = async (fn, ms = 4000) => { const t = Date.now(); while (Date.now() - t < ms) { const v = await fn(); if (v) return v; await sleep(80); } return null; };

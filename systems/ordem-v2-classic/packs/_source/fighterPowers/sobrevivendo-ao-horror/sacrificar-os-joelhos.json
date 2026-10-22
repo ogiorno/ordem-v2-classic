@@ -1,0 +1,40 @@
+{
+  "name": "Sacrificar os Joelhos",
+  "type": "ability",
+  "img": "systems/ordemparanormal/media/icons/abilities/class/fighter/sacrificar-os-joelhos.svg",
+  "system": {
+    "id": 0,
+    "abilityType": "class",
+    "preRequisite": "Treinado em Atletismo",
+    "description": "<p>Diante de algo que não pode ser vencido, você abre mão da autopreservação para superar seus limites de fuga. Uma vez por cena de perseguição (p. 90), quando faz a ação esforço extra, você pode gastar 2 PE para passar automaticamente no teste de perícia. <em>Pré-requisito: treinado em Atletismo.</em></p>",
+    "chatDescription": "",
+    "activation": "free",
+    "cost": 2,
+    "costType": "PE"
+  },
+  "effects": [],
+  "flags": {
+    "ordem-v2-classic": {
+      "source": "sah"
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "14.365",
+    "systemId": "ordemparanormal",
+    "systemVersion": "7.3.3",
+    "createdTime": 1768012548817,
+    "modifiedTime": 1785686261299,
+    "lastModifiedBy": "vUTMyOH4FOrOifbw"
+  },
+  "ownership": {
+    "default": 0,
+    "uX8kbsijC8bcpBa3": 3
+  },
+  "_id": "r2YvuO2L0v8aazDg",
+  "sort": 100782,
+  "folder": "G5Y6G8Yqr9wJeyc8",
+  "_key": "!items!r2YvuO2L0v8aazDg"
+}

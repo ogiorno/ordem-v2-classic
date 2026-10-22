@@ -4,9 +4,9 @@ import fs from "node:fs";
 import path from "node:path";
 import crypto from "node:crypto";
 
-const SRC = "systems/ordem_v2_classic/packs/_source";
+const SRC = "systems/ordem-v2-classic/packs/_source";
 const OUT = "tools/origens/out";
-const SYS = "ordem_v2_classic";
+const SYS = "ordem-v2-classic";
 const ORIGINS_FOLDER = "tzknJ6T3P1rXJYwo";
 const POWERS_FOLDER = "AsOrigPowers0001";
 const stats = { coreVersion: "14.365", systemId: SYS, systemVersion: "7.3.3", createdTime: 1784950000000, modifiedTime: 1784950000000, lastModifiedBy: null, compendiumSource: null, duplicateSource: null, exportSource: null };

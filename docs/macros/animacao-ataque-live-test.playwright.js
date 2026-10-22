@@ -4,7 +4,7 @@ async page => {
     const sleep = ms => new Promise(r => setTimeout(r, ms));
     const t0 = Date.now(); const out = { seq: game.modules.get("sequencer")?.active, jb2a: !!(game.modules.get("JB2A_DnD5e")?.active || game.modules.get("jb2a_patreon")?.active) }; let scene, a, b; const prevScene = canvas.scene?.id;
     try {
-      const weapons = await game.packs.get("ordem_v2_classic.armaments").getDocuments();
+      const weapons = await game.packs.get("ordem-v2-classic.armaments").getDocuments();
       const melee = weapons.find(x => x.type === "armament" && x.system.types.rangeType.name === "melee"); out.armaMelee = melee.name;
       const gun = weapons.find(x => x.type === "armament" && x.system.types.rangeType.name === "ranged" && x.system.types.rangeType.subRangeType === "fire");
       a = await Actor.create({ name: "ZZ anim atk", type: "agent", system: { class: "fighter" } });

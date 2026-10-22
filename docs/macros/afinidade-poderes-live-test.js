@@ -2,7 +2,7 @@
 // Rodar com o Mestre logado: playwright-cli -s=<nome> --raw eval "$(cat docs/macros/afinidade-poderes-live-test.js)"
 // Usa agentes temporários "ZZ afinpoder ..." e apaga tudo no fim.
 (async () => {
-	const SYS = "ordem_v2_classic";
+	const SYS = "ordem-v2-classic";
 	const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 	const A = await import(`/systems/${SYS}/module/helpers/affinity.mjs`);
 	const P = await import(`/systems/${SYS}/module/helpers/affinity-powers.mjs`);

@@ -1,0 +1,40 @@
+{
+	"name": "Agarrada Mumificadora",
+	"type": "ability",
+	"img": "systems/ordem-v2-classic/assets/ability-icons/1424-1427-livre-agarrada-mumificadora.webp",
+	"system": {
+		"id": 0,
+		"abilityType": "ability",
+		"preRequisite": "",
+		"description": "<p>LIVRE - AGARRADA MUMIFICADORA Se a múmia acertar um ataque de garra enfaixada ela pode agarrar o alvo (teste 4d20+30). Enquanto estiver agarrada assim, a vítima sofre 4d8+30 pontos de dano de Morte no início de cada um dos seus turnos e a múmia recupera essa mesma quantidade de PV. Caso o ser seja reduzido a 0 PV dessa forma, se torna um esqueleto de Lodo no começo do seu turno.</p>",
+		"chatDescription": "",
+		"activation": "free",
+		"cost": 0,
+		"costType": "PE",
+		"execution": null
+	},
+	"effects": [],
+	"flags": {
+		"ordem-v2-classic": {
+			"threatAbilityId": "1424-H02"
+		}
+	},
+	"_stats": {
+		"coreVersion": "14.369",
+		"systemId": "ordem-v2-classic",
+		"systemVersion": "8.0.2",
+		"createdTime": 1792207618168,
+		"modifiedTime": 1792207618168,
+		"lastModifiedBy": null,
+		"compendiumSource": null,
+		"duplicateSource": null,
+		"exportSource": null
+	},
+	"ownership": {
+		"default": 0
+	},
+	"folder": "vO7DxB3i6CrNE9eN",
+	"sort": 2000,
+	"_id": "1fz8d5aUrwQsS4Db",
+	"_key": "!items!1fz8d5aUrwQsS4Db"
+}

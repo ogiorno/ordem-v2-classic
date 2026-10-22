@@ -1,0 +1,45 @@
+{
+  "name": "Sobrevivente",
+  "type": "class",
+  "_id": "HAF0G5CX3jni2Rws",
+  "img": "systems/ordemparanormal/media/icons/classes/sobrevivente.svg",
+  "system": {
+    "id": 0,
+    "description": "<p>Sobrevivendo ao Horror traz uma nova classe específica para histórias de terror: o sobrevivente. Esta classe representa pessoas comuns que se veem em meio a ameaças terríveis, como assassinos psicopatas, mansões amaldiçoadas, cultos macabros ou mesmo criaturas do Outro Lado.</p><p>Como indivíduos normais, sobreviventes são muito mais fracos que combatentes, especialistas ou ocultistas, que possuem treinamento especial. Em outras palavras, esta nova classe não é equilibrada com as três classes originais! Isso é de propósito, para oferecer uma experiência de jogo diferente.</p><p><strong>Pontos de vida:</strong> 8 + Vig (+2 a cada novo estágio). <strong>Pontos de esforço:</strong> 2 + Pre (+1 a cada novo estágio). <strong>Sanidade:</strong> 8 (+2 a cada novo estágio). <strong>Perícias treinadas:</strong> escolha 1 + Intelecto perícias. <strong>Proficiências:</strong> armas simples.</p><p><strong>Estágios:</strong> 1 Empenho · 2 Trilha (1º poder) · 3 Aumento de atributo · 4 Trilha (2º poder) · 5 Cicatrizado. O limite de PE é sempre 1, em qualquer estágio, mas você sempre pode usar pelo menos uma habilidade em seu custo mínimo por turno.</p><p><strong>Atributos:</strong> você começa com cada atributo em 1 e recebe apenas 3 pontos para distribuir (pode reduzir um único atributo para 0 para receber 1 ponto adicional). <strong>Equipamento:</strong> sem patentes; escolha um item de categoria I e quantos itens de categoria 0 quiser, desde que sejam itens que você pudesse ter por sua origem.</p><p>Personagens sobreviventes possuem NEX 0% e sua evolução é medida em estágios: um sobrevivente começa no estágio 1 e, no fim de cada missão, sobe um estágio.</p><p><strong>Treinamento especial.</strong> É possível mudar de sobrevivente para outra classe, dependendo da história. Na próxima vez que ele subir de estágio, em vez de subir como sobrevivente, se torna um personagem de NEX 5% da classe escolhida e recebe: <em>Combatente:</em> +8 PV; perícias: Fortitude ou Reflexos e Luta ou Pontaria; proficiências: Armas Táticas e Proteções Leves; habilidades: Ataque Especial. <em>Especialista:</em> +4 PV, +1 PE, +4 SAN; perícias: 6 a sua escolha; proficiências: Proteções Leves; habilidades: Eclético e Perito. <em>Ocultista:</em> +2 PE, +8 SAN; perícias: Ocultismo e Vontade mais 2 a sua escolha; proficiências: nenhuma; habilidades: Escolhido pelo Outro Lado. A partir disso, o personagem não sobe mais estágios como sobrevivente (mas mantém todas as habilidades já recebidas) e passa a subir de NEX como combatente, especialista ou ocultista.</p>",
+    "chatDescription": "",
+    "disableCalculations": false,
+    "hpInitial": 8,
+    "hpPerLevel": 2,
+    "peInitial": 2,
+    "pePerLevel": 1,
+    "sanInitial": 8,
+    "sanPerLevel": 2,
+    "isSurvivor": true,
+    "pdInitial": 4,
+    "pdPerLevel": 2
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 200000,
+  "ownership": {
+    "default": 0,
+    "mCARmiewelPiv8Ze": 3
+  },
+  "flags": {
+    "ordem-v2-classic": {
+      "source": "sah"
+    }
+  },
+  "_stats": {
+    "coreVersion": "14.365",
+    "systemId": "ordemparanormal",
+    "systemVersion": "7.3.3",
+    "createdTime": 1784491608694,
+    "modifiedTime": 1784821133670,
+    "lastModifiedBy": "DnDtVz8d1Mx168x6",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!HAF0G5CX3jni2Rws"
+}

@@ -1,0 +1,88 @@
+{
+	"name": "Reverter",
+	"type": "ability",
+	"img": "systems/ordem-v2-classic/assets/ability-icons/1431-1433-livre-reverter.webp",
+	"system": {
+		"id": 0,
+		"abilityType": "ability",
+		"preRequisite": "",
+		"description": "<p>LIVRE - REVERTER Um ser que sofra dano das garras invertidas é afetado por um surto temporal capaz de apodrecer a carne. Ele fica enjoado até o final do seu próximo turno.</p>",
+		"chatDescription": "",
+		"activation": "free",
+		"cost": 0,
+		"costType": "PE",
+		"execution": {
+			"mode": "active",
+			"automation": "assisted",
+			"damage": [],
+			"effects": [
+				{
+					"condition": "enjoado",
+					"duration": {
+						"unit": "turns",
+						"value": 1
+					},
+					"onSave": "always",
+					"target": "target",
+					"trigger": "",
+					"support": "mechanical"
+				}
+			],
+			"requirements": [
+				{
+					"kind": "narrative",
+					"text": "o ser sofreu dano das garras invertidas",
+					"ref": ""
+				}
+			],
+			"grants": [],
+			"targeting": {
+				"kind": "token",
+				"range": 1.5,
+				"count": 1,
+				"relation": "any",
+				"voluntary": false,
+				"rangeUnspecified": false,
+				"requiresSight": false
+			},
+			"version": 1,
+			"source": {
+				"reference": "Livro v1.3, p. 234, Nidere",
+				"reviewed": false
+			},
+			"cost": null,
+			"area": null,
+			"save": null,
+			"trigger": null,
+			"visibility": {
+				"dc": "gm",
+				"defense": "gm",
+				"result": "public"
+			}
+		}
+	},
+	"effects": [],
+	"flags": {
+		"ordem-v2-classic": {
+			"threatAbilityId": "1431-H01"
+		}
+	},
+	"_stats": {
+		"coreVersion": "14.369",
+		"systemId": "ordem-v2-classic",
+		"systemVersion": "8.0.2",
+		"createdTime": 1792207618168,
+		"modifiedTime": 1792207618168,
+		"lastModifiedBy": null,
+		"compendiumSource": null,
+		"duplicateSource": null,
+		"exportSource": null
+	},
+	"ownership": {
+		"default": 0
+	},
+	"folder": "3WULr2IHQiPRa5Ll",
+	"sort": 1000,
+	"_id": "rIb4IbHE0eczdRGQ",
+	"_key": "!items!rIb4IbHE0eczdRGQ"
+}

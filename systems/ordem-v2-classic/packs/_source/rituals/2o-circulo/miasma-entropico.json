@@ -1,0 +1,45 @@
+{
+  "name": "Miasma Entrópico",
+  "type": "ritual",
+  "img": "systems/ordem-v2-classic/assets/rituais/miasma-entropico.png",
+  "system": {
+    "circle": 2,
+    "element": "death",
+    "description": "<p>Cria uma explosão de emanações tóxicas. Seres na área sofrem 4d8 pontos de dano químico e ficam enjoados por 1 rodada. Se passarem na resistência, sofrem metade do dano e não ficam enjoados. Discente (+3 PE): muda o dano para 6d8 de Morte. Verdadeiro (+7 PE): como a versão discente, mas muda a duração para 3 rodadas. Um ser que inicie seu turno dentro da área sofre o dano novamente. Requer 3º círculo.</p>",
+    "chatDescription": "<p><strong>Fonte:</strong> Livro de Regras v1.3 · <strong>Execução:</strong> padrão · <strong>Alcance:</strong> médio · <strong>Alvo:</strong> Veja descrição da área · <strong>Duração:</strong> instantânea · <strong>Resistência:</strong> Fortitude parcial (veja texto)</p>",
+    "execution": "default",
+    "range": "medium",
+    "target": "Veja descrição da área",
+    "duration": "instantaneous",
+    "resistance": "partial",
+    "skillResis": "resilience",
+    "targetQtd": "",
+    "area": {
+      "name": "nuvem com 6m de raio",
+      "size": "",
+      "type": ""
+    },
+    "studentForm": true,
+    "trueForm": true
+  },
+  "effects": [],
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.369",
+    "systemId": "ordem-v2-classic",
+    "systemVersion": "8.0.2",
+    "createdTime": 1792207618168,
+    "modifiedTime": 1792207618168,
+    "lastModifiedBy": null,
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "ownership": {
+    "default": 0
+  },
+  "folder": "RituaisCirculo02",
+  "sort": 47000,
+  "_id": "qXfVC2Op2M9RCKEI",
+  "_key": "!items!qXfVC2Op2M9RCKEI"
+}

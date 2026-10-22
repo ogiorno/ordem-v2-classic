@@ -1,0 +1,45 @@
+{
+  "name": "Decadência",
+  "type": "ritual",
+  "img": "systems/ordem-v2-classic/assets/rituais/decadencia.png",
+  "system": {
+    "circle": 1,
+    "element": "death",
+    "description": "<p>Espirais de trevas envolvem sua mão e definham o alvo, que sofre 2d8+2 pontos de dano de Morte. Discente (+2 PE): muda a resistência para “nenhuma” e o dano para 3d8+3. Como parte da execução do ritual, você transfere as espirais para uma arma e faz um ataque corpo a corpo contra o alvo com esta arma. Se acertar, causa o dano da arma e do ritual, somados. Verdadeiro (+5 PE): muda o alcance para “pessoal” o alvo para “área: explosão com 6m de raio” e o dano para 8d8+8. As espirais afetam todos os seres na área. Requer 3º círculo.</p>",
+    "chatDescription": "<p><strong>Fonte:</strong> Livro de Regras v1.3 · <strong>Execução:</strong> padrão · <strong>Alcance:</strong> toque · <strong>Alvo:</strong> 1 ser · <strong>Duração:</strong> instantânea · <strong>Resistência:</strong> Fortitude reduz à metade</p>",
+    "execution": "default",
+    "range": "touch",
+    "target": "1 ser",
+    "duration": "instantaneous",
+    "resistance": "reducesByHalf",
+    "skillResis": "resilience",
+    "targetQtd": "",
+    "area": {
+      "name": "",
+      "size": "",
+      "type": ""
+    },
+    "studentForm": true,
+    "trueForm": true
+  },
+  "effects": [],
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.369",
+    "systemId": "ordem-v2-classic",
+    "systemVersion": "8.0.2",
+    "createdTime": 1792207618168,
+    "modifiedTime": 1792207618168,
+    "lastModifiedBy": null,
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "ownership": {
+    "default": 0
+  },
+  "folder": "RituaisCirculo01",
+  "sort": 12000,
+  "_id": "jyOCvHfnGZLFnedb",
+  "_key": "!items!jyOCvHfnGZLFnedb"
+}

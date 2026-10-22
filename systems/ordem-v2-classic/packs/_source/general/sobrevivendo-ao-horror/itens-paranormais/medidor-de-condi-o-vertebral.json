@@ -1,0 +1,88 @@
+{
+  "name": "Medidor de Condição Vertebral",
+  "type": "generalEquipment",
+  "img": "systems/ordemparanormal/media/icons/equipments/paranormal/medidor-de-condicao-vertebral.svg",
+  "system": {
+    "description": "<p>Este item grotesco é uma coluna vertebral sustentada por Lodo de Morte e revestida com cabos e fios de Energia. Para ser usado, deve ser conectado à coluna vertebral, em um procedimento que exige uma ação completa e causa profunda dor e agonia, deixando o usuário atordoado por uma rodada. O medidor conta como uma vestimenta que fornece +2 em Fortitude. Além disso, uma vez conectado ele se ilumina em cores que vão do vermelho, na base, passando por amarelo no centro até verde no topo. Essas cores indicam a saúde do usuário, sendo verde a melhor condição. Além disso, se o usuário estiver sob um efeito paranormal, o item emitirá pulsos de luz lilás. Por fim, as informações fornecidas pelo item concedem um bônus de +5 em testes de Medicina feitos para auxiliar o usuário.</p>",
+    "chatDescription": "",
+    "weight": 1,
+    "category": 2,
+    "using": {
+      "state": true,
+      "class": "fas"
+    },
+    "type": "",
+    "quantity": 1
+  },
+  "effects": [
+    {
+      "name": "Medidor de Condição Vertebral (+2 Fortitude)",
+      "img": "icons/svg/aura.svg",
+      "_id": "V4Ozu6AgjFy45Wbi",
+      "type": "base",
+      "system": {
+        "changes": [
+          {
+            "key": "system.skills.resilience.mod",
+            "type": "add",
+            "value": 2,
+            "phase": "initial",
+            "priority": null
+          }
+        ]
+      },
+      "disabled": false,
+      "start": null,
+      "duration": {
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
+      },
+      "description": "",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "showIcon": 1,
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "coreVersion": "14.365",
+        "systemId": "ordem-v2-classic",
+        "systemVersion": "7.3.3",
+        "createdTime": 1784900000000,
+        "modifiedTime": 1784900000000,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!items.effects!KFPJb4vmCODWoL3k.V4Ozu6AgjFy45Wbi"
+    }
+  ],
+  "folder": "EQ0UqIoTKZ1ljXhW",
+  "flags": {
+    "ordem-v2-classic": {
+      "source": "sah"
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "14.365",
+    "systemId": "ordemparanormal",
+    "systemVersion": "7.3.3",
+    "createdTime": 1768441745795,
+    "modifiedTime": 1784767600221,
+    "lastModifiedBy": "mCARmiewelPiv8Ze"
+  },
+  "ownership": {
+    "default": 0,
+    "uX8kbsijC8bcpBa3": 3
+  },
+  "_id": "KFPJb4vmCODWoL3k",
+  "sort": 0,
+  "_key": "!items!KFPJb4vmCODWoL3k"
+}

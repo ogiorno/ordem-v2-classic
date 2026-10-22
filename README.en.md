@@ -41,7 +41,7 @@ The core idea is **the sheet does the math and the GM decides**. The system appl
 
 3. Click **Install** and create a world using **Ordem Paranormal (v2 Classic)**.
 
-**Manual install:** download `system.zip` from the [latest release](https://github.com/ogiorno/ordem-v2-classic/releases/latest) and extract it to `Data/systems/ordem_v2_classic`.
+**Manual install:** download `system.zip` from the [latest release](https://github.com/ogiorno/ordem-v2-classic/releases/latest) and extract it to `Data/systems/ordem-v2-classic`.
 
 | Requirement | Details |
 | --- | --- |
@@ -49,7 +49,28 @@ The core idea is **the sheet does the math and the GM decides**. The system appl
 | Required module | **Brawl Bar** (`barbrawl`), for the third token bar (HP, SAN and PE). |
 | Optional | **Automated Animations** + **JB2A_DnD5e** (ritual animations). |
 
-> **Same `id` as the original system.** The `id` is still `ordem_v2_classic`, so installing this fork over Wendel's system replaces one with the other. Back up your world before switching.
+> **Own `id`.** This fork uses the `id` `ordem-v2-classic`, different from Wendel's system (`ordem_v2_classic`). Both can be installed side by side; installing one does not replace the other.
+
+### Migrating a world created on version 1.0.x (or on the original system)
+
+Worlds store the system `id`, so a world created with `ordem_v2_classic` must be converted before it opens with this system. **Copy the world folder first** (`Data/worlds/<world>`).
+
+1. Go back to the Foundry setup screen (the world must not be active) and install this system (`ordem-v2-classic`).
+2. In the repository, run the dry run first, which only counts and writes nothing:
+
+   ```bash
+   node scripts/migrar-mundo-id.mjs "C:\path\to\Data\worlds\my-world"
+   ```
+
+3. If the numbers look right, apply it:
+
+   ```bash
+   node scripts/migrar-mundo-id.mjs "C:\path\to\Data\worlds\my-world" --gravar
+   ```
+
+4. Start the world. Each user's browser preferences (for example, Grimoire window settings) go back to defaults.
+
+The script only swaps the `id` in the world's data and its compendiums; it deletes nothing.
 
 ## What this fork adds
 
@@ -112,7 +133,7 @@ Not done yet: Multiple Professions, the Knowledge of the Monstrous option, an el
 
 ## Development
 
-The repository is the development workspace; the system lives in `systems/ordem_v2_classic`.
+The repository is the development workspace; the system lives in `systems/ordem-v2-classic`.
 
 ```bash
 npm install
@@ -124,11 +145,11 @@ npm run render-check  # check templates
 npm run dev           # local Foundry server on port 30000
 ```
 
-**Publishing a version:** update `version` in `systems/ordem_v2_classic/system.json` and the `CHANGELOG.md`, create the tag (`git tag -a v1.0.0 -m "..."`) and push it (`git push origin master v1.0.0`). The *Release* workflow runs the tests, builds the compendiums and publishes `system.json` and `system.zip`. The rules for AI agents working in the repository are in [`AGENTS.md`](AGENTS.md).
+**Publishing a version:** update `version` in `systems/ordem-v2-classic/system.json` and the `CHANGELOG.md`, create the tag (`git tag -a v1.0.0 -m "..."`) and push it (`git push origin master v1.0.0`). The *Release* workflow runs the tests, builds the compendiums and publishes `system.json` and `system.zip`. The rules for AI agents working in the repository are in [`AGENTS.md`](AGENTS.md).
 
 ## Credits and license
 
-Based on [ordemparanormal_fvtt](https://github.com/SouOWendel/ordemparanormal_fvtt) by **Wendel Henrique (Mark57449)** and contributors, modified by [ogiorno](https://github.com/ogiorno). The original project's contributor list is in [`systems/ordem_v2_classic/README.md`](systems/ordem_v2_classic/README.md).
+Based on [ordemparanormal_fvtt](https://github.com/SouOWendel/ordemparanormal_fvtt) by **Wendel Henrique (Mark57449)** and contributors, modified by [ogiorno](https://github.com/ogiorno). The original project's contributor list is in [`systems/ordem-v2-classic/README.md`](systems/ordem-v2-classic/README.md).
 
 Distributed under [CC BY-NC-SA 4.0](LICENSE.txt): you may use, copy and modify it, as long as you **give credit**, **do not use it commercially** and **keep the same license**.
 

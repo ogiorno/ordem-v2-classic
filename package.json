@@ -10,8 +10,8 @@
     "link": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/link.ps1",
     "packs:pack": "node scripts/packs.mjs pack",
     "packs:unpack": "node scripts/packs.mjs unpack",
-    "test": "node --test \"systems/ordem_v2_classic/tests/unit/**/*.test.mjs\"",
-    "test:livro": "node --test \"systems/ordem_v2_classic/tests/livro/**/*.livro.mjs\"",
+    "test": "node --test \"systems/ordem-v2-classic/tests/unit/**/*.test.mjs\"",
+    "test:livro": "node --test \"systems/ordem-v2-classic/tests/livro/**/*.livro.mjs\"",
     "lint": "eslint modules systems"
   },
   "devDependencies": {

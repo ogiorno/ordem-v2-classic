@@ -1,0 +1,41 @@
+{
+  "name": "Retalho Tenebroso",
+  "type": "generalEquipment",
+  "_id": "TAVgMwWUukrdkhGb",
+  "img": "systems/ordemparanormal/media/icons/equipments/paranormal/amarras-de-sangue.svg",
+  "system": {
+    "using": {
+      "state": true,
+      "class": "fas"
+    },
+    "type": "",
+    "quantity": 1,
+    "description": "<p>Este pedaço de carne retangular com pele e alguns pelos bestiais esparsos é impregnado de instintos primais. Você pode gastar uma ação padrão para aplicá-lo sobre seu rosto como se fosse uma máscara. Se fizer isso, recebe faro e visão no escuro, mas sofre vulnerabilidade a Morte e @DisplayDice[qtd:2|sign:minus|dc:d20] em testes de perícias para interação social, como Diplomacia e Enganação. Além disso, conforme permanece em seu rosto, as energias do retalho parecem impregná-lo em fúria; para cada dia em sequencia com o retalho tenebroso, você recebe um bônus cumulativo de +1 em rolagens de dano. Esse poder, entretanto, tem um custo, pois o retalho lentamente tenta se alimentar de sua carne; ao final de cada dia, você perde 1d6 pontos de vida (Fortitude DT 15, +5 a cada teste adicional em sequencia, evita). Para remover o retalho você deve gastar uma ação padrão e passar em um teste de Fortitude (como acima). Se falhar, perde 1d6 pontos de vida. A perda de vida causada pelo retalho só pode ser recuperada após ele ser removido. O retalho se solta automaticamente se a pessoa em que estiver aplicado morrer.</p>",
+    "chatDescription": "",
+    "weight": 1,
+    "category": 2
+  },
+  "effects": [],
+  "folder": "TwG6DXAq3OlEYsD4",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "ordem-v2-classic": {
+      "source": "sah"
+    }
+  },
+  "_stats": {
+    "coreVersion": "14.365",
+    "systemId": "ordem-v2-classic",
+    "systemVersion": "7.3.3",
+    "createdTime": 1784900000000,
+    "modifiedTime": 1784900000000,
+    "lastModifiedBy": null,
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!TAVgMwWUukrdkhGb"
+}

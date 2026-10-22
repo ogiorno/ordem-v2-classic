@@ -1,0 +1,23 @@
+{
+	"type": "Item",
+	"folder": null,
+	"name": "Iniciado",
+	"color": null,
+	"sorting": "a",
+	"_id": "nvd2QYk7FBi0ztAq",
+	"description": "",
+	"sort": 4900000,
+	"flags": {},
+	"_stats": {
+		"coreVersion": "14.369",
+		"systemId": "ordem-v2-classic",
+		"systemVersion": "8.0.2",
+		"createdTime": 1792207618168,
+		"modifiedTime": 1792207618168,
+		"lastModifiedBy": null,
+		"compendiumSource": null,
+		"duplicateSource": null,
+		"exportSource": null
+	},
+	"_key": "!folders!nvd2QYk7FBi0ztAq"
+}

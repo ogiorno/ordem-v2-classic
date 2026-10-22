@@ -21,7 +21,7 @@ async page => {
     await sleep(800);
     out.semMods = info();
     // 4) proteção modificada
-    const prot = (await game.packs.get("ordem_v2_classic.protections").getDocuments())[0];
+    const prot = (await game.packs.get("ordem-v2-classic.protections").getDocuments())[0];
     const [p] = await a.createEmbeddedDocuments("Item", [prot.toObject()]);
     await p.update({ "system.modifications": ["reforcada", "blindada"] });
     await a.update({ "system.patent.prestigePoints": 0 });

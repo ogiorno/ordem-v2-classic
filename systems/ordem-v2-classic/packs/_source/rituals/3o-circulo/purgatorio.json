@@ -1,0 +1,45 @@
+{
+  "name": "Purgatório",
+  "type": "ritual",
+  "img": "systems/ordem-v2-classic/assets/rituais/purgatorio.png",
+  "system": {
+    "circle": 3,
+    "element": "blood",
+    "description": "<p>Você faz brotar uma poça de sangue pegajoso na área afetada. Inimigos na área se tornam vulneráveis a dano balístico, de corte, de impacto e de perfuração. Um alvo que tente sair da área é acometido de uma dor terrível; sofre 6d6 pontos de dano de Sangue e deve fazer um teste de Fortitude. Se passar, consegue sair. Se falhar, a dor faz com que não consiga se mover e perca a ação de movimento.</p>",
+    "chatDescription": "<p><strong>Fonte:</strong> Livro de Regras v1.3 · <strong>Execução:</strong> padrão · <strong>Alcance:</strong> curto · <strong>Alvo:</strong> área de 6m de raio · <strong>Duração:</strong> sustentada · <strong>Resistência:</strong> Fortitude parcial</p>",
+    "execution": "default",
+    "range": "short",
+    "target": "área de 6m de raio",
+    "duration": "sustained",
+    "resistance": "partial",
+    "skillResis": "resilience",
+    "targetQtd": "",
+    "area": {
+      "name": "",
+      "size": "",
+      "type": ""
+    },
+    "studentForm": false,
+    "trueForm": false
+  },
+  "effects": [],
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.369",
+    "systemId": "ordem-v2-classic",
+    "systemVersion": "8.0.2",
+    "createdTime": 1792207618168,
+    "modifiedTime": 1792207618168,
+    "lastModifiedBy": null,
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "ownership": {
+    "default": 0
+  },
+  "folder": "RituaisCirculo03",
+  "sort": 69000,
+  "_id": "7tS2ecFRI694BVeM",
+  "_key": "!items!7tS2ecFRI694BVeM"
+}

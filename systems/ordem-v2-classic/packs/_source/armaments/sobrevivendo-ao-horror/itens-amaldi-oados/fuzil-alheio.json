@@ -1,0 +1,77 @@
+{
+  "name": "Fuzil Alheio",
+  "type": "armament",
+  "img": "systems/ordemparanormal/media/icons/armament/fuzil-de-precisao.svg",
+  "system": {
+    "description": "<p>Com o ir e vir do Estrangeiro e seus Alheios, certas ferramentas alienígenas ficaram para trás. Entre elas, armas paranormais adquiridas por agentes de limpeza após a derrota de alguns desses monstros de “outro mundo”. Esta arma é um fuzil de precisão com mira telescópica e mira laser, que causa dano de Energia e não precisa de munição.</p>",
+    "weight": 2,
+    "category": 4,
+    "using": {
+      "state": true,
+      "class": "fas"
+    },
+    "quantity": 1,
+    "proficiency": "tacticalWeapons",
+    "types": {
+      "rangeType": {
+        "name": "ranged",
+        "subRangeType": "fire"
+      },
+      "ammunitionType": "",
+      "gripType": "twoHands",
+      "damageType": ""
+    },
+    "critical": "19/x3",
+    "range": "Longo",
+    "formulas": {
+      "attack": {
+        "formula": "1d4",
+        "attr": "dex",
+        "skill": "aim",
+        "bonus": ""
+      },
+      "damage": {
+        "formula": "2d10",
+        "attr": "",
+        "bonus": "",
+        "type": "energyDamage",
+        "parts": []
+      },
+      "extraFormula": "1d4"
+    },
+    "penalty": "",
+    "conditions": {
+      "improvised": false,
+      "throwable": false,
+      "agile": false,
+      "automatic": false,
+      "adaptableGrip": false,
+      "pistolBlow": true
+    },
+    "chatDescription": ""
+  },
+  "effects": [],
+  "flags": {
+    "ordem-v2-classic": {
+      "source": "sah"
+    }
+  },
+  "_stats": {
+    "coreVersion": "14.365",
+    "systemId": "ordem-v2-classic",
+    "systemVersion": "7.3.3",
+    "createdTime": 1784900000000,
+    "modifiedTime": 1784900000000,
+    "lastModifiedBy": null,
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_id": "EEsP2MQuX5lmxNsy",
+  "sort": 0,
+  "folder": "UUJeVO9Sxs2sJCIw",
+  "_key": "!items!EEsP2MQuX5lmxNsy"
+}

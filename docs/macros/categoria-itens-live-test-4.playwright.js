@@ -6,7 +6,7 @@ async page => {
       a = await Actor.create({ name: "ZZ categoria geral", type: "agent", system: { class: "specialist" } });
       await a.update({ "system.patent.prestigePoints": 20 });
       const [g] = await a.createEmbeddedDocuments("Item", [{ name: "ZZ Equip", type: "generalEquipment", system: { category: 2 } }]);
-      const abil = async (pack, rx) => (await game.packs.get("ordem_v2_classic." + pack).getDocuments()).find(d => rx.test(d.name));
+      const abil = async (pack, rx) => (await game.packs.get("ordem-v2-classic." + pack).getDocuments()).find(d => rx.test(d.name));
       a.sheet.render({ force: true }); await sleep(2500);
       a.sheet.element.querySelector('[data-tab="inventory"]')?.click(); await sleep(500);
       const pill = async l => { await sleep(900); out[l] = [...a.sheet.element.querySelectorAll(".op-cat-pill, .badge-cat-input")].map(e => (e.value ?? e.textContent).trim() + (e.classList.contains("is-over") ? "!" : "")); out[l + "_lim"] = [...a.sheet.element.querySelectorAll(".op-cat-limit")].map(e => e.textContent.replace(/\s+/g, " ").trim()).join("|"); };

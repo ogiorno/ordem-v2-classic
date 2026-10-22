@@ -1,0 +1,92 @@
+{
+	"name": "Expandir Aura",
+	"type": "ability",
+	"img": "systems/ordem-v2-classic/assets/ability-icons/1483-1485-standard-expandir-aura.webp",
+	"system": {
+		"id": 0,
+		"abilityType": "ability",
+		"preRequisite": "",
+		"description": "<p>PADRÃO - EXPANDIR AURA O lembrado expande sua aura. Seres em alcance curto sofrem 6d6 pontos de dano mental (Vontade DT 20 reduz à metade). VD 260</p>",
+		"chatDescription": "",
+		"activation": "default",
+		"cost": 0,
+		"costType": "PE",
+		"execution": {
+			"mode": "active",
+			"automation": "automatic",
+			"damage": [
+				{
+					"kind": "damage",
+					"formula": "6d6",
+					"type": "mental",
+					"resource": "san",
+					"roll": "once",
+					"frequency": ""
+				}
+			],
+			"effects": [],
+			"requirements": [],
+			"grants": [],
+			"targeting": {
+				"kind": "area",
+				"relation": "any",
+				"range": null,
+				"count": null,
+				"voluntary": false,
+				"rangeUnspecified": false,
+				"requiresSight": false
+			},
+			"area": {
+				"shape": "sphere",
+				"radius": 9,
+				"origin": "caster",
+				"persistence": "instant",
+				"triggers": [],
+				"length": null,
+				"width": null
+			},
+			"save": {
+				"skill": "vontade",
+				"dc": 20,
+				"onSuccess": "half",
+				"retry": false
+			},
+			"version": 1,
+			"source": {
+				"reference": "Livro v1.3, p. 253, Lembrado",
+				"reviewed": false
+			},
+			"cost": null,
+			"trigger": null,
+			"visibility": {
+				"dc": "gm",
+				"defense": "gm",
+				"result": "public"
+			}
+		}
+	},
+	"effects": [],
+	"flags": {
+		"ordem-v2-classic": {
+			"threatAbilityId": "1483-H01"
+		}
+	},
+	"_stats": {
+		"coreVersion": "14.369",
+		"systemId": "ordem-v2-classic",
+		"systemVersion": "8.0.2",
+		"createdTime": 1792207618168,
+		"modifiedTime": 1792207618168,
+		"lastModifiedBy": null,
+		"compendiumSource": null,
+		"duplicateSource": null,
+		"exportSource": null
+	},
+	"ownership": {
+		"default": 0
+	},
+	"folder": "egWalhPW8uVU0jxg",
+	"sort": 1000,
+	"_id": "PgfIitLvZ63CyW8D",
+	"_key": "!items!PgfIitLvZ63CyW8D"
+}

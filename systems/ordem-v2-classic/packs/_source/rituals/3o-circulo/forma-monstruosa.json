@@ -1,0 +1,45 @@
+{
+  "name": "Forma Monstruosa",
+  "type": "ritual",
+  "img": "systems/ordem-v2-classic/assets/rituais/forma-monstruosa.png",
+  "system": {
+    "circle": 3,
+    "element": "blood",
+    "description": "<p>Seu corpo se transforma, assumindo uma forma que combina suas características com as de uma criatura de Sangue; suas roupas e proteção se mesclam à sua carne, transformando-se em uma couraça, e quaisquer objetos em suas mãos se fundem aos seus braços, transformando-se em garras pontiagudas. Seu equipamento fica inacessível, mas seus bônus se mantém. Seu tamanho muda para Grande e você recebe +5 em testes de ataque e rolagens de dano corpo a corpo e 30 PV temporários. Enquanto estiver transformado, sua mente é tomada por fúria selvagem; você não pode falar nem conjurar rituais e a cada rodada deve atacar o ser mais próximo possível. Se não houver um ser que possa atacar, deve se deslocar em direção ao ser mais próximo da melhor forma possível. Se o ser mais próximo for um aliado, você pode fazer um teste de Vontade (DT do ritual). Se passar, neste turno você pode escolher qual ser atacar. Discente (+3 PE): além do normal, você recebe imunidade a atordoamento, fadiga, sangramento, sono e veneno. Verdadeiro (+9 PE): muda os bônus em testes de ataque e rolagens de dano para +10 e os PV temporários para 50. Requer 4º círculo e afinidade.</p>",
+    "chatDescription": "<p><strong>Fonte:</strong> Livro de Regras v1.3 · <strong>Execução:</strong> padrão · <strong>Alcance:</strong> pessoal · <strong>Alvo:</strong> você · <strong>Duração:</strong> cena · <strong>Resistência:</strong> —</p>",
+    "execution": "default",
+    "range": "personal",
+    "target": "você",
+    "duration": "scene",
+    "resistance": "",
+    "skillResis": "",
+    "targetQtd": "",
+    "area": {
+      "name": "",
+      "size": "",
+      "type": ""
+    },
+    "studentForm": true,
+    "trueForm": true
+  },
+  "effects": [],
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.369",
+    "systemId": "ordem-v2-classic",
+    "systemVersion": "8.0.2",
+    "createdTime": 1792207618168,
+    "modifiedTime": 1792207618168,
+    "lastModifiedBy": null,
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "ownership": {
+    "default": 0
+  },
+  "folder": "RituaisCirculo03",
+  "sort": 63000,
+  "_id": "toHh5MQ8lloiDMkW",
+  "_key": "!items!toHh5MQ8lloiDMkW"
+}

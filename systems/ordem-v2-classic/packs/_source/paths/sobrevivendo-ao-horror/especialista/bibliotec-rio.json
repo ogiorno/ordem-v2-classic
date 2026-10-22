@@ -1,0 +1,35 @@
+{
+  "folder": "K6pw1Gg6gDxrhy1W",
+  "name": "Bibliotecário",
+  "type": "path",
+  "_id": "L10BzeeH4aHHfI2u",
+  "img": "systems/ordemparanormal/media/icons/paths/bibliotecario.svg",
+  "system": {
+    "id": 0,
+    "description": "<p>Poucas pessoas lêem tanto quanto você, mas diferente do que imaginam, passar a vida cercado de conhecimento não o torna menos apto. Na verdade, seu vasto conhecimento é muitas vezes a única solução para situações desesperadoras. Alguém precisa ser a chave dos segredos. Alguém precisa saber, mesmo que isso signifique perder.</p>",
+    "chatDescription": ""
+  },
+  "effects": [],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "WeXQ2WY27ruZ5VmA": 3
+  },
+  "flags": {
+    "ordem-v2-classic": {
+      "source": "sah"
+    }
+  },
+  "_stats": {
+    "coreVersion": "14.365",
+    "systemId": "ordemparanormal",
+    "systemVersion": "7.3.3",
+    "createdTime": 1784685659421,
+    "modifiedTime": 1784758105343,
+    "lastModifiedBy": "mCARmiewelPiv8Ze",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!L10BzeeH4aHHfI2u"
+}

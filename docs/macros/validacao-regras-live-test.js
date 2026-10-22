@@ -2,7 +2,7 @@
 // Rodar com Mestre logado: playwright-cli -s=<nome> --raw eval "$(cat docs/macros/validacao-regras-live-test.js)"
 // Usa agentes temporários "ZZ valida ..." e apaga tudo no fim. As regras vêm de regras/ (ver tests/unit/validacao-regras.test.mjs).
 (async () => {
-	const SYS = "ordem_v2_classic";
+	const SYS = "ordem-v2-classic";
 	const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 	const until = async (fn, ms = 8000) => { const t = Date.now(); while (Date.now() - t < ms) { const v = await fn(); if (v) return v; await sleep(100); } return null; };
 	const T = await import(`/systems/${SYS}/module/helpers/skill-training.mjs`);

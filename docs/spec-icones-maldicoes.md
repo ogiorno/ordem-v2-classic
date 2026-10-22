@@ -1,12 +1,12 @@
 # Spec — Ícones das maldições paranormais
 
-Status (21/10/2026): **41 ícones gerados** em `systems/ordem_v2_classic/assets/curse-icons/`, no formato WebP 256×256 com transparência. Os PNGs de origem estão em `work/curse-icons-generated/`. A coluna `Path` abaixo contém o caminho para usar no campo `img` da plataforma. Acompanha `spec-modificacoes-paranormais.md` (§3.1, compêndio `curses`). Segue o padrão já usado nos ícones de habilidades de ameaça (`assets/ability-icons`, `tools/build-threat-ability-icons.mjs`: pasta de origem + `icon-map.json` → cópia para `assets` + fixture de caminhos) e nos ícones de rituais (`assets/rituais`, um PNG por ritual).
+Status (21/10/2026): **41 ícones gerados** em `systems/ordem-v2-classic/assets/curse-icons/`, no formato WebP 256×256 com transparência. Os PNGs de origem estão em `work/curse-icons-generated/`. A coluna `Path` abaixo contém o caminho para usar no campo `img` da plataforma. Acompanha `spec-modificacoes-paranormais.md` (§3.1, compêndio `curses`). Segue o padrão já usado nos ícones de habilidades de ameaça (`assets/ability-icons`, `tools/build-threat-ability-icons.mjs`: pasta de origem + `icon-map.json` → cópia para `assets` + fixture de caminhos) e nos ícones de rituais (`assets/rituais`, um PNG por ritual).
 
 ## 1. Escopo
 
 36 ícones: 12 armas, 10 proteções, 13 acessórios e a Lente de Revelação. Mais 5 ícones de reserva: um para cada elemento (Conhecimento, Energia, Morte, Sangue e Medo), usados como fallback e no chip da ficha (§5). Medo não tem maldição própria; usa o ícone de reserva "Medo".
 
-Saída: `systems/ordem_v2_classic/assets/curse-icons/<chave>.webp`, **256×256**, fundo transparente, ≤ 40 KB cada. A chave é a de `curse-rules.mjs` (`lancinante`, `antielemento`, `lenteDeRevelacao`...). O campo `img` do item do compêndio aponta para ele.
+Saída: `systems/ordem-v2-classic/assets/curse-icons/<chave>.webp`, **256×256**, fundo transparente, ≤ 40 KB cada. A chave é a de `curse-rules.mjs` (`lancinante`, `antielemento`, `lenteDeRevelacao`...). O campo `img` do item do compêndio aponta para ele.
 
 ## 2. Estilo (família única para os 41)
 
@@ -23,63 +23,63 @@ Prefixo comum: "ícone de RPG de horror, emblema circular, fundo transparente, t
 ### Armas
 | Chave | Elemento | Descrição | Path para a plataforma |
 |---|---|---|
-| antielemento | Conhecimento | lâmina cercada por quatro pequenos símbolos de elemento quebrados | `systems/ordem_v2_classic/assets/curse-icons/antielemento.webp` |
-| ritualistica | Conhecimento | arma com glifo ritual brilhando na lâmina, runas em espiral | `systems/ordem_v2_classic/assets/curse-icons/ritualistica.webp` |
-| senciente | Conhecimento | espada flutuando sozinha com um olho aberto no centro da guarda | `systems/ordem_v2_classic/assets/curse-icons/senciente.webp` |
-| empuxo | Energia | machadinha arremessada com rastro de energia curvo voltando à mão | `systems/ordem_v2_classic/assets/curse-icons/empuxo.webp` |
-| energetica | Energia | lâmina de eletricidade que atravessa uma placa de armadura | `systems/ordem_v2_classic/assets/curse-icons/energetica.webp` |
-| vibrante | Energia | arma com ondas de vibração e dupla silhueta (ataque duplo) | `systems/ordem_v2_classic/assets/curse-icons/vibrante.webp` |
-| consumidora | Morte | mão esquelética segurando a arma, alvo congelado em cinza | `systems/ordem_v2_classic/assets/curse-icons/consumidora.webp` |
-| erosiva | Morte | lâmina corroída, pingando, com fumaça de decomposição | `systems/ordem_v2_classic/assets/curse-icons/erosiva.webp` |
-| repulsora | Morte | escudo-lâmina com ondas de repulsão | `systems/ordem_v2_classic/assets/curse-icons/repulsora.webp` |
-| lancinante | Sangue | lâmina fina com um corte vermelho profundo e sangue em arco | `systems/ordem_v2_classic/assets/curse-icons/lancinante.webp` |
-| predadora | Sangue | garra/presa com olho de predador, alvo no cruzamento da mira | `systems/ordem_v2_classic/assets/curse-icons/predadora.webp` |
-| sanguinaria | Sangue | lâmina serrilhada pingando, gotas formando espiral | `systems/ordem_v2_classic/assets/curse-icons/sanguinaria.webp` |
+| antielemento | Conhecimento | lâmina cercada por quatro pequenos símbolos de elemento quebrados | `systems/ordem-v2-classic/assets/curse-icons/antielemento.webp` |
+| ritualistica | Conhecimento | arma com glifo ritual brilhando na lâmina, runas em espiral | `systems/ordem-v2-classic/assets/curse-icons/ritualistica.webp` |
+| senciente | Conhecimento | espada flutuando sozinha com um olho aberto no centro da guarda | `systems/ordem-v2-classic/assets/curse-icons/senciente.webp` |
+| empuxo | Energia | machadinha arremessada com rastro de energia curvo voltando à mão | `systems/ordem-v2-classic/assets/curse-icons/empuxo.webp` |
+| energetica | Energia | lâmina de eletricidade que atravessa uma placa de armadura | `systems/ordem-v2-classic/assets/curse-icons/energetica.webp` |
+| vibrante | Energia | arma com ondas de vibração e dupla silhueta (ataque duplo) | `systems/ordem-v2-classic/assets/curse-icons/vibrante.webp` |
+| consumidora | Morte | mão esquelética segurando a arma, alvo congelado em cinza | `systems/ordem-v2-classic/assets/curse-icons/consumidora.webp` |
+| erosiva | Morte | lâmina corroída, pingando, com fumaça de decomposição | `systems/ordem-v2-classic/assets/curse-icons/erosiva.webp` |
+| repulsora | Morte | escudo-lâmina com ondas de repulsão | `systems/ordem-v2-classic/assets/curse-icons/repulsora.webp` |
+| lancinante | Sangue | lâmina fina com um corte vermelho profundo e sangue em arco | `systems/ordem-v2-classic/assets/curse-icons/lancinante.webp` |
+| predadora | Sangue | garra/presa com olho de predador, alvo no cruzamento da mira | `systems/ordem-v2-classic/assets/curse-icons/predadora.webp` |
+| sanguinaria | Sangue | lâmina serrilhada pingando, gotas formando espiral | `systems/ordem-v2-classic/assets/curse-icons/sanguinaria.webp` |
 
 ### Proteções
 | Chave | Elemento | Descrição | Path para a plataforma |
 |---|---|---|
-| abascanta | Conhecimento | escudo com espelho de runas refletindo um raio | `systems/ordem_v2_classic/assets/curse-icons/abascanta.webp` |
-| profetica | Conhecimento | peitoral com olho de visão, dois dados sobrepostos | `systems/ordem_v2_classic/assets/curse-icons/profetica.webp` |
-| sombria | Conhecimento | capa/colete se dissolvendo em sombra, olho semicerrado | `systems/ordem_v2_classic/assets/curse-icons/sombria.webp` |
-| cinetica | Energia | colete com ondas de impacto sendo dispersadas | `systems/ordem_v2_classic/assets/curse-icons/cinetica.webp` |
-| lepida | Energia | bota alada com rastros de velocidade | `systems/ordem_v2_classic/assets/curse-icons/lepida.webp` |
-| voltaica | Energia | colete com arcos de eletricidade saltando | `systems/ordem_v2_classic/assets/curse-icons/voltaica.webp` |
-| letargica | Morte | peitoral cinza com rachadura atravessada por escudo baixo | `systems/ordem_v2_classic/assets/curse-icons/letargica.webp` |
-| repulsiva | Morte | colete escorrendo lodo preto com espinhos | `systems/ordem_v2_classic/assets/curse-icons/repulsiva.webp` |
-| regenerativa | Sangue | colete com coração brilhando e gotas subindo, cura | `systems/ordem_v2_classic/assets/curse-icons/regenerativa.webp` |
-| sadica | Sangue | colete com cicatrizes abertas e sorriso de dentes | `systems/ordem_v2_classic/assets/curse-icons/sadica.webp` |
+| abascanta | Conhecimento | escudo com espelho de runas refletindo um raio | `systems/ordem-v2-classic/assets/curse-icons/abascanta.webp` |
+| profetica | Conhecimento | peitoral com olho de visão, dois dados sobrepostos | `systems/ordem-v2-classic/assets/curse-icons/profetica.webp` |
+| sombria | Conhecimento | capa/colete se dissolvendo em sombra, olho semicerrado | `systems/ordem-v2-classic/assets/curse-icons/sombria.webp` |
+| cinetica | Energia | colete com ondas de impacto sendo dispersadas | `systems/ordem-v2-classic/assets/curse-icons/cinetica.webp` |
+| lepida | Energia | bota alada com rastros de velocidade | `systems/ordem-v2-classic/assets/curse-icons/lepida.webp` |
+| voltaica | Energia | colete com arcos de eletricidade saltando | `systems/ordem-v2-classic/assets/curse-icons/voltaica.webp` |
+| letargica | Morte | peitoral cinza com rachadura atravessada por escudo baixo | `systems/ordem-v2-classic/assets/curse-icons/letargica.webp` |
+| repulsiva | Morte | colete escorrendo lodo preto com espinhos | `systems/ordem-v2-classic/assets/curse-icons/repulsiva.webp` |
+| regenerativa | Sangue | colete com coração brilhando e gotas subindo, cura | `systems/ordem-v2-classic/assets/curse-icons/regenerativa.webp` |
+| sadica | Sangue | colete com cicatrizes abertas e sorriso de dentes | `systems/ordem-v2-classic/assets/curse-icons/sadica.webp` |
 
 ### Acessórios
 | Chave | Elemento | Descrição | Path para a plataforma |
 |---|---|---|
-| carisma | Conhecimento | medalhão com rosto sorridente e aura dourada | `systems/ordem_v2_classic/assets/curse-icons/carisma.webp` |
-| conjuracao | Conhecimento | anel com pergaminho enrolado dentro | `systems/ordem_v2_classic/assets/curse-icons/conjuracao.webp` |
-| escudoMental | Conhecimento | tiara/capacete com cabeça protegida por cúpula | `systems/ordem_v2_classic/assets/curse-icons/escudoMental.webp` |
-| reflexao | Conhecimento | espelho de mão com ritual sendo devolvido | `systems/ordem_v2_classic/assets/curse-icons/reflexao.webp` |
-| sagacidade | Conhecimento | monóculo com engrenagens de pensamento | `systems/ordem_v2_classic/assets/curse-icons/sagacidade.webp` |
-| defesa | Energia | amuleto com escudo hexagonal elétrico | `systems/ordem_v2_classic/assets/curse-icons/defesa.webp` |
-| destreza | Energia | luva com linhas de velocidade em cada dedo | `systems/ordem_v2_classic/assets/curse-icons/destreza.webp` |
-| potencia | Energia | anel com símbolo de + e raios | `systems/ordem_v2_classic/assets/curse-icons/potencia.webp` |
-| esforcoAdicional | Morte | frasco/relicário de energia escura com ampulheta | `systems/ordem_v2_classic/assets/curse-icons/esforcoAdicional.webp` |
-| disposicao | Sangue | pulseira de couro com coração robusto | `systems/ordem_v2_classic/assets/curse-icons/disposicao.webp` |
-| pujanca | Sangue | punho cerrado com veias saltando | `systems/ordem_v2_classic/assets/curse-icons/pujanca.webp` |
-| vitalidade | Sangue | cantil/relicário com cruz e batimento | `systems/ordem_v2_classic/assets/curse-icons/vitalidade.webp` |
-| protecaoElemental | (vários) | amuleto circular dividido em quatro quadrantes de elemento | `systems/ordem_v2_classic/assets/curse-icons/protecaoElemental.webp` |
+| carisma | Conhecimento | medalhão com rosto sorridente e aura dourada | `systems/ordem-v2-classic/assets/curse-icons/carisma.webp` |
+| conjuracao | Conhecimento | anel com pergaminho enrolado dentro | `systems/ordem-v2-classic/assets/curse-icons/conjuracao.webp` |
+| escudoMental | Conhecimento | tiara/capacete com cabeça protegida por cúpula | `systems/ordem-v2-classic/assets/curse-icons/escudoMental.webp` |
+| reflexao | Conhecimento | espelho de mão com ritual sendo devolvido | `systems/ordem-v2-classic/assets/curse-icons/reflexao.webp` |
+| sagacidade | Conhecimento | monóculo com engrenagens de pensamento | `systems/ordem-v2-classic/assets/curse-icons/sagacidade.webp` |
+| defesa | Energia | amuleto com escudo hexagonal elétrico | `systems/ordem-v2-classic/assets/curse-icons/defesa.webp` |
+| destreza | Energia | luva com linhas de velocidade em cada dedo | `systems/ordem-v2-classic/assets/curse-icons/destreza.webp` |
+| potencia | Energia | anel com símbolo de + e raios | `systems/ordem-v2-classic/assets/curse-icons/potencia.webp` |
+| esforcoAdicional | Morte | frasco/relicário de energia escura com ampulheta | `systems/ordem-v2-classic/assets/curse-icons/esforcoAdicional.webp` |
+| disposicao | Sangue | pulseira de couro com coração robusto | `systems/ordem-v2-classic/assets/curse-icons/disposicao.webp` |
+| pujanca | Sangue | punho cerrado com veias saltando | `systems/ordem-v2-classic/assets/curse-icons/pujanca.webp` |
+| vitalidade | Sangue | cantil/relicário com cruz e batimento | `systems/ordem-v2-classic/assets/curse-icons/vitalidade.webp` |
+| protecaoElemental | (vários) | amuleto circular dividido em quatro quadrantes de elemento | `systems/ordem-v2-classic/assets/curse-icons/protecaoElemental.webp` |
 
 ### Sobrevivendo ao Horror
 | Chave | Elemento | Descrição | Path para a plataforma |
 |---|---|---|
-| lenteDeRevelacao | Conhecimento | câmera instantânea com lente de olho aberto e flash dourado, figura translúcida | `systems/ordem_v2_classic/assets/curse-icons/lenteDeRevelacao.webp` |
+| lenteDeRevelacao | Conhecimento | câmera instantânea com lente de olho aberto e flash dourado, figura translúcida | `systems/ordem-v2-classic/assets/curse-icons/lenteDeRevelacao.webp` |
 
 ### Reserva por elemento
 | Chave | Símbolo | Path para a plataforma |
 |---|---|---|
-| `elemento-conhecimento` | Olho e livro dourados | `systems/ordem_v2_classic/assets/curse-icons/elemento-conhecimento.webp` |
-| `elemento-energia` | Raio azul | `systems/ordem_v2_classic/assets/curse-icons/elemento-energia.webp` |
-| `elemento-morte` | Ampulheta cinza-chumbo | `systems/ordem_v2_classic/assets/curse-icons/elemento-morte.webp` |
-| `elemento-sangue` | Gota vermelha | `systems/ordem_v2_classic/assets/curse-icons/elemento-sangue.webp` |
-| `elemento-medo` | Eclipse com lua crescente marfim | `systems/ordem_v2_classic/assets/curse-icons/elemento-medo.webp` |
+| `elemento-conhecimento` | Olho e livro dourados | `systems/ordem-v2-classic/assets/curse-icons/elemento-conhecimento.webp` |
+| `elemento-energia` | Raio azul | `systems/ordem-v2-classic/assets/curse-icons/elemento-energia.webp` |
+| `elemento-morte` | Ampulheta cinza-chumbo | `systems/ordem-v2-classic/assets/curse-icons/elemento-morte.webp` |
+| `elemento-sangue` | Gota vermelha | `systems/ordem-v2-classic/assets/curse-icons/elemento-sangue.webp` |
+| `elemento-medo` | Eclipse com lua crescente marfim | `systems/ordem-v2-classic/assets/curse-icons/elemento-medo.webp` |
 
 Os caminhos são relativos à raiz do Foundry e podem ser copiados para o campo `img` do item. O símbolo visual de cada reserva segue `assets/ritual-elementos.png`.
 

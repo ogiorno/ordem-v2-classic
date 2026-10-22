@@ -1,0 +1,41 @@
+{
+  "name": "Rádio Chiador",
+  "type": "generalEquipment",
+  "_id": "4Ylx7cpdjYSbtrPt",
+  "img": "systems/ordemparanormal/media/icons/equipments/paranormal/amarras-de-morte.svg",
+  "system": {
+    "using": {
+      "state": true,
+      "class": "fas"
+    },
+    "type": "",
+    "quantity": 1,
+    "description": "<p>Um pequeno rádio gravador de bolso que já captou o áudio de inúmeras vidas se esvaindo. É como se estivesse constantemente empoeirado e pela sua aparência sequer deveria estar funcionando, mas um chiado perturbador e constante pode ser escutado vindo de dentro. Funciona com pilhas que duram doze horas antes de se tornarem Lodo preto. Enquanto estiver ligado, emite chiados estáticos se houver qualquer criatura Paranormal em alcance extremo. O chiado se torna mais alto conforme a proximidade de um destes elementos, o que permite estimar sua direção e categoria de alcance aproximadas. Criaturas Paranormais tendem a se sentir atraídas pelo chiado uma vez que possam ouvi-lo. As funções normais do rádio gravador não funcionam, mas ele pode ficar desligado para não emitir barulho.</p>",
+    "chatDescription": "",
+    "weight": 1,
+    "category": 2
+  },
+  "effects": [],
+  "folder": "mzoptZV8Vbs8aYU1",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "ordem-v2-classic": {
+      "source": "sah"
+    }
+  },
+  "_stats": {
+    "coreVersion": "14.365",
+    "systemId": "ordem-v2-classic",
+    "systemVersion": "7.3.3",
+    "createdTime": 1784900000000,
+    "modifiedTime": 1784900000000,
+    "lastModifiedBy": null,
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!4Ylx7cpdjYSbtrPt"
+}

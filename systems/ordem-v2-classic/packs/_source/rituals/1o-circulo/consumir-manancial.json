@@ -1,0 +1,45 @@
+{
+  "name": "Consumir Manancial",
+  "type": "ritual",
+  "img": "systems/ordem-v2-classic/assets/rituais/consumir-manancial.png",
+  "system": {
+    "circle": 1,
+    "element": "death",
+    "description": "<p>Você suga uma pequena porção do tempo de vida de plantas, insetos e até mesmo do solo ao redor, gerando Lodo e recebendo 3d6 pontos de vida temporários. Os PV temporários desaparecem ao final da cena. Discente (+2 PE): muda os PV temporários recebidos para 6d6. Requer 2º círculo. Verdadeiro (+5 PE): muda o alvo para “área: esfera com 6m de raio centrada em você” e a resistência para “Fortitude reduz à metade”. Em vez do normal, você suga energia de todos os seres vivos na área, causando 3d6 pontos de dano de Morte em cada um e recebendo PV temporários iguais ao dano total causado até o final da cena. Requer 3º círculo e afinidade.</p>",
+    "chatDescription": "<p><strong>Fonte:</strong> Livro de Regras v1.3 · <strong>Execução:</strong> padrão · <strong>Alcance:</strong> pessoal · <strong>Alvo:</strong> você · <strong>Duração:</strong> instantânea · <strong>Resistência:</strong> —</p>",
+    "execution": "default",
+    "range": "personal",
+    "target": "você",
+    "duration": "instantaneous",
+    "resistance": "",
+    "skillResis": "",
+    "targetQtd": "",
+    "area": {
+      "name": "",
+      "size": "",
+      "type": ""
+    },
+    "studentForm": true,
+    "trueForm": true
+  },
+  "effects": [],
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.369",
+    "systemId": "ordem-v2-classic",
+    "systemVersion": "8.0.2",
+    "createdTime": 1792207618168,
+    "modifiedTime": 1792207618168,
+    "lastModifiedBy": null,
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "ownership": {
+    "default": 0
+  },
+  "folder": "RituaisCirculo01",
+  "sort": 10000,
+  "_id": "ogFmtytWuY0ugdor",
+  "_key": "!items!ogFmtytWuY0ugdor"
+}

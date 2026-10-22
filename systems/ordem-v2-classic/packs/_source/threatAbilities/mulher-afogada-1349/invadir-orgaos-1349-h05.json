@@ -1,0 +1,97 @@
+{
+	"name": "•  Invadir Órgãos",
+	"type": "ability",
+	"img": "systems/ordem-v2-classic/assets/ability-icons/1349-1355-movimento-invadir-orgaos.webp",
+	"system": {
+		"id": 0,
+		"abilityType": "ability",
+		"preRequisite": "",
+		"description": "<p>MOVIMENTO • INVADIR ÓRGÃOS A mulher afogada invade órgãos vitais de um personagem que ela esteja asfixiando com afogar em Sangue. O personagem sofre 6d6 pontos de dano de Sangue e fica enjoado.</p>",
+		"chatDescription": "",
+		"activation": "movement",
+		"cost": 0,
+		"costType": "PE",
+		"execution": {
+			"mode": "active",
+			"automation": "assisted",
+			"damage": [
+				{
+					"kind": "damage",
+					"formula": "6d6",
+					"type": "sangue",
+					"resource": "pv",
+					"roll": "once",
+					"frequency": ""
+				}
+			],
+			"effects": [
+				{
+					"condition": "enjoado",
+					"duration": {
+						"unit": "unspecified",
+						"value": null
+					},
+					"onSave": "always",
+					"target": "target",
+					"trigger": "",
+					"support": "mechanical"
+				}
+			],
+			"requirements": [
+				{
+					"kind": "narrative",
+					"text": "o personagem está sendo asfixiado por Afogar Em Sangue",
+					"ref": ""
+				}
+			],
+			"grants": [],
+			"targeting": {
+				"kind": "token",
+				"range": 1.5,
+				"count": 1,
+				"relation": "any",
+				"voluntary": false,
+				"rangeUnspecified": false,
+				"requiresSight": false
+			},
+			"version": 1,
+			"source": {
+				"reference": "Livro v1.3, p. 209, Mulher Afogada",
+				"reviewed": false
+			},
+			"cost": null,
+			"area": null,
+			"save": null,
+			"trigger": null,
+			"visibility": {
+				"dc": "gm",
+				"defense": "gm",
+				"result": "public"
+			}
+		}
+	},
+	"effects": [],
+	"flags": {
+		"ordem-v2-classic": {
+			"threatAbilityId": "1349-H05"
+		}
+	},
+	"_stats": {
+		"coreVersion": "14.369",
+		"systemId": "ordem-v2-classic",
+		"systemVersion": "8.0.2",
+		"createdTime": 1792207618168,
+		"modifiedTime": 1792207618168,
+		"lastModifiedBy": null,
+		"compendiumSource": null,
+		"duplicateSource": null,
+		"exportSource": null
+	},
+	"ownership": {
+		"default": 0
+	},
+	"folder": "kRbijC1UGcVglAOM",
+	"sort": 5000,
+	"_id": "hgstL4YMRCEYH0eL",
+	"_key": "!items!hgstL4YMRCEYH0eL"
+}

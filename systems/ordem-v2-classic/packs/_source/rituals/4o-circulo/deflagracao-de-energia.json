@@ -1,0 +1,45 @@
+{
+  "name": "Deflagração de Energia",
+  "type": "ritual",
+  "img": "systems/ordem-v2-classic/assets/rituais/deflagracao-de-energia.png",
+  "system": {
+    "circle": 4,
+    "element": "energy",
+    "description": "<p>Você acumula uma quantidade imensa de Energia, então a libera em uma explosão intensa, como uma estrela em plena terra. Todos na área sofrem 3d10 x 10 pontos de dano de Energia e todos os itens tecno- lógicos (armas de fogo, acessórios e utensílios) param de funcionar (em termos de regras, estão quebrados). Você não é afetado pela explosão. Alvos que passem no teste de Fortitude sofrem metade do dano e seus itens voltam a funcionar após 1d4 rodadas. Verdadeiro (+5 PE): afeta apenas alvos a sua escolha.</p>",
+    "chatDescription": "<p><strong>Fonte:</strong> Livro de Regras v1.3 · <strong>Execução:</strong> completa · <strong>Alcance:</strong> pessoal · <strong>Alvo:</strong> Veja descrição da área · <strong>Duração:</strong> Veja texto · <strong>Resistência:</strong> Fortitude parcial</p>",
+    "execution": "complete",
+    "range": "personal",
+    "target": "Veja descrição da área",
+    "duration": "setDuration",
+    "resistance": "partial",
+    "skillResis": "resilience",
+    "targetQtd": "",
+    "area": {
+      "name": "explosão de 15m de raio",
+      "size": "",
+      "type": ""
+    },
+    "studentForm": false,
+    "trueForm": true
+  },
+  "effects": [],
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.369",
+    "systemId": "ordem-v2-classic",
+    "systemVersion": "8.0.2",
+    "createdTime": 1792207618168,
+    "modifiedTime": 1792207618168,
+    "lastModifiedBy": null,
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "ownership": {
+    "default": 0
+  },
+  "folder": "RituaisCirculo04",
+  "sort": 85000,
+  "_id": "bBtZfAE5YpXnjx0z",
+  "_key": "!items!bBtZfAE5YpXnjx0z"
+}

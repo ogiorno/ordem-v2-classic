@@ -1,0 +1,35 @@
+{
+  "name": "O Que Restou",
+  "type": "ability",
+  "_id": "0KxQDRoSXMMwkwlJ",
+  "img": "icons/svg/book.svg",
+  "system": {
+    "id": 0,
+    "chatDescription": "",
+    "abilityType": "origin",
+    "preRequisite": "",
+    "description": "<p>Uma parte da criatura paranormal que o possuiu continua dentro de você. Escolha um elemento (exceto Medo). Você recebe RD 10 contra o tipo do elemento escolhido. Entretanto, sempre que entrar em contato com esse elemento pela primeira vez em uma cena (seja ao presenciar rituais, itens amaldiçoados, criaturas ou poderes paranormais), você perde 3 SAN.</p>",
+    "activation": "passive",
+    "cost": 0,
+    "costType": "PE"
+  },
+  "effects": [],
+  "folder": "AsOrigPowers0001",
+  "sort": 10000,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.365",
+    "systemId": "ordem-v2-classic",
+    "systemVersion": "7.3.3",
+    "createdTime": 1784950000000,
+    "modifiedTime": 1784950000000,
+    "lastModifiedBy": null,
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!0KxQDRoSXMMwkwlJ"
+}

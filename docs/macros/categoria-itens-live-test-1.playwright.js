@@ -3,7 +3,7 @@ async page => {
   return await page.evaluate(async () => {
     const sleep = ms => new Promise(r => setTimeout(r, ms));
     const out = {};
-    const katana = (await game.packs.get("ordem_v2_classic.armaments").getDocuments()).find(w => /katana/i.test(w.name));
+    const katana = (await game.packs.get("ordem-v2-classic.armaments").getDocuments()).find(w => /katana/i.test(w.name));
     const a = await Actor.create({ name: "ZZ categoria", type: "agent", system: { class: "fighter" } });
     out.id = a.id;
     const [it] = await a.createEmbeddedDocuments("Item", [katana.toObject()]);

@@ -2,7 +2,7 @@
 // Rodar com Mestre logado: playwright-cli -s=<nome> --raw eval "$(cat docs/macros/origens-live-test.js)"
 // Usa um agente temporário "ZZ origens" (apagado no fim) e responde os diálogos de verdade. Não toca nas fichas reais.
 (async () => {
-	const SYS = "ordem_v2_classic";
+	const SYS = "ordem-v2-classic";
 	const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 	const R = await import(`/systems/${SYS}/module/helpers/skill-training-rules.mjs`);
 	const L = await import(`/systems/${SYS}/module/helpers/level-progression-rules.mjs`);

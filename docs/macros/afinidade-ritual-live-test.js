@@ -2,7 +2,7 @@
 // Rodar com o Mestre logado: playwright-cli -s=<nome> --raw eval "$(cat docs/macros/afinidade-ritual-live-test.js)"
 // Usa agentes temporários "ZZ afinritual ..."; apaga tudo no fim. Não conjura de verdade (só o caminho recusado).
 (async () => {
-	const SYS = "ordem_v2_classic";
+	const SYS = "ordem-v2-classic";
 	const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 	const C = await import(`/systems/${SYS}/module/macros/ritual-caster.mjs`);
 	const A = await import(`/systems/${SYS}/module/helpers/affinity.mjs`);

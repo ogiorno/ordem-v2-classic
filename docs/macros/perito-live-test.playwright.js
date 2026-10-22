@@ -4,9 +4,9 @@ async page => {
     const sleep = ms => new Promise(r => setTimeout(r, ms));
     const dialogFor = async () => { for (let i = 0; i < 50; i++) { const app = [...foundry.applications.instances.values()].find(a => a.constructor.name === "SkillToolRollConfigurationDialog"); if (app?.element?.querySelector("button")) return app; await sleep(100); } return null; };
     try {
-      const cp = game.packs.get("ordem_v2_classic.classes");
+      const cp = game.packs.get("ordem-v2-classic.classes");
       const klass = (await cp.getDocuments()).find(c => /especialista/i.test(c.name));
-      const perito = (await game.packs.get("ordem_v2_classic.specialistPowers").getDocuments()).find(d => d.name === "Perito");
+      const perito = (await game.packs.get("ordem-v2-classic.specialistPowers").getDocuments()).find(d => d.name === "Perito");
       const run = async (label, nivel, pe, skill, check, expect) => {
         const a = await Actor.create({ name: "ZZ perito " + label, type: "agent", system: { class: "specialist" } });
         actors.push(a);

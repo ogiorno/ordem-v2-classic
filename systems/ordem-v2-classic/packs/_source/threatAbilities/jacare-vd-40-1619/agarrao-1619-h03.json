@@ -1,0 +1,40 @@
+{
+	"name": "Agarrão",
+	"type": "ability",
+	"img": "icons/svg/item-bag.svg",
+	"system": {
+		"id": 0,
+		"abilityType": "ability",
+		"preRequisite": "",
+		"description": "<p>Se o jacaré acertar um ataque de mordida em um ser Médio ou menor, pode tentar agarrar o alvo (teste 3d20+7).</p>",
+		"chatDescription": "",
+		"activation": "free",
+		"cost": 0,
+		"costType": "PE",
+		"execution": null
+	},
+	"effects": [],
+	"flags": {
+		"ordem-v2-classic": {
+			"threatAbilityId": "1619-H03"
+		}
+	},
+	"_stats": {
+		"coreVersion": "14.369",
+		"systemId": "ordem-v2-classic",
+		"systemVersion": "8.0.2",
+		"createdTime": 1792207618168,
+		"modifiedTime": 1792207618168,
+		"lastModifiedBy": null,
+		"compendiumSource": null,
+		"duplicateSource": null,
+		"exportSource": null
+	},
+	"ownership": {
+		"default": 0
+	},
+	"folder": "p0bDZxuyG2XcWhY8",
+	"sort": 3000,
+	"_id": "MxeCVbadNRB5f2YU",
+	"_key": "!items!MxeCVbadNRB5f2YU"
+}

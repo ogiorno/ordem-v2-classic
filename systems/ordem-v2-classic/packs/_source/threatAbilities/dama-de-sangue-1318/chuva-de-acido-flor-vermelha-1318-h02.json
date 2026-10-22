@@ -1,0 +1,92 @@
+{
+	"name": "Chuva De Ácido (Flor Vermelha)",
+	"type": "ability",
+	"img": "systems/ordem-v2-classic/assets/ability-icons/1318-1321-movimento-chuva-de-acido-flor-vermelha.webp",
+	"system": {
+		"id": 0,
+		"abilityType": "ability",
+		"preRequisite": "",
+		"description": "<p>MOVIMENTO - CHUVA DE ÁCIDO (Flor Vermelha) A dama espirra ácido que derrete carne e corrói metal. Todos os personagens em alcance curto sofrem 4d4 pontos de dano químico (Fortitude DT 15 reduz à metade). A flor vermelha murcha se a dama de Sangue entrar em contato com agrotóxico. Isso faz a dama perder esta habilidade e reduz suas resistências a dano em 5.</p>",
+		"chatDescription": "",
+		"activation": "movement",
+		"cost": 0,
+		"costType": "PE",
+		"execution": {
+			"mode": "active",
+			"automation": "automatic",
+			"damage": [
+				{
+					"kind": "damage",
+					"formula": "4d4",
+					"type": "químico",
+					"resource": "pv",
+					"roll": "once",
+					"frequency": ""
+				}
+			],
+			"effects": [],
+			"requirements": [],
+			"grants": [],
+			"targeting": {
+				"kind": "area",
+				"relation": "any",
+				"range": null,
+				"count": null,
+				"voluntary": false,
+				"rangeUnspecified": false,
+				"requiresSight": false
+			},
+			"area": {
+				"shape": "sphere",
+				"radius": 9,
+				"origin": "caster",
+				"persistence": "instant",
+				"triggers": [],
+				"length": null,
+				"width": null
+			},
+			"save": {
+				"skill": "fortitude",
+				"dc": 15,
+				"onSuccess": "half",
+				"retry": false
+			},
+			"version": 1,
+			"source": {
+				"reference": "Livro v1.3, p. 200, Dama de Sangue",
+				"reviewed": false
+			},
+			"cost": null,
+			"trigger": null,
+			"visibility": {
+				"dc": "gm",
+				"defense": "gm",
+				"result": "public"
+			}
+		}
+	},
+	"effects": [],
+	"flags": {
+		"ordem-v2-classic": {
+			"threatAbilityId": "1318-H02"
+		}
+	},
+	"_stats": {
+		"coreVersion": "14.369",
+		"systemId": "ordem-v2-classic",
+		"systemVersion": "8.0.2",
+		"createdTime": 1792207618168,
+		"modifiedTime": 1792207618168,
+		"lastModifiedBy": null,
+		"compendiumSource": null,
+		"duplicateSource": null,
+		"exportSource": null
+	},
+	"ownership": {
+		"default": 0
+	},
+	"folder": "k0cmHc9pwtyfYPq6",
+	"sort": 2000,
+	"_id": "5KGgvlkwUbQzmCfT",
+	"_key": "!items!5KGgvlkwUbQzmCfT"
+}

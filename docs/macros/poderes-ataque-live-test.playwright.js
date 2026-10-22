@@ -3,7 +3,7 @@ async page => {
     const out = [], actors = [], msgs = [];
     const sleep = ms => new Promise(r => setTimeout(r, ms));
     const dlg = async () => { for (let i = 0; i < 60; i++) { const el = document.querySelector(".op-attack-dialog"); if (el) return el; await sleep(100); } return null; };
-    const docs = async (pk) => (await game.packs.get("ordem_v2_classic." + pk).getDocuments());
+    const docs = async (pk) => (await game.packs.get("ordem-v2-classic." + pk).getDocuments());
     try {
       const classes = await docs("classes");
       const kl = rx => classes.find(c => rx.test(c.name));

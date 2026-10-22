@@ -1,0 +1,45 @@
+{
+  "name": "Nuvem de Cinzas",
+  "type": "ritual",
+  "img": "systems/ordem-v2-classic/assets/rituais/nuvem-de-cinzas.png",
+  "system": {
+    "circle": 1,
+    "element": "death",
+    "description": "<p>Uma nuvem de fuligem espessa eleva-se de um ponto a sua escolha, obscurecendo toda a visão — seres a até 1,5m têm camuflagem leve e seres a partir de 3m têm camuflagem total. Um vento forte dispersa a nuvem em 4 rodadas e um vendaval a dispersa em 1 rodada. A nuvem não funciona sob a água. Discente (+2 PE): você pode escolher seres no alcance ao conjurar o ritual; eles enxergam através do efeito. Requer 2º círculo. Verdadeiro (+5 PE): além do normal, a nuvem fica espessa, quase sólida. Qualquer ser dentro dela tem seu deslocamento reduzido para 3m (independente de seu deslocamento normal) e sofre –2 em testes de ataque. Requer 3º círculo.</p>",
+    "chatDescription": "<p><strong>Fonte:</strong> Livro de Regras v1.3 · <strong>Execução:</strong> padrão · <strong>Alcance:</strong> curto · <strong>Alvo:</strong> Veja texto · <strong>Duração:</strong> cena · <strong>Resistência:</strong> —</p>",
+    "execution": "default",
+    "range": "short",
+    "target": "Veja texto",
+    "duration": "scene",
+    "resistance": "",
+    "skillResis": "",
+    "targetQtd": "",
+    "area": {
+      "name": "nuvem com 6m de raio e 6m de altura",
+      "size": "",
+      "type": ""
+    },
+    "studentForm": true,
+    "trueForm": true
+  },
+  "effects": [],
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.369",
+    "systemId": "ordem-v2-classic",
+    "systemVersion": "8.0.2",
+    "createdTime": 1792207618168,
+    "modifiedTime": 1792207618168,
+    "lastModifiedBy": null,
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "ownership": {
+    "default": 0
+  },
+  "folder": "RituaisCirculo01",
+  "sort": 23000,
+  "_id": "gnsZd28sdzB7saNB",
+  "_key": "!items!gnsZd28sdzB7saNB"
+}

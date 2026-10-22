@@ -1,0 +1,40 @@
+{
+	"name": "Ataque Furtivo",
+	"type": "ability",
+	"img": "systems/ordem-v2-classic/assets/ability-icons/1602-ficha-1-ataque-furtivo.webp",
+	"system": {
+		"id": 0,
+		"abilityType": "ability",
+		"preRequisite": "",
+		"description": "<p>Uma vez por rodada, o bandido causa +1d6 pontos de dano com ataques corpo a corpo, ou à distância em alcance curto, contra alvos desprevenidos ou que esteja flanqueando.</p>",
+		"chatDescription": "",
+		"activation": "free",
+		"cost": 0,
+		"costType": "PE",
+		"execution": null
+	},
+	"effects": [],
+	"flags": {
+		"ordem-v2-classic": {
+			"threatAbilityId": "1602-H01"
+		}
+	},
+	"_stats": {
+		"coreVersion": "14.369",
+		"systemId": "ordem-v2-classic",
+		"systemVersion": "8.0.2",
+		"createdTime": 1792207618168,
+		"modifiedTime": 1792207618168,
+		"lastModifiedBy": null,
+		"compendiumSource": null,
+		"duplicateSource": null,
+		"exportSource": null
+	},
+	"ownership": {
+		"default": 0
+	},
+	"folder": "urtqIA7FUkbH02D4",
+	"sort": 1000,
+	"_id": "uxaSf9wqHX881zv5",
+	"_key": "!items!uxaSf9wqHX881zv5"
+}

@@ -1,5 +1,5 @@
 (async () => {
-	const SYS = "ordem_v2_classic";
+	const SYS = "ordem-v2-classic";
 	const Q = "05TWeYY9i4umPtWv"; // QA1: jogador de teste (não precisa estar conectado)
 	const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 	const until = async (fn, ms = 6000) => { const t = Date.now(); while (Date.now() - t < ms) { if (await fn()) return true; await sleep(150); } return false; };

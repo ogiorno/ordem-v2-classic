@@ -1,0 +1,41 @@
+{
+  "name": "Mandíbula Agonizante",
+  "type": "generalEquipment",
+  "_id": "wNpHG0qoBzXxzi3m",
+  "img": "systems/ordemparanormal/media/icons/equipments/paranormal/amarras-de-sangue.svg",
+  "system": {
+    "using": {
+      "state": true,
+      "class": "fas"
+    },
+    "type": "",
+    "quantity": 1,
+    "description": "<p>A parte inferior de um crânio, ainda com músculos e símbolos pintados com sangue, que emite sons perturbadores, como se estivesse sendo torturado. Você pode gastar uma ação padrão para pressionar a mandíbula, fazendo-a sentir mais dor, e arremessá-la em um ponto à sua escolha em alcance médio. O item começará a agonizar e gritar muito alto, acobertando qualquer outro som em um raio de 30 metros até o fim da cena. Se usar esse item em uma cena de furtividade (p. 92), você passa automaticamente em um teste para distrair. Criaturas de Sangue, em especial, são fortemente atraídas pelos gritos da mandíbula, e precisam passar em um teste de Vontade (DT 35) para evitar ir até ela e comê-la. No fim da cena, a mandíbula para de gritar, volta a agonizar baixinho e só pode ser usada novamente após descansar por uma cena.</p>",
+    "chatDescription": "",
+    "weight": 1,
+    "category": 2
+  },
+  "effects": [],
+  "folder": "TwG6DXAq3OlEYsD4",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "ordem-v2-classic": {
+      "source": "sah"
+    }
+  },
+  "_stats": {
+    "coreVersion": "14.365",
+    "systemId": "ordem-v2-classic",
+    "systemVersion": "7.3.3",
+    "createdTime": 1784900000000,
+    "modifiedTime": 1784900000000,
+    "lastModifiedBy": null,
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!wNpHG0qoBzXxzi3m"
+}

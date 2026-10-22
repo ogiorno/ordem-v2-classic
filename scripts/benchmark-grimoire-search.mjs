@@ -1,5 +1,5 @@
 import { performance } from "node:perf_hooks";
-import { searchEntries, searchFields } from "../systems/ordem_v2_classic/module/helpers/grimoire-text.mjs";
+import { searchEntries, searchFields } from "../systems/ordem-v2-classic/module/helpers/grimoire-text.mjs";
 
 const entries = Array.from({ length: 600 }, (_, i) => {
 	const name = `Ritual de Teste Numero ${i} Qualquer`;

@@ -6,7 +6,7 @@ async page => {
     const lastCardBtn = () => [...document.querySelectorAll('button[data-action="damage"]')].at(-1);
     const resultText = () => [...document.querySelectorAll(".hit-result")].at(-1)?.textContent.replace(/\s+/g, " ").trim();
     try {
-      const w = (await game.packs.get("ordem_v2_classic.armaments").getDocuments()).find(x => x.type === "armament" && x.system.types.rangeType.name === "melee");
+      const w = (await game.packs.get("ordem-v2-classic.armaments").getDocuments()).find(x => x.type === "armament" && x.system.types.rangeType.name === "melee");
       a = await Actor.create({ name: "ZZ comp atk", type: "agent", system: { class: "fighter" } });
       b = await Actor.create({ name: "ZZ comp alvo", type: "agent", system: { class: "fighter" } });
       const [it] = await a.createEmbeddedDocuments("Item", [w.toObject()]);
@@ -32,9 +32,9 @@ async page => {
 
       // 3) crítico que erra: sem brilho (força o resultado no cartão)
       await attack(0.0001);
-      const card = game.messages.contents.filter(m => m.timestamp > t0 && m.getFlag("ordem_v2_classic", "hitResult") && m.rolls.length === 0).at(-1);
-      const hr = foundry.utils.deepClone(card.getFlag("ordem_v2_classic", "hitResult"));
-      await card.setFlag("ordem_v2_classic", "hitResult", { ...hr, hit: false, isCritical: true }); await sleep(1500);
+      const card = game.messages.contents.filter(m => m.timestamp > t0 && m.getFlag("ordem-v2-classic", "hitResult") && m.rolls.length === 0).at(-1);
+      const hr = foundry.utils.deepClone(card.getFlag("ordem-v2-classic", "hitResult"));
+      await card.setFlag("ordem-v2-classic", "hitResult", { ...hr, hit: false, isCritical: true }); await sleep(1500);
       out.critErrou = { classeBotao: lastCardBtn()?.className, texto: resultText() };
 
       // 4) alvo longe (corpo a corpo): janela de ataque, clique avisa e a janela fica aberta

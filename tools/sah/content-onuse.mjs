@@ -1,4 +1,4 @@
-// Opções da tela de ataque (docs/arquivo/spec-tela-de-ataque.md): efeitos desligados com flags.ordem_v2_classic.onUse.
+// Opções da tela de ataque (docs/arquivo/spec-tela-de-ataque.md): efeitos desligados com flags.ordem-v2-classic.onUse.
 export const ONUSE = [
 	{
 		pack: "fighterPowers",

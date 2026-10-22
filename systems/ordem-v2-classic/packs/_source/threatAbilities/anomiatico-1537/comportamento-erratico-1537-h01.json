@@ -1,0 +1,40 @@
+{
+	"name": "Comportamento Errático",
+	"type": "ability",
+	"img": "systems/ordem-v2-classic/assets/ability-icons/1537-1539-free-comportamento-erratico.webp",
+	"system": {
+		"id": 0,
+		"abilityType": "ability",
+		"preRequisite": "",
+		"description": "<p>LIVRE - COMPORTAMENTO ERRÁTICO No começo do seu turno, o anomiático é tomado pelo fluxo de Energia em seu corpo e executa três comportamentos aleatórios. Role 1d6 na tabela abaixo três vezes; o anomiático então executa as ações indicadas na ordem em que forem roladas. Se não puder executar uma das ações, ele fica parado se contorcendo e perde aquela ação (mas não qualquer outra). Para cada ação que perder, o anomiático aumenta suas resistências a dano em 10 até seu próximo turno. 1 2 O anomiático salta até 18m em direção • ao ser mais próximo. Se ficar adjacente a ele, faz uma ação agredir e ataca com suas garras desintegradoras. 3 O anomiático se transforma em um facho • de Energia e se move até ficar adjacente a um ser escolhido aleatoriamente entre todos que o estejam enfrentando. 4 Uma parte do corpo do anomiático • explode, causando dano de Energia em todos os seres ao redor. O dano exato depende da distância do ser em relação ao anomiático: 4d12+20 para seres em alcance médio, 6d12+20 para seres em alcance curto e 8d12+20 para seres adjacentes. Seres em alcance médio ou curto têm direito a um teste de Reflexos (DT 30) para reduzir o dano à metade. O anomiático perde 50 PV quando executa esta ação. 5 Uma risada descontrolada toma o • anomiático. Ele fica desprevenido até o início do seu próximo turno. Enquanto estiver desprevenido, todos os seus ataques são mais imprevisíveis e o defensor não pode se esquivar deles. 6 O anomiático toca um ser adjacente. O • alvo acumula uma quantidade absurda de Energia e sofre 10d12+20 pontos de dano de Energia (Fortitude DT 30 reduz à metade).</p>",
+		"chatDescription": "",
+		"activation": "free",
+		"cost": 0,
+		"costType": "PE",
+		"execution": null
+	},
+	"effects": [],
+	"flags": {
+		"ordem-v2-classic": {
+			"threatAbilityId": "1537-H01"
+		}
+	},
+	"_stats": {
+		"coreVersion": "14.369",
+		"systemId": "ordem-v2-classic",
+		"systemVersion": "8.0.2",
+		"createdTime": 1792207618168,
+		"modifiedTime": 1792207618168,
+		"lastModifiedBy": null,
+		"compendiumSource": null,
+		"duplicateSource": null,
+		"exportSource": null
+	},
+	"ownership": {
+		"default": 0
+	},
+	"folder": "QglPF00LLDNiipA6",
+	"sort": 1000,
+	"_id": "MQWnNVZ5ZlRs5GCl",
+	"_key": "!items!MQWnNVZ5ZlRs5GCl"
+}

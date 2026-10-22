@@ -1,13 +1,13 @@
 // TEMPORÁRIO — aplica o conteúdo do suplemento Sobrevivendo ao Horror nos compêndios vivos do sistema.
 // Idempotente: roda no GM ativo ao carregar o mundo e só altera o que diferir. Remover depois de aplicar.
-const SYSTEM = "ordem_v2_classic";
+const SYSTEM = "ordem-v2-classic";
 const log = (...a) => console.log("SAH apply |", ...a);
 
 const sameEffects = (current, wanted) => {
 	const norm = (list) =>
 		JSON.stringify(
 			list
-				.map((e) => ({ id: e._id ?? e.id, name: e.name, disabled: Boolean(e.disabled), onUse: e.flags?.ordem_v2_classic?.onUse ?? null, changes: (e.system?.changes ?? e.changes ?? []).map((c) => ({ key: c.key, value: c.value, type: c.type })) }))
+				.map((e) => ({ id: e._id ?? e.id, name: e.name, disabled: Boolean(e.disabled), onUse: e.flags?.["ordem-v2-classic"]?.onUse ?? null, changes: (e.system?.changes ?? e.changes ?? []).map((c) => ({ key: c.key, value: c.value, type: c.type })) }))
 				.sort((a, b) => a.id.localeCompare(b.id))
 		);
 	return norm(current) === norm(wanted);

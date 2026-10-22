@@ -1,0 +1,40 @@
+{
+	"name": "Giro Da Morte",
+	"type": "ability",
+	"img": "systems/ordem-v2-classic/assets/ability-icons/1619-ficha-1-giro-da-morte.webp",
+	"system": {
+		"id": 0,
+		"abilityType": "ability",
+		"preRequisite": "",
+		"description": "<p>Se o jacaré estiver agarrando um ser dentro da água e fizer a manobra agarrar novamente para causar dano, ele causa +2d8 pontos de dano.</p>",
+		"chatDescription": "",
+		"activation": "passive",
+		"cost": 0,
+		"costType": "PE",
+		"execution": null
+	},
+	"effects": [],
+	"flags": {
+		"ordem-v2-classic": {
+			"threatAbilityId": "1619-H01"
+		}
+	},
+	"_stats": {
+		"coreVersion": "14.369",
+		"systemId": "ordem-v2-classic",
+		"systemVersion": "8.0.2",
+		"createdTime": 1792207618168,
+		"modifiedTime": 1792207618168,
+		"lastModifiedBy": null,
+		"compendiumSource": null,
+		"duplicateSource": null,
+		"exportSource": null
+	},
+	"ownership": {
+		"default": 0
+	},
+	"folder": "p0bDZxuyG2XcWhY8",
+	"sort": 1000,
+	"_id": "Vtx4Y0Mjs9U3DYG2",
+	"_key": "!items!Vtx4Y0Mjs9U3DYG2"
+}

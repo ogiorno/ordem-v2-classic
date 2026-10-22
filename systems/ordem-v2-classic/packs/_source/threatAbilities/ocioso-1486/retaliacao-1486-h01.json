@@ -1,0 +1,40 @@
+{
+	"name": "Retaliação",
+	"type": "ability",
+	"img": "systems/ordem-v2-classic/assets/ability-icons/1486-1487-reaction-retaliacao.webp",
+	"system": {
+		"id": 0,
+		"abilityType": "ability",
+		"preRequisite": "",
+		"description": "<p>REAÇÃO - RETALIAÇÃO Toda vez que for atacado ou alvo de uma habilidade, o ocioso se teletrans- porta para ficar adjacente ao atacante e faz um ataque corpo a corpo contra ele (teste 5d20+30, dano 4d10+20 de impacto não letal).</p>",
+		"chatDescription": "",
+		"activation": "reaction",
+		"cost": 0,
+		"costType": "PE",
+		"execution": null
+	},
+	"effects": [],
+	"flags": {
+		"ordem-v2-classic": {
+			"threatAbilityId": "1486-H01"
+		}
+	},
+	"_stats": {
+		"coreVersion": "14.369",
+		"systemId": "ordem-v2-classic",
+		"systemVersion": "8.0.2",
+		"createdTime": 1792207618168,
+		"modifiedTime": 1792207618168,
+		"lastModifiedBy": null,
+		"compendiumSource": null,
+		"duplicateSource": null,
+		"exportSource": null
+	},
+	"ownership": {
+		"default": 0
+	},
+	"folder": "hlkj2SdZG4iDU3Cg",
+	"sort": 1000,
+	"_id": "rjEgN5idKlIP7x7s",
+	"_key": "!items!rjEgN5idKlIP7x7s"
+}

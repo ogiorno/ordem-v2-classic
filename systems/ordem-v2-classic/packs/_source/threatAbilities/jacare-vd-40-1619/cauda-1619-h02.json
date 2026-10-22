@@ -1,0 +1,40 @@
+{
+	"name": "Cauda",
+	"type": "ability",
+	"img": "systems/ordem-v2-classic/assets/ability-icons/1619-ficha-2-cauda.webp",
+	"system": {
+		"id": 0,
+		"abilityType": "ability",
+		"preRequisite": "",
+		"description": "<p>Corpo a corpo Teste 3d20+5 | Dano 1d12impacto</p>",
+		"chatDescription": "",
+		"activation": "passive",
+		"cost": 0,
+		"costType": "PE",
+		"execution": null
+	},
+	"effects": [],
+	"flags": {
+		"ordem-v2-classic": {
+			"threatAbilityId": "1619-H02"
+		}
+	},
+	"_stats": {
+		"coreVersion": "14.369",
+		"systemId": "ordem-v2-classic",
+		"systemVersion": "8.0.2",
+		"createdTime": 1792207618168,
+		"modifiedTime": 1792207618168,
+		"lastModifiedBy": null,
+		"compendiumSource": null,
+		"duplicateSource": null,
+		"exportSource": null
+	},
+	"ownership": {
+		"default": 0
+	},
+	"folder": "p0bDZxuyG2XcWhY8",
+	"sort": 2000,
+	"_id": "ZW0W2KqnpbSRwrR8",
+	"_key": "!items!ZW0W2KqnpbSRwrR8"
+}

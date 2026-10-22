@@ -1,0 +1,93 @@
+{
+	"name": "Comandar",
+	"type": "ability",
+	"img": "systems/ordem-v2-classic/assets/ability-icons/1466-1475-free-comandar.webp",
+	"system": {
+		"id": 0,
+		"abilityType": "ability",
+		"preRequisite": "",
+		"description": "<p>LIVRE - COMANDAR O Estrangeiro é capaz de comandar mentalmente seres com mente inferior à sua. Sempre que causa dano em um ser com sua rajada psíquica, o Estrangeiro pode dominar a mente do alvo. O alvo deve passar em um teste de Vontade (DT 35) ou será forçado a cumprir uma ordem do Estrangeiro, entre as opções a seguir, emitida como parte desta ação. O ser obedece a ordem em seu próximo turno. Seres com Intelecto 5 ou mais são imunes a essa habilidade. • Atacar. O ser ataca um aliado com a arma que tem em mãos, mas não gasta PE nesse ataque. • Render-se. O ser cai no chão e arremessa suas armas em uma direção aleatória em alcance curto. • Fugir. O ser se afasta do Estrangeiro da maneira mais eficiente possível.</p>",
+		"chatDescription": "",
+		"activation": "free",
+		"cost": 0,
+		"costType": "PE",
+		"execution": {
+			"mode": "active",
+			"automation": "assisted",
+			"damage": [],
+			"effects": [
+				{
+					"condition": "ordem do Estrangeiro",
+					"duration": {
+						"unit": "turns",
+						"value": 1
+					},
+					"onSave": "fail",
+					"target": "target",
+					"trigger": "",
+					"support": "marker"
+				}
+			],
+			"requirements": [
+				{
+					"kind": "narrative",
+					"text": "o Estrangeiro causou dano ao ser com a rajada psíquica; seres com Intelecto 5 ou mais são imunes",
+					"ref": ""
+				}
+			],
+			"grants": [],
+			"targeting": {
+				"kind": "token",
+				"range": null,
+				"count": 1,
+				"relation": "any",
+				"rangeUnspecified": true,
+				"voluntary": false,
+				"requiresSight": false
+			},
+			"save": {
+				"skill": "vontade",
+				"dc": 35,
+				"onSuccess": "none",
+				"retry": false
+			},
+			"version": 1,
+			"source": {
+				"reference": "Livro v1.3, p. 248, Espreitador",
+				"reviewed": false
+			},
+			"cost": null,
+			"area": null,
+			"trigger": null,
+			"visibility": {
+				"dc": "gm",
+				"defense": "gm",
+				"result": "public"
+			}
+		}
+	},
+	"effects": [],
+	"flags": {
+		"ordem-v2-classic": {
+			"threatAbilityId": "1466-H05"
+		}
+	},
+	"_stats": {
+		"coreVersion": "14.369",
+		"systemId": "ordem-v2-classic",
+		"systemVersion": "8.0.2",
+		"createdTime": 1792207618168,
+		"modifiedTime": 1792207618168,
+		"lastModifiedBy": null,
+		"compendiumSource": null,
+		"duplicateSource": null,
+		"exportSource": null
+	},
+	"ownership": {
+		"default": 0
+	},
+	"folder": "75CqURRYKQgBmppq",
+	"sort": 5000,
+	"_id": "mKzEN8Epna0jWWFx",
+	"_key": "!items!mKzEN8Epna0jWWFx"
+}

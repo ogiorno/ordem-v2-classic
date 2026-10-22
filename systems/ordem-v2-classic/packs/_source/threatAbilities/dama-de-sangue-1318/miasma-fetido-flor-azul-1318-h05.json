@@ -1,0 +1,106 @@
+{
+	"name": "Miasma Fétido (Flor Azul)",
+	"type": "ability",
+	"img": "systems/ordem-v2-classic/assets/ability-icons/1318-1324-padrao-miasma-fetido-flor-azul.webp",
+	"system": {
+		"id": 0,
+		"abilityType": "ability",
+		"preRequisite": "",
+		"description": "<p>PADRÃO - MIASMA FÉTIDO (Flor Azul) A dama de Sangue expele um miasma fétido que contamina o ar. Todos os personagens em alcance curto ficam enjoados por 1d4+1 rodadas (Fortitude DT 15 reduz à 1 rodada). A flor azul murcha se a dama de Sangue sofrer dano de eletricidade ou Energia. Isso faz a dama perder esta habilidade e reduz seu deslocamento em 6m.</p>",
+		"chatDescription": "",
+		"activation": "default",
+		"cost": 0,
+		"costType": "PE",
+		"execution": {
+			"mode": "active",
+			"automation": "automatic",
+			"damage": [],
+			"effects": [
+				{
+					"condition": "enjoado",
+					"duration": {
+						"unit": "rounds",
+						"value": "1d4+1"
+					},
+					"onSave": "fail",
+					"target": "target",
+					"trigger": "",
+					"support": "mechanical"
+				},
+				{
+					"condition": "enjoado",
+					"duration": {
+						"unit": "rounds",
+						"value": 1
+					},
+					"onSave": "success",
+					"target": "target",
+					"trigger": "",
+					"support": "mechanical"
+				}
+			],
+			"requirements": [],
+			"grants": [],
+			"targeting": {
+				"kind": "area",
+				"relation": "any",
+				"range": null,
+				"count": null,
+				"voluntary": false,
+				"rangeUnspecified": false,
+				"requiresSight": false
+			},
+			"area": {
+				"shape": "sphere",
+				"radius": 9,
+				"origin": "caster",
+				"persistence": "instant",
+				"triggers": [],
+				"length": null,
+				"width": null
+			},
+			"save": {
+				"skill": "fortitude",
+				"dc": 15,
+				"onSuccess": "none",
+				"retry": false
+			},
+			"version": 1,
+			"source": {
+				"reference": "Livro v1.3, p. 200, Dama de Sangue",
+				"reviewed": false
+			},
+			"cost": null,
+			"trigger": null,
+			"visibility": {
+				"dc": "gm",
+				"defense": "gm",
+				"result": "public"
+			}
+		}
+	},
+	"effects": [],
+	"flags": {
+		"ordem-v2-classic": {
+			"threatAbilityId": "1318-H05"
+		}
+	},
+	"_stats": {
+		"coreVersion": "14.369",
+		"systemId": "ordem-v2-classic",
+		"systemVersion": "8.0.2",
+		"createdTime": 1792207618168,
+		"modifiedTime": 1792207618168,
+		"lastModifiedBy": null,
+		"compendiumSource": null,
+		"duplicateSource": null,
+		"exportSource": null
+	},
+	"ownership": {
+		"default": 0
+	},
+	"folder": "k0cmHc9pwtyfYPq6",
+	"sort": 5000,
+	"_id": "xdc8KgmzpNTiAFSX",
+	"_key": "!items!xdc8KgmzpNTiAFSX"
+}

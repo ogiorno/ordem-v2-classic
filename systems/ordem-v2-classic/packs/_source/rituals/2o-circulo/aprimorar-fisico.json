@@ -1,0 +1,45 @@
+{
+  "name": "Aprimorar Físico",
+  "type": "ritual",
+  "img": "systems/ordem-v2-classic/assets/rituais/aprimorar-fisico.png",
+  "system": {
+    "circle": 2,
+    "element": "blood",
+    "description": "<p>O alvo tem seus músculos tonificados e seus ligamentos reforçados, recebendo +1 em Agilidade ou Força, à escolha dele. Discente (+3 PE): muda o bônus para +2. Requer 3º círculo. Verdadeiro (+7 PE): muda o bônus para +3. Requer 4º círculo e afinidade.</p>",
+    "chatDescription": "<p><strong>Fonte:</strong> Livro de Regras v1.3 · <strong>Execução:</strong> padrão · <strong>Alcance:</strong> toque · <strong>Alvo:</strong> 1 ser · <strong>Duração:</strong> cena · <strong>Resistência:</strong> —</p>",
+    "execution": "default",
+    "range": "touch",
+    "target": "1 ser",
+    "duration": "scene",
+    "resistance": "",
+    "skillResis": "",
+    "targetQtd": "",
+    "area": {
+      "name": "",
+      "size": "",
+      "type": ""
+    },
+    "studentForm": true,
+    "trueForm": true
+  },
+  "effects": [],
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.369",
+    "systemId": "ordem-v2-classic",
+    "systemVersion": "8.0.2",
+    "createdTime": 1792207618168,
+    "modifiedTime": 1792207618168,
+    "lastModifiedBy": null,
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "ownership": {
+    "default": 0
+  },
+  "folder": "RituaisCirculo02",
+  "sort": 31000,
+  "_id": "qbPJ5zxMMMcL4T6h",
+  "_key": "!items!qbPJ5zxMMMcL4T6h"
+}

@@ -6,11 +6,11 @@ import fs from "node:fs";
 import crypto from "node:crypto";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { CURSES, ELEMENTS, KINDS, ATTRIBUTE_NAMES } from "../../systems/ordem_v2_classic/module/helpers/curse-rules.mjs";
+import { CURSES, ELEMENTS, KINDS, ATTRIBUTE_NAMES } from "../../systems/ordem-v2-classic/module/helpers/curse-rules.mjs";
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(here, "../..");
-const system = path.join(root, "systems/ordem_v2_classic");
+const system = path.join(root, "systems/ordem-v2-classic");
 const out = path.join(system, "packs/_source/curses");
 const iconsFile = path.join(system, "fixtures/curse-icons.json");
 const icons = fs.existsSync(iconsFile) ? JSON.parse(fs.readFileSync(iconsFile, "utf8")) : {};
@@ -24,7 +24,7 @@ const idOf = (seed) => {
 	const hash = crypto.createHash("sha1").update(`curses:${seed}`).digest();
 	return Array.from({ length: 16 }, (_, i) => ALPHABET[hash[i] % ALPHABET.length]).join("");
 };
-const stats = () => ({ coreVersion: "14.369", systemId: "ordem_v2_classic", systemVersion: "8.0.2", createdTime: NOW, modifiedTime: NOW, lastModifiedBy: null, compendiumSource: null, duplicateSource: null, exportSource: null });
+const stats = () => ({ coreVersion: "14.369", systemId: "ordem-v2-classic", systemVersion: "8.0.2", createdTime: NOW, modifiedTime: NOW, lastModifiedBy: null, compendiumSource: null, duplicateSource: null, exportSource: null });
 const esc = (t) => String(t).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 
 const FOLDERS = [

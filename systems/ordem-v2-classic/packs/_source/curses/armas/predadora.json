@@ -1,0 +1,34 @@
+{
+  "name": "Predadora",
+  "type": "curse",
+  "_id": "NUVtdwjG6ndgZtyD",
+  "img": "systems/ordem-v2-classic/assets/curse-icons/predadora.webp",
+  "system": {
+    "description": "<p><strong>Sangue</strong> · maldição de arma · Automática: o sistema aplica sozinho.</p>\n<p>A arma anula penalidades por camuflagem e cobertura leves; se for à distância, o alcance sobe uma categoria. A margem de ameaça da arma duplica (fuzil de caça 19 → 17).</p>\n<h4>No sistema</h4>\n<ul><li>Ataque: a margem de ameaça da arma duplica (automático).</li><li>Alcance e camuflagem/cobertura leves ficam no texto; a margem de ameaça entra no ataque.</li></ul>\n<p><em>Arraste para a ficha de um agente (ou para um item) e escolha o item que vira amaldiçoado. A primeira maldição soma +II à categoria do item e as seguintes +I.</em></p>\n<p><small>Fonte: Ordem Paranormal RPG — Livro de Regras v1.3, Itens amaldiçoados (livro p. 144–147).</small></p>",
+    "chatDescription": "",
+    "curseKey": "predadora",
+    "element": "blood",
+    "applies": "weapon",
+    "mode": "auto",
+    "price": ""
+  },
+  "effects": [],
+  "folder": "LrypGJeJfNmaSB3L",
+  "sort": 1100000,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.369",
+    "systemId": "ordem-v2-classic",
+    "systemVersion": "8.0.2",
+    "createdTime": 1792207618168,
+    "modifiedTime": 1792207618168,
+    "lastModifiedBy": null,
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!NUVtdwjG6ndgZtyD"
+}

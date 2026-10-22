@@ -58,13 +58,13 @@ try {
 	report.cenaAnterior = previousActive;
 
 	// ---------- arena: agentes armados com poderes, ameaças, jogadores donos
-	const base = "/systems/ordem_v2_classic/module/macros/";
+	const base = "/systems/ordem-v2-classic/module/macros/";
 	await gm.evaluate(async (base) => {
 		window.__rt = await import(base + "ritual-ui-live-test.mjs");
 		await window.__rt.open();
 	}, base);
 	const setup = await gm.evaluate(async () => {
-		const SYS = "ordem_v2_classic";
+		const SYS = "ordem-v2-classic";
 		const norm = (t) => String(t).normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase().replace(/[^a-z0-9]/g, "");
 		const fp = async (p, n) => { const pack = game.packs.get(`${SYS}.${p}`); const e = (await pack.getIndex()).find((x) => norm(x.name) === norm(n)); const d = (await pack.getDocument(e._id)).toObject(); delete d._id; return d; };
 		const scene = canvas.scene;
@@ -172,7 +172,7 @@ try {
 		entry.alvo = `${tgt.name} a ${tgt.dist} m`;
 		if (cur.type === "agent") {
 			const reach = await who.evaluate(async ([aid, wid, tid]) => {
-				const m = await import("/systems/ordem_v2_classic/module/helpers/attack-options.mjs");
+				const m = await import("/systems/ordem-v2-classic/module/helpers/attack-options.mjs");
 				const item = game.actors.get(aid).items.get(wid);
 				const before = m.attackBlockReason(item);
 				const melee = item.system.types?.rangeType?.name === "melee";
@@ -192,7 +192,7 @@ try {
 				}, [cur.tokenId, tgt.id]);
 				entry.aproximou = true;
 			}
-			const after = await who.evaluate(async ([aid, wid]) => (await import("/systems/ordem_v2_classic/module/helpers/attack-options.mjs")).attackBlockReason(game.actors.get(aid).items.get(wid)), [cur.actorId, row.weaponId]);
+			const after = await who.evaluate(async ([aid, wid]) => (await import("/systems/ordem-v2-classic/module/helpers/attack-options.mjs")).attackBlockReason(game.actors.get(aid).items.get(wid)), [cur.actorId, row.weaponId]);
 			if (after) check(`MC-12B-${entry.n}`, `${row.user} (${row.weapon}): ataque liberado depois de se posicionar`, false, after);
 		}
 
@@ -202,7 +202,7 @@ try {
 		if (cur.type === "agent") {
 			// condição no meio do combate: Agarrado no jogador 1 na rodada 2
 			if (cur.round === 2 && row.user === "QA1") await gm.evaluate(async ([aid]) => {
-				const eng = await import("/systems/ordem_v2_classic/module/macros/ritual-area-engine.mjs");
+				const eng = await import("/systems/ordem-v2-classic/module/macros/ritual-area-engine.mjs");
 				await eng.applyCondition(game.actors.get(aid), { key: "restrain" }, { itemId: "combate-multi" });
 			}, [cur.actorId]);
 			await who.evaluate((id) => game.actors.get(id).sheet.render(true), cur.actorId);
@@ -244,7 +244,7 @@ try {
 			// rolagem de ataque e cartão
 			const info = await who.evaluate(() => {
 				const msgs = game.messages.contents.filter((m) => !window.__known.has(m.id));
-				return { formulas: msgs.flatMap((m) => (m.rolls ?? []).map((r) => r.formula)), flags: msgs.map((m) => m.getFlag("ordem_v2_classic", "attackOptions")?.conditions?.length ?? 0), hit: msgs.map((m) => m.getFlag("ordem_v2_classic", "hitResult")?.hit).filter((v) => v !== undefined), seq: window.__spy.seq - window.__spy.seq0, notes: [...window.__spy.notes] };
+				return { formulas: msgs.flatMap((m) => (m.rolls ?? []).map((r) => r.formula)), flags: msgs.map((m) => m.getFlag("ordem-v2-classic", "attackOptions")?.conditions?.length ?? 0), hit: msgs.map((m) => m.getFlag("ordem-v2-classic", "hitResult")?.hit).filter((v) => v !== undefined), seq: window.__spy.seq - window.__spy.seq0, notes: [...window.__spy.notes] };
 			});
 			entry.ataque = info.formulas.find((f) => /d20/.test(f));
 			entry.acertou = info.hit;
@@ -257,7 +257,7 @@ try {
 				const m = /^(\d+)d20/.exec(entry.ataque ?? "");
 				const attr = await who.evaluate(([id, wid]) => { const it = game.actors.get(id).items.get(wid); return game.actors.get(id).system.attributes[it.system.formulas.attack.attr].value; }, [row.actorId, row.weaponId]);
 				check("MC-10", "Jogador 1 Agarrado (rodada 2): ataque perde 1 d20", m && Number(m[1]) === attr - 1, `${entry.ataque} (atributo ${attr})`);
-				await gm.evaluate(async ([aid]) => { const a = game.actors.get(aid); await a.deleteEmbeddedDocuments("ActiveEffect", a.effects.filter((e) => e.getFlag("ordem_v2_classic", "condition")).map((e) => e.id)); }, [cur.actorId]);
+				await gm.evaluate(async ([aid]) => { const a = game.actors.get(aid); await a.deleteEmbeddedDocuments("ActiveEffect", a.effects.filter((e) => e.getFlag("ordem-v2-classic", "condition")).map((e) => e.id)); }, [cur.actorId]);
 			}
 			// dano pelo cartão (se acertou)
 			await who.evaluate(() => { try { ui.sidebar.changeTab("chat", "primary"); } catch { document.querySelector("[data-tab=chat]")?.click(); } });

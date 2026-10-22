@@ -2,7 +2,7 @@
 //   node tools/sah/audit.mjs            → lista pendências
 //   node tools/sah/audit.mjs --origens  → mostra também o poder de cada origem
 import { PackSource } from "./lib.mjs";
-import { abilityUnlockLevel, findOriginPower, folderMatchesPath } from "../../systems/ordem_v2_classic/module/helpers/level-progression-rules.mjs";
+import { abilityUnlockLevel, findOriginPower, folderMatchesPath } from "../../systems/ordem-v2-classic/module/helpers/level-progression-rules.mjs";
 
 const showOrigins = process.argv.includes("--origens");
 const issues = [];

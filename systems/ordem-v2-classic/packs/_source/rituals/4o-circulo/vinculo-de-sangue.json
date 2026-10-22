@@ -1,0 +1,45 @@
+{
+  "name": "Vínculo de Sangue",
+  "type": "ritual",
+  "img": "systems/ordem-v2-classic/assets/rituais/vinculo-de-sangue.png",
+  "system": {
+    "circle": 4,
+    "element": "blood",
+    "description": "<p>Você manifesta um símbolo de Sangue no seu corpo e no corpo do alvo. Sempre que você sofrer dano, o alvo deve fazer um teste de Fortitude. Se ele falhar, você sofre apenas metade do dano e ele sofre a metade restante. Você pode conjurar o ritual com efeito inverso, fazendo com que você receba metade de todo o dano que o alvo receberia. Alvos voluntários não precisam fazer testes de resistência.</p>",
+    "chatDescription": "<p><strong>Fonte:</strong> Livro de Regras v1.3 · <strong>Execução:</strong> padrão · <strong>Alcance:</strong> curto · <strong>Alvo:</strong> 1 ser · <strong>Duração:</strong> cena · <strong>Resistência:</strong> Fortitude anula</p>",
+    "execution": "default",
+    "range": "short",
+    "target": "1 ser",
+    "duration": "scene",
+    "resistance": "nullifies",
+    "skillResis": "resilience",
+    "targetQtd": "",
+    "area": {
+      "name": "",
+      "size": "",
+      "type": ""
+    },
+    "studentForm": false,
+    "trueForm": false
+  },
+  "effects": [],
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.369",
+    "systemId": "ordem-v2-classic",
+    "systemVersion": "8.0.2",
+    "createdTime": 1792207618168,
+    "modifiedTime": 1792207618168,
+    "lastModifiedBy": null,
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "ownership": {
+    "default": 0
+  },
+  "folder": "RituaisCirculo04",
+  "sort": 98000,
+  "_id": "5t8OMMeCHmZ4pbCW",
+  "_key": "!items!5t8OMMeCHmZ4pbCW"
+}

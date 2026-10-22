@@ -5,8 +5,8 @@ async page => {
     const out = { falhas: [] };
     let a;
     try {
-      const M = await import("/systems/ordem_v2_classic/module/helpers/item-categories.mjs");
-      const weapons = (await game.packs.get("ordem_v2_classic.armaments").getDocuments()).filter(w => w.type === "armament");
+      const M = await import("/systems/ordem-v2-classic/module/helpers/item-categories.mjs");
+      const weapons = (await game.packs.get("ordem-v2-classic.armaments").getDocuments()).filter(w => w.type === "armament");
       const keys = Object.keys(M.WEAPON_MODIFICATIONS);
       out.armasNoCompendio = weapons.length;
       out.modificacoes = keys.length;
@@ -30,7 +30,7 @@ async page => {
       const [it] = await a.createEmbeddedDocuments("Item", [katana.toObject()]);
       await it.update({ "system.modifications": ["certeira", "perigosa"] });
       await a.update({ "system.patent.prestigePoints": 20 });
-      const abil = async (pack, rx) => (await game.packs.get("ordem_v2_classic." + pack).getDocuments()).find(d => rx.test(d.name));
+      const abil = async (pack, rx) => (await game.packs.get("ordem-v2-classic." + pack).getDocuments()).find(d => rx.test(d.name));
       const A = {
         fav: await abil("pathFighter", /A Favorita/),
         tec: await abil("pathFighter", /T.cnica Secreta/),
@@ -60,7 +60,7 @@ async page => {
       await ma.delete(); await te.delete(); await fa.delete();
       await snap("7_sem_habilidades_4_mods");
       // equipamento geral: Remendão e Ferramentas Favoritas
-      const geral = (await game.packs.get("ordem_v2_classic.generalEquipments")?.getDocuments?.() ?? []).find(g => g.system.category >= 2);
+      const geral = (await game.packs.get("ordem-v2-classic.generalEquipments")?.getDocuments?.() ?? []).find(g => g.system.category >= 2);
       out.geralUsado = geral && { nome: geral.name, cat: geral.system.category };
       if (geral) {
         const g = await give(geral);

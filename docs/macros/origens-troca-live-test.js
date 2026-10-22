@@ -2,7 +2,7 @@
 // confirmação com o que se perde e o que se ganha; "Não" não muda nada; "Sim" tira o poder e as perícias da antiga.
 // Rodar com Mestre logado: playwright-cli -s=<nome> --raw eval "$(cat docs/macros/origens-troca-live-test.js)"
 (async () => {
-	const SYS = "ordem_v2_classic";
+	const SYS = "ordem-v2-classic";
 	const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 	const until = async (fn, ms = 6000) => { const t = Date.now(); while (Date.now() - t < ms) { const v = await fn(); if (v) return v; await sleep(100); } return null; };
 	const out = { falhas: [], total: 0 };

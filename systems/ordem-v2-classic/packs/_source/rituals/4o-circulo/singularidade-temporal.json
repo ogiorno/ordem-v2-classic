@@ -1,0 +1,45 @@
+{
+  "name": "Singularidade Temporal",
+  "type": "ritual",
+  "img": "systems/ordem-v2-classic/assets/rituais/singularidade-temporal.png",
+  "system": {
+    "circle": 4,
+    "element": "death",
+    "description": "<p>Envelhece o objeto até o estado máximo de deterioração plausível para seu material; o mestre determina se ele fica danificado, com penalidade de uso, ou é destruído. Um portador pode protegê-lo com teste de Fortitude. - <strong>Discente (+5 PE):</strong> afeta objeto Grande. - <strong>Verdadeiro (+10 PE):</strong> afeta objeto Enorme.</p>",
+    "chatDescription": "<p><strong>Fonte:</strong> Sobrevivendo ao Horror v1.3 · <strong>Execução:</strong> padrão · <strong>Alcance:</strong> curto · <strong>Alvo:</strong> 1 objeto não paranormal Médio · <strong>Duração:</strong> instantânea · <strong>Resistência:</strong> veja abaixo</p>",
+    "execution": "default",
+    "range": "short",
+    "target": "1 objeto não paranormal Médio",
+    "duration": "instantaneous",
+    "resistance": "",
+    "skillResis": "",
+    "targetQtd": "",
+    "area": {
+      "name": "",
+      "size": "",
+      "type": ""
+    },
+    "studentForm": true,
+    "trueForm": true
+  },
+  "effects": [],
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.369",
+    "systemId": "ordem-v2-classic",
+    "systemVersion": "8.0.2",
+    "createdTime": 1792207618168,
+    "modifiedTime": 1792207618168,
+    "lastModifiedBy": null,
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "ownership": {
+    "default": 0
+  },
+  "folder": "RituaisCirculo04",
+  "sort": 96000,
+  "_id": "q7X5wp55sa816JW6",
+  "_key": "!items!q7X5wp55sa816JW6"
+}

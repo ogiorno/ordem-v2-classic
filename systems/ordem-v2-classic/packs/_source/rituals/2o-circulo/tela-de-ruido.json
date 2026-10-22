@@ -1,0 +1,45 @@
+{
+  "name": "Tela de Ruído",
+  "type": "ritual",
+  "img": "systems/ordem-v2-classic/assets/rituais/tela-de-ruido.png",
+  "system": {
+    "circle": 2,
+    "element": "energy",
+    "description": "<p>Este ritual cria uma película de Energia que recobre seu corpo e absorve energia cinética. Você recebe 30 PV temporários, mas apenas contra dano balístico, de corte, de impacto ou de perfuração. Alternativamente, você pode conjurar este ritual como uma reação quando sofrer dano, recebendo resistência 15 apenas contra esse dano. Discente (+3 PE): aumenta os PV temporário para 60 e a resistência para 30. Verdadeiro (+7 PE): muda o alcance para curto e o alvo para 1 ser ou objeto Enorme ou menor. Em vez do normal, cria uma esfera imóvel e tremeluzente com o tamanho do alvo e centrada nele. Nenhum ser, objeto ou efeito de dano pode passar pela esfera, embora seres possam respirar normalmente dentro dela. O alvo tem direito a um teste de Reflexos para evitar ser aprisionado. Requer 4º círculo.</p>",
+    "chatDescription": "<p><strong>Fonte:</strong> Livro de Regras v1.3 · <strong>Execução:</strong> padrão · <strong>Alcance:</strong> pessoal · <strong>Alvo:</strong> você · <strong>Duração:</strong> cena · <strong>Resistência:</strong> —</p>",
+    "execution": "default",
+    "range": "personal",
+    "target": "você",
+    "duration": "scene",
+    "resistance": "",
+    "skillResis": "",
+    "targetQtd": "",
+    "area": {
+      "name": "",
+      "size": "",
+      "type": ""
+    },
+    "studentForm": true,
+    "trueForm": true
+  },
+  "effects": [],
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.369",
+    "systemId": "ordem-v2-classic",
+    "systemVersion": "8.0.2",
+    "createdTime": 1792207618168,
+    "modifiedTime": 1792207618168,
+    "lastModifiedBy": null,
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "ownership": {
+    "default": 0
+  },
+  "folder": "RituaisCirculo02",
+  "sort": 53000,
+  "_id": "acpmf0LMJjMSPLnl",
+  "_key": "!items!acpmf0LMJjMSPLnl"
+}

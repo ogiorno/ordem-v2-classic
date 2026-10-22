@@ -5,11 +5,11 @@ async page => {
     const dlg = async () => { for (let i = 0; i < 60; i++) { const el = document.querySelector(".op-attack-dialog"); if (el && el.querySelector("[data-pool]")) return el; await sleep(100); } return document.querySelector(".op-attack-dialog"); };
     const set = (el, v) => { el.value = String(v); el.dispatchEvent(new Event("change", { bubbles: true })); };
     try {
-      const klass = (await game.packs.get("ordem_v2_classic.classes").getDocuments()).find(c => /combatente/i.test(c.name));
-      const ae = (await game.packs.get("ordem_v2_classic.fighterPowers").getDocuments()).find(d => d.name === "Ataque Especial");
-      const weapons = await game.packs.get("ordem_v2_classic.armaments").getDocuments();
+      const klass = (await game.packs.get("ordem-v2-classic.classes").getDocuments()).find(c => /combatente/i.test(c.name));
+      const ae = (await game.packs.get("ordem-v2-classic.fighterPowers").getDocuments()).find(d => d.name === "Ataque Especial");
+      const weapons = await game.packs.get("ordem-v2-classic.armaments").getDocuments();
       const wep = weapons.find(w => /^Faca$/i.test(w.name)) ?? weapons.find(w => w.system?.types?.rangeType?.name === "melee");
-      out.push({ weapon: wep?.name, ae: ae?.name, aeFx: ae?.effects.map(e => e.flags?.ordem_v2_classic?.onUse) });
+      out.push({ weapon: wep?.name, ae: ae?.name, aeFx: ae?.effects.map(e => e.flags?.["ordem-v2-classic"]?.onUse) });
       for (const nivel of [1, 5, 11, 17, 20]) {
         for (const split of [[1, 0], [0, 1], "max-attack", "max-damage", "mixed"]) {
           const a = await Actor.create({ name: "ZZ ae n" + nivel, type: "agent", system: { class: "fighter", attributes: { str: { value: 3 }, dex: { value: 3 }, vit: { value: 3 }, int: { value: 1 }, pre: { value: 1 } } } });

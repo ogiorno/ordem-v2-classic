@@ -1,0 +1,40 @@
+{
+  "folder": "ymf6Q233UXczSQe7",
+  "name": "Aura de Pavor",
+  "type": "ability",
+  "img": "systems/ordemparanormal/media/icons/abilities/paranormal/death/aura-de-pavor.svg",
+  "system": {
+    "id": 0,
+    "abilityType": "paranormal",
+    "preRequisite": "",
+    "description": "<p>Ao receber esse poder, você é tomado por uma aura de Morte que nunca mais o abandona. Do ponto de vista dos outros, é como se o mundo ao seu redor perdesse as cores e se tornasse mais opressor. Você pode gastar 2 PE e uma ação de movimento para deixar uma pessoa ou animal em alcance médio apavorado (Vontade DT Pre reduz para abalado). O alvo não precisa ser capaz de ver você. Esta condição termina ao fim da cena, se o alvo se afastar de você além de alcance médio ou se você usar este efeito em outro alvo. Uma mesma pessoa ou animal só pode sofrer o efeito deste poder uma vez por dia.</p><p>Afinidade: a DT para resistir ao poder aumenta em +5 e o número de alvos muda para quaisquer pessoas ou animais escolhidos no alcance.</p>",
+    "chatDescription": "",
+    "activation": "movement",
+    "cost": 2,
+    "costType": "PE"
+  },
+  "effects": [],
+  "flags": {
+    "ordem-v2-classic": {
+      "source": "sah"
+    }
+  },
+  "_stats": {
+    "coreVersion": "14.365",
+    "systemId": "ordemparanormal",
+    "systemVersion": "7.3.3",
+    "createdTime": 1785685915173,
+    "modifiedTime": 1785691931420,
+    "lastModifiedBy": "vUTMyOH4FOrOifbw",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "ownership": {
+    "default": 0,
+    "vUTMyOH4FOrOifbw": 3
+  },
+  "_id": "dzLCFtwRv90gpsAH",
+  "sort": 0,
+  "_key": "!items!dzLCFtwRv90gpsAH"
+}

@@ -1,0 +1,45 @@
+{
+  "name": "Vidência",
+  "type": "ritual",
+  "img": "systems/ordem-v2-classic/assets/rituais/videncia.png",
+  "system": {
+    "circle": 3,
+    "element": "knowledge",
+    "description": "<p>Através de uma superfície reflexiva, como um espelho, uma bacia de água ou mesmo uma TV desligada, você pode ver e ouvir um ser escolhido e seus arredores (cerca de 6m em qualquer direção). O alvo pode estar a qualquer distância, mas tem direito a um teste de resistência no início de cada um de seus turnos para impedir a Vidência naquele turno. Se o alvo passar em dois testes seguidos, o ritual é encerrado e o alvo fica imune a ele por uma semana. Para esse ritual funcionar, você precisa ter alguma informação sobre o alvo, como seu nome ou uma foto. Dependendo do conhecimento que você tiver dele, o alvo recebe bônus ou penalidades em seu teste de resistência.</p><ul><li>Você sabe o mínimo sobre o alvo: +10.</li><li>Você possui algumas informações sobre o alvo (idade, profissão…) ou já o viu pessoalmente: +5.</li><li>Você conhece bem o alvo: –0.</li><li>Você tem um pertence pessoal ou roupa do alvo: –5.</li><li>Você tem uma parte do corpo do alvo (unhas, cabelos…): –10.</li></ul>",
+    "chatDescription": "<p><strong>Fonte:</strong> Livro de Regras v1.3 · <strong>Execução:</strong> completa · <strong>Alcance:</strong> ilimitado · <strong>Alvo:</strong> 1 ser · <strong>Duração:</strong> 5 rodadas · <strong>Resistência:</strong> Vontade anula</p>",
+    "execution": "complete",
+    "range": "unlimited",
+    "target": "1 ser",
+    "duration": "setDuration",
+    "resistance": "nullifies",
+    "skillResis": "will",
+    "targetQtd": "",
+    "area": {
+      "name": "",
+      "size": "",
+      "type": ""
+    },
+    "studentForm": false,
+    "trueForm": false
+  },
+  "effects": [],
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.369",
+    "systemId": "ordem-v2-classic",
+    "systemVersion": "8.0.2",
+    "createdTime": 1792207618168,
+    "modifiedTime": 1792207618168,
+    "lastModifiedBy": null,
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "ownership": {
+    "default": 0
+  },
+  "folder": "RituaisCirculo03",
+  "sort": 75000,
+  "_id": "B3r7JMmGnaA8YQJt",
+  "_key": "!items!B3r7JMmGnaA8YQJt"
+}

@@ -1,0 +1,35 @@
+{
+  "folder": "NNs4Mm1qnMBc4PM5",
+  "name": "Inventor Paranormal",
+  "type": "origin",
+  "_id": "1vMoy6zPGSphglYA",
+  "img": "systems/ordemparanormal/media/icons/origins/inventor-paranormal.webp",
+  "system": {
+    "id": 0,
+    "description": "<p><em>Origem da comunidade — Bruno Sargi | C.R.I.S.</em></p><p>A curiosidade e a criatividade fizeram de você uma pessoa que busca constantemente desafiar limites e criar soluções inovadoras, sendo mais de uma vez intitulado como um “cientista louco”. Você teve contato com o paranormal por meio de seus experimentos ou foi procurado pela Ordem porque suas pesquisas chamaram atenção demais. De qualquer forma, o Outro Lado inspira você a utilizar o desconhecido em suas invenções.</p><p><strong><em>Perícias treinadas.</em></strong> Profissão (engenheiro) e Vontade.</p><p><strong><em>Invenção Paranormal.</em></strong> Escolha um ritual de 1º círculo. Você possui um invento paranormal, um item de categoria 0 que ocupa 1 espaço e que permite que você execute o efeito do ritual escolhido. Para ativar o invento, você gasta uma ação padrão (ou a ação necessária para lançar o ritual, o que for maior) e faz um teste de Profissão (engenheiro) com DT 15 +5 para cada ativação na mesma missão. Se passar, o item faz o equivalente a conjurar o ritual em sua forma básica sem pagar seu custo em PE. Se falhar, ele enguiça. Você pode gastar uma ação de interlúdio para fazer a manutenção do seu invento; fazer isso o conserta e redefine sua DT de ativação para 15. Você pode trocar o ritual contido em seu invento no início de cada missão.</p>",
+    "chatDescription": ""
+  },
+  "effects": [],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "WeXQ2WY27ruZ5VmA": 3
+  },
+  "flags": {
+    "ordem-v2-classic": {
+      "source": "sah"
+    }
+  },
+  "_stats": {
+    "coreVersion": "14.365",
+    "systemId": "ordemparanormal",
+    "systemVersion": "7.3.3",
+    "createdTime": 1784492094841,
+    "modifiedTime": 1784690540047,
+    "lastModifiedBy": "mCARmiewelPiv8Ze",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!1vMoy6zPGSphglYA"
+}

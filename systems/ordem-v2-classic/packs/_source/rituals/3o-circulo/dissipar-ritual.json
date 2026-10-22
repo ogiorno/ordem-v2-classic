@@ -1,0 +1,45 @@
+{
+  "name": "Dissipar Ritual",
+  "type": "ritual",
+  "img": "systems/ordem-v2-classic/assets/rituais/dissipar-ritual.png",
+  "system": {
+    "circle": 3,
+    "element": "fear",
+    "description": "<p>Alvo ou Área: 1 ser ou objeto, ou esfera com 3m de raio Você dissipa rituais ativos, como se a duração deles tivesse acabado. Efeitos de rituais instantâneos não podem ser dissipados (não se pode dissipar uma área de Paradoxo depois que já causou dano…). Faça um teste de Ocultismo; você anula quaisquer rituais ativos no alvo ou na área com DT igual ou menor que o resultado do teste. Você pode conjurar esse ritual em um item amaldiçoado para que se torne um item mundano (perdendo seus poderes) por um dia. Se o item estiver em posse de alguém, seu usuário pode fazer um teste de Vontade para negar o efeito.</p>",
+    "chatDescription": "<p><strong>Fonte:</strong> Livro de Regras v1.3 · <strong>Execução:</strong> padrão · <strong>Alcance:</strong> médio · <strong>Alvo:</strong> Veja descrição da área · <strong>Duração:</strong> instantânea · <strong>Resistência:</strong> —</p>",
+    "execution": "default",
+    "range": "medium",
+    "target": "Veja descrição da área",
+    "duration": "instantaneous",
+    "resistance": "",
+    "skillResis": "",
+    "targetQtd": "",
+    "area": {
+      "name": "1 ser ou objeto,",
+      "size": "",
+      "type": ""
+    },
+    "studentForm": false,
+    "trueForm": false
+  },
+  "effects": [],
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.369",
+    "systemId": "ordem-v2-classic",
+    "systemVersion": "8.0.2",
+    "createdTime": 1792207618168,
+    "modifiedTime": 1792207618168,
+    "lastModifiedBy": null,
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "ownership": {
+    "default": 0
+  },
+  "folder": "RituaisCirculo03",
+  "sort": 60000,
+  "_id": "nE2a5Pk5Gzcis1fQ",
+  "_key": "!items!nE2a5Pk5Gzcis1fQ"
+}

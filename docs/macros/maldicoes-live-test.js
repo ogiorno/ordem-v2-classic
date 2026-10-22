@@ -2,13 +2,13 @@
 // Cria o agente "ZZ Maldições (teste)" com uma arma, uma proteção e dois acessórios, confere cada regra e apaga tudo no fim.
 // Não mexe em nenhuma outra ficha nem cena. Resultado: array de { ok, nome, detalhe }.
 async () => {
-	const C = await import("/systems/ordem_v2_classic/module/helpers/curses.mjs");
-	const R = await import("/systems/ordem_v2_classic/module/helpers/curse-rules.mjs");
-	const AO = await import("/systems/ordem_v2_classic/module/helpers/attack-options.mjs");
+	const C = await import("/systems/ordem-v2-classic/module/helpers/curses.mjs");
+	const R = await import("/systems/ordem-v2-classic/module/helpers/curse-rules.mjs");
+	const AO = await import("/systems/ordem-v2-classic/module/helpers/attack-options.mjs");
 	const out = [];
 	const check = (nome, ok, detalhe = "") => out.push({ ok: Boolean(ok), nome, detalhe: String(detalhe) });
 	const wait = (ms) => new Promise((r) => setTimeout(r, ms));
-	const pack = game.packs.get("ordem_v2_classic.curses");
+	const pack = game.packs.get("ordem-v2-classic.curses");
 	const docs = await pack.getDocuments();
 	const curse = (key) => docs.find((d) => d.system.curseKey === key);
 	const settle = async (actor) => { await C.syncActorCurses(actor); await wait(400); };
@@ -26,7 +26,7 @@ async () => {
 		const byName = (n) => made.find((i) => i.name === n);
 		const [weapon, vest, bag, ring] = ["ZZ Faca", "ZZ Proteção Pesada", "ZZ Amuleto", "ZZ Anel"].map(byName);
 		// PV/PE máximos só são calculados com uma classe na ficha
-		const classes = await game.packs.get("ordem_v2_classic.classes").getDocuments();
+		const classes = await game.packs.get("ordem-v2-classic.classes").getDocuments();
 		const klass = classes.find((c) => /combatente/i.test(c.name)) ?? classes[0];
 		await actor.createEmbeddedDocuments("Item", [klass.toObject()]);
 		await wait(500);
@@ -37,10 +37,10 @@ async () => {
 		// 1. Maldição solta num item (com o item já escolhido)
 		check("Carisma entra no amuleto", await C.applyCurseDocument(curse("carisma"), { actor, target: bag }));
 		await settle(actor);
-		const catBag = (await import("/systems/ordem_v2_classic/module/helpers/item-categories.mjs")).effectiveCategory(bag);
+		const catBag = (await import("/systems/ordem-v2-classic/module/helpers/item-categories.mjs")).effectiveCategory(bag);
 		check("categoria do amuleto 1 → 3 (+II)", R.curseCount(bag.system) === 1 && catBag === 3, `${R.curseCount(bag.system)} maldições, categoria ${catBag}, ${JSON.stringify(bag.system.curses)}`);
 		check("Presença +1 na ficha", actor.system.attributes.pre.value === base.pre + 1, actor.system.attributes.pre.value);
-		check("efeito marcado curseRule no item", bag.effects.some((e) => e.getFlag("ordem_v2_classic", "curseRule") === "carisma" && !e.disabled));
+		check("efeito marcado curseRule no item", bag.effects.some((e) => e.getFlag("ordem-v2-classic", "curseRule") === "carisma" && !e.disabled));
 
 		// 2. Segunda maldição igual em outro item não acumula
 		check("Carisma também no anel", await C.addCurse(ring, "carisma"));
@@ -68,7 +68,7 @@ async () => {
 		check("Cinética pesada: Defesa +2", actor.system.defense.value === defBefore + 2, `${defBefore} → ${actor.system.defense.value}`);
 		check("Cinética pesada: RD geral 5", actor.system.genericRd.value === 5, actor.system.genericRd.value);
 		check("Profética: RD Conhecimento 10", actor.system.resistances.knowledgeDamage.value === 10, actor.system.resistances.knowledgeDamage.value);
-		const cat = (await import("/systems/ordem_v2_classic/module/helpers/item-categories.mjs")).effectiveCategory(vest);
+		const cat = (await import("/systems/ordem-v2-classic/module/helpers/item-categories.mjs")).effectiveCategory(vest);
 		check("categoria da proteção 2 + II + I = 5", cat === 5, cat);
 
 		// 5. Esforço Adicional e Vitalidade só ligam depois de um dia
@@ -90,7 +90,7 @@ async () => {
 		// 6. Sagacidade não vira perícia
 		await C.addCurse(bag, "sagacidade");
 		await settle(actor);
-		const st = await import("/systems/ordem_v2_classic/module/helpers/skill-training.mjs");
+		const st = await import("/systems/ordem-v2-classic/module/helpers/skill-training.mjs");
 		check("Sagacidade +1 Int na ficha mas fora do orçamento", actor.system.attributes.int.value >= 1 && st.permanentInt(actor) === (actor._source.system.attributes.int.value || 0), `${actor.system.attributes.int.value} vs ${st.permanentInt(actor)}`);
 
 		// 7. Arma: Lancinante (dado extra), Energética e Predadora
@@ -108,7 +108,7 @@ async () => {
 		await wait(500);
 		const created = game.messages.contents.slice(before);
 		msgs.push(...created);
-		const lanc = created.find((m) => m.getFlag("ordem_v2_classic", "curseDamage")?.key === "lancinante");
+		const lanc = created.find((m) => m.getFlag("ordem-v2-classic", "curseDamage")?.key === "lancinante");
 		check("Lancinante: carta de dano de Sangue", Boolean(lanc), created.map((m) => m.flavor).join(" | "));
 		check("Lancinante multiplica no crítico (2d8)", lanc?.rolls?.[0]?.formula === "2d8", lanc?.rolls?.[0]?.formula);
 		const energ = options.find((o) => o.onUse.attackBonus === 5);
@@ -126,10 +126,10 @@ async () => {
 		await settle(actor);
 		const opt3 = AO.collectOptions(weapon);
 		const without = (await (async () => { const b = game.messages.size; await weapon.rollDamage({ attackOptions: AO.defaultSelection(weapon) }); await wait(400); const c = game.messages.contents.slice(b); msgs.push(...c); return c; })());
-		check("Antielemento não rola sem escolher", !without.some((m) => m.getFlag("ordem_v2_classic", "curseDamage")?.key === "antielemento"));
+		check("Antielemento não rola sem escolher", !without.some((m) => m.getFlag("ordem-v2-classic", "curseDamage")?.key === "antielemento"));
 		const anti = opt3.find((o) => o.label === "Antielemento");
 		const withIt = (await (async () => { const b = game.messages.size; await weapon.rollDamage({ attackOptions: AO.buildConfig(weapon, opt3, { counts: { [anti.id]: 1 } }) }); await wait(400); const c = game.messages.contents.slice(b); msgs.push(...c); return c; })());
-		const am = withIt.find((m) => m.getFlag("ordem_v2_classic", "curseDamage")?.key === "antielemento");
+		const am = withIt.find((m) => m.getFlag("ordem-v2-classic", "curseDamage")?.key === "antielemento");
 		check("Antielemento escolhido rola 4d8 de Morte", am?.rolls?.[0]?.formula === "4d8" && /Morte/.test(am.flavor), am?.flavor);
 
 		// 9. Uso: Regenerativa cura

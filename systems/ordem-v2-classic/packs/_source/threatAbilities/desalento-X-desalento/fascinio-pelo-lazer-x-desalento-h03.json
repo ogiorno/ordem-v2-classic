@@ -1,0 +1,88 @@
+{
+	"name": "FASCÍNIO PELO LAZER",
+	"type": "ability",
+	"img": "icons/svg/item-bag.svg",
+	"system": {
+		"id": 0,
+		"abilityType": "ability",
+		"preRequisite": "",
+		"description": "<p>Aplica a condição de Fascinado para aqueles afetados por Falsa Nostalgia.</p>",
+		"chatDescription": "",
+		"activation": "complete",
+		"cost": 0,
+		"costType": "PE",
+		"execution": {
+			"mode": "active",
+			"automation": "assisted",
+			"damage": [],
+			"effects": [
+				{
+					"condition": "fascinado",
+					"duration": {
+						"unit": "unspecified",
+						"value": null
+					},
+					"onSave": "always",
+					"target": "target",
+					"trigger": "",
+					"support": "marker"
+				}
+			],
+			"requirements": [
+				{
+					"kind": "affectedBy",
+					"ref": "falsa-nostalgia",
+					"text": ""
+				}
+			],
+			"grants": [],
+			"targeting": {
+				"kind": "tokens",
+				"range": null,
+				"count": 20,
+				"relation": "any",
+				"rangeUnspecified": true,
+				"voluntary": false,
+				"requiresSight": false
+			},
+			"version": 1,
+			"source": {
+				"reference": "Compêndio local, Desalento",
+				"reviewed": false
+			},
+			"cost": null,
+			"area": null,
+			"save": null,
+			"trigger": null,
+			"visibility": {
+				"dc": "gm",
+				"defense": "gm",
+				"result": "public"
+			}
+		}
+	},
+	"effects": [],
+	"flags": {
+		"ordem-v2-classic": {
+			"threatAbilityId": "X-desalento-H03"
+		}
+	},
+	"_stats": {
+		"coreVersion": "14.369",
+		"systemId": "ordem-v2-classic",
+		"systemVersion": "8.0.2",
+		"createdTime": 1792207618168,
+		"modifiedTime": 1792207618168,
+		"lastModifiedBy": null,
+		"compendiumSource": null,
+		"duplicateSource": null,
+		"exportSource": null
+	},
+	"ownership": {
+		"default": 0
+	},
+	"folder": "5YMT9ZYghkaRy8YS",
+	"sort": 3000,
+	"_id": "jRmWhPAdNkDA3Px1",
+	"_key": "!items!jRmWhPAdNkDA3Px1"
+}

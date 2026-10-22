@@ -1,0 +1,45 @@
+{
+  "name": "Fim Inevitável",
+  "type": "ritual",
+  "img": "systems/ordem-v2-classic/assets/rituais/fim-inevitavel.png",
+  "system": {
+    "circle": 4,
+    "element": "death",
+    "description": "<p>Você cria um vácuo em um espaço desocupado a sua escolha. No início de cada um de seus quatro turnos seguintes, todos os seres a até 90m do vácuo, incluindo você, devem fazer um teste de Fortitude. Em caso de falha, ficam caídas e são puxadas 30m na direção do vácuo. Objetos soltos também são puxados. Seres podem gastar uma ação de movimento para se segurar em algum objeto fixo, recebendo +5 em seus testes de resistência. Seres e objetos que iniciem seu turno tocando o vácuo temporal sofrem 100 pontos de dano de Morte por rodada. Discente (+5 PE): muda a duração para “5 rodadas” e o efeito para que você não seja afetado. Requer afinidade. Verdadeiro (+10 PE): muda a duração para “6 rodadas” e o efeito para que seres escolhidos dentro do alcance não sejam afetados. Requer afinidade.</p>",
+    "chatDescription": "<p><strong>Fonte:</strong> Livro de Regras v1.3 · <strong>Execução:</strong> completa · <strong>Alcance:</strong> extremo · <strong>Alvo:</strong> Veja texto · <strong>Duração:</strong> 4 rodadas · <strong>Resistência:</strong> Fortitude parcial</p>",
+    "execution": "complete",
+    "range": "extreme",
+    "target": "Veja texto",
+    "duration": "setDuration",
+    "resistance": "partial",
+    "skillResis": "resilience",
+    "targetQtd": "",
+    "area": {
+      "name": "buraco negro com 1,5m de diâmetro",
+      "size": "",
+      "type": ""
+    },
+    "studentForm": true,
+    "trueForm": true
+  },
+  "effects": [],
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.369",
+    "systemId": "ordem-v2-classic",
+    "systemVersion": "8.0.2",
+    "createdTime": 1792207618168,
+    "modifiedTime": 1792207618168,
+    "lastModifiedBy": null,
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "ownership": {
+    "default": 0
+  },
+  "folder": "RituaisCirculo04",
+  "sort": 87000,
+  "_id": "mYja1EC4dCU91kd6",
+  "_key": "!items!mYja1EC4dCU91kd6"
+}

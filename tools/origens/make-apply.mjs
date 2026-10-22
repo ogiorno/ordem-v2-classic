@@ -2,9 +2,9 @@
 // Rodar depois de build-as.mjs; executar no mundo como GM: playwright-cli -s=<nome> --raw eval "$(cat tools/origens/out/apply.js)"
 import fs from "node:fs";
 const ops = JSON.parse(fs.readFileSync("tools/origens/out/as-ops.json", "utf8"));
-const folder = JSON.parse(fs.readFileSync("systems/ordem_v2_classic/packs/_source/originPowers/arquivos-secretos/_folder.json", "utf8"));
+const folder = JSON.parse(fs.readFileSync("systems/ordem-v2-classic/packs/_source/originPowers/arquivos-secretos/_folder.json", "utf8"));
 const code = `(async () => {
-	const SYS = "ordem_v2_classic";
+	const SYS = "ordem-v2-classic";
 	const ops = ${JSON.stringify(ops)};
 	const folder = ${JSON.stringify(folder)};
 	const clean = (d) => { const c = foundry.utils.deepClone(d); delete c._key; delete c._stats; delete c.ownership; return c; };

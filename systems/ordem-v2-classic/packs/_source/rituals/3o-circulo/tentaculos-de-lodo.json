@@ -1,0 +1,45 @@
+{
+  "name": "Tentáculos de Lodo",
+  "type": "ritual",
+  "img": "systems/ordem-v2-classic/assets/rituais/tentaculos-de-lodo.png",
+  "system": {
+    "circle": 3,
+    "element": "death",
+    "description": "<p>Uma fenda sombria se abre no chão, de onde surgem tentáculos feitos de Lodo da Morte. Ao conjurar o ritual e no início de cada um de seus turnos, você faz um teste da manobra agarrar (usando Ocultismo em vez de Luta) contra cada alvo na área. Se você vencer, o ser é agarrado; se já estava agarrado, é esmagado, sofrendo 4d6 pontos de dano (metade impacto, metade Morte). A área do ritual conta como terreno difícil. Os tentáculos são imunes a dano. Verdadeiro (+5 PE): aumenta o raio da área para 9m e aumenta o dano dos tentáculos para 6d6.</p>",
+    "chatDescription": "<p><strong>Fonte:</strong> Livro de Regras v1.3 · <strong>Execução:</strong> padrão · <strong>Alcance:</strong> médio · <strong>Alvo:</strong> Veja descrição da área · <strong>Duração:</strong> cena · <strong>Resistência:</strong> —</p>",
+    "execution": "default",
+    "range": "medium",
+    "target": "Veja descrição da área",
+    "duration": "scene",
+    "resistance": "",
+    "skillResis": "",
+    "targetQtd": "",
+    "area": {
+      "name": "círculo com 6m de raio",
+      "size": "",
+      "type": ""
+    },
+    "studentForm": false,
+    "trueForm": true
+  },
+  "effects": [],
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.369",
+    "systemId": "ordem-v2-classic",
+    "systemVersion": "8.0.2",
+    "createdTime": 1792207618168,
+    "modifiedTime": 1792207618168,
+    "lastModifiedBy": null,
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "ownership": {
+    "default": 0
+  },
+  "folder": "RituaisCirculo03",
+  "sort": 72000,
+  "_id": "4Kz81mZMbTrNge4W",
+  "_key": "!items!4Kz81mZMbTrNge4W"
+}

@@ -1,0 +1,87 @@
+{
+	"name": "Você É Minha Mamãe?",
+	"type": "ability",
+	"img": "systems/ordem-v2-classic/assets/ability-icons/1311-1316-movimento-voce-e-minha-mamae.webp",
+	"system": {
+		"id": 0,
+		"abilityType": "ability",
+		"preRequisite": "",
+		"description": "<p>MOVIMENTO - VOCÊ É MINHA MAMÃE? O carente usa a parte que simula o corpo de uma criança para abraçar um ser adjacente, que fica paralisado até ser solto (Reflexos DT 25 evita). O carente pode manter o abraço indefinidamente, mas será forçado a soltar o alvo se sofrer dano de Energia. garras pontudas e curvadas. É uma forma que se assemelha a um inseto monstruoso enorme, com um grande ferrão saindo de um rosto demoníaco. No topo, como uma espécie de isca, o corpo da criança fica pendurado, conectado a um tipo de tentáculo com garras. Lembre-se, se você ouvir uma criança batendo à porta chamando pela sua mãe, NÃO ABRA A PORTA. Pois depois que a entrada do carente for permitida em um ambiente pela primeira vez, nada mais poderá impedi-lo de devorar aquilo de que carece. Carente</p>",
+		"chatDescription": "",
+		"activation": "movement",
+		"cost": 0,
+		"costType": "PE",
+		"execution": {
+			"mode": "active",
+			"automation": "assisted",
+			"damage": [],
+			"effects": [
+				{
+					"condition": "paralisado",
+					"duration": {
+						"unit": "permanent",
+						"value": null
+					},
+					"onSave": "fail",
+					"target": "target",
+					"trigger": "",
+					"support": "marker"
+				}
+			],
+			"requirements": [],
+			"grants": [],
+			"targeting": {
+				"kind": "token",
+				"range": 1.5,
+				"count": 1,
+				"relation": "any",
+				"voluntary": false,
+				"rangeUnspecified": false,
+				"requiresSight": false
+			},
+			"save": {
+				"skill": "reflexos",
+				"dc": 25,
+				"onSuccess": "none",
+				"retry": false
+			},
+			"version": 1,
+			"source": {
+				"reference": "Livro v1.3, p. 198, Carente",
+				"reviewed": false
+			},
+			"cost": null,
+			"area": null,
+			"trigger": null,
+			"visibility": {
+				"dc": "gm",
+				"defense": "gm",
+				"result": "public"
+			}
+		}
+	},
+	"effects": [],
+	"flags": {
+		"ordem-v2-classic": {
+			"threatAbilityId": "1311-H04"
+		}
+	},
+	"_stats": {
+		"coreVersion": "14.369",
+		"systemId": "ordem-v2-classic",
+		"systemVersion": "8.0.2",
+		"createdTime": 1792207618168,
+		"modifiedTime": 1792207618168,
+		"lastModifiedBy": null,
+		"compendiumSource": null,
+		"duplicateSource": null,
+		"exportSource": null
+	},
+	"ownership": {
+		"default": 0
+	},
+	"folder": "ymiGJ2C0C9ag0hcC",
+	"sort": 4000,
+	"_id": "POrIuepJ6qmYIB60",
+	"_key": "!items!POrIuepJ6qmYIB60"
+}

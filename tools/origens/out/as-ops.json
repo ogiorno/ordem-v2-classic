@@ -24,7 +24,7 @@
       "flags": {},
       "_stats": {
         "coreVersion": "14.365",
-        "systemId": "ordem_v2_classic",
+        "systemId": "ordem-v2-classic",
         "systemVersion": "7.3.3",
         "createdTime": 1784950000000,
         "modifiedTime": 1784950000000,
@@ -59,7 +59,7 @@
       "flags": {},
       "_stats": {
         "coreVersion": "14.365",
-        "systemId": "ordem_v2_classic",
+        "systemId": "ordem-v2-classic",
         "systemVersion": "7.3.3",
         "createdTime": 1784950000000,
         "modifiedTime": 1784950000000,
@@ -94,7 +94,7 @@
       "flags": {},
       "_stats": {
         "coreVersion": "14.365",
-        "systemId": "ordem_v2_classic",
+        "systemId": "ordem-v2-classic",
         "systemVersion": "7.3.3",
         "createdTime": 1784950000000,
         "modifiedTime": 1784950000000,
@@ -129,7 +129,7 @@
       "flags": {},
       "_stats": {
         "coreVersion": "14.365",
-        "systemId": "ordem_v2_classic",
+        "systemId": "ordem-v2-classic",
         "systemVersion": "7.3.3",
         "createdTime": 1784950000000,
         "modifiedTime": 1784950000000,
@@ -164,7 +164,7 @@
       "flags": {},
       "_stats": {
         "coreVersion": "14.365",
-        "systemId": "ordem_v2_classic",
+        "systemId": "ordem-v2-classic",
         "systemVersion": "7.3.3",
         "createdTime": 1784950000000,
         "modifiedTime": 1784950000000,
@@ -199,7 +199,7 @@
       "flags": {},
       "_stats": {
         "coreVersion": "14.365",
-        "systemId": "ordem_v2_classic",
+        "systemId": "ordem-v2-classic",
         "systemVersion": "7.3.3",
         "createdTime": 1784950000000,
         "modifiedTime": 1784950000000,
@@ -234,7 +234,7 @@
       "flags": {},
       "_stats": {
         "coreVersion": "14.365",
-        "systemId": "ordem_v2_classic",
+        "systemId": "ordem-v2-classic",
         "systemVersion": "7.3.3",
         "createdTime": 1784950000000,
         "modifiedTime": 1784950000000,
@@ -269,7 +269,7 @@
       "flags": {},
       "_stats": {
         "coreVersion": "14.365",
-        "systemId": "ordem_v2_classic",
+        "systemId": "ordem-v2-classic",
         "systemVersion": "7.3.3",
         "createdTime": 1784950000000,
         "modifiedTime": 1784950000000,
@@ -304,7 +304,7 @@
       "flags": {},
       "_stats": {
         "coreVersion": "14.365",
-        "systemId": "ordem_v2_classic",
+        "systemId": "ordem-v2-classic",
         "systemVersion": "7.3.3",
         "createdTime": 1784950000000,
         "modifiedTime": 1784950000000,
@@ -339,7 +339,7 @@
       "flags": {},
       "_stats": {
         "coreVersion": "14.365",
-        "systemId": "ordem_v2_classic",
+        "systemId": "ordem-v2-classic",
         "systemVersion": "7.3.3",
         "createdTime": 1784950000000,
         "modifiedTime": 1784950000000,
@@ -374,7 +374,7 @@
       "flags": {},
       "_stats": {
         "coreVersion": "14.365",
-        "systemId": "ordem_v2_classic",
+        "systemId": "ordem-v2-classic",
         "systemVersion": "7.3.3",
         "createdTime": 1784950000000,
         "modifiedTime": 1784950000000,
@@ -710,7 +710,7 @@
         "name": "Exorcizado",
         "type": "origin",
         "_id": "zrUNJK77BazhEV7Z",
-        "img": "systems/ordem_v2_classic/assets/origens/origem-as07-exorcizado.svg",
+        "img": "systems/ordem-v2-classic/assets/origens/origem-as07-exorcizado.svg",
         "system": {
           "id": 0,
           "description": "<p>Você já esteve sob influência de uma grande força sobrenatural opressora, que dominou seu corpo para realizar façanhas incompreensíveis.</p><p><strong><em>Perícias Treinadas.</em></strong> Fortitude e Ocultismo.</p><p><strong><em>O Que Restou.</em></strong> Uma parte da criatura paranormal que o possuiu continua dentro de você. Escolha um elemento (exceto Medo). Você recebe RD 10 contra o tipo do elemento escolhido. Entretanto, sempre que entrar em contato com esse elemento pela primeira vez em uma cena (seja ao presenciar rituais, itens amaldiçoados, criaturas ou poderes paranormais), você perde 3 SAN.</p><p><em>Fonte: AS #07, p. 80.</em></p>",
@@ -724,7 +724,7 @@
         "flags": {},
         "_stats": {
           "coreVersion": "14.365",
-          "systemId": "ordem_v2_classic",
+          "systemId": "ordem-v2-classic",
           "systemVersion": "7.3.3",
           "createdTime": 1784950000000,
           "modifiedTime": 1784950000000,
@@ -744,7 +744,7 @@
         "name": "Sensitivo Rebelde",
         "type": "origin",
         "_id": "lRtzxTX2Lw50xXav",
-        "img": "systems/ordem_v2_classic/assets/origens/origem-as07-sensitivo-rebelde.svg",
+        "img": "systems/ordem-v2-classic/assets/origens/origem-as07-sensitivo-rebelde.svg",
         "system": {
           "id": 0,
           "description": "<p>Apesar de lutar contra sua sensitividade paranormal, ela nunca te abandonou. Não importa o quanto você tentou negar, as visões continuavam voltando. Para você, nunca foi uma questão de fé. O sobrenatural sempre foi sua realidade.</p><p><strong><em>Perícias Treinadas.</em></strong> Intuição e Vontade.</p><p><strong><em>Sussurros e Vultos.</em></strong> Ao lidar com outras pessoas, inesperadamente surgem vozes e vultos na sua cabeça que, por mais assustadoras que sejam, ajudam a compreendê-las. Quando faz um teste de Diplomacia, Enganação, Intimidação ou Intuição, você pode escolher perder 2 SAN para receber +5 nesse teste.</p><p><em>Fonte: AS #07, p. 80.</em></p>",
@@ -758,7 +758,7 @@
         "flags": {},
         "_stats": {
           "coreVersion": "14.365",
-          "systemId": "ordem_v2_classic",
+          "systemId": "ordem-v2-classic",
           "systemVersion": "7.3.3",
           "createdTime": 1784950000000,
           "modifiedTime": 1784950000000,

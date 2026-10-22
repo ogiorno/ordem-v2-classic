@@ -71,8 +71,8 @@ system.paranormal = {
 ```
 
 - Chaves de elemento: as mesmas de `RITUAL_ELEMENTS` (`ritual-caster-logic.mjs:3`) e `CURSE_ELEMENTS` (`weapon-curse.mjs`).
-- Os poderes paranormais do compêndio (`paranormalPowers`, 29 itens) têm `preRequisite: "Sangue 1"` e o texto da descrição é **só um aviso de licença**, não a regra. Portanto a regra de cada poder (incluindo a linha "Afinidade") mora numa **tabela de código**, como já é feito em `passive-effects-rules.mjs`. O elemento do poder vem da pasta de origem; no import, gravar `flags.ordem_v2_classic.element` (ou ler de `preRequisite`).
-- Cópia de afinidade: o segundo exemplar do poder leva `flags.ordem_v2_classic.affinityCopy = true`. A trava de "só uma vez" passa a permitir 2 cópias **se** a ficha tem afinidade com o elemento do poder.
+- Os poderes paranormais do compêndio (`paranormalPowers`, 29 itens) têm `preRequisite: "Sangue 1"` e o texto da descrição é **só um aviso de licença**, não a regra. Portanto a regra de cada poder (incluindo a linha "Afinidade") mora numa **tabela de código**, como já é feito em `passive-effects-rules.mjs`. O elemento do poder vem da pasta de origem; no import, gravar `flags.ordem-v2-classic.element` (ou ler de `preRequisite`).
+- Cópia de afinidade: o segundo exemplar do poder leva `flags.ordem-v2-classic.affinityCopy = true`. A trava de "só uma vez" passa a permitir 2 cópias **se** a ficha tem afinidade com o elemento do poder.
 
 ---
 

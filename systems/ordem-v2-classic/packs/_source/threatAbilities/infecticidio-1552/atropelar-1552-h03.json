@@ -1,0 +1,40 @@
+{
+	"name": "Atropelar",
+	"type": "ability",
+	"img": "systems/ordem-v2-classic/assets/ability-icons/1552-1556-full-atropelar.webp",
+	"system": {
+		"id": 0,
+		"abilityType": "ability",
+		"preRequisite": "",
+		"description": "<p>COMPLETA - ATROPELAR O infecticídio percorre até o dobro do seu deslocamento, podendo passar pelo espaço de outros seres. Durante esse deslocamento, ele faz um ataque de pancada infectada contra cada ser nos espaços pelos quais passar.</p>",
+		"chatDescription": "",
+		"activation": "complete",
+		"cost": 0,
+		"costType": "PE",
+		"execution": null
+	},
+	"effects": [],
+	"flags": {
+		"ordem-v2-classic": {
+			"threatAbilityId": "1552-H03"
+		}
+	},
+	"_stats": {
+		"coreVersion": "14.369",
+		"systemId": "ordem-v2-classic",
+		"systemVersion": "8.0.2",
+		"createdTime": 1792207618168,
+		"modifiedTime": 1792207618168,
+		"lastModifiedBy": null,
+		"compendiumSource": null,
+		"duplicateSource": null,
+		"exportSource": null
+	},
+	"ownership": {
+		"default": 0
+	},
+	"folder": "pTIlEKMODTZzfpDI",
+	"sort": 3000,
+	"_id": "MxMt0Y4Edsb9cKsb",
+	"_key": "!items!MxMt0Y4Edsb9cKsb"
+}

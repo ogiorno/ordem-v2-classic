@@ -1,0 +1,40 @@
+{
+	"name": "Teletransporte",
+	"type": "ability",
+	"img": "systems/ordem-v2-classic/assets/ability-icons/1585-1595-movement-teletransporte.webp",
+	"system": {
+		"id": 0,
+		"abilityType": "ability",
+		"preRequisite": "",
+		"description": "<p>MOVIMENTO - TELETRANSPORTE O Anfitrião se transporta para outro ponto em alcance médio. Amphitruo Aeneas Liber Silenus Anfitrião Plautus</p>",
+		"chatDescription": "",
+		"activation": "movement",
+		"cost": 0,
+		"costType": "PE",
+		"execution": null
+	},
+	"effects": [],
+	"flags": {
+		"ordem-v2-classic": {
+			"threatAbilityId": "1585-H06"
+		}
+	},
+	"_stats": {
+		"coreVersion": "14.369",
+		"systemId": "ordem-v2-classic",
+		"systemVersion": "8.0.2",
+		"createdTime": 1792207618168,
+		"modifiedTime": 1792207618168,
+		"lastModifiedBy": null,
+		"compendiumSource": null,
+		"duplicateSource": null,
+		"exportSource": null
+	},
+	"ownership": {
+		"default": 0
+	},
+	"folder": "RSpGxOJ88THAuyTp",
+	"sort": 6000,
+	"_id": "jMlljcuhATwyAn24",
+	"_key": "!items!jMlljcuhATwyAn24"
+}

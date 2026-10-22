@@ -1,0 +1,97 @@
+{
+	"name": "Marcas Do Terror",
+	"type": "ability",
+	"img": "systems/ordem-v2-classic/assets/ability-icons/1329-1335-movimento-marcas-do-terror.webp",
+	"system": {
+		"id": 0,
+		"abilityType": "ability",
+		"preRequisite": "",
+		"description": "<p>MOVIMENTO - MARCAS DO TERROR O enpap-X faz com que as marcas em seu corpo brilhem com uma luz dourada, revelando as atrocidades eternizadas em sua pele. Todos os personagem em alcance curto do enpap-X sofrem 4d6 pontos de dano mental (Vontade DT 25 reduz à metade). Um personagem que passe no teste de resistência fica imune a esta habilidade até o final da cena.</p>",
+		"chatDescription": "",
+		"activation": "movement",
+		"cost": 0,
+		"costType": "PE",
+		"execution": {
+			"mode": "active",
+			"automation": "assisted",
+			"damage": [
+				{
+					"kind": "damage",
+					"formula": "4d6",
+					"type": "mental",
+					"resource": "san",
+					"roll": "once",
+					"frequency": ""
+				}
+			],
+			"effects": [],
+			"requirements": [],
+			"grants": [
+				{
+					"ref": "marcas-do-terror-imune",
+					"onSave": "success"
+				}
+			],
+			"targeting": {
+				"kind": "area",
+				"relation": "any",
+				"range": null,
+				"count": null,
+				"voluntary": false,
+				"rangeUnspecified": false,
+				"requiresSight": false
+			},
+			"area": {
+				"shape": "sphere",
+				"radius": 9,
+				"origin": "caster",
+				"persistence": "instant",
+				"triggers": [],
+				"length": null,
+				"width": null
+			},
+			"save": {
+				"skill": "vontade",
+				"dc": 25,
+				"onSuccess": "half",
+				"retry": false
+			},
+			"version": 1,
+			"source": {
+				"reference": "Livro v1.3, p. 203, Enpap-X",
+				"reviewed": false
+			},
+			"cost": null,
+			"trigger": null,
+			"visibility": {
+				"dc": "gm",
+				"defense": "gm",
+				"result": "public"
+			}
+		}
+	},
+	"effects": [],
+	"flags": {
+		"ordem-v2-classic": {
+			"threatAbilityId": "1329-H05"
+		}
+	},
+	"_stats": {
+		"coreVersion": "14.369",
+		"systemId": "ordem-v2-classic",
+		"systemVersion": "8.0.2",
+		"createdTime": 1792207618168,
+		"modifiedTime": 1792207618168,
+		"lastModifiedBy": null,
+		"compendiumSource": null,
+		"duplicateSource": null,
+		"exportSource": null
+	},
+	"ownership": {
+		"default": 0
+	},
+	"folder": "duvT79HtFuT8m6xq",
+	"sort": 5000,
+	"_id": "Q3v5C2zPg1D1icMl",
+	"_key": "!items!Q3v5C2zPg1D1icMl"
+}

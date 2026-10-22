@@ -1,7 +1,7 @@
 // Teste ao vivo das perícias treinadas, fase 3: Foco em Perícia, Eclético, Treinamento Especial, onboarding e grimório.
 // Rodar com Mestre logado: playwright-cli -s=<nome> --raw eval "$(cat docs/macros/pericias-treinadas-fase3-live-test.js)"
 (async () => {
-	const SYS = "ordem_v2_classic";
+	const SYS = "ordem-v2-classic";
 	const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 	const until = async (fn, ms = 8000) => { const t = Date.now(); while (Date.now() - t < ms) { const v = await fn(); if (v) return v; await sleep(100); } return null; };
 	const T = await import(`/systems/${SYS}/module/helpers/skill-training.mjs`);

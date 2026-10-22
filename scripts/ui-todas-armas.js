@@ -33,7 +33,7 @@ async (page) => {
 	await ev(() => { if (!document.getElementById("ta-no-popups")) { const st = document.createElement("style"); st.id = "ta-no-popups"; st.textContent = "#chat-notifications{pointer-events:none !important}"; document.head.append(st); } });
 	// ---------- fixture: 6 agentes completos
 	const fx = await ev(async () => {
-		const SYS = "ordem_v2_classic";
+		const SYS = "ordem-v2-classic";
 		const norm = (t) => String(t).normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase().replace(/[^a-z0-9]/g, "");
 		const fp = async (p, n) => { const pack = game.packs.get(`${SYS}.${p}`); const e = (await pack.getIndex()).find((x) => norm(x.name) === norm(n)); const d = (await pack.getDocument(e._id)).toObject(); delete d._id; return d; };
 		for (const a of game.actors.filter((x) => x.name.startsWith("[TA]"))) await a.delete();
@@ -68,7 +68,7 @@ async (page) => {
 
 	// ---------- camada A: todas as armas x todos os agentes x todos os modos, pelo código
 	const A = await ev(async (agentsIn) => {
-		const m = await import("/systems/ordem_v2_classic/module/helpers/attack-options.mjs");
+		const m = await import("/systems/ordem-v2-classic/module/helpers/attack-options.mjs");
 		const results = [];
 		const msgsOf = (before) => game.messages.contents.filter((x) => !before.has(x.id));
 		for (const ag of agentsIn) {

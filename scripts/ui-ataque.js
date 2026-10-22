@@ -11,7 +11,7 @@ async (page) => {
 
 	// ---- fixture: agente combatente com pistola, Ataque Especial, Para Bellum e Mão Pesada
 	const fx = await ev(async () => {
-		const SYS = "ordem_v2_classic";
+		const SYS = "ordem-v2-classic";
 		const norm = (t) => String(t).normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase().replace(/[^a-z0-9]/g, "");
 		const fp = async (p, n) => { const pack = game.packs.get(`${SYS}.${p}`); const e = (await pack.getIndex()).find((x) => norm(x.name) === norm(n)); const d = (await pack.getDocument(e._id)).toObject(); delete d._id; return d; };
 		for (const a of game.actors.filter((x) => x.name.startsWith("[AO] ui"))) await a.delete();
@@ -25,7 +25,7 @@ async (page) => {
 	});
 	const bal = () => ev(([id, res]) => game.actors.get(id).system[res].value, [fx.id, fx.res]);
 	const msgs = () => ev(() => game.messages.contents.filter((m) => !window.__aoFx.known.includes(m.id)).length);
-	const lastMsg = () => ev(() => { const m = game.messages.contents.filter((x) => !window.__aoFx.known.includes(x.id)).at(-1); return m ? { id: m.id, text: m.content.replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").slice(0, 600), flag: m.getFlag("ordem_v2_classic", "attackOptions") ?? null } : null; });
+	const lastMsg = () => ev(() => { const m = game.messages.contents.filter((x) => !window.__aoFx.known.includes(x.id)).at(-1); return m ? { id: m.id, text: m.content.replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").slice(0, 600), flag: m.getFlag("ordem-v2-classic", "attackOptions") ?? null } : null; });
 	const closeAnyDialog = async () => { if (await dialog.count()) { await page.keyboard.press("Escape"); await sleep(400); } };
 
 	try {
@@ -84,12 +84,12 @@ async (page) => {
 		add("UI-07", "Atacar: paga 3 PE ao confirmar", peBefore - peAfter === 3, `${peBefore}→${peAfter}`);
 		await ev(() => { try { ui.sidebar.changeTab("chat", "primary"); } catch { document.querySelector("[data-tab=chat]")?.click(); } });
 		await sleep(1200);
-		const weaponId = await ev(() => game.messages.contents.filter((m) => !window.__aoFx.known.includes(m.id) && m.getFlag("ordem_v2_classic", "attackOptions")).at(-1)?.id ?? null);
+		const weaponId = await ev(() => game.messages.contents.filter((m) => !window.__aoFx.known.includes(m.id) && m.getFlag("ordem-v2-classic", "attackOptions")).at(-1)?.id ?? null);
 		const allText = weaponId ? await page.locator(`#chat .message[data-message-id="${weaponId}"]`).first().innerText().catch(() => "") : "";
 		add("UI-08", "Cartão do ataque mostra o que foi usado e o custo", /Ataque Especial/i.test(allText) && /3\s*(PE|PD)/i.test(allText), allText.slice(0, 500));
 		// o cartão da arma é a mensagem com o botão de dano (a rolagem do ataque é outra mensagem)
 		const weaponCardId = await ev(() => game.messages.contents.filter((m) => !window.__aoFx.known.includes(m.id) && m.content.includes('data-action="damage"')).at(-1)?.id ?? null);
-		const cardHasFlag = await ev((id) => !!game.messages.get(id)?.getFlag("ordem_v2_classic", "attackOptions"), weaponCardId);
+		const cardHasFlag = await ev((id) => !!game.messages.get(id)?.getFlag("ordem-v2-classic", "attackOptions"), weaponCardId);
 		add("UI-09", "As opções ficam guardadas no cartão da arma (flag attackOptions)", !!weaponCardId && cardHasFlag);
 
 		// UI-10 dano do cartão aplica as mesmas opções

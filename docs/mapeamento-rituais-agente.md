@@ -1,6 +1,6 @@
 # Mapeamento do Agente e dos Testes de Rituais
 
-Documento de referência para criar a macro de execução de rituais no sistema `ordem_v2_classic`.
+Documento de referência para criar a macro de execução de rituais no sistema `ordem-v2-classic`.
 
 ## Escopo e versão verificada
 
@@ -207,12 +207,12 @@ Para a macro final, é preciso definir no código:
 
 ## Fontes no repositório
 
-- `systems/ordem_v2_classic/system.json`
-- `systems/ordem_v2_classic/module/data/actors/agent-data.mjs`
-- `systems/ordem_v2_classic/module/data/items/ritual-data.mjs`
-- `systems/ordem_v2_classic/module/documents/actor.mjs`
-- `systems/ordem_v2_classic/module/documents/item.mjs`
-- `systems/ordem_v2_classic/module/helpers/actor-calculations.mjs`
-- `systems/ordem_v2_classic/module/helpers/config.mjs`
-- `systems/ordem_v2_classic/templates/chat/item-card.hbs`
-- `systems/ordem_v2_classic/module/tests/suites/actor-agent.test.mjs`
+- `systems/ordem-v2-classic/system.json`
+- `systems/ordem-v2-classic/module/data/actors/agent-data.mjs`
+- `systems/ordem-v2-classic/module/data/items/ritual-data.mjs`
+- `systems/ordem-v2-classic/module/documents/actor.mjs`
+- `systems/ordem-v2-classic/module/documents/item.mjs`
+- `systems/ordem-v2-classic/module/helpers/actor-calculations.mjs`
+- `systems/ordem-v2-classic/module/helpers/config.mjs`
+- `systems/ordem-v2-classic/templates/chat/item-card.hbs`
+- `systems/ordem-v2-classic/module/tests/suites/actor-agent.test.mjs`

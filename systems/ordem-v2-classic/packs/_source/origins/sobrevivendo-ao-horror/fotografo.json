@@ -1,0 +1,35 @@
+{
+  "folder": "NNs4Mm1qnMBc4PM5",
+  "name": "Fotógrafo",
+  "type": "origin",
+  "_id": "LHDgYH95ZOF1dIT0",
+  "img": "systems/ordemparanormal/media/icons/origins/fotografo.svg",
+  "system": {
+    "id": 0,
+    "description": "<p>Você é um artista visual que usa câmeras para capturar momentos e transmitir histórias através de imagens estáticas. Costumeiramente movido pela paixão de observar o mundo ao seu redor, buscando ângulos únicos e perspectivas singulares para documentar a vida e a sociedade, você não fazia ideia de que encontraria elementos paranormais através de sua lente.</p><p><strong><em>Perícias treinadas.</em></strong> Artes e Percepção.</p><p><strong><em>Através da Lente.</em></strong> Quando faz um teste de Investigação ou de Percepção ou para adquirir pistas olhando através de uma câmera ou analisando fotos, você pode gastar 2 PE para receber +5 nesse teste (um personagem que se move olhando através de uma lente anda à metade de seu deslocamento).</p>",
+    "chatDescription": ""
+  },
+  "effects": [],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "WeXQ2WY27ruZ5VmA": 3
+  },
+  "flags": {
+    "ordem-v2-classic": {
+      "source": "sah"
+    }
+  },
+  "_stats": {
+    "coreVersion": "14.365",
+    "systemId": "ordemparanormal",
+    "systemVersion": "7.3.3",
+    "createdTime": 1784492075728,
+    "modifiedTime": 1784598167882,
+    "lastModifiedBy": "mCARmiewelPiv8Ze",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!LHDgYH95ZOF1dIT0"
+}

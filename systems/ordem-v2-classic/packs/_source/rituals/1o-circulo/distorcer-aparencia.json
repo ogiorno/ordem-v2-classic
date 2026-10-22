@@ -1,0 +1,45 @@
+{
+  "name": "Distorcer Aparência",
+  "type": "ritual",
+  "img": "systems/ordem-v2-classic/assets/rituais/distorcer-aparencia.png",
+  "system": {
+    "circle": 1,
+    "element": "blood",
+    "description": "<p>Você modifica sua aparência de modo a parecer outra pessoa. Isso inclui altura, peso, tom de pele, cor de cabelo, timbre de voz, impressão digital, córnea etc. Você recebe +10 em testes de Enganação para disfarce, mas não recebe habilidades da nova forma nem modifica suas demais estatísticas. Discente (+2 PE): muda o alcance para “curto” e o alvo para “1 ser”. Um alvo involuntária pode anular o efeito com um teste de Vontade. Verdadeiro (+5 PE): como em Discente, mas muda o alvo para “seres escolhidos”. Requer 3º círculo.</p>",
+    "chatDescription": "<p><strong>Fonte:</strong> Livro de Regras v1.3 · <strong>Execução:</strong> padrão · <strong>Alcance:</strong> pessoal · <strong>Alvo:</strong> você · <strong>Duração:</strong> cena · <strong>Resistência:</strong> Vontade desacredita</p>",
+    "execution": "default",
+    "range": "personal",
+    "target": "você",
+    "duration": "scene",
+    "resistance": "discredits",
+    "skillResis": "will",
+    "targetQtd": "",
+    "area": {
+      "name": "",
+      "size": "",
+      "type": ""
+    },
+    "studentForm": true,
+    "trueForm": true
+  },
+  "effects": [],
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.369",
+    "systemId": "ordem-v2-classic",
+    "systemVersion": "8.0.2",
+    "createdTime": 1792207618168,
+    "modifiedTime": 1792207618168,
+    "lastModifiedBy": null,
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "ownership": {
+    "default": 0
+  },
+  "folder": "RituaisCirculo01",
+  "sort": 15000,
+  "_id": "AZKeiyiHdK7TR4yv",
+  "_key": "!items!AZKeiyiHdK7TR4yv"
+}

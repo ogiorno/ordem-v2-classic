@@ -1,0 +1,40 @@
+{
+	"name": "Derrubar",
+	"type": "ability",
+	"img": "systems/ordem-v2-classic/assets/ability-icons/1616-ficha-1-derrubar.webp",
+	"system": {
+		"id": 0,
+		"abilityType": "ability",
+		"preRequisite": "",
+		"description": "<p>Se o cão de guarda acerta um ataque de mordida, pode fazer a manobra derrubar (bônus d20d20+5).</p>",
+		"chatDescription": "",
+		"activation": "free",
+		"cost": 0,
+		"costType": "PE",
+		"execution": null
+	},
+	"effects": [],
+	"flags": {
+		"ordem-v2-classic": {
+			"threatAbilityId": "1616-H01"
+		}
+	},
+	"_stats": {
+		"coreVersion": "14.369",
+		"systemId": "ordem-v2-classic",
+		"systemVersion": "8.0.2",
+		"createdTime": 1792207618168,
+		"modifiedTime": 1792207618168,
+		"lastModifiedBy": null,
+		"compendiumSource": null,
+		"duplicateSource": null,
+		"exportSource": null
+	},
+	"ownership": {
+		"default": 0
+	},
+	"folder": "c9zZBcV5C0J8FVbc",
+	"sort": 1000,
+	"_id": "xM0YgldKGqqMJMgs",
+	"_key": "!items!xM0YgldKGqqMJMgs"
+}

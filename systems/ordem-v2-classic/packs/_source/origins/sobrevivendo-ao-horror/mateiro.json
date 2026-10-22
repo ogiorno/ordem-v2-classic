@@ -1,0 +1,35 @@
+{
+  "folder": "NNs4Mm1qnMBc4PM5",
+  "name": "Mateiro",
+  "type": "origin",
+  "_id": "bb049vvfaAYAnDtT",
+  "img": "systems/ordemparanormal/media/icons/origins/mateiro.svg",
+  "system": {
+    "id": 0,
+    "description": "<p>Você conhece áreas rurais e selvagens. Você pode ser um guia florestal, um biólogo de campo ou simplesmente um entusiasta da vida selvagem. Qualquer que seja sua relação com a natureza, ela foi sua porta para o contato com o Outro Lado.</p><p><strong><em>Perícias treinadas.</em></strong> Percepção e Sobrevivência.</p><p><strong><em>Mapa Celeste.</em></strong> Desde que possa ver o céu, você sempre sabe as direções dos pontos cardeais e consegue chegar sem se perder em qualquer lugar que já tenha visitado ao menos uma vez. Quando faz um teste de Sobrevivência, você pode gastar 2 PE para rolar o teste novamente e escolher o melhor entre os dois resultados. Além disso, em cenas de interlúdio, você considera condições de sono precárias como normais.</p>",
+    "chatDescription": ""
+  },
+  "effects": [],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "WeXQ2WY27ruZ5VmA": 3
+  },
+  "flags": {
+    "ordem-v2-classic": {
+      "source": "sah"
+    }
+  },
+  "_stats": {
+    "coreVersion": "14.365",
+    "systemId": "ordemparanormal",
+    "systemVersion": "7.3.3",
+    "createdTime": 1784492190507,
+    "modifiedTime": 1784598291081,
+    "lastModifiedBy": "mCARmiewelPiv8Ze",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!bb049vvfaAYAnDtT"
+}

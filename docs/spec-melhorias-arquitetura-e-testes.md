@@ -25,7 +25,7 @@
 
 ### T01 — Alinhar documentação e comandos
 
-**Arquivos:** `systems/ordem_v2_classic/README.md`, `package.json`, configuração ESLint e `CLAUDE.md` se necessário. **Antes:** checar scripts existentes e executar os comandos de validação atuais. **Mudança:** corrigir comandos inexistentes, descrever Node Test Runner e `module/tests/suites`, diferenciar build de pack e sincronização; criar configuração ESLint 9 mínima para o comando de lint. **Aceite:** todos os comandos publicados existem; `npm test`, `npm run lang-check`, `npm run render-check` e `npm run lint` executam; instrução de teste Foundry reproduzível. Sem alteração funcional.
+**Arquivos:** `systems/ordem-v2-classic/README.md`, `package.json`, configuração ESLint e `CLAUDE.md` se necessário. **Antes:** checar scripts existentes e executar os comandos de validação atuais. **Mudança:** corrigir comandos inexistentes, descrever Node Test Runner e `module/tests/suites`, diferenciar build de pack e sincronização; criar configuração ESLint 9 mínima para o comando de lint. **Aceite:** todos os comandos publicados existem; `npm test`, `npm run lang-check`, `npm run render-check` e `npm run lint` executam; instrução de teste Foundry reproduzível. Sem alteração funcional.
 
 ### T02 — Fechar rota genérica de dano remoto
 

@@ -1,0 +1,45 @@
+{
+  "name": "Mutar",
+  "type": "ritual",
+  "img": "systems/ordem-v2-classic/assets/rituais/mutar.png",
+  "system": {
+    "circle": 3,
+    "element": "energy",
+    "description": "<p>Impede que qualquer som saia de você e que sons externos cheguem até você. Concede +10 em Furtividade e, a critério do mestre, reduz em um ponto o ganho de visibilidade em cenas de furtividade. O jogador só pode falar na mesa com permissão do mestre; se falar sem ela, o ritual termina. - <strong>Discente (+4 PE):</strong> alcance toque; 1 ser. - <strong>Verdadeiro (+9 PE):</strong> alcance curto; até 5 seres. Requer afinidade com Energia.</p>",
+    "chatDescription": "<p><strong>Fonte:</strong> Sobrevivendo ao Horror v1.3 · <strong>Execução:</strong> padrão · <strong>Alcance:</strong> pessoal · <strong>Alvo:</strong> você · <strong>Duração:</strong> cena · <strong>Resistência:</strong> —</p>",
+    "execution": "default",
+    "range": "personal",
+    "target": "você",
+    "duration": "scene",
+    "resistance": "",
+    "skillResis": "",
+    "targetQtd": "",
+    "area": {
+      "name": "",
+      "size": "",
+      "type": ""
+    },
+    "studentForm": true,
+    "trueForm": true
+  },
+  "effects": [],
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.369",
+    "systemId": "ordem-v2-classic",
+    "systemVersion": "8.0.2",
+    "createdTime": 1792207618168,
+    "modifiedTime": 1792207618168,
+    "lastModifiedBy": null,
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "ownership": {
+    "default": 0
+  },
+  "folder": "RituaisCirculo03",
+  "sort": 66000,
+  "_id": "MGlnCxCyOOrw3Nhq",
+  "_key": "!items!MGlnCxCyOOrw3Nhq"
+}

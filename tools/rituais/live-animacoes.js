@@ -5,9 +5,9 @@
 (async () => {
 	const circle = Number(window.__animCircle);
 	const pause = (ms) => new Promise((r) => setTimeout(r, ms));
-	const { openArena } = await import("/systems/ordem_v2_classic/module/macros/ritual-live-arena.mjs");
-	const { ritualAnimationName } = await import("/systems/ordem_v2_classic/module/integrations/ritual-animations.mjs");
-	const map = await (await fetch("/systems/ordem_v2_classic/module/macros/ritual-animation-map.json")).json();
+	const { openArena } = await import("/systems/ordem-v2-classic/module/macros/ritual-live-arena.mjs");
+	const { ritualAnimationName } = await import("/systems/ordem-v2-classic/module/integrations/ritual-animations.mjs");
+	const map = await (await fetch("/systems/ordem-v2-classic/module/macros/ritual-animation-map.json")).json();
 	const norm = (v) => String(v ?? "").normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[^\p{L}\p{N}]/gu, "").toLowerCase();
 	const byName = new Map(map.map((r) => [norm(r.name), r]));
 	const pack = game.packs.get("world.biblioteca-de-rituais");

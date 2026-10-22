@@ -1,0 +1,35 @@
+{
+  "folder": "K6pw1Gg6gDxrhy1W",
+  "name": "Perseverante",
+  "type": "path",
+  "_id": "boKpsB3ZiS0OoYtp",
+  "img": "systems/ordemparanormal/media/icons/paths/perseverante.svg",
+  "system": {
+    "id": 0,
+    "description": "<p>Você sabe que é um sobrevivente. Talvez tenha sido o único a escapar com vida de uma grande tragédia, ou simplesmente possua o espírito necessário para perseverar onde todos os outros caíram. Em filmes de terror, os monstros e assassinos costumam pegar suas vítimas isoladas uma a uma com facilidade, até se depararem com uma protagonista resiliente e que parece nunca desistir. Seja por experiência ou instinto, você tem certeza que se estivesse em um desses filmes, seria o último sobrevivente a sair vivo no final.</p>",
+    "chatDescription": ""
+  },
+  "effects": [],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "WeXQ2WY27ruZ5VmA": 3
+  },
+  "flags": {
+    "ordem-v2-classic": {
+      "source": "sah"
+    }
+  },
+  "_stats": {
+    "coreVersion": "14.365",
+    "systemId": "ordemparanormal",
+    "systemVersion": "7.3.3",
+    "createdTime": 1784685681520,
+    "modifiedTime": 1784758088229,
+    "lastModifiedBy": "mCARmiewelPiv8Ze",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!boKpsB3ZiS0OoYtp"
+}

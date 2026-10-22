@@ -1,0 +1,45 @@
+{
+  "name": "Canalizar o Medo",
+  "type": "ritual",
+  "img": "systems/ordem-v2-classic/assets/rituais/canalizar-o-medo.png",
+  "system": {
+    "circle": 4,
+    "element": "fear",
+    "description": "<p>Você transfere parte de seu poder para outra pessoa. Escolha um ritual de até 3º círculo que você conheça; o alvo pode conjurar este ritual em sua forma básica uma vez, sem pagar seu custo em PE (mas pode usar formas avançadas gastando seus próprios PE para isso). Até o ritual transferido ser conjurado, seus PE máximos diminuem em um valor igual ao custo dele.</p>",
+    "chatDescription": "<p><strong>Fonte:</strong> Livro de Regras v1.3 · <strong>Execução:</strong> padrão · <strong>Alcance:</strong> toque · <strong>Alvo:</strong> 1 pessoa · <strong>Duração:</strong> permanente até ser descarregada · <strong>Resistência:</strong> —</p>",
+    "execution": "default",
+    "range": "touch",
+    "target": "1 pessoa",
+    "duration": "setDuration",
+    "resistance": "",
+    "skillResis": "",
+    "targetQtd": "",
+    "area": {
+      "name": "",
+      "size": "",
+      "type": ""
+    },
+    "studentForm": false,
+    "trueForm": false
+  },
+  "effects": [],
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.369",
+    "systemId": "ordem-v2-classic",
+    "systemVersion": "8.0.2",
+    "createdTime": 1792207618168,
+    "modifiedTime": 1792207618168,
+    "lastModifiedBy": null,
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "ownership": {
+    "default": 0
+  },
+  "folder": "RituaisCirculo04",
+  "sort": 80000,
+  "_id": "gIJLi0Tgs3bJ7Pw4",
+  "_key": "!items!gIJLi0Tgs3bJ7Pw4"
+}

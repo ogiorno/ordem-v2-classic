@@ -2,9 +2,9 @@
 // Uso: npm run lang-check
 import { readFileSync } from "node:fs";
 import assert from "node:assert/strict";
-import { OPTION_MAPS } from "../systems/ordem_v2_classic/module/helpers/threat-ability-editor.mjs";
+import { OPTION_MAPS } from "../systems/ordem-v2-classic/module/helpers/threat-ability-editor.mjs";
 
-const sys = "systems/ordem_v2_classic/";
+const sys = "systems/ordem-v2-classic/";
 const files = [
 	"templates/threat/actor-threat-sheet.hbs",
 	"templates/threat/parts/threat-test-chip.hbs",

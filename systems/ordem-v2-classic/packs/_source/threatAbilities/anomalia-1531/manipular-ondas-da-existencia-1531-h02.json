@@ -1,0 +1,40 @@
+{
+	"name": "Manipular Ondas Da Existência",
+	"type": "ability",
+	"img": "systems/ordem-v2-classic/assets/ability-icons/1531-1533-free-manipular-ondas-da-existencia.webp",
+	"system": {
+		"id": 0,
+		"abilityType": "ability",
+		"preRequisite": "",
+		"description": "<p>LIVRE - MANIPULAR ONDAS DA EXISTÊNCIA No final do turno da anomalia, ela manipula as ondas eletromagnéticas que compõem a própria existência. Ela pode ativar, desativar ou operar até seis objetos tecnológicos em alcance médio. Como alternativa, pode sobrecarregar estes objetos, gerando uma poderosa descarga que causa 2d12 pontos de dano de Energia por objeto em todos os seres na área (Reflexos DT 30 reduz à metade).</p>",
+		"chatDescription": "",
+		"activation": "free",
+		"cost": 0,
+		"costType": "PE",
+		"execution": null
+	},
+	"effects": [],
+	"flags": {
+		"ordem-v2-classic": {
+			"threatAbilityId": "1531-H02"
+		}
+	},
+	"_stats": {
+		"coreVersion": "14.369",
+		"systemId": "ordem-v2-classic",
+		"systemVersion": "8.0.2",
+		"createdTime": 1792207618168,
+		"modifiedTime": 1792207618168,
+		"lastModifiedBy": null,
+		"compendiumSource": null,
+		"duplicateSource": null,
+		"exportSource": null
+	},
+	"ownership": {
+		"default": 0
+	},
+	"folder": "0qiHJU1EoU14Qoet",
+	"sort": 2000,
+	"_id": "w4hedYLOxz8c285B",
+	"_key": "!items!w4hedYLOxz8c285B"
+}

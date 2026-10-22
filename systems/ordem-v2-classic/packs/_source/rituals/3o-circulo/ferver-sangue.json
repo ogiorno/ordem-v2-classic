@@ -1,0 +1,45 @@
+{
+  "name": "Ferver Sangue",
+  "type": "ritual",
+  "img": "systems/ordem-v2-classic/assets/rituais/ferver-sangue.png",
+  "system": {
+    "circle": 3,
+    "element": "blood",
+    "description": "<p>O sangue do alvo aquece até entrar em ebulição. Quando o ritual é conjurado, e no início de cada turno do alvo, ele deve fazer um teste de Fortitude. Se falhar, sofre 4d8 pontos de dano de Sangue e fica fraco; se passar, sofre metade do dano e não fica fraco nesta rodada. Se o alvo passar nesse teste dois turnos seguidos o efeito termina. Verdadeiro (+4 PE): muda o alvo para “seres escolhidos”. Requer 4º círculo e afinidade.</p>",
+    "chatDescription": "<p><strong>Fonte:</strong> Livro de Regras v1.3 · <strong>Execução:</strong> padrão · <strong>Alcance:</strong> curto · <strong>Alvo:</strong> 1 ser · <strong>Duração:</strong> sustentada · <strong>Resistência:</strong> Fortitude parcial</p>",
+    "execution": "default",
+    "range": "short",
+    "target": "1 ser",
+    "duration": "sustained",
+    "resistance": "partial",
+    "skillResis": "resilience",
+    "targetQtd": "",
+    "area": {
+      "name": "",
+      "size": "",
+      "type": ""
+    },
+    "studentForm": false,
+    "trueForm": true
+  },
+  "effects": [],
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.369",
+    "systemId": "ordem-v2-classic",
+    "systemVersion": "8.0.2",
+    "createdTime": 1792207618168,
+    "modifiedTime": 1792207618168,
+    "lastModifiedBy": null,
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "ownership": {
+    "default": 0
+  },
+  "folder": "RituaisCirculo03",
+  "sort": 62000,
+  "_id": "2Ez5SSJooLJtSPr6",
+  "_key": "!items!2Ez5SSJooLJtSPr6"
+}

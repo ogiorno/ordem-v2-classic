@@ -1,0 +1,41 @@
+{
+  "name": "Carregador Rápido",
+  "type": "generalEquipment",
+  "_id": "uktShJhgt1Nma9fJ",
+  "img": "systems/ordemparanormal/media/icons/equipments/accessories/kit-de-pericia.svg",
+  "system": {
+    "using": {
+      "state": true,
+      "class": "fas"
+    },
+    "type": "",
+    "quantity": 1,
+    "description": "<p>Modificação para armas de fogo, bestas e balestras (regra opcional de contagem de munição). Em uma arma de fogo, permite recarregá-la como uma ação livre uma vez por rodada. Para bestas ou balestras, permite até cinco recargas como ação livre exigindo apenas uma mão. Após isso, é necessário recarregar o carregador um virote de cada vez (uma ação de movimento por virote).</p>",
+    "chatDescription": "",
+    "weight": 0,
+    "category": 0
+  },
+  "effects": [],
+  "folder": "M0pJZJR4XxYW4gSs",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "ordem-v2-classic": {
+      "source": "sah"
+    }
+  },
+  "_stats": {
+    "coreVersion": "14.365",
+    "systemId": "ordem-v2-classic",
+    "systemVersion": "7.3.3",
+    "createdTime": 1784900000000,
+    "modifiedTime": 1784900000000,
+    "lastModifiedBy": null,
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!uktShJhgt1Nma9fJ"
+}

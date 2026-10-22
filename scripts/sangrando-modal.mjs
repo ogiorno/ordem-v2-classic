@@ -66,7 +66,7 @@ try {
 
 	// arena com um agente do jogador e uma ameaça; combate com o agente primeiro
 	const setup = await gm.evaluate(async (name) => {
-		const A = await import("/systems/ordem_v2_classic/module/macros/ritual-live-arena.mjs");
+		const A = await import("/systems/ordem-v2-classic/module/macros/ritual-live-arena.mjs");
 		const arena = await A.openArena({ agents: ["Agente NEX 50 — Ocultista"] });
 		const user = game.users.getName(name);
 		const ag = arena.agents[0];
@@ -85,13 +85,13 @@ try {
 
 	const hp = () => gm.evaluate(() => game.actors.get(window.__sg.actorId).system.PV.value);
 	const bleedFx = () => gm.evaluate(async () => {
-		const { activeConditions } = await import("/systems/ordem_v2_classic/module/helpers/conditions.mjs");
-		return activeConditions(game.actors.get(window.__sg.actorId), "bleeding").map((e) => e.getFlag("ordem_v2_classic", "condition").stacks ?? 1);
+		const { activeConditions } = await import("/systems/ordem-v2-classic/module/helpers/conditions.mjs");
+		return activeConditions(game.actors.get(window.__sg.actorId), "bleeding").map((e) => e.getFlag("ordem-v2-classic", "condition").stacks ?? 1);
 	});
-	const openCards = () => gm.evaluate(() => game.messages.filter((m) => { const f = m.getFlag("ordem_v2_classic", "bleedPending"); return f && f.actorId === window.__sg.actorId && !f.resolved; }).length);
+	const openCards = () => gm.evaluate(() => game.messages.filter((m) => { const f = m.getFlag("ordem-v2-classic", "bleedPending"); return f && f.actorId === window.__sg.actorId && !f.resolved; }).length);
 	const setVigor = (value) => gm.evaluate(async (v) => { await game.actors.get(window.__sg.actorId).update({ "system.skills.resilience.value": v }); }, value);
 	const apply = (times) => gm.evaluate(async (n) => {
-		const E = await import("/systems/ordem_v2_classic/module/macros/ritual-area-engine.mjs");
+		const E = await import("/systems/ordem-v2-classic/module/macros/ritual-area-engine.mjs");
 		const actor = game.actors.get(window.__sg.actorId);
 		for (let i = 0; i < n; i++) await E.applyCondition(actor, { key: "bleeding" }, {});
 	}, times);

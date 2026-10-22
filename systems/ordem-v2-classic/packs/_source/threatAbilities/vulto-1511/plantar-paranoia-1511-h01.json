@@ -1,0 +1,95 @@
+{
+	"name": "Plantar Paranoia",
+	"type": "ability",
+	"img": "systems/ordem-v2-classic/assets/ability-icons/1511-1513-full-plantar-paranoia.webp",
+	"system": {
+		"id": 0,
+		"abilityType": "ability",
+		"preRequisite": "",
+		"description": "<p>COMPLETA - PLANTAR PARANOIA O vulto procura implantar medo e paranoia na mente de suas vítimas ao chacoalhar a Membrana e fazer aparecer coisas que não estão lá de verdade. Cada personagem em alcance médio fica abalado (Vontade DT 15 evita). Se o personagem já estiver abalado, ficará apavorado. Se o vulto estiver escondido ao usar essa habilidade, cada personagem sofre –d20 no teste de Vontade.</p>",
+		"chatDescription": "",
+		"activation": "complete",
+		"cost": 0,
+		"costType": "PE",
+		"execution": {
+			"mode": "active",
+			"automation": "assisted",
+			"damage": [],
+			"effects": [
+				{
+					"condition": "abalado",
+					"duration": {
+						"unit": "unspecified",
+						"value": null
+					},
+					"onSave": "fail",
+					"target": "target",
+					"trigger": "",
+					"support": "marker"
+				}
+			],
+			"requirements": [],
+			"grants": [],
+			"targeting": {
+				"kind": "area",
+				"relation": "any",
+				"range": null,
+				"count": null,
+				"voluntary": false,
+				"rangeUnspecified": false,
+				"requiresSight": false
+			},
+			"area": {
+				"shape": "sphere",
+				"radius": 18,
+				"origin": "caster",
+				"persistence": "instant",
+				"triggers": [],
+				"length": null,
+				"width": null
+			},
+			"save": {
+				"skill": "vontade",
+				"dc": 15,
+				"onSuccess": "none",
+				"retry": false
+			},
+			"version": 1,
+			"source": {
+				"reference": "Livro v1.3, p. 261, Vulto",
+				"reviewed": false
+			},
+			"cost": null,
+			"trigger": null,
+			"visibility": {
+				"dc": "gm",
+				"defense": "gm",
+				"result": "public"
+			}
+		}
+	},
+	"effects": [],
+	"flags": {
+		"ordem-v2-classic": {
+			"threatAbilityId": "1511-H01"
+		}
+	},
+	"_stats": {
+		"coreVersion": "14.369",
+		"systemId": "ordem-v2-classic",
+		"systemVersion": "8.0.2",
+		"createdTime": 1792207618168,
+		"modifiedTime": 1792207618168,
+		"lastModifiedBy": null,
+		"compendiumSource": null,
+		"duplicateSource": null,
+		"exportSource": null
+	},
+	"ownership": {
+		"default": 0
+	},
+	"folder": "gMvvfMady1TmEye3",
+	"sort": 1000,
+	"_id": "uBmufFHXWKNuV0lt",
+	"_key": "!items!uBmufFHXWKNuV0lt"
+}

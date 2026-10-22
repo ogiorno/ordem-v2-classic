@@ -1,0 +1,45 @@
+{
+  "name": "Desfazer Sinapses",
+  "type": "ritual",
+  "img": "systems/ordem-v2-classic/assets/rituais/desfazer-sinapses.png",
+  "system": {
+    "circle": 1,
+    "element": "knowledge",
+    "description": "<p>Causa 2d6+2 de dano de Conhecimento e deixa frustrado por 1 rodada. Sucesso na resistência reduz o dano à metade e evita a condição. - <strong>Discente (+2 PE):</strong> alcance longo, até 5 seres escolhidos e 3d6+3 de dano. Requer 2º círculo. - <strong>Verdadeiro (+5 PE):</strong> alcance extremo, 8d6+8 de dano; troca a condição por esmorecido. Sucesso na resistência deixa frustrado em vez de esmorecido. Requer 3º círculo.</p>",
+    "chatDescription": "<p><strong>Fonte:</strong> Sobrevivendo ao Horror v1.3 · <strong>Execução:</strong> padrão · <strong>Alcance:</strong> curto · <strong>Alvo:</strong> 1 ser com cérebro · <strong>Duração:</strong> instantânea · <strong>Resistência:</strong> Vontade parcial</p>",
+    "execution": "default",
+    "range": "short",
+    "target": "1 ser com cérebro",
+    "duration": "instantaneous",
+    "resistance": "partial",
+    "skillResis": "will",
+    "targetQtd": "",
+    "area": {
+      "name": "",
+      "size": "",
+      "type": ""
+    },
+    "studentForm": true,
+    "trueForm": true
+  },
+  "effects": [],
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.369",
+    "systemId": "ordem-v2-classic",
+    "systemVersion": "8.0.2",
+    "createdTime": 1792207618168,
+    "modifiedTime": 1792207618168,
+    "lastModifiedBy": null,
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "ownership": {
+    "default": 0
+  },
+  "folder": "RituaisCirculo01",
+  "sort": 14000,
+  "_id": "PHo2Ql6xwpeu99YZ",
+  "_key": "!items!PHo2Ql6xwpeu99YZ"
+}

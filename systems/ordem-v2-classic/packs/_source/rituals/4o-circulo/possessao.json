@@ -1,0 +1,45 @@
+{
+  "name": "Possessão",
+  "type": "ritual",
+  "img": "systems/ordem-v2-classic/assets/rituais/possessao.png",
+  "system": {
+    "circle": 4,
+    "element": "knowledge",
+    "description": "<p>Você projeta sua consciência no corpo de uma pessoa viva ou morta. Enquanto possuir o alvo, você assume o controle total do corpo dele (se o alvo estiver vivo, a consciência dele troca de lugar com a sua, ficando inerte dentro do seu corpo desacordado). Em termos de jogo, você continua usando a sua ficha, mas com os atributos físicos (Agilidade, Força e Vigor) e deslocamento do alvo. Se o alvo passar no teste de resistência, sabe que você tentou possuí-lo e fica imune a este ritual por um dia. Caso qualquer um dos envolvidos no ritual morra, a mente sobrevivente ficará permanentemente presa no corpo novo, a não ser que use o ritual outra vez para voltar a seu corpo antigo. Retornar para o seu corpo voluntariamente é uma ação livre.</p>",
+    "chatDescription": "<p><strong>Fonte:</strong> Livro de Regras v1.3 · <strong>Execução:</strong> padrão · <strong>Alcance:</strong> longo · <strong>Alvo:</strong> 1 pessoa viva ou morta · <strong>Duração:</strong> 1 dia · <strong>Resistência:</strong> Vontade anula</p>",
+    "execution": "default",
+    "range": "long",
+    "target": "1 pessoa viva ou morta",
+    "duration": "setDuration",
+    "resistance": "nullifies",
+    "skillResis": "will",
+    "targetQtd": "",
+    "area": {
+      "name": "",
+      "size": "",
+      "type": ""
+    },
+    "studentForm": false,
+    "trueForm": false
+  },
+  "effects": [],
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.369",
+    "systemId": "ordem-v2-classic",
+    "systemVersion": "8.0.2",
+    "createdTime": 1792207618168,
+    "modifiedTime": 1792207618168,
+    "lastModifiedBy": null,
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "ownership": {
+    "default": 0
+  },
+  "folder": "RituaisCirculo04",
+  "sort": 93000,
+  "_id": "6tYGmMsTko4VYxUC",
+  "_key": "!items!6tYGmMsTko4VYxUC"
+}

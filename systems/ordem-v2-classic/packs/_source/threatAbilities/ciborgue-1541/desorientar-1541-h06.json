@@ -1,0 +1,93 @@
+{
+	"name": "Desorientar",
+	"type": "ability",
+	"img": "systems/ordem-v2-classic/assets/ability-icons/1541-1550-free-desorientar.webp",
+	"system": {
+		"id": 0,
+		"abilityType": "ability",
+		"preRequisite": "",
+		"description": "<p>LIVRE - DESORIENTAR Um ser que sofra dano do raio energético fica alquebrado. Se já estiver alquebrado, fica atordoado por uma rodada (Vontade DT 20 evita).</p>",
+		"chatDescription": "",
+		"activation": "free",
+		"cost": 0,
+		"costType": "PE",
+		"execution": {
+			"mode": "active",
+			"automation": "assisted",
+			"damage": [],
+			"effects": [
+				{
+					"condition": "alquebrado",
+					"duration": {
+						"unit": "unspecified",
+						"value": null
+					},
+					"onSave": "fail",
+					"target": "target",
+					"trigger": "",
+					"support": "marker"
+				}
+			],
+			"requirements": [
+				{
+					"kind": "narrative",
+					"text": "o ser sofreu dano do raio energético",
+					"ref": ""
+				}
+			],
+			"grants": [],
+			"targeting": {
+				"kind": "token",
+				"range": null,
+				"count": 1,
+				"relation": "any",
+				"rangeUnspecified": true,
+				"voluntary": false,
+				"requiresSight": false
+			},
+			"save": {
+				"skill": "vontade",
+				"dc": 20,
+				"onSuccess": "none",
+				"retry": false
+			},
+			"version": 1,
+			"source": {
+				"reference": "Livro v1.3, p. 275, Ciborgue",
+				"reviewed": false
+			},
+			"cost": null,
+			"area": null,
+			"trigger": null,
+			"visibility": {
+				"dc": "gm",
+				"defense": "gm",
+				"result": "public"
+			}
+		}
+	},
+	"effects": [],
+	"flags": {
+		"ordem-v2-classic": {
+			"threatAbilityId": "1541-H06"
+		}
+	},
+	"_stats": {
+		"coreVersion": "14.369",
+		"systemId": "ordem-v2-classic",
+		"systemVersion": "8.0.2",
+		"createdTime": 1792207618168,
+		"modifiedTime": 1792207618168,
+		"lastModifiedBy": null,
+		"compendiumSource": null,
+		"duplicateSource": null,
+		"exportSource": null
+	},
+	"ownership": {
+		"default": 0
+	},
+	"folder": "iCpbGIaHKW7hj8P7",
+	"sort": 6000,
+	"_id": "XTA8SSPGYBTw5PpP",
+	"_key": "!items!XTA8SSPGYBTw5PpP"
+}

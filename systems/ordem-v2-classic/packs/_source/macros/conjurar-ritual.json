@@ -1,0 +1,26 @@
+{
+	"_id": "ritualCaster0001",
+	"name": "Conjurar Ritual",
+	"type": "script",
+	"author": "",
+	"img": "icons/svg/book.svg",
+	"scope": "global",
+	"command": "await import(\"/systems/ordem-v2-classic/module/macros/ritual-caster.mjs\")\n\t.then(({ runRitualCasterMacro }) => runRitualCasterMacro());",
+	"flags": {},
+	"folder": null,
+	"sort": 500000,
+	"ownership": {
+		"default": 0
+	},
+	"_stats": {
+		"compendiumSource": null,
+		"duplicateSource": null,
+		"coreVersion": "14.369",
+		"systemId": "ordem-v2-classic",
+		"systemVersion": "8.0.2",
+		"createdTime": null,
+		"modifiedTime": null,
+		"lastModifiedBy": null
+	},
+	"_key": "!macros!ritualCaster0001"
+}

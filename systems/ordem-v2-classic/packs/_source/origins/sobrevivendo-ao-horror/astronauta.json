@@ -1,0 +1,35 @@
+{
+  "folder": "NNs4Mm1qnMBc4PM5",
+  "name": "Astronauta",
+  "type": "origin",
+  "_id": "bl6gmIisNRmWZ6Bq",
+  "img": "systems/ordemparanormal/media/icons/origins/astronauta.svg",
+  "system": {
+    "id": 0,
+    "description": "<p>Outrora limitada a membros de algumas agências espaciais estatais, a profissão de explorador espacial se tornou mais acessível conforme mais países, e até mesmo empresas privadas, se envolveram com viagens na fronteira final. Como um astronauta, você se acostumou à pressão de ser responsável pela vida de seus colegas e por experimentos de milhões de reais. E foi na escuridão do espaço que você descobriu que não estamos sozinhos.</p><p><strong><em>Perícias treinadas.</em></strong> Ciências e Fortitude.</p><p><strong><em>Acostumado ao Extremo.</em></strong> Quando sofre dano de fogo, de frio ou mental, você pode gastar 1 PE para reduzir esse dano em 5. A cada vez que usa esta habilidade novamente na mesma cena, seu custo aumenta em +1 PE.</p>",
+    "chatDescription": ""
+  },
+  "effects": [],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "WeXQ2WY27ruZ5VmA": 3
+  },
+  "flags": {
+    "ordem-v2-classic": {
+      "source": "sah"
+    }
+  },
+  "_stats": {
+    "coreVersion": "14.365",
+    "systemId": "ordemparanormal",
+    "systemVersion": "7.3.3",
+    "createdTime": 1784491880484,
+    "modifiedTime": 1784598071084,
+    "lastModifiedBy": "mCARmiewelPiv8Ze",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!bl6gmIisNRmWZ6Bq"
+}

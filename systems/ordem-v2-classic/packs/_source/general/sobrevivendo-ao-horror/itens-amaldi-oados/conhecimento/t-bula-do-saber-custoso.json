@@ -1,0 +1,41 @@
+{
+  "name": "Tábula do Saber Custoso",
+  "type": "generalEquipment",
+  "_id": "hO5dWSvE1WgZFgDG",
+  "img": "systems/ordemparanormal/media/icons/equipments/paranormal/amarras-de-conhecimento.svg",
+  "system": {
+    "using": {
+      "state": true,
+      "class": "fas"
+    },
+    "type": "",
+    "quantity": 1,
+    "description": "<p>Esta pequena tábula, marcada com sigilos de Conhecimento, fornece conhecimento do Outro Lado às custas da integridade da mente de seu usuário. Se estiver empunhando a Tábula do Saber Custoso, você pode usá-la para receber os benefícios de ser treinado em uma perícia por um único teste. Se fizer isso, você perde uma quantidade de pontos de Sanidade igual ao seu valor no atributo-chave dessa perícia.</p>",
+    "chatDescription": "",
+    "weight": 1,
+    "category": 2
+  },
+  "effects": [],
+  "folder": "R5e6FFjzfeg5M1EA",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "ordem-v2-classic": {
+      "source": "sah"
+    }
+  },
+  "_stats": {
+    "coreVersion": "14.365",
+    "systemId": "ordem-v2-classic",
+    "systemVersion": "7.3.3",
+    "createdTime": 1784900000000,
+    "modifiedTime": 1784900000000,
+    "lastModifiedBy": null,
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!hO5dWSvE1WgZFgDG"
+}

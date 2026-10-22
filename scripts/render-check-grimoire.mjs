@@ -10,7 +10,7 @@ import assert from "node:assert/strict";
 const install = process.env.FOUNDRY_APP ?? "C:\\Users\\Geh\\VTT\\Foundry Virtual Tabletop\\resources\\app";
 const require = createRequire(existsSync(path.join(install, "package.json")) ? path.join(install, "package.json") : import.meta.url);
 const Handlebars = require("handlebars");
-const root = path.resolve(process.env.GRIMORIO_ROOT ?? "systems/ordem_v2_classic");
+const root = path.resolve(process.env.GRIMORIO_ROOT ?? "systems/ordem-v2-classic");
 const langDir = path.resolve(process.env.GRIMORIO_LANG ?? path.join(root, "lang"));
 const read = (rel) => readFileSync(path.join(root, rel), "utf8");
 const ptKeys = JSON.parse(readFileSync(path.join(langDir, "pt-BR.json"), "utf8"));

@@ -28,7 +28,7 @@ async (page) => {
 	const sheetSel = "[id^=OrdemActorSheet]";
 
 	const fx = await ev(async () => {
-		const SYS = "ordem_v2_classic";
+		const SYS = "ordem-v2-classic";
 		const norm = (t) => String(t).normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase().replace(/[^a-z0-9]/g, "");
 		const fp = async (p, n) => { const pack = game.packs.get(`${SYS}.${p}`); const e = (await pack.getIndex()).find((x) => norm(x.name) === norm(n)); const d = (await pack.getDocument(e._id)).toObject(); delete d._id; return d; };
 		window.__arFp = fp;
@@ -43,12 +43,12 @@ async (page) => {
 		return { id: a.id, gun: gun.id, knife: knife.id, attr: a.system.attributes[at.attr].value, attrKey: at.attr, skill: at.skill, name: gun.name };
 	});
 	const actorOf = () => `game.actors.get("${fx.id}")`;
-	const clearConds = () => ev(async (id) => { const a = game.actors.get(id); const ids = a.effects.filter((e) => e.getFlag("ordem_v2_classic", "condition")).map((e) => e.id); if (ids.length) await a.deleteEmbeddedDocuments("ActiveEffect", ids); }, fx.id);
+	const clearConds = () => ev(async (id) => { const a = game.actors.get(id); const ids = a.effects.filter((e) => e.getFlag("ordem-v2-classic", "condition")).map((e) => e.id); if (ids.length) await a.deleteEmbeddedDocuments("ActiveEffect", ids); }, fx.id);
 	const addCond = (cid) => ev(async ([id, c]) => {
-		const eng = await import("/systems/ordem_v2_classic/module/macros/ritual-area-engine.mjs");
+		const eng = await import("/systems/ordem-v2-classic/module/macros/ritual-area-engine.mjs");
 		await eng.applyCondition(game.actors.get(id), c, { itemId: "armas" });
 	}, [fx.id, cid]);
-	const newMsgs = () => ev(() => game.messages.contents.filter((m) => !window.__arFx.known.includes(m.id) && m.author?.id === game.user.id).map((m) => ({ id: m.id, rolls: (m.rolls ?? []).map((r) => r.formula), flag: m.getFlag("ordem_v2_classic", "attackOptions") ?? null, text: m.content.replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").slice(0, 500) })));
+	const newMsgs = () => ev(() => game.messages.contents.filter((m) => !window.__arFx.known.includes(m.id) && m.author?.id === game.user.id).map((m) => ({ id: m.id, rolls: (m.rolls ?? []).map((r) => r.formula), flag: m.getFlag("ordem-v2-classic", "attackOptions") ?? null, text: m.content.replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").slice(0, 500) })));
 	const mark = () => ev(() => { window.__arFx.known = game.messages.contents.map((m) => m.id); });
 	const closeAll = async () => { for (let i = 0; i < 12 && (await dialog.count()); i++) { await page.keyboard.press("Escape"); await sleep(350); } await ev(() => document.querySelectorAll(".application[id^=dialog]").forEach((d) => d.querySelector("[data-action=close]")?.click())); };
 	const openSheet = async () => {
@@ -89,7 +89,7 @@ async (page) => {
 		if (panel.remove) {
 			await dialog.locator("[data-action=remove-condition]").first().click();
 			await sleep(800);
-			const gone = await ev((id) => game.actors.get(id).effects.filter((e) => e.getFlag("ordem_v2_classic", "condition")).length, fx.id);
+			const gone = await ev((id) => game.actors.get(id).effects.filter((e) => e.getFlag("ordem-v2-classic", "condition")).length, fx.id);
 			const hidden = await ev(() => document.querySelector(".op-attack-dialog [data-condition-block]")?.hidden);
 			add("AR-05", "Botão de remover condição na tela tira o efeito e esconde o bloco", gone === 0 && hidden === true, `efeitos=${gone} oculto=${hidden}`);
 		} else add("AR-05", "Botão de remover condição na tela", false, "botão não existe nesta tela (template antigo em memória? reinicie o servidor)");
@@ -123,7 +123,7 @@ async (page) => {
 			await new Promise((r) => setTimeout(r, 600));
 			const tok = canvas.tokens.get(td.id);
 			const base = threat.system.defense.value;
-			const eng = await import("/systems/ordem_v2_classic/module/macros/ritual-area-engine.mjs");
+			const eng = await import("/systems/ordem-v2-classic/module/macros/ritual-area-engine.mjs");
 			await eng.applyCondition(threat, { label: "Vulnerável" }, { itemId: "armas" });
 			window.__arFx.target = td.id;
 			return { base, vuln: threat.system.defense.value, token: td.id };
@@ -132,7 +132,7 @@ async (page) => {
 		await ev((tid) => { game.user.targets.forEach((t) => t.setTarget(false, { releaseOthers: false })); canvas.tokens.get(tid).setTarget(true, { releaseOthers: false, groupSelection: false }); }, def.token);
 		r = await attackDirect(fx.gun);
 		const hitDef = await ev(([id, gun, tid]) => game.actors.get(id).items.get(gun)._compareWithDefense(canvas.tokens.get(tid).actor, 10, null)?.targetDefense, [fx.id, fx.gun, def.token]);
-		const linked = await ev(() => game.messages.contents.filter((m) => !window.__arFx.known.includes(m.id)).some((m) => m.getFlag("ordem_v2_classic", "hitResult")?.actorUuid?.includes("Actor.")));
+		const linked = await ev(() => game.messages.contents.filter((m) => !window.__arFx.known.includes(m.id)).some((m) => m.getFlag("ordem-v2-classic", "hitResult")?.actorUuid?.includes("Actor.")));
 		add("AR-09", "O ataque contra o Vulnerável confronta com a Defesa reduzida e guarda o alvo no cartão", hitDef === def.vuln && linked, `defesa usada ${hitDef}, esperada ${def.vuln}; alvo no cartão: ${linked}`);
 
 		// ---------- B. Modificações da arma
@@ -144,7 +144,7 @@ async (page) => {
 		// modificação como efeito "ao usar" na própria arma (ex.: mira laser +2 no ataque e +1 no dano)
 		await ev(async ([id, gun]) => {
 			const item = game.actors.get(id).items.get(gun);
-			await item.createEmbeddedDocuments("ActiveEffect", [{ name: "[AR] Mira laser", disabled: false, flags: { ordem_v2_classic: { onUse: { enabled: true, applies: "ranged", auto: true, attackBonus: 2, damageBonus: "1" } } } }]);
+			await item.createEmbeddedDocuments("ActiveEffect", [{ name: "[AR] Mira laser", disabled: false, flags: { "ordem-v2-classic": { onUse: { enabled: true, applies: "ranged", auto: true, attackBonus: 2, damageBonus: "1" } } } }]);
 		}, [fx.id, fx.gun]);
 		await sleep(400);
 		await mark();
@@ -182,12 +182,12 @@ async (page) => {
 		const cls = await ev(async ([id]) => {
 			const a = game.actors.get(id);
 			const [klass] = await a.createEmbeddedDocuments("Item", [await window.__arFp("classes", "Combatente")]);
-			const pack = game.packs.get("ordem_v2_classic.fighterPowers");
+			const pack = game.packs.get("ordem-v2-classic.fighterPowers");
 			const index = await pack.getIndex();
 			const docs = [];
 			for (const e of index) { const d = (await pack.getDocument(e._id)).toObject(); delete d._id; docs.push(d); }
 			const created = await a.createEmbeddedDocuments("Item", docs);
-			return { klass: klass.id, powers: created.map((i) => ({ id: i.id, name: i.name, effects: i.effects.size, onUse: i.effects.filter((e) => e.getFlag("ordem_v2_classic", "onUse")?.enabled).map((e) => e.name) })) };
+			return { klass: klass.id, powers: created.map((i) => ({ id: i.id, name: i.name, effects: i.effects.size, onUse: i.effects.filter((e) => e.getFlag("ordem-v2-classic", "onUse")?.enabled).map((e) => e.name) })) };
 		}, [fx.id]);
 		await ev((id) => game.actors.get(id).sheet.render(true), fx.id);
 		await sleep(1800);
@@ -397,7 +397,7 @@ async (page) => {
 			const tl = a.items.find((i) => /Técnica Letal/.test(i.name)) ?? (await a.createEmbeddedDocuments("Item", [await fp("pathFighter", "NEX 10% - Técnica Letal")]))[0];
 		}, [fx.id]);
 		await sleep(1500);
-		const sheetBadges = await ev(([id]) => { const a = game.actors.get(id); a.sheet.render(true); return a.items.filter((i) => i.type === "ability" && i.effects.some((e) => e.getFlag("ordem_v2_classic", "onUse")?.enabled)).map((i) => i.name); }, [fx.id]);
+		const sheetBadges = await ev(([id]) => { const a = game.actors.get(id); a.sheet.render(true); return a.items.filter((i) => i.type === "ability" && i.effects.some((e) => e.getFlag("ordem-v2-classic", "onUse")?.enabled)).map((i) => i.name); }, [fx.id]);
 		add("AR-38", "Ao adicionar Golpe Pesado, Tiro Certeiro, Combate Defensivo, Golpe Demolidor e Técnica Letal, cada um ganha a opção de ataque sozinho", ["Golpe Pesado", "Tiro Certeiro", "Combate Defensivo", "Golpe Demolidor"].every((n) => sheetBadges.some((b) => b === n)) && sheetBadges.some((b) => /Técnica Letal/.test(b)), JSON.stringify(sheetBadges));
 		await sleep(1500);
 		const badgeCount = await ev(() => document.querySelectorAll("[id^=OrdemActorSheet] .op-attack-badge").length);
@@ -406,9 +406,9 @@ async (page) => {
 		d = await readDialog();
 		add("AR-40", "Machete: Golpe Pesado e Técnica Letal aplicados; Tiro Certeiro não", !!d && /Golpe Pesado/.test(d.text) && /Técnica Letal|Tecnica Letal/i.test(d.text) && !/Tiro Certeiro/.test(d.text), d?.text?.slice(0, 400));
 		await closeAll();
-		const cfgMachete = await ev(async ([id, wid]) => { const m = await import("/systems/ordem_v2_classic/module/helpers/attack-options.mjs"); const c = m.defaultSelection(game.actors.get(id).items.get(wid)); return { dice: c.damageDice, crit: c.critMargin, flat: c.damageFlat }; }, [fx.id, W["Machete"]]);
+		const cfgMachete = await ev(async ([id, wid]) => { const m = await import("/systems/ordem-v2-classic/module/helpers/attack-options.mjs"); const c = m.defaultSelection(game.actors.get(id).items.get(wid)); return { dice: c.damageDice, crit: c.critMargin, flat: c.damageFlat }; }, [fx.id, W["Machete"]]);
 		add("AR-41", "Machete: +1 dado de dano (Golpe Pesado) e +2 na margem de ameaça (Técnica Letal)", cfgMachete.dice === 1 && cfgMachete.crit === 2, JSON.stringify(cfgMachete));
-		const cfgGun = await ev(async ([id, wid]) => { const m = await import("/systems/ordem_v2_classic/module/helpers/attack-options.mjs"); const c = m.defaultSelection(game.actors.get(id).items.get(wid)); return { dice: c.damageDice, crit: c.critMargin }; }, [fx.id, W["Pistola"]]);
+		const cfgGun = await ev(async ([id, wid]) => { const m = await import("/systems/ordem-v2-classic/module/helpers/attack-options.mjs"); const c = m.defaultSelection(game.actors.get(id).items.get(wid)); return { dice: c.damageDice, crit: c.critMargin }; }, [fx.id, W["Pistola"]]);
 		add("AR-42", "Pistola: nenhum dos poderes de corpo a corpo vale", cfgGun.dice === 0 && cfgGun.crit === 0, JSON.stringify(cfgGun));
 		// Combate Defensivo é escolha e tira 1 d20
 		await openFor(W["Machete"]);
@@ -578,7 +578,7 @@ async (page) => {
 		}, [fx.id]);
 		const W3 = await ev(() => window.__arW3);
 		await ev(async () => { const keep = canvas.scene.tokens.get(window.__arScene.foe)?.actorId; for (const a of game.actors.filter((x) => x.name === "[AR] alvo" && x.id !== keep)) await a.delete(); });
-		const clearReload = (wid) => ev(([id, w]) => game.actors.get(id).items.get(w).unsetFlag("ordem_v2_classic", "reload"), [fx.id, wid]);
+		const clearReload = (wid) => ev(([id, w]) => game.actors.get(id).items.get(w).unsetFlag("ordem-v2-classic", "reload"), [fx.id, wid]);
 		const spawn = (name, x, y, def = 0) => ev(async ([n, px, py, df]) => {
 			const sc = game.scenes.get(window.__arScene.id);
 			const t = await Actor.create({ name: n, type: "threat", system: { attributes: { hp: { value: 100, max: 100 } }, defense: { value: df } } });
@@ -591,7 +591,7 @@ async (page) => {
 		const hpOfName = (n) => ev((nm) => game.actors.getName(nm)?.system.attributes.hp.value, n);
 		const resetHp = () => ev(async () => { for (const a of game.actors.filter((x) => x.name.startsWith("[AR] ") && x.type === "threat")) await a.update({ "system.attributes.hp.value": 100 }); });
 		const reportOf = () => ev(() => game.messages.contents.filter((m) => !window.__arFx.known.includes(m.id) && m.content.includes("weapon-area-report")).map((m) => m.content.replace(/<[^>]+>/g, " ").replace(/\s+/g, " ")).join(" || "));
-		const burning = (n) => ev((nm) => game.actors.getName(nm).effects.filter((e) => e.getFlag("ordem_v2_classic", "condition")?.id === "burning").length, n);
+		const burning = (n) => ev((nm) => game.actors.getName(nm).effects.filter((e) => e.getFlag("ordem-v2-classic", "condition")?.id === "burning").length, n);
 
 		// Corrente: +2 para desarmar e derrubar
 		await moveFoe(1);
@@ -634,7 +634,7 @@ async (page) => {
 		d = await readDialog();
 		const freed = d?.attackDisabled === false;
 		await attackNow();
-		const flagAfter = await ev(([id, w]) => game.actors.get(id).items.get(w).getFlag("ordem_v2_classic", "reload"), [fx.id, W3["Besta"]]);
+		const flagAfter = await ev(([id, w]) => game.actors.get(id).items.get(w).getFlag("ordem-v2-classic", "reload"), [fx.id, W3["Besta"]]);
 		add("AR-62", "Besta: 1º disparo livre; 2º exige 'Recarreguei' (Atacar bloqueado com o motivo); marcado, libera e a recarga volta a ficar pendente", !pendingFirst && firstEnabled && pendingSecond && blockedSecond && /Recarregue/.test(blockedText) && freed && flagAfter?.pending === true, JSON.stringify({ pendingFirst, firstEnabled, pendingSecond, blockedSecond, blockedText, freed, flagAfter }));
 		// Shift+clique também respeita a recarga
 		await mark();
@@ -645,10 +645,10 @@ async (page) => {
 
 		// Em Chamas: ficha de condição e dano no início do turno (função do motor chamada direto)
 		const tick = await ev(async () => {
-			const eng = await import("/systems/ordem_v2_classic/module/macros/ritual-area-engine.mjs");
+			const eng = await import("/systems/ordem-v2-classic/module/macros/ritual-area-engine.mjs");
 			const victim = game.actors.getName("[AR] alvo");
 			await eng.applyCondition(victim, { key: "burning", label: "Em Chamas" }, {});
-			const had = victim.effects.filter((e) => e.getFlag("ordem_v2_classic", "condition")?.id === "burning").length;
+			const had = victim.effects.filter((e) => e.getFlag("ordem-v2-classic", "condition")?.id === "burning").length;
 			const before = victim.system.attributes.hp.value;
 			await eng.processConditionsAtTurnStart({ actor: victim, id: "x" }, { round: 1, combatant: { id: "y" }, nextTurn: async () => {} });
 			const after = victim.system.attributes.hp.value;

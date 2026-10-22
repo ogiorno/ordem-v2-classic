@@ -1,0 +1,45 @@
+{
+  "name": "Paradoxo",
+  "type": "ritual",
+  "img": "systems/ordem-v2-classic/assets/rituais/paradoxo.png",
+  "system": {
+    "circle": 2,
+    "element": "death",
+    "description": "<p>O ritual cria uma poderosa implosão de distorção temporal contraditória, causando 6d6 pontos de dano de Morte em todos os seres na área. Discente (+3 PE): muda a área para efeito: esfera de 1,5 m de diâmetro e a duração para cena. Em vez do normal, cria uma esfera de emanações espirais sibilantes com 1,5m de diâmetro que causa 4d6 pontos de dano de Morte a qualquer ser no mesmo espaço. Você pode gastar uma ação de movimento para fazer a esfera voar 9m em qualquer direção. Um ser só pode sofrer dano da esfera uma vez por rodada. Verdadeiro (+7 PE): muda o dano para 13d6. Seres reduzidos a 0 PV pelo dano do Paradoxo devem fazer um teste de Fortitude. Se falharem, são reduzidos a cinzas (morrem imediatamente). Requer 4º círculo.</p>",
+    "chatDescription": "<p><strong>Fonte:</strong> Livro de Regras v1.3 · <strong>Execução:</strong> padrão · <strong>Alcance:</strong> médio · <strong>Alvo:</strong> Veja descrição da área · <strong>Duração:</strong> instantânea · <strong>Resistência:</strong> Fortitude reduz à metade</p>",
+    "execution": "default",
+    "range": "medium",
+    "target": "Veja descrição da área",
+    "duration": "instantaneous",
+    "resistance": "reducesByHalf",
+    "skillResis": "resilience",
+    "targetQtd": "",
+    "area": {
+      "name": "esfera com 6m de raio",
+      "size": "",
+      "type": ""
+    },
+    "studentForm": true,
+    "trueForm": true
+  },
+  "effects": [],
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.369",
+    "systemId": "ordem-v2-classic",
+    "systemVersion": "8.0.2",
+    "createdTime": 1792207618168,
+    "modifiedTime": 1792207618168,
+    "lastModifiedBy": null,
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "ownership": {
+    "default": 0
+  },
+  "folder": "RituaisCirculo02",
+  "sort": 48000,
+  "_id": "3C7Xedn9ycHkpIzx",
+  "_key": "!items!3C7Xedn9ycHkpIzx"
+}

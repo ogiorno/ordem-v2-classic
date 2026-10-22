@@ -2,7 +2,7 @@
 // Rodar com o Mestre logado: playwright-cli -s=<nome> --raw eval "$(cat docs/macros/afinidade-teste-live-test.js)"
 // Usa agentes temporários "ZZ afintest ..." e apaga as mensagens de chat que cria.
 (async () => {
-	const SYS = "ordem_v2_classic";
+	const SYS = "ordem-v2-classic";
 	const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 	const until = async (fn, ms = 8000) => { const t = Date.now(); while (Date.now() - t < ms) { const v = await fn(); if (v) return v; await sleep(100); } return null; };
 	const Area = await import(`/systems/${SYS}/module/macros/ritual-area-engine.mjs`);

@@ -1,0 +1,40 @@
+{
+	"name": "Conjuração Verdadeira",
+	"type": "ability",
+	"img": "systems/ordem-v2-classic/assets/ability-icons/1515-1516-free-conjuracao-verdadeira.webp",
+	"system": {
+		"id": 0,
+		"abilityType": "ability",
+		"preRequisite": "",
+		"description": "<p>LIVRE - CONJURAÇÃO VERDADEIRA Uma vez por turno, a Máscara do Desespero pode conjurar um ritual de Conhecimento a sua escolha, de qualquer círculo. O ritual deve ter execução máxima de ação completa e custo máximo de 20 PE. A DT para resistir a ele é 45.</p>",
+		"chatDescription": "",
+		"activation": "free",
+		"cost": 0,
+		"costType": "PE",
+		"execution": null
+	},
+	"effects": [],
+	"flags": {
+		"ordem-v2-classic": {
+			"threatAbilityId": "1515-H01"
+		}
+	},
+	"_stats": {
+		"coreVersion": "14.369",
+		"systemId": "ordem-v2-classic",
+		"systemVersion": "8.0.2",
+		"createdTime": 1792207618168,
+		"modifiedTime": 1792207618168,
+		"lastModifiedBy": null,
+		"compendiumSource": null,
+		"duplicateSource": null,
+		"exportSource": null
+	},
+	"ownership": {
+		"default": 0
+	},
+	"folder": "MeV8HpXNHbSTLZOD",
+	"sort": 1000,
+	"_id": "EZm7BEAByTpCXr9t",
+	"_key": "!items!EZm7BEAByTpCXr9t"
+}

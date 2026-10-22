@@ -101,7 +101,7 @@ system.curses = [ { key: "lancinante", element: "blood", chosen: null } ]   // c
 - **Categoria**: `effectiveCategory`/`itemCategoryInfo` passam a somar: 0 maldições = 0; ≥1 = **2 + (n–1)** (M4), além de `modificationCount`. Hoje `modificationCount` conta `Set(modifications)` com +1 cada; maldição vira função separada `curseCategoryBonus(n)`.
 - **Validação (M3):** ao adicionar maldição, rejeitar igual (já está) e **avisar** (não travar) quando for de elemento opressor de outra já presente. Bloqueio duro só para repetida.
 - **Liberação por patente (M2):** a ficha só **informa** (selo vermelho) se a patente não é Agente Especial+, no mesmo padrão do limite de categoria.
-- **Efeitos:** ao equipar item com maldição "auto", cria um Efeito Ativo `transfer` marcado `flags.ordem_v2_classic.curseRule`, igual ao `passive-effects`. Desequipar/apagar a maldição remove o efeito. Mudanças de atributo respeitam M8 (usar chave de "não acumula por tipo" — um único bônus de item por atributo).
+- **Efeitos:** ao equipar item com maldição "auto", cria um Efeito Ativo `transfer` marcado `flags.ordem-v2-classic.curseRule`, igual ao `passive-effects`. Desequipar/apagar a maldição remove o efeito. Mudanças de atributo respeitam M8 (usar chave de "não acumula por tipo" — um único bônus de item por atributo).
 - **PV/RD do item (M10):** só aparece na ficha do item (`Quebrando Objetos`); sem automação de combate.
 
 ---
@@ -110,7 +110,7 @@ system.curses = [ { key: "lancinante", element: "blood", chosen: null } ]   // c
 
 As 35 maldições + Lente de Revelação ficam num **compêndio próprio** (`packs/curses`, tipo `Item`, rótulo "Maldições Paranormais"), fora de Armamentos/Proteções/Equipamentos Gerais. Fonte em `packs/_source/curses/*.json`, gerada por `tools/gerar-fonte-maldicoes.mjs` a partir da tabela `curse-rules.mjs` (uma só fonte de verdade; o texto vem do livro).
 
-- **Tipo do item:** novo `curse` (ou, se preferir não criar tipo, `generalEquipment` com `flags.ordem_v2_classic.curse`; decidir em D5 — recomendo tipo novo, só dados, sem ficha própria pesada).
+- **Tipo do item:** novo `curse` (ou, se preferir não criar tipo, `generalEquipment` com `flags.ordem-v2-classic.curse`; decidir em D5 — recomendo tipo novo, só dados, sem ficha própria pesada).
 - **Campos:** `system.curseKey`, `system.element` (knowledge/energy/death/blood/fear), `system.applies` (`weapon`|`protection`|`accessory`), `system.description` (texto do livro), `system.use` (`{ action, cost }` ou null), `system.mode` (`auto`|`semi`|`manual`), `system.rules` (mudanças de efeito ativo), `system.price` (texto livre, só Medo), `system.iconKey`.
 - **Uso:** arrastar do compêndio para um item `armament`/`protection`/`generalEquipment` **anexa** a maldição em `system.curses` (não vira item solto na mochila). Soltar na ficha de ator pergunta em qual item aplicar. A validação (M3, repetida, tipo errado de item) roda no arrasto.
 - **Nome do item no compêndio:** "Maldição: Lancinante" etc.; ícone em `assets/curse-icons/<chave>.webp` (ver `spec-icones-maldicoes.md`).

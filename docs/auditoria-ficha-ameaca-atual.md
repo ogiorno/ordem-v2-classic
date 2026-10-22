@@ -1,10 +1,10 @@
-# Auditoria — ficha de ameaça atual (ordem_v2_classic 8.0.2, Foundry v14)
+# Auditoria — ficha de ameaça atual (ordem-v2-classic 8.0.2, Foundry v14)
 
 Arquivos: `module/data/actors/threat-data.mjs`, `module/sheets/threat-sheet.mjs`, `templates/threat/*.hbs`, `module/helpers/config.mjs`, `module/documents/{actor,item}.mjs`, `module/applications/{resistance,traits}-config.mjs`.
 
 ## Estrutura
 - Actor type `threat` (`ThreatData`) + `OrdemThreatSheet` (ActorSheetV2 + Handlebars), 600x820, abas: Ataques, Habilidades, Enigmas, Efeitos.
-- **Ataques são Items `armament` embutidos** (criados por diálogo; flag `flags.ordem_v2_classic.createdByThreatDialog`). Já têm: `actionType` (standard/free/movement/reaction/full), `numberOfAttacks`, `rangeCategory` (short/medium/long/extreme), `critical`, `formulas.attack {attr, skill, bonus}`, `formulas.damage {formula, type}`, `types.rangeType` (melee/ranged).
+- **Ataques são Items `armament` embutidos** (criados por diálogo; flag `flags.ordem-v2-classic.createdByThreatDialog`). Já têm: `actionType` (standard/free/movement/reaction/full), `numberOfAttacks`, `rangeCategory` (short/medium/long/extreme), `critical`, `formulas.attack {attr, skill, bonus}`, `formulas.damage {formula, type}`, `types.rangeType` (melee/ranged).
 - O campo `system.attacks` (ObjectField) e `system.actions` (Array) do schema **não são usados pela ficha**.
 
 ## Campo a campo

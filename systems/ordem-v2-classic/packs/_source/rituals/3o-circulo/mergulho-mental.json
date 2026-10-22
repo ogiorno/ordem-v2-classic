@@ -1,0 +1,45 @@
+{
+  "name": "Mergulho Mental",
+  "type": "ritual",
+  "img": "systems/ordem-v2-classic/assets/rituais/mergulho-mental.png",
+  "system": {
+    "circle": 3,
+    "element": "knowledge",
+    "description": "<p>Você mergulha nos pensamentos do alvo para descobrir informações sobre ele. Durante o mergulho, você fica desprevenido. No início de cada turno seu que estiver sustentando o efeito e tocando o alvo, ele deve fazer um teste de Vontade. Se falhar, deve responder uma pergunta sua que possa ser respondida com “sim” ou “não”, sendo incapaz de mentir. O que você descobre depende das suas perguntas e do mestre: talvez você não descubra tudo que há para saber, mas pode ganhar pistas para continuar a investigação. Verdadeiro (+4 PE): muda a execução para 1 dia, o alcance para ilimitado e adiciona como componente ritualístico uma cuba de ouro cheia d’água e uma máscara (acessório de categoria II). Você pode realizar o mergulho mental à distância, submergindo seu rosto mascarado na água enquanto mentaliza o alvo. Para que esse ritual funcione, você precisa ter alguma informação sobre o alvo, como nome completo, e um objeto pessoal ou fotografia. Requer 4º círculo.</p>",
+    "chatDescription": "<p><strong>Fonte:</strong> Livro de Regras v1.3 · <strong>Execução:</strong> padrão · <strong>Alcance:</strong> toque · <strong>Alvo:</strong> 1 pessoa · <strong>Duração:</strong> sustentada · <strong>Resistência:</strong> Vontade parcial (veja texto)</p>",
+    "execution": "default",
+    "range": "touch",
+    "target": "1 pessoa",
+    "duration": "sustained",
+    "resistance": "partial",
+    "skillResis": "will",
+    "targetQtd": "",
+    "area": {
+      "name": "",
+      "size": "",
+      "type": ""
+    },
+    "studentForm": false,
+    "trueForm": true
+  },
+  "effects": [],
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.369",
+    "systemId": "ordem-v2-classic",
+    "systemVersion": "8.0.2",
+    "createdTime": 1792207618168,
+    "modifiedTime": 1792207618168,
+    "lastModifiedBy": null,
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "ownership": {
+    "default": 0
+  },
+  "folder": "RituaisCirculo03",
+  "sort": 64000,
+  "_id": "LIzOURH8fps6QL9v",
+  "_key": "!items!LIzOURH8fps6QL9v"
+}

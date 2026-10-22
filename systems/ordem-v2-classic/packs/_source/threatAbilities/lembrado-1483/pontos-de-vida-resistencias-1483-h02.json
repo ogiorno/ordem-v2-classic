@@ -1,0 +1,40 @@
+{
+	"name": "Pontos De Vida Resistências",
+	"type": "ability",
+	"img": "systems/ordem-v2-classic/assets/ability-icons/1483-ficha-2-pontos-de-vida-resistencias.webp",
+	"system": {
+		"id": 0,
+		"abilityType": "ability",
+		"preRequisite": "",
+		"description": "<p>Balístico, corte e impacto 10,</p>",
+		"chatDescription": "",
+		"activation": "passive",
+		"cost": 0,
+		"costType": "PE",
+		"execution": null
+	},
+	"effects": [],
+	"flags": {
+		"ordem-v2-classic": {
+			"threatAbilityId": "1483-H02"
+		}
+	},
+	"_stats": {
+		"coreVersion": "14.369",
+		"systemId": "ordem-v2-classic",
+		"systemVersion": "8.0.2",
+		"createdTime": 1792207618168,
+		"modifiedTime": 1792207618168,
+		"lastModifiedBy": null,
+		"compendiumSource": null,
+		"duplicateSource": null,
+		"exportSource": null
+	},
+	"ownership": {
+		"default": 0
+	},
+	"folder": "egWalhPW8uVU0jxg",
+	"sort": 2000,
+	"_id": "jaOXdJTZL9loU8vw",
+	"_key": "!items!jaOXdJTZL9loU8vw"
+}

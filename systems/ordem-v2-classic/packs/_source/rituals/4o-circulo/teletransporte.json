@@ -1,0 +1,45 @@
+{
+  "name": "Teletransporte",
+  "type": "ritual",
+  "img": "systems/ordem-v2-classic/assets/rituais/teletransporte.png",
+  "system": {
+    "circle": 4,
+    "element": "energy",
+    "description": "<p>O ritual transforma o corpo e equipamento dos alvos em energia pura e os faz reaparecer num lugar a sua escolha a até 1.000km. Quando conjura este ritual, você precisa fazer um teste de Ocultismo, com DT definida pelo seu conhecimento sobre o destino. DT 25. Um lugar que você visita com frequência. DT 30. Um lugar que você já visitou pelo menos uma vez. DT 35. Um lugar que você nunca visitou e só conhece a partir da descrição de outra pessoa que esteve lá. Você não pode se teletransportar para um lugar que nunca visitou sem a descrição de alguém. Ou seja, não pode se transportar para “o local onde Júlia está presa” se nunca esteve lá nem falou com alguém que esteve. Se passar no teste, os alvos chegam ao lugar desejado. Se falhar, você chega em um lugar parecido, mas errado ou distante (até 1d10 x 10 km). Se você falhar por 5 ou mais, o ritual falha, mas você gasta PE normalmente e fica atordoado por 1d4 rodadas. Verdadeiro (+5 PE): pode se teletransportar para qualquer local na Terra.</p>",
+    "chatDescription": "<p><strong>Fonte:</strong> Livro de Regras v1.3 · <strong>Execução:</strong> padrão · <strong>Alcance:</strong> toque · <strong>Alvo:</strong> até 5 seres voluntários · <strong>Duração:</strong> instantânea · <strong>Resistência:</strong> —</p>",
+    "execution": "default",
+    "range": "touch",
+    "target": "até 5 seres voluntários",
+    "duration": "instantaneous",
+    "resistance": "",
+    "skillResis": "",
+    "targetQtd": "",
+    "area": {
+      "name": "",
+      "size": "",
+      "type": ""
+    },
+    "studentForm": false,
+    "trueForm": true
+  },
+  "effects": [],
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.369",
+    "systemId": "ordem-v2-classic",
+    "systemVersion": "8.0.2",
+    "createdTime": 1792207618168,
+    "modifiedTime": 1792207618168,
+    "lastModifiedBy": null,
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "ownership": {
+    "default": 0
+  },
+  "folder": "RituaisCirculo04",
+  "sort": 97000,
+  "_id": "mpDowEfTmuYRToU7",
+  "_key": "!items!mpDowEfTmuYRToU7"
+}

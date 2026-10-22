@@ -1,0 +1,45 @@
+{
+  "name": "Eletrocussão",
+  "type": "ritual",
+  "img": "systems/ordem-v2-classic/assets/rituais/eletrocussao.png",
+  "system": {
+    "circle": 1,
+    "element": "energy",
+    "description": "<p>Você manifesta e dispara uma corrente elétrica contra o alvo, que sofre 3d6 pontos de dano de eletricidade e fica vulnerável por uma rodada. Se passar no teste de resistência, sofre apenas metade do dano e evita a condição. Se usado contra objetos eletrônicos, este ritual causa o dobro de dano e ignora resistência. Discente (+2 PE): muda o alvo para “área: linha de 30m”. Você dispara um poderoso raio que causa 6d6 pontos de dano de Energia em todos os seres e objetos livres na área. Requer 2º círculo. Verdadeiro (+5 PE): muda o alvo para “alvos escolhidos”. Em vez do normal, você dispara vários relâmpagos, um para cada alvo escolhido, causando 8d6 pontos de dano de Energia em cada. Requer 3º círculo.</p>",
+    "chatDescription": "<p><strong>Fonte:</strong> Livro de Regras v1.3 · <strong>Execução:</strong> padrão · <strong>Alcance:</strong> curto · <strong>Alvo:</strong> 1 ser ou objeto · <strong>Duração:</strong> instantânea · <strong>Resistência:</strong> Fortitude parcial</p>",
+    "execution": "default",
+    "range": "short",
+    "target": "1 ser ou objeto",
+    "duration": "instantaneous",
+    "resistance": "partial",
+    "skillResis": "resilience",
+    "targetQtd": "",
+    "area": {
+      "name": "",
+      "size": "",
+      "type": ""
+    },
+    "studentForm": true,
+    "trueForm": true
+  },
+  "effects": [],
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.369",
+    "systemId": "ordem-v2-classic",
+    "systemVersion": "8.0.2",
+    "createdTime": 1792207618168,
+    "modifiedTime": 1792207618168,
+    "lastModifiedBy": null,
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "ownership": {
+    "default": 0
+  },
+  "folder": "RituaisCirculo01",
+  "sort": 16000,
+  "_id": "uhZpZgXtQztfk1Dx",
+  "_key": "!items!uhZpZgXtQztfk1Dx"
+}

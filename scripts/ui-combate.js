@@ -4,7 +4,7 @@
 async (page) => {
 	const sleep = (ms) => page.waitForTimeout(ms);
 	const out = { turnos: [], checagens: [] };
-	const base = "/systems/ordem_v2_classic/module/macros/";
+	const base = "/systems/ordem-v2-classic/module/macros/";
 	await page.evaluate(() => window.__rt.cleanup());
 	// preparação (na página): armas, condições e a zona
 	await page.evaluate(async (base) => {
@@ -19,7 +19,7 @@ async (page) => {
 			for (const e of t.actor.effects.map((x) => x.id)) await t.actor.deleteEmbeddedDocuments("ActiveEffect", [e]).catch(() => {});
 		}
 		// armas
-		const pack = game.packs.get("ordem_v2_classic.armaments");
+		const pack = game.packs.get("ordem-v2-classic.armaments");
 		const weapons = { 0: "Revólver", 1: "Machete", 2: "Fuzil de Assalto", 3: "Revólver", 4: "Fuzil de Assalto" };
 		for (const [i, t] of arena.agents.entries()) {
 			if (t.actor.items.some((it) => it.type === "armament")) continue;

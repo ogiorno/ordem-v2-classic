@@ -10,7 +10,7 @@ import { fileURLToPath } from "node:url";
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(here, "../..");
-const out = path.join(root, "systems/ordem_v2_classic/packs/_source/rituals");
+const out = path.join(root, "systems/ordem-v2-classic/packs/_source/rituals");
 const origem = JSON.parse(fs.readFileSync(path.join(here, "origem-compendio-mundo.json"), "utf8"));
 const correcoes = JSON.parse(fs.readFileSync(path.join(here, "correcoes-sistema.json"), "utf8"));
 
@@ -21,7 +21,7 @@ const NOW = 1792207618168; // data fixa: a fonte gerada não muda a cada execuç
 const FOLDER_IDS = { 1: "RituaisCirculo01", 2: "RituaisCirculo02", 3: "RituaisCirculo03", 4: "RituaisCirculo04" };
 const stats = (id) => ({
 	coreVersion: "14.369",
-	systemId: "ordem_v2_classic",
+	systemId: "ordem-v2-classic",
 	systemVersion: "8.0.2",
 	createdTime: NOW,
 	modifiedTime: NOW,

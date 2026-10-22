@@ -1,6 +1,6 @@
 # Relatório de teste ao vivo — Sobrevivendo ao Horror (marca "sah" e concessões)
 
-Data: 21/10/2026. Sistema `ordem_v2_classic` 8.0.2, mundo `nova-ordem`, servidor local na porta 30000.
+Data: 21/10/2026. Sistema `ordem-v2-classic` 8.0.2, mundo `nova-ordem`, servidor local na porta 30000.
 Como: sessão própria do `playwright-cli` (`-s=sah`), logada como "QA GM"; atores temporários "ZZ SAH teste …", todos apagados ao fim (conferido: 0 sobraram). Nada foi feito na cena ativa nem nos agentes da mesa.
 Escopo: o que foi feito nesta sessão (seção 9 da spec: marca discreta, correção do Funcionário de Beira de Estrada, leitura da marca no Grimório) mais uma passada nas concessões automáticas e nos efeitos da seção 3, que dependem do mesmo conteúdo.
 
@@ -8,7 +8,7 @@ Escopo: o que foi feito nesta sessão (seção 9 da spec: marca discreta, corre�
 
 | # | O que foi testado | Resultado |
 | --- | --- | --- |
-| 1 | Marca `flags.ordem_v2_classic.source = "sah"` nos compêndios vivos | **Passou.** 277 itens marcados, nas quantidades esperadas por pacote (origins 20, originPowers 20, paths 15, classes 1, paranormalPowers 8, generalPowers 34, armaments 12, protections 1, survivalPowers 9, general 78, fighter/specialist/occultistPowers 11/11/9, pathFighter/Specialist/Occultist 24/12/12). |
+| 1 | Marca `flags.ordem-v2-classic.source = "sah"` nos compêndios vivos | **Passou.** 277 itens marcados, nas quantidades esperadas por pacote (origins 20, originPowers 20, paths 15, classes 1, paranormalPowers 8, generalPowers 34, armaments 12, protections 1, survivalPowers 9, general 78, fighter/specialist/occultistPowers 11/11/9, pathFighter/Specialist/Occultist 24/12/12). |
 | 2 | Itens do Livro de Regras ficam sem a marca (Calejado, Casca Grossa, Medidor de Estabilidade da Membrana) | **Passou.** Os três sem marca. |
 | 3 | Aplicar o apply de novo não muda nada | **Passou.** 0 atualizados, 314 sem mudança, 0 erros. |
 | 4 | Funcionário de Beira de Estrada no compêndio vivo | **Passou.** Diz "página 54 do Arquivos Secretos 5". |

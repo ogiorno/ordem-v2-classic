@@ -1,0 +1,23 @@
+{
+  "type": "Item",
+  "folder": "qUKyi6oYkTrPMx9y",
+  "name": "Morte",
+  "color": null,
+  "sorting": "a",
+  "_id": "mzoptZV8Vbs8aYU1",
+  "description": "",
+  "sort": 200000,
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.365",
+    "systemId": "ordem-v2-classic",
+    "systemVersion": "7.3.3",
+    "createdTime": 1784900000000,
+    "modifiedTime": 1784900000000,
+    "lastModifiedBy": null,
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!folders!mzoptZV8Vbs8aYU1"
+}

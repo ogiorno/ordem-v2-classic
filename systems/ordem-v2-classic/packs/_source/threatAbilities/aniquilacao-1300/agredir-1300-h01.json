@@ -1,0 +1,40 @@
+{
+	"name": "Agredir",
+	"type": "ability",
+	"img": "systems/ordem-v2-classic/assets/ability-icons/1300-1302-padrao-agredir.webp",
+	"system": {
+		"id": 0,
+		"abilityType": "ability",
+		"preRequisite": "",
+		"description": "<p>PADRÃO - AGREDIR DISPARO DE ESPINHOS Distância x3 alcance MÉDIO TESTE 4d20+40 | DANO 2d10+20 Sangue</p>",
+		"chatDescription": "",
+		"activation": "default",
+		"cost": 0,
+		"costType": "PE",
+		"execution": null
+	},
+	"effects": [],
+	"flags": {
+		"ordem-v2-classic": {
+			"threatAbilityId": "1300-H01"
+		}
+	},
+	"_stats": {
+		"coreVersion": "14.369",
+		"systemId": "ordem-v2-classic",
+		"systemVersion": "8.0.2",
+		"createdTime": 1792207618168,
+		"modifiedTime": 1792207618168,
+		"lastModifiedBy": null,
+		"compendiumSource": null,
+		"duplicateSource": null,
+		"exportSource": null
+	},
+	"ownership": {
+		"default": 0
+	},
+	"folder": "4h8dpjwisJjGpOON",
+	"sort": 1000,
+	"_id": "x3BrgsYFbAgJvcgE",
+	"_key": "!items!x3BrgsYFbAgJvcgE"
+}

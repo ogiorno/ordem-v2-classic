@@ -1,0 +1,45 @@
+{
+  "name": "Pronunciar Sigilo",
+  "type": "ritual",
+  "img": "systems/ordem-v2-classic/assets/rituais/pronunciar-sigilo.png",
+  "system": {
+    "circle": 4,
+    "element": "knowledge",
+    "description": "<p>Escolha um efeito: - <strong>Esquecer:</strong> atordoado por 1d4+1 rodadas, no máximo uma vez por cena; com resistência bem-sucedida ou se já foi atordoado por este ritual, desprevenido por 1d4 rodadas. - <strong>Cegar:</strong> cego; com resistência bem-sucedida, ofuscado por 1d4 rodadas. - <strong>Inexistir:</strong> sai da Realidade por 1d4+1 rodadas, ou 1 rodada se resistir. Retorna à posição original ou adjacente se ocupada; uma criatura pode escolher qualquer ponto a até 18 m da posição original. Cada ser só pode ser inexistido uma vez por cena. - <strong>Discente (+5 PE):</strong> alcance extremo. - <strong>Verdadeiro (+10 PE):</strong> até 5 seres. Requer afinidade.</p>",
+    "chatDescription": "<p><strong>Fonte:</strong> Sobrevivendo ao Horror v1.3 · <strong>Execução:</strong> padrão · <strong>Alcance:</strong> curto · <strong>Alvo:</strong> 1 ser · <strong>Duração:</strong> instantânea ou conforme o efeito · <strong>Resistência:</strong> Vontade parcial</p>",
+    "execution": "default",
+    "range": "short",
+    "target": "1 ser",
+    "duration": "setDuration",
+    "resistance": "partial",
+    "skillResis": "will",
+    "targetQtd": "",
+    "area": {
+      "name": "",
+      "size": "",
+      "type": ""
+    },
+    "studentForm": true,
+    "trueForm": true
+  },
+  "effects": [],
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.369",
+    "systemId": "ordem-v2-classic",
+    "systemVersion": "8.0.2",
+    "createdTime": 1792207618168,
+    "modifiedTime": 1792207618168,
+    "lastModifiedBy": null,
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "ownership": {
+    "default": 0
+  },
+  "folder": "RituaisCirculo04",
+  "sort": 95000,
+  "_id": "KKnUCfJLpA3ckjHh",
+  "_key": "!items!KKnUCfJLpA3ckjHh"
+}

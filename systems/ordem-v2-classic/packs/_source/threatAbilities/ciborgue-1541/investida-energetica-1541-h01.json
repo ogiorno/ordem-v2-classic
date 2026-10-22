@@ -1,0 +1,40 @@
+{
+	"name": "Investida Energética",
+	"type": "ability",
+	"img": "systems/ordem-v2-classic/assets/ability-icons/1541-1545-full-investida-energetica.webp",
+	"system": {
+		"id": 0,
+		"abilityType": "ability",
+		"preRequisite": "",
+		"description": "<p>COMPLETA - INVESTIDA ENERGÉTICA O ciborgue avança até 24m (18 quadrados) e faz um ataque de punho energizado com bônus de +d20 no teste de ataque. Se acertar, causa +2d8 de dano (para um total de 4d8+10) e derruba o alvo (Fortitude DT 20 evita a queda). Estado GAMA</p>",
+		"chatDescription": "",
+		"activation": "complete",
+		"cost": 0,
+		"costType": "PE",
+		"execution": null
+	},
+	"effects": [],
+	"flags": {
+		"ordem-v2-classic": {
+			"threatAbilityId": "1541-H01"
+		}
+	},
+	"_stats": {
+		"coreVersion": "14.369",
+		"systemId": "ordem-v2-classic",
+		"systemVersion": "8.0.2",
+		"createdTime": 1792207618168,
+		"modifiedTime": 1792207618168,
+		"lastModifiedBy": null,
+		"compendiumSource": null,
+		"duplicateSource": null,
+		"exportSource": null
+	},
+	"ownership": {
+		"default": 0
+	},
+	"folder": "iCpbGIaHKW7hj8P7",
+	"sort": 1000,
+	"_id": "p7OpsMOPdKkfox73",
+	"_key": "!items!p7OpsMOPdKkfox73"
+}

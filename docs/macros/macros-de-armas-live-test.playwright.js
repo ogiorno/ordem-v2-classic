@@ -2,11 +2,11 @@ async page => {
   await page.setViewportSize({ width: 1500, height: 950 });
   return await page.evaluate(async () => {
     const sleep = ms => new Promise(r => setTimeout(r, ms));
-    const out = {}; let a, a2; const myMacros = () => game.macros.filter(m => m.flags?.ordem_v2_classic?.weaponMacro);
+    const out = {}; let a, a2; const myMacros = () => game.macros.filter(m => m.flags?.["ordem-v2-classic"]?.weaponMacro);
     const hb = () => foundry.utils.deepClone(game.user.hotbar);
     const before = hb(); const charAntes = game.user.character?.id ?? null; out.charAntes = charAntes; out.macrosAntes = myMacros().length;
     try {
-      const weapons = (await game.packs.get("ordem_v2_classic.armaments").getDocuments()).filter(x => x.type === "armament");
+      const weapons = (await game.packs.get("ordem-v2-classic.armaments").getDocuments()).filter(x => x.type === "armament");
       a = await Actor.create({ name: "ZZ hotbar", type: "agent", system: { class: "fighter" } });
       await game.user.update({ character: a.id }); await sleep(500);
       const [w1, w2] = await a.createEmbeddedDocuments("Item", [weapons[0].toObject(), weapons[1].toObject()]);

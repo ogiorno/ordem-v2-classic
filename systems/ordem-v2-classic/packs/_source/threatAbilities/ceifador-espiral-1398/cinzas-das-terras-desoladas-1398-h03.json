@@ -1,0 +1,104 @@
+{
+	"name": "Cinzas Das Terras Desoladas",
+	"type": "ability",
+	"img": "systems/ordem-v2-classic/assets/ability-icons/1398-1402-completa-cinzas-das-terras-desoladas.webp",
+	"system": {
+		"id": 0,
+		"abilityType": "ability",
+		"preRequisite": "",
+		"description": "<p>COMPLETA - CINZAS DAS TERRAS DESOLADAS O Ceifador Espiral usa seus muitos braços para realizar um rito de invocação. Uma área de alcance longo em volta de si é tomada pelas cinzas das terras desoladas, um local acelerado pelo tempo onde tudo é transformado em pó. Cada ser dentro da área sofre 10d10+20 pontos de dano de Morte e fica enjoado (Fortitude DT 43 reduz o dano à metade e evita a condição). Um ser que termine seu turno dentro dessa área sofre 20 pontos de dano de Morte.</p>",
+		"chatDescription": "",
+		"activation": "complete",
+		"cost": 0,
+		"costType": "PE",
+		"execution": {
+			"mode": "active",
+			"automation": "assisted",
+			"damage": [
+				{
+					"kind": "damage",
+					"formula": "10d10+20",
+					"type": "morte",
+					"resource": "pv",
+					"roll": "once",
+					"frequency": ""
+				}
+			],
+			"effects": [
+				{
+					"condition": "enjoado",
+					"duration": {
+						"unit": "unspecified",
+						"value": null
+					},
+					"onSave": "fail",
+					"target": "target",
+					"trigger": "",
+					"support": "mechanical"
+				}
+			],
+			"requirements": [],
+			"grants": [],
+			"targeting": {
+				"kind": "area",
+				"relation": "any",
+				"range": null,
+				"count": null,
+				"voluntary": false,
+				"rangeUnspecified": false,
+				"requiresSight": false
+			},
+			"area": {
+				"shape": "sphere",
+				"radius": 36,
+				"origin": "caster",
+				"persistence": "instant",
+				"triggers": [],
+				"length": null,
+				"width": null
+			},
+			"save": {
+				"skill": "fortitude",
+				"dc": 43,
+				"onSuccess": "half",
+				"retry": false
+			},
+			"version": 1,
+			"source": {
+				"reference": "Livro v1.3, p. 223, Ceifador Espiral",
+				"reviewed": false
+			},
+			"cost": null,
+			"trigger": null,
+			"visibility": {
+				"dc": "gm",
+				"defense": "gm",
+				"result": "public"
+			}
+		}
+	},
+	"effects": [],
+	"flags": {
+		"ordem-v2-classic": {
+			"threatAbilityId": "1398-H03"
+		}
+	},
+	"_stats": {
+		"coreVersion": "14.369",
+		"systemId": "ordem-v2-classic",
+		"systemVersion": "8.0.2",
+		"createdTime": 1792207618168,
+		"modifiedTime": 1792207618168,
+		"lastModifiedBy": null,
+		"compendiumSource": null,
+		"duplicateSource": null,
+		"exportSource": null
+	},
+	"ownership": {
+		"default": 0
+	},
+	"folder": "r9jwq9TZAjtEelaD",
+	"sort": 3000,
+	"_id": "lAjBoUJ71d6gedUY",
+	"_key": "!items!lAjBoUJ71d6gedUY"
+}

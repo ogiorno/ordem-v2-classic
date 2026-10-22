@@ -1,10 +1,10 @@
 # Auditoria de código — 21/10/2026
 
-**What this repo does:** Este repositório desenvolve o sistema `ordem_v2_classic` para Foundry VTT, módulos auxiliares, compêndios e ferramentas de sincronização. O fluxo principal transforma dados de ficha e itens em rolagens, chat, efeitos e atualizações persistidas no mundo. Assumi uma mesa com um Mestre e vários jogadores conectados, que podem clicar quase ao mesmo tempo. O código auditado inclui alterações locais ainda não commitadas; elas foram preservadas.
+**What this repo does:** Este repositório desenvolve o sistema `ordem-v2-classic` para Foundry VTT, módulos auxiliares, compêndios e ferramentas de sincronização. O fluxo principal transforma dados de ficha e itens em rolagens, chat, efeitos e atualizações persistidas no mundo. Assumi uma mesa com um Mestre e vários jogadores conectados, que podem clicar quase ao mesmo tempo. O código auditado inclui alterações locais ainda não commitadas; elas foram preservadas.
 
 ## Must fix
 
-1. **Pedido de dano aceita valor declarado pelo cliente** (`systems/ordem_v2_classic/module/ordemparanormal.mjs:273-280`, `module/documents/actor.mjs:295-310`).
+1. **Pedido de dano aceita valor declarado pelo cliente** (`systems/ordem-v2-classic/module/ordemparanormal.mjs:273-280`, `module/documents/actor.mjs:295-310`).
    - **O que é:** Um jogador sem posse do alvo pede ao Mestre para aplicar dano por socket.
    - **Problema:** O pedido traz `amount`, `options` e `userId`; o Mestre confere posse usando esse `userId` declarado, mas não vincula o valor a uma rolagem ou ação autorizada. Um cliente alterado pode declarar o ID de outro usuário com posse e pedir dano arbitrário.
    - **Correção:** Remover a rota genérica de dano remoto para ações de jogador, ou aceitar apenas `messageId` e reconstituir valor, alvo e permissões de um documento confiável no cliente do Mestre. Cobrir pedido forjado, ID de outro usuário, valor alterado e clique legítimo em teste de integração.
@@ -42,13 +42,13 @@
 
 ## Should fix
 
-7. **Comandos do README não correspondem ao projeto atual** (`systems/ordem_v2_classic/README.md:29-55`, `package.json:5-13`).
+7. **Comandos do README não correspondem ao projeto atual** (`systems/ordem-v2-classic/README.md:29-55`, `package.json:5-13`).
    - **O que é:** O README orienta build e testes para quem mantém o sistema.
    - **Problema:** Ele anuncia `build:db`, `test:watch`, `test:coverage` e `dev:down`, além de Vitest/Quench, enquanto o `package.json` atual usa Node Test Runner e `packs:pack`; esses comandos não existem.
    - **Correção:** Atualizar o README para os scripts reais e separar testes Node, renderização e suítes executadas dentro do Foundry.
    - **Se ignorar:** Uma pessoa nova não consegue seguir o fluxo documentado.
 
-8. **Teste de desempenho torna a suíte instável** (`systems/ordem_v2_classic/tests/unit/grimoire-search.test.mjs:129-138`).
+8. **Teste de desempenho torna a suíte instável** (`systems/ordem-v2-classic/tests/unit/grimoire-search.test.mjs:129-138`).
    - **O que é:** O teste exige que a busca em 600 entradas termine em menos de 50 ms.
    - **Problema:** Nesta auditoria, `npm test` passou 1.336 testes e falhou nesse único teste com 52,9 ms; o resultado depende da carga da máquina e não demonstra erro funcional.
    - **Correção:** Deixar a suíte principal testar correção e limites de saída; medir tempo em benchmark separado, no mesmo ambiente e com amostras estáveis.

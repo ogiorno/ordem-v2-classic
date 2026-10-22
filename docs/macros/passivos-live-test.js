@@ -2,7 +2,7 @@
 // Rodar com Mestre logado: playwright-cli -s=<nome> eval "$(cat docs/macros/passivos-live-test.js)"
 // Cria o agente "ZZ passivos (teste)", entrega cada poder, confere o bônus e apaga o poder (o bônus tem de sair). Apaga o agente no fim.
 (async () => {
-	const SYS = "ordem_v2_classic";
+	const SYS = "ordem-v2-classic";
 	const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 	const until = async (fn, ms = 6000) => { const t = Date.now(); while (Date.now() - t < ms) { if (await fn()) return true; await sleep(100); } return false; };
 	const rules = await import(`/systems/${SYS}/module/helpers/passive-effects-rules.mjs`);

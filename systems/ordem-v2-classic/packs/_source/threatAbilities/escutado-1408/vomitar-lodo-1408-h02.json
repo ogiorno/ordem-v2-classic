@@ -1,0 +1,108 @@
+{
+	"name": "Vomitar Lodo",
+	"type": "ability",
+	"img": "systems/ordem-v2-classic/assets/ability-icons/1408-1412-movimento-vomitar-lodo.webp",
+	"system": {
+		"id": 0,
+		"abilityType": "ability",
+		"preRequisite": "",
+		"description": "<p>MOVIMENTO - VOMITAR LODO Uma vez por cena, na primeira rodada após ser manifestada, cada cópia do escutado despeja um jorro de Lodo em um ser em alcance curto. O alvo sofre 4d10+10 pontos de dano de Morte e fica lento até o fim da cena (Reflexos DT 25 reduz o dano à metade e evita condição). VD 20 ESQUELETO</p>",
+		"chatDescription": "",
+		"activation": "movement",
+		"cost": 0,
+		"costType": "PE",
+		"execution": {
+			"mode": "active",
+			"automation": "assisted",
+			"damage": [
+				{
+					"kind": "damage",
+					"formula": "4d10+10",
+					"type": "morte",
+					"resource": "pv",
+					"roll": "once",
+					"frequency": ""
+				}
+			],
+			"effects": [
+				{
+					"condition": "lento",
+					"duration": {
+						"unit": "scene",
+						"value": null
+					},
+					"onSave": "fail",
+					"target": "target",
+					"trigger": "",
+					"support": "marker"
+				}
+			],
+			"requirements": [
+				{
+					"kind": "perScene",
+					"count": 1,
+					"ref": "",
+					"text": ""
+				},
+				{
+					"kind": "narrative",
+					"text": "na primeira rodada após a cópia ser manifestada",
+					"ref": ""
+				}
+			],
+			"grants": [],
+			"targeting": {
+				"kind": "token",
+				"range": 9,
+				"count": 1,
+				"relation": "any",
+				"voluntary": false,
+				"rangeUnspecified": false,
+				"requiresSight": false
+			},
+			"save": {
+				"skill": "reflexos",
+				"dc": 25,
+				"onSuccess": "half",
+				"retry": false
+			},
+			"version": 1,
+			"source": {
+				"reference": "Livro v1.3, p. 226, Escutado",
+				"reviewed": false
+			},
+			"cost": null,
+			"area": null,
+			"trigger": null,
+			"visibility": {
+				"dc": "gm",
+				"defense": "gm",
+				"result": "public"
+			}
+		}
+	},
+	"effects": [],
+	"flags": {
+		"ordem-v2-classic": {
+			"threatAbilityId": "1408-H02"
+		}
+	},
+	"_stats": {
+		"coreVersion": "14.369",
+		"systemId": "ordem-v2-classic",
+		"systemVersion": "8.0.2",
+		"createdTime": 1792207618168,
+		"modifiedTime": 1792207618168,
+		"lastModifiedBy": null,
+		"compendiumSource": null,
+		"duplicateSource": null,
+		"exportSource": null
+	},
+	"ownership": {
+		"default": 0
+	},
+	"folder": "5brgfo5umaGKYKCY",
+	"sort": 2000,
+	"_id": "la8ccHNeji2sIkb0",
+	"_key": "!items!la8ccHNeji2sIkb0"
+}

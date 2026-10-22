@@ -3,7 +3,7 @@ import fs from "node:fs";
 import path from "node:path";
 import crypto from "node:crypto";
 
-export const SYSTEM_DIR = path.resolve("systems/ordem_v2_classic");
+export const SYSTEM_DIR = path.resolve("systems/ordem-v2-classic");
 export const SOURCE_DIR = path.join(SYSTEM_DIR, "packs/_source");
 
 export const normalize = (text) =>
@@ -121,7 +121,7 @@ export class PackSource {
 
 export const STATS = () => ({
 	coreVersion: "14.365",
-	systemId: "ordem_v2_classic",
+	systemId: "ordem-v2-classic",
 	systemVersion: "7.3.3",
 	createdTime: 1784900000000,
 	modifiedTime: 1784900000000,

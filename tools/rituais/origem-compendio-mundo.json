@@ -2,7 +2,7 @@
  {
   "name": "Amaldiçoar Arma",
   "type": "ritual",
-  "img": "systems/ordem_v2_classic/assets/rituais/amaldicoar-arma.png",
+  "img": "systems/ordem-v2-classic/assets/rituais/amaldicoar-arma.png",
   "system": {
    "circle": 1,
    "element": "knowledge",
@@ -33,7 +33,7 @@
   "flags": {},
   "_stats": {
    "coreVersion": "14.369",
-   "systemId": "ordem_v2_classic",
+   "systemId": "ordem-v2-classic",
    "systemVersion": "8.0.2",
    "createdTime": 1792207618161,
    "modifiedTime": 1792208617433,
@@ -47,7 +47,7 @@
  {
   "name": "Amaldiçoar Tecnologia",
   "type": "ritual",
-  "img": "systems/ordem_v2_classic/assets/rituais/amaldicoar-tecnologia.png",
+  "img": "systems/ordem-v2-classic/assets/rituais/amaldicoar-tecnologia.png",
   "system": {
    "circle": 1,
    "element": "energy",
@@ -78,7 +78,7 @@
   "flags": {},
   "_stats": {
    "coreVersion": "14.369",
-   "systemId": "ordem_v2_classic",
+   "systemId": "ordem-v2-classic",
    "systemVersion": "8.0.2",
    "createdTime": 1792207618164,
    "modifiedTime": 1792207618165,
@@ -92,7 +92,7 @@
  {
   "name": "Apagar as Luzes",
   "type": "ritual",
-  "img": "systems/ordem_v2_classic/assets/rituais/apagar-as-luzes.png",
+  "img": "systems/ordem-v2-classic/assets/rituais/apagar-as-luzes.png",
   "system": {
    "circle": 1,
    "element": "death",
@@ -123,7 +123,7 @@
   "flags": {},
   "_stats": {
    "coreVersion": "14.369",
-   "systemId": "ordem_v2_classic",
+   "systemId": "ordem-v2-classic",
    "systemVersion": "8.0.2",
    "createdTime": 1792207618167,
    "modifiedTime": 1792207618168,
@@ -137,7 +137,7 @@
  {
   "name": "Arma Atroz",
   "type": "ritual",
-  "img": "systems/ordem_v2_classic/assets/rituais/arma-atroz.png",
+  "img": "systems/ordem-v2-classic/assets/rituais/arma-atroz.png",
   "system": {
    "circle": 1,
    "element": "blood",
@@ -168,7 +168,7 @@
   "flags": {},
   "_stats": {
    "coreVersion": "14.369",
-   "systemId": "ordem_v2_classic",
+   "systemId": "ordem-v2-classic",
    "systemVersion": "8.0.2",
    "createdTime": 1792207618170,
    "modifiedTime": 1792207618170,
@@ -182,7 +182,7 @@
  {
   "name": "Armadura de Sangue",
   "type": "ritual",
-  "img": "systems/ordem_v2_classic/assets/rituais/armadura-de-sangue.png",
+  "img": "systems/ordem-v2-classic/assets/rituais/armadura-de-sangue.png",
   "system": {
    "circle": 1,
    "element": "blood",
@@ -213,7 +213,7 @@
   "flags": {},
   "_stats": {
    "coreVersion": "14.369",
-   "systemId": "ordem_v2_classic",
+   "systemId": "ordem-v2-classic",
    "systemVersion": "8.0.2",
    "createdTime": 1792207618171,
    "modifiedTime": 1792207618171,
@@ -227,7 +227,7 @@
  {
   "name": "Cicatrização",
   "type": "ritual",
-  "img": "systems/ordem_v2_classic/assets/rituais/cicatrizacao.png",
+  "img": "systems/ordem-v2-classic/assets/rituais/cicatrizacao.png",
   "system": {
    "circle": 1,
    "element": "death",
@@ -258,7 +258,7 @@
   "flags": {},
   "_stats": {
    "coreVersion": "14.369",
-   "systemId": "ordem_v2_classic",
+   "systemId": "ordem-v2-classic",
    "systemVersion": "8.0.2",
    "createdTime": 1792207618176,
    "modifiedTime": 1792207618176,
@@ -272,7 +272,7 @@
  {
   "name": "Cinerária",
   "type": "ritual",
-  "img": "systems/ordem_v2_classic/assets/rituais/cineraria.png",
+  "img": "systems/ordem-v2-classic/assets/rituais/cineraria.png",
   "system": {
    "circle": 1,
    "element": "fear",
@@ -303,7 +303,7 @@
   "flags": {},
   "_stats": {
    "coreVersion": "14.369",
-   "systemId": "ordem_v2_classic",
+   "systemId": "ordem-v2-classic",
    "systemVersion": "8.0.2",
    "createdTime": 1792207618177,
    "modifiedTime": 1792207618178,
@@ -317,7 +317,7 @@
  {
   "name": "Coincidência Forçada",
   "type": "ritual",
-  "img": "systems/ordem_v2_classic/assets/rituais/coincidencia-forcada.png",
+  "img": "systems/ordem-v2-classic/assets/rituais/coincidencia-forcada.png",
   "system": {
    "circle": 1,
    "element": "energy",
@@ -348,7 +348,7 @@
   "flags": {},
   "_stats": {
    "coreVersion": "14.369",
-   "systemId": "ordem_v2_classic",
+   "systemId": "ordem-v2-classic",
    "systemVersion": "8.0.2",
    "createdTime": 1792207618179,
    "modifiedTime": 1792207618179,
@@ -362,7 +362,7 @@
  {
   "name": "Compreensão Paranormal",
   "type": "ritual",
-  "img": "systems/ordem_v2_classic/assets/rituais/compreensao-paranormal.png",
+  "img": "systems/ordem-v2-classic/assets/rituais/compreensao-paranormal.png",
   "system": {
    "circle": 1,
    "element": "knowledge",
@@ -393,7 +393,7 @@
   "flags": {},
   "_stats": {
    "coreVersion": "14.369",
-   "systemId": "ordem_v2_classic",
+   "systemId": "ordem-v2-classic",
    "systemVersion": "8.0.2",
    "createdTime": 1792207618181,
    "modifiedTime": 1792207618181,
@@ -407,7 +407,7 @@
  {
   "name": "Consumir Manancial",
   "type": "ritual",
-  "img": "systems/ordem_v2_classic/assets/rituais/consumir-manancial.png",
+  "img": "systems/ordem-v2-classic/assets/rituais/consumir-manancial.png",
   "system": {
    "circle": 1,
    "element": "death",
@@ -438,7 +438,7 @@
   "flags": {},
   "_stats": {
    "coreVersion": "14.369",
-   "systemId": "ordem_v2_classic",
+   "systemId": "ordem-v2-classic",
    "systemVersion": "8.0.2",
    "createdTime": 1792207618183,
    "modifiedTime": 1792207618183,
@@ -452,7 +452,7 @@
  {
   "name": "Corpo Adaptado",
   "type": "ritual",
-  "img": "systems/ordem_v2_classic/assets/rituais/corpo-adaptado.png",
+  "img": "systems/ordem-v2-classic/assets/rituais/corpo-adaptado.png",
   "system": {
    "circle": 1,
    "element": "blood",
@@ -483,7 +483,7 @@
   "flags": {},
   "_stats": {
    "coreVersion": "14.369",
-   "systemId": "ordem_v2_classic",
+   "systemId": "ordem-v2-classic",
    "systemVersion": "8.0.2",
    "createdTime": 1792207618184,
    "modifiedTime": 1792207618184,
@@ -497,7 +497,7 @@
  {
   "name": "Decadência",
   "type": "ritual",
-  "img": "systems/ordem_v2_classic/assets/rituais/decadencia.png",
+  "img": "systems/ordem-v2-classic/assets/rituais/decadencia.png",
   "system": {
    "circle": 1,
    "element": "death",
@@ -528,7 +528,7 @@
   "flags": {},
   "_stats": {
    "coreVersion": "14.369",
-   "systemId": "ordem_v2_classic",
+   "systemId": "ordem-v2-classic",
    "systemVersion": "8.0.2",
    "createdTime": 1792207618186,
    "modifiedTime": 1792207618186,
@@ -542,7 +542,7 @@
  {
   "name": "Definhar",
   "type": "ritual",
-  "img": "systems/ordem_v2_classic/assets/rituais/definhar.png",
+  "img": "systems/ordem-v2-classic/assets/rituais/definhar.png",
   "system": {
    "circle": 1,
    "element": "death",
@@ -573,7 +573,7 @@
   "flags": {},
   "_stats": {
    "coreVersion": "14.369",
-   "systemId": "ordem_v2_classic",
+   "systemId": "ordem-v2-classic",
    "systemVersion": "8.0.2",
    "createdTime": 1792207618188,
    "modifiedTime": 1792207618188,
@@ -587,7 +587,7 @@
  {
   "name": "Desfazer Sinapses",
   "type": "ritual",
-  "img": "systems/ordem_v2_classic/assets/rituais/desfazer-sinapses.png",
+  "img": "systems/ordem-v2-classic/assets/rituais/desfazer-sinapses.png",
   "system": {
    "circle": 1,
    "element": "knowledge",
@@ -618,7 +618,7 @@
   "flags": {},
   "_stats": {
    "coreVersion": "14.369",
-   "systemId": "ordem_v2_classic",
+   "systemId": "ordem-v2-classic",
    "systemVersion": "8.0.2",
    "createdTime": 1792207618190,
    "modifiedTime": 1792207618190,
@@ -632,7 +632,7 @@
  {
   "name": "Distorcer Aparência",
   "type": "ritual",
-  "img": "systems/ordem_v2_classic/assets/rituais/distorcer-aparencia.png",
+  "img": "systems/ordem-v2-classic/assets/rituais/distorcer-aparencia.png",
   "system": {
    "circle": 1,
    "element": "blood",
@@ -663,7 +663,7 @@
   "flags": {},
   "_stats": {
    "coreVersion": "14.369",
-   "systemId": "ordem_v2_classic",
+   "systemId": "ordem-v2-classic",
    "systemVersion": "8.0.2",
    "createdTime": 1792207618191,
    "modifiedTime": 1792207618191,
@@ -677,7 +677,7 @@
  {
   "name": "Eletrocussão",
   "type": "ritual",
-  "img": "systems/ordem_v2_classic/assets/rituais/eletrocussao.png",
+  "img": "systems/ordem-v2-classic/assets/rituais/eletrocussao.png",
   "system": {
    "circle": 1,
    "element": "energy",
@@ -708,7 +708,7 @@
   "flags": {},
   "_stats": {
    "coreVersion": "14.369",
-   "systemId": "ordem_v2_classic",
+   "systemId": "ordem-v2-classic",
    "systemVersion": "8.0.2",
    "createdTime": 1792207618193,
    "modifiedTime": 1792207618193,
@@ -722,7 +722,7 @@
  {
   "name": "Embaralhar",
   "type": "ritual",
-  "img": "systems/ordem_v2_classic/assets/rituais/embaralhar.png",
+  "img": "systems/ordem-v2-classic/assets/rituais/embaralhar.png",
   "system": {
    "circle": 1,
    "element": "energy",
@@ -753,7 +753,7 @@
   "flags": {},
   "_stats": {
    "coreVersion": "14.369",
-   "systemId": "ordem_v2_classic",
+   "systemId": "ordem-v2-classic",
    "systemVersion": "8.0.2",
    "createdTime": 1792207618194,
    "modifiedTime": 1792207618194,
@@ -767,7 +767,7 @@
  {
   "name": "Enfeitiçar",
   "type": "ritual",
-  "img": "systems/ordem_v2_classic/assets/rituais/enfeiticar.png",
+  "img": "systems/ordem-v2-classic/assets/rituais/enfeiticar.png",
   "system": {
    "circle": 1,
    "element": "knowledge",
@@ -798,7 +798,7 @@
   "flags": {},
   "_stats": {
    "coreVersion": "14.369",
-   "systemId": "ordem_v2_classic",
+   "systemId": "ordem-v2-classic",
    "systemVersion": "8.0.2",
    "createdTime": 1792207618196,
    "modifiedTime": 1792207618196,
@@ -812,7 +812,7 @@
  {
   "name": "Esfolar",
   "type": "ritual",
-  "img": "systems/ordem_v2_classic/assets/rituais/esfolar.png",
+  "img": "systems/ordem-v2-classic/assets/rituais/esfolar.png",
   "system": {
    "circle": 1,
    "element": "blood",
@@ -843,7 +843,7 @@
   "flags": {},
   "_stats": {
    "coreVersion": "14.369",
-   "systemId": "ordem_v2_classic",
+   "systemId": "ordem-v2-classic",
    "systemVersion": "8.0.2",
    "createdTime": 1792207618197,
    "modifiedTime": 1792207618197,
@@ -857,7 +857,7 @@
  {
   "name": "Espirais da Perdição",
   "type": "ritual",
-  "img": "systems/ordem_v2_classic/assets/rituais/espirais-da-perdicao.png",
+  "img": "systems/ordem-v2-classic/assets/rituais/espirais-da-perdicao.png",
   "system": {
    "circle": 1,
    "element": "death",
@@ -888,7 +888,7 @@
   "flags": {},
   "_stats": {
    "coreVersion": "14.369",
-   "systemId": "ordem_v2_classic",
+   "systemId": "ordem-v2-classic",
    "systemVersion": "8.0.2",
    "createdTime": 1792207618198,
    "modifiedTime": 1792207618198,
@@ -902,7 +902,7 @@
  {
   "name": "Fortalecimento Sensorial",
   "type": "ritual",
-  "img": "systems/ordem_v2_classic/assets/rituais/fortalecimento-sensorial.png",
+  "img": "systems/ordem-v2-classic/assets/rituais/fortalecimento-sensorial.png",
   "system": {
    "circle": 1,
    "element": "blood",
@@ -933,7 +933,7 @@
   "flags": {},
   "_stats": {
    "coreVersion": "14.369",
-   "systemId": "ordem_v2_classic",
+   "systemId": "ordem-v2-classic",
    "systemVersion": "8.0.2",
    "createdTime": 1792207618200,
    "modifiedTime": 1792207618200,
@@ -947,7 +947,7 @@
  {
   "name": "Luz",
   "type": "ritual",
-  "img": "systems/ordem_v2_classic/assets/rituais/luz.png",
+  "img": "systems/ordem-v2-classic/assets/rituais/luz.png",
   "system": {
    "circle": 1,
    "element": "energy",
@@ -978,7 +978,7 @@
   "flags": {},
   "_stats": {
    "coreVersion": "14.369",
-   "systemId": "ordem_v2_classic",
+   "systemId": "ordem-v2-classic",
    "systemVersion": "8.0.2",
    "createdTime": 1792207618202,
    "modifiedTime": 1792207618202,
@@ -992,7 +992,7 @@
  {
   "name": "Nuvem de Cinzas",
   "type": "ritual",
-  "img": "systems/ordem_v2_classic/assets/rituais/nuvem-de-cinzas.png",
+  "img": "systems/ordem-v2-classic/assets/rituais/nuvem-de-cinzas.png",
   "system": {
    "circle": 1,
    "element": "death",
@@ -1023,7 +1023,7 @@
   "flags": {},
   "_stats": {
    "coreVersion": "14.369",
-   "systemId": "ordem_v2_classic",
+   "systemId": "ordem-v2-classic",
    "systemVersion": "8.0.2",
    "createdTime": 1792207618203,
    "modifiedTime": 1792207618203,
@@ -1037,7 +1037,7 @@
  {
   "name": "Ouvir os Sussurros",
   "type": "ritual",
-  "img": "systems/ordem_v2_classic/assets/rituais/ouvir-os-sussurros.png",
+  "img": "systems/ordem-v2-classic/assets/rituais/ouvir-os-sussurros.png",
   "system": {
    "circle": 1,
    "element": "knowledge",
@@ -1068,7 +1068,7 @@
   "flags": {},
   "_stats": {
    "coreVersion": "14.369",
-   "systemId": "ordem_v2_classic",
+   "systemId": "ordem-v2-classic",
    "systemVersion": "8.0.2",
    "createdTime": 1792207618206,
    "modifiedTime": 1792207618206,
@@ -1082,7 +1082,7 @@
  {
   "name": "Overclock",
   "type": "ritual",
-  "img": "systems/ordem_v2_classic/assets/rituais/overclock.png",
+  "img": "systems/ordem-v2-classic/assets/rituais/overclock.png",
   "system": {
    "circle": 1,
    "element": "energy",
@@ -1113,7 +1113,7 @@
   "flags": {},
   "_stats": {
    "coreVersion": "14.369",
-   "systemId": "ordem_v2_classic",
+   "systemId": "ordem-v2-classic",
    "systemVersion": "8.0.2",
    "createdTime": 1792207618208,
    "modifiedTime": 1792448030904,
@@ -1127,7 +1127,7 @@
  {
   "name": "Perturbação",
   "type": "ritual",
-  "img": "systems/ordem_v2_classic/assets/rituais/perturbacao.png",
+  "img": "systems/ordem-v2-classic/assets/rituais/perturbacao.png",
   "system": {
    "circle": 1,
    "element": "knowledge",
@@ -1158,7 +1158,7 @@
   "flags": {},
   "_stats": {
    "coreVersion": "14.369",
-   "systemId": "ordem_v2_classic",
+   "systemId": "ordem-v2-classic",
    "systemVersion": "8.0.2",
    "createdTime": 1792207618210,
    "modifiedTime": 1792207618210,
@@ -1172,7 +1172,7 @@
  {
   "name": "Polarização Caótica",
   "type": "ritual",
-  "img": "systems/ordem_v2_classic/assets/rituais/polarizacao-caotica.png",
+  "img": "systems/ordem-v2-classic/assets/rituais/polarizacao-caotica.png",
   "system": {
    "circle": 1,
    "element": "energy",
@@ -1203,7 +1203,7 @@
   "flags": {},
   "_stats": {
    "coreVersion": "14.369",
-   "systemId": "ordem_v2_classic",
+   "systemId": "ordem-v2-classic",
    "systemVersion": "8.0.2",
    "createdTime": 1792207618212,
    "modifiedTime": 1792207618212,
@@ -1217,7 +1217,7 @@
  {
   "name": "Tecer Ilusão",
   "type": "ritual",
-  "img": "systems/ordem_v2_classic/assets/rituais/tecer-ilusao.png",
+  "img": "systems/ordem-v2-classic/assets/rituais/tecer-ilusao.png",
   "system": {
    "circle": 1,
    "element": "knowledge",
@@ -1248,7 +1248,7 @@
   "flags": {},
   "_stats": {
    "coreVersion": "14.369",
-   "systemId": "ordem_v2_classic",
+   "systemId": "ordem-v2-classic",
    "systemVersion": "8.0.2",
    "createdTime": 1792207618213,
    "modifiedTime": 1792207618213,
@@ -1262,7 +1262,7 @@
  {
   "name": "Terceiro Olho",
   "type": "ritual",
-  "img": "systems/ordem_v2_classic/assets/rituais/terceiro-olho.png",
+  "img": "systems/ordem-v2-classic/assets/rituais/terceiro-olho.png",
   "system": {
    "circle": 1,
    "element": "knowledge",
@@ -1293,7 +1293,7 @@
   "flags": {},
   "_stats": {
    "coreVersion": "14.369",
-   "systemId": "ordem_v2_classic",
+   "systemId": "ordem-v2-classic",
    "systemVersion": "8.0.2",
    "createdTime": 1792207618215,
    "modifiedTime": 1792448000612,
@@ -1307,7 +1307,7 @@
  {
   "name": "Ódio Incontrolável",
   "type": "ritual",
-  "img": "systems/ordem_v2_classic/assets/rituais/odio-incontrolavel.png",
+  "img": "systems/ordem-v2-classic/assets/rituais/odio-incontrolavel.png",
   "system": {
    "circle": 1,
    "element": "blood",
@@ -1338,7 +1338,7 @@
   "flags": {},
   "_stats": {
    "coreVersion": "14.369",
-   "systemId": "ordem_v2_classic",
+   "systemId": "ordem-v2-classic",
    "systemVersion": "8.0.2",
    "createdTime": 1792207618205,
    "modifiedTime": 1792207618205,
@@ -1352,7 +1352,7 @@
  {
   "name": "Aprimorar Físico",
   "type": "ritual",
-  "img": "systems/ordem_v2_classic/assets/rituais/aprimorar-fisico.png",
+  "img": "systems/ordem-v2-classic/assets/rituais/aprimorar-fisico.png",
   "system": {
    "circle": 2,
    "element": "blood",
@@ -1383,7 +1383,7 @@
   "flags": {},
   "_stats": {
    "coreVersion": "14.369",
-   "systemId": "ordem_v2_classic",
+   "systemId": "ordem-v2-classic",
    "systemVersion": "8.0.2",
    "createdTime": 1792207618216,
    "modifiedTime": 1792207618217,
@@ -1397,7 +1397,7 @@
  {
   "name": "Aprimorar Mente",
   "type": "ritual",
-  "img": "systems/ordem_v2_classic/assets/rituais/aprimorar-mente.png",
+  "img": "systems/ordem-v2-classic/assets/rituais/aprimorar-mente.png",
   "system": {
    "circle": 2,
    "element": "knowledge",
@@ -1428,7 +1428,7 @@
   "flags": {},
   "_stats": {
    "coreVersion": "14.369",
-   "systemId": "ordem_v2_classic",
+   "systemId": "ordem-v2-classic",
    "systemVersion": "8.0.2",
    "createdTime": 1792207618218,
    "modifiedTime": 1792207618218,
@@ -1442,7 +1442,7 @@
  {
   "name": "Aurora da Verdade",
   "type": "ritual",
-  "img": "systems/ordem_v2_classic/assets/rituais/aurora-da-verdade.png",
+  "img": "systems/ordem-v2-classic/assets/rituais/aurora-da-verdade.png",
   "system": {
    "circle": 2,
    "element": "knowledge",
@@ -1473,7 +1473,7 @@
   "flags": {},
   "_stats": {
    "coreVersion": "14.369",
-   "systemId": "ordem_v2_classic",
+   "systemId": "ordem-v2-classic",
    "systemVersion": "8.0.2",
    "createdTime": 1792207618219,
    "modifiedTime": 1792207618219,
@@ -1487,7 +1487,7 @@
  {
   "name": "Chamas do Caos",
   "type": "ritual",
-  "img": "systems/ordem_v2_classic/assets/rituais/chamas-do-caos.png",
+  "img": "systems/ordem-v2-classic/assets/rituais/chamas-do-caos.png",
   "system": {
    "circle": 2,
    "element": "energy",
@@ -1518,7 +1518,7 @@
   "flags": {},
   "_stats": {
    "coreVersion": "14.369",
-   "systemId": "ordem_v2_classic",
+   "systemId": "ordem-v2-classic",
    "systemVersion": "8.0.2",
    "createdTime": 1792207618220,
    "modifiedTime": 1792207618220,
@@ -1532,7 +1532,7 @@
  {
   "name": "Contenção Fantasmagórica",
   "type": "ritual",
-  "img": "systems/ordem_v2_classic/assets/rituais/contencao-fantasmagorica.png",
+  "img": "systems/ordem-v2-classic/assets/rituais/contencao-fantasmagorica.png",
   "system": {
    "circle": 2,
    "element": "energy",
@@ -1563,7 +1563,7 @@
   "flags": {},
   "_stats": {
    "coreVersion": "14.369",
-   "systemId": "ordem_v2_classic",
+   "systemId": "ordem-v2-classic",
    "systemVersion": "8.0.2",
    "createdTime": 1792207618222,
    "modifiedTime": 1792207618222,
@@ -1577,7 +1577,7 @@
  {
   "name": "Desacelerar Impacto",
   "type": "ritual",
-  "img": "systems/ordem_v2_classic/assets/rituais/desacelerar-impacto.png",
+  "img": "systems/ordem-v2-classic/assets/rituais/desacelerar-impacto.png",
   "system": {
    "circle": 2,
    "element": "death",
@@ -1608,7 +1608,7 @@
   "flags": {},
   "_stats": {
    "coreVersion": "14.369",
-   "systemId": "ordem_v2_classic",
+   "systemId": "ordem-v2-classic",
    "systemVersion": "8.0.2",
    "createdTime": 1792207618223,
    "modifiedTime": 1792207618224,
@@ -1622,7 +1622,7 @@
  {
   "name": "Descarnar",
   "type": "ritual",
-  "img": "systems/ordem_v2_classic/assets/rituais/descarnar.png",
+  "img": "systems/ordem-v2-classic/assets/rituais/descarnar.png",
   "system": {
    "circle": 2,
    "element": "blood",
@@ -1653,7 +1653,7 @@
   "flags": {},
   "_stats": {
    "coreVersion": "14.369",
-   "systemId": "ordem_v2_classic",
+   "systemId": "ordem-v2-classic",
    "systemVersion": "8.0.2",
    "createdTime": 1792207618225,
    "modifiedTime": 1792207618225,
@@ -1667,7 +1667,7 @@
  {
   "name": "Detecção de Ameaças",
   "type": "ritual",
-  "img": "systems/ordem_v2_classic/assets/rituais/deteccao-de-ameacas.png",
+  "img": "systems/ordem-v2-classic/assets/rituais/deteccao-de-ameacas.png",
   "system": {
    "circle": 2,
    "element": "knowledge",
@@ -1698,7 +1698,7 @@
   "flags": {},
   "_stats": {
    "coreVersion": "14.369",
-   "systemId": "ordem_v2_classic",
+   "systemId": "ordem-v2-classic",
    "systemVersion": "8.0.2",
    "createdTime": 1792207618226,
    "modifiedTime": 1792207618226,
@@ -1712,7 +1712,7 @@
  {
   "name": "Dissonância Acústica",
   "type": "ritual",
-  "img": "systems/ordem_v2_classic/assets/rituais/dissonancia-acustica.png",
+  "img": "systems/ordem-v2-classic/assets/rituais/dissonancia-acustica.png",
   "system": {
    "circle": 2,
    "element": "energy",
@@ -1743,7 +1743,7 @@
   "flags": {},
   "_stats": {
    "coreVersion": "14.369",
-   "systemId": "ordem_v2_classic",
+   "systemId": "ordem-v2-classic",
    "systemVersion": "8.0.2",
    "createdTime": 1792207618228,
    "modifiedTime": 1792207618228,
@@ -1757,7 +1757,7 @@
  {
   "name": "Eco Espiral",
   "type": "ritual",
-  "img": "systems/ordem_v2_classic/assets/rituais/eco-espiral.png",
+  "img": "systems/ordem-v2-classic/assets/rituais/eco-espiral.png",
   "system": {
    "circle": 2,
    "element": "death",
@@ -1788,7 +1788,7 @@
   "flags": {},
   "_stats": {
    "coreVersion": "14.369",
-   "systemId": "ordem_v2_classic",
+   "systemId": "ordem-v2-classic",
    "systemVersion": "8.0.2",
    "createdTime": 1792207618229,
    "modifiedTime": 1792207618229,
@@ -1802,7 +1802,7 @@
  {
   "name": "Esconder dos Olhos",
   "type": "ritual",
-  "img": "systems/ordem_v2_classic/assets/rituais/esconder-dos-olhos.png",
+  "img": "systems/ordem-v2-classic/assets/rituais/esconder-dos-olhos.png",
   "system": {
    "circle": 2,
    "element": "knowledge",
@@ -1833,7 +1833,7 @@
   "flags": {},
   "_stats": {
    "coreVersion": "14.369",
-   "systemId": "ordem_v2_classic",
+   "systemId": "ordem-v2-classic",
    "systemVersion": "8.0.2",
    "createdTime": 1792207618231,
    "modifiedTime": 1792207618231,
@@ -1847,7 +1847,7 @@
  {
   "name": "Flagelo de Sangue",
   "type": "ritual",
-  "img": "systems/ordem_v2_classic/assets/rituais/flagelo-de-sangue.png",
+  "img": "systems/ordem-v2-classic/assets/rituais/flagelo-de-sangue.png",
   "system": {
    "circle": 2,
    "element": "blood",
@@ -1878,7 +1878,7 @@
   "flags": {},
   "_stats": {
    "coreVersion": "14.369",
-   "systemId": "ordem_v2_classic",
+   "systemId": "ordem-v2-classic",
    "systemVersion": "8.0.2",
    "createdTime": 1792207618233,
    "modifiedTime": 1792207618233,
@@ -1892,7 +1892,7 @@
  {
   "name": "Hemofagia",
   "type": "ritual",
-  "img": "systems/ordem_v2_classic/assets/rituais/hemofagia.png",
+  "img": "systems/ordem-v2-classic/assets/rituais/hemofagia.png",
   "system": {
    "circle": 2,
    "element": "blood",
@@ -1923,7 +1923,7 @@
   "flags": {},
   "_stats": {
    "coreVersion": "14.369",
-   "systemId": "ordem_v2_classic",
+   "systemId": "ordem-v2-classic",
    "systemVersion": "8.0.2",
    "createdTime": 1792207618234,
    "modifiedTime": 1792207618234,
@@ -1937,7 +1937,7 @@
  {
   "name": "Invadir Mente",
   "type": "ritual",
-  "img": "systems/ordem_v2_classic/assets/rituais/invadir-mente.png",
+  "img": "systems/ordem-v2-classic/assets/rituais/invadir-mente.png",
   "system": {
    "circle": 2,
    "element": "knowledge",
@@ -1968,7 +1968,7 @@
   "flags": {},
   "_stats": {
    "coreVersion": "14.369",
-   "systemId": "ordem_v2_classic",
+   "systemId": "ordem-v2-classic",
    "systemVersion": "8.0.2",
    "createdTime": 1792207618236,
    "modifiedTime": 1792207618236,
@@ -1982,7 +1982,7 @@
  {
   "name": "Localização",
   "type": "ritual",
-  "img": "systems/ordem_v2_classic/assets/rituais/localizacao.png",
+  "img": "systems/ordem-v2-classic/assets/rituais/localizacao.png",
   "system": {
    "circle": 2,
    "element": "knowledge",
@@ -2013,7 +2013,7 @@
   "flags": {},
   "_stats": {
    "coreVersion": "14.369",
-   "systemId": "ordem_v2_classic",
+   "systemId": "ordem-v2-classic",
    "systemVersion": "8.0.2",
    "createdTime": 1792207618239,
    "modifiedTime": 1792207618239,
@@ -2027,7 +2027,7 @@
  {
   "name": "Língua Morta",
   "type": "ritual",
-  "img": "systems/ordem_v2_classic/assets/rituais/lingua-morta.png",
+  "img": "systems/ordem-v2-classic/assets/rituais/lingua-morta.png",
   "system": {
    "circle": 2,
    "element": "death",
@@ -2058,7 +2058,7 @@
   "flags": {},
   "_stats": {
    "coreVersion": "14.369",
-   "systemId": "ordem_v2_classic",
+   "systemId": "ordem-v2-classic",
    "systemVersion": "8.0.2",
    "createdTime": 1792207618238,
    "modifiedTime": 1792207618238,
@@ -2072,7 +2072,7 @@
  {
   "name": "Miasma Entrópico",
   "type": "ritual",
-  "img": "systems/ordem_v2_classic/assets/rituais/miasma-entropico.png",
+  "img": "systems/ordem-v2-classic/assets/rituais/miasma-entropico.png",
   "system": {
    "circle": 2,
    "element": "death",
@@ -2103,7 +2103,7 @@
   "flags": {},
   "_stats": {
    "coreVersion": "14.369",
-   "systemId": "ordem_v2_classic",
+   "systemId": "ordem-v2-classic",
    "systemVersion": "8.0.2",
    "createdTime": 1792207618240,
    "modifiedTime": 1792207618240,
@@ -2117,7 +2117,7 @@
  {
   "name": "Paradoxo",
   "type": "ritual",
-  "img": "systems/ordem_v2_classic/assets/rituais/paradoxo.png",
+  "img": "systems/ordem-v2-classic/assets/rituais/paradoxo.png",
   "system": {
    "circle": 2,
    "element": "death",
@@ -2148,7 +2148,7 @@
   "flags": {},
   "_stats": {
    "coreVersion": "14.369",
-   "systemId": "ordem_v2_classic",
+   "systemId": "ordem-v2-classic",
    "systemVersion": "8.0.2",
    "createdTime": 1792207618243,
    "modifiedTime": 1792207618243,
@@ -2162,7 +2162,7 @@
  {
   "name": "Proteção contra Rituais",
   "type": "ritual",
-  "img": "systems/ordem_v2_classic/assets/rituais/protecao-contra-rituais.png",
+  "img": "systems/ordem-v2-classic/assets/rituais/protecao-contra-rituais.png",
   "system": {
    "circle": 2,
    "element": "fear",
@@ -2193,7 +2193,7 @@
   "flags": {},
   "_stats": {
    "coreVersion": "14.369",
-   "systemId": "ordem_v2_classic",
+   "systemId": "ordem-v2-classic",
    "systemVersion": "8.0.2",
    "createdTime": 1792207618245,
    "modifiedTime": 1792207618245,
@@ -2207,7 +2207,7 @@
  {
   "name": "Rejeitar Névoa",
   "type": "ritual",
-  "img": "systems/ordem_v2_classic/assets/rituais/rejeitar-nevoa.png",
+  "img": "systems/ordem-v2-classic/assets/rituais/rejeitar-nevoa.png",
   "system": {
    "circle": 2,
    "element": "fear",
@@ -2238,7 +2238,7 @@
   "flags": {},
   "_stats": {
    "coreVersion": "14.369",
-   "systemId": "ordem_v2_classic",
+   "systemId": "ordem-v2-classic",
    "systemVersion": "8.0.2",
    "createdTime": 1792207618246,
    "modifiedTime": 1792207618246,
@@ -2252,7 +2252,7 @@
  {
   "name": "Sede de Adrenalina",
   "type": "ritual",
-  "img": "systems/ordem_v2_classic/assets/rituais/sede-de-adrenalina.png",
+  "img": "systems/ordem-v2-classic/assets/rituais/sede-de-adrenalina.png",
   "system": {
    "circle": 2,
    "element": "blood",
@@ -2283,7 +2283,7 @@
   "flags": {},
   "_stats": {
    "coreVersion": "14.369",
-   "systemId": "ordem_v2_classic",
+   "systemId": "ordem-v2-classic",
    "systemVersion": "8.0.2",
    "createdTime": 1792207618248,
    "modifiedTime": 1792207618248,
@@ -2297,7 +2297,7 @@
  {
   "name": "Sopro do Caos",
   "type": "ritual",
-  "img": "systems/ordem_v2_classic/assets/rituais/sopro-do-caos.png",
+  "img": "systems/ordem-v2-classic/assets/rituais/sopro-do-caos.png",
   "system": {
    "circle": 2,
    "element": "energy",
@@ -2328,7 +2328,7 @@
   "flags": {},
   "_stats": {
    "coreVersion": "14.369",
-   "systemId": "ordem_v2_classic",
+   "systemId": "ordem-v2-classic",
    "systemVersion": "8.0.2",
    "createdTime": 1792207618250,
    "modifiedTime": 1792207618250,
@@ -2342,7 +2342,7 @@
  {
   "name": "Tela de Ruído",
   "type": "ritual",
-  "img": "systems/ordem_v2_classic/assets/rituais/tela-de-ruido.png",
+  "img": "systems/ordem-v2-classic/assets/rituais/tela-de-ruido.png",
   "system": {
    "circle": 2,
    "element": "energy",
@@ -2373,7 +2373,7 @@
   "flags": {},
   "_stats": {
    "coreVersion": "14.369",
-   "systemId": "ordem_v2_classic",
+   "systemId": "ordem-v2-classic",
    "systemVersion": "8.0.2",
    "createdTime": 1792207618253,
    "modifiedTime": 1792207618253,
@@ -2387,7 +2387,7 @@
  {
   "name": "Transfusão Vital",
   "type": "ritual",
-  "img": "systems/ordem_v2_classic/assets/rituais/transfusao-vital.png",
+  "img": "systems/ordem-v2-classic/assets/rituais/transfusao-vital.png",
   "system": {
    "circle": 2,
    "element": "blood",
@@ -2418,7 +2418,7 @@
   "flags": {},
   "_stats": {
    "coreVersion": "14.369",
-   "systemId": "ordem_v2_classic",
+   "systemId": "ordem-v2-classic",
    "systemVersion": "8.0.2",
    "createdTime": 1792207618256,
    "modifiedTime": 1792207618256,
@@ -2432,7 +2432,7 @@
  {
   "name": "Tremeluzir",
   "type": "ritual",
-  "img": "systems/ordem_v2_classic/assets/rituais/tremeluzir.png",
+  "img": "systems/ordem-v2-classic/assets/rituais/tremeluzir.png",
   "system": {
    "circle": 2,
    "element": "energy",
@@ -2463,7 +2463,7 @@
   "flags": {},
   "_stats": {
    "coreVersion": "14.369",
-   "systemId": "ordem_v2_classic",
+   "systemId": "ordem-v2-classic",
    "systemVersion": "8.0.2",
    "createdTime": 1792207618258,
    "modifiedTime": 1792207618258,
@@ -2477,7 +2477,7 @@
  {
   "name": "Velocidade Mortal",
   "type": "ritual",
-  "img": "systems/ordem_v2_classic/assets/rituais/velocidade-mortal.png",
+  "img": "systems/ordem-v2-classic/assets/rituais/velocidade-mortal.png",
   "system": {
    "circle": 2,
    "element": "death",
@@ -2508,7 +2508,7 @@
   "flags": {},
   "_stats": {
    "coreVersion": "14.369",
-   "systemId": "ordem_v2_classic",
+   "systemId": "ordem-v2-classic",
    "systemVersion": "8.0.2",
    "createdTime": 1792207618263,
    "modifiedTime": 1792207618263,
@@ -2522,7 +2522,7 @@
  {
   "name": "Alterar Memória",
   "type": "ritual",
-  "img": "systems/ordem_v2_classic/assets/rituais/alterar-memoria.png",
+  "img": "systems/ordem-v2-classic/assets/rituais/alterar-memoria.png",
   "system": {
    "circle": 3,
    "element": "knowledge",
@@ -2553,7 +2553,7 @@
   "flags": {},
   "_stats": {
    "coreVersion": "14.369",
-   "systemId": "ordem_v2_classic",
+   "systemId": "ordem-v2-classic",
    "systemVersion": "8.0.2",
    "createdTime": 1792207618264,
    "modifiedTime": 1792207618265,
@@ -2567,7 +2567,7 @@
  {
   "name": "Contato Paranormal",
   "type": "ritual",
-  "img": "systems/ordem_v2_classic/assets/rituais/contato-paranormal.png",
+  "img": "systems/ordem-v2-classic/assets/rituais/contato-paranormal.png",
   "system": {
    "circle": 3,
    "element": "knowledge",
@@ -2598,7 +2598,7 @@
   "flags": {},
   "_stats": {
    "coreVersion": "14.369",
-   "systemId": "ordem_v2_classic",
+   "systemId": "ordem-v2-classic",
    "systemVersion": "8.0.2",
    "createdTime": 1792207618268,
    "modifiedTime": 1792207618268,
@@ -2612,7 +2612,7 @@
  {
   "name": "Convocação Instantânea",
   "type": "ritual",
-  "img": "systems/ordem_v2_classic/assets/rituais/convocacao-instantanea.png",
+  "img": "systems/ordem-v2-classic/assets/rituais/convocacao-instantanea.png",
   "system": {
    "circle": 3,
    "element": "energy",
@@ -2643,7 +2643,7 @@
   "flags": {},
   "_stats": {
    "coreVersion": "14.369",
-   "systemId": "ordem_v2_classic",
+   "systemId": "ordem-v2-classic",
    "systemVersion": "8.0.2",
    "createdTime": 1792207618269,
    "modifiedTime": 1792207618269,
@@ -2657,7 +2657,7 @@
  {
   "name": "Dissipar Ritual",
   "type": "ritual",
-  "img": "systems/ordem_v2_classic/assets/rituais/dissipar-ritual.png",
+  "img": "systems/ordem-v2-classic/assets/rituais/dissipar-ritual.png",
   "system": {
    "circle": 3,
    "element": "fear",
@@ -2688,7 +2688,7 @@
   "flags": {},
   "_stats": {
    "coreVersion": "14.369",
-   "systemId": "ordem_v2_classic",
+   "systemId": "ordem-v2-classic",
    "systemVersion": "8.0.2",
    "createdTime": 1792207618271,
    "modifiedTime": 1792207618271,
@@ -2702,7 +2702,7 @@
  {
   "name": "Fedor Pútrido",
   "type": "ritual",
-  "img": "systems/ordem_v2_classic/assets/rituais/fedor-putrido.png",
+  "img": "systems/ordem-v2-classic/assets/rituais/fedor-putrido.png",
   "system": {
    "circle": 3,
    "element": "death",
@@ -2733,7 +2733,7 @@
   "flags": {},
   "_stats": {
    "coreVersion": "14.369",
-   "systemId": "ordem_v2_classic",
+   "systemId": "ordem-v2-classic",
    "systemVersion": "8.0.2",
    "createdTime": 1792207618273,
    "modifiedTime": 1792207618273,
@@ -2747,7 +2747,7 @@
  {
   "name": "Ferver Sangue",
   "type": "ritual",
-  "img": "systems/ordem_v2_classic/assets/rituais/ferver-sangue.png",
+  "img": "systems/ordem-v2-classic/assets/rituais/ferver-sangue.png",
   "system": {
    "circle": 3,
    "element": "blood",
@@ -2778,7 +2778,7 @@
   "flags": {},
   "_stats": {
    "coreVersion": "14.369",
-   "systemId": "ordem_v2_classic",
+   "systemId": "ordem-v2-classic",
    "systemVersion": "8.0.2",
    "createdTime": 1792207618274,
    "modifiedTime": 1792207618274,
@@ -2792,7 +2792,7 @@
  {
   "name": "Forma Monstruosa",
   "type": "ritual",
-  "img": "systems/ordem_v2_classic/assets/rituais/forma-monstruosa.png",
+  "img": "systems/ordem-v2-classic/assets/rituais/forma-monstruosa.png",
   "system": {
    "circle": 3,
    "element": "blood",
@@ -2823,7 +2823,7 @@
   "flags": {},
   "_stats": {
    "coreVersion": "14.369",
-   "systemId": "ordem_v2_classic",
+   "systemId": "ordem-v2-classic",
    "systemVersion": "8.0.2",
    "createdTime": 1792207618276,
    "modifiedTime": 1792448088963,
@@ -2837,7 +2837,7 @@
  {
   "name": "Mergulho Mental",
   "type": "ritual",
-  "img": "systems/ordem_v2_classic/assets/rituais/mergulho-mental.png",
+  "img": "systems/ordem-v2-classic/assets/rituais/mergulho-mental.png",
   "system": {
    "circle": 3,
    "element": "knowledge",
@@ -2868,7 +2868,7 @@
   "flags": {},
   "_stats": {
    "coreVersion": "14.369",
-   "systemId": "ordem_v2_classic",
+   "systemId": "ordem-v2-classic",
    "systemVersion": "8.0.2",
    "createdTime": 1792207618278,
    "modifiedTime": 1792207618278,
@@ -2882,7 +2882,7 @@
  {
   "name": "Milagre Ionizante",
   "type": "ritual",
-  "img": "systems/ordem_v2_classic/assets/rituais/milagre-ionizante.png",
+  "img": "systems/ordem-v2-classic/assets/rituais/milagre-ionizante.png",
   "system": {
    "circle": 3,
    "element": "energy",
@@ -2913,7 +2913,7 @@
   "flags": {},
   "_stats": {
    "coreVersion": "14.369",
-   "systemId": "ordem_v2_classic",
+   "systemId": "ordem-v2-classic",
    "systemVersion": "8.0.2",
    "createdTime": 1792207618280,
    "modifiedTime": 1792207618280,
@@ -2927,7 +2927,7 @@
  {
   "name": "Mutar",
   "type": "ritual",
-  "img": "systems/ordem_v2_classic/assets/rituais/mutar.png",
+  "img": "systems/ordem-v2-classic/assets/rituais/mutar.png",
   "system": {
    "circle": 3,
    "element": "energy",
@@ -2958,7 +2958,7 @@
   "flags": {},
   "_stats": {
    "coreVersion": "14.369",
-   "systemId": "ordem_v2_classic",
+   "systemId": "ordem-v2-classic",
    "systemVersion": "8.0.2",
    "createdTime": 1792207618281,
    "modifiedTime": 1792207618281,
@@ -2972,7 +2972,7 @@
  {
   "name": "Odor da Caçada",
   "type": "ritual",
-  "img": "systems/ordem_v2_classic/assets/rituais/odor-da-cacada.png",
+  "img": "systems/ordem-v2-classic/assets/rituais/odor-da-cacada.png",
   "system": {
    "circle": 3,
    "element": "blood",
@@ -3003,7 +3003,7 @@
   "flags": {},
   "_stats": {
    "coreVersion": "14.369",
-   "systemId": "ordem_v2_classic",
+   "systemId": "ordem-v2-classic",
    "systemVersion": "8.0.2",
    "createdTime": 1792207618283,
    "modifiedTime": 1792207618283,
@@ -3017,7 +3017,7 @@
  {
   "name": "Poeira da Podridão",
   "type": "ritual",
-  "img": "systems/ordem_v2_classic/assets/rituais/poeira-da-podridao.png",
+  "img": "systems/ordem-v2-classic/assets/rituais/poeira-da-podridao.png",
   "system": {
    "circle": 3,
    "element": "death",
@@ -3048,7 +3048,7 @@
   "flags": {},
   "_stats": {
    "coreVersion": "14.369",
-   "systemId": "ordem_v2_classic",
+   "systemId": "ordem-v2-classic",
    "systemVersion": "8.0.2",
    "createdTime": 1792207618284,
    "modifiedTime": 1792207618284,
@@ -3062,7 +3062,7 @@
  {
   "name": "Purgatório",
   "type": "ritual",
-  "img": "systems/ordem_v2_classic/assets/rituais/purgatorio.png",
+  "img": "systems/ordem-v2-classic/assets/rituais/purgatorio.png",
   "system": {
    "circle": 3,
    "element": "blood",
@@ -3093,7 +3093,7 @@
   "flags": {},
   "_stats": {
    "coreVersion": "14.369",
-   "systemId": "ordem_v2_classic",
+   "systemId": "ordem-v2-classic",
    "systemVersion": "8.0.2",
    "createdTime": 1792207618286,
    "modifiedTime": 1792207618286,
@@ -3107,7 +3107,7 @@
  {
   "name": "Relembrar Fragmento",
   "type": "ritual",
-  "img": "systems/ordem_v2_classic/assets/rituais/relembrar-fragmento.png",
+  "img": "systems/ordem-v2-classic/assets/rituais/relembrar-fragmento.png",
   "system": {
    "circle": 3,
    "element": "knowledge",
@@ -3138,7 +3138,7 @@
   "flags": {},
   "_stats": {
    "coreVersion": "14.369",
-   "systemId": "ordem_v2_classic",
+   "systemId": "ordem-v2-classic",
    "systemVersion": "8.0.2",
    "createdTime": 1792207618287,
    "modifiedTime": 1792207618288,
@@ -3152,7 +3152,7 @@
  {
   "name": "Salto Fantasma",
   "type": "ritual",
-  "img": "systems/ordem_v2_classic/assets/rituais/salto-fantasma.png",
+  "img": "systems/ordem-v2-classic/assets/rituais/salto-fantasma.png",
   "system": {
    "circle": 3,
    "element": "energy",
@@ -3183,7 +3183,7 @@
   "flags": {},
   "_stats": {
    "coreVersion": "14.369",
-   "systemId": "ordem_v2_classic",
+   "systemId": "ordem-v2-classic",
    "systemVersion": "8.0.2",
    "createdTime": 1792207618289,
    "modifiedTime": 1792207618289,
@@ -3197,7 +3197,7 @@
  {
   "name": "Tentáculos de Lodo",
   "type": "ritual",
-  "img": "systems/ordem_v2_classic/assets/rituais/tentaculos-de-lodo.png",
+  "img": "systems/ordem-v2-classic/assets/rituais/tentaculos-de-lodo.png",
   "system": {
    "circle": 3,
    "element": "death",
@@ -3228,7 +3228,7 @@
   "flags": {},
   "_stats": {
    "coreVersion": "14.369",
-   "systemId": "ordem_v2_classic",
+   "systemId": "ordem-v2-classic",
    "systemVersion": "8.0.2",
    "createdTime": 1792207618292,
    "modifiedTime": 1792207618292,
@@ -3242,7 +3242,7 @@
  {
   "name": "Transfigurar Terra",
   "type": "ritual",
-  "img": "systems/ordem_v2_classic/assets/rituais/transfigurar-terra.png",
+  "img": "systems/ordem-v2-classic/assets/rituais/transfigurar-terra.png",
   "system": {
    "circle": 3,
    "element": "energy",
@@ -3273,7 +3273,7 @@
   "flags": {},
   "_stats": {
    "coreVersion": "14.369",
-   "systemId": "ordem_v2_classic",
+   "systemId": "ordem-v2-classic",
    "systemVersion": "8.0.2",
    "createdTime": 1792207618296,
    "modifiedTime": 1792207618296,
@@ -3287,7 +3287,7 @@
  {
   "name": "Transfigurar Água",
   "type": "ritual",
-  "img": "systems/ordem_v2_classic/assets/rituais/transfigurar-agua.png",
+  "img": "systems/ordem-v2-classic/assets/rituais/transfigurar-agua.png",
   "system": {
    "circle": 3,
    "element": "energy",
@@ -3318,7 +3318,7 @@
   "flags": {},
   "_stats": {
    "coreVersion": "14.369",
-   "systemId": "ordem_v2_classic",
+   "systemId": "ordem-v2-classic",
    "systemVersion": "8.0.2",
    "createdTime": 1792207618294,
    "modifiedTime": 1792207618294,
@@ -3332,7 +3332,7 @@
  {
   "name": "Vidência",
   "type": "ritual",
-  "img": "systems/ordem_v2_classic/assets/rituais/videncia.png",
+  "img": "systems/ordem-v2-classic/assets/rituais/videncia.png",
   "system": {
    "circle": 3,
    "element": "knowledge",
@@ -3363,7 +3363,7 @@
   "flags": {},
   "_stats": {
    "coreVersion": "14.369",
-   "systemId": "ordem_v2_classic",
+   "systemId": "ordem-v2-classic",
    "systemVersion": "8.0.2",
    "createdTime": 1792207618297,
    "modifiedTime": 1792207618297,
@@ -3377,7 +3377,7 @@
  {
   "name": "Vomitar Pestes",
   "type": "ritual",
-  "img": "systems/ordem_v2_classic/assets/rituais/vomitar-pestes.png",
+  "img": "systems/ordem-v2-classic/assets/rituais/vomitar-pestes.png",
   "system": {
    "circle": 3,
    "element": "blood",
@@ -3408,7 +3408,7 @@
   "flags": {},
   "_stats": {
    "coreVersion": "14.369",
-   "systemId": "ordem_v2_classic",
+   "systemId": "ordem-v2-classic",
    "systemVersion": "8.0.2",
    "createdTime": 1792207618298,
    "modifiedTime": 1792207618298,
@@ -3422,7 +3422,7 @@
  {
   "name": "Zerar Entropia",
   "type": "ritual",
-  "img": "systems/ordem_v2_classic/assets/rituais/zerar-entropia.png",
+  "img": "systems/ordem-v2-classic/assets/rituais/zerar-entropia.png",
   "system": {
    "circle": 3,
    "element": "death",
@@ -3453,7 +3453,7 @@
   "flags": {},
   "_stats": {
    "coreVersion": "14.369",
-   "systemId": "ordem_v2_classic",
+   "systemId": "ordem-v2-classic",
    "systemVersion": "8.0.2",
    "createdTime": 1792207618300,
    "modifiedTime": 1792207618300,
@@ -3467,7 +3467,7 @@
  {
   "name": "Âncora Temporal",
   "type": "ritual",
-  "img": "systems/ordem_v2_classic/assets/rituais/ancora-temporal.png",
+  "img": "systems/ordem-v2-classic/assets/rituais/ancora-temporal.png",
   "system": {
    "circle": 3,
    "element": "death",
@@ -3498,7 +3498,7 @@
   "flags": {},
   "_stats": {
    "coreVersion": "14.369",
-   "systemId": "ordem_v2_classic",
+   "systemId": "ordem-v2-classic",
    "systemVersion": "8.0.2",
    "createdTime": 1792207618266,
    "modifiedTime": 1792208623487,
@@ -3512,7 +3512,7 @@
  {
   "name": "Alterar Destino",
   "type": "ritual",
-  "img": "systems/ordem_v2_classic/assets/rituais/alterar-destino.png",
+  "img": "systems/ordem-v2-classic/assets/rituais/alterar-destino.png",
   "system": {
    "circle": 4,
    "element": "energy",
@@ -3543,7 +3543,7 @@
   "flags": {},
   "_stats": {
    "coreVersion": "14.369",
-   "systemId": "ordem_v2_classic",
+   "systemId": "ordem-v2-classic",
    "systemVersion": "8.0.2",
    "createdTime": 1792207618301,
    "modifiedTime": 1792447976870,
@@ -3557,7 +3557,7 @@
  {
   "name": "Canalizar o Medo",
   "type": "ritual",
-  "img": "systems/ordem_v2_classic/assets/rituais/canalizar-o-medo.png",
+  "img": "systems/ordem-v2-classic/assets/rituais/canalizar-o-medo.png",
   "system": {
    "circle": 4,
    "element": "fear",
@@ -3588,7 +3588,7 @@
   "flags": {},
   "_stats": {
    "coreVersion": "14.369",
-   "systemId": "ordem_v2_classic",
+   "systemId": "ordem-v2-classic",
    "systemVersion": "8.0.2",
    "createdTime": 1792207618303,
    "modifiedTime": 1792207618303,
@@ -3602,7 +3602,7 @@
  {
   "name": "Capturar o Coração",
   "type": "ritual",
-  "img": "systems/ordem_v2_classic/assets/rituais/capturar-o-coracao.png",
+  "img": "systems/ordem-v2-classic/assets/rituais/capturar-o-coracao.png",
   "system": {
    "circle": 4,
    "element": "blood",
@@ -3633,7 +3633,7 @@
   "flags": {},
   "_stats": {
    "coreVersion": "14.369",
-   "systemId": "ordem_v2_classic",
+   "systemId": "ordem-v2-classic",
    "systemVersion": "8.0.2",
    "createdTime": 1792207618306,
    "modifiedTime": 1792207618306,
@@ -3647,7 +3647,7 @@
  {
   "name": "Conhecendo o Medo",
   "type": "ritual",
-  "img": "systems/ordem_v2_classic/assets/rituais/conhecendo-o-medo.png",
+  "img": "systems/ordem-v2-classic/assets/rituais/conhecendo-o-medo.png",
   "system": {
    "circle": 4,
    "element": "fear",
@@ -3678,7 +3678,7 @@
   "flags": {},
   "_stats": {
    "coreVersion": "14.369",
-   "systemId": "ordem_v2_classic",
+   "systemId": "ordem-v2-classic",
    "systemVersion": "8.0.2",
    "createdTime": 1792207618307,
    "modifiedTime": 1792207618307,
@@ -3692,7 +3692,7 @@
  {
   "name": "Controle Mental",
   "type": "ritual",
-  "img": "systems/ordem_v2_classic/assets/rituais/controle-mental.png",
+  "img": "systems/ordem-v2-classic/assets/rituais/controle-mental.png",
   "system": {
    "circle": 4,
    "element": "knowledge",
@@ -3723,7 +3723,7 @@
   "flags": {},
   "_stats": {
    "coreVersion": "14.369",
-   "systemId": "ordem_v2_classic",
+   "systemId": "ordem-v2-classic",
    "systemVersion": "8.0.2",
    "createdTime": 1792207618309,
    "modifiedTime": 1792207618309,
@@ -3737,7 +3737,7 @@
  {
   "name": "Convocar o Algoz",
   "type": "ritual",
-  "img": "systems/ordem_v2_classic/assets/rituais/convocar-o-algoz.png",
+  "img": "systems/ordem-v2-classic/assets/rituais/convocar-o-algoz.png",
   "system": {
    "circle": 4,
    "element": "death",
@@ -3768,7 +3768,7 @@
   "flags": {},
   "_stats": {
    "coreVersion": "14.369",
-   "systemId": "ordem_v2_classic",
+   "systemId": "ordem-v2-classic",
    "systemVersion": "8.0.2",
    "createdTime": 1792207618311,
    "modifiedTime": 1792207618311,
@@ -3782,7 +3782,7 @@
  {
   "name": "Deflagração de Energia",
   "type": "ritual",
-  "img": "systems/ordem_v2_classic/assets/rituais/deflagracao-de-energia.png",
+  "img": "systems/ordem-v2-classic/assets/rituais/deflagracao-de-energia.png",
   "system": {
    "circle": 4,
    "element": "energy",
@@ -3813,7 +3813,7 @@
   "flags": {},
   "_stats": {
    "coreVersion": "14.369",
-   "systemId": "ordem_v2_classic",
+   "systemId": "ordem-v2-classic",
    "systemVersion": "8.0.2",
    "createdTime": 1792207618313,
    "modifiedTime": 1792207618313,
@@ -3827,7 +3827,7 @@
  {
   "name": "Distorção Temporal",
   "type": "ritual",
-  "img": "systems/ordem_v2_classic/assets/rituais/distorcao-temporal.png",
+  "img": "systems/ordem-v2-classic/assets/rituais/distorcao-temporal.png",
   "system": {
    "circle": 4,
    "element": "death",
@@ -3858,7 +3858,7 @@
   "flags": {},
   "_stats": {
    "coreVersion": "14.369",
-   "systemId": "ordem_v2_classic",
+   "systemId": "ordem-v2-classic",
    "systemVersion": "8.0.2",
    "createdTime": 1792207618314,
    "modifiedTime": 1792207618314,
@@ -3872,7 +3872,7 @@
  {
   "name": "Fim Inevitável",
   "type": "ritual",
-  "img": "systems/ordem_v2_classic/assets/rituais/fim-inevitavel.png",
+  "img": "systems/ordem-v2-classic/assets/rituais/fim-inevitavel.png",
   "system": {
    "circle": 4,
    "element": "death",
@@ -3903,7 +3903,7 @@
   "flags": {},
   "_stats": {
    "coreVersion": "14.369",
-   "systemId": "ordem_v2_classic",
+   "systemId": "ordem-v2-classic",
    "systemVersion": "8.0.2",
    "createdTime": 1792207618316,
    "modifiedTime": 1792207618316,
@@ -3917,7 +3917,7 @@
  {
   "name": "Inexistir",
   "type": "ritual",
-  "img": "systems/ordem_v2_classic/assets/rituais/inexistir.png",
+  "img": "systems/ordem-v2-classic/assets/rituais/inexistir.png",
   "system": {
    "circle": 4,
    "element": "knowledge",
@@ -3948,7 +3948,7 @@
   "flags": {},
   "_stats": {
    "coreVersion": "14.369",
-   "systemId": "ordem_v2_classic",
+   "systemId": "ordem-v2-classic",
    "systemVersion": "8.0.2",
    "createdTime": 1792207618317,
    "modifiedTime": 1792207618317,
@@ -3962,7 +3962,7 @@
  {
   "name": "Invólucro de Carne",
   "type": "ritual",
-  "img": "systems/ordem_v2_classic/assets/rituais/involucro-de-carne.png",
+  "img": "systems/ordem-v2-classic/assets/rituais/involucro-de-carne.png",
   "system": {
    "circle": 4,
    "element": "blood",
@@ -3993,7 +3993,7 @@
   "flags": {},
   "_stats": {
    "coreVersion": "14.369",
-   "systemId": "ordem_v2_classic",
+   "systemId": "ordem-v2-classic",
    "systemVersion": "8.0.2",
    "createdTime": 1792207618319,
    "modifiedTime": 1792207618319,
@@ -4007,7 +4007,7 @@
  {
   "name": "Lâmina do Medo",
   "type": "ritual",
-  "img": "systems/ordem_v2_classic/assets/rituais/lamina-do-medo.png",
+  "img": "systems/ordem-v2-classic/assets/rituais/lamina-do-medo.png",
   "system": {
    "circle": 4,
    "element": "fear",
@@ -4038,7 +4038,7 @@
   "flags": {},
   "_stats": {
    "coreVersion": "14.369",
-   "systemId": "ordem_v2_classic",
+   "systemId": "ordem-v2-classic",
    "systemVersion": "8.0.2",
    "createdTime": 1792207618321,
    "modifiedTime": 1792448090448,
@@ -4052,7 +4052,7 @@
  {
   "name": "Martírio de Sangue",
   "type": "ritual",
-  "img": "systems/ordem_v2_classic/assets/rituais/martirio-de-sangue.png",
+  "img": "systems/ordem-v2-classic/assets/rituais/martirio-de-sangue.png",
   "system": {
    "circle": 4,
    "element": "blood",
@@ -4083,7 +4083,7 @@
   "flags": {},
   "_stats": {
    "coreVersion": "14.369",
-   "systemId": "ordem_v2_classic",
+   "systemId": "ordem-v2-classic",
    "systemVersion": "8.0.2",
    "createdTime": 1792207618322,
    "modifiedTime": 1792207618323,
@@ -4097,7 +4097,7 @@
  {
   "name": "Medo Tangível",
   "type": "ritual",
-  "img": "systems/ordem_v2_classic/assets/rituais/medo-tangivel.png",
+  "img": "systems/ordem-v2-classic/assets/rituais/medo-tangivel.png",
   "system": {
    "circle": 4,
    "element": "fear",
@@ -4128,7 +4128,7 @@
   "flags": {},
   "_stats": {
    "coreVersion": "14.369",
-   "systemId": "ordem_v2_classic",
+   "systemId": "ordem-v2-classic",
    "systemVersion": "8.0.2",
    "createdTime": 1792207618324,
    "modifiedTime": 1792207618324,
@@ -4142,7 +4142,7 @@
  {
   "name": "Possessão",
   "type": "ritual",
-  "img": "systems/ordem_v2_classic/assets/rituais/possessao.png",
+  "img": "systems/ordem-v2-classic/assets/rituais/possessao.png",
   "system": {
    "circle": 4,
    "element": "knowledge",
@@ -4173,7 +4173,7 @@
   "flags": {},
   "_stats": {
    "coreVersion": "14.369",
-   "systemId": "ordem_v2_classic",
+   "systemId": "ordem-v2-classic",
    "systemVersion": "8.0.2",
    "createdTime": 1792207618325,
    "modifiedTime": 1792207618325,
@@ -4187,7 +4187,7 @@
  {
   "name": "Presença do Medo",
   "type": "ritual",
-  "img": "systems/ordem_v2_classic/assets/rituais/presenca-do-medo.png",
+  "img": "systems/ordem-v2-classic/assets/rituais/presenca-do-medo.png",
   "system": {
    "circle": 4,
    "element": "fear",
@@ -4218,7 +4218,7 @@
   "flags": {},
   "_stats": {
    "coreVersion": "14.369",
-   "systemId": "ordem_v2_classic",
+   "systemId": "ordem-v2-classic",
    "systemVersion": "8.0.2",
    "createdTime": 1792207618331,
    "modifiedTime": 1792207618331,
@@ -4232,7 +4232,7 @@
  {
   "name": "Pronunciar Sigilo",
   "type": "ritual",
-  "img": "systems/ordem_v2_classic/assets/rituais/pronunciar-sigilo.png",
+  "img": "systems/ordem-v2-classic/assets/rituais/pronunciar-sigilo.png",
   "system": {
    "circle": 4,
    "element": "knowledge",
@@ -4263,7 +4263,7 @@
   "flags": {},
   "_stats": {
    "coreVersion": "14.369",
-   "systemId": "ordem_v2_classic",
+   "systemId": "ordem-v2-classic",
    "systemVersion": "8.0.2",
    "createdTime": 1792207618332,
    "modifiedTime": 1792207618332,
@@ -4277,7 +4277,7 @@
  {
   "name": "Singularidade Temporal",
   "type": "ritual",
-  "img": "systems/ordem_v2_classic/assets/rituais/singularidade-temporal.png",
+  "img": "systems/ordem-v2-classic/assets/rituais/singularidade-temporal.png",
   "system": {
    "circle": 4,
    "element": "death",
@@ -4308,7 +4308,7 @@
   "flags": {},
   "_stats": {
    "coreVersion": "14.369",
-   "systemId": "ordem_v2_classic",
+   "systemId": "ordem-v2-classic",
    "systemVersion": "8.0.2",
    "createdTime": 1792207618334,
    "modifiedTime": 1792207618334,
@@ -4322,7 +4322,7 @@
  {
   "name": "Teletransporte",
   "type": "ritual",
-  "img": "systems/ordem_v2_classic/assets/rituais/teletransporte.png",
+  "img": "systems/ordem-v2-classic/assets/rituais/teletransporte.png",
   "system": {
    "circle": 4,
    "element": "energy",
@@ -4353,7 +4353,7 @@
   "flags": {},
   "_stats": {
    "coreVersion": "14.369",
-   "systemId": "ordem_v2_classic",
+   "systemId": "ordem-v2-classic",
    "systemVersion": "8.0.2",
    "createdTime": 1792207618335,
    "modifiedTime": 1792207618335,
@@ -4367,7 +4367,7 @@
  {
   "name": "Vínculo de Sangue",
   "type": "ritual",
-  "img": "systems/ordem_v2_classic/assets/rituais/vinculo-de-sangue.png",
+  "img": "systems/ordem-v2-classic/assets/rituais/vinculo-de-sangue.png",
   "system": {
    "circle": 4,
    "element": "blood",
@@ -4398,7 +4398,7 @@
   "flags": {},
   "_stats": {
    "coreVersion": "14.369",
-   "systemId": "ordem_v2_classic",
+   "systemId": "ordem-v2-classic",
    "systemVersion": "8.0.2",
    "createdTime": 1792207618336,
    "modifiedTime": 1792207618337,

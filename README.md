@@ -39,7 +39,7 @@ A ideia central é **a ficha faz a conta e o Mestre decide**. O sistema aplica b
 
 3. Clique em **Instalar** e crie um mundo com o sistema **Ordem Paranormal (v2 Classic)**.
 
-**Instalação manual:** baixe o `system.zip` na [última release](https://github.com/ogiorno/ordem-v2-classic/releases/latest) e extraia em `Data/systems/ordem_v2_classic`.
+**Instalação manual:** baixe o `system.zip` na [última release](https://github.com/ogiorno/ordem-v2-classic/releases/latest) e extraia em `Data/systems/ordem-v2-classic`.
 
 | Requisito | Detalhe |
 | --- | --- |
@@ -47,7 +47,28 @@ A ideia central é **a ficha faz a conta e o Mestre decide**. O sistema aplica b
 | Módulo obrigatório | **Brawl Bar** (`barbrawl`), para a terceira barra do token (PV, SAN e PE). |
 | Opcional | **Automated Animations** + **JB2A_DnD5e** (animações dos rituais). |
 
-> **Atenção, mesmo `id` do sistema original.** O `id` continua `ordem_v2_classic`, então instalar este fork sobre o sistema do Wendel substitui um pelo outro. Faça backup do mundo antes de trocar.
+> **`id` próprio.** Este fork usa o `id` `ordem-v2-classic`, diferente do sistema do Wendel (`ordem_v2_classic`). Os dois podem ficar instalados juntos, e instalar um não substitui o outro.
+
+### Migrar um mundo criado na versão 1.0.x (ou no sistema original)
+
+Mundos guardam o `id` do sistema, então um mundo criado com `ordem_v2_classic` precisa ser convertido para abrir com este sistema. **Faça uma cópia da pasta do mundo antes** (`Data/worlds/<mundo>`).
+
+1. Volte à tela de configuração do Foundry (o mundo não pode estar ativo) e instale este sistema (`ordem-v2-classic`).
+2. No repositório, rode primeiro a simulação, que só conta e não grava:
+
+   ```bash
+   node scripts/migrar-mundo-id.mjs "C:\caminho\para\Data\worlds\meu-mundo"
+   ```
+
+3. Se os números fizerem sentido, aplique:
+
+   ```bash
+   node scripts/migrar-mundo-id.mjs "C:\caminho\para\Data\worlds\meu-mundo" --gravar
+   ```
+
+4. Inicie o mundo. As preferências de cada usuário no navegador (por exemplo, janelas do Grimório) voltam ao padrão.
+
+O script só troca o `id` nos dados do mundo e nos compêndios dele; não apaga nada.
 
 ## O que este fork acrescenta
 
@@ -110,7 +131,7 @@ Ainda não prontos: Profissão múltipla, a opção Conhecimento do Monstruoso, 
 
 ## Desenvolvimento
 
-O repositório é o workspace de desenvolvimento; o sistema fica em `systems/ordem_v2_classic`.
+O repositório é o workspace de desenvolvimento; o sistema fica em `systems/ordem-v2-classic`.
 
 ```bash
 npm install
@@ -122,11 +143,11 @@ npm run render-check  # confere os templates
 npm run dev           # servidor local do Foundry na porta 30000
 ```
 
-**Publicar uma versão:** atualize `version` em `systems/ordem_v2_classic/system.json` e o `CHANGELOG.md`, crie a tag (`git tag -a v1.0.0 -m "..."`) e envie (`git push origin master v1.0.0`). O workflow *Release* roda os testes, compila os compêndios e publica `system.json` e `system.zip`. As regras para quem usa agentes de IA no repositório estão em [`AGENTS.md`](AGENTS.md).
+**Publicar uma versão:** atualize `version` em `systems/ordem-v2-classic/system.json` e o `CHANGELOG.md`, crie a tag (`git tag -a v1.0.0 -m "..."`) e envie (`git push origin master v1.0.0`). O workflow *Release* roda os testes, compila os compêndios e publica `system.json` e `system.zip`. As regras para quem usa agentes de IA no repositório estão em [`AGENTS.md`](AGENTS.md).
 
 ## Créditos e licença
 
-Baseado em [ordemparanormal_fvtt](https://github.com/SouOWendel/ordemparanormal_fvtt), de **Wendel Henrique (Mark57449)** e colaboradores, modificado por [ogiorno](https://github.com/ogiorno). A lista de colaboradores do projeto original está em [`systems/ordem_v2_classic/README.md`](systems/ordem_v2_classic/README.md).
+Baseado em [ordemparanormal_fvtt](https://github.com/SouOWendel/ordemparanormal_fvtt), de **Wendel Henrique (Mark57449)** e colaboradores, modificado por [ogiorno](https://github.com/ogiorno). A lista de colaboradores do projeto original está em [`systems/ordem-v2-classic/README.md`](systems/ordem-v2-classic/README.md).
 
 Distribuído sob [CC BY-NC-SA 4.0](LICENSE.txt): você pode usar, copiar e modificar, desde que **dê crédito**, **não use comercialmente** e **mantenha a mesma licença**.
 

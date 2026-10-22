@@ -1,0 +1,96 @@
+{
+	"name": "Espreitar",
+	"type": "ability",
+	"img": "systems/ordem-v2-classic/assets/ability-icons/1466-1470-full-espreitar.webp",
+	"system": {
+		"id": 0,
+		"abilityType": "ability",
+		"preRequisite": "",
+		"description": "<p>COMPLETA - ESPREITAR Uma vez por cena, se estiver adjacente a um ser que esteja dormindo, o espreitador causa 10d6 pontos de dano mental neste ser (Vontade DT 30 reduz à metade). Se a vítima ficar enlouquecendo devido a este dano, o espreitador pode criar uma cópia observada dela.</p>",
+		"chatDescription": "",
+		"activation": "complete",
+		"cost": 0,
+		"costType": "PE",
+		"execution": {
+			"mode": "active",
+			"automation": "assisted",
+			"damage": [
+				{
+					"kind": "damage",
+					"formula": "10d6",
+					"type": "mental",
+					"resource": "san",
+					"roll": "once",
+					"frequency": ""
+				}
+			],
+			"effects": [],
+			"requirements": [
+				{
+					"kind": "perScene",
+					"count": 1,
+					"ref": "",
+					"text": ""
+				},
+				{
+					"kind": "narrative",
+					"text": "o ser adjacente está dormindo",
+					"ref": ""
+				}
+			],
+			"grants": [],
+			"targeting": {
+				"kind": "token",
+				"range": 1.5,
+				"count": 1,
+				"relation": "any",
+				"voluntary": false,
+				"rangeUnspecified": false,
+				"requiresSight": false
+			},
+			"save": {
+				"skill": "vontade",
+				"dc": 30,
+				"onSuccess": "half",
+				"retry": false
+			},
+			"version": 1,
+			"source": {
+				"reference": "Livro v1.3, p. 248, Espreitador",
+				"reviewed": false
+			},
+			"cost": null,
+			"area": null,
+			"trigger": null,
+			"visibility": {
+				"dc": "gm",
+				"defense": "gm",
+				"result": "public"
+			}
+		}
+	},
+	"effects": [],
+	"flags": {
+		"ordem-v2-classic": {
+			"threatAbilityId": "1466-H02"
+		}
+	},
+	"_stats": {
+		"coreVersion": "14.369",
+		"systemId": "ordem-v2-classic",
+		"systemVersion": "8.0.2",
+		"createdTime": 1792207618168,
+		"modifiedTime": 1792207618168,
+		"lastModifiedBy": null,
+		"compendiumSource": null,
+		"duplicateSource": null,
+		"exportSource": null
+	},
+	"ownership": {
+		"default": 0
+	},
+	"folder": "75CqURRYKQgBmppq",
+	"sort": 2000,
+	"_id": "NqxDLSXnF2geYxGf",
+	"_key": "!items!NqxDLSXnF2geYxGf"
+}

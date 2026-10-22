@@ -1,0 +1,90 @@
+{
+	"name": "Atormentar",
+	"type": "ability",
+	"img": "systems/ordem-v2-classic/assets/ability-icons/1493-1497-full-atormentar.webp",
+	"system": {
+		"id": 0,
+		"abilityType": "ability",
+		"preRequisite": "",
+		"description": "<p>COMPLETA - ATORMENTAR Se estiver fixado a um hospedeiro, o parasita atormenta a mente do ser e de todos que ele estiver mantendo inconscientes. No início de cada cena do sonho, todos os seres dentro do sonho sofrem 2d6 pontos de dano mental (Vontade DT 20 reduz à metade).</p>",
+		"chatDescription": "",
+		"activation": "complete",
+		"cost": 0,
+		"costType": "PE",
+		"execution": {
+			"mode": "active",
+			"automation": "assisted",
+			"damage": [
+				{
+					"kind": "damage",
+					"formula": "2d6",
+					"type": "mental",
+					"resource": "san",
+					"roll": "once",
+					"frequency": ""
+				}
+			],
+			"effects": [],
+			"requirements": [
+				{
+					"kind": "narrative",
+					"text": "o parasita está fixado a um hospedeiro; os seres atingidos estão dentro do sonho",
+					"ref": ""
+				}
+			],
+			"grants": [],
+			"targeting": {
+				"kind": "tokens",
+				"range": null,
+				"count": 20,
+				"relation": "any",
+				"rangeUnspecified": true,
+				"voluntary": false,
+				"requiresSight": false
+			},
+			"save": {
+				"skill": "vontade",
+				"dc": 20,
+				"onSuccess": "half",
+				"retry": false
+			},
+			"version": 1,
+			"source": {
+				"reference": "Livro v1.3, p. 256, Parasita de Culpa",
+				"reviewed": false
+			},
+			"cost": null,
+			"area": null,
+			"trigger": null,
+			"visibility": {
+				"dc": "gm",
+				"defense": "gm",
+				"result": "public"
+			}
+		}
+	},
+	"effects": [],
+	"flags": {
+		"ordem-v2-classic": {
+			"threatAbilityId": "1493-H03"
+		}
+	},
+	"_stats": {
+		"coreVersion": "14.369",
+		"systemId": "ordem-v2-classic",
+		"systemVersion": "8.0.2",
+		"createdTime": 1792207618168,
+		"modifiedTime": 1792207618168,
+		"lastModifiedBy": null,
+		"compendiumSource": null,
+		"duplicateSource": null,
+		"exportSource": null
+	},
+	"ownership": {
+		"default": 0
+	},
+	"folder": "1XyyoCB0vKfjYmmn",
+	"sort": 3000,
+	"_id": "4rnCpyxADGI8eciJ",
+	"_key": "!items!4rnCpyxADGI8eciJ"
+}

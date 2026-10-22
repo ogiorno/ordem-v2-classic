@@ -1,0 +1,93 @@
+{
+	"name": "Oblívio",
+	"type": "ability",
+	"img": "systems/ordem-v2-classic/assets/ability-icons/1466-1477-free-oblivio.webp",
+	"system": {
+		"id": 0,
+		"abilityType": "ability",
+		"preRequisite": "",
+		"description": "<p>LIVRE - OBLÍVIO Um ser que sofra dano do Toque Sutil esquece momentaneamente a existência do Estrangeiro (Vontade DT 30 evita). A vítima considera o Estrangeiro invisível e esquece qualquer interação que teve com ele. No final de cada um de seus turnos, o ser deve repetir o teste de Vontade. Se passar, volta a perceber a presença da criatura e encerra este efeito, mas sofre 6d6 pontos de dano mental. Uma vítima que esteja incubando uma larva de Estrangeiro (veja Incubar) não tem direito a repetir o teste de Vontade no final de seus turnos.</p>",
+		"chatDescription": "",
+		"activation": "free",
+		"cost": 0,
+		"costType": "PE",
+		"execution": {
+			"mode": "active",
+			"automation": "assisted",
+			"damage": [],
+			"effects": [
+				{
+					"condition": "esquece o Estrangeiro",
+					"duration": {
+						"unit": "untilSaved",
+						"value": null
+					},
+					"onSave": "fail",
+					"target": "target",
+					"trigger": "",
+					"support": "marker"
+				}
+			],
+			"requirements": [
+				{
+					"kind": "narrative",
+					"text": "o ser sofreu dano do Toque Sutil",
+					"ref": ""
+				}
+			],
+			"grants": [],
+			"targeting": {
+				"kind": "token",
+				"range": 1.5,
+				"count": 1,
+				"relation": "any",
+				"voluntary": false,
+				"rangeUnspecified": false,
+				"requiresSight": false
+			},
+			"save": {
+				"skill": "vontade",
+				"dc": 30,
+				"onSuccess": "none",
+				"retry": true
+			},
+			"version": 1,
+			"source": {
+				"reference": "Livro v1.3, p. 248, Espreitador",
+				"reviewed": false
+			},
+			"cost": null,
+			"area": null,
+			"trigger": null,
+			"visibility": {
+				"dc": "gm",
+				"defense": "gm",
+				"result": "public"
+			}
+		}
+	},
+	"effects": [],
+	"flags": {
+		"ordem-v2-classic": {
+			"threatAbilityId": "1466-H07"
+		}
+	},
+	"_stats": {
+		"coreVersion": "14.369",
+		"systemId": "ordem-v2-classic",
+		"systemVersion": "8.0.2",
+		"createdTime": 1792207618168,
+		"modifiedTime": 1792207618168,
+		"lastModifiedBy": null,
+		"compendiumSource": null,
+		"duplicateSource": null,
+		"exportSource": null
+	},
+	"ownership": {
+		"default": 0
+	},
+	"folder": "75CqURRYKQgBmppq",
+	"sort": 7000,
+	"_id": "pRmw4Sg5MYEXCmLF",
+	"_key": "!items!pRmw4Sg5MYEXCmLF"
+}

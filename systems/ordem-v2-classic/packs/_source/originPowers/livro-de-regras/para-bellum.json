@@ -1,0 +1,82 @@
+{
+  "name": "Para Bellum",
+  "type": "ability",
+  "_id": "NiYXA1QZO5Z0D59k",
+  "img": "systems/ordemparanormal/media/icons/abilities/origin/para-bellum.svg",
+  "system": {
+    "id": 0,
+    "abilityType": "origin",
+    "preRequisite": "",
+    "description": "<p>Voc&ecirc; recebe +2 em rolagens de dano&nbsp;com armas de fogo.</p>",
+    "chatDescription": "",
+    "activation": "passive",
+    "cost": 0
+  },
+  "effects": [
+    {
+      "name": "Para Bellum",
+      "img": "icons/svg/aura.svg",
+      "_id": "ev0UDmla6MvvdxNQ",
+      "type": "base",
+      "system": {
+        "changes": []
+      },
+      "disabled": true,
+      "start": null,
+      "duration": {
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
+      },
+      "description": "+2 nas rolagens de dano com armas de fogo.",
+      "tint": "#ffffff",
+      "transfer": false,
+      "statuses": [],
+      "showIcon": 1,
+      "folder": null,
+      "sort": 0,
+      "flags": {
+        "ordem-v2-classic": {
+          "onUse": {
+            "enabled": true,
+            "applies": "fire",
+            "auto": true,
+            "damageBonus": 2
+          }
+        }
+      },
+      "_stats": {
+        "coreVersion": "14.365",
+        "systemId": "ordem-v2-classic",
+        "systemVersion": "7.3.3",
+        "createdTime": 1784900000000,
+        "modifiedTime": 1784900000000,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!items.effects!NiYXA1QZO5Z0D59k.ev0UDmla6MvvdxNQ"
+    }
+  ],
+  "folder": "MbVRx0qCgZMO02wU",
+  "sort": 1800000,
+  "ownership": {
+    "default": 0,
+    "D087Zkcpssj33iAO": 3
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "ordemparanormal",
+    "systemVersion": "7.3.3",
+    "coreVersion": "14.365",
+    "createdTime": 1712011682497,
+    "modifiedTime": 1785688467472,
+    "lastModifiedBy": "vUTMyOH4FOrOifbw",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!NiYXA1QZO5Z0D59k"
+}

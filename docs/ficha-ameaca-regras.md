@@ -25,5 +25,5 @@ Notação do livro: `3O+10` = 3d20 + 10 (o "O" é o ícone do d20; `O` sozinho =
 - Balanceamento: soma dos VD ≈ soma do NEX do grupo = equilibrado; ~½ = fácil; ~1,5× = difícil.
 - Perigos (armadilhas, ácido, clima...) são outra seção — não são seres.
 
-## Lacunas observadas no sistema atual (`ordem_v2_classic`)
+## Lacunas observadas no sistema atual (`ordem-v2-classic`)
 Ver `threat-data.mjs`: já tem VD, atributos, perícias, resistências por tipo, presença perturbadora, enigma de medo, ações. Pontos a decidir: modelo de teste `xO+y` (hoje usa atributo + grau de treino), PV machucado, multiplicador de ataques, tipo de ação (Padrão/Movimento/...), RD com exceção, Cura Acelerada com valor, tamanho com modificadores automáticos.

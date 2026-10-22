@@ -359,7 +359,7 @@ for (const def of ONUSE) {
 	effect.disabled = true;
 	effect.transfer = false;
 	effect.description = def.description;
-	effect.flags = { ordem_v2_classic: { onUse: def.onUse } };
+	effect.flags = { "ordem-v2-classic": { onUse: def.onUse } };
 	doc.json.effects.push(effect);
 	pack(def.pack).save(doc);
 	touch(def.pack, doc.json._id);
@@ -368,7 +368,7 @@ for (const def of ONUSE) {
 // ------------------------------------------------------------------ correções pontuais de texto
 // Caractere de controle (hífen mole) que ficou no meio de palavras ao importar o livro, e um erro de digitação.
 const TEXT_FIXES = [[/\u0002/g, ""], [/efeito que causa da mental/g, "efeito que causa dano mental"]];
-for (const name of fs.readdirSync(path.join("systems/ordem_v2_classic/packs/_source"))) {
+for (const name of fs.readdirSync(path.join("systems/ordem-v2-classic/packs/_source"))) {
 	if (name === "macros" || name === "bookrules") continue;
 	const src = pack(name);
 	for (const doc of src.items) {
@@ -395,7 +395,7 @@ const carry = "tools/sah/out/ctrl-fixed.txt";
 if (fs.existsSync(carry)) {
 	for (const rel of fs.readFileSync(carry, "utf8").split(/\r?\n/).filter(Boolean)) {
 		const m = /packs\/_source\/([^/]+)\//.exec(rel);
-		const file = path.join("systems/ordem_v2_classic", rel);
+		const file = path.join("systems/ordem-v2-classic", rel);
 		if (!m || !fs.existsSync(file)) continue;
 		const json = JSON.parse(fs.readFileSync(file, "utf8"));
 		if (json._key?.startsWith("!items!")) touch(m[1], json._id);
@@ -403,7 +403,7 @@ if (fs.existsSync(carry)) {
 }
 
 // ------------------------------------------------------------------ marca discreta de origem
-// flags.ordem_v2_classic.source = "sah" em todo item do suplemento. Fica de fora o que é do Livro de Regras (pasta livro-de-regras),
+// flags.ordem-v2-classic.source = "sah" em todo item do suplemento. Fica de fora o que é do Livro de Regras (pasta livro-de-regras),
 // mesmo quando o build mexe nele (Calejado, Casca Grossa, Medidor de Estabilidade).
 const SAH_EXTRA = {
 	classes: ["Sobrevivente"],
@@ -416,8 +416,8 @@ for (const packName of fs.readdirSync(SOURCE_DIR)) {
 		const segments = path.relative(src.dir, doc.file).split(path.sep);
 		const isSah = segments.includes("sobrevivendo-ao-horror") || packName === "survivalPowers" || (SAH_EXTRA[packName] ?? []).includes(doc.json.name);
 		if (!isSah) continue;
-		if (doc.json.flags?.ordem_v2_classic?.source !== "sah") {
-			doc.json.flags = { ...doc.json.flags, ordem_v2_classic: { ...doc.json.flags?.ordem_v2_classic, source: "sah" } };
+		if (doc.json.flags?.["ordem-v2-classic"]?.source !== "sah") {
+			doc.json.flags = { ...doc.json.flags, "ordem-v2-classic": { ...doc.json.flags?.["ordem-v2-classic"], source: "sah" } };
 			src.save(doc);
 		}
 		touch(packName, doc.json._id);

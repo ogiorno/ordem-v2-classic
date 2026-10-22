@@ -1,0 +1,45 @@
+{
+  "name": "Milagre Ionizante",
+  "type": "ritual",
+  "img": "systems/ordem-v2-classic/assets/rituais/milagre-ionizante.png",
+  "system": {
+    "circle": 3,
+    "element": "energy",
+    "description": "<p>Cura, à escolha, uma doença, um veneno ou uma destas condições: abalado, apavorado, alquebrado, atordoado, cego, confuso, debilitado, enjoado, envenenado, esmorecido, exausto, fascinado, fatigado, fraco, frustrado, lento, ofuscado, paralisado, pasmo ou surdo. Pode remover efeitos paranormais, exceto os causados por Energia, mas não condições permanentes. Após a cura, o alvo faz Fortitude DT 30; em caso de falha, é incubado pelo vírus do infectcídio. O suplemento não traz versões Discente ou Verdadeiro para este ritual.</p>",
+    "chatDescription": "<p><strong>Fonte:</strong> Sobrevivendo ao Horror v1.3 · <strong>Execução:</strong> ação completa · <strong>Alcance:</strong> toque · <strong>Alvo:</strong> 1 ser · <strong>Duração:</strong> instantânea · <strong>Resistência:</strong> —</p>",
+    "execution": "complete",
+    "range": "touch",
+    "target": "1 ser",
+    "duration": "instantaneous",
+    "resistance": "",
+    "skillResis": "",
+    "targetQtd": "",
+    "area": {
+      "name": "",
+      "size": "",
+      "type": ""
+    },
+    "studentForm": false,
+    "trueForm": false
+  },
+  "effects": [],
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.369",
+    "systemId": "ordem-v2-classic",
+    "systemVersion": "8.0.2",
+    "createdTime": 1792207618168,
+    "modifiedTime": 1792207618168,
+    "lastModifiedBy": null,
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "ownership": {
+    "default": 0
+  },
+  "folder": "RituaisCirculo03",
+  "sort": 65000,
+  "_id": "mm8Brh1jREGiwd7a",
+  "_key": "!items!mm8Brh1jREGiwd7a"
+}
