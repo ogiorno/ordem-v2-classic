@@ -11,6 +11,7 @@ permissions:
 jobs:
   release:
     runs-on: ubuntu-24.04
+    environment: foundry-release
     steps:
       - uses: actions/checkout@v5
 
@@ -79,3 +80,22 @@ jobs:
           files: |
             system.json
             system.zip
+
+      - name: Registrar versão no foundryvtt.com
+        env:
+          FOUNDRY_RELEASE_TOKEN: ${{ secrets.FOUNDRY_RELEASE_TOKEN }}
+        run: |
+          REPO="https://github.com/${GITHUB_REPOSITORY}"
+          jq -n \
+            --arg id "$(jq -r .id system.json)" \
+            --arg version "$(jq -r .version system.json)" \
+            --arg manifest "$REPO/releases/download/${GITHUB_REF_NAME}/system.json" \
+            --arg notes "$REPO/releases/tag/${GITHUB_REF_NAME}" \
+            --arg min "$(jq -r .compatibility.minimum system.json)" \
+            --arg ver "$(jq -r .compatibility.verified system.json)" \
+            '{id:$id, release:{version:$version, manifest:$manifest, notes:$notes, compatibility:{minimum:$min, verified:$ver}}}' \
+            > payload.json
+          curl -sS --fail-with-body -X POST "https://foundryvtt.com/_api/packages/release_version/" \
+            -H "Content-Type: application/json" \
+            -H "Authorization: ${FOUNDRY_RELEASE_TOKEN}" \
+            -d @payload.json
